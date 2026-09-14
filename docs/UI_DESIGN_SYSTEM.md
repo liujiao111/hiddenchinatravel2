@@ -60,13 +60,12 @@ Use Geist Sans for:
 
 Body text should normally be at least `16px`, with line height around `1.7`.
 
-### Kicker labels
+### Section headings
 
-- Uppercase
-- `0.7–0.75rem`
-- Bold
-- Letter spacing around `0.18em`
-- Use to identify a section, not to repeat its heading
+- Use one clear module title as the heading.
+- Do not stack an uppercase kicker, a second headline, and a subtitle that repeat the same idea.
+- Supporting copy is optional and should add information rather than rename the module.
+- Reserve small uppercase labels for card metadata or rare contextual cues, not standard section headings.
 
 ## 4. Layout and spacing
 
@@ -156,9 +155,9 @@ Text links may use a simple underline or arrow. Avoid filling editorial sections
 ### Immersive Hero
 
 - Full-width destination image.
-- Short kicker, one emotional headline, one primary action.
+- One emotional headline, one concise supporting sentence, and no more than two actions.
 - Desktop height around `530–670px`; mobile around `460–590px`.
-- Avoid paragraphs of explanatory text in the Hero.
+- Use a cream editorial bridge that slightly overlaps the Hero when the next module is visually heavy.
 
 ### Editorial introduction
 
@@ -171,6 +170,19 @@ Text links may use a simple underline or arrow. Avoid filling editorial sections
 - Use overlay copy near the bottom.
 - Include destination, short context, and one exploration action.
 - Four columns desktop, two tablet, one mobile.
+
+### Guide explorer
+
+- Use topic tabs such as First trip, Payments, Internet, and Getting around.
+- Every article card must include a real cover image.
+- Cards use a vertical editorial-photo treatment rather than plain text boxes.
+- On mobile, preserve image size with intentional horizontal scrolling.
+
+### Preparation checklist
+
+- Treat checklist topics as an editorial index with thin dividers and numbered entries.
+- Avoid floating rounded SaaS-style feature cards and decorative app icons.
+- Keep the checklist visually quieter than the article and journey modules.
 
 ### Journey cards
 
