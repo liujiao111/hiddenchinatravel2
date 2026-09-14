@@ -1,0 +1,608 @@
+[
+  {
+    "slug": "united-states",
+    "iso2": "US",
+    "canonicalName": "United States",
+    "displayName": "United States",
+    "demonym": "US citizens",
+    "demonymSingular": "a US citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "The United States is not on China’s 30-day unilateral visa-free list. A standalone holiday or business trip usually needs a tourist (L) or other visa before travel.",
+      "US passport holders can use the 240-hour (10-day) visa-free transit policy only with a confirmed onward ticket to a third country via an eligible Chinese port — not for a simple round-trip US–China–US itinerary.",
+      "US emergency / limited-validity passports are generally refused for visa-free and transit visa-free entry; apply for a full visa if you travel on one.",
+      "CITS/visa-center appointments in US cities (for example New York, Los Angeles, San Francisco, Houston, Chicago, Washington DC) can book out in peak seasons — start several weeks early."
+    ],
+    "commonRoutes": "Many US travelers enter via Shanghai (PVG), Beijing (PEK/PKX), Guangzhou (CAN), or Chengdu (TFU), often connecting onward to Southeast Asia, Japan, or Korea under 240-hour transit rules.",
+    "faqOverrides": [
+      {
+        "question": "Can US citizens visit China without a visa for a normal holiday?",
+        "answer": "No. For a China-only trip that starts and ends in the United States, US citizens generally need a tourist (L) visa. The 240-hour transit option is only for itineraries with a confirmed third-country destination — for example USA → China → Japan — not a vacation that returns home from China."
+      }
+    ]
+  },
+  {
+    "slug": "united-kingdom",
+    "iso2": "GB",
+    "canonicalName": "United Kingdom of Great Britain and Northern Ireland",
+    "displayName": "United Kingdom",
+    "demonym": "British citizens",
+    "demonymSingular": "a British citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "The UK joined China’s unilateral visa-free list on 17 February 2026 for ordinary passport holders on short tourism and business stays.",
+      "The thin “emergency” 12-page UK passport is excluded from visa-free entry — if you hold one, apply for a visa regardless of nationality.",
+      "Visa-free stays are currently framed through 31 December 2026 for most unilateral countries; recheck before booking non-refundable travel after that date.",
+      "British travelers still need the correct visa for work, study, journalism, or stays longer than the published day limit."
+    ],
+    "commonRoutes": "Common gateways from the UK include Beijing, Shanghai, and Guangzhou, with many itineraries continuing by high-speed rail to Xi’an, Chengdu, or Hangzhou.",
+    "faqOverrides": [
+      {
+        "question": "Does the UK emergency passport work for China visa-free entry?",
+        "answer": "No. China’s visa-free policy for British citizens requires an ordinary passport. The UK’s emergency travel document / temporary passport is generally not accepted for visa-free entry — apply for a China visa before you fly if that is the only document you hold."
+      }
+    ]
+  },
+  {
+    "slug": "germany",
+    "iso2": "DE",
+    "canonicalName": "Germany",
+    "displayName": "Germany",
+    "demonym": "German citizens",
+    "demonymSingular": "a German citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Germany is on China’s unilateral visa-free list for ordinary German passports on short tourism and business stays (typically up to 30 days).",
+      "Lufthansa and other EU carriers often land at Shanghai PVG or Beijing PKX; keep hotel addresses in Chinese characters for the arrival card and hotel registration.",
+      "Germany also appears on the 240-hour transit list, but most German holidays use the 30-day visa-free path instead of transit rules.",
+      "If you hold a German emergency passport (Reiseausweis / Notpass), assume visa-free entry does not apply and apply for a visa."
+    ],
+    "commonRoutes": "Popular entry points for German travelers include Shanghai, Beijing, and Guangzhou, with onward rail to cities such as Suzhou, Hangzhou, or Xi’an.",
+    "faqOverrides": [
+      {
+        "question": "Do German citizens need a visa for a two-week China holiday?",
+        "answer": "Usually no, if you hold an ordinary German passport and stay within the published visa-free day limit for tourism or short business. Work, study, journalism, and trips longer than that limit still need a visa arranged before departure."
+      }
+    ]
+  },
+  {
+    "slug": "france",
+    "iso2": "FR",
+    "canonicalName": "France",
+    "displayName": "France",
+    "demonym": "French citizens",
+    "demonymSingular": "a French citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "France is on China’s unilateral visa-free list for ordinary French passports; short tourism and business trips within the published day limit typically need no pre-arranged visa.",
+      "Air France and other carriers commonly arrive at Shanghai PVG or Beijing; Yunnan, Guilin, and Sichuan are popular onward domestic legs for French visitors.",
+      "Carry proof of onward/return travel and at least the first nights’ accommodation — French travelers are often asked at the border.",
+      "French emergency travel documents (titre de voyage / laissez-passer) are not a substitute for an ordinary passport under visa-free rules."
+    ],
+    "commonRoutes": "French visitors often fly into Shanghai or Beijing, then travel onward to Guilin, Yunnan, or Sichuan by air or rail.",
+    "faqOverrides": [
+      {
+        "question": "Can French citizens enter China visa-free for tourism in 2026?",
+        "answer": "Yes, with an ordinary French passport for short tourism or business stays within the published day limit. Longer stays, employment, study, and journalism still require the correct visa before you travel."
+      }
+    ]
+  },
+  {
+    "slug": "australia",
+    "iso2": "AU",
+    "canonicalName": "Australia",
+    "displayName": "Australia",
+    "demonym": "Australian citizens",
+    "demonymSingular": "an Australian citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Australia has been on China’s unilateral visa-free list since 2024 for ordinary Australian passports on short stays.",
+      "Direct and one-stop flights from Sydney, Melbourne, and Brisbane commonly land in Guangzhou (CAN) or Shanghai (PVG) — southern China is a frequent first stop.",
+      "Australia is also on the 240-hour transit list; use that path only when connecting to a third country, not for a round-trip holiday.",
+      "Australian emergency passports are generally excluded from visa-free entry; apply for a visa if that is your travel document."
+    ],
+    "commonRoutes": "Australians frequently enter via Guangzhou (CAN) or Shanghai (PVG), then continue to Shenzhen, Guilin, or Chengdu.",
+    "faqOverrides": [
+      {
+        "question": "How long can Australian citizens stay in China without a visa?",
+        "answer": "Up to the published unilateral visa-free maximum (commonly 30 days) on an ordinary Australian passport for tourism or short business. If you need more time, apply for a tourist or other visa before you leave Australia."
+      }
+    ]
+  },
+  {
+    "slug": "canada",
+    "iso2": "CA",
+    "canonicalName": "Canada",
+    "displayName": "Canada",
+    "demonym": "Canadian citizens",
+    "demonymSingular": "a Canadian citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Canada joined China’s unilateral visa-free program in the same February 2026 batch as the UK for ordinary Canadian passports on short stays.",
+      "Canadians also appear on the 240-hour transit list — useful for Canada → China → Asia itineraries with a confirmed third-country ticket.",
+      "Common gateways from Vancouver and Toronto are Beijing, Shanghai, and Guangzhou; winter travel often needs extra buffer for connections.",
+      "Canadian emergency travel documents are generally not accepted for visa-free entry."
+    ],
+    "commonRoutes": "Canadian travelers often arrive via Vancouver or Toronto connections into Beijing, Shanghai, or Guangzhou.",
+    "faqOverrides": [
+      {
+        "question": "When did Canada become visa-free for China?",
+        "answer": "Canada was added to China’s unilateral visa-free list on 17 February 2026 for ordinary passport holders on short tourism and business stays. Confirm the current day limit and end date before you book, because unilateral policies are periodically reviewed."
+      }
+    ]
+  },
+  {
+    "slug": "japan",
+    "iso2": "JP",
+    "canonicalName": "Japan",
+    "displayName": "Japan",
+    "demonym": "Japanese citizens",
+    "demonymSingular": "a Japanese citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Japan is on China’s unilateral visa-free list for ordinary Japanese passports; short city breaks and rail loops within the day limit are common.",
+      "High-frequency routes from Tokyo and Osaka into Shanghai (PVG) and Beijing make weekend-style trips practical under visa-free rules.",
+      "Japan is also on the 240-hour transit list, but most Japanese leisure trips use the longer visa-free stay instead.",
+      "Work, study, and journalism still require dedicated Chinese visas despite visa-free tourism access."
+    ],
+    "commonRoutes": "Frequent routes include Tokyo/Osaka to Shanghai or Beijing, then rail to Hangzhou, Suzhou, or Xi’an.",
+    "faqOverrides": [
+      {
+        "question": "Can Japanese citizens do a Shanghai–Hangzhou–Suzhou trip without a China visa?",
+        "answer": "Yes, if you hold an ordinary Japanese passport and the whole mainland stay fits within the published visa-free day limit. Keep return/onward tickets and hotel bookings available for immigration checks."
+      }
+    ]
+  },
+  {
+    "slug": "south-korea",
+    "iso2": "KR",
+    "canonicalName": "Republic of Korea",
+    "displayName": "South Korea",
+    "demonym": "South Korean citizens",
+    "demonymSingular": "a South Korean citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "South Korea (Republic of Korea) qualifies for China’s unilateral visa-free short stays with an ordinary Korean passport.",
+      "Short flights into Qingdao, Shanghai, Beijing, and Yanji are popular for shopping and city breaks; confirm stay length against the published maximum.",
+      "Korean travelers often combine visa-free mainland entry with a separate Hong Kong or Japan leg — each place has its own immigration rules.",
+      "Employment, study, and long stays still need the correct Chinese visa category."
+    ],
+    "commonRoutes": "Common gateways from Korea include Qingdao, Shanghai, Beijing, and Yanji, with easy onward domestic flights.",
+    "faqOverrides": [
+      {
+        "question": "Do South Korean citizens need a visa for a weekend trip to Shanghai?",
+        "answer": "Usually no for ordinary passport holders, as long as the mainland stay stays within the published visa-free day limit and the purpose is tourism or short business. Work and study still require a visa."
+      }
+    ]
+  },
+  {
+    "slug": "italy",
+    "iso2": "IT",
+    "canonicalName": "Italy",
+    "displayName": "Italy",
+    "demonym": "Italian citizens",
+    "demonymSingular": "an Italian citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Italy is covered by China’s unilateral visa-free policy for ordinary Italian passports on short tourism and business stays.",
+      "Italian visitors often land in Beijing or Shanghai and continue to Xi’an, Chengdu, or Yunnan — plan hotel registration if using private apartments.",
+      "Italy is also on the 240-hour transit list; use it only for genuine third-country connections.",
+      "Italian emergency passports / temporary documents generally require a full visa application instead of visa-free entry."
+    ],
+    "commonRoutes": "Italian travelers often fly into Beijing or Shanghai and continue to Xi’an, Chengdu, or Yunnan.",
+    "faqOverrides": [
+      {
+        "question": "Is China visa-free for Italian citizens in 2026?",
+        "answer": "Yes for ordinary Italian passports on short tourism or business stays within the published day limit. Longer trips and special purposes (work, study, journalism) still need a visa before travel."
+      }
+    ]
+  },
+  {
+    "slug": "spain",
+    "iso2": "ES",
+    "canonicalName": "Spain",
+    "displayName": "Spain",
+    "demonym": "Spanish citizens",
+    "demonymSingular": "a Spanish citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Spain is on China’s unilateral visa-free list for ordinary Spanish passports.",
+      "Madrid and Barcelona long-hauls often connect into Beijing, Shanghai, or Guangzhou; keep return tickets and hotel confirmations offline on your phone.",
+      "Spain also appears on the 240-hour transit list for third-country connections through eligible ports.",
+      "If your trip exceeds the visa-free maximum, apply via a Chinese visa center in Spain before departure."
+    ],
+    "commonRoutes": "Spanish visitors commonly enter via Madrid/Barcelona connections to Beijing, Shanghai, or Guangzhou.",
+    "faqOverrides": [
+      {
+        "question": "Do Spanish citizens need a visa for a 10-day China tour?",
+        "answer": "Typically no, with an ordinary Spanish passport, if the stay is for tourism or short business and stays within the published visa-free day limit. Bring proof of onward travel and accommodation for immigration."
+      }
+    ]
+  },
+  {
+    "slug": "netherlands",
+    "iso2": "NL",
+    "canonicalName": "Netherlands",
+    "displayName": "Netherlands",
+    "demonym": "Dutch citizens",
+    "demonymSingular": "a Dutch citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "The Netherlands is included in China’s unilateral visa-free short-stay program for ordinary Dutch passports.",
+      "Schiphol is a major hub into Beijing and Shanghai; Dutch travelers often continue by high-speed rail to Hangzhou, Suzhou, or Nanjing.",
+      "Dutch passports also qualify for 240-hour transit when you have a confirmed third-country onward ticket.",
+      "Dutch emergency travel documents generally need a visa — do not assume visa-free entry."
+    ],
+    "commonRoutes": "Schiphol connections into Beijing and Shanghai are common, followed by rail travel to second-tier cities.",
+    "faqOverrides": [
+      {
+        "question": "Can Dutch citizens use both China visa-free stay and 240-hour transit?",
+        "answer": "Yes. Most short holidays use the unilateral visa-free stay. Use 240-hour transit only when you are genuinely connecting through China to a different third country with a confirmed onward ticket."
+      }
+    ]
+  },
+  {
+    "slug": "brazil",
+    "iso2": "BR",
+    "canonicalName": "Brazil",
+    "displayName": "Brazil",
+    "demonym": "Brazilian citizens",
+    "demonymSingular": "a Brazilian citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Brazil is on China’s unilateral visa-free list for ordinary Brazilian passports on short stays.",
+      "Long-haul itineraries from São Paulo or Rio often arrive via Europe or the Middle East into Beijing, Shanghai, or Guangzhou — prepare Alipay/WeChat Pay before landing.",
+      "Brazil is also on the 240-hour transit list, but a dedicated holiday usually uses the longer visa-free stay.",
+      "If you need more than the published visa-free maximum, apply for a visa at a Chinese consulate in Brazil before you fly."
+    ],
+    "commonRoutes": "Brazilian travelers often arrive via Europe or Middle East hubs into Beijing, Shanghai, or Guangzhou.",
+    "faqOverrides": [
+      {
+        "question": "Do Brazilian citizens need a China visa for tourism?",
+        "answer": "Usually not for short tourism or business stays within the published unilateral day limit on an ordinary Brazilian passport. Longer stays and work/study still require a visa arranged before travel."
+      }
+    ]
+  },
+  {
+    "slug": "singapore",
+    "iso2": "SG",
+    "canonicalName": "Singapore",
+    "displayName": "Singapore",
+    "demonym": "Singaporean citizens",
+    "demonymSingular": "a Singaporean citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Singapore has a mutual (bilateral) visa-free arrangement with China for ordinary Singapore passports — separate from the unilateral European/Australia-style list, with the same practical result at the border for short stays.",
+      "Mutual visa-free access has been in force since February 2024 for qualifying short visits; still respect the published per-visit day limit.",
+      "Frequent short flights to Guangzhou, Shenzhen, Shanghai, and Xiamen make weekend trips common for Singapore residents.",
+      "Singapore is not treated as a 240-hour transit nationality in our dataset — plan mutual visa-free entry or a full visa instead."
+    ],
+    "commonRoutes": "Frequent short flights from Singapore to Guangzhou, Shenzhen, Shanghai, and Xiamen.",
+    "faqOverrides": [
+      {
+        "question": "Is Singapore’s China visa-free policy the same as Europe’s unilateral list?",
+        "answer": "No. Singapore uses a mutual visa-free agreement with China (in force since February 2024 for ordinary passports), while many European countries use China’s unilateral exemption. At the border the practical outcome is similar for short tourism stays, but the legal basis and details can differ — verify unusual purposes in the visa checker."
+      }
+    ]
+  },
+  {
+    "slug": "malaysia",
+    "iso2": "MY",
+    "canonicalName": "Malaysia",
+    "displayName": "Malaysia",
+    "demonym": "Malaysian citizens",
+    "demonymSingular": "a Malaysian citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Malaysia has a mutual visa-free arrangement with China for ordinary Malaysian passports on short stays.",
+      "Malaysia is not on the 240-hour transit country list in our dataset — plan either mutual visa-free tourism or a full visa.",
+      "Popular routes from Kuala Lumpur include Guangzhou, Shenzhen, Shanghai, and Kunming; southern China is a frequent first stop.",
+      "Malaysian emergency certificates / limited travel documents generally require a visa application."
+    ],
+    "commonRoutes": "Popular routes include Kuala Lumpur to Guangzhou, Shenzhen, Shanghai, or Kunming.",
+    "faqOverrides": [
+      {
+        "question": "Can Malaysian citizens use China’s 240-hour transit without a visa?",
+        "answer": "Not under the standard 240-hour transit country list in our rules data. Malaysians typically rely on the mutual visa-free short-stay arrangement for tourism, or apply for a visa when the trip purpose or length does not fit."
+      }
+    ]
+  },
+  {
+    "slug": "thailand",
+    "iso2": "TH",
+    "canonicalName": "Thailand",
+    "displayName": "Thailand",
+    "demonym": "Thai citizens",
+    "demonymSingular": "a Thai citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Thailand has mutual visa-free access to China for ordinary Thai passports on short stays.",
+      "Thailand is not listed for 240-hour transit in our rules data — use mutual visa-free entry or apply for a visa as needed.",
+      "Group and FIT trips from Bangkok and Chiang Mai into Guangzhou, Kunming, Chengdu, and Shanghai are common.",
+      "If you plan work, study, or a long stay, apply for the correct Chinese visa in Thailand before departure."
+    ],
+    "commonRoutes": "Frequent flights from Bangkok to Guangzhou, Kunming, Chengdu, and Shanghai.",
+    "faqOverrides": [
+      {
+        "question": "Do Thai citizens need a visa for a short China shopping trip?",
+        "answer": "Usually no for ordinary Thai passports under the mutual visa-free arrangement, as long as the stay and purpose fit the published short-stay rules. Work, study, and longer trips still need a visa."
+      }
+    ]
+  },
+  {
+    "slug": "new-zealand",
+    "iso2": "NZ",
+    "canonicalName": "New Zealand",
+    "displayName": "New Zealand",
+    "demonym": "New Zealand citizens",
+    "demonymSingular": "a New Zealand citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "New Zealand is on China’s unilateral visa-free list for ordinary New Zealand passports.",
+      "Long-haul itineraries often connect via Australia or Asia hubs into Shanghai, Guangzhou, or Beijing — set up payments and eSIM before you fly.",
+      "New Zealand is also on the 240-hour transit list for third-country connections through eligible ports.",
+      "Stays beyond the published visa-free maximum require a visa arranged before departure from New Zealand."
+    ],
+    "commonRoutes": "Typical itineraries connect via Australia or Asia hubs into Shanghai, Guangzhou, or Beijing.",
+    "faqOverrides": [
+      {
+        "question": "Are New Zealand citizens visa-free for China in 2026?",
+        "answer": "Yes for ordinary New Zealand passports on short tourism or business stays within the published unilateral day limit. Confirm the current end date of the policy before booking travel after late 2026."
+      }
+    ]
+  },
+  {
+    "slug": "ireland",
+    "iso2": "IE",
+    "canonicalName": "Ireland",
+    "displayName": "Ireland",
+    "demonym": "Irish citizens",
+    "demonymSingular": "an Irish citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Ireland is covered by China’s unilateral visa-free short-stay policy for ordinary Irish passports.",
+      "Dublin itineraries usually connect via Europe or the Middle East into Beijing or Shanghai.",
+      "Irish citizens can also use 240-hour transit when flying onward to a third country through an eligible port.",
+      "Irish temporary travel documents are generally excluded from visa-free entry — apply for a visa if that is your only document."
+    ],
+    "commonRoutes": "Common paths are Dublin connections via Europe or Middle East into Beijing or Shanghai.",
+    "faqOverrides": [
+      {
+        "question": "Do Irish citizens need a visa for a two-week China holiday?",
+        "answer": "Usually no with an ordinary Irish passport, if the stay is tourism or short business within the published visa-free day limit. Work and study still require dedicated visas."
+      }
+    ]
+  },
+  {
+    "slug": "mexico",
+    "iso2": "MX",
+    "canonicalName": "Mexico",
+    "displayName": "Mexico",
+    "demonym": "Mexican citizens",
+    "demonymSingular": "a Mexican citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Mexico is not on China’s 30-day unilateral visa-free tourism list. A standalone China holiday usually needs a tourist (L) visa.",
+      "Mexican passport holders may use 240-hour visa-free transit with a confirmed onward ticket to a third country via an eligible port (for example Mexico → China → Japan).",
+      "Do not treat transit rules as a substitute for a round-trip holiday that returns to Mexico from China without a third country.",
+      "Apply at a Chinese embassy/consulate or authorized center in Mexico; long-haul boarding is often refused without a visa when transit conditions are not met."
+    ],
+    "commonRoutes": "Long-haul routes often connect via the US, Europe, or Middle East into Shanghai, Beijing, or Guangzhou.",
+    "faqOverrides": [
+      {
+        "question": "Can Mexican citizens enter China on 240-hour transit for a vacation?",
+        "answer": "Only if the itinerary is a genuine transit to a different third country with a confirmed onward ticket and an eligible port. A Mexico–China–Mexico holiday does not qualify — apply for a tourist visa instead."
+      }
+    ]
+  },
+  {
+    "slug": "indonesia",
+    "iso2": "ID",
+    "canonicalName": "Indonesia",
+    "displayName": "Indonesia",
+    "demonym": "Indonesian citizens",
+    "demonymSingular": "an Indonesian citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Indonesia is not on China’s 30-day unilateral visa-free list for ordinary tourism.",
+      "Indonesian passports appear on the 240-hour transit list — useful only with confirmed third-country onward travel through an eligible port.",
+      "For a dedicated China holiday from Jakarta, Surabaya, or Denpasar, apply for a tourist visa before departure.",
+      "Common gateways for Indonesians include Guangzhou, Shenzhen, Shanghai, and Xiamen; southern China routes are especially frequent."
+    ],
+    "commonRoutes": "Common gateways include Guangzhou, Shenzhen, Shanghai, and Xiamen from Jakarta, Surabaya, or Denpasar.",
+    "faqOverrides": [
+      {
+        "question": "Do Indonesian citizens need a visa for a China holiday?",
+        "answer": "Yes for a standalone holiday. Indonesia is not on the 30-day visa-free list. The 240-hour transit option only helps when you have a confirmed onward ticket to a third country — not for Indonesia–China–Indonesia vacation trips."
+      }
+    ]
+  },
+  {
+    "slug": "india",
+    "iso2": "IN",
+    "canonicalName": "India",
+    "displayName": "India",
+    "demonym": "Indian citizens",
+    "demonymSingular": "an Indian citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Indian passport holders are not eligible for China’s 30-day visa-free program or the 240-hour transit list in our dataset.",
+      "Apply for a tourist (L) or other appropriate visa at a Chinese embassy, consulate, or visa application center in India before travel.",
+      "Appointment slots in Delhi, Mumbai, Kolkata, and other cities can fill quickly before holidays and school breaks — start early.",
+      "Airlines flying Delhi/Mumbai–Guangzhou/Shanghai/Beijing routinely check visas at check-in; do not expect visa-on-arrival for mainland China."
+    ],
+    "commonRoutes": "Popular routes include Delhi/Mumbai connections into Guangzhou, Shanghai, Beijing, or Kunming.",
+    "faqOverrides": [
+      {
+        "question": "Can Indian citizens get a China visa on arrival?",
+        "answer": "No for ordinary mainland tourism. Indian citizens should obtain a visa before flying. China does not offer a general visa-on-arrival program for Indian passports on standard tourist itineraries."
+      }
+    ]
+  },
+  {
+    "slug": "philippines",
+    "iso2": "PH",
+    "canonicalName": "Philippines",
+    "displayName": "Philippines",
+    "demonym": "Filipino citizens",
+    "demonymSingular": "a Filipino citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Philippine passports are not on the mainland 30-day visa-free list or the standard 240-hour transit list.",
+      "Most Filipino travelers need an L (tourist) or other visa before flying to mainland China.",
+      "Limited group-tour exemptions for specific regions (for example certain Hainan / designated-area programs) may exist outside the national lists — only rely on them with a registered operator and written confirmation.",
+      "Hong Kong and Macau are separate immigration systems from mainland China; a Hong Kong visit does not automatically authorize mainland entry."
+    ],
+    "commonRoutes": "Frequent flights from Manila and Cebu to Guangzhou, Xiamen, Shanghai, and Hong Kong (separate immigration from mainland).",
+    "faqOverrides": [
+      {
+        "question": "Do Filipino citizens qualify for China’s 240-hour transit?",
+        "answer": "No under the standard published 240-hour transit country list used in our rules. Filipino travelers should apply for a mainland visa for ordinary tourism. Do not confuse Hong Kong entry rules with mainland China immigration."
+      }
+    ]
+  },
+  {
+    "slug": "kyrgyzstan",
+    "iso2": "KG",
+    "canonicalName": "Kyrgyzstan",
+    "displayName": "Kyrgyzstan",
+    "demonym": "Kyrgyz citizens",
+    "demonymSingular": "a Kyrgyz citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-08-24",
+    "uniqueNotes": [
+      "From 20 August 2026, Kyrgyzstan is on China’s 240-hour (10-day) visa-free transit list (57 countries). A standalone Bishkek–China–Bishkek holiday still needs a visa.",
+      "240-hour transit requires an ordinary passport, a confirmed onward ticket to a third country or region, and entry through one of 65 designated ports.",
+      "The same announcement also lets Kyrgyz ordinary-passport holders enter through Hainan’s open ports and stay up to 30 days inside Hainan Province only.",
+      "This is not China’s nationwide 30-day visa-free program. Work, study, and journalism still need a visa before travel."
+    ],
+    "commonRoutes": "Typical connections are via regional hubs into Beijing, Urumqi, Guangzhou, or Shanghai; Haikou and Sanya for Hainan-only stays.",
+    "faqOverrides": [
+      {
+        "question": "Do Kyrgyz citizens need a visa for a China holiday?",
+        "answer": "Yes for a standalone holiday that starts and ends in Kyrgyzstan. From 20 August 2026 you may use 240-hour transit only with a confirmed onward ticket to a third country, or the Hainan 30-day visa-free stay if you enter through a Hainan port and remain in Hainan."
+      },
+      {
+        "question": "Can Kyrgyz citizens visit Hainan without a mainland visa?",
+        "answer": "Yes under the 20 August 2026 Hainan 30-day visa-free policy: ordinary passport, enter through a Hainan open port, and stay inside Hainan Province. Work, study, and journalism still need a visa in advance. This does not authorize travel around the rest of mainland China."
+      }
+    ]
+  },
+  {
+    "slug": "vietnam",
+    "iso2": "VN",
+    "canonicalName": "Vietnam",
+    "displayName": "Vietnam",
+    "demonym": "Vietnamese citizens",
+    "demonymSingular": "a Vietnamese citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-08-24",
+    "uniqueNotes": [
+      "From 20 August 2026, Vietnam is on China’s 240-hour (10-day) visa-free transit list (57 countries). A standalone Vietnam–China–Vietnam holiday still needs a visa.",
+      "240-hour transit requires an ordinary passport, a confirmed onward ticket to a third country or region, and entry through one of 65 designated ports (Beijing, Shanghai, and others).",
+      "The same announcement also lets Vietnamese ordinary-passport holders enter through Hainan’s open ports and stay up to 30 days inside Hainan Province only — not a nationwide mainland visa-free stay.",
+      "Typical Vietnam land borders (Hekou, Dongxing, and similar) are not a substitute for an eligible 240-hour port. Do not assume visa-free land entry into Guangxi or Yunnan."
+    ],
+    "commonRoutes": "Common air entries include Guangzhou, Nanning, Kunming, and Shenzhen from Hanoi or Ho Chi Minh City; Haikou and Sanya for Hainan-only stays.",
+    "faqOverrides": [
+      {
+        "question": "Can Vietnamese citizens cross into China by land without a visa?",
+        "answer": "Not at ordinary Vietnam–China land crossings for tourism. From 20 August 2026, visa-free transit is through designated ports with a confirmed third-country ticket. A Hanoi–Nanning bus or a Hekou walk-across still needs a valid Chinese visa unless you actually qualify at an eligible port."
+      },
+      {
+        "question": "Can Vietnamese citizens visit Hainan without a mainland visa?",
+        "answer": "Yes under the 20 August 2026 Hainan 30-day visa-free policy: ordinary passport, enter through a Hainan open port, and stay inside Hainan Province. Work, study, and journalism still need a visa in advance. This does not authorize travel around the rest of mainland China."
+      }
+    ]
+  },
+  {
+    "slug": "turkey",
+    "iso2": "TR",
+    "canonicalName": "Turkey",
+    "displayName": "Turkey",
+    "demonym": "Turkish citizens",
+    "demonymSingular": "a Turkish citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Turkey is not on China’s 30-day visa-free or 240-hour transit lists in our rules data.",
+      "Turkish passport holders should apply for a China visa before departure for tourism or business.",
+      "Istanbul long-hauls into Beijing, Shanghai, or Guangzhou are common; airlines will usually check your visa at check-in.",
+      "Confirm current photo, invitation, and appointment rules with the Chinese embassy or visa center you use in Turkey."
+    ],
+    "commonRoutes": "Istanbul connections into Beijing, Shanghai, or Guangzhou are common long-haul options.",
+    "faqOverrides": [
+      {
+        "question": "Do Turkish citizens need a visa for China tourism?",
+        "answer": "Yes. Turkey is not on the published 30-day visa-free or 240-hour transit lists in our dataset. Apply for a tourist or other appropriate visa before you fly."
+      }
+    ]
+  },
+  {
+    "slug": "south-africa",
+    "iso2": "ZA",
+    "canonicalName": "South Africa",
+    "displayName": "South Africa",
+    "demonym": "South African citizens",
+    "demonymSingular": "a South African citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "South Africa is not eligible for China’s published 30-day visa-free program or 240-hour transit list in our dataset.",
+      "Apply for a tourist or business visa before travel; allow extra time for appointments and courier processing in South Africa.",
+      "Confirm blank-page and passport-validity requirements with the visa center you use (Johannesburg and other cities can differ in appointment wait times).",
+      "Typical routings connect via Middle East or Europe hubs into Beijing, Shanghai, or Guangzhou."
+    ],
+    "commonRoutes": "Typical itineraries connect via Middle East or Europe hubs into Beijing, Shanghai, or Guangzhou.",
+    "faqOverrides": [
+      {
+        "question": "How should South African citizens apply for a China tourist visa?",
+        "answer": "Book an appointment with a Chinese embassy, consulate, or authorized visa application center in South Africa, prepare the tourist (L) checklist for your city, and allow buffer time for processing and passport return before your flight."
+      }
+    ]
+  },
+  {
+    "slug": "nigeria",
+    "iso2": "NG",
+    "canonicalName": "Nigeria",
+    "displayName": "Nigeria",
+    "demonym": "Nigerian citizens",
+    "demonymSingular": "a Nigerian citizen",
+    "priority": "phase1",
+    "lastReviewed": "2026-07-29",
+    "uniqueNotes": [
+      "Nigeria is not on China’s 30-day visa-free or 240-hour transit lists in our rules data.",
+      "Nigerian travelers should obtain a China visa before flying; start early because appointment and processing timelines can be long.",
+      "Airlines may deny boarding without a valid visa — mainland China does not offer a general visa-on-arrival option for Nigerian passports.",
+      "Common long-haul paths go via Europe or Middle East hubs into Beijing, Shanghai, or Guangzhou."
+    ],
+    "commonRoutes": "Common long-haul paths go via Europe or Middle East hubs into Beijing, Shanghai, or Guangzhou.",
+    "faqOverrides": [
+      {
+        "question": "Is there visa on arrival in China for Nigerian citizens?",
+        "answer": "No for ordinary tourism. Nigerian citizens should secure a Chinese visa before departure. Do not book non-refundable flights assuming visa-on-arrival for mainland China."
+      }
+    ]
+  }
+]

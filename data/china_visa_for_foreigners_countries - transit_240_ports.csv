@@ -1,0 +1,66 @@
+Port ID,Province or Municipality,City,Port Name,Port Type,Allowed Stay Area,rule_type
+1,Beijing,Beijing,Beijing Capital International Airport Port,Airport,Beijing Municipality,transit_240_port
+2,Beijing,Beijing,Beijing Daxing International Airport Port,Airport,Beijing Municipality,transit_240_port
+3,Tianjin,Tianjin,Tianjin Binhai International Airport Port,Airport,Tianjin Municipality,transit_240_port
+4,Tianjin,Tianjin,Tianjin Dongjiang Port Passenger Terminal,Seaport,Tianjin Municipality,transit_240_port
+5,Hebei,Shijiazhuang,Shijiazhuang Zhengding International Airport Port,Airport,Hebei Province,transit_240_port
+6,Hebei,Qinhuangdao,Qinhuangdao Seaport Passenger Terminal,Seaport,Hebei Province,transit_240_port
+7,Liaoning,Shenyang,Shenyang Taoxian International Airport Port,Airport,Liaoning Province,transit_240_port
+8,Liaoning,Dalian,Dalian Zhoushuizi International Airport Port,Airport,Liaoning Province,transit_240_port
+9,Liaoning,Dalian,Dalian Seaport Passenger Terminal,Seaport,Liaoning Province,transit_240_port
+10,Shanghai,Shanghai,Shanghai Hongqiao International Airport Port,Airport,Shanghai Municipality,transit_240_port
+11,Shanghai,Shanghai,Shanghai Pudong International Airport Port,Airport,Shanghai Municipality,transit_240_port
+12,Shanghai,Shanghai,Shanghai Seaport Passenger Terminal,Seaport,Shanghai Municipality,transit_240_port
+13,Jiangsu,Nanjing,Nanjing Lukou International Airport Port,Airport,Jiangsu Province,transit_240_port
+14,Jiangsu,Wuxi,Sunan Shuofang International Airport Port,Airport,Jiangsu Province,transit_240_port
+15,Jiangsu,Yangzhou / Taizhou,Yangzhou Taizhou International Airport Port,Airport,Jiangsu Province,transit_240_port
+16,Jiangsu,Lianyungang,Lianyungang Seaport Passenger Terminal,Seaport,Jiangsu Province,transit_240_port
+17,Zhejiang,Hangzhou,Hangzhou Xiaoshan International Airport Port,Airport,Zhejiang Province,transit_240_port
+18,Zhejiang,Ningbo,Ningbo Lishe International Airport Port,Airport,Zhejiang Province,transit_240_port
+19,Zhejiang,Wenzhou,Wenzhou Longwan International Airport Port,Airport,Zhejiang Province,transit_240_port
+20,Zhejiang,Yiwu,Yiwu Airport Port,Airport,Zhejiang Province,transit_240_port
+21,Zhejiang,Wenzhou,Wenzhou Seaport Passenger Terminal,Seaport,Zhejiang Province,transit_240_port
+22,Zhejiang,Zhoushan,Zhoushan Seaport Passenger Terminal,Seaport,Zhejiang Province,transit_240_port
+23,Anhui,Hefei,Hefei Xinqiao International Airport Port,Airport,Anhui Province,transit_240_port
+24,Anhui,Huangshan,Huangshan Tunxi International Airport Port,Airport,Anhui Province,transit_240_port
+25,Fujian,Fuzhou,Fuzhou Changle International Airport Port,Airport,Fujian Province,transit_240_port
+26,Fujian,Xiamen,Xiamen Gaoqi International Airport Port,Airport,Fujian Province,transit_240_port
+27,Fujian,Quanzhou,Quanzhou Jinjiang International Airport Port,Airport,Fujian Province,transit_240_port
+28,Fujian,Wuyishan,Wuyishan Airport Port,Airport,Fujian Province,transit_240_port
+29,Fujian,Xiamen,Xiamen Seaport Passenger Terminal,Seaport,Fujian Province,transit_240_port
+30,Shandong,Jinan,Jinan Yaoqiang International Airport Port,Airport,Shandong Province,transit_240_port
+31,Shandong,Qingdao,Qingdao Jiaodong International Airport Port,Airport,Shandong Province,transit_240_port
+32,Shandong,Yantai,Yantai Penglai International Airport Port,Airport,Shandong Province,transit_240_port
+33,Shandong,Weihai,Weihai Dashuibo International Airport Port,Airport,Shandong Province,transit_240_port
+34,Shandong,Qingdao,Qingdao Seaport Passenger Terminal,Seaport,Shandong Province,transit_240_port
+35,Henan,Zhengzhou,Zhengzhou Xinzheng International Airport Port,Airport,Henan Province,transit_240_port
+36,Hubei,Wuhan,Wuhan Tianhe International Airport Port,Airport,Hubei Province,transit_240_port
+37,Hunan,Changsha,Changsha Huanghua International Airport Port,Airport,Hunan Province,transit_240_port
+38,Hunan,Zhangjiajie,Zhangjiajie Hehua International Airport Port,Airport,Hunan Province,transit_240_port
+39,Guangdong,Guangzhou,Guangzhou Baiyun International Airport Port,Airport,Guangdong Province; exit allowed from any open port in Guangdong,transit_240_port
+40,Guangdong,Shenzhen,Shenzhen Bao'an International Airport Port,Airport,Guangdong Province; exit allowed from any open port in Guangdong,transit_240_port
+41,Guangdong,Jieyang,Jieyang Chaoshan International Airport Port,Airport,Guangdong Province; exit allowed from any open port in Guangdong,transit_240_port
+42,Guangdong,Guangzhou,Nansha Seaport Passenger Terminal,Seaport,Guangdong Province; exit allowed from any open port in Guangdong,transit_240_port
+43,Guangdong,Shenzhen,Shekou Seaport Passenger Terminal,Seaport,Guangdong Province; exit allowed from any open port in Guangdong,transit_240_port
+44,Guangdong,Guangzhou,Guangzhou Port Pazhou Hong Kong-Macao Passenger Terminal,Seaport,Guangdong Province; exit allowed from any open port in Guangdong,transit_240_port
+45,Guangdong,Zhongshan,Zhongshan Port Passenger Terminal,Seaport,Guangdong Province; exit allowed from any open port in Guangdong,transit_240_port
+46,Guangdong,Zhuhai / Hengqin,Hengqin Port,Land Port,Guangdong Province; exit allowed from any open port in Guangdong,transit_240_port
+47,Guangdong,Zhuhai,Hong Kong-Zhuhai-Macao Bridge Zhuhai Highway Port,Land Port,Guangdong Province; exit allowed from any open port in Guangdong,transit_240_port
+48,Guangdong,Guangzhou-Shenzhen-Hong Kong Express Rail Link,West Kowloon Station Port,Railway,Guangdong Province; exit allowed from any open port in Guangdong,transit_240_port
+49,Hainan,Haikou,Haikou Meilan International Airport Port,Airport,Hainan Province,transit_240_port
+50,Hainan,Sanya,Sanya Phoenix International Airport Port,Airport,Hainan Province,transit_240_port
+51,Chongqing,Chongqing,Chongqing Jiangbei International Airport Port,Airport,Chongqing Municipality,transit_240_port
+52,Guizhou,Guiyang,Guiyang Longdongbao International Airport Port,Airport,Guizhou Province,transit_240_port
+53,Shaanxi,Xi'an,Xi'an Xianyang International Airport Port,Airport,Shaanxi Province,transit_240_port
+54,Shanxi,Taiyuan,Taiyuan Wusu International Airport Port,Airport,Taiyuan City; Datong City,transit_240_port
+55,Heilongjiang,Harbin,Harbin Taiping International Airport Port,Airport,Harbin City,transit_240_port
+56,Jiangxi,Nanchang,Nanchang Changbei International Airport Port,Airport,Nanchang City; Jingdezhen City,transit_240_port
+57,Guangxi,Nanning,Nanning Wuxu International Airport Port,Airport,Nanning; Liuzhou; Guilin; Wuzhou; Beihai; Fangchenggang; Qinzhou; Guigang; Yulin; Hezhou; Hechi; Laibin,transit_240_port
+58,Guangxi,Guilin,Guilin Liangjiang International Airport Port,Airport,Nanning; Liuzhou; Guilin; Wuzhou; Beihai; Fangchenggang; Qinzhou; Guigang; Yulin; Hezhou; Hechi; Laibin,transit_240_port
+59,Guangxi,Beihai,Beihai Fucheng Airport Port,Airport,Nanning; Liuzhou; Guilin; Wuzhou; Beihai; Fangchenggang; Qinzhou; Guigang; Yulin; Hezhou; Hechi; Laibin,transit_240_port
+60,Guangxi,Beihai,Beihai Seaport Passenger Terminal,Seaport,Nanning; Liuzhou; Guilin; Wuzhou; Beihai; Fangchenggang; Qinzhou; Guigang; Yulin; Hezhou; Hechi; Laibin,transit_240_port
+61,Sichuan,Chengdu,Chengdu Shuangliu International Airport Port,Airport,Chengdu; Zigong; Luzhou; Deyang; Suining; Neijiang; Leshan; Yibin; Ya'an; Meishan; Ziyang,transit_240_port
+62,Sichuan,Chengdu,Chengdu Tianfu International Airport Port,Airport,Chengdu; Zigong; Luzhou; Deyang; Suining; Neijiang; Leshan; Yibin; Ya'an; Meishan; Ziyang,transit_240_port
+63,Yunnan,Kunming,Kunming Changshui International Airport Port,Airport,Kunming; Yuxi; Chuxiong; Honghe; Wenshan; Pu'er; Xishuangbanna; Dali; Lijiang,transit_240_port
+64,Yunnan,Lijiang,Lijiang Sanyi International Airport Port,Airport,Kunming; Yuxi; Chuxiong; Honghe; Wenshan; Pu'er; Xishuangbanna; Dali; Lijiang,transit_240_port
+65,Yunnan,Xishuangbanna / Mohan,Mohan Railway Port,Railway,Kunming; Yuxi; Chuxiong; Honghe; Wenshan; Pu'er; Xishuangbanna; Dali; Lijiang,transit_240_port

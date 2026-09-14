@@ -41,7 +41,7 @@ export function SiteHeader() {
 
   return <header className="site-header" onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
-      <Link href="/" className="brand" aria-label="Hidden China Travel home"><span className="brand-mark">H</span><span><b>Hidden China</b><small>TRAVEL</small></span></Link>
+      <Link href="/" className="brand" aria-label="Hidden China Travel home"><Image src="/brand/logo.webp" alt="Hidden China Travel" width={160} height={80} className="brand-logo" unoptimized /></Link>
       <div className="header-contact"><span>Local insight for independent-minded travelers</span><Link className="button button-blue" href={whatsapp}>PLAN MY JOURNEY</Link></div>
     </div>
     <nav className="nav-row" aria-label="Main navigation">

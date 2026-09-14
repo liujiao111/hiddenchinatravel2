@@ -1,0 +1,79 @@
+Country,Region,rule_type,Policy Type,Max Stay Days
+Andorra,Europe,unilateral_visa_free,Unilateral visa-free,30
+Austria,Europe,unilateral_visa_free,Unilateral visa-free,30
+Belgium,Europe,unilateral_visa_free,Unilateral visa-free,30
+Bulgaria,Europe,unilateral_visa_free,Unilateral visa-free,30
+Croatia,Europe,unilateral_visa_free,Unilateral visa-free,30
+Cyprus,Europe,unilateral_visa_free,Unilateral visa-free,30
+Denmark,Europe,unilateral_visa_free,Unilateral visa-free,30
+Estonia,Europe,unilateral_visa_free,Unilateral visa-free,30
+Finland,Europe,unilateral_visa_free,Unilateral visa-free,30
+France,Europe,unilateral_visa_free,Unilateral visa-free,30
+Germany,Europe,unilateral_visa_free,Unilateral visa-free,30
+Greece,Europe,unilateral_visa_free,Unilateral visa-free,30
+Hungary,Europe,unilateral_visa_free,Unilateral visa-free,30
+Iceland,Europe,unilateral_visa_free,Unilateral visa-free,30
+Ireland,Europe,unilateral_visa_free,Unilateral visa-free,30
+Italy,Europe,unilateral_visa_free,Unilateral visa-free,30
+Latvia,Europe,unilateral_visa_free,Unilateral visa-free,30
+Liechtenstein,Europe,unilateral_visa_free,Unilateral visa-free,30
+Luxembourg,Europe,unilateral_visa_free,Unilateral visa-free,30
+Malta,Europe,unilateral_visa_free,Unilateral visa-free,30
+Monaco,Europe,unilateral_visa_free,Unilateral visa-free,30
+Montenegro,Europe,unilateral_visa_free,Unilateral visa-free,30
+Netherlands,Europe,unilateral_visa_free,Unilateral visa-free,30
+North Macedonia,Europe,unilateral_visa_free,Unilateral visa-free,30
+Norway,Europe,unilateral_visa_free,Unilateral visa-free,30
+Poland,Europe,unilateral_visa_free,Unilateral visa-free,30
+Portugal,Europe,unilateral_visa_free,Unilateral visa-free,30
+Romania,Europe,unilateral_visa_free,Unilateral visa-free,30
+Russian Federation,Europe,unilateral_visa_free,Unilateral visa-free,30
+Slovakia,Europe,unilateral_visa_free,Unilateral visa-free,30
+Slovenia,Europe,unilateral_visa_free,Unilateral visa-free,30
+Spain,Europe,unilateral_visa_free,Unilateral visa-free,30
+Sweden,Europe,unilateral_visa_free,Unilateral visa-free,30
+Switzerland,Europe,unilateral_visa_free,Unilateral visa-free,30
+United Kingdom of Great Britain and Northern Ireland,Europe,unilateral_visa_free,Unilateral visa-free,30
+Australia,Oceania,unilateral_visa_free,Unilateral visa-free,30
+New Zealand,Oceania,unilateral_visa_free,Unilateral visa-free,30
+Bahrain,Asia,unilateral_visa_free,Unilateral visa-free,30
+Brunei Darussalam,Asia,unilateral_visa_free,Unilateral visa-free,30
+Japan,Asia,unilateral_visa_free,Unilateral visa-free,30
+Kuwait,Asia,unilateral_visa_free,Unilateral visa-free,30
+Oman,Asia,unilateral_visa_free,Unilateral visa-free,30
+Republic of Korea,Asia,unilateral_visa_free,Unilateral visa-free,30
+Saudi Arabia,Asia,unilateral_visa_free,Unilateral visa-free,30
+Argentina,Americas,unilateral_visa_free,Unilateral visa-free,30
+Brazil,Americas,unilateral_visa_free,Unilateral visa-free,30
+Canada,Americas,unilateral_visa_free,Unilateral visa-free,30
+Chile,Americas,unilateral_visa_free,Unilateral visa-free,30
+Peru,Americas,unilateral_visa_free,Unilateral visa-free,30
+Uruguay,Americas,unilateral_visa_free,Unilateral visa-free,30
+Albania,Europe,mutual_visa_free,Mutual visa-free,30
+Antigua and Barbuda,Americas,mutual_visa_free,Mutual visa-free,30
+Armenia,Asia,mutual_visa_free,Mutual visa-free,30
+Azerbaijan,Asia,mutual_visa_free,Mutual visa-free,30
+The Bahamas,Americas,mutual_visa_free,Mutual visa-free,30
+Barbados,Americas,mutual_visa_free,Mutual visa-free,30
+Belarus,Europe,mutual_visa_free,Mutual visa-free,30
+Bosnia and Herzegovina,Europe,mutual_visa_free,Mutual visa-free,30
+Ecuador,Americas,mutual_visa_free,Mutual visa-free,30
+Fiji,Oceania,mutual_visa_free,Mutual visa-free,30
+Georgia,Asia,mutual_visa_free,Mutual visa-free,30
+Grenada,Americas,mutual_visa_free,Mutual visa-free,30
+Kazakhstan,Asia,mutual_visa_free,Mutual visa-free,30
+Malaysia,Asia,mutual_visa_free,Mutual visa-free,30
+Maldives,Asia,mutual_visa_free,Mutual visa-free,30
+Mauritius,Africa,mutual_visa_free,Mutual visa-free,30
+Qatar,Asia,mutual_visa_free,Mutual visa-free,30
+Samoa,Oceania,mutual_visa_free,Mutual visa-free,30
+San Marino,Europe,mutual_visa_free,Mutual visa-free,30
+Serbia,Europe,mutual_visa_free,Mutual visa-free,30
+Seychelles,Africa,mutual_visa_free,Mutual visa-free,30
+Singapore,Asia,mutual_visa_free,Mutual visa-free,30
+Solomon Islands,Oceania,mutual_visa_free,Mutual visa-free,30
+Suriname,Americas,mutual_visa_free,Mutual visa-free,30
+Thailand,Asia,mutual_visa_free,Mutual visa-free,30
+Tonga,Oceania,mutual_visa_free,Mutual visa-free,30
+United Arab Emirates,Asia,mutual_visa_free,Mutual visa-free,30
+Uzbekistan,Asia,mutual_visa_free,Mutual visa-free,30
