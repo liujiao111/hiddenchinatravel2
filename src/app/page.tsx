@@ -40,7 +40,7 @@ export default function Home() {
         <nav className="nav-row" aria-label="Main navigation">
           <div className="shell nav-inner">
             <div className="nav-links">
-              <Link href="#destinations">DESTINATIONS⌄</Link><Link href="#journeys">JOURNEYS⌄</Link><Link href="#guides">TRAVEL GUIDES⌄</Link><Link href="#why-us">WHY US</Link><Link href={whatsapp}>LOCAL SUPPORT</Link>
+              <Link href="#destinations">DESTINATIONS⌄</Link><Link href="#journeys">JOURNEYS⌄</Link><Link href="#guides">TRAVEL GUIDES⌄</Link><Link href="/about-us">ABOUT US</Link><Link href={whatsapp}>LOCAL SUPPORT</Link>
             </div>
             <label className="search-box"><span className="sr-only">Search</span><input placeholder="Search China guides..." /><b>⌕</b></label>
           </div>
