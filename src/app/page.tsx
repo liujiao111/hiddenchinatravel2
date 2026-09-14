@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
 
 const destinations = [
   { name: "Dali", image: "https://hiddenchinatravel.com/assets/blog/where-to-stay-in-dali/caicun-ecological-corridor.webp", note: "Lake villages & Bai culture" },
@@ -26,26 +27,7 @@ const whatsapp = "https://wa.me/8618880441791?text=Hi%2C%20I%27d%20like%20help%2
 export default function Home() {
   return (
     <main>
-      <header className="site-header">
-        <div className="topbar shell">
-          <Link href="/" className="brand" aria-label="Hidden China Travel home">
-            <span className="brand-mark">H</span>
-            <span><b>Hidden China</b><small>TRAVEL</small></span>
-          </Link>
-          <div className="header-contact">
-            <span>Local insight for independent-minded travelers</span>
-            <Link className="button button-blue" href={whatsapp}>PLAN MY JOURNEY</Link>
-          </div>
-        </div>
-        <nav className="nav-row" aria-label="Main navigation">
-          <div className="shell nav-inner">
-            <div className="nav-links">
-              <Link href="#destinations">DESTINATIONS⌄</Link><Link href="#journeys">JOURNEYS⌄</Link><Link href="#guides">TRAVEL GUIDES⌄</Link><Link href="/about-us">ABOUT US</Link><Link href={whatsapp}>LOCAL SUPPORT</Link>
-            </div>
-            <label className="search-box"><span className="sr-only">Search</span><input placeholder="Search China guides..." /><b>⌕</b></label>
-          </div>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="hero">
         <Image src="https://hiddenchinatravel.com/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp" alt="A historic street in Shaxi, Yunnan" fill priority sizes="100vw" />
