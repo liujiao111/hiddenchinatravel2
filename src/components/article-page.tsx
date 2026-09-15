@@ -31,14 +31,16 @@ export function ArticlePage({ item }: { item: ContentItem }) {
     <SiteHeader />
     <TopicNavigation active={frontmatter.section} />
     <article>
-      <header className="article-header shell">
-        <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/china-travel-essentials">Travel guides</Link><span>›</span><span>{frontmatter.section || "China"}</span></nav>
-        <p className="article-section">{frontmatter.section || "China Travel Guide"}</p>
-        <h1>{frontmatter.title}</h1>
-        {frontmatter.excerpt && <p className="article-deck">{frontmatter.excerpt}</p>}
-        <div className="article-byline"><span>By {frontmatter.author?.name || "Joy Liu"}</span><span>Updated {formatDate(frontmatter.dateModified || frontmatter.date)}</span></div>
+      <nav className="breadcrumbs article-breadcrumbs shell" aria-label="Breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/china-travel-essentials">Travel guides</Link><span>›</span><span>{frontmatter.title}</span></nav>
+      <header className={frontmatter.coverImage ? "article-hero has-image" : "article-hero"}>
+        {frontmatter.coverImage && <Image src={frontmatter.coverImage} alt={frontmatter.title} fill priority unoptimized sizes="100vw" />}
+        <div className="article-hero-shade" />
+        <div className="article-hero-copy shell">
+          <h1>{frontmatter.title}</h1>
+          <div className="article-byline"><span>By {frontmatter.author?.name || "Joy Liu"}</span><span>Updated {formatDate(frontmatter.dateModified || frontmatter.date)}</span></div>
+        </div>
       </header>
-      {frontmatter.coverImage && <div className="article-cover shell"><Image src={frontmatter.coverImage} alt={frontmatter.title} fill priority unoptimized sizes="(max-width: 1100px) 100vw, 1100px" /></div>}
+      {frontmatter.excerpt && <div className="article-intro shell"><p>{frontmatter.excerpt}</p></div>}
       <div className="article-layout shell">
         <div className="article-body"><MarkdownContent>{item.body}</MarkdownContent></div>
         <aside className="article-aside"><div><p>IN THIS GUIDE</p><span>Practical, independent advice for planning your trip.</span><Link href="/china-travel-essentials">Explore all essentials →</Link></div></aside>
