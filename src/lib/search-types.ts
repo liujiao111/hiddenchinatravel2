@@ -3,7 +3,7 @@ export type SearchItem = {
   title: string;
   href: string;
   description: string;
-  type: "article" | "hub" | "page";
+  type: "article" | "hub" | "journey" | "page";
   keywords: string[];
   image?: string;
 };

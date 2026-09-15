@@ -1,6 +1,7 @@
 import "server-only";
 
 import { getAllContent } from "@/lib/content";
+import { getAllJourneys } from "@/lib/journeys";
 import type { SearchItem } from "@/lib/search-types";
 
 export function getSearchIndex(): SearchItem[] {
@@ -19,5 +20,15 @@ export function getSearchIndex(): SearchItem[] {
     image: item.frontmatter.coverImage,
   }));
 
-  return [...pages, ...content];
+  const journeys = getAllJourneys().map<SearchItem>((journey) => ({
+    id: `journey-${journey.slug}`,
+    title: journey.frontmatter.title,
+    href: `/journeys/${journey.slug}`,
+    description: journey.frontmatter.excerpt,
+    type: "journey",
+    keywords: [journey.frontmatter.route, ...journey.frontmatter.travelStyles],
+    image: journey.frontmatter.coverImage,
+  }));
+
+  return [...pages, ...journeys, ...content];
 }

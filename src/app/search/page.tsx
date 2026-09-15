@@ -25,7 +25,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
       <header><h2>{query ? `${results.length} result${results.length === 1 ? "" : "s"} for “${query}”` : "Search our China travel advice"}</h2><p>{query ? "Practical guidance and journey ideas from Hidden China Travel." : "Try payments, Yunnan, trains, internet or Dali."}</p></header>
       {results.length ? <div className="search-result-grid">{results.map((item) => <Link href={item.href} key={item.id} className="search-result-card">
         <div className="search-result-image">{item.image ? <Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 33vw" unoptimized /> : <span>H</span>}</div>
-        <div><span>{item.type === "article" ? "Travel guide" : item.type}</span><h3>{item.title}</h3><p>{item.description}</p><b>VIEW {item.type === "article" ? "GUIDE" : "PAGE"} →</b></div>
+        <div><span>{item.type === "article" ? "Travel guide" : item.type}</span><h3>{item.title}</h3><p>{item.description}</p><b>VIEW {item.type === "article" ? "GUIDE" : item.type === "journey" ? "JOURNEY" : "PAGE"} →</b></div>
       </Link>)}</div> : query ? <div className="search-empty"><h3>No exact matches yet.</h3><p>Try a shorter phrase, or browse all practical travel guides.</p><Link href="/#guides" className="button button-green">BROWSE TRAVEL GUIDES</Link></div> : null}
     </section>
     <ContentFooter />
