@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { SiteSearch } from "@/components/site-search";
 
 type MenuName = "destinations" | "journeys" | "guides" | "about";
 
@@ -47,13 +48,12 @@ export function SiteHeader() {
     <nav className="nav-row" aria-label="Main navigation">
       <div className="shell nav-inner">
         <div className="nav-links">
-          <button className={open === "destinations" ? "active" : ""} onClick={() => toggle("destinations")} onMouseEnter={() => setOpen("destinations")} aria-expanded={open === "destinations"}>DESTINATIONS⌃</button>
-          <button className={open === "journeys" ? "active" : ""} onClick={() => toggle("journeys")} onMouseEnter={() => setOpen("journeys")} aria-expanded={open === "journeys"}>JOURNEYS⌄</button>
-          <button className={open === "guides" ? "active" : ""} onClick={() => toggle("guides")} onMouseEnter={() => setOpen("guides")} aria-expanded={open === "guides"}>TRAVEL GUIDES⌄</button>
-          <button className={open === "about" ? "active" : ""} onClick={() => toggle("about")} onMouseEnter={() => setOpen("about")} aria-expanded={open === "about"}>ABOUT US⌄</button>
-          <Link href={whatsapp}>LOCAL SUPPORT</Link>
+          <button className={open === "destinations" ? "active" : ""} onClick={() => toggle("destinations")} onMouseEnter={() => setOpen("destinations")} aria-expanded={open === "destinations"}>DESTINATIONS<span className="nav-chevron" aria-hidden="true" /></button>
+          <button className={open === "journeys" ? "active" : ""} onClick={() => toggle("journeys")} onMouseEnter={() => setOpen("journeys")} aria-expanded={open === "journeys"}>JOURNEYS<span className="nav-chevron" aria-hidden="true" /></button>
+          <button className={open === "guides" ? "active" : ""} onClick={() => toggle("guides")} onMouseEnter={() => setOpen("guides")} aria-expanded={open === "guides"}>TRAVEL GUIDES<span className="nav-chevron" aria-hidden="true" /></button>
+          <button className={open === "about" ? "active" : ""} onClick={() => toggle("about")} onMouseEnter={() => setOpen("about")} aria-expanded={open === "about"}>ABOUT US<span className="nav-chevron" aria-hidden="true" /></button>
         </div>
-        <label className="search-box"><span className="sr-only">Search</span><input placeholder="Search places and guides..." /><b>⌕</b></label>
+        <SiteSearch />
       </div>
     </nav>
 
