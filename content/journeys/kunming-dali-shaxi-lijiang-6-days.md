@@ -8,8 +8,8 @@ duration: "6 days / 5 nights"
 route: "Kunming → Dali → Shaxi → Lijiang"
 pace: "Unhurried"
 journeyType: "Private journey"
-fromPrice: 2700
-currency: "CNY"
+fromPrice: 523
+currency: "USD"
 priceBasis: "per person"
 coverImage: "/home/hero.webp"
 featured: true
@@ -50,18 +50,18 @@ itinerary:
     description: "Continue to Lijiang for old-town life and a day beneath Jade Dragon Snow Mountain, then finish the journey with support for your onward departure."
 tiers:
   - name: "Essential"
-    price: 2700
+    price: 523
     description: "For travelers who value comfort, authenticity and good value."
     accommodation: "Comfortable 3-star hotels"
     idealFor: "Friends · Couples · First-time visitors"
   - name: "Comfort"
-    price: 2900
+    price: 562
     description: "A balanced option with upgraded hotels and a little more comfort."
     accommodation: "Selected 4-star hotels"
     idealFor: "Most travelers · Couples · Small private groups"
     featured: true
   - name: "Premium"
-    price: 3500
+    price: 678
     description: "For travelers who prefer boutique stays and a more refined experience."
     accommodation: "Selected 5-star hotels"
     idealFor: "Honeymooners · Special occasions · Comfort-focused travelers"
