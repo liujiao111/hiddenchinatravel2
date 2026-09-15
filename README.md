@@ -50,3 +50,4 @@ npm run start
 ## Deployment
 
 The `main` branch is connected to Vercel for automatic deployments.
+
