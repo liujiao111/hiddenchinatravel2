@@ -9,7 +9,7 @@ export type HubArticle = { title: string; href: string; excerpt: string; badge?:
 export type HubSubtopic = { id: string; name: string; description?: string; articles?: HubArticle[] };
 
 export type ContentFrontmatter = {
-  type?: "hub";
+  type?: "hub" | "legal";
   title: string;
   seoTitle?: string;
   excerpt?: string;
@@ -21,6 +21,7 @@ export type ContentFrontmatter = {
   canonical?: string;
   date?: string;
   dateModified?: string;
+  lastUpdated?: string;
   section?: string;
   keywords?: string[];
   author?: { name?: string; picture?: string };
@@ -40,7 +41,7 @@ export type ContentFrontmatter = {
 
 export type ContentItem = {
   slug: string;
-  kind: "article" | "hub";
+  kind: "article" | "hub" | "legal";
   frontmatter: ContentFrontmatter;
   body: string;
 };
@@ -48,6 +49,7 @@ export type ContentItem = {
 const contentSources = [
   { directory: path.join(process.cwd(), "_posts"), kind: "article" as const },
   { directory: path.join(process.cwd(), "content", "hubs"), kind: "hub" as const },
+  { directory: path.join(process.cwd(), "content", "legal"), kind: "legal" as const },
 ];
 
 let contentCache: ContentItem[] | undefined;

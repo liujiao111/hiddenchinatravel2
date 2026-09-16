@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArticlePage } from "@/components/article-page";
 import { HubPage } from "@/components/hub-page";
+import { LegalPage } from "@/components/legal-page";
 import { absoluteUrl, getAllContent, getContentBySlug } from "@/lib/content";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -40,5 +41,7 @@ export default async function ContentPage({ params }: Props) {
   const { slug } = await params;
   const item = getContentBySlug(slug);
   if (!item) notFound();
-  return item.kind === "hub" ? <HubPage item={item} /> : <ArticlePage item={item} />;
+  if (item.kind === "hub") return <HubPage item={item} />;
+  if (item.kind === "legal") return <LegalPage item={item} />;
+  return <ArticlePage item={item} />;
 }
