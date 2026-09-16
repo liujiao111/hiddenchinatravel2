@@ -26,7 +26,7 @@ experiences:
     image: "https://hiddenchinatravel.com/assets/blog/dali-hidden-gems-off-the-beaten-path/zhoucheng-bai-tie-dye.webp"
     description: "Step inside a traditional Bai tie-dye workshop and meet the people keeping the craft alive."
   - title: "Slow down in Shaxi"
-    image: "https://hiddenchinatravel.com/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
+    image: "/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-bridge-river-view.webp"
     description: "Stay after the day visitors leave, when the old Tea Horse Road square grows quiet and lanterns begin to glow."
   - title: "Stand beneath Jade Dragon Snow Mountain"
     image: "/home/hero.webp"
