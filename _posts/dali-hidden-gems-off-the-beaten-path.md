@@ -4,7 +4,7 @@ seoTitle: "Dali Hidden Gems: Shaxi, Weishan, Xizhou & Shibaoshan (2026)"
 excerpt: "Skip the crowds in Dali Old Town. A fact-checked 2026 guide to Shaxi, Weishan, Zhoucheng, Xizhou and Shibaoshan — real distances, prices, and how to fit them into 1-3 days."
 coverImage: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
 date: "2026-09-08T12:00:00+08:00"
-dateModified: "2026-09-13T10:00:00+08:00"
+dateModified: "2026-09-16T19:00:00+08:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -50,11 +50,11 @@ We'll start with the one that takes the most effort to reach — the payoff is w
 
 Shaxi (沙溪) is the one that takes real effort to reach, and that's exactly why it still feels the way Dali Old Town probably did twenty years ago. It was a trading post on the old Tea-Horse Road, and Sifang Street — its 1,000-year-old market square — still runs a genuine Friday market where villagers from the surrounding hills come to trade.
 
-![Narrow cobblestone alley with rammed-earth walls and purple flowers in Shaxi Ancient Town](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp)
+![Traditional theater courtyard framed by an old doorway in Shaxi Ancient Town](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-theater-courtyard.webp)
 
 ![Shepherd and goats on the riverbank outside Shaxi Ancient Town, Yunnan](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp)
 
-_The old-town lane, and the river just outside._
+_A courtyard in the old town, and the river just outside._
 
 Multiple TripAdvisor reviewers make the same observation about timing: come for just an afternoon and it can feel like a movie set, but stay past the day-trip crowds — most head back to Dali by early evening — and Sifang Street quietly turns back into a real market town, with locals outnumbering tourists again.
 
@@ -210,4 +210,4 @@ Want to save this without scrolling back through the article later? We've mapped
 
 Message us and we'll send it straight over — no email, no spam, just the map.
 
-_Photos: Shaxi street and riverbank; Wikimedia Commons — Xinggong Tower, Weishan; Bai tie-dye; Linden Centre reflecting wall, Xizhou; Baoxiang Temple, Shibaoshan; Nuodeng village (Anders Johnson, CC BY 3.0)._
+_Photos: Shaxi courtyard and riverbank; Wikimedia Commons — Xinggong Tower, Weishan; Bai tie-dye; Linden Centre reflecting wall, Xizhou; Baoxiang Temple, Shibaoshan; Nuodeng village (Anders Johnson, CC BY 3.0)._
