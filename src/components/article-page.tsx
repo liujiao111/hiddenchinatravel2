@@ -47,7 +47,7 @@ export function ArticlePage({ item }: { item: ContentItem }) {
       {frontmatter.excerpt && <div className="article-intro shell"><p>{frontmatter.excerpt}</p></div>}
       <div className="article-layout shell">
         <div className="article-body"><MarkdownContent>{item.body}</MarkdownContent></div>
-        <aside className="article-aside"><div><p>IN THIS GUIDE</p><span>Practical, independent advice for planning your trip.</span><Link href="/china-travel-essentials">Explore all essentials →</Link></div></aside>
+        <aside className="article-aside"><div><p>IN THIS GUIDE</p><span>Practical advice for planning a smoother China trip.</span><Link href="/china-travel-essentials">Explore all essentials →</Link></div></aside>
       </div>
     </article>
     {frontmatter.faqs?.length ? <section className="article-faq"><div className="narrow"><p className="article-section">COMMON QUESTIONS</p><h2>Frequently asked questions</h2>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><MarkdownContent compact>{faq.answer}</MarkdownContent></details>)}</div></section> : null}

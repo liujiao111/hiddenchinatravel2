@@ -27,7 +27,13 @@ const menuGroups: Record<"guides" | "about", { title: string; links: string[] }[
 
 const hrefFor = (label: string) => {
   if (label === "About us") return "/about-us";
-  if (label.includes("WhatsApp") || label.includes("conversation") || label.includes("route") || label.includes("journey")) return whatsapp;
+  if (label === "How we plan your journey") return "/about-us#how-it-works";
+  if (label === "Why travel with us") return "/about-us#why-us";
+  if (label === "Our local partners") return "/about-us#local-partners";
+  if (["Travel at your pace", "Experiences, not checklists", "Responsible local travel"].includes(label)) return "/about-us#our-approach";
+  if (label === "Practical preparation") return "/china-travel-essentials";
+  if (label === "Get the Dali local guide") return "/dali-travel-guide";
+  if (label.includes("WhatsApp") || label.includes("conversation") || label.includes("route")) return whatsapp;
   return "/#guides";
 };
 
@@ -38,7 +44,7 @@ export function SiteHeader() {
   return <header className="site-header" onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
       <Link href="/" className="brand" aria-label="Hidden China Travel home"><Image src="/brand/logo.webp" alt="Hidden China Travel" width={160} height={80} className="brand-logo" unoptimized /></Link>
-      <div className="header-contact"><span>Local insight for independent-minded travelers</span><Link className="button button-blue" href={whatsapp}>PLAN MY JOURNEY</Link></div>
+      <div className="header-contact"><span>Local insight, private journeys and personal support</span><Link className="button button-blue" href={whatsapp}>PLAN MY JOURNEY</Link></div>
     </div>
     <nav className="nav-row" aria-label="Main navigation">
       <div className="shell nav-inner">
@@ -56,9 +62,9 @@ export function SiteHeader() {
       {open === "destinations" ? <div className="shell mega-destinations">
         <section><h2>Most popular</h2><div className="mega-columns">{popular.map((item) => <Link key={item} href="/#destinations">{item}</Link>)}</div><Link className="mega-outline" href="/#destinations">ALL DESTINATIONS A–Z</Link></section>
         <section><h2>Explore by region</h2><div className="mega-list">{regions.map((item) => <Link key={item} href="/#destinations">{item}</Link>)}</div></section>
-        <section className="mega-featured"><h2>Begin with Yunnan</h2><Link href="/#journeys"><Image src="https://hiddenchinatravel.com/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp" alt="Shaxi in Yunnan" width={150} height={88} /><span><b>Dali & the Tea Horse Road</b><small>A slower 7-day journey</small></span></Link><Link href="/about-us"><Image src="https://hiddenchinatravel.com/assets/blog/where-to-stay-in-dali/caicun-ecological-corridor.webp" alt="Erhai Lake in Dali" width={150} height={88} /><span><b>New to China?</b><small>See how we make it easier</small></span></Link></section>
+        <section className="mega-featured"><h2>Begin with Yunnan</h2><Link href="/journeys/kunming-dali-shaxi-lijiang-6-days"><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp" alt="Shaxi in Yunnan" width={150} height={88} /><span><b>Kunming, Dali, Shaxi & Lijiang</b><small>A 6-day private journey</small></span></Link><Link href="/about-us"><Image src="/assets/blog/where-to-stay-in-dali/caicun-ecological-corridor.webp" alt="Erhai Lake in Dali" width={150} height={88} /><span><b>New to China?</b><small>See how we make it easier</small></span></Link></section>
       </div> : open === "journeys" ? <div className="shell mega-journeys">
-        <section className="mega-journey-feature"><p className="kicker">FEATURED JOURNEY</p><Link href="/journeys/kunming-dali-shaxi-lijiang-6-days"><Image src="/home/hero.webp" alt="A private journey through Yunnan" width={460} height={250} unoptimized /><span><small>6 DAYS · PRIVATE JOURNEY</small><b>Kunming, Dali, Shaxi & Lijiang</b><em>From ¥2,700 per person</em><strong>VIEW JOURNEY →</strong></span></Link></section>
+        <section className="mega-journey-feature"><p className="kicker">FEATURED JOURNEY</p><Link href="/journeys/kunming-dali-shaxi-lijiang-6-days"><Image src="/home/hero.webp" alt="A private journey through Yunnan" width={460} height={250} unoptimized /><span><small>6 DAYS · PRIVATE JOURNEY</small><b>Kunming, Dali, Shaxi & Lijiang</b><em>Private · Unhurried · No shopping stops</em><strong>VIEW JOURNEY →</strong></span></Link></section>
         <section><h2>Explore by place</h2>{["Yunnan", "Dali", "Shaxi", "Lijiang", "Xishuangbanna", "Shangri-La"].map((item) => <Link key={item} href="/journeys">{item}</Link>)}<Link href="/journeys" className="mega-text-link">VIEW ALL JOURNEYS →</Link></section>
         <section><h2>Travel your way</h2>{["Private journeys", "Slow-paced travel", "First trip to China", "Family journeys", "Journeys for older travelers"].map((item) => <Link key={item} href="/journeys">{item}</Link>)}</section>
         <section className="mega-callout"><p className="kicker">NOT SURE WHICH ROUTE FITS?</p><h2>Tell Joy how you like to travel.</h2><Link href={whatsapp} className="button button-light">CHAT WITH JOY</Link></section>

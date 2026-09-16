@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Journey } from "@/lib/journeys";
 import { ContentFooter } from "@/components/content-footer";
 import { SiteHeader } from "@/components/site-header";
+import { formatPriceLabel } from "@/lib/format-price";
 
 const whatsapp = "https://wa.me/8618880441791?text=Hi%20Joy%2C%20I%27m%20interested%20in%20the%206-day%20Kunming%E2%80%93Dali%E2%80%93Shaxi%E2%80%93Lijiang%20journey.%20My%20travel%20dates%20are%20____%20and%20there%20will%20be%20____%20travelers.";
 const goodFit = ["Experiences over checklists", "Local culture and daily life", "A comfortable, unhurried pace", "Stories worth bringing home"];
@@ -13,15 +14,6 @@ const supportPoints = [
   ["03", "No shopping stops", "Your time goes to places, people and experiences—not commission-led detours."],
   ["04", "Clear responsibility", "A licensed local travel partner provides the final quote, contract and on-the-ground operation."],
 ];
-
-function price(value: number) {
-  return new Intl.NumberFormat("en-US").format(value);
-}
-
-function priceLabel(value: number, currency: string) {
-  const prefix = currency === "USD" ? "US$" : currency === "CNY" ? "¥" : `${currency} `;
-  return `${prefix}${price(value)}`;
-}
 
 export function JourneyPage({ journey }: { journey: Journey }) {
   const { frontmatter } = journey;
@@ -47,12 +39,12 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     </header>
 
     <section className="journey-glance"><div className="shell">{[
-      ["DURATION", frontmatter.duration], ["ROUTE", frontmatter.route], ["STYLE", frontmatter.journeyType], ["GUIDE PRICE", `From ${priceLabel(frontmatter.fromPrice, frontmatter.currency)} ${frontmatter.priceBasis}`],
+      ["DURATION", frontmatter.duration], ["ROUTE", frontmatter.route], ["STYLE", frontmatter.journeyType], ["GUIDE PRICE", `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} ${frontmatter.priceBasis}`],
     ].map(([label, value]) => <div key={label}><span>{label}</span><b>{value}</b></div>)}</div></section>
 
     <nav className="journey-anchor-nav" aria-label="On this journey"><div className="shell"><div><Link href="#story">The feeling</Link><Link href="#experiences">Experiences</Link><Link href="#itinerary">Itinerary</Link><Link href="#pricing">Travel styles</Link><Link href="#details">What’s included</Link></div><Link href={whatsapp}>PLAN THIS JOURNEY</Link></div></nav>
 
-    <section className="journey-manifesto" id="story"><div className="shell journey-manifesto-grid"><figure className="journey-manifesto-image one"><Image src="/assets/blog/dali-travel-guide/cangshan-village-fields.webp" alt="Fields and mountains near Dali" fill sizes="(max-width: 700px) 76vw, 25vw" unoptimized /></figure><div className="journey-manifesto-copy"><span>OUR WAY OF TRAVELLING</span><h2>Remember <em>how Yunnan felt,</em> not just where you went.</h2><i aria-hidden="true" /><p>A quiet evening in an old Tea Horse Road town. A conversation inside a traditional tie-dye workshop. A slow breakfast overlooking Erhai Lake.</p><strong>The best memories are rarely made in a hurry.</strong></div><figure className="journey-manifesto-image two"><Image src="https://hiddenchinatravel.com/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="A quiet riverside scene in Shaxi" fill sizes="(max-width: 700px) 45vw, 18vw" unoptimized /></figure></div></section>
+    <section className="journey-manifesto" id="story"><div className="shell journey-manifesto-grid"><figure className="journey-manifesto-image one"><Image src="/assets/blog/dali-travel-guide/cangshan-village-fields.webp" alt="Fields and mountains near Dali" fill sizes="(max-width: 700px) 76vw, 25vw" unoptimized /></figure><div className="journey-manifesto-copy"><span>OUR WAY OF TRAVELLING</span><h2>Remember <em>how Yunnan felt,</em> not just where you went.</h2><i aria-hidden="true" /><p>A quiet evening in an old Tea Horse Road town. A conversation inside a traditional tie-dye workshop. A slow breakfast overlooking Erhai Lake.</p><strong>The best memories are rarely made in a hurry.</strong></div><figure className="journey-manifesto-image two"><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="A quiet riverside scene in Shaxi" fill sizes="(max-width: 700px) 45vw, 18vw" unoptimized /></figure></div></section>
 
     <section className="journey-fit"><div className="shell"><header><span>IS THIS YOUR KIND OF JOURNEY?</span><h2>For travelers who would rather go deeper than go faster.</h2></header><div className="journey-fit-columns"><div><h3>You’ll probably love it if you value…</h3>{goodFit.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><h3>It may not be for you if you want…</h3>{poorFit.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></div></section>
 
@@ -62,11 +54,11 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
     <section className="journey-mid-cta"><div className="shell"><div><p>MAKE THE ROUTE YOURS</p><h2>More time in Dali—or an extra night in Shaxi?</h2></div><div><Link href={whatsapp} className="button button-light">ASK JOY TO ADJUST THIS ROUTE</Link><span>Tell us what you would slow down, add or leave out.</span></div></div></section>
 
-    <section className="journey-support section"><div className="shell journey-section-layout"><header><p>INDEPENDENT FREEDOM, LOCAL SUPPORT</p><h2>Your journey, with the difficult parts made easier.</h2><span>You keep the freedom and personal rhythm of independent travel. Trusted local people remove the logistical friction behind it.</span></header><div className="journey-support-grid">{supportPoints.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
+    <section className="journey-support section"><div className="shell journey-section-layout"><header><p>PRIVATE TRAVEL, LOCAL SUPPORT</p><h2>Your journey, with the difficult parts made easier.</h2><span>Your route remains personal and flexible, while trusted local people handle the logistical details behind it.</span></header><div className="journey-support-grid">{supportPoints.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
 
-    <section className="journey-host"><div className="journey-host-image"><Image src="https://hiddenchinatravel.com/brand/founder/portrait.webp" alt="Joy Liu, founder of Hidden China Travel" fill sizes="(max-width: 800px) 100vw, 48vw" unoptimized /></div><div className="journey-host-copy"><span>YOUR LOCAL CONNECTION</span><h2>A Yunnan journey shaped by someone who calls it home.</h2><blockquote>“Living abroad taught me how different a place feels when you have someone local you can trust.”</blockquote><p>Joy Liu was born and raised in Yunnan. She helps you shape the route around what matters to you, then connects you with licensed local partners who arrange and operate the journey.</p><Link href="/about-us">MEET JOY →</Link></div></section>
+    <section className="journey-host"><div className="journey-host-image"><Image src="/brand/founder/portrait.webp" alt="Joy Liu, founder of Hidden China Travel" fill sizes="(max-width: 800px) 100vw, 48vw" unoptimized /></div><div className="journey-host-copy"><span>YOUR LOCAL CONNECTION</span><h2>A Yunnan journey shaped by someone who calls it home.</h2><blockquote>“Living abroad taught me how different a place feels when you have someone local you can trust.”</blockquote><p>Joy Liu was born and raised in Yunnan. She helps you shape the route around what matters to you, then connects you with licensed local partners who arrange and operate the journey.</p><Link href="/about-us">MEET JOY →</Link></div></section>
 
-    <section className="journey-pricing section section-sand" id="pricing"><div className="shell"><div className="journey-editorial-heading"><span>PRICING & TRAVEL STYLES</span><h2>Choose the comfort level that fits you</h2><p>Three accommodation levels, with the same private and unhurried foundation.</p></div><div className="journey-price-grid">{frontmatter.tiers.map((tier) => <article key={tier.name} className={tier.featured ? "featured" : ""}>{tier.featured ? <span className="price-choice">MOST POPULAR</span> : null}<h3>{tier.name}</h3><div className="journey-tier-price">From <b>{priceLabel(tier.price, frontmatter.currency)}</b> <span>per person</span></div><p>{tier.description}</p><ul><li>{tier.accommodation}</li><li>Private transportation</li><li>Local experiences</li><li>Journey support</li></ul><small>IDEAL FOR</small><strong>{tier.idealFor}</strong></article>)}</div><p className="journey-price-note">Prices are shown in USD and are intended as a guide. Final pricing depends on travel dates, group size, hotel availability and any route customizations. Your licensed local travel partner will provide the final proposal and contract.</p></div></section>
+    <section className="journey-pricing section section-sand" id="pricing"><div className="shell"><div className="journey-editorial-heading"><span>PRICING & TRAVEL STYLES</span><h2>Choose the comfort level that fits you</h2><p>Three accommodation levels, with the same private and unhurried foundation.</p></div><div className="journey-price-grid">{frontmatter.tiers.map((tier) => <article key={tier.name} className={tier.featured ? "featured" : ""}>{tier.featured ? <span className="price-choice">MOST POPULAR</span> : null}<h3>{tier.name}</h3><div className="journey-tier-price">From <b>{formatPriceLabel(tier.price, frontmatter.currency)}</b> <span>per person</span></div><p>{tier.description}</p><ul><li>{tier.accommodation}</li><li>Private transportation</li><li>Local experiences</li><li>Journey support</li></ul><small>IDEAL FOR</small><strong>{tier.idealFor}</strong></article>)}</div><p className="journey-price-note">Prices are shown in USD and are intended as a guide. Final pricing depends on travel dates, group size, hotel availability and any route customizations. Your licensed local travel partner will provide the final proposal and contract.</p></div></section>
 
     <section className="journey-inclusions section" id="details"><div className="shell journey-inclusion-grid"><div><span className="journey-detail-label">THE DETAILS</span><h2>What’s included</h2>{frontmatter.inclusions.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><span className="journey-detail-label">GOOD TO KNOW</span><h2>What’s not included</h2>{frontmatter.exclusions.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></section>
 
