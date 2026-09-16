@@ -822,3 +822,25 @@ SEO 是长期资产；Google Ads 是快速验证高意向需求的工具；Meta 
 最终希望形成：
 
 > **SEO 提供长期低成本流量，Google Ads 提供高意向获客，Meta 提供品牌和冷流量，Hidden China Travel 负责内容、体验设计和客户关系，云南合作方负责本地履约。**
+
+---
+
+## 18. 文章详情页固定信息流与通用卡片
+
+文章正文及 FAQ 之后统一使用：
+
+```text
+Continue Exploring China
+→ Start with Yunnan
+→ Talk With Joy
+```
+
+组件规则：
+
+- `GuideCard`：全站统一文章卡，用于文章相关推荐与 Guide Explorer。
+- `JourneyCard`：全站统一旅游产品卡，用于文章产品推荐与 Journeys 列表。
+- 相关文章自动匹配 4–6 篇，优先同主题，排除当前文章。
+- 云南产品由 `content/journeys` 的已发布数据驱动，不在页面里硬编码价格与可售状态。
+- 如果没有已发布产品，隐藏 `Start with Yunnan`，不得使用虚构产品占位。
+- `Talk With Joy` 始终使用全宽横幅，WhatsApp 预填文字必须包含当前文章来源。
+- 固定用户文案不得在其他页面调用组件时擅自改写。

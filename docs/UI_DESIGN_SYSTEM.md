@@ -255,3 +255,17 @@ Text links may use a simple underline or arrow. Avoid filling editorial sections
 - Do desktop and mobile layouts both work?
 - Are SEO metadata, heading order, alt text, and internal links present?
 - Do lint, type checking, and the production build pass?
+
+
+## 13. Shared article-flow components
+
+Article detail pages use one fixed post-body sequence:
+
+`Continue Exploring China → Start with Yunnan → Talk With Joy`
+
+- `GuideCard` is the single reusable article-card component for article recommendations and guide explorers. It uses a 4:3 real cover image, editorial title overlay, excerpt, optional reading time, and the text action `READ THIS GUIDE`.
+- `JourneyCard` is the single reusable product-card component for article recommendations and the Journeys index. It uses a photography-led 4:5 treatment, a dark readability gradient, optional journey facts, and the text action `Explore the journey →`.
+- Article pages show 4–6 related guides, exclude the current article, then link to the complete China Survival Kit.
+- The featured Yunnan journey comes from published journey data. Do not hardcode price or availability into the article template.
+- `Talk With Joy` is a full-width conversion band, never a card or a side-by-side module.
+- If no published journey exists, hide `Start with Yunnan`; keep the guide and Joy sections.

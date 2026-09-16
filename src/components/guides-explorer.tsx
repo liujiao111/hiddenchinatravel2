@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { GuideCard } from "@/components/guide-card";
 import { useState } from "react";
 
 type Guide = { title: string; summary: string; href: string; image: string };
@@ -34,5 +33,5 @@ const topics: Record<string, Guide[]> = {
 
 export function GuidesExplorer() {
   const [active, setActive] = useState("First trip");
-  return <div className="guides-explorer"><div className="guide-tabs" role="tablist" aria-label="Travel guide topics">{Object.keys(topics).map((topic) => <button key={topic} type="button" role="tab" aria-selected={active === topic} className={active === topic ? "active" : ""} onClick={() => setActive(topic)}>{topic}</button>)}</div><div className="guide-cover-grid">{topics[active].map((guide) => <Link href={guide.href} className="guide-cover-card" key={guide.title}><div className="guide-cover-image"><Image src={guide.image} alt="" fill sizes="(max-width: 700px) 86vw, (max-width: 1000px) 43vw, 25vw" /><div className="card-shade" /><h3>{guide.title}</h3></div><p>{guide.summary}</p><span>READ THE GUIDE</span></Link>)}</div></div>;
+  return <div className="guides-explorer"><div className="guide-tabs" role="tablist" aria-label="Travel guide topics">{Object.keys(topics).map((topic) => <button key={topic} type="button" role="tab" aria-selected={active === topic} className={active === topic ? "active" : ""} onClick={() => setActive(topic)}>{topic}</button>)}</div><div className="guide-cover-grid">{topics[active].map((guide) => <GuideCard key={guide.title} guide={{ title: guide.title, excerpt: guide.summary, href: guide.href, image: guide.image, imageAlt: guide.title }} />)}</div></div>;
 }

@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ContentItem } from "@/lib/content";
 import { getRelatedArticles } from "@/lib/content";
-import { ContentCta, ContentFooter } from "@/components/content-footer";
+import { ArticleDiscoveryFlow } from "@/components/article-discovery-flow";
+import { ContentFooter } from "@/components/content-footer";
 import { MarkdownContent } from "@/components/markdown-content";
 import { SiteHeader } from "@/components/site-header";
 import { TopicNavigation } from "@/components/topic-navigation";
+import { getAllJourneys } from "@/lib/journeys";
 
 function formatDate(value?: string) {
   if (!value) return "Updated for 2026";
@@ -14,7 +16,9 @@ function formatDate(value?: string) {
 
 export function ArticlePage({ item }: { item: ContentItem }) {
   const { frontmatter } = item;
-  const related = getRelatedArticles(item);
+  const related = getRelatedArticles(item, 6);
+  const journeys = getAllJourneys();
+  const featuredJourney = journeys.find((journey) => journey.frontmatter.featured) || journeys[0];
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -47,8 +51,7 @@ export function ArticlePage({ item }: { item: ContentItem }) {
       </div>
     </article>
     {frontmatter.faqs?.length ? <section className="article-faq"><div className="narrow"><p className="article-section">COMMON QUESTIONS</p><h2>Frequently asked questions</h2>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><MarkdownContent compact>{faq.answer}</MarkdownContent></details>)}</div></section> : null}
-    <section className="related-guides shell"><div className="section-heading"><h2>Related guides</h2><p>Continue preparing for your China journey.</p></div><div className="related-grid">{related.map((relatedItem) => <Link key={relatedItem.slug} href={`/${relatedItem.slug}`} className="related-card"><div className="related-card-image"><Image src={relatedItem.frontmatter.coverImage || "/home/hero.webp"} alt={relatedItem.frontmatter.title} fill sizes="(max-width: 700px) 100vw, 50vw" unoptimized /></div><div className="related-card-copy"><span>{relatedItem.frontmatter.section || "China travel"}</span><h3>{relatedItem.frontmatter.title}</h3><p>{relatedItem.frontmatter.excerpt}</p><b>READ GUIDE →</b></div></Link>)}</div></section>
-    <ContentCta />
+    <ArticleDiscoveryFlow related={related} journey={featuredJourney} sourceTitle={frontmatter.title} />
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;

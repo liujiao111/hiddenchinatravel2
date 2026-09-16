@@ -765,3 +765,80 @@ p { line-height:1.7; }
   .hub-topic>header { grid-template-columns:48px 1fr; gap:14px; }
   .hub-topic>header>span { font-size:2rem; }
 }
+
+
+/* Article discovery flow and shared editorial cards */
+.guide-card { display:flex; min-width:0; height:100%; flex-direction:column; overflow:hidden; border:1px solid rgba(67,75,67,.14); border-radius:6px; background:#faf8f1; box-shadow:0 9px 28px rgba(34,47,42,.08); transition:transform .25s,box-shadow .25s; }
+.guide-card:hover { transform:translateY(-4px); box-shadow:0 16px 35px rgba(34,47,42,.14); }
+.guide-card:focus-visible,.journey-card:focus-visible { outline:3px solid #087eb8; outline-offset:4px; }
+.guide-card-image { position:relative; overflow:hidden; aspect-ratio:4/3; background:#d8d4bb; }
+.guide-card-image img { object-fit:cover; transition:transform .55s; }
+.guide-card:hover .guide-card-image img { transform:scale(1.035); }
+.guide-card-shade { position:absolute; inset:34% 0 0; background:linear-gradient(180deg,transparent,rgba(13,28,24,.82)); }
+.guide-card-image h3 { position:absolute; right:24px; bottom:22px; left:24px; z-index:1; margin:0; color:#fff; font-family:Georgia,serif; font-size:clamp(1.35rem,2vw,1.75rem); font-style:italic; font-weight:400; line-height:1.16; text-align:center; text-shadow:0 2px 12px rgba(0,0,0,.4); }
+.guide-card-copy { display:flex; flex:1; flex-direction:column; padding:24px 25px 20px; }
+.guide-card-copy>p { margin:0 0 25px; color:#5d5f58; font-size:.9rem; line-height:1.7; }
+.guide-card-copy>span { margin-top:auto; padding-bottom:17px; color:#6f7169; font-size:.7rem; font-weight:700; letter-spacing:.08em; }
+.guide-card-copy>div { display:flex; justify-content:space-between; padding-top:17px; border-top:1px solid #d7d5ca; color:#345d58; }
+.guide-card-copy b { font-size:.68rem; letter-spacing:.09em; }
+.guide-card-copy>div span { font-size:1rem; }
+
+.journey-card { position:relative; display:block; min-height:560px; overflow:hidden; border-radius:6px; background:#294f49; color:#fff; box-shadow:0 10px 30px rgba(25,35,31,.14); transition:transform .3s,box-shadow .3s; }
+.journey-card:hover { transform:translateY(-4px); box-shadow:0 18px 42px rgba(25,35,31,.2); }
+.journey-card>img { object-fit:cover; transition:transform .65s; }
+.journey-card:hover>img { transform:scale(1.035); }
+.journey-card-shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(12,25,21,.08) 10%,rgba(12,25,21,.42) 47%,rgba(12,25,21,.93) 100%); transition:background .3s; }
+.journey-card:hover .journey-card-shade { background:linear-gradient(180deg,rgba(12,25,21,.12) 8%,rgba(12,25,21,.5) 45%,rgba(12,25,21,.96) 100%); }
+.journey-card-copy { position:absolute; right:0; bottom:0; left:0; z-index:1; padding:34px 32px 30px; }
+.journey-card-copy>span { display:block; margin-bottom:12px; font-size:.67rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.journey-card-copy h3 { max-width:620px; margin:0; color:#fff; font-family:Georgia,serif; font-size:clamp(1.8rem,3vw,2.55rem); font-style:italic; font-weight:400; line-height:1.08; }
+.journey-card-copy>p { max-width:620px; margin:13px 0 0; color:rgba(255,255,255,.88); font-size:.92rem; line-height:1.55; }
+.journey-card-copy ul { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 22px; margin:22px 0 0; padding:0; list-style:none; font-size:.83rem; }
+.journey-card-meta { display:flex; flex-wrap:wrap; gap:9px 20px; margin-top:20px; font-size:.77rem; }
+.journey-card-copy>strong { display:block; margin-top:24px; padding-top:18px; border-top:1px solid rgba(255,255,255,.55); font-size:.7rem; letter-spacing:.09em; text-transform:uppercase; }
+
+.article-discovery { padding:96px 0; }
+.article-explore { background:#f5f5ef; }
+.article-yunnan { background:#d8d4bb; }
+.article-flow-heading { max-width:680px; margin:0 auto 46px; text-align:center; }
+.article-flow-heading h2 { margin:0 0 15px; font-size:clamp(2.35rem,4.7vw,4rem); }
+.article-flow-heading p { margin:0; color:#5f615a; font-size:1.02rem; line-height:1.72; }
+.article-guide-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.article-featured-journey { width:min(500px,100%); margin:0 auto; }
+.article-secondary-link { display:flex; flex-direction:column; align-items:center; gap:7px; margin-top:46px; text-align:center; }
+.article-secondary-link span { color:#65675f; font-size:.88rem; }
+.article-secondary-link a { padding-bottom:4px; border-bottom:1px solid currentColor; color:#345d58; font-weight:750; }
+
+.talk-with-joy { position:relative; display:grid; min-height:570px; place-items:center; overflow:hidden; color:#fff; }
+.talk-with-joy>img { object-fit:cover; }
+.talk-with-joy-shade { position:absolute; inset:0; background:linear-gradient(90deg,rgba(20,46,41,.92),rgba(20,46,41,.75) 58%,rgba(20,46,41,.58)); }
+.talk-with-joy-copy { position:relative; z-index:1; padding-top:85px; padding-bottom:85px; text-align:center; }
+.talk-with-joy-copy h2 { max-width:750px; margin:0 auto 24px; color:#fff; font-size:clamp(2.7rem,5vw,4.7rem); }
+.talk-with-joy-copy p { max-width:720px; margin:0 auto 12px; color:rgba(255,255,255,.9); font-size:1.03rem; line-height:1.7; }
+.talk-with-joy-copy strong { display:block; margin:20px 0 30px; font-family:Georgia,serif; font-size:1.16rem; font-style:italic; font-weight:400; }
+.talk-with-joy-copy .button { min-height:50px; background:#087eb8; color:#fff; }
+.talk-with-joy-copy small { display:block; margin-top:17px; color:rgba(255,255,255,.76); line-height:1.6; }
+
+.journeys-card-grid .journey-card { min-height:590px; }
+.guides-explorer .guide-card { scroll-snap-align:start; }
+
+@media (max-width:1000px) {
+  .article-guide-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:700px) {
+  .article-discovery { padding:72px 0; }
+  .article-flow-heading { margin-bottom:34px; text-align:left; }
+  .article-flow-heading h2 { font-size:2.55rem; }
+  .article-guide-grid { grid-template-columns:1fr; }
+  .guide-card-image { aspect-ratio:4/3; }
+  .journey-card,.journeys-card-grid .journey-card { min-height:550px; }
+  .journey-card-copy { padding:28px 24px 25px; }
+  .journey-card-copy ul { grid-template-columns:1fr; }
+  .article-secondary-link { align-items:flex-start; text-align:left; }
+  .talk-with-joy { min-height:620px; }
+  .talk-with-joy-shade { background:rgba(20,46,41,.82); }
+  .talk-with-joy-copy { padding-top:72px; padding-bottom:72px; text-align:left; }
+  .talk-with-joy-copy h2,.talk-with-joy-copy p { margin-right:0; margin-left:0; }
+  .talk-with-joy-copy .button { width:100%; text-align:center; }
+  .guides-explorer .guide-card { min-width:82vw; }
+}
