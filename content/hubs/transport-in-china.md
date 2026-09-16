@@ -34,9 +34,9 @@ subtopics:
         excerpt: "Chongqing → Dali walkthrough, 12306 vs Trip.com, passport check-in, and what to do when tickets sell out."
         badge: "Booking Guide"
         status: published
-      - title: "Independent Yunnan travel"
+      - title: "Yunnan Travel Guide"
         href: /china-destinations/yunnan
-        excerpt: "Kunming–Dali–Lijiang fast trains, the Jinghong rail hop (~3.5 hours), and a 7-day loop you buy yourself."
+        excerpt: "How Kunming, Dali, Shaxi and Lijiang connect—and where road transport makes the route easier."
         badge: "Route"
         status: published
   - id: didi-ride-hailing
@@ -93,7 +93,7 @@ faqs:
   - question: "Do I need my passport for trains in China?"
     answer: "Yes — tickets are tied to your passport, and you’ll use it at station check-in. For the full booking and gate walkthrough, see [How to Book High-Speed Rail Tickets in China](/book-china-high-speed-rail-foreigners)."
   - question: "Can I take trains across Yunnan without a tour?"
-    answer: "Yes. Kunming–Dali–Lijiang is fast rail in your own name. Jinghong is a separate Kunming fast train (about 3.5 hours) or a flight. [Independent Yunnan travel](/china-destinations/yunnan) sequences the loop."
+    answer: "Yes. Kunming–Dali–Lijiang is connected by fast rail, while Shaxi is reached by road. The [Yunnan travel guide](/china-destinations/yunnan) explains how to sequence the route and when private transport is useful."
   - question: "What is the biggest transport mistake before a China trip?"
     answer: "Treating transport as separate from internet, maps, and payments. Those three decide whether trains and DiDi feel easy or stressful."
 beforeYouArrive: "China’s transport network is excellent — but it assumes you can pay by phone, find the right station entrance, and keep data online.\n\nBefore you obsess over which train to book, make Alipay/WeChat Pay usable, fix mobile data, and understand why Google Maps may place you at the wrong exit. When you’re ready to book intercity trains, use the [high-speed rail booking guide](/book-china-high-speed-rail-foreigners)."
@@ -129,9 +129,9 @@ relatedHubs:
   - title: "Maps & Navigation"
     href: /maps-navigation-in-china
     excerpt: "Find stations, exits, and pickups without the wrong pin."
-  - title: "Independent Yunnan travel"
+  - title: "Yunnan Travel Guide"
     href: /china-destinations/yunnan
-    excerpt: "Where those trains actually go on a first independent loop."
+    excerpt: "Where rail works, where road transport helps, and how to pace a first route."
   - title: "Payments in China"
     href: /payments-in-china
     excerpt: "Pay for metro, DiDi, and tickets without cash panic."

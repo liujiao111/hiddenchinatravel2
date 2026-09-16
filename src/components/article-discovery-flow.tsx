@@ -74,7 +74,7 @@ export function ArticleDiscoveryFlow({
         </div>
         <div className="article-secondary-link">
           <span>Not ready for a journey yet?</span>
-          <Link href="/dali-travel-guide">Explore our Yunnan travel guides →</Link>
+          <Link href="/china-destinations/yunnan">Explore our Yunnan travel guides →</Link>
         </div>
       </div>
     </section> : null}

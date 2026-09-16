@@ -32,7 +32,7 @@ export function ContentFooter() {
           <div className="footer-guide-group">
             <Link className="footer-guide-title" href="/search">Travel Guides</Link>
             <div className="footer-topic-links" aria-label="Travel guides by destination">
-              <Link href="/search?q=Yunnan">Yunnan</Link>
+              <Link href="/china-destinations/yunnan">Yunnan</Link>
               <Link href="/dali-travel-guide">Dali</Link>
               <Link href="/search?q=Lijiang">Lijiang</Link>
               <Link href="/search?q=Kunming">Kunming</Link>

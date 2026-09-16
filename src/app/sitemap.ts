@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://hiddenchinatravel.com", changeFrequency: "weekly", priority: 1 },
     { url: "https://hiddenchinatravel.com/about-us", changeFrequency: "monthly", priority: 0.6 },
     { url: "https://hiddenchinatravel.com/contact", changeFrequency: "monthly", priority: 0.7 },
+    { url: "https://hiddenchinatravel.com/china-destinations/yunnan", changeFrequency: "weekly", priority: 0.9 },
     { url: "https://hiddenchinatravel.com/journeys", changeFrequency: "weekly", priority: 0.9 },
     ...getAllJourneys().map((journey) => ({
       url: `https://hiddenchinatravel.com/journeys/${journey.slug}`,

@@ -42,7 +42,7 @@ faqs:
 
 Most visitors spend their entire Dali trip inside the Old Town walls, snap a photo at the Three Pagodas, and call it done. That's not wrong, exactly — it's just incomplete. The Dali most people fall in love with online is usually somewhere else: a tie-dye workshop in a Bai village, a quiet courtyard hotel in Xizhou, a stone grotto carved into a mountainside near Shaxi. You don't need fluent Mandarin or a hired guide to reach any of these — and self-driving isn't really on the table anyway, since a foreign license alone isn't valid in China without a separate temporary permit most visitors never bother getting. Buses, Didi, and the occasional hired driver cover everything on this list. You just need to know these places exist — and roughly how much time to set aside.
 
-This sits beside our [independent Yunnan loop](/china-destinations/yunnan) — Kunming, Dali, Lijiang — for the days you want *outside* Dali Old Town.
+This sits beside our [Yunnan travel guide](/china-destinations/yunnan) — Kunming, Dali, Shaxi and Lijiang — for the days you want *outside* Dali Old Town.
 
 We'll start with the one that takes the most effort to reach — the payoff is worth explaining first — then work down toward the easy half-day options.
 
@@ -62,8 +62,8 @@ Sifang Street itself is free to walk. Cars aren't allowed inside the old town co
 
 Shaxi is about 140 km from Dali Old Town — figure on 2 to 2.5 hours by direct tourist coach (around ¥42, departing from Dali's long-distance bus station) or private car. Given the distance, this is realistically an overnight trip rather than a day trip. A handful of small guesthouses in Sifang Street's old buildings are worth booking ahead — [browse options here](/go/trip-hotels).
 
-> **Need a driver from Dali to Shaxi?**
-> Buses take 2–2.5 hours each way and run on a thin schedule. We work with a local Dali-based driver who can take you straight there, door to door, and loop in Shibaoshan the same day if you want. [Message us on WhatsApp](https://wa.me/639773450712?text=Hi%2C%20I%27m%20interested%20in%20a%20driver%20from%20Dali%20to%20Shaxi) and tell us your dates.
+> **Want to include Shaxi without turning it into a rushed day trip?**
+> Our [6-day private Yunnan journey](/journeys/kunming-dali-shaxi-lijiang-6-days) includes two nights in Shaxi between Dali and Lijiang, with the road transport arranged around the route.
 
 ## Weishan Ancient Town — Yunnan's Emptiest "Forgotten Capital"
 
@@ -151,8 +151,8 @@ None of these places demand a fixed itinerary — that's the point of writing ab
 
 **2–3 days, more ground covered**: Add an overnight in Xizhou or push on to Shaxi for one or two nights, using Shibaoshan as a half-day add-on from there. If you've got even more time and want to go further off-grid, Nuodeng is the one to add. This suits travelers with more time and energy for longer transfers.
 
-> **Want us to arrange this 3-day route?**
-> Buses, drivers, and guesthouse bookings — sorted for you, built around however many days you actually have. [Message us on WhatsApp](https://wa.me/639773450712?text=Hi%2C%20I%27d%20like%20help%20planning%20a%203-day%20route%20around%20Dali%27s%20hidden%20gems) and tell us your dates.
+> **Want these places fitted into a wider Yunnan route?**
+> Start with the [Yunnan travel guide](/china-destinations/yunnan), or see how Dali and Shaxi connect in our [6-day private journey](/journeys/kunming-dali-shaxi-lijiang-6-days).
 
 ## Getting There and Practical Tips
 
@@ -200,13 +200,13 @@ It's about 2.5 hours by car from Dali Old Town, and there's very little in the w
 | Nuodeng (Ancient Village) | 诺邓(古村) | Nuòdèng (Gǔcūn) |
 | Yunlong (County) | 云龙(县) | Yúnlóng (Xiàn) |
 
-Still working out the basics of a Dali trip? Our [independent Yunnan travel guide](/china-destinations/yunnan) covers the Kunming–Dali–Lijiang loop, Erhai, and how Dali sits on that week — a good place to start if you haven't nailed down where to stay yet.
+Still working out the basics of a Dali trip? Our [Yunnan travel guide](/china-destinations/yunnan) covers the Kunming–Dali–Shaxi–Lijiang route, Erhai, and how Dali fits into a first journey — a good place to start if you haven't settled the wider route yet.
 
 ## Free Dali Hidden Gems Map
 
 Want to save this without scrolling back through the article later? We've mapped every place here — Zhoucheng, Weishan, Xizhou, Shibaoshan, Shaxi, and Nuodeng — with distances and travel times from Dali Old Town, in one map.
 
-[**Get the map on WhatsApp →**](https://wa.me/639773450712?text=Hi%2C%20can%20you%20send%20me%20the%20Dali%20Hidden%20Gems%20map%3F)
+[**Get the map on WhatsApp →**](https://wa.me/8618880441791?text=Hi%2C%20can%20you%20send%20me%20the%20Dali%20Hidden%20Gems%20map%3F)
 
 Message us and we'll send it straight over — no email, no spam, just the map.
 

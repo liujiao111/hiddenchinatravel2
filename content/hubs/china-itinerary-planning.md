@@ -85,12 +85,12 @@ subtopics:
         badge: "Hub"
         status: published
   - id: regional-loops
-    name: "Regional loops"
-    description: "Once the China skeleton is set, one province is enough for a first independent week."
+    name: "Regional journeys"
+    description: "Once the China skeleton is set, one province can be enough for a rewarding first week."
     articles:
-      - title: "Independent Yunnan travel"
+      - title: "Yunnan Travel Guide"
         href: /china-destinations/yunnan
-        excerpt: "7-day Kunming–Dali–Lijiang without a tour — plus when to add Jinghong or Shangri-La."
+        excerpt: "Plan Kunming, Dali, Shaxi and Lijiang with realistic pacing—and know when another region is too much."
         badge: "Destination"
         status: published
       - title: "Dali hidden gems"
@@ -118,7 +118,7 @@ faqs:
   - question: "What is the backbone of most independent China routes?"
     answer: "Overnight cities connected by high-speed rail, with one buffer day. Start with the [transport hub](/transport-in-china) and [rail booking guide](/book-china-high-speed-rail-foreigners)."
   - question: "How do I plan a Yunnan itinerary independently?"
-    answer: "The usual first loop is Kunming–Dali–Lijiang in seven to ten days, trains in your own name, no Tibet-style permit. [Independent Yunnan travel](/china-destinations/yunnan) has the 7-day sketch, best time to go, and when Shangri-La or Xishuangbanna actually fits."
+    answer: "A focused first route runs from Kunming through Dali and Shaxi to Lijiang. The [Yunnan travel guide](/china-destinations/yunnan) explains the timing, transport and when Shangri-La or Xishuangbanna actually fits."
 beforeYouArrive: "Do not start with a 14-city spreadsheet. Confirm how you enter China, then payments and data, then pick overnight cities you can actually reach by rail. Day-level sightseeing is the last layer — not the first.\n\nIf you want a local to turn that skeleton into a PDF, use the planner. If you want to DIY, read the how-to guide and keep the essentials hub open."
 beforeYouArriveHeading: "Plan the skeleton before the sightseeing list"
 decisionGuide:
@@ -146,9 +146,9 @@ relatedHubs:
   - title: "China Travel Essentials"
     href: /china-travel-essentials
     excerpt: "Prep order before you polish days."
-  - title: "Independent Yunnan travel"
+  - title: "Yunnan Travel Guide"
     href: /china-destinations/yunnan
-    excerpt: "A 7-day independent loop once the China skeleton is set."
+    excerpt: "A focused first route through Kunming, Dali, Shaxi and Lijiang."
   - title: "Transport in China"
     href: /transport-in-china
     excerpt: "Rail, metro, and DiDi once the route exists."

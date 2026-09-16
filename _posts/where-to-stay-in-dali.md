@@ -131,3 +131,5 @@ For **2–3 nights** total, keep the whole stay in or near the Ancient Town. Spl
 For **4–5 nights**, splitting the stay — most nights in the Ancient Town, one or two by the lake — is a workable pattern. See the [Dali travel guide's day-count breakdown](/dali-travel-guide#how-many-days-do-you-need-in-dali) if you have not settled on a number yet.
 
 With **a week or more** in Yunnan, adding a night in Xizhou or on the east shore near Shuanglang is worth considering. Keep the Ancient Town or Caicun as your base for the rest of the stop rather than moving accommodation every night.
+
+If Dali is one part of a wider trip, use the [Yunnan travel guide](/china-destinations/yunnan) to compare the time needed for Kunming, Dali, Shaxi and Lijiang. Travelers who prefer to have the transfers and local arrangements handled can also review the [6-day private Yunnan journey](/journeys/kunming-dali-shaxi-lijiang-6-days).
