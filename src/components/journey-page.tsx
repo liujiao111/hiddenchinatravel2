@@ -34,13 +34,14 @@ const journeyGuides = [
     title: "Dali Hidden Gems & Shaxi",
     excerpt: "Learn why Shaxi deserves an overnight stay and what else lies beyond Dali's busiest streets.",
     href: "/dali-hidden-gems-off-the-beaten-path",
-    image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp",
+    image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-theater-courtyard.webp",
     readTime: "LOCAL GUIDE",
   },
 ];
 
 export function JourneyPage({ journey }: { journey: Journey }) {
   const { frontmatter } = journey;
+  const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
@@ -74,7 +75,10 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
     <section className="journey-experiences section section-sand" id="experiences"><div className="shell"><div className="journey-editorial-heading"><span>THE MOMENTS THAT STAY WITH YOU</span><h2>Signature experiences</h2><p>Not additions made to fill an itinerary—moments chosen to give you more time with a place.</p></div><div className="journey-experience-grid">{frontmatter.experiences.map((experience, index) => <article key={experience.title}><div><Image src={experience.image} alt={experience.title} fill sizes={index === 0 || index === 3 ? "(max-width: 700px) 100vw, 58vw" : "(max-width: 700px) 100vw, 42vw"} unoptimized /></div><span>0{index + 1} · EXPERIENCE</span><h3>{experience.title}</h3><p>{experience.description}</p></article>)}</div></div></section>
 
-    <section className="journey-itinerary section" id="itinerary"><div className="shell journey-section-layout"><header><p>YOUR 6 DAYS IN YUNNAN</p><h2>A rhythm of arrival, discovery and rest.</h2><span>This is a starting point rather than a rigid package. We can adjust the route around your dates and preferred pace.</span></header><div className="journey-days">{frontmatter.itinerary.map((day, index) => <details key={day.days} open={index === 0}><summary><span>{day.days}</span><div><h3>{day.title}</h3><p>{day.meta}</p></div><b aria-hidden="true">+</b></summary><p>{day.description}</p></details>)}</div></div></section>
+    <section className="journey-itinerary section" id="itinerary"><div className="shell journey-section-layout"><header><p>YOUR 6 DAYS IN YUNNAN</p><h2>A rhythm of arrival, discovery and rest.</h2><span>This is a starting point rather than a rigid package. We can adjust the route around your dates and preferred pace.</span></header><div className="journey-days">{frontmatter.itinerary.map((day, index) => {
+      const isShaxi = isSixDayYunnanJourney && day.title.toLowerCase().includes("shaxi");
+      return <details key={day.days} open={index === 0}><summary><span>{day.days}</span><div><h3>{day.title}</h3><p>{day.meta}</p></div><b aria-hidden="true">+</b></summary><p>{day.description}</p>{isShaxi ? <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 14, padding: "0 36px 32px 94px" }}><figure style={{ position: "relative", aspectRatio: "3 / 4", margin: 0, overflow: "hidden" }}><Image src="/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-bridge-river-view.webp" alt="Shaxi's old stone bridge crossing the river with mountains beyond" fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized style={{ objectFit: "cover" }} /></figure><figure style={{ position: "relative", aspectRatio: "3 / 4", margin: 0, overflow: "hidden" }}><Image src="/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-i-love-shaxi.webp" alt="A traveler beside a wooden I Love Shaxi sign in the old town" fill sizes="(max-width: 700px) 45vw, 20vw" unoptimized style={{ objectFit: "cover" }} /></figure></div> : null}</details>;
+    })}</div></div></section>
 
     <section className="journey-mid-cta"><div className="shell"><div><p>MAKE THE ROUTE YOURS</p><h2>More time in Dali—or an extra night in Shaxi?</h2></div><div><Link href={whatsapp} className="button button-light">ASK JOY TO ADJUST THIS ROUTE</Link><span>Tell us what you would slow down, add or leave out.</span></div></div></section>
 
