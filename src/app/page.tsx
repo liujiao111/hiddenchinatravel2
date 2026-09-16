@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GuidesExplorer } from "@/components/guides-explorer";
 import { SiteHeader } from "@/components/site-header";
+import { ContentFooter } from "@/components/content-footer";
 
 export const metadata: Metadata = {
   title: "Yunnan Private Tours & China Travel Guides | Hidden China Travel",
@@ -35,10 +36,6 @@ const destinations = [
   ["Guilin & Yangshuo", "Karst rivers, countryside stays and classic southern scenery.", "https://hiddenchinatravel.com/brand/destinations/guilin.webp"],
 ];
 
-function Footer() {
-  return <footer className="footer"><div className="shell footer-grid"><div className="footer-brand"><span className="brand-mark">H</span><h2>Hidden China Travel</h2><p>Travel guides, local expertise, and personalized journeys across Yunnan and beyond.</p></div><div><h3>Explore</h3><Link href="#destinations">Destinations</Link><Link href="#journeys">Yunnan journey</Link><Link href="#guides">China travel guides</Link></div><div><h3>Plan</h3><Link href={whatsapp}>Talk to us</Link><Link href="/about-us">About us</Link><Link href="/china-visa-checker">China visa checker</Link></div><div><h3>Practical</h3><Link href="/payments-in-china">Payments</Link><Link href="/internet-in-china">Internet & eSIM</Link><Link href="/transport-in-china">Getting around</Link></div></div><div className="shell footer-bottom"><span>© 2026 Hidden China Travel</span><span>Independent guidance · Local connections · Yunnan first</span></div></footer>;
-}
-
 export default function Home() {
   return <main><SiteHeader />
     <section className="hero"><Image src="/home/hero.webp" alt="Snow-capped mountains in Yunnan" fill preload unoptimized sizes="100vw" /><div className="hero-shade" /><div className="hero-copy"><h1>China, at Your Pace.</h1><p>Discover a more personal side of China through journeys shaped by local knowledge, slower travel, and meaningful experiences.<span>Born in Yunnan, Shaped by experiences abroad.</span></p><div className="hero-actions"><Link href="/journeys" className="button button-light">EXPLORE JOURNEYS</Link><Link href={whatsapp} className="button button-blue">CHAT JOY ON WHATSAPP</Link></div></div></section>
@@ -61,6 +58,6 @@ export default function Home() {
     <section className="section destinations-section" id="destinations"><div className="shell"><div className="section-heading"><h2>Explore China</h2><p>Destination ideas, local context and a practical route into a very large country.</p></div><div className="destination-grid home-destination-grid">{destinations.map(([name,note,image]) => <article className="image-card" key={name}><Image src={image} alt={`${name}, China`} fill sizes="(max-width: 700px) 100vw, 33vw" /><div className="card-shade" /><div className="image-card-copy"><p>{note}</p><h3>{name}</h3><Link href={name === "Yunnan" ? "/china-destinations/yunnan" : "/china-destinations"} className="button button-light">EXPLORE</Link></div></article>)}</div></div></section>
 
     <section className="cta-band final-cta"><Image src="/home/plan-journey.webp" alt="Turquoise lake and snow mountains in Yunnan" fill unoptimized sizes="100vw" /><div className="hero-shade" /><div><h2>Ready to plan your first journey through Yunnan?</h2><p>Tell us your dates, interests and preferred pace. You still travel in your own way—we simply help remove the friction.</p><Link href={whatsapp} className="button button-blue">START ON WHATSAPP</Link></div></section>
-    <Footer />
+    <ContentFooter />
   </main>;
 }
