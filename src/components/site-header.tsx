@@ -63,7 +63,6 @@ const hrefFor = (label: string) => {
 
 export function SiteHeader() {
   const [open, setOpen] = useState<MenuName | null>(null);
-  const toggle = (menu: MenuName) => setOpen((current) => current === menu ? null : menu);
 
   return <header className="site-header" onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
@@ -73,10 +72,10 @@ export function SiteHeader() {
     <nav className="nav-row" aria-label="Main navigation">
       <div className="shell nav-inner">
         <div className="nav-links">
-          <button className={open === "destinations" ? "active" : ""} onClick={() => toggle("destinations")} onMouseEnter={() => setOpen("destinations")} aria-expanded={open === "destinations"}>DESTINATIONS<span className="nav-chevron" aria-hidden="true" /></button>
-          <button className={open === "journeys" ? "active" : ""} onClick={() => toggle("journeys")} onMouseEnter={() => setOpen("journeys")} aria-expanded={open === "journeys"}>JOURNEYS<span className="nav-chevron" aria-hidden="true" /></button>
-          <button className={open === "guides" ? "active" : ""} onClick={() => toggle("guides")} onMouseEnter={() => setOpen("guides")} aria-expanded={open === "guides"}>TRAVEL GUIDES<span className="nav-chevron" aria-hidden="true" /></button>
-          <button className={open === "about" ? "active" : ""} onClick={() => toggle("about")} onMouseEnter={() => setOpen("about")} aria-expanded={open === "about"}>ABOUT US<span className="nav-chevron" aria-hidden="true" /></button>
+          <button className={open === "destinations" ? "active" : ""} onClick={() => setOpen("destinations")} onMouseEnter={() => setOpen("destinations")} aria-expanded={open === "destinations"}>DESTINATIONS<span className="nav-chevron" aria-hidden="true" /></button>
+          <button className={open === "journeys" ? "active" : ""} onClick={() => setOpen("journeys")} onMouseEnter={() => setOpen("journeys")} aria-expanded={open === "journeys"}>JOURNEYS<span className="nav-chevron" aria-hidden="true" /></button>
+          <button className={open === "guides" ? "active" : ""} onClick={() => setOpen("guides")} onMouseEnter={() => setOpen("guides")} aria-expanded={open === "guides"}>TRAVEL GUIDES<span className="nav-chevron" aria-hidden="true" /></button>
+          <button className={open === "about" ? "active" : ""} onClick={() => setOpen("about")} onMouseEnter={() => setOpen("about")} aria-expanded={open === "about"}>ABOUT US<span className="nav-chevron" aria-hidden="true" /></button>
         </div>
         <SiteSearch />
       </div>
