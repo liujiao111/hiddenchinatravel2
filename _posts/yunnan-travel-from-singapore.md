@@ -52,7 +52,7 @@ For the broader province-wide view, start with the [Yunnan travel guide](/china-
 
 This is a **bilateral agreement**, separate from China's transit visa-free rules. You do not need to arrange a third-country transit itinerary for a straightforward Singapore–Yunnan holiday. Entry policies can change, so check the [Singapore Ministry of Foreign Affairs travel page](https://www.mfa.gov.sg/Countries-Regions/C/China/Travel-Page) and your airline's document requirements before you leave.
 
-**Living in Singapore but travelling on another passport?** The rule depends on your nationality and passport, not where you depart from. Start with our [China visa guide](/do-i-need-a-visa-for-china), then confirm the rule for your passport with the relevant Chinese embassy.
+**Living in Singapore but travelling on another passport?** The rule depends on your nationality and passport, not where you depart from. Enter your passport, length of stay and route in the [China visa checker](/china-visa-checker), then confirm the result with the relevant Chinese embassy. The [China visa guide](/do-i-need-a-visa-for-china) explains the entry options in more detail.
 
 ## How to get from Singapore to Yunnan
 
@@ -113,7 +113,7 @@ If your departure is from Kunming, protect enough time for the return transfer: 
 
 ### Prefer to have the transfers arranged?
 
-Our [6-day Kunming, Dali, Shaxi & Lijiang private journey](/journeys/kunming-dali-shaxi-lijiang-6-days) follows this route, starting with travel **from Kunming to Dali on its first day**. The current guide price starts at **US$523 per person**; flights, dates, group size and hotel choice affect the final proposal. Allow a separate arrival day from Singapore and check your flight home against the journey's finish in Lijiang.
+Our [6-day Kunming, Dali, Shaxi & Lijiang private journey](/journeys/kunming-dali-shaxi-lijiang-6-days) follows this route, starting with travel **from Kunming to Dali on its first day**. The current guide price starts at **US$523 per person**; flights, dates, group size and hotel choice affect the final proposal. Use the [currency converter](/china-currency-converter) to estimate the amount in Singapore dollars or yuan. Allow a separate arrival day from Singapore and check your flight home against the journey's finish in Lijiang.
 
 [**Ask about the 6-day Yunnan journey on WhatsApp →**](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20travelling%20from%20Singapore%20and%20interested%20in%20the%206-day%20Kunming-Dali-Shaxi-Lijiang%20private%20journey.%20My%20travel%20dates%20are%3A)
 
