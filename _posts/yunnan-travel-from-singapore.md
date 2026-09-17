@@ -105,7 +105,7 @@ The trade-off is time in transit. Distances within Yunnan are larger than they l
 | **6–7** | Explore Lijiang and its surroundings without changing hotels again |
 | **8** | Fly home via a suitable connection, or return to Kunming earlier if your ticket requires it |
 
-![A bridge over the river near Shaxi, between Dali and Lijiang](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-bridge-river-view.webp)
+![Riverside scenery near Shaxi, between Dali and Lijiang](/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp)
 
 If your departure is from Kunming, protect enough time for the return transfer: you may need to move that transfer to Day 7 and shorten Lijiang. If you have only seven calendar days, dropping a stop is usually better than squeezing every transfer into a single week.
 
