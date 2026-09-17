@@ -40,6 +40,8 @@ export function ContentFooter() {
             </div>
           </div>
           <Link href="/payments-in-china">Payments</Link>
+          <Link href="/china-currency-converter">Currency Converter</Link>
+          <Link href="/china-visa-checker">Visa Checker</Link>
           <Link href="/internet-in-china">Internet &amp; eSIM</Link>
           <Link href="/transport-in-china">Transportation</Link>
           <Link href="/attraction-tickets-in-china">Booking</Link>

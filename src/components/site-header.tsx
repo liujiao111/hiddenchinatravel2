@@ -22,7 +22,7 @@ const destinationHref = (label: string) => {
 
 const menuGroups: Record<"guides" | "about", { title: string; links: string[] }[]> = {
   guides: [
-    { title: "Before you arrive", links: ["Visa & entry", "Payments in China", "Internet, VPN & eSIM", "Hotels for foreigners"] },
+    { title: "Before you arrive", links: ["Visa & entry", "Visa checker", "Payments in China", "Currency converter", "Internet, VPN & eSIM", "Hotels for foreigners"] },
     { title: "Getting around", links: ["China trains", "Using Didi", "Maps & navigation", "Booking attraction tickets"] },
     { title: "Destination guides", links: ["Dali travel guide", "Where to stay in Dali", "Dali hidden gems", "Yunnan itineraries"] },
   ],
@@ -35,7 +35,9 @@ const menuGroups: Record<"guides" | "about", { title: string; links: string[] }[
 
 const guideHrefs: Record<string, string> = {
   "Visa & entry": "/do-i-need-a-visa-for-china",
+  "Visa checker": "/china-visa-checker",
   "Payments in China": "/payments-in-china",
+  "Currency converter": "/china-currency-converter",
   "Internet, VPN & eSIM": "/internet-in-china",
   "Hotels for foreigners": "/hotels-in-china",
   "China trains": "/book-china-high-speed-rail-foreigners",
