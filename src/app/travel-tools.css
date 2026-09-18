@@ -80,6 +80,7 @@
 .tool-country-points { margin-top:35px; border-top:1px solid #d8ddd3; padding-top:22px; }
 .tool-country-points h3 { color:#294f45; font-size:1.5rem; }
 .tool-country-points li { margin-bottom:10px; color:#55645a; }
+.tool-country-guide a { color:#295b4e; font-size:.9rem; font-weight:750; text-decoration:underline; text-underline-offset:4px; }
 .tool-country-copy>small { display:block; margin-top:35px; color:#788076; }
 @media(max-width:950px) { .tool-main,.tool-two-cols { grid-template-columns:1fr; gap:35px; } .tool-aside { position:static; } .tool-country-grid { grid-template-columns:repeat(3,1fr); } }
 @media(max-width:700px) { .tool-hero { min-height:510px; } .tool-hero-copy { padding-top:95px; padding-bottom:65px; } .tool-section { padding:64px 0; } .tool-interactive,.tool-country-copy { padding:26px 20px; } .tool-form,.currency-fields,.currency-quick>div { grid-template-columns:1fr; } .currency-swap { width:52px; } .tool-country-grid { grid-template-columns:repeat(2,1fr); } .visa-result { padding:22px; } .visa-result-facts { grid-template-columns:1fr; } .tool-country-hero .breadcrumbs { margin-bottom:55px; } }
