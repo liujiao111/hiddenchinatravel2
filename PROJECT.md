@@ -844,3 +844,4 @@ Continue Exploring China
 - 如果没有已发布产品，隐藏 `Start with Yunnan`，不得使用虚构产品占位。
 - `Talk With Joy` 始终使用全宽横幅，WhatsApp 预填文字必须包含当前文章来源。
 - 固定用户文案不得在其他页面调用组件时擅自改写。
+- 如果需要照片，优先从public/assets/resources中查找，里面有按照地名命名好的各个主流云南景点的风景照，使用时要注意把文件压缩为webp格式，并且在尽量不牺牲画质的情况下，压缩到500KB之内，确保网页加载速度
