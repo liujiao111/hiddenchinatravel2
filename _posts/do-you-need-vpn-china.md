@@ -4,7 +4,7 @@ seoTitle: "Do You Need a VPN in China 2026? eSIM vs VPN"
 excerpt: "Do you need a VPN in China in 2026? When a travel eSIM is enough, when hotel Wi‑Fi still needs a VPN, and which app to install if you do."
 coverImage: "/assets/blog/do-you-need-vpn-china/cover.webp"
 date: "2026-06-11T09:35:04+00:00"
-dateModified: "2026-08-26T16:00:00+00:00"
+dateModified: "2026-09-21T03:00:00+00:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -77,7 +77,7 @@ Short answer: **on mobile data, maybe not. On hotel Wi-Fi, probably yes.**
   * You’ve set up **Alipay or WeChat Pay** before arrival → [How to Set Up Alipay as a Foreigner](/alipay-for-foreigners-china)
   * You’re not checking Gmail or WhatsApp every hour.
 
-If that’s you, start with an eSIM and see how far it gets you. Best options for China travelers here → [Best eSIM for China Travel](/best-esim-for-china-travel)
+If that’s you, start with an eSIM and see how far it gets you. Best options for China travelers here → [Best eSIM for China Travel](/best-esim-for-china-travel). Already looking at Trip.com? The [Trip.com China eSIM review](/trip-com-esim-china-review) separates the Yunnan field test from the apps and features that have not yet been verified.
 
 ## When you should add a VPN
 

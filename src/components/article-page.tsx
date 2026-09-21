@@ -20,8 +20,7 @@ export function ArticlePage({ item }: { item: ContentItem }) {
   const related = getRelatedArticles(item, 6);
   const journeys = getAllJourneys();
   const featuredJourney = journeys.find((journey) => journey.frontmatter.featured) || journeys[0];
-  const jsonLd = {
-    "@context": "https://schema.org",
+  const articleJsonLd = {
     "@type": "Article",
     headline: frontmatter.title,
     description: frontmatter.excerpt,
@@ -30,6 +29,20 @@ export function ArticlePage({ item }: { item: ContentItem }) {
     dateModified: frontmatter.dateModified || frontmatter.date,
     author: { "@type": "Person", name: frontmatter.author?.name || "Joy Liu" },
     publisher: { "@type": "Organization", name: "Hidden China Travel" },
+  };
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      articleJsonLd,
+      ...(frontmatter.faqs?.length ? [{
+        "@type": "FAQPage",
+        mainEntity: frontmatter.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      }] : []),
+    ],
   };
 
   return <main>

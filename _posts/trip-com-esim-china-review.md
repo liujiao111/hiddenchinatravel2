@@ -1,10 +1,11 @@
 ---
-title: "Trip.com eSIM for China Review (2026): Prices, ChatGPT & 5G"
-seoTitle: "Trip.com eSIM China Review 2026: Prices & ChatGPT"
-excerpt: "Trip.com's China eSIM reviewed: exact 7-day and 15-day plan prices, whether ChatGPT and ​Google work on mobile data, 5G labeling, and who should buy the Airalo plan instead."
+title: "Trip.com China eSIM Review (2026): Tested in China"
+seoTitle: "Trip.com China eSIM Review (2026): Tested in China"
+absoluteSeoTitle: "Trip.com China eSIM Review (2026): Tested in China"
+excerpt: "I tested a Trip.com China eSIM in Yunnan. Compare current 7- and 15-day prices, ChatGPT and Google access, 5G limits, setup steps, and the best plan to choose."
 coverImage: "/assets/blog/trip-com-esim-china-review/trip-com-esim-china-listing.png"
 date: "2026-09-03T06:30:00+00:00"
-dateModified: "2026-09-03T06:30:00+00:00"
+dateModified: "2026-09-21T03:00:00+00:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -43,6 +44,20 @@ If you already use Trip.com for hotels or trains, or you found this page after s
 
 Trip.com sells **data-only** China eSIMs on China Unicom's network. No Chinese phone number, no SMS codes — same limitation as almost every travel eSIM. Three plans, checked September 3, 2026:
 
+### Field-test summary
+
+Item| What I found  
+---|---  
+**Test location**| Yubeng trek, northwest Yunnan  
+**Test period**| 3 days  
+**Device**| Huawei phone; confirm your exact model supports eSIM  
+**Signal and everyday use**| Most of the mountain had signal; WeChat and maps worked  
+**ChatGPT**| Worked without a separate VPN in separate Yunnan mobile-data testing  
+**Google, Gmail, WhatsApp**| Not individually tested on this Trip.com plan; see the app-access section below  
+**Chinese phone number**| Not included — this is a data-only eSIM  
+**Hotspot / tethering**| Not personally verified for these specific plans  
+**Best fit**| Short trips where affordable mobile data matters more than a +86 number  
+
   * **7 days, 3 GB/day — $8.81** (5% off $9.28). Cheapest plan in this review. Enough for maps, translation, messaging, and light social media each day.
   * **7 days, 100 GB/day, capped at 10 Mbps — $13.13** (5% off $13.83). Far more daily headroom, at a lower top speed than the 3 GB plan.
   * **15 days, 3 GB/day — $16.59** (5% off $17.47). Same daily allowance as the 7-day plan, extended to two weeks.
@@ -74,6 +89,24 @@ Prices, discounts, and package terms can change — confirm the live price and p
 **On the 3 GB/day plans specifically:** Trip.com's own package details state you get the full-speed 3 GB, then speed drops to **384 kbps** for the rest of that 24-hour period — slow enough that WeChat text and light browsing still work, but photo-heavy pages and maps will lag. The 100 GB/day plan uses a different mechanism: a flat 10 Mbps cap throughout, not a hard drop after a smaller allowance.
 
 **Booking terms from Trip.com's listing:** usage window is valid for 60 days from the date you book, plans are renewable (you can top up rather than buying a new eSIM), and Trip.com offers free cancellation up until 00:00 the day before the plan expires. At the time of writing, Trip.com's own listing for this eSIM shows a 4.6/5 rating from roughly 62,000 reviews and over 1.8 million bookings — that is Trip.com's platform-level rating for the eSIM product, not a review I collected myself.
+
+## Trip.com China eSIM: pros and cons
+
+### Pros
+
+  * **Lower prices than the matching Airalo plans in this comparison.**
+  * **Several daily-data options**, including a low-cost 3 GB/day plan.
+  * **ChatGPT worked in my Yunnan mobile-data testing** without a separate VPN.
+  * **Renewable plans and advance cancellation terms** are shown on Trip.com's listing.
+  * **China Unicom coverage with 5G support** where the device and local network allow it.
+
+### Cons
+
+  * **No Chinese phone number or SMS**, so it cannot solve local verification requirements.
+  * **Hotel and public Wi-Fi remain mainland connections** and may still require a VPN.
+  * **The 100 GB/day option is capped at 10 Mbps**, despite its 5G label.
+  * **Hotspot support has not been personally verified** for these specific plans.
+  * **My test did not cover major cities, high-speed rail, or a multi-week route.**
 
 ## Does Trip.com's China eSIM work with ChatGPT, Google, and WhatsApp?
 
@@ -118,20 +151,6 @@ Full breakdown with buy links for both providers: [Best eSIM for China in 2026](
   4. Install the eSIM profile at home; most plans activate on first connection, not at install.
   5. Keep your home SIM active for bank codes and calls — turn off its data roaming so you are not charged twice.
   6. On arrival, switch mobile data to the Trip.com eSIM line and enable data roaming for that line.
-
-## FAQ
-
-**Does Trip.com's eSIM work in China?** Yes — data-only, on China Unicom, labeled 5G. Used on a Huawei phone for 3 days on the Yubeng trek in northwest Yunnan; most of the mountain had signal, and WeChat and maps worked fine.
-
-**Does it work with ChatGPT?** The three plans here are labeled ChatGPT Available. In separate mobile-data testing in Yunnan, ChatGPT worked without a separate VPN.
-
-**Do I need a VPN with it?** Not necessarily on mobile data. Hotel and public Wi-Fi are a different connection and may still need one.
-
-**Does it give me a Chinese phone number?** No — data-only, same limitation as almost every travel eSIM.
-
-**Is it really 5G?** The network supports 5G; actual speed still depends on your device, city, and local coverage — and the 100 GB/day plan is capped at 10 Mbps regardless.
-
-**Which plan should I buy?** 7-day 3 GB/day for the cheapest normal trip. 7-day 100 GB/day if you use a lot of data daily. 15-day 3 GB/day for a longer trip with light daily use.
 
 ## Related guides
 

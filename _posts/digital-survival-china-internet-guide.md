@@ -3,7 +3,7 @@ title: "Internet in China for Foreigners: What Actually Works in 2026"
 excerpt: "Google, WhatsApp, and Instagram are blocked on many China connections. This guide explains what actually works for foreign travelers: eSIM, VPN, local SIM, and what to set up before you arrive."
 coverImage: "/assets/blog/digital-survival-china-internet-guide/cover.webp"
 date: "2026-02-20T07:44:57+00:00"
-dateModified: "2026-08-26T16:00:00+00:00"
+dateModified: "2026-09-21T03:00:00+00:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -55,7 +55,7 @@ That’s the same principle behind travel eSIMs sold by providers like Airalo or
   * Works on both iPhone and most modern Android devices
   * Leaves your physical SIM slot free (useful if you want to keep a Chinese number for calls)
 
-For a full breakdown of which providers actually work well in China right now — data caps, network reliability, 5G coverage — the [Best eSIM for China Travel guide](/best-esim-for-china-travel) goes deep on that, including [exact Trip.com and Airalo plans and current prices](/best-esim-for-china-travel#esim-plan-picker).
+For a full breakdown of which providers actually work well in China right now — data caps, network reliability, 5G coverage — the [Best eSIM for China Travel guide](/best-esim-for-china-travel) goes deep on that, including [exact Trip.com and Airalo plans and current prices](/best-esim-for-china-travel#esim-plan-picker). If you are specifically considering Trip.com, see the separate [Trip.com eSIM field-test review](/trip-com-esim-china-review) for the Yunnan test, plan limits, and app-access caveats.
 
 **One thing to keep in mind:** if you’re running a VPN on top of a travel eSIM, turn the VPN off. The two systems can conflict — and that conflict has a very specific consequence: it breaks Alipay payments. More on that below.
 

@@ -4,7 +4,7 @@ seoTitle: "China SIM for Foreigners 2026: Buy, Setup, Mistakes"
 excerpt: "Buying a China SIM as a foreigner in 2026: passport + face scan, Unicom vs eSIM, when you need a +86 number, and the store mistakes that get you rejected."
 coverImage: "/assets/blog/china-sim-card-for-foreigners/cover.webp"
 date: "2026-03-19T06:46:13+00:00"
-dateModified: "2026-08-26T12:00:00+00:00"
+dateModified: "2026-09-21T03:00:00+00:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -71,7 +71,7 @@ The key tradeoff: international eSIMs bypass the Great Firewall without a VPN, w
 
 **In practice, here’s how most people decide:**
 
-  * **Under 2 weeks, mainly maps and browsing** → Buy a travel eSIM before you fly so data works at the airport. [Compare exact eSIM plans](/best-esim-for-china-travel#esim-plan-picker). No queues, no face scan.
+  * **Under 2 weeks, mainly maps and browsing** → Buy a travel eSIM before you fly so data works at the airport. [Compare exact eSIM plans](/best-esim-for-china-travel#esim-plan-picker), or read the [Trip.com China eSIM review](/trip-com-esim-china-review) if that is the provider you are considering. No queues, no face scan.
   * **2+ weeks, or you want WeChat Pay / local app SMS** → Physical SIM. Takes 30 minutes at a store but you’ll be glad you did it.
   * **Heading to western China (Tibet, Xinjiang, rural Sichuan)** → Physical SIM from China Telecom specifically, which has the strongest coverage out west.
   * **Landing tonight with no eSIM** → Official carrier store or airport counter (below). Do not wait for a mall kiosk.

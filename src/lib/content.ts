@@ -12,6 +12,7 @@ export type ContentFrontmatter = {
   type?: "hub" | "legal";
   title: string;
   seoTitle?: string;
+  absoluteSeoTitle?: string;
   excerpt?: string;
   metaDescription?: string;
   description?: string;
