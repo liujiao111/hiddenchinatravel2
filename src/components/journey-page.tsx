@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Journey } from "@/lib/journeys";
 import { ContentFooter } from "@/components/content-footer";
 import { GuideCard } from "@/components/guide-card";
+import { JourneyGallery } from "@/components/journey-gallery";
 import { SiteHeader } from "@/components/site-header";
 import { formatPriceLabel } from "@/lib/format-price";
 
@@ -41,6 +42,10 @@ const journeyGuides = [
 
 export function JourneyPage({ journey }: { journey: Journey }) {
   const { frontmatter } = journey;
+  const gallerySlides = frontmatter.experiences.slice(0, 5).map((experience) => ({
+    src: experience.image,
+    alt: experience.title,
+  }));
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
   const jsonLd = {
     "@context": "https://schema.org",
@@ -69,7 +74,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
     <nav className="journey-anchor-nav" aria-label="On this journey"><div className="shell"><div><Link href="#story">The feeling</Link><Link href="#experiences">Experiences</Link><Link href="#itinerary">Itinerary</Link><Link href="#pricing">Travel styles</Link><Link href="#details">What’s included</Link></div><Link href={whatsapp}>PLAN THIS JOURNEY</Link></div></nav>
 
-    <section className="journey-manifesto" id="story"><div className="shell journey-manifesto-grid"><figure className="journey-manifesto-image one"><Image src="/assets/blog/dali-travel-guide/cangshan-village-fields.webp" alt="Fields and mountains near Dali" fill sizes="(max-width: 700px) 76vw, 25vw" unoptimized /></figure><div className="journey-manifesto-copy"><span>OUR WAY OF TRAVELLING</span><h2>Remember <em>how Yunnan felt,</em> not just where you went.</h2><i aria-hidden="true" /><p>A quiet evening in an old Tea Horse Road town. A conversation inside a traditional tie-dye workshop. A slow breakfast overlooking Erhai Lake.</p><strong>The best memories are rarely made in a hurry.</strong></div><figure className="journey-manifesto-image two"><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="A quiet riverside scene in Shaxi" fill sizes="(max-width: 700px) 45vw, 18vw" unoptimized /></figure></div></section>
+    <section className="journey-manifesto" id="story"><div className="shell journey-manifesto-grid"><div className="journey-manifesto-copy"><span>OUR WAY OF TRAVELLING</span><h2><span>Remember</span> <em>how Yunnan felt,</em> <span>not just where you went.</span></h2><i aria-hidden="true" /><p>A quiet evening in an old Tea Horse Road town. A conversation inside a traditional tie-dye workshop. A slow breakfast overlooking Erhai Lake.</p><strong>The best memories are rarely made in a hurry.</strong></div></div></section>\n\n    <JourneyGallery slides={gallerySlides} />
 
     <section className="journey-fit"><div className="shell"><header><span>IS THIS YOUR KIND OF JOURNEY?</span><h2>For travelers who would rather go deeper than go faster.</h2></header><div className="journey-fit-columns"><div><h3>You’ll probably love it if you value…</h3>{goodFit.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><h3>It may not be for you if you want…</h3>{poorFit.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></div></section>
 
