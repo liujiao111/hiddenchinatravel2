@@ -20,14 +20,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { frontmatter } = item;
   const description = frontmatter.excerpt || frontmatter.metaDescription || frontmatter.description;
   const image = frontmatter.ogImage?.url || frontmatter.coverImage;
+  const seoTitle = frontmatter.absoluteSeoTitle || frontmatter.seoTitle || frontmatter.title;
   return {
-    title: frontmatter.seoTitle || frontmatter.title,
+    title: frontmatter.absoluteSeoTitle ? { absolute: seoTitle } : seoTitle,
     description,
     keywords: frontmatter.keywords,
     alternates: { canonical: absoluteUrl(frontmatter.canonical, slug) },
     openGraph: {
       type: item.kind === "article" ? "article" : "website",
-      title: frontmatter.seoTitle || frontmatter.title,
+      title: seoTitle,
       description,
       url: absoluteUrl(frontmatter.canonical, slug),
       images: image ? [{ url: absoluteUrl(image) }] : undefined,
