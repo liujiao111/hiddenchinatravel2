@@ -163,7 +163,7 @@ p { line-height:1.7; }
 .highlight-list li { display:flex; gap:10px; font-size:.88rem; }
 .highlight-list span { color:#55554f; }
 .journey-price { margin:22px 0 0; font-family:Georgia,serif; font-size:1.3rem; color:var(--ink) !important; }
-.home-founder .about-feature-image img { object-position:center 24%; }
+.home-founder .about-feature-image img { object-position:center 50%; }
 
 .survival-section .section-heading>p:last-child,.guides-section .section-heading>p:last-child,.destinations-section .section-heading>p:last-child { color:#62625b; }
 .utility-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:0; margin-top:48px; border-top:1px solid #aaa792; border-bottom:1px solid #aaa792; }
