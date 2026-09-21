@@ -16,6 +16,7 @@ const components = {
   h2: ({ children, ...props }: ComponentPropsWithoutRef<"h2">) => <h2 id={headingId(children)} {...props}>{children}</h2>,
   h3: ({ children, ...props }: ComponentPropsWithoutRef<"h3">) => <h3 id={headingId(children)} {...props}>{children}</h3>,
   a: ({ href = "", children, ...props }: ComponentPropsWithoutRef<"a">) => {
+    if (href.startsWith("/go/")) return <Link href={href} rel="sponsored nofollow">{children}</Link>;
     if (href.startsWith("/")) return <Link href={href}>{children}</Link>;
     return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
   },
