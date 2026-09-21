@@ -40,7 +40,7 @@ Use the [visa checker tool](/china-visa-checker) if you want a quick lookup by n
 
 If your passport is from one of 77 countries, you walk off the plane and through immigration without any prior paperwork. No appointment, no application form, no visa sticker. Just your passport and a return or onward ticket.
 
-This policy currently covers most of Europe, the [UK](/china-visa-checker/united-kingdom), [Australia](/china-visa-checker/australia), New Zealand, [Japan](/china-visa-checker/japan), [South Korea](/china-visa-checker/south-korea), [Canada](/china-visa-checker/canada), [Brazil](/china-visa-checker/brazil), Argentina, and a handful of others. The full list and region-by-region breakdown is here: [China visa-free countries 2026 — complete list](/china-visa-free-countries-2026).
+This policy currently covers most of Europe, the [UK](/china-visa-checker/united-kingdom), [Australia](/china-visa-checker/australia), New Zealand, [Japan](/china-visa-checker/japan), [South Korea](/china-visa-checker/south-korea), [Canada](/china-visa-checker/canada), [Brazil](/china-visa-checker/brazil), Argentina, and a handful of others. Australians considering southwest China can continue with the [Yunnan travel guide from Australia](/yunnan-travel-from-australia). The full list and region-by-region breakdown is here: [China visa-free countries 2026 — complete list](/china-visa-free-countries-2026).
 
 **A few things worth knowing before you land:**
 

@@ -209,7 +209,7 @@ Not for the standard 30-day program. The US is not on China’s unilateral visa-
 Yes — added to the unilateral list on February 17, 2026. UK ordinary passport holders can enter for up to 30 days without any prior application. The emergency 12-page UK passport is excluded — if you’re on one of those, you’ll need to apply for a visa regardless. Details: [British citizens China visa guide](/china-visa-checker/united-kingdom).
 
 **Is China visa-free for Australian citizens?**  
-Yes. Australia has been on the unilateral list since 2024. 30 days, ordinary passport, no application needed. Country page: [Australian citizens](/china-visa-checker/australia).
+Yes. Australia has been on the unilateral list since 2024. 30 days, ordinary passport, no application needed. Check the [Australian passport entry rules](/china-visa-checker/australia), or continue with the practical [Yunnan travel guide from Australia](/yunnan-travel-from-australia) for flights and route planning.
 
 **Is China visa-free for Canadian citizens?**  
 Yes — also added February 17, 2026, same batch as the UK. 30 days, ordinary passport. See [Canadian citizens](/china-visa-checker/canada).
