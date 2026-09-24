@@ -3,49 +3,78 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContentFooter } from "@/components/content-footer";
 import { SiteHeader } from "@/components/site-header";
+import { siteConfig } from "@/lib/site-config";
+import styles from "./about.module.css";
 
 export const metadata: Metadata = {
-  title: "About Hidden China Travel | Born in Yunnan",
-  description: "Meet the story behind Hidden China Travel: born in Yunnan, shaped by experiences abroad, and created for slower, more personal journeys through China.",
+  title: "Meet Joy Liu | About Hidden China Travel",
+  description: "Meet Joy Liu, Yunnan-born founder of Hidden China Travel, and discover the local insight and thoughtful planning behind our private Yunnan journeys.",
+  alternates: { canonical: "/about-us" },
 };
 
-const whatsapp = "https://wa.me/8618880441791?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20planning%20a%20Yunnan%20trip";
-
-const steps = [
-  ["1", "Tell us how you like to travel", "We begin with your interests, pace, comfort, dates and the parts of traveling in China that feel unfamiliar."],
-  ["2", "We share honest local advice", "We explain what is worth your time, what can be skipped and how each place actually feels on the ground."],
-  ["3", "Your route takes shape", "Markets, villages, food, local craft and breathing room are combined into a journey that reflects you."],
-  ["4", "We make the details work", "Travel times, hotel areas, private transport and daily intensity are adjusted into a realistic plan."],
-  ["5", "You arrive with confidence", "Practical guidance on payments, internet, maps and trains helps remove the usual first-trip uncertainty."],
-  ["6", "Trusted partners welcome you", "Licensed local operators contract and deliver the booked services, with support available along the way."],
+const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent("Hi Joy, I read your story on the About page and would love to discuss a Yunnan trip.")}`;
+const reasons = [
+  ["A local perspective. A traveller’s understanding.", "Yunnan is home, and travelling across China and abroad has shaped how I see it. I understand both the places you want to explore and the questions you may not know to ask."],
+  ["A real person, not a booking queue.", "You speak directly with me about your trip. Your interests, questions and preferences guide the conversation instead of getting lost between sales messages and standard packages."],
+  ["The details behind a good day.", "A beautiful route is only the beginning. We work through driving time, hotel location, walking demands, ticket arrangements and seasonal conditions with the local operator."],
+  ["A journey built around you.", "Private travel gives us room to shape the pace, choose meaningful experiences and leave space to enjoy them. Famous sights and quieter discoveries both belong—when they are right for you."],
 ];
-
-const promises = [
-  ["A pace that suits you", "Choose a lighter rhythm or fuller days. We design around your energy, not a coach-tour timetable."],
-  ["Yunnan knowledge, clearly explained", "Places we have known for years are translated into straightforward advice for international visitors."],
-  ["Experiences beyond the checklist", "We look for villages, makers, food and everyday encounters—not only famous ticketed sights."],
-  ["A responsible way to book", "Your booking and travel contract are handled by the licensed local operator delivering the service."],
+const questions = [
+  ["Will I speak with Joy directly?", "Yes. When you contact Hidden China Travel about a trip, you speak with Joy Liu, the founder. He helps you clarify your ideas and shape the plan with the local operator."],
+  ["Who operates the trip and handles payment?", "Booked tours are operated by licensed local travel partners, who handle the travel contract, payment and delivery of the agreed services. Their details and terms are shared before booking."],
+  ["Do I need a finished itinerary?", "No. Tell Joy roughly when you want to travel, who is coming and what you enjoy. You can start with an existing journey or discuss adjustments to the route, hotels and pace."],
+  ["What if weather or availability changes?", "Weather, attraction access and hotel availability can change. Alternatives and any effect on price or schedule are discussed with the operator; your booking terms explain changes and cancellations."],
 ];
 
 export default function AboutPage() {
-  return <main><SiteHeader />
-    <section className="about-hero"><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/xizhou-bai-courtyard.webp" alt="A traditional Bai courtyard in Xizhou, Yunnan" fill priority sizes="100vw" /><div className="hero-shade" /><div><p className="kicker">ABOUT HIDDEN CHINA TRAVEL</p><h1>Born in Yunnan. Shaped by experiences abroad.</h1></div></section>
+  return <><SiteHeader /><main className={styles.page}>
+    <section className={styles.hero}>
+      <Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/xizhou-bai-courtyard.webp" alt="A traditional Bai courtyard in Xizhou, Yunnan" fill preload sizes="100vw" />
+      <div className={styles.shade} />
+      <div className={styles.heroCopy}>
+        <nav aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><span>About us</span></nav>
+        <h1>A local connection.<br />A more personal China.</h1>
+        <p>I’m Joy Liu. Born in Yunnan, shaped by journeys across China and beyond. I created Hidden China Travel to help you feel confident here—and discover a China that stays with you.</p>
+        <Link href="#joy" className="button button-light">MEET JOY</Link>
+      </div>
+    </section>
+    <nav className={styles.subnav} aria-label="About sections"><Link href="#joy">Meet Joy</Link><Link href="#philosophy">Our philosophy</Link><Link href="#why-us">Why travel with us</Link><Link href="#booking">Booking with confidence</Link></nav>
 
-    <nav className="about-subnav" aria-label="About us sections"><div className="shell"><span>ABOUT US</span><Link href="#our-story">Our story</Link><Link href="#our-approach">Our philosophy</Link><Link href="#how-it-works">How it works</Link><Link href="#local-partners">Local partners</Link><Link href="#why-us">Why travel with us</Link></div></nav>
+    <section className={`shell ${styles.founder}`} id="joy">
+      <figure className={styles.portrait}><Image src="/brand/founder/portrait.webp" alt="Joy Liu, founder of Hidden China Travel" fill sizes="(max-width: 800px) 100vw, 42vw" /><figcaption><strong>Joy Liu</strong><span>Founder, Hidden China Travel</span><span>Based in Kunming, Yunnan, China</span></figcaption></figure>
+      <div className={styles.copy}><h2>Yunnan is home.<br />Travel changed how I see it.</h2>
+        <p>I’ve travelled through most of China’s major tourist cities—from Beijing, Shanghai and Xi’an to Guangzhou, Xiamen, Qingdao, Chongqing, Chengdu and Wuhan—and explored places as different as Guilin and Xinjiang.</p>
+        <p>Abroad, I’ve watched sunsets in Kota Kinabalu, dived off Bohol, gone sea fishing in Phuket and chased waves at Shirahama in Japan. But the most important thing I brought home wasn’t a longer list of places.</p>
+        <p>At first, I travelled the way many of us do: following the crowds, moving quickly and making sure I had seen every famous sight. Gradually, I began to care less about how much I could fit in—and more about how a journey made me feel.</p>
+        <p>A slow coffee in an old town. A stream beside an open field. Blue sky, with nowhere I needed to rush. Leaving an office building behind for a mountain landscape, I was still the same person, but in a very different frame of mind.</p>
+        <p className={styles.signature}>That is the feeling I want to help you find in China.</p>
+      </div>
+    </section>
 
-    <section className="about-feature" id="our-story"><div className="about-feature-image"><Image src="/brand/founder/portrait.webp" alt="Joy Liu, founder of Hidden China Travel" fill priority sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="about-feature-copy"><p className="kicker">OUR STORY</p><h2>I&apos;m Joy Liu. Yunnan is home.</h2><p>I was born and raised in southwest China. Local markets, mountain roads, village festivals, family restaurants and the old towns of the Tea Horse Road were simply part of everyday life.</p><p>When I moved abroad, I became the foreigner for the first time. Simple things—getting around, choosing a neighborhood and understanding local customs—suddenly felt complicated. I learned that someone local you trust can transform a trip: not by helping you see more, but by helping you feel comfortable enough to truly experience a place.</p><p>That experience became the foundation of Hidden China Travel.</p></div></section>
+    <section className={styles.origin}><div className={`shell ${styles.split}`}><h2>I know how much work goes into feeling carefree.</h2><div className={styles.copy}>
+      <p>I know the other side of travel, too: comparing hotel reviews, checking ticket times, wondering whether weather will close an attraction, or realising the last bus from a remote spot may leave before you do.</p>
+      <p>In a country where you don’t speak the language, even a small problem can feel much bigger. I’ve felt that uncertainty myself.</p>
+      <p>Hidden China Travel grew from a simple idea: you should arrive in China feeling curious, not overwhelmed. Our free guides answer the practical questions. Our personal trip planning brings your ideas together into a journey you can look forward to.</p>
+      <Link className={styles.textLink} href="/survival-kit">See how we help you prepare for China →</Link>
+    </div></div></section>
 
-    <section className="about-feature reverse" id="our-approach"><div className="about-feature-image"><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/zhoucheng-bai-tie-dye.webp" alt="Traditional Bai tie-dye craft in Zhoucheng" fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="about-feature-copy"><p className="kicker">WHY WE STARTED</p><h2>Travel becomes better when you understand a place</h2><p>Back in Yunnan, Joy saw that international visitors faced the same uncertainty she had experienced abroad—not because China is unwelcoming, but because it can feel unfamiliar at first.</p><p>Hidden China Travel was created to replace weeks of stressful research with clear local guidance, so you can travel with more confidence, more comfort and a deeper connection to the places you visit.</p><Link href="/#guides">Explore our China travel guides →</Link></div></section>
+    <section className={styles.philosophy} id="philosophy"><div className={styles.landscape}><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="Everyday life beside the river in Shaxi, Yunnan" fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className={styles.philosophyCopy}>
+      <h2>China has its icons.<br />And its quieter moments.</h2>
+      <p>The Forbidden City and the Great Wall deserve their place in your imagination. But there is also a China of village markets, mountain mornings, small family restaurants and unhurried afternoons beside the water.</p>
+      <p>You don’t have to choose between famous places and personal discoveries. The difference is leaving enough time to enjoy both.</p>
+      <p>We begin in Yunnan, the place I call home: a natural starting point for journeys through old towns, living traditions and extraordinary landscapes.</p>
+      <Link className={styles.textLink} href="/journeys">Explore our Yunnan journeys →</Link>
+    </div></section>
+    <section className={styles.quote}><blockquote>“Remember how Yunnan felt,<br />not just where you went.”</blockquote><p>Joy Liu · Founder, Hidden China Travel</p></section>
 
-    <section className="about-feature"><div className="about-feature-image"><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="Everyday rural life beside the river in Shaxi" fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="about-feature-copy"><p className="kicker">OUR TRAVEL PHILOSOPHY</p><h2>Remember how a place felt</h2><p>A quiet evening in Shaxi. A conversation in a tie-dye workshop. A slow breakfast overlooking Erhai Lake. These are the moments that stay with you.</p><p>We do not believe more destinations automatically create better memories. Our journeys leave time to slow down, observe and connect—with famous sights included where they add meaning, not simply to fill a checklist.</p></div></section>
+    <section className={`shell ${styles.section}`} id="why-us"><div className={styles.heading}><h2>Why plan your journey with us?</h2><p>Personal attention, practical thinking and local insight—so you spend less time figuring things out and more time enjoying where you are.</p></div><div className={styles.reasons}>{reasons.map(([title,text],i)=><article key={title}><span>0{i+1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
 
-    <section className="support-banner" id="local-partners"><Image src="/assets/blog/where-to-stay-in-dali/caicun-ecological-corridor.webp" alt="The ecological corridor beside Erhai Lake in Dali" fill sizes="100vw" /><div className="hero-shade" /><div><p className="kicker">WHY YUNNAN</p><h2>We began with the place we know best: home</h2><p>Ancient towns, snow-capped mountains, Tea Horse Road history and living local traditions make Yunnan a gentle, rewarding introduction to China. These are not places we recently discovered; they are places we have known for years.</p><Link href={whatsapp} className="button button-blue">START A CONVERSATION</Link></div></section>
+    <section className={styles.booking} id="booking"><div className="shell"><div className={styles.heading}><h2>Personal service.<br />Clear responsibilities.</h2><p>Trust means knowing who you are speaking to, what you are paying for and who will welcome you on the ground.</p></div><div className={styles.roles}>
+      <article><h3>Your planning contact: Joy</h3><p>I listen to what matters to you, help shape the route and coordinate the proposal with the local operator. You have a named person to talk to, not just a tour listing.</p></article>
+      <article><h3>Your trip operator: a licensed local partner</h3><p>The operator arranges and delivers the booked transport, guiding and accommodation. Your travel contract and payment are handled directly by that operator.</p></article>
+    </div><div className={styles.checklist}><h3>Before you commit, we work through:</h3><ul><li>Your route, pace and hotel arrangements</li><li>What the price includes—and excludes</li><li>The operator’s identity, payment and cancellation terms</li><li>Local contacts and arrangements for changes</li></ul><p>No pressure to decide before your questions are answered.</p></div></div></section>
 
-    <section className="section about-steps section-sand" id="how-it-works"><div className="shell"><div className="section-heading"><p className="kicker">HOW IT WORKS</p><h2>From first idea to arrival</h2></div><div className="steps-grid">{steps.map(([number,title,text]) => <article key={number}><i>{number}</i><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
-
-    <section className="responsible"><div className="shell responsible-grid"><div><p className="kicker">OUR COMMITMENT</p><h2>Less filling the itinerary. More enjoying the journey.</h2><p>No forced shopping stops, commission-based detours or tourist factories disguised as cultural experiences. We prioritize what we would genuinely recommend to friends and family.</p><p>If something is not worth your time, we will say so—even when that means recommending less. Slower, realistic routes are often better for the traveler and leave more room for local people and businesses.</p></div><div className="responsible-image"><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/weishan-xinggong-tower.webp" alt="Historic Xinggong Tower in Weishan" fill sizes="(max-width: 800px) 100vw, 42vw" /></div></div></section>
-
-    <section className="section why about-why" id="why-us"><div className="shell"><div className="section-heading light"><p className="kicker">WHY HIDDEN CHINA TRAVEL</p><h2>China, at your pace</h2><p>We are not here to help you see more of China. We are here to help you feel more comfortable, connected and confident exploring it.</p></div><div className="promise-grid">{promises.map(([title,text],index) => <article key={title}><span>0{index+1}</span><h3>{title}</h3><p>{text}</p></article>)}</div><div className="center"><Link href={whatsapp} className="button button-light">TELL US ABOUT YOUR TRIP</Link></div></div></section>
-    <ContentFooter />
-  </main>;
+    <section className={styles.faq}><div className={`shell ${styles.faqGrid}`}><div><h2>A few things you might be wondering</h2><p>Good journeys begin with clear answers.</p></div><div>{questions.map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>
+    <section className={styles.cta}><div className="shell"><h2>Let’s start with your kind of journey.</h2><p>A few dates, a place you’ve been dreaming about, or simply how you want the trip to feel. Tell me what’s on your mind.</p><Link href={whatsapp} className="button button-light">CHAT WITH JOY ON WHATSAPP</Link><Link href="/contact">Prefer email? Get in touch →</Link><span>Speak directly with Joy Liu. No commitment to book.</span></div></section>
+  </main><ContentFooter /></>;
 }
