@@ -845,6 +845,18 @@ p { line-height:1.7; }
 .markdown-content blockquote p:last-child { margin-bottom:0; }
 .article-image { position:relative; display:block; width:100%; aspect-ratio:16/9; margin:38px 0; overflow:hidden; background:#ece9dd; }
 .article-image img { object-fit:cover; }
+.article-image:has(img[src*="/wechat-pay-for-foreigners-china/"]) {
+  width:min(100%, 420px);
+  margin-left:auto;
+  margin-right:auto;
+  overflow:visible;
+  background:#fff;
+}
+.article-image:has(img[src*="wechat-pay-wallet-interface.webp"]) { aspect-ratio:621/1280; }
+.article-image:has(img[src*="wechat-pay-add-card-international-1.webp"]) { aspect-ratio:619/1280; }
+.article-image:has(img[src*="wechat-pay-qr-code-screen-1.webp"]) { aspect-ratio:611/1280; }
+.article-image img[src*="/wechat-pay-for-foreigners-china/"] { object-fit:contain; }
+
 .article-image:has(img[src*="trip-com-esim-china-listing.webp"]) { aspect-ratio:1132/923; }
 .article-image img[src*="trip-com-esim-china-listing.webp"] { object-fit:contain; background:#fff; }
 .article-table { max-width:100%; overflow-x:auto; }
