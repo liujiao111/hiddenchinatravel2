@@ -19,6 +19,7 @@ export type ContentFrontmatter = {
   heroAnswer?: string;
   eyebrow?: string;
   coverImage?: string;
+  coverAlt?: string;
   canonical?: string;
   date?: string;
   dateModified?: string;

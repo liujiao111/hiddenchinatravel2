@@ -50,7 +50,7 @@ export function ArticlePage({ item }: { item: ContentItem }) {
     <TopicNavigation active={frontmatter.section} />
     <article>
       <header className={frontmatter.coverImage ? "article-hero has-image" : "article-hero"}>
-        {frontmatter.coverImage && <Image src={frontmatter.coverImage} alt={frontmatter.title} fill priority unoptimized sizes="100vw" />}
+        {frontmatter.coverImage && <Image src={frontmatter.coverImage} alt={frontmatter.coverAlt || frontmatter.title} fill priority unoptimized sizes="100vw" />}
         <div className="article-hero-shade" />
         <nav className="breadcrumbs article-breadcrumbs shell" aria-label="Breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/china-travel-essentials">Travel guides</Link><span>›</span><span>{frontmatter.title}</span></nav>
         <div className="article-hero-copy shell">

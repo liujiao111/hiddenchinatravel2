@@ -845,6 +845,8 @@ p { line-height:1.7; }
 .markdown-content blockquote p:last-child { margin-bottom:0; }
 .article-image { position:relative; display:block; width:100%; aspect-ratio:16/9; margin:38px 0; overflow:hidden; background:#ece9dd; }
 .article-image img { object-fit:cover; }
+.article-image:has(img[src*="trip-com-esim-china-listing.webp"]) { aspect-ratio:1132/923; }
+.article-image img[src*="trip-com-esim-china-listing.webp"] { object-fit:contain; background:#fff; }
 .article-table { max-width:100%; overflow-x:auto; }
 .article-table table { width:100%; min-width:580px; border-collapse:collapse; }
 .article-table th { background:#345d58; color:white; text-align:left; }
