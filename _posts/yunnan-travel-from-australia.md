@@ -5,7 +5,7 @@ excerpt: "Australian passport holders can visit China visa-free for up to 30 day
 metaDescription: "Plan Yunnan from Australia: 30-day China visa-free entry, flights to Kunming, a 6–8 day route and practical travel tips."
 coverImage: "/assets/blog/yunnan-travel-from-australia/cover-lijiang-rooftops.webp"
 date: "2026-09-21T10:00:00+08:00"
-dateModified: "2026-09-21T10:00:00+08:00"
+dateModified: "2026-09-25T10:00:00+08:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -43,6 +43,9 @@ faqs:
 ---
 
 **Quick answer:** Australian ordinary passport holders can currently visit China visa-free for up to 30 days for tourism, which is long enough for most Yunnan itineraries. The arrangement is scheduled to remain in effect until 31 December 2026, so check the latest rules before booking. Most practical Australia–Kunming itineraries involve one connection, so budget at least 6–8 days rather than a rushed long weekend. A dependable first route is Kunming → Dali → Shaxi → Lijiang, with Shangri-La worth adding if you have 8 days or more.
+
+
+Starting somewhere else? Our country guides also cover planning Yunnan from the [UK](/yunnan-travel-from-uk), [USA](/yunnan-travel-from-usa) and [Singapore](/yunnan-travel-from-singapore), where visa rules, flight time and a realistic itinerary can differ.
 
 ## Quick Answer: Planning Yunnan from Australia
 
