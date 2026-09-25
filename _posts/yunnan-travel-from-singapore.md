@@ -5,7 +5,7 @@ excerpt: "Singapore passport holders can visit China visa-free for up to 30 days
 metaDescription: "Plan Yunnan from Singapore: 30-day visa-free entry for Singapore passport holders, Kunming flights, an 8-day route and practical booking tips."
 coverImage: "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp"
 date: "2026-09-17T10:00:00+08:00"
-dateModified: "2026-09-17T10:00:00+08:00"
+dateModified: "2026-09-25T10:00:00+08:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -38,6 +38,9 @@ faqs:
 **Quick answer:** If you hold a Singapore ordinary passport, you can visit mainland China visa-free for up to **30 days**. For a first Yunnan trip, compare flights from Singapore to Kunming, then plan an unhurried route through Dali, Shaxi and Lijiang. Allow around eight or nine calendar days if international travel is included; a six-day Yunnan journey needs arrival and departure time on top.
 
 For the broader province-wide view, start with the [Yunnan travel guide](/china-destinations/yunnan). This page focuses on the decisions that are different when you start in Singapore.
+
+
+Comparing departure markets? See how the planning changes for travellers visiting Yunnan from the [UK](/yunnan-travel-from-uk), [Australia](/yunnan-travel-from-australia) or [USA](/yunnan-travel-from-usa).
 
 ## Do Singapore citizens need a visa for China?
 
