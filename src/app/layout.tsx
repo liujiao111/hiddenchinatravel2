@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { AnalyticsTracker } from "@/components/analytics-tracker";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,7 +32,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <Script id="microsoft-clarity" strategy="beforeInteractive">
+        {`
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "ynmcix0ju8");
+        `}
+      </Script>
+      <body className="min-h-full flex flex-col">
+        {children}
+        {gaMeasurementId ? <AnalyticsTracker /> : null}
+      </body>
       {gaMeasurementId ? (
         <>
           <Script
@@ -43,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${gaMeasurementId}');
+              gtag('config', '${gaMeasurementId}', { send_page_view: false });
             `}
           </Script>
         </>

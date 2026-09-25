@@ -2,6 +2,7 @@
 
 import type { FormEvent } from "react";
 import { siteConfig } from "@/lib/site-config";
+import { trackEvent } from "@/lib/analytics";
 
 const travelWindows = ["Within 1 month", "1–3 months", "3–6 months", "More than 6 months", "Just researching"];
 const interests = ["Yunnan Journey", "Private Travel", "Custom Trip Planning", "China Travel Advice", "Not Sure Yet"];
@@ -23,7 +24,22 @@ export function ContactForm() {
       String(data.get("plans") || ""),
     ].join("\n");
 
-    window.open(`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    trackEvent("contact_form_submit", {
+      form_name: "trip_planning_contact",
+      travel_window: String(data.get("travelWindow") || "unknown"),
+      interest: String(data.get("interest") || "unknown"),
+      page_path: window.location.pathname,
+    });
+    trackEvent("whatsapp_click", {
+      link_text: "Start the Conversation",
+      link_url: `https://wa.me/${siteConfig.whatsappNumber}`,
+      page_path: window.location.pathname,
+      cta_location: "contact_form",
+    });
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   }
 
   return (
