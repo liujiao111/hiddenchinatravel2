@@ -845,6 +845,23 @@ p { line-height:1.7; }
 .markdown-content blockquote p:last-child { margin-bottom:0; }
 .article-image { position:relative; display:block; width:100%; aspect-ratio:16/9; margin:38px 0; overflow:hidden; background:#ece9dd; }
 .article-image img { object-fit:cover; }
+.article-image:has(img[src*="/wechat-pay-for-foreigners-china/"]),
+.article-image:has(img[src*="why-your-payment-fails-in-china/image-3.webp"]),
+.article-image:has(img[src*="why-your-payment-fails-in-china/image-4.webp"]) {
+  width:min(100%, 420px);
+  margin-left:auto;
+  margin-right:auto;
+  background:#fff;
+}
+.article-image:has(img[src*="wechat-pay-wallet-interface.webp"]) { aspect-ratio:621/1280; }
+.article-image:has(img[src*="wechat-pay-add-card-international-1.webp"]) { aspect-ratio:619/1280; }
+.article-image:has(img[src*="wechat-pay-qr-code-screen-1.webp"]) { aspect-ratio:611/1280; }
+.article-image:has(img[src*="why-your-payment-fails-in-china/image-2.webp"]) { aspect-ratio:3/2; }
+.article-image:has(img[src*="why-your-payment-fails-in-china/image-3.webp"]) { aspect-ratio:922/2000; }
+.article-image:has(img[src*="why-your-payment-fails-in-china/image-4.webp"]) { aspect-ratio:920/2000; }
+.article-image img[src*="/wechat-pay-for-foreigners-china/"],
+.article-image img[src*="/why-your-payment-fails-in-china/"] { object-fit:contain; background:#fff; }
+
 .article-image:has(img[src*="trip-com-esim-china-listing.webp"]) { aspect-ratio:1132/923; }
 .article-image img[src*="trip-com-esim-china-listing.webp"] { object-fit:contain; background:#fff; }
 .article-table { max-width:100%; overflow-x:auto; }
