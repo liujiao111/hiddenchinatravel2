@@ -49,14 +49,15 @@ itinerary:
 # No copied prices or tiers from the unrelated Kunming–Shaxi product.
 tiers: []
 inclusions:
-  - "Five nights of accommodation, with properties and room types confirmed in the final proposal"
+  - "Five nights of accommodation in the proposed premium hotel category: two in Dali, one in Lijiang and two by Lugu Lake"
   - "Private road transport and a local driver for the agreed itinerary"
+  - "A local guide throughout the journey; English-language service to be confirmed before booking"
   - "Sightseeing and activities listed in the final proposal"
   - "Planning support before departure and local coordination during the journey"
 exclusions:
   - "Flights and transport to the starting point or from the finishing point"
   - "Personal expenses and optional activities not listed in the final proposal"
-  - "Any guiding, meals or tickets not specifically confirmed in the final proposal"
+  - "Meals or tickets not specifically listed in the final proposal"
 faqs:
   - question: "Is this a private journey?"
     answer: "Yes. The route is designed for your own party, with transport arranged for the group size in the final proposal."
@@ -64,8 +65,10 @@ faqs:
     answer: "The working route starts in Dali and finishes in Lijiang. Flights and transfer points will be confirmed against your actual arrival and departure plans."
   - question: "How many nights are included?"
     answer: "The six-day outline has five nights: two in Dali, one in Lijiang and two by Lugu Lake. The exact properties are confirmed in the proposal."
-  - question: "Is an English-speaking guide included?"
-    answer: "An English-speaking guide can be requested. Whether guiding is included, on which days, and at what cost will be stated clearly in the final proposal."
+  - question: "Is a guide included?"
+    answer: "Yes. A local guide is included throughout the journey. The guide's English-language service and final assignment will be confirmed in the written proposal."
+  - question: "Which hotels are included?"
+    answer: "The partner's sample itinerary names 大理五彩云酒店 in Dali, 丽江国际酒店 in Lijiang and 女儿国酒店 by Lugu Lake. Five nights of accommodation are included; the exact properties, room types and any equivalent substitutions will be confirmed in the proposal."
   - question: "Is Day 4 too long?"
     answer: "It combines Jade Dragon Snow Mountain with the onward drive to Lugu Lake. We will check cable car and show availability, road conditions and your preferred pace before confirming it. An additional Lijiang night is an option if you prefer a gentler schedule."
   - question: "Are the mountain cable cars and performances guaranteed?"
@@ -88,4 +91,4 @@ This route suits travelers who want a private vehicle, a mix of well-known scene
 
 ## Private travel, local support
 
-Joy helps you shape the route around your arrival, interests and pace. The local partner prepares the final hotel, vehicle, guide, ticket and meal details for you to review before any booking decision. The written proposal and contract define the services you purchase.
+Joy helps you shape the route around your arrival, interests and pace. Five nights of accommodation and a local guide are part of this journey. The local partner confirms the properties, vehicle, guide language, tickets and meals in writing before any booking decision. The written proposal and contract define the services you purchase.
