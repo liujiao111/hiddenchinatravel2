@@ -12,15 +12,26 @@ journeyType: "Private journey"
 fromPrice: 0
 currency: "USD"
 priceBasis: "per person"
-# Route-specific imagery will be selected in the next phase.
-coverImage: "/home/hero.webp"
+coverImage: "/assets/resources/丽江-泸沽湖-014.jpg"
 featured: false
-status: "draft"
+status: "published"
 travelStyles:
   - "Western Yunnan landscapes"
   - "Private travel"
   - "Couples and friends"
-experiences: []
+experiences:
+  - title: "Begin beside Erhai Lake"
+    image: "/assets/resources/大理-洱海-215.jpg"
+    description: "Start with the open water, mountain views and Bai villages around Dali, leaving enough room to take in the everyday rhythm of the lake."
+  - title: "See Dali from Shuanglang"
+    image: "/assets/resources/大理-双廊-283.jpg"
+    description: "Take in Erhai from the eastern shore, where the lake, village lanes and mountain horizon come together."
+  - title: "Stand beneath Jade Dragon Snow Mountain"
+    image: "/assets/resources/丽江-蓝月谷-316.jpg"
+    description: "Move from Lijiang’s old-town atmosphere into a high-mountain landscape shaped by weather, water and altitude."
+  - title: "Stay two nights at Lugu Lake"
+    image: "/assets/resources/丽江-泸沽湖-419.jpg"
+    description: "Give the lakeshore enough time to settle in: a boat on the water, a slower afternoon and a sunrise before the return drive."
 itinerary:
   - days: "Day 1"
     title: "Arrive in Dali: Three Pagodas and the old town"
