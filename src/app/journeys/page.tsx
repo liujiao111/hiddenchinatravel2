@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 function priceLabel(value: number, currency: string, basis: string) {
+  if (!Number.isFinite(value) || value <= 0) return "Request a tailored quote";
   const prefix = currency === "USD" ? "US$" : currency === "CNY" ? "¥" : `${currency} `;
   return `From ${prefix}${new Intl.NumberFormat("en-US").format(value)} ${basis}`;
 }
