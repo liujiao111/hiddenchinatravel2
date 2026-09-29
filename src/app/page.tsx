@@ -29,12 +29,12 @@ const survivalItems = [
 const destinations = [
   ["Dali", "Lakeside villages, Bai culture and enough time to experience the place beyond its checklist.", "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp", "/dali-travel-guide"],
   ["Shaxi", "A quieter Tea Horse Road town that rewards travelers who stay after the day visitors leave.", "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp", "/dali-hidden-gems-off-the-beaten-path"],
-  ["Private Yunnan Journey", "Dali, Lijiang and two nights at Lugu Lake in a private six-day journey.", "/assets/resources/丽江-泸沽湖-419.jpg", "/journeys/dali-lijiang-lugu-lake-6-days"],
+  ["Private Yunnan Journey", "Dali, Lijiang and two nights at Lugu Lake in a private six-day journey.", "/assets/resources/丽江-泸沽湖-419.jpg", "/journeys/dali-lijiang-lugu-lake-private-tour"],
 ];
 
 export default function Home() {
   const journeys = getAllJourneys();
-  const featuredJourney = journeys.find((journey) => journey.slug === "dali-lijiang-lugu-lake-6-days") ?? journeys[0];
+  const featuredJourney = journeys.find((journey) => journey.slug === "dali-lijiang-lugu-lake-private-tour") ?? journeys[0];
   const journeyHref = `/journeys/${featuredJourney.slug}`;
   const journeyFacts = [featuredJourney.frontmatter.duration, featuredJourney.frontmatter.route, "Private vehicle & guide", "Five hotel nights"];
   const journeyHighlights = featuredJourney.frontmatter.experiences.slice(0, 4).map((experience) => experience.title);
