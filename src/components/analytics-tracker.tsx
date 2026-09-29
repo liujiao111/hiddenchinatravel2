@@ -58,6 +58,7 @@ export function AnalyticsTracker() {
         trackEvent("journey_detail_click", {
           ...common,
           journey_slug: url.pathname.split("/").filter(Boolean)[1] || "unknown",
+          cta_location: link.dataset.ctaLocation || link.closest<HTMLElement>("[data-cta-location]")?.dataset.ctaLocation || "unknown",
         });
       }
     }
