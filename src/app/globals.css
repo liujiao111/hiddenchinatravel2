@@ -1211,3 +1211,37 @@ p { line-height:1.7; }
   .yunnan-final-cta>div>div { align-items:flex-start; justify-content:flex-start; flex-direction:column; }
   .yunnan-final-cta .button { width:100%; }
 }
+/* Evidence from the local operating partner on the six-day journey. */
+.journey-day-photo { position:relative; height:clamp(190px,28vw,300px); margin:0 36px 30px 94px; overflow:hidden; background:#e9e6dc; }
+.journey-day-photo img { object-fit:cover; }
+.journey-day-photo figcaption { position:absolute; right:12px; bottom:12px; padding:7px 10px; background:rgba(20,43,38,.8); color:#fff; font-size:.7rem; }
+.journey-proof-grid,.journey-proof-license { display:grid; grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr); gap:clamp(28px,6vw,90px); align-items:center; padding:48px 0; border-top:1px solid #d5d1c4; }
+.journey-proof .journey-editorial-heading { margin-bottom:42px; }
+.journey-proof-copy>span,.journey-proof-license>div:first-child>span { color:#957b50; font-size:.68rem; font-weight:800; letter-spacing:.16em; }
+.journey-proof-copy h3,.journey-proof-license h3 { margin:13px 0 16px; color:#29463f; font-family:Georgia,serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:400; line-height:1.12; }
+.journey-proof-copy p,.journey-proof-license p { color:#62665e; line-height:1.7; }
+.proof-carousel { min-width:0; background:#fff; box-shadow:0 12px 38px rgba(28,48,40,.07); }
+.proof-carousel figure { margin:0; }
+.proof-carousel-image { position:relative; height:clamp(270px,31vw,390px); overflow:hidden; background:#e8e5de; }
+.proof-carousel-portrait .proof-carousel-image img { object-fit:contain; }
+.proof-carousel-landscape .proof-carousel-image img { object-fit:cover; }
+.proof-carousel figcaption { min-height:110px; padding:20px 26px 12px; }
+.proof-carousel figcaption>span { color:#927647; font-size:.68rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+.proof-carousel h4 { margin:7px 0; color:#29463f; font-family:Georgia,serif; font-size:1.45rem; font-weight:400; }
+.proof-carousel figcaption p { margin:0; color:#62665e; font-size:.82rem; line-height:1.5; }
+.proof-carousel-controls { display:flex; justify-content:space-between; align-items:center; padding:5px 26px 17px; color:#666b61; font-size:.78rem; }
+.proof-carousel-controls>div { display:flex; gap:8px; }
+.proof-carousel-controls button { width:40px; height:40px; border:1px solid #c8c8bd; background:#fff; color:#29463f; font-size:1.15rem; cursor:pointer; }
+.proof-carousel-controls button:hover,.proof-carousel-controls button:focus-visible { background:#29463f; color:#fff; }
+.proof-carousel-dots { display:flex; gap:6px; padding:0 26px 22px; }
+.proof-carousel-dots button { width:24px; height:4px; border:0; padding:0; background:#d4d0c6; cursor:pointer; }
+.proof-carousel-dots button[aria-current="true"] { background:#29463f; }
+.journey-proof-documents { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.journey-proof-documents a { display:flex; flex-direction:column; padding:12px; background:#fff; color:#29463f; text-decoration:none; }
+.journey-proof-documents img { width:100%; height:230px; object-fit:contain; background:#f6f4ec; }
+.journey-proof-documents span { padding:13px 3px 3px; font-size:.78rem; font-weight:700; }
+@media (max-width:700px) {
+  .journey-proof-grid,.journey-proof-license { grid-template-columns:1fr; gap:22px; }
+  .journey-day-photo { margin:0 18px 22px; }
+  .proof-carousel-image { height:320px; }
+}
