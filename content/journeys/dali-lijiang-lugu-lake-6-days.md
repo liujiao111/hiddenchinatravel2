@@ -67,7 +67,7 @@ itinerary:
 tiers: []
 inclusions:
   - "Five nights in five-diamond-class hotels named in the itinerary: two at 大理五彩云酒店, one at 丽江国际酒店 and two at 女儿国酒店; room type confirmed in the written proposal"
-  - "Dali Airport arrival pickup, Lijiang Airport departure transfer, and a private seven-seat business vehicle (Buick GL8 or equivalent) for the route, including fuel, tolls and parking"
+  - "Dali Airport arrival pickup, Lijiang Airport departure transfer, and a private five- or seven-seat vehicle matched to your group size for the route, including fuel, tolls and parking; the final model and capacity are confirmed in the written proposal"
   - "A local driver with at least ten years of driving experience, as specified in the partner itinerary"
   - "A local guide throughout the journey, in Chinese or English according to your preference; other languages by advance request"
   - "Local breakfasts, lunches and dinners described day by day; arrival-day meals depend on your flight time"
