@@ -6,7 +6,7 @@ excerpt: "I tested a Trip.com China eSIM in Yunnan. Compare current 7- and 15-da
 coverImage: "/assets/blog/trip-com-esim-china-review/trip-com-esim-china-cover.webp"
 coverAlt: "Smartphone showing an eSIM symbol among travel gear; illustrative photo by Jacob"
 date: "2026-09-03T06:30:00+00:00"
-dateModified: "2026-09-25T05:00:00+00:00"
+dateModified: "2026-09-29T08:00:00+00:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -24,6 +24,10 @@ keywords:
 section: "Internet & VPN & SIM in China"
 sourceUrl: "https://hiddenchinatravel.com/trip-com-esim-china-review"
 faqs:
+  - question: "Is Trip.com eSIM good for China?"
+    answer: "It can be a good-value option if your phone supports eSIM and you mainly need mobile data. I used a Trip.com China eSIM on a Huawei phone during a three-day Yubeng trek; WeChat and maps worked and most of the route had signal. Compare the exact plan's data allowance, speed limit, coverage and activation terms before buying. It does not give you a mainland +86 phone number."
+  - question: "Is Trip.com eSIM legit?"
+    answer: "Yes, Trip.com sells China eSIM plans through its travel marketplace, and I used one in Yunnan. Check the provider and terms on the specific listing: plans can differ in network, data allowance, speed limits and refund rules. My test is evidence for the plan and places I used, not a guarantee for every listing or location."
   - question: "Does Trip.com's eSIM work in China?"
     answer: "Yes. Trip.com sells data-only China eSIMs on China Unicom, labeled 5G. I used one on a Huawei phone for 3 days on the Yubeng trek in northwest Yunnan — most of the mountain had signal, and it worked for WeChat and maps."
   - question: "Does Trip.com's China eSIM work with ChatGPT?"

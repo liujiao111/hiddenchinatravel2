@@ -23,10 +23,12 @@ export function ArticleDiscoveryFlow({
   related,
   journey,
   sourceTitle,
+  sourceSection,
 }: {
   related: ContentItem[];
   journey?: Journey;
   sourceTitle: string;
+  sourceSection?: string;
 }) {
   const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(`Hi Joy, I was reading "${sourceTitle}" and would like some help planning my first trip to China.`)}`;
 
@@ -55,26 +57,27 @@ export function ArticleDiscoveryFlow({
     </section>
 
     {journey ? <section className="article-discovery article-yunnan">
-      <div className="shell">
-        <header className="article-flow-heading">
-          <h2>Start with Yunnan</h2>
-          <p>Many travelers visit China.<br />Few experience it the way locals do.</p>
-        </header>
+      <div className="shell article-yunnan-layout">
+        <div className="article-yunnan-copy">
+          <span>SEE YUNNAN AS A JOURNEY</span>
+          <h2>{sourceSection === "China Itinerary Planning" ? "See how a Yunnan route comes together." : "With the practical questions answered, what could your journey look like?"}</h2>
+          <p>Follow a private route through {journey.frontmatter.route.replaceAll(" → ", ", ")}. See the day-by-day plan, travel pace and what’s arranged before deciding whether it fits you.</p>
+          <Link className="button" data-cta-location="article_yunnan" href={`/journeys/${journey.slug}`}>SEE THE DAY-BY-DAY JOURNEY →</Link>
+          <Link className="article-yunnan-guide-link" href="/china-destinations/yunnan">Explore Yunnan travel guides →</Link>
+        </div>
         <div className="article-featured-journey">
           <JourneyCard journey={{
-            title: "Dali, Shaxi & Lijiang",
-            subtitle: "Your first journey through Yunnan.",
+            title: journey.frontmatter.title,
+            subtitle: "An unhurried Yunnan route shaped around your dates and group.",
             href: `/journeys/${journey.slug}`,
             image: journey.frontmatter.coverImage,
             imageAlt: journey.frontmatter.title,
             duration: journey.frontmatter.duration,
-            fromPrice: journeyPrice(journey),
+            fromPrice: journey.frontmatter.fromPrice > 0 ? journeyPrice(journey) : "Tailored quote for your dates",
             features: journeyFeatures,
+            ctaLabel: "See the day-by-day journey →",
+            trackingLocation: "article_yunnan",
           }} />
-        </div>
-        <div className="article-secondary-link">
-          <span>Not ready for a journey yet?</span>
-          <Link href="/china-destinations/yunnan">Explore our Yunnan travel guides →</Link>
         </div>
       </div>
     </section> : null}

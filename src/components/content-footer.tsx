@@ -20,7 +20,7 @@ export function ContentFooter() {
 
         <nav className="footer-nav" aria-label="Journeys">
           <h3>Journeys</h3>
-          <Link href="/journeys/dali-lijiang-lugu-lake-6-days">Dali, Lijiang &amp; Lugu Lake Private Journey</Link>
+          <Link href="/journeys/dali-lijiang-lugu-lake-private-tour">Dali, Lijiang &amp; Lugu Lake Private Journey</Link>
           <Link href="/journeys/kunming-dali-shaxi-lijiang-6-days">Dali, Shaxi &amp; Lijiang Private Journey</Link>
           <Link href="/journeys">Yunnan Journeys</Link>
           <Link href="/journeys">Private Travel</Link>
