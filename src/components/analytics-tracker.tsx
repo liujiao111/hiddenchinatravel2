@@ -14,13 +14,23 @@ export function AnalyticsTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!gaMeasurementId || !window.gtag) return;
+    if (!gaMeasurementId) return;
 
-    window.gtag("config", gaMeasurementId, {
-      page_path: pathname,
-      page_location: window.location.href,
-      page_title: document.title,
-    });
+    let sent = false;
+    function sendPageView() {
+      if (sent || !window.gtag) return;
+      sent = true;
+      window.gtag("event", "page_view", {
+        page_path: pathname,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
+    }
+
+    // The GA script loads after hydration. Keep the first page view until its queue is ready.
+    window.addEventListener("ga-ready", sendPageView);
+    sendPageView();
+    return () => window.removeEventListener("ga-ready", sendPageView);
   }, [pathname]);
 
   useEffect(() => {
