@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { SiteSearch } from "@/components/site-search";
+import { YunnanCountryGuideLink } from "@/components/yunnan-country-guide-link";
 
 type MenuName = "destinations" | "journeys" | "guides" | "about";
 
@@ -95,7 +96,7 @@ export function SiteHeader() {
         <section className="mega-callout"><p className="kicker">NOT SURE WHICH ROUTE FITS?</p><h2>A route designed around your plans.</h2><Link href="/custom-china-tour" data-cta-location="header_custom_callout" className="button button-light">DESIGN YOUR JOURNEY</Link></section>
       </div> : open === "guides" ? <div className="shell mega-groups mega-guides">
         <section className="mega-survival-feature"><Image src="/assets/blog/independent-travel-china/cover.webp" alt="Travelers preparing for a journey through China" fill sizes="(max-width: 700px) 100vw, 30vw" unoptimized /><div><p>START HERE · FREE CHECKLIST</p><h2>Your China trip, prepared in one place.</h2><span>Entry, bookings, eSIM, VPN, payments and what to save before you fly.</span><Link className="button button-light" href="/survival-kit">OPEN THE SURVIVAL KIT →</Link></div></section>
-        {menuGroups.guides.map(group => <section key={group.title}><h2>{group.title}</h2>{group.links.map(item => <Link key={item} href={hrefFor(item)}>{item}</Link>)}{group.title === "Destination guides" && <div className="mega-country-guides"><h3>Plan from your country</h3><Link href="/yunnan-travel-from-singapore">Yunnan from Singapore</Link><Link href="/yunnan-travel-from-usa">Yunnan from the USA</Link></div>}</section>)}
+        {menuGroups.guides.map(group => <section key={group.title}><h2>{group.title}</h2>{group.links.map(item => <Link key={item} href={hrefFor(item)}>{item}</Link>)}{group.title === "Destination guides" && <YunnanCountryGuideLink onSelect={() => setOpen(null)} />}</section>)}
       </div> : <div className="shell mega-groups">{menuGroups.about.map((group) => <section key={group.title}><h2>{group.title}</h2>{group.links.map((item) => <Link key={item} href={hrefFor(item)}>{item}</Link>)}</section>)}<section className="mega-callout"><p className="kicker">NOT SURE WHERE TO START?</p><h2>Tell us what kind of China trip you have in mind.</h2><Link href={whatsapp} className="button button-light">CHAT ON WHATSAPP</Link></section></div>}
       <button className="mega-close" onClick={() => setOpen(null)} aria-label="Close menu">×</button>
     </div>}
