@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.hiddenchinatravel.com"),
+  metadataBase: new URL("https://hiddenchinatravel.com"),
   title: {
     default: "Hidden China Travel",
     template: "%s | Hidden China Travel",
