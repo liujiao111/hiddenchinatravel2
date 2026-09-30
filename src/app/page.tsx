@@ -19,12 +19,10 @@ const reasons = [
   ["04", "First-time China friendly", "We include the practical details that help an unfamiliar first trip feel much easier."],
   ["05", "Local support", "Questions and unexpected changes do not have to become travel-day stress."],
 ];
-const survivalItems = [
-  ["01", "Payments", "Set up Alipay and WeChat Pay, with a backup plan if a payment fails.", "/payments-in-china"],
-  ["02", "Internet", "Choose the right connection and understand when a VPN may still help.", "/internet-in-china"],
-  ["03", "Maps", "Use map apps that work in China instead of finding out after arrival.", "/maps-navigation-in-china"],
-  ["04", "Visas", "Check visa-free and transit options before booking non-refundable flights.", "/china-visa-free-countries-2026"],
-  ["05", "Transport", "Prepare for trains, hotels and ticket systems that can trip up first-time visitors.", "/transport-in-china"],
+const preparationStages = [
+  { number: "01", title: "Check your entry and route", detail: "Confirm the rules for your passport, then choose a route that fits your time.", href: "/survival-kit#decide" },
+  { number: "02", title: "Book the essentials", detail: "Sort your first hotel, trains and any sights that need advance tickets.", href: "/survival-kit#book" },
+  { number: "03", title: "Set up your phone", detail: "Get mobile data, decide on a VPN, and prepare payments and maps.", href: "/survival-kit#setup" },
 ];
 const destinations = [
   ["Dali", "Lakeside villages, Bai culture and enough time to experience the place beyond its checklist.", "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp", "/dali-travel-guide"],
@@ -51,9 +49,9 @@ export default function Home() {
 
     <section className="section why" id="why-us"><div className="shell"><div className="section-heading light"><h2>Why travel with us?</h2></div><div className="reason-grid reason-grid-five">{reasons.map(([number,title,text]) => <article key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
-    <section className="section section-sand survival-section" id="guides"><div className="shell"><div className="section-heading"><h2>Prepare for your China trip</h2><p>Payments, internet, maps, visas and transport—the systems worth sorting before you land.</p></div><div className="utility-grid">{survivalItems.map(([number,title,text,href]) => <Link href={href} key={title} className="utility-card"><i>{number}</i><h3>{title}</h3><p>{text}</p><span>READ THE GUIDE →</span></Link>)}</div><div className="center"><Link href="/survival-kit" className="button button-green">GET THE FULL CHECKLIST</Link></div></div></section>
+    <section className="section home-preparation" id="guides"><div className="shell"><header className="home-preparation-heading"><h2>Prepare for China, all in one place.</h2><p>From entry rules and bookings to mobile data, payments and maps, our trip checklist helps you work through the practical steps in a useful order.</p></header><div className="home-preparation-steps"><svg className="home-preparation-line" viewBox="0 0 1200 125" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 35 C100 105 125 105 200 95 C350 95 430 25 600 45 C770 65 830 115 1000 95 C1100 85 1130 70 1200 70" /><circle cx="200" cy="95" r="9" /><circle cx="600" cy="45" r="9" /><circle cx="1000" cy="95" r="9" /></svg>{preparationStages.map((stage) => <Link href={stage.href} key={stage.number} className="home-preparation-step"><span className="home-preparation-dot" aria-hidden="true" /><span className="sr-only">Step {stage.number}: </span><h3>{stage.title}</h3><p>{stage.detail}</p><span className="home-preparation-step-link">EXPLORE THIS STEP →</span></Link>)}</div><Link href="/survival-kit" className="button button-green home-preparation-cta">OPEN THE CHINA TRIP CHECKLIST →</Link></div></section>
 
-    <section className="section guides-section"><div className="shell"><div className="section-heading"><h2>Practical China Travel Guides</h2><p>Choose the topic you want to make easier before your first journey.</p></div><GuidesExplorer /></div></section>
+    <section className="section guides-section"><div className="shell"><div className="section-heading"><h2>Explore a topic in more detail</h2><p>Use these guides when you want a closer look at one part of your China trip.</p></div><GuidesExplorer /></div></section>
 
     <section className="cta-band mid-cta"><Image src="/home/local-support.webp" alt="A wooden boat on a highland lake in Yunnan" fill unoptimized sizes="100vw" /><div className="hero-shade" /><div><h2>Private travel, personal support</h2><p>Start with your dates and rough route. Joy can help shape a complete private journey around how you want to experience Yunnan.</p><Link href={whatsapp} className="button button-blue">ASK JOY</Link></div></section>
 
