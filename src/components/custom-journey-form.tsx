@@ -31,7 +31,7 @@ export function CustomJourneyForm() {
     }
   }
 
-  if (status === "success") return <div className="custom-enquiry-success" role="status"><h3>Your enquiry has been sent.</h3><p>Thank you. Joy will review your ideas and reply by email to discuss the route and next steps.</p><p>You are requesting a proposal, not making a booking.</p><Link href="/journeys">Explore our journey ideas →</Link></div>;
+  if (status === "success") return <div className="custom-enquiry-success" role="status" tabIndex={-1} style={{ scrollMarginTop: 90 }} ref={(confirmation) => { if (!confirmation) return; confirmation.focus({ preventScroll: true }); confirmation.scrollIntoView({ behavior: "instant", block: "start" }); }}><h3>Your enquiry has been sent.</h3><p>Thank you. Joy will review your ideas and reply by email to discuss the route and next steps.</p><p>You are requesting a proposal, not making a booking.</p><Link href="/journeys">Explore our journey ideas →</Link></div>;
 
   return <form className="contact-form custom-enquiry-form" onSubmit={submit} onFocus={() => { if (!started.current) { started.current = true; trackEvent("custom_journey_form_start", { form_name: "custom_journey_enquiry", page_path: "/custom-china-tour" }); } }}>
     <div className="contact-field-row"><label><span>Your name *</span><input name="name" autoComplete="name" type="text" maxLength={100} required /></label><label><span>Email *</span><input name="email" autoComplete="email" type="email" maxLength={254} required /></label></div>
