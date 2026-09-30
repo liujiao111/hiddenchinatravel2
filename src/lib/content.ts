@@ -10,6 +10,7 @@ export type HubSubtopic = { id: string; name: string; description?: string; arti
 
 export type ContentFrontmatter = {
   type?: "hub" | "legal";
+  status?: "draft" | "review" | "published";
   title: string;
   seoTitle?: string;
   absoluteSeoTitle?: string;
@@ -71,7 +72,10 @@ function readDirectory(absoluteDirectory: string, kind: ContentItem["kind"]): Co
         frontmatter: parsed.data as ContentFrontmatter,
         body: parsed.content.trim(),
       };
-    });
+    })
+    // Legacy content has no status. Explicit drafts and reviews stay out of
+    // routes, search, related articles and the sitemap through this shared list.
+    .filter((item) => !item.frontmatter.status || item.frontmatter.status === "published");
 }
 
 export function getAllContent(): ContentItem[] {
