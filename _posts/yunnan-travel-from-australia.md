@@ -294,6 +294,7 @@ Send Joy your travel dates, departure city and rough route. You don't need to ha
 
 [**WHATSAPP JOY →**](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20planning%20a%20Yunnan%20trip%20from%20Australia.%20I%27d%20like%20help%20with%20the%20route.)
 
+Want to add Shangri-La, stay longer in Dali or travel at a family-friendly pace? [Plan a private Yunnan tour around your group](/custom-china-tour), with the route and quote shaped around your dates.
 
 ## Place Names Reference
 
@@ -308,3 +309,4 @@ Send Joy your travel dates, departure city and rough route. You don't need to ha
 | Shangri-La | 香格里拉 | Xiānggélǐlā |
 | Baisha | 白沙 | Báishā |
 | Yuhu | 玉湖 | Yùhú |
+

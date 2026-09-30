@@ -63,7 +63,7 @@ export default function AboutPage() {
       <p>The Forbidden City and the Great Wall deserve their place in your imagination. But there is also a China of village markets, mountain mornings, small family restaurants and unhurried afternoons beside the water.</p>
       <p>You don’t have to choose between famous places and personal discoveries. The difference is leaving enough time to enjoy both.</p>
       <p>We begin in Yunnan, the place I call home: a natural starting point for journeys through old towns, living traditions and extraordinary landscapes.</p>
-      <Link className={styles.textLink} href="/journeys">Explore our Yunnan journeys →</Link>
+      <Link className={styles.textLink} href="/journeys">Explore our Yunnan journeys →</Link><p><Link className={styles.textLink} href="/custom-china-tour" data-cta-location="about_custom">Plan a Yunnan journey around your own ideas →</Link></p>
     </div></section>
     <section className={styles.quote}><blockquote>“Remember how Yunnan felt,<br />not just where you went.”</blockquote><p>Joy Liu · Founder, Hidden China Travel</p></section>
 

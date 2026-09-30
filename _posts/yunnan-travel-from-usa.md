@@ -241,6 +241,8 @@ Have a passport, flights and a rough route in mind? Send Joy your dates, departu
 
 [**PLAN MY YUNNAN TRIP →**](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20planning%20a%20Yunnan%20trip%20from%20the%20USA%20and%20would%20like%20help%20deciding%20on%20visa%20vs%20240-hour%20transit%20and%20shaping%20a%20route)
 
+If your long-haul trip needs a different balance of travel days and time in each place, [share your ideas for a tailor-made Yunnan tour](/custom-china-tour). We can discuss the route before preparing a quote.
+
 ## Place names to save in your maps app
 
 | English | Chinese | Pinyin |
@@ -251,3 +253,4 @@ Have a passport, flights and a rough route in mind? Send Joy your dates, departu
 | Shaxi Ancient Town | 沙溪古镇 | Shāxī Gǔzhèn |
 | Lijiang Ancient Town | 丽江古城 | Lìjiāng Gǔchéng |
 | Shangri-La | 香格里拉 | Xiānggélǐlā |
+

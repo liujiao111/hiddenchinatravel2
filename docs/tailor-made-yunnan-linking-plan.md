@@ -1,6 +1,6 @@
 # Tailor-made Yunnan tour: internal linking and conversion plan
 
-Status: landing-page conversion updates implemented in PR #30. The entrance changes below are a proposed rollout; they are not implemented by this document. Existing entrances are listed separately so that rollout does not add duplicate CTAs.
+Status: landing-page conversion updates and shared entrance rollout implemented in PR #30. Contextual links are also added to the four country guides, Dali guide, Dali hidden-gems guide and itinerary-planning hub. Further destination articles can receive editorial links when their route-planning sections are revised.
 
 ## Positioning and destination
 
@@ -17,7 +17,7 @@ The custom page complements the existing journey catalogue. Keep the two six-day
 - Custom page: reverse links to both existing journeys.
 - Sitemap: custom page included.
 
-## Proposed rollout
+## Implemented rollout
 
 | Priority | Surface | Placement and CTA | Destination / role |
 | --- | --- | --- | --- |
@@ -27,7 +27,7 @@ The custom page complements the existing journey catalogue. Keep the two six-day
 | P1 | Homepage private-travel CTA | Adapt the existing mid-page block, rather than adding a duplicate section. Ask visitors to share dates, party and pace; make the primary action PLAN MY PRIVATE TOUR. | /custom-china-tour#plan |
 | P1 | Shared article discovery flow | Keep related guides → one real itinerary card → Talk With Joy. In the existing itinerary section add a quiet alternative: A different route or pace in mind? Plan a tailor-made Yunnan tour → | /custom-china-tour; one shared component change covers all article pages |
 | P1 | Yunnan destination hub | Add a custom alternative after the sample itinerary; make the existing final route-planning CTA lead to the custom form. Retain the guide and ready-made route links. | /custom-china-tour or #plan, depending on the placement |
-| P2 | Yunnan, Dali, Shaxi, Lijiang and country-cluster articles | One contextual link where the reader chooses duration, route, family pace or transport. Example: If the six-day route does not fit your dates, ask us to plan a private Yunnan itinerary. | /custom-china-tour; article-specific relevance |
+| P2 | Four country guides and two Dali guides (implemented); further destination guides (future editorial work) | One contextual link where the reader chooses duration, route, family pace or transport. Example: If the six-day route does not fit your dates, ask us to plan a private Yunnan itinerary. | /custom-china-tour; article-specific relevance |
 | P2 | Survival Kit | Keep preparation tasks first. Make the existing final private-route banner point to the custom product, with WhatsApp secondary. | /custom-china-tour; turn completed preparation into trip planning |
 | P2 | About / Contact | Add one explicit custom-planning link beside relevant planning text. Keep practical questions and WhatsApp accessible. Do not redirect a general advice enquiry into a tour lead. | /custom-china-tour#plan |
 | Existing | Journeys catalogue / footer / products | Preserve and improve labels where needed; avoid additional duplicate cards or full-width CTAs. | Product discovery and alternate route |

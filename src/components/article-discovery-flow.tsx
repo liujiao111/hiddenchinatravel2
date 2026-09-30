@@ -1,3 +1,4 @@
+import { CustomJourneyLink } from "@/components/custom-journey-link";
 import Image from "next/image";
 import Link from "next/link";
 import type { ContentItem } from "@/lib/content";
@@ -63,6 +64,7 @@ export function ArticleDiscoveryFlow({
           <h2>{sourceSection === "China Itinerary Planning" ? "See how a Yunnan route comes together." : "With the practical questions answered, what could your journey look like?"}</h2>
           <p>Follow a private route through {journey.frontmatter.route.replaceAll(" → ", ", ")}. See the day-by-day plan, travel pace and what’s arranged before deciding whether it fits you.</p>
           <Link className="button" data-cta-location="article_yunnan" href={`/journeys/${journey.slug}`}>SEE THE DAY-BY-DAY JOURNEY →</Link>
+          <CustomJourneyLink prompt="A different route or pace in mind?" location="article_custom_alternative" />
           <Link className="article-yunnan-guide-link" href="/china-destinations/yunnan">Explore Yunnan travel guides →</Link>
         </div>
         <div className="article-featured-journey">

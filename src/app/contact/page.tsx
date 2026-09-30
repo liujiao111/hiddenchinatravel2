@@ -87,7 +87,7 @@ export default function ContactPage() {
           <header>
             <p className="contact-kicker">START THE CONVERSATION</p>
             <h2>Tell Us About Your Trip</h2>
-            <p>The more we know, the better advice we can give.</p>
+            <p>The more we know, the better advice we can give.</p><p>Looking for a private itinerary and quote? <Link href="/custom-china-tour#plan" data-cta-location="contact_custom">Tell us your Yunnan tour plans →</Link></p>
           </header>
           <ContactForm />
         </div>

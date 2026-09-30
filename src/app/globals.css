@@ -1443,6 +1443,10 @@ p { line-height:1.7; }
 .custom-enquiry-success a { text-decoration:underline; }
 .custom-ready-journeys { grid-template-columns:repeat(2,minmax(0,1fr)); max-width:1000px; margin:40px auto 0; }
 .custom-route-bridge { text-align:center; }
+.custom-journey-link { margin-top:24px; padding-top:18px; border-top:1px solid #c9c9bc; color:#5d655e; font-size:.9rem; line-height:1.7; }
+.custom-journey-link>span { display:block; margin-bottom:7px; }
+.custom-journey-link>a { color:#345d58; text-decoration:underline; text-underline-offset:4px; }
+.cta-band .custom-contact-alternative { display:block; width:fit-content; margin:18px auto 0; color:white; font-size:.88rem; text-decoration:underline; text-underline-offset:4px; }
 .custom-route-bridge h2 { color:#29463f; font-size:clamp(1.9rem,3vw,2.8rem); }
 .custom-route-bridge p { color:#62655f; line-height:1.8; }
 .custom-route-bridge a { display:inline-block; margin-top:16px; color:#345d58; font-size:.8rem; font-weight:750; text-decoration:underline; text-underline-offset:5px; }

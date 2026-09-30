@@ -179,6 +179,8 @@ If you have a rough month, departure airport and preferred pace, that is enough 
 
 [**Ask Joy about my Yunnan route →**](https://wa.me/8618880441791?text=Hi%20Joy%2C%20I%20read%20your%20UK-to-Yunnan%20guide.%20Dates%3A%20__.%20Departure%20airport%3A%20__.%20Travellers%3A%20__.%20Preferred%20pace%3A%20__.%20Flights%20booked%3A%20yes%2Fno.%20I%27d%20like%20to%20discuss%20local%20support.)
 
+If you would like the transfers and local arrangements handled, [explore a tailor-made private Yunnan tour](/custom-china-tour). Start with your available days and the places that interest you most.
+
 ## Frequently Asked Questions
 
 ### Do British citizens need a visa for a Yunnan holiday in 2026?
@@ -216,3 +218,4 @@ No. It is a six-day/five-night Yunnan core route. International flights and any 
 | Lijiang Ancient Town | 丽江古城 | Lìjiāng Gǔchéng |
 | Tiger Leaping Gorge | 虎跳峡 | Hǔtiào Xiá |
 | Shangri-La | 香格里拉 | Xiānggélǐlā |
+
