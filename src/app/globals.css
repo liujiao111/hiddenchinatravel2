@@ -1429,6 +1429,15 @@ p { line-height:1.7; }
 .custom-enquiry-form .button { max-width:100%; white-space:normal; }
 .custom-enquiry-form .button:disabled { opacity:.65; cursor:wait; }
 .custom-form-error { margin:0; padding:16px; border:1px solid #c89b85; background:#fff3ea; color:#743b28; line-height:1.6; }
+.custom-enquiry-options { border-top:1px solid #d4d9d1; border-bottom:1px solid #d4d9d1; }
+.custom-enquiry-options summary { display:flex; align-items:center; gap:8px; padding:18px 0; color:#294b45; font-size:.88rem; font-weight:650; cursor:pointer; list-style:none; }
+.custom-enquiry-options summary::-webkit-details-marker { display:none; }
+.custom-enquiry-options summary small { color:#74776f; font-weight:400; }
+.custom-enquiry-options summary>span { margin-left:auto; font-size:1.4rem; }
+.custom-enquiry-options[open] summary>span { transform:rotate(45deg); }
+.custom-enquiry-options>div { display:grid; gap:24px; padding-bottom:24px; }
+.custom-journey-page .journey-proof-compact-docs { margin-top:32px; color:#62655f; font-size:.86rem; line-height:1.8; }
+.journey-proof-compact-docs a { color:#345d58; text-decoration:underline; text-underline-offset:3px; }
 .custom-enquiry-success { padding:40px; border:1px solid #becdc4; background:#fafaf4; color:#29463f; }
 .custom-enquiry-success h3 { font-size:2rem; }
 .custom-enquiry-success a { text-decoration:underline; }

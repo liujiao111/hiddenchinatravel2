@@ -31,21 +31,24 @@ export function CustomJourneyForm() {
     }
   }
 
-  if (status === "success") return <div className="custom-enquiry-success" role="status" tabIndex={-1} style={{ scrollMarginTop: 90 }} ref={(confirmation) => { if (!confirmation) return; confirmation.focus({ preventScroll: true }); confirmation.scrollIntoView({ behavior: "instant", block: "start" }); }}><h3>Your enquiry has been sent.</h3><p>Thank you. Joy will review your ideas and reply by email to discuss the route and next steps.</p><p>You are requesting a proposal, not making a booking.</p><Link href="/journeys">Explore our journey ideas →</Link></div>;
+  if (status === "success") return <div className="custom-enquiry-success" role="status" tabIndex={-1} style={{ scrollMarginTop: 90 }} ref={(confirmation) => { if (!confirmation) return; confirmation.focus({ preventScroll: true }); confirmation.scrollIntoView({ behavior: "instant", block: "start" }); }}><h3>Your enquiry has been sent.</h3><p>Thank you. Joy usually replies by email within 24 hours to discuss your route and next steps. Please check your inbox and spam folder.</p><p>You are requesting a proposal, not making a booking.</p><Link href="/journeys">Explore our journey ideas →</Link></div>;
 
   return <form className="contact-form custom-enquiry-form" onSubmit={submit} onFocus={() => { if (!started.current) { started.current = true; trackEvent("custom_journey_form_start", { form_name: "custom_journey_enquiry", page_path: "/custom-china-tour" }); } }}>
     <div className="contact-field-row"><label><span>Your name *</span><input name="name" autoComplete="name" type="text" maxLength={100} required /></label><label><span>Email *</span><input name="email" autoComplete="email" type="email" maxLength={254} required /></label></div>
-    <label><span>WhatsApp <small>(optional, including country code)</small></span><input name="whatsapp" type="tel" autoComplete="tel" maxLength={40} /></label>
-    <div className="contact-field-row"><label><span>When would you like to travel?</span><input name="travelTiming" type="text" placeholder="Dates, a month, or flexible" maxLength={100} /></label><label><span>How long would you like to stay?</span><input name="tripLength" type="text" placeholder="For example, 8–10 days" maxLength={80} /></label></div>
+    <label><span>When would you like to travel?</span><input name="travelTiming" type="text" placeholder="Dates, a month, or flexible" maxLength={100} /></label>
     <fieldset><legend>Your party</legend><div className="contact-field-row"><label><span>Adults *</span><input name="adults" type="number" min={1} max={30} defaultValue={2} required /></label><label><span>Children</span><input name="children" type="number" min={0} max={20} defaultValue={0} required /></label></div></fieldset>
+    <label><span>Tell us about your trip</span><textarea name="notes" rows={4} maxLength={3000} placeholder="Places you’d like to see, your interests, preferred pace, or a route you want to change. A rough idea is fine." /></label>
+    <details className="custom-enquiry-options"><summary>Add preferences <small>(optional)</small><span aria-hidden="true">+</span></summary><div>
+    <label><span>WhatsApp <small>(optional, including country code)</small></span><input name="whatsapp" type="tel" autoComplete="tel" maxLength={40} /></label>
+    <label><span>How long would you like to stay?</span><input name="tripLength" type="text" placeholder="For example, 8–10 days" maxLength={80} /></label>
     <label><span>Where would you like to go?</span><input name="destinations" type="text" maxLength={300} placeholder="Yunnan, specific places, or please suggest" /></label>
     <div className="contact-field-row"><label><span>Budget per person <small>(USD, excluding international flights)</small></span><select name="budget" defaultValue="Please advise">{journeyBudgets.map(option => <option key={option}>{option}</option>)}</select></label><label><span>Preferred stays</span><select name="comfort" defaultValue="Please advise">{journeyComfort.map(option => <option key={option}>{option}</option>)}</select></label></div>
     <fieldset><legend>What would you like more time for?</legend><div className="custom-interest-options">{journeyInterests.map(interest => <label key={interest}><input type="checkbox" name="interests" value={interest} /><span>{interest}</span></label>)}</div></fieldset>
-    <label><span>Anything else we should know?</span><textarea name="notes" rows={4} maxLength={3000} placeholder="Places to add or avoid, children’s ages, preferred pace, dietary needs, or an itinerary you already have." /></label>
+    </div></details>
     <div className="custom-form-trap" aria-hidden="true"><label>Leave this field empty<input name="website" type="text" tabIndex={-1} autoComplete="off" /></label></div>
     <label className="custom-consent"><input name="consent" type="checkbox" required /><span>I agree that my details may be used to respond to this enquiry. <Link href="/privacy-policy">Privacy policy</Link>.</span></label>
     {status === "error" ? <p className="custom-form-error" role="alert">{message}</p> : null}
     <button className="button journey-primary-action" type="submit" disabled={status === "sending"}>{status === "sending" ? "SENDING YOUR ENQUIRY…" : "REQUEST MY PRIVATE JOURNEY →"}</button>
-    <p className="contact-form-note">A rough idea is enough. We’ll clarify the details with you before preparing a proposal.</p>
+    <p className="contact-form-note">Usually replies within 24 hours. This starts a conversation; it does not commit you to a booking.</p>
   </form>;
 }
