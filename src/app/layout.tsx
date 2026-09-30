@@ -32,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
       <Script id="microsoft-clarity" strategy="beforeInteractive">
         {`
           (function(c,l,a,r,i,t,y){
@@ -41,10 +42,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           })(window, document, "clarity", "script", "ynmcix0ju8");
         `}
       </Script>
+      </head>
       <body className="min-h-full flex flex-col">
         {children}
         {gaMeasurementId ? <AnalyticsTracker /> : null}
-      </body>
       {gaMeasurementId ? (
         <>
           <Script
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </Script>
         </>
       ) : null}
+      </body>
     </html>
   );
 }

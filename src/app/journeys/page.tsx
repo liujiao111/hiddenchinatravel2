@@ -30,8 +30,9 @@ export default function JourneysPage() {
       destination: journey.frontmatter.route,
       duration: journey.frontmatter.duration,
       fromPrice: priceLabel(journey.frontmatter.fromPrice, journey.frontmatter.currency, journey.frontmatter.priceBasis),
-    }} />)}</div></div></section>
+    }} />)}<JourneyCard journey={{ title: "A journey designed around you", subtitle: "Your dates, interests and preferred pace. Start with Yunnan and request a personalized proposal.", href: "/custom-china-tour", image: "/home/hero.webp", destination: "TAILOR-MADE PRIVATE TRAVEL", duration: "Your preferred duration", fromPrice: "Quote tailored to your plans", ctaLabel: "Design your journey →", trackingLocation: "journeys_custom_card" }} /></div></div></section>
     <section className="journeys-philosophy section-sand"><div className="shell"><h2>Not a checklist. A journey shaped around you.</h2><div>{["Private travel with your own party", "Local drivers and guides where they matter", "No mandatory shopping stops", "A licensed local partner for contracting and delivery"].map((item, index) => <p key={item}><span>0{index + 1}</span>{item}</p>)}</div></div></section>
     <ContentFooter />
   </main>;
 }
+

@@ -5,6 +5,7 @@ import { ContentFooter } from "@/components/content-footer";
 import { GuideCard } from "@/components/guide-card";
 import { SiteHeader } from "@/components/site-header";
 import { formatPriceLabel } from "@/lib/format-price";
+import { JourneyHero, JourneyOverview, JourneySectionNav } from "@/components/journey-landing";
 import { HuataiServiceProof } from "@/components/huatai-service-proof";
 
 const goodFit = ["Experiences over checklists", "Local culture and daily life", "A comfortable, unhurried pace", "Stories worth bringing home"];
@@ -61,16 +62,9 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
   return <main>
     <SiteHeader />
-    <header className="journey-hero">
-      <Image src={frontmatter.coverImage} alt="Mountains and countryside along a Yunnan journey" fill priority unoptimized sizes="100vw" />
-      <div className="journey-hero-shade" />
-      <nav className="breadcrumbs journey-breadcrumbs shell" aria-label="Breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/journeys">Journeys</Link><span>›</span><span>{frontmatter.title}</span></nav>
-      <div className="journey-hero-copy shell"><div><p>A PRIVATE YUNNAN JOURNEY</p><h1>{frontmatter.title}</h1><span>{frontmatter.excerpt}</span><div className="journey-hero-actions"><Link className="button journey-primary-action" href={whatsapp}>PLAN THIS JOURNEY</Link><Link className="journey-text-action" href="#itinerary">EXPLORE THE 6-DAY ITINERARY <b>↓</b></Link></div><small>Start with your dates and preferred pace. No pressure to book.</small></div></div>
-    </header>
-
-    <nav className="journey-anchor-nav journey-anchor-nav-quiet" aria-label="Jump to a section"><div className="shell"><span>Jump to:</span><div><Link href="#story">The feeling</Link><Link href="#experiences">Experiences</Link><Link href="#itinerary">Day-to-day itinerary</Link>{isDaliLijiangLuguLakeJourney ? <Link href="#local-team">Local team</Link> : null}<Link href="#pricing">Travel styles</Link><Link href="#details">What’s included</Link></div><Link className="journey-nav-contact" href={whatsapp}>Plan your journey →</Link></div></nav>
-
-    <section className="journey-overview"><div className="shell"><div className="journey-overview-heading"><h2>Your private Yunnan journey, at a glance.</h2><p>A clear starting point for the route, with the details confirmed around your dates and group.</p></div><div className="journey-overview-items"><div><span>{frontmatter.duration.toUpperCase()}</span><b>{frontmatter.route}</b></div><div><span>YOUR JOURNEY</span><b>{frontmatter.journeyType} · Local guide · Private transport</b></div><div><span>GUIDE PRICE</span><b>{guidePrice}</b></div></div><Link href={whatsapp}>ASK JOY ABOUT THIS JOURNEY →</Link></div></section>
+    <JourneyHero title={frontmatter.title} image={frontmatter.coverImage} imageAlt="Mountains and countryside along a Yunnan journey" eyebrow="A PRIVATE YUNNAN JOURNEY" description={frontmatter.excerpt} primary={{ href: whatsapp, label: "PLAN THIS JOURNEY" }} secondary={{ href: "#itinerary", label: "EXPLORE THE 6-DAY ITINERARY" }} note="Start with your dates and preferred pace. No pressure to book." />
+    <JourneySectionNav links={[{ href: "#story", label: "The feeling" }, { href: "#experiences", label: "Experiences" }, { href: "#itinerary", label: "Day-to-day itinerary" }, ...(isDaliLijiangLuguLakeJourney ? [{ href: "#local-team", label: "Local team" }] : []), { href: "#pricing", label: "Travel styles" }, { href: "#details", label: "What’s included" }]} action={{ href: whatsapp, label: "Plan your journey" }} />
+    <JourneyOverview title="Your private Yunnan journey, at a glance." description="A clear starting point for the route, with the details confirmed around your dates and group." items={[{ label: frontmatter.duration.toUpperCase(), value: frontmatter.route }, { label: "YOUR JOURNEY", value: `${frontmatter.journeyType} · Local guide · Private transport` }, { label: "GUIDE PRICE", value: guidePrice }]} action={{ href: whatsapp, label: "ASK JOY ABOUT THIS JOURNEY" }} />
 
     <section className="journey-manifesto" id="story"><div className="shell journey-manifesto-grid"><div className="journey-manifesto-copy"><span>OUR WAY OF TRAVELLING</span><h2><span>Remember</span> <em>how Yunnan felt,</em> <span>not just where you went.</span></h2><i aria-hidden="true" /><p>{isDaliLijiangLuguLakeJourney ? "Morning light on Erhai Lake. A quiet lane in Lijiang. Two nights to settle into the slower pace beside Lugu Lake." : "A quiet evening in an old Tea Horse Road town. A conversation inside a traditional tie-dye workshop. A slow breakfast overlooking Erhai Lake."}</p><strong>The best memories are rarely made in a hurry.</strong></div></div></section>
 
@@ -105,9 +99,12 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
     <section className="journey-faq section"><div className="narrow"><div className="section-heading"><h2>Frequently asked questions</h2></div>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><p>{faq.answer}</p></details>)}</div></section>
 
+    <section className="custom-route-bridge section section-sand"><div className="narrow"><h2>Looking for a different journey?</h2><p>Different dates, more time, or somewhere else in mind? Start with your own plans and we’ll discuss a route shaped around you.</p><Link href="/custom-china-tour" data-cta-location="journey_custom_alternative">EXPLORE TAILOR-MADE JOURNEYS →</Link></div></section>
+
     <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Planning starts with a conversation.</h2><span>Send Joy your dates, group size and preferred travel pace. We’ll help you decide whether this journey is the right fit.</span><Link href={whatsapp} className="button button-light">PLAN THIS JOURNEY</Link></div></section>
     <Link href={whatsapp} className="journey-mobile-cta">PLAN THIS JOURNEY <span>→</span></Link>
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;
 }
+

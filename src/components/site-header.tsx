@@ -91,8 +91,8 @@ export function SiteHeader() {
       </div> : open === "journeys" ? <div className="shell mega-journeys">
         <section className="mega-journey-feature"><p className="kicker">FEATURED JOURNEY</p><Link href="/journeys/dali-lijiang-lugu-lake-private-tour"><Image src="/assets/resources/丽江-泸沽湖-419.jpg" alt="Lugu Lake in western Yunnan" width={460} height={250} unoptimized /><span><small>6 DAYS · 5 NIGHTS · PRIVATE</small><b>Dali, Lijiang &amp; Lugu Lake</b><em>Private vehicle · Local guide · Two nights by the lake</em><strong>VIEW JOURNEY →</strong></span></Link></section>
         <section><h2>Explore by place</h2>{["Yunnan", "Dali", "Shaxi", "Lijiang", "Xishuangbanna", "Shangri-La"].map((item) => <Link key={item} href="/journeys">{item}</Link>)}<Link href="/journeys" className="mega-text-link">VIEW ALL JOURNEYS →</Link></section>
-        <section><h2>Travel your way</h2>{["Private journeys", "Slow-paced travel", "First trip to China", "Family journeys", "Journeys for older travelers"].map((item) => <Link key={item} href="/journeys">{item}</Link>)}</section>
-        <section className="mega-callout"><p className="kicker">NOT SURE WHICH ROUTE FITS?</p><h2>Tell Joy how you like to travel.</h2><Link href={whatsapp} className="button button-light">CHAT WITH JOY</Link></section>
+        <section><h2>Travel your way</h2><Link href="/custom-china-tour">Tailor-made journeys</Link>{["Private journeys", "Slow-paced travel", "First trip to China", "Family journeys", "Journeys for older travelers"].map((item) => <Link key={item} href="/journeys">{item}</Link>)}</section>
+        <section className="mega-callout"><p className="kicker">NOT SURE WHICH ROUTE FITS?</p><h2>A route designed around your plans.</h2><Link href="/custom-china-tour" className="button button-light">DESIGN YOUR JOURNEY</Link></section>
       </div> : open === "guides" ? <div className="shell mega-groups mega-guides">
         <section className="mega-survival-feature"><Image src="/assets/blog/independent-travel-china/cover.webp" alt="Travelers preparing for a journey through China" fill sizes="(max-width: 700px) 100vw, 30vw" unoptimized /><div><p>START HERE · FREE CHECKLIST</p><h2>Your China trip, prepared in one place.</h2><span>Entry, bookings, eSIM, VPN, payments and what to save before you fly.</span><Link className="button button-light" href="/survival-kit">OPEN THE SURVIVAL KIT →</Link></div></section>
         {menuGroups.guides.map(group => <section key={group.title}><h2>{group.title}</h2>{group.links.map(item => <Link key={item} href={hrefFor(item)}>{item}</Link>)}{group.title === "Destination guides" && <div className="mega-country-guides"><h3>Plan from your country</h3><Link href="/yunnan-travel-from-singapore">Yunnan from Singapore</Link><Link href="/yunnan-travel-from-usa">Yunnan from the USA</Link></div>}</section>)}
@@ -101,3 +101,4 @@ export function SiteHeader() {
     </div>}
   </header>;
 }
+
