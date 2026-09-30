@@ -1377,6 +1377,9 @@ p { line-height:1.7; }
 .home-preparation-step-link { display:inline-block; margin-top:17px; color:#345d58; font-size:.65rem; font-weight:800; letter-spacing:.09em; }
 .home-preparation-step:hover .home-preparation-step-link,.home-preparation-step:focus-visible .home-preparation-step-link { text-decoration:underline; text-underline-offset:4px; }
 .home-preparation-dot { display:none; }
+.home-preparation-list { margin-top:35px; }
+.home-preparation-steps { margin-top:0; }
+.home-preparation-steps + .home-preparation-steps { margin-top:25px; }
 .home-preparation-cta { margin-top:42px; }
 @media (max-width:700px) {
   .home-preparation { text-align:left; }
@@ -1387,4 +1390,10 @@ p { line-height:1.7; }
   .home-preparation-dot { position:absolute; top:7px; left:-43px; display:block; width:19px; height:19px; border-radius:50%; background:#c4c8ac; }
   .home-preparation-step h3,.home-preparation-step p { max-width:none; margin-left:0; }
   .home-preparation-cta { width:100%; margin-top:40px; text-align:center; }
+}
+
+@media (max-width:700px) {
+  .home-preparation-list { margin-top:35px; }
+  .home-preparation-steps { margin-top:0; }
+  .home-preparation-steps + .home-preparation-steps { margin-top:30px; }
 }
