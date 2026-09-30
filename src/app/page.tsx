@@ -19,11 +19,15 @@ const reasons = [
   ["04", "First-time China friendly", "We include the practical details that help an unfamiliar first trip feel much easier."],
   ["05", "Local support", "Questions and unexpected changes do not have to become travel-day stress."],
 ];
-const preparationStages = [
-  { number: "01", title: "Check your entry and route", detail: "Confirm the rules for your passport, then choose a route that fits your time.", href: "/survival-kit#decide" },
-  { number: "02", title: "Book the essentials", detail: "Sort your first hotel, trains and any sights that need advance tickets.", href: "/survival-kit#book" },
-  { number: "03", title: "Set up your phone", detail: "Get mobile data, decide on a VPN, and prepare payments and maps.", href: "/survival-kit#setup" },
+const preparationItems = [
+  { title: "Check entry requirements", detail: "Check visa, visa-free or transit rules for your passport and route before booking.", href: "/survival-kit#entry" },
+  { title: "Set up payments", detail: "Link your card and complete Alipay verification before you leave. Prepare a backup way to pay.", href: "/survival-kit#payment" },
+  { title: "Arrange mobile data", detail: "Choose roaming or a travel eSIM, check phone compatibility and save the setup instructions before departure.", href: "/survival-kit#esim" },
+  { title: "Prepare a VPN if needed", detail: "Check whether your connection needs one. If it does, install, sign in and test it before you fly.", href: "/survival-kit#vpn" },
+  { title: "Get your maps ready", detail: "Install a map app that works in China and save your hotel’s Chinese name and address.", href: "/survival-kit#maps" },
+  { title: "Book arrival essentials", detail: "Reserve your first hotel and plan trains and timed-entry tickets ahead of arrival.", href: "/survival-kit#book" },
 ];
+const preparationRows = [preparationItems.slice(0, 3), preparationItems.slice(3)];
 const destinations = [
   ["Dali", "Lakeside villages, Bai culture and enough time to experience the place beyond its checklist.", "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp", "/dali-travel-guide"],
   ["Shaxi", "A quieter Tea Horse Road town that rewards travelers who stay after the day visitors leave.", "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp", "/dali-hidden-gems-off-the-beaten-path"],
@@ -49,7 +53,7 @@ export default function Home() {
 
     <section className="section why" id="why-us"><div className="shell"><div className="section-heading light"><h2>Why travel with us?</h2></div><div className="reason-grid reason-grid-five">{reasons.map(([number,title,text]) => <article key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
-    <section className="section home-preparation" id="guides"><div className="shell"><header className="home-preparation-heading"><h2>Prepare for China, all in one place.</h2><p>From entry rules and bookings to mobile data, payments and maps, our trip checklist helps you work through the practical steps in a useful order.</p></header><div className="home-preparation-steps"><svg className="home-preparation-line" viewBox="0 0 1200 125" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 35 C100 105 125 105 200 95 C350 95 430 25 600 45 C770 65 830 115 1000 95 C1100 85 1130 70 1200 70" /><circle cx="200" cy="95" r="9" /><circle cx="600" cy="45" r="9" /><circle cx="1000" cy="95" r="9" /></svg>{preparationStages.map((stage) => <Link href={stage.href} key={stage.number} className="home-preparation-step"><span className="home-preparation-dot" aria-hidden="true" /><span className="sr-only">Step {stage.number}: </span><h3>{stage.title}</h3><p>{stage.detail}</p><span className="home-preparation-step-link">EXPLORE THIS STEP →</span></Link>)}</div><Link href="/survival-kit" className="button button-green home-preparation-cta">OPEN THE CHINA TRIP CHECKLIST →</Link></div></section>
+    <section className="section home-preparation" id="guides"><div className="shell"><header className="home-preparation-heading"><h2>Get China-ready before you fly.</h2><p>Payments, mobile data, maps and bookings work differently in China. Get the essentials ready before arrival, with practical guides and a complete pre-departure checklist in one place.</p></header><div className="home-preparation-list">{preparationRows.map((row, index) => <div className="home-preparation-steps" key={index}><svg className="home-preparation-line" viewBox="0 0 1200 125" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 35 C100 105 125 105 180 95 C350 95 430 25 600 45 C770 65 830 115 1020 95 C1100 85 1130 70 1200 70" /><circle cx="180" cy="95" r="9" /><circle cx="600" cy="45" r="9" /><circle cx="1020" cy="95" r="9" /></svg>{row.map((item) => <Link href={item.href} key={item.title} className="home-preparation-step"><span className="home-preparation-dot" aria-hidden="true" /><h3>{item.title}</h3><p>{item.detail}</p><span className="home-preparation-step-link">GET READY BEFORE ARRIVAL →</span></Link>)}</div>)}</div><Link href="/survival-kit" className="button button-green home-preparation-cta">OPEN THE PRE-DEPARTURE CHECKLIST →</Link></div></section>
 
     <section className="section guides-section"><div className="shell"><div className="section-heading"><h2>Explore a topic in more detail</h2><p>Use these guides when you want a closer look at one part of your China trip.</p></div><GuidesExplorer /></div></section>
 
