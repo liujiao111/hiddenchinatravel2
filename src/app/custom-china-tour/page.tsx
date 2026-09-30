@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { HuataiServiceProof } from "@/components/huatai-service-proof";
 import { ContentFooter } from "@/components/content-footer";
+import { JourneyInspirationProvider } from "@/components/journey-inspiration-context";
+import { YunnanInspiration } from "@/components/yunnan-inspiration";
 import { CustomJourneyForm } from "@/components/custom-journey-form";
 import { JourneyCard } from "@/components/journey-card";
 import { JourneyHero, JourneyOverview, JourneySectionNav } from "@/components/journey-landing";
@@ -11,12 +13,6 @@ import { getAllJourneys } from "@/lib/journeys";
 
 const canonical = "https://hiddenchinatravel.com/custom-china-tour";
 const whatsapp = "https://wa.me/8618880441791?text=" + encodeURIComponent("Hi Joy, I'd like a tailor-made private journey, starting with Yunnan. Can we discuss my ideas?");
-const experiences = [
-  { title: "Choose the places that draw you in", image: "/assets/blog/yunnan-travel-from-australia/cover-lijiang-rooftops.webp", alt: "Traditional rooftops in Lijiang Old Town", text: "Stay longer in a place you love, add a new stop, or leave a busy attraction out. We’ll help the route make sense." },
-  { title: "Leave room to slow down", image: "/assets/blog/dali-travel-guide/erhai-lake-cangshan.webp", alt: "Erhai Lake and the Cangshan mountains near Dali", text: "Later starts, fewer hotel changes, a quiet afternoon by the lake. Your days can have space in them." },
-  { title: "Travel with your own people", image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp", alt: "A stone-paved lane in Shaxi", text: "Bring your partner, family or friends. Tell us about your party so we can discuss walking, driving and room arrangements." },
-  { title: "Make time for what matters to you", image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-theater-courtyard.webp", alt: "The traditional theater courtyard in Shaxi", text: "Markets and local food, photography, village walks or tea culture. We’ll look for experiences that fit your interests and dates." },
-];
 const ideas = [
   { title: "A gentler family journey", route: "Dali · Shaxi · Lijiang", text: "Fewer hotel changes, time for crafts and markets, and shorter activity days. Share your children’s ages or the needs of older relatives so we can discuss a suitable pace." },
   { title: "Landscapes through your lens", route: "Dali · Lijiang · Shangri-La", text: "More time for photography and scenery, with room to adjust around light and weather. We’ll discuss driving distances, mountain access and altitude before suggesting the route." },
@@ -52,13 +48,14 @@ export default function CustomChinaTourPage() {
     { "@type": "Service", name: "Tailor-made private Yunnan tours", url: canonical, description: metadata.description, areaServed: { "@type": "Place", name: "Yunnan, China" }, provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" } },
     { "@type": "FAQPage", mainEntity: faqs.map(faq => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) },
   ] };
-  return <main className="custom-journey-page">
+  return <JourneyInspirationProvider><main className="custom-journey-page">
     <SiteHeader />
     <JourneyHero title="Your private Yunnan tour, designed around you." image="/home/hero.webp" imageAlt="Mountains and countryside in Yunnan" eyebrow="TAILOR-MADE YUNNAN TOURS" description="Travel with your own party, on your dates and at your pace. Tell us what you’d love to see in Yunnan, and receive a personal itinerary and quote for the hotels, transport and guiding you need." primary={{ href: "#plan", label: "START PLANNING MY TRIP" }} secondary={{ href: "#possibilities", label: "EXPLORE THE POSSIBILITIES" }} note="Plan directly with Joy. Usually replies within 24 hours. No booking commitment." />
-    <JourneySectionNav links={[{ href: "#possibilities", label: "Make it yours" }, { href: "#ideas", label: "Journey ideas" }, { href: "#process", label: "How it works" }, { href: "#local-team", label: "Local team" }, { href: "#quote", label: "Your proposal" }, { href: "#questions", label: "Useful details" }]} action={{ href: "#plan", label: "Start planning" }} />
+    <JourneySectionNav links={[{ href: "#possibilities", label: "Make it yours" }, { href: "#places", label: "Places & ideas" }, { href: "#process", label: "How it works" }, { href: "#local-team", label: "Local team" }, { href: "#quote", label: "Your proposal" }, { href: "#questions", label: "Useful details" }]} action={{ href: "#plan", label: "Start planning" }} />
     <JourneyOverview title="Start with your plans, not a package." description="Our existing routes are a starting point. If they don’t fit your trip, we can discuss a journey designed from the ground up." items={[{ label: "WHERE", value: "Yunnan first · Other China destinations by request" }, { label: "HOW YOU TRAVEL", value: "A private party · Dates and duration shaped around you" }, { label: "YOUR QUOTE", value: "Prepared around your route, dates and preferences" }]} action={{ href: "#plan", label: "TELL US WHAT YOU HAVE IN MIND" }} />
     <section className="journey-manifesto" id="possibilities"><div className="shell journey-manifesto-grid"><div className="journey-manifesto-copy"><h2><span>A journey that feels</span> <em>like yours.</em></h2><i aria-hidden="true" /><p>A quiet morning rather than another early start. More time with a place, less time moving between hotels. The freedom to follow what interests you.</p><strong>We begin by listening.</strong></div></div></section>
-    <section className="journey-experiences section section-sand"><div className="shell"><div className="journey-editorial-heading"><h2>What would make this your kind of trip?</h2><p>We’ll help you balance the places you want to see with the way you want to spend your days.</p></div><div className="journey-experience-grid">{experiences.map(item => <article key={item.title}><div><Image src={item.image} alt={item.alt} fill unoptimized sizes="(max-width:700px) 100vw, 50vw" /></div><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div></section>
+    <section className="section section-sand custom-travel-preferences"><div className="narrow journey-editorial-heading"><h2>What would make this your kind of trip?</h2><p>Later starts, fewer hotel changes, time for markets or photography. Tell us what matters to your party, and we’ll shape the days around it.</p></div></section>
+    <YunnanInspiration selectable />
     <section className="journey-itinerary section" id="ideas"><div className="shell journey-section-layout"><header><h2>A few ways your journey could take shape.</h2><span>A little inspiration to get you started. We’ll adapt these route ideas and experiences around your plans.</span></header><div className="journey-days">{ideas.map((idea, index) => <details key={idea.title} open={index === 0}><summary><span>0{index + 1}</span><div><h3>{idea.title}</h3><p>{idea.route}</p></div><b aria-hidden="true">+</b></summary><p>{idea.text}</p></details>)}</div></div></section>
     <section className="journey-mid-cta"><div className="shell"><div><h2>Already have an itinerary in mind?</h2><p>Tell us what you would keep, add or change.</p></div><div><Link href="#plan" className="button button-light">MAKE MY JOURNEY PERSONAL</Link><span>You can include an existing route in your enquiry.</span></div></div></section>
     <section className="journey-support section journey-support-flow custom-planning-flow" id="process"><div className="shell journey-section-layout"><header><h2>From a first idea to a journey you can look forward to.</h2><span>You’ll speak with Joy as we shape the plan. A licensed local partner confirms and operates the arrangements.</span></header><div className="journey-support-grid">{steps.map(([number,title,text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
@@ -72,5 +69,5 @@ export default function CustomChinaTourPage() {
     <Link href="#plan" className="journey-mobile-cta">START PLANNING <span>→</span></Link>
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
-  </main>;
+  </main></JourneyInspirationProvider>;
 }

@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { useRef, useState, type FormEvent } from "react";
 import { journeyBudgets, journeyComfort, journeyInterests } from "@/lib/custom-journey-enquiry";
+import { JourneyPlaceSelection, useJourneyInspiration } from "@/components/journey-inspiration-context";
 import { trackEvent } from "@/lib/analytics";
 
 export function CustomJourneyForm() {
+  const { selected } = useJourneyInspiration();
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const requestId = useRef<string | null>(null);
@@ -17,6 +19,7 @@ export function CustomJourneyForm() {
     const data = new FormData(event.currentTarget);
     requestId.current ??= crypto.randomUUID();
     const fields = Object.fromEntries(["name", "email", "whatsapp", "travelTiming", "tripLength", "destinations", "budget", "comfort", "notes", "website"].map(key => [key, String(data.get(key) || "")]));
+    fields.destinations = [fields.destinations, ...selected].filter(Boolean).join("; ");
     setStatus("sending");
     setMessage("");
     try {
@@ -37,6 +40,7 @@ export function CustomJourneyForm() {
     <div className="contact-field-row"><label><span>Your name *</span><input name="name" autoComplete="name" type="text" maxLength={100} required /></label><label><span>Email *</span><input name="email" autoComplete="email" type="email" maxLength={254} required /></label></div>
     <label><span>When would you like to travel?</span><input name="travelTiming" type="text" placeholder="Dates, a month, or flexible" maxLength={100} /></label>
     <fieldset><legend>Your party</legend><div className="contact-field-row"><label><span>Adults *</span><input name="adults" type="number" min={1} max={30} defaultValue={2} required /></label><label><span>Children</span><input name="children" type="number" min={0} max={20} defaultValue={0} required /></label></div></fieldset>
+    <JourneyPlaceSelection />
     <label><span>Tell us about your trip</span><textarea name="notes" rows={4} maxLength={3000} placeholder="Places you’d like to see, your interests, preferred pace, or a route you want to change. A rough idea is fine." /></label>
     <details className="custom-enquiry-options"><summary>Add preferences <small>(optional)</small><span aria-hidden="true">+</span></summary><div>
     <label><span>WhatsApp <small>(optional, including country code)</small></span><input name="whatsapp" type="tel" autoComplete="tel" maxLength={40} /></label>

@@ -11,7 +11,7 @@ export type CustomJourneyEnquiry = {
 export function parseCustomJourneyEnquiry(value: unknown): CustomJourneyEnquiry | null {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
   const input = value as Record<string, unknown>;
-  const limits: Record<string, number> = { name: 100, email: 254, whatsapp: 40, travelTiming: 100, tripLength: 80, destinations: 300, budget: 60, comfort: 60, notes: 3000, website: 200, requestId: 36 };
+  const limits: Record<string, number> = { name: 100, email: 254, whatsapp: 40, travelTiming: 100, tripLength: 80, destinations: 700, budget: 60, comfort: 60, notes: 3000, website: 200, requestId: 36 };
   const fields: Record<string, string> = {};
   for (const [key, limit] of Object.entries(limits)) {
     if (typeof input[key] !== "string" || input[key].length > limit) return null;
