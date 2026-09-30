@@ -103,6 +103,11 @@ subtopics:
         excerpt: "Plan a long-haul Yunnan route and check whether a visa or qualifying transit fits."
         badge: "From the USA"
         status: published
+      - title: "Tailor-made private Yunnan tours"
+        href: /custom-china-tour
+        excerpt: "A private tour with local arrangements, shaped around your dates, interests and pace."
+        badge: "Private Tour"
+        status: published
       - title: "Dali hidden gems"
         href: /dali-hidden-gems-off-the-beaten-path
         excerpt: "Shaxi, Weishan, Zhoucheng, Xizhou, and Shibaoshan — 1–3 days outside Dali Old Town."
@@ -169,3 +174,4 @@ relatedHubs:
     href: /internet-in-china
     excerpt: "Data and VPN backup for maps and bookings."
 ---
+

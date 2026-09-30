@@ -131,6 +131,8 @@ Still deciding where to spend extra nights? Read the [Dali travel guide](/dali-t
 
 _Some booking links above are affiliate links. If you book through them, we may earn a commission at no extra cost to you._
 
+Have more than a week, or prefer fewer stops? We can [design a private Yunnan tour around your dates and pace](/custom-china-tour), starting with the flights you already have.
+
 ## Practical China preparation
 
 - **Payments:** set up Alipay or WeChat Pay and bring a backup card. See the [China payment guide](/digital-survival-china-payment-guide).
@@ -140,7 +142,7 @@ _Some booking links above are affiliate links. If you book through them, we may 
 
 ## Planning Yunnan from Singapore?
 
-If you already have dates and are unsure whether to spend the extra night in Dali, Shaxi or Lijiang, send Joy your arrival flight, departure flight, group size and preferred pace. She can help shape the route and connect you with the licensed local partner who arranges the journey.
+If you already have dates and are unsure whether to spend the extra night in Dali, Shaxi or Lijiang, send Joy your arrival flight, departure flight, group size and preferred pace. He can help shape the route and connect you with the licensed local partner who arranges the journey.
 
 [**Discuss my Yunnan route on WhatsApp →**](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20planning%20Yunnan%20from%20Singapore.%20My%20dates%20and%20group%20size%20are%3A%20Could%20you%20help%20check%20my%20route%3F)
 
@@ -154,3 +156,4 @@ If you already have dates and are unsure whether to spend the extra night in Dal
 | Shaxi Ancient Town | 沙溪古镇 | Shāxī Gǔzhèn |
 | Lijiang Ancient Town | 丽江古城 | Lìjiāng Gǔchéng |
 | Shangri-La | 香格里拉 | Xiānggélǐlā |
+

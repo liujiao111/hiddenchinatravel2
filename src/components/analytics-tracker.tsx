@@ -62,7 +62,12 @@ export function AnalyticsTracker() {
 
       if (url.origin !== window.location.origin) return;
 
-      if (url.pathname === "/journeys" || url.pathname === "/journeys/") {
+      if (url.pathname === "/custom-china-tour") {
+        trackEvent(url.hash === "#plan" ? "custom_journey_plan_click" : "custom_journey_click", {
+          ...common,
+          cta_location: link.dataset.ctaLocation || "page_content",
+        });
+      } else if (url.pathname === "/journeys" || url.pathname === "/journeys/") {
         trackEvent("explore_journeys_click", common);
       } else if (url.pathname.startsWith("/journeys/")) {
         trackEvent("journey_detail_click", {
