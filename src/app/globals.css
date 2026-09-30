@@ -1361,3 +1361,30 @@ p { line-height:1.7; }
   .article-yunnan-copy h2 { font-size:clamp(2.25rem,9vw,3rem); }
   .article-yunnan .journey-card { min-height:550px; }
 }
+
+/* Home preparation: an ordered doorway into the full China trip checklist. */
+.home-preparation { background:#f3f4ec; text-align:center; }
+.home-preparation-heading { max-width:810px; margin:0 auto; }
+.home-preparation-heading h2 { margin:0 0 23px; color:#293f39; font-size:clamp(2.2rem,3.4vw,3.4rem); }
+.home-preparation-heading p { max-width:780px; margin:0 auto; color:#5a625c; font-size:1.02rem; line-height:1.8; }
+.home-preparation-steps { position:relative; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(28px,5vw,90px); max-width:1120px; margin:52px auto 0; padding-top:155px; }
+.home-preparation-line { position:absolute; top:0; left:0; width:100%; height:125px; overflow:visible; }
+.home-preparation-line path { fill:none; stroke:#8b9387; stroke-width:1.1; vector-effect:non-scaling-stroke; }
+.home-preparation-line circle { fill:#c4c8ac; }
+.home-preparation-step { display:block; min-width:0; padding:0 10px 14px; }
+.home-preparation-step h3 { max-width:260px; margin:0 auto 13px; color:#2b423b; font-size:clamp(1.45rem,2.2vw,1.95rem); line-height:1.2; }
+.home-preparation-step p { max-width:280px; margin:0 auto; color:#626b63; font-size:.88rem; line-height:1.65; }
+.home-preparation-step-link { display:inline-block; margin-top:17px; color:#345d58; font-size:.65rem; font-weight:800; letter-spacing:.09em; }
+.home-preparation-step:hover .home-preparation-step-link,.home-preparation-step:focus-visible .home-preparation-step-link { text-decoration:underline; text-underline-offset:4px; }
+.home-preparation-dot { display:none; }
+.home-preparation-cta { margin-top:42px; }
+@media (max-width:700px) {
+  .home-preparation { text-align:left; }
+  .home-preparation-heading h2 { font-size:clamp(2.25rem,9vw,3.1rem); }
+  .home-preparation-steps { display:grid; grid-template-columns:1fr; gap:30px; margin:40px 0 0 11px; padding:0 0 0 33px; border-left:1px solid #a7afa0; }
+  .home-preparation-line { display:none; }
+  .home-preparation-step { position:relative; padding:0 0 0 4px; }
+  .home-preparation-dot { position:absolute; top:7px; left:-43px; display:block; width:19px; height:19px; border-radius:50%; background:#c4c8ac; }
+  .home-preparation-step h3,.home-preparation-step p { max-width:none; margin-left:0; }
+  .home-preparation-cta { width:100%; margin-top:40px; text-align:center; }
+}
