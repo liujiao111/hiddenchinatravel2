@@ -8,7 +8,7 @@ export function JourneyHero({ title, image, imageAlt, eyebrow, description, prim
   primary: Action; secondary: Action; note: string;
 }) {
   return <header className="journey-hero">
-    <Image src={image} alt={imageAlt} fill priority unoptimized sizes="100vw" />
+    <Image src={encodeURI(image)} alt={imageAlt} fill priority unoptimized sizes="100vw" />
     <div className="journey-hero-shade" />
     <nav className="breadcrumbs journey-breadcrumbs shell" aria-label="Breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/journeys">Journeys</Link><span>›</span><span>{title}</span></nav>
     <div className="journey-hero-copy shell"><div><p>{eyebrow}</p><h1>{title}</h1><span>{description}</span><div className="journey-hero-actions"><Link className="button journey-primary-action" href={primary.href}>{primary.label}</Link><Link className="journey-text-action" href={secondary.href}>{secondary.label} <b>↓</b></Link></div><small>{note}</small></div></div>
