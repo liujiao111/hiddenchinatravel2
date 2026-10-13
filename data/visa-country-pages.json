@@ -436,18 +436,33 @@
     "demonym": "Indonesian citizens",
     "demonymSingular": "an Indonesian citizen",
     "priority": "phase1",
-    "lastReviewed": "2026-07-29",
-    "uniqueNotes": [
-      "Indonesia is not on China’s 30-day unilateral visa-free list for ordinary tourism.",
-      "Indonesian passports appear on the 240-hour transit list — useful only with confirmed third-country onward travel through an eligible port.",
-      "For a dedicated China holiday from Jakarta, Surabaya, or Denpasar, apply for a tourist visa before departure.",
-      "Common gateways for Indonesians include Guangzhou, Shenzhen, Shanghai, and Xiamen; southern China routes are especially frequent."
-    ],
-    "commonRoutes": "Common gateways include Guangzhou, Shenzhen, Shanghai, and Xiamen from Jakarta, Surabaya, or Denpasar.",
+    "lastReviewed": "2026-10-13",
+    "uniqueNotes": [],
+    "commonRoutes": "",
     "faqOverrides": [
       {
-        "question": "Do Indonesian citizens need a visa for a China holiday?",
-        "answer": "Yes for a standalone holiday. Indonesia is not on the 30-day visa-free list. The 240-hour transit option only helps when you have a confirmed onward ticket to a third country — not for Indonesia–China–Indonesia vacation trips."
+        "question": "Does an Indonesian passport need a visa for China?",
+        "answer": "Usually yes for a regular mainland China holiday. Qualifying 240-hour transit and regional exemptions such as Hainan-only entry have separate conditions; they are not nationwide visa-free tourism."
+      },
+      {
+        "question": "Can Indonesians use 240-hour visa-free transit?",
+        "answer": "Yes, if the actual route, confirmed onward ticket, passport, ports, permitted areas and departure deadline meet the policy. Indonesia–China–Indonesia does not meet the third-country route test."
+      },
+      {
+        "question": "Is a China visa on arrival available for Indonesian tourists?",
+        "answer": "Do not assume automatic airport visa issuance for a regular holiday. Port visas are conditional arrangements, separate from visa-free transit. Confirm any specific proposed arrangement with the relevant authority before travel."
+      },
+      {
+        "question": "Can I apply online without submitting my passport?",
+        "answer": "Jakarta uses online review followed by passport submission under its published procedure. Online review completion is not final visa approval; follow the instructions from your application centre."
+      },
+      {
+        "question": "Can I visit Dali or Lijiang using an ASEAN Xishuangbanna group exemption?",
+        "answer": "No. That group exemption is restricted to Xishuangbanna under specified conditions. A broader Yunnan journey requires an appropriate visa or another qualifying entry basis."
+      },
+      {
+        "question": "Can an Indonesian emergency passport be used for these exemptions?",
+        "answer": "The transit and Hainan exemptions described here require ordinary passports. Ask the Chinese mission about requirements for your emergency travel document before departure."
       }
     ]
   },
