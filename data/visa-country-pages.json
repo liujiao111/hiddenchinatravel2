@@ -398,18 +398,33 @@
     "demonym": "Mexican citizens",
     "demonymSingular": "a Mexican citizen",
     "priority": "phase1",
-    "lastReviewed": "2026-07-29",
-    "uniqueNotes": [
-      "Mexico is not on China’s 30-day unilateral visa-free tourism list. A standalone China holiday usually needs a tourist (L) visa.",
-      "Mexican passport holders may use 240-hour visa-free transit with a confirmed onward ticket to a third country via an eligible port (for example Mexico → China → Japan).",
-      "Do not treat transit rules as a substitute for a round-trip holiday that returns to Mexico from China without a third country.",
-      "Apply at a Chinese embassy/consulate or authorized center in Mexico; long-haul boarding is often refused without a visa when transit conditions are not met."
-    ],
-    "commonRoutes": "Long-haul routes often connect via the US, Europe, or Middle East into Shanghai, Beijing, or Guangzhou.",
+    "lastReviewed": "2026-10-13",
+    "uniqueNotes": [],
+    "commonRoutes": "",
     "faqOverrides": [
       {
-        "question": "Can Mexican citizens enter China on 240-hour transit for a vacation?",
-        "answer": "Only if the itinerary is a genuine transit to a different third country with a confirmed onward ticket and an eligible port. A Mexico–China–Mexico holiday does not qualify — apply for a tourist visa instead."
+        "question": "Does a Mexican passport need a visa for China?",
+        "answer": "Usually yes for a regular mainland China holiday. Qualifying 240-hour transit and Hainan-only 30-day entry are separate exemptions; neither is nationwide 30-day visa-free tourism."
+      },
+      {
+        "question": "Can Mexicans use visa-free transit for a vacation?",
+        "answer": "Tourism is allowed during qualifying transit. Your onward route, ports, permitted travel areas and departure deadline must still meet the policy."
+      },
+      {
+        "question": "Does having a US visa let me enter China without a Chinese visa?",
+        "answer": "No. A US visa does not provide Chinese entry permission. Check the China visa or exemption requirements separately from any US connection requirements."
+      },
+      {
+        "question": "Can I apply for a Chinese visa if I live outside Mexico?",
+        "answer": "Check the Chinese mission or visa centre serving your place of application. Local requirements may include proof of legal stay or residence; the Mexico application process is not automatically applicable overseas."
+      },
+      {
+        "question": "Can I go from Hainan to Yunnan using the Hainan exemption?",
+        "answer": "The Hainan 30-day exemption only permits stays within Hainan Province. It does not authorize travel to Yunnan; arrange an appropriate entry basis for the wider trip."
+      },
+      {
+        "question": "Can Mexican citizens enter visa-free on an emergency passport?",
+        "answer": "The 240-hour transit and Hainan exemptions described here require ordinary passports. Ask the Chinese mission about the requirements for an emergency travel document before booking."
       }
     ]
   },
