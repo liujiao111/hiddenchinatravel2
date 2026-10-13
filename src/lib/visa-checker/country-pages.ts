@@ -123,8 +123,8 @@ function buildFaqs(
   const { demonym, demonymSingular, displayName } = editorial;
   const faqs: CountryPageFaq[] = [];
 
-  if (editorial.slug === "mexico" && editorial.faqOverrides) {
-    return editorial.faqOverrides.map((item, i) => ({ id: `mexico-${i}`, ...item }));
+  if (["mexico", "indonesia"].includes(editorial.slug) && editorial.faqOverrides) {
+    return editorial.faqOverrides.map((item, i) => ({ id: `${editorial.slug}-${i}`, ...item }));
   }
 
   if (bucket === "visa_free" && visaFree) {
@@ -222,6 +222,16 @@ function buildCopy(
 > {
   const { demonym, displayName } = editorial;
   const year = "2026";
+
+  if (editorial.slug === "indonesia") {
+    return {
+      title: "Do Indonesians Need a Visa for China? Passport & Transit Rules",
+      description: "Indonesian passport holders usually need a China visa. Compare transit and regional exemptions, visa-on-arrival rules, route examples and application steps.",
+      h1: "Do Indonesian Citizens Need a Visa for China?",
+      conclusionHeadline: "Usually yes for a mainland holiday — exemptions have conditions",
+      conclusionSummary: "Indonesian ordinary passport holders generally need a visa for a mainland China holiday. Qualifying 240-hour transit and regional exemptions are separate options, not nationwide 30-day visa-free entry.",
+    };
+  }
 
   if (editorial.slug === "mexico") {
     return {
