@@ -137,7 +137,7 @@ _Some booking links above are affiliate links. If you book through them, we may 
 
 ## Planning Yunnan from Singapore?
 
-If you already have dates and are unsure whether to spend the extra night in Dali, Shaxi or Lijiang, send Joy your arrival flight, departure flight, group size and preferred pace. She can help shape the route and connect you with the licensed local partner who arranges the journey.
+If you already have dates and are unsure whether to spend the extra night in Dali, Shaxi or Lijiang, send Joy your arrival flight, departure flight, group size and preferred pace. He can help shape the route and connect you with the licensed local partner who arranges the journey.
 
 [**Discuss my Yunnan route on WhatsApp →**](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20planning%20Yunnan%20from%20Singapore.%20My%20dates%20and%20group%20size%20are%3A%20Could%20you%20help%20check%20my%20route%3F)
 

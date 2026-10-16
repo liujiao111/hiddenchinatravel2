@@ -1,0 +1,92 @@
+[
+  {
+    "id": "daniel-sarah-yunnan-family",
+    "title": "A completely worry-free family trip",
+    "quote": "This was our second time choosing Joy at Hidden China Travel as our travel planner, and he exceeded our expectations again. This time we went to Yunnan, and it was amazing! Beautiful scenery, great food, and so much to see. Everything was well organized, and all we had to do was relax and enjoy. Joy even managed to secure business-class train tickets for us when we decided to upgrade at very short notice. Our guides Sophie, Amy, Amy Du, and Lobsang each had their own style, and Lobsang’s English was excellent—communication was no problem at all. Overall, it was an extremely well-planned trip, and we had a truly worry-free time in Yunnan.",
+    "name": "Daniel & Sarah L.",
+    "country": "Singapore",
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "tan-family-nine-day",
+    "title": "Professional, reliable, and flexible",
+    "quote": "We chose this company’s 9-day itinerary. Since we speak a little Mandarin, we decided not to use a guide. Joy was a huge help in organizing the trip. The recommended places, such as Shangri-La, Jade Dragon Snow Mountain, and Yuhu Village in Lijiang, were all stunning. Although the train arrangements were a bit hectic during the trip, Joy handled everything well in the end. Our whole family is very grateful for his help.",
+    "name": "The Tan Family",
+    "country": "Malaysia",
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "rachel-kevin-lisa",
+    "title": "Guide Lisa made the journey fun",
+    "quote": "This was our first time bringing our young son to China, and it was truly a wonderful experience. Our main guide, Lisa, was humorous, friendly, and knowledgeable. She made the Yunnan journey enjoyable with engaging stories and explanations, and she shared many valuable insights about Yunnan, its culture, and ethnic minorities. She encouraged everyone to use serving chopsticks at meals, which improved hygiene and made dining more comfortable for all guests. Overall, this excellent first experience left us with wonderful memories.",
+    "name": "Rachel & Kevin M.",
+    "country": "USA",
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "faisal-aisha-honeymoon",
+    "title": "Smooth communication for a Muslim honeymoon couple",
+    "quote": "As a Muslim couple on our honeymoon, this itinerary involved a lot of walking and usually ended in the late afternoon or evening, so it may be tiring for honeymooners; however, the overall experience was very good, and we were satisfied and happy. Even with the language barrier, we communicated smoothly via WeChat, and our guide Lily also helped translate for us. Joy’s customer service was excellent, and he even gave us a thank-you gift.",
+    "name": "Faisal & Aisha R.",
+    "country": "Indonesia",
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "emily-vegetarian",
+    "title": "Vegetarian needs well taken care of",
+    "quote": "After living in Vancouver for a long time and being used to the beautiful scenery in British Columbia, I still couldn’t resist joining this tour to experience life in Yunnan. Our travel consultant Joy thoughtfully arranged the itinerary, so I didn’t have to worry about the schedule at all. What deserves special praise is that Joy set up a separate small table for our group of vegetarians and even provided excellent vegetarian meals free of charge. Overall, it was a very good experience.",
+    "name": "Emily C.",
+    "country": "Canada",
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "claire-thomas-sebastien",
+    "title": "Professional, patient, and funny guide Sébastien",
+    "quote": "The Hidden China Travel team was highly efficient and easy to reach both during trip preparation and throughout the journey. There were no downsides: our guide Sébastien was very professional and helpful—always patient and full of humor. The drivers were cautious, punctual, and helpful. The accommodation was high quality, either charming guesthouses or very comfortable hotels. We definitely recommend Hidden China Travel!",
+    "name": "Claire & Thomas",
+    "country": "France",
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "mark-susan-tiger-leaping",
+    "title": "Tiger Leaping Gorge private tour — excellent service from Driver Chen",
+    "quote": "The private tour was fantastic! We gained a lot—not only beautiful scenery but also exposure to ethnic minority cultures. Driver Chen drove very steadily, was very kind, extremely patient, and provided superb service. Yunnan is truly beautiful…",
+    "name": "Mark & Susan T.",
+    "country": "Australia",
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "michelle-lily-lijiang",
+    "title": "Lily in Lijiang — the best guide I’ve ever had",
+    "quote": "My guide Lily was truly the best guide I have ever met. She was professional, kind, flexible, and very accommodating. I traveled with my family, and her English was excellent. Her smile never faded, and she always had a calm, happy presence that made you feel at home. I highly recommend Lily and the Hidden China Travel team!",
+    "name": "Michelle H.",
+    "country": "New Zealand",
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "david-emma-jon",
+    "title": "Guide Jon — fluent English and thoughtful arrangements",
+    "quote": "We also experienced other guides during our time in Yunnan—none of them compared to Jon. His English is excellent. He also arranged a local traditional tie-dye experience in Zhoucheng near Xizhou, an unforgettable stay with a local family in Shaxi, and a cycling trip by Erhai Lake and a visit to a local market. He communicated perfectly, and he and his team were truly outstanding, making sure our entire journey from Kunming to Dali went smoothly. Highly recommended!",
+    "name": "David & Emma R.",
+    "country": "UK",
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "peter-jenny-eight-day",
+    "title": "A Yunnan journey that exceeded expectations",
+    "quote": "Not long ago, I finished an 8-day small group tour organized by Hidden China Travel, from Kunming to Dali, Lijiang, and Shangri-La. Throughout the whole trip, I felt happy and relaxed every single day. Yunnan itself is absolutely stunning. Overall, it was a wonderful experience, and I completely fell in love with Yunnan.",
+    "name": "Peter & Jenny K.",
+    "country": "Germany",
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  }
+]

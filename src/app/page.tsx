@@ -5,7 +5,10 @@ import { GuidesExplorer } from "@/components/guides-explorer";
 import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
 import { formatPriceLabel } from "@/lib/format-price";
+import { Testimonials } from "@/components/testimonials";
 import { getAllJourneys } from "@/lib/journeys";
+import { EnquireLink } from "@/components/enquire-link";
+import { getFeaturedTestimonials } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
   title: "Yunnan Private Tours & China Travel Guides | Hidden China Travel",
@@ -34,6 +37,7 @@ const destinations = [
 ];
 
 export default function Home() {
+  const stories = getFeaturedTestimonials();
   const journeys = getAllJourneys();
   const featuredJourney = journeys.find((journey) => journey.frontmatter.featured) ?? journeys[0];
   const journeyHref = `/journeys/${featuredJourney.slug}`;
@@ -46,21 +50,23 @@ export default function Home() {
 
     <section className="about-feature home-featured" id="journeys"><div className="about-feature-image"><Image src="/assets/blog/where-to-stay-in-dali/caicun-ecological-corridor.webp" alt="Erhai Lake and mountains near Dali, Yunnan" fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="about-feature-copy"><h2>Featured Yunnan journey</h2><h3 className="feature-name">{featuredJourney.frontmatter.title}</h3><p>Our signature private journey—designed with enough time to experience each place rather than simply pass through it.</p><div className="journey-facts">{journeyFacts.map((fact) => <span key={fact}>{fact}</span>)}</div><ul className="highlight-list">{journeyHighlights.map((item) => <li key={item}>✓ <span>{item}</span></li>)}</ul><p className="journey-price">From {formatPriceLabel(featuredJourney.frontmatter.fromPrice, featuredJourney.frontmatter.currency)} {featuredJourney.frontmatter.priceBasis}</p><Link href={journeyHref}>Explore this journey →</Link></div></section>
 
-    <section className="story section-sand"><div className="shell story-grid"><div><h2>Why Hidden China Travel exists</h2></div><blockquote>“Most travelers remember the places they visited. We want you to remember how those places felt.”<cite>Our point of view</cite></blockquote><div className="story-note"><b>Local knowledge, seen from both sides.</b><p>Hidden China Travel combines Joy&apos;s Yunnan roots with her experience of living abroad and becoming the foreign visitor herself.</p><Link href="/about-us">Read our story →</Link></div></div></section>
+    <section className="story section-sand"><div className="shell story-grid"><div><h2>Why Hidden China Travel exists</h2></div><blockquote>“Most travelers remember the places they visited. We want you to remember how those places felt.”<cite>Our point of view</cite></blockquote><div className="story-note"><b>Local knowledge, seen from both sides.</b><p>Hidden China Travel combines Joy&apos;s Yunnan roots with his experience of living abroad and becoming the foreign visitor himself.</p><Link href="/about-us">Read our story →</Link></div></div></section>
 
-    <section className="about-feature reverse home-founder"><div className="about-feature-image"><Image src="/brand/founder/portrait.webp" alt="Joy Liu, founder of Hidden China Travel" fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="about-feature-copy"><h2>Meet Joy Liu</h2><h3 className="feature-name">Born in Yunnan. Shaped by experiences abroad.</h3><p>Raised in Yunnan, Joy later lived in Japan and the Philippines. Being the foreigner taught her how much trusted local context can change a journey.</p><p>She created Hidden China Travel to make China feel a little less intimidating—and a lot more personal.</p><Link href="/about-us">About Joy →</Link></div></section>
+    <section className="about-feature reverse home-founder"><div className="about-feature-image"><Image src="/brand/founder/portrait.webp" alt="Joy Liu, founder of Hidden China Travel" fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="about-feature-copy"><h2>Meet Joy Liu</h2><h3 className="feature-name">Born in Yunnan. Shaped by experiences abroad.</h3><p>Raised in Yunnan, Joy later lived in Japan and the Philippines. Being the foreigner taught him how much trusted local context can change a journey.</p><p>He created Hidden China Travel to make China feel a little less intimidating—and a lot more personal.</p><Link href="/about-us">About Joy →</Link></div></section>
 
     <section className="section why" id="why-us"><div className="shell"><div className="section-heading light"><h2>Why travel with us?</h2></div><div className="reason-grid reason-grid-five">{reasons.map(([number,title,text]) => <article key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+
+    <Testimonials items={stories} heading="What travelers remember" intro="A few of the journeys guests have taken with Joy and our local partners in Yunnan." />
 
     <section className="section section-sand survival-section" id="guides"><div className="shell"><div className="section-heading"><h2>Prepare for your China trip</h2><p>Payments, internet, maps, visas and transport—the systems worth sorting before you land.</p></div><div className="utility-grid">{survivalItems.map(([number,title,text,href]) => <Link href={href} key={title} className="utility-card"><i>{number}</i><h3>{title}</h3><p>{text}</p><span>READ THE GUIDE →</span></Link>)}</div><div className="center"><Link href="/survival-kit" className="button button-green">GET THE FULL CHECKLIST</Link></div></div></section>
 
     <section className="section guides-section"><div className="shell"><div className="section-heading"><h2>Practical China Travel Guides</h2><p>Choose the topic you want to make easier before your first journey.</p></div><GuidesExplorer /></div></section>
 
-    <section className="cta-band mid-cta"><Image src="/home/local-support.webp" alt="A wooden boat on a highland lake in Yunnan" fill unoptimized sizes="100vw" /><div className="hero-shade" /><div><h2>Private travel, personal support</h2><p>Start with your dates and rough route. Joy can help shape a complete private journey around how you want to experience Yunnan.</p><Link href={whatsapp} className="button button-blue">ASK JOY</Link></div></section>
+    <section className="cta-band mid-cta"><Image src="/home/local-support.webp" alt="A wooden boat on a highland lake in Yunnan" fill unoptimized sizes="100vw" /><div className="hero-shade" /><div><h2>Private travel, personal support</h2><p>Start with your dates and rough route. Joy can help shape a complete private journey around how you want to experience Yunnan.</p><EnquireLink className="button button-blue">ASK JOY</EnquireLink></div></section>
 
     <section className="section destinations-section" id="destinations"><div className="shell"><div className="section-heading"><h2>Explore Yunnan</h2><p>Begin with the places and journey we know best, supported by real guides and local context.</p><Link className="section-heading-link" href="/china-destinations/yunnan">Open the complete Yunnan travel guide →</Link></div><div className="destination-grid home-destination-grid">{destinations.map(([name,note,image,href]) => <article className="image-card" key={name}><Image src={image} alt={name} fill sizes="(max-width: 700px) 100vw, 33vw" /><div className="card-shade" /><div className="image-card-copy"><p>{note}</p><h3>{name}</h3><Link href={href} className="button button-light">EXPLORE</Link></div></article>)}</div></div></section>
 
-    <section className="cta-band final-cta"><Image src="/home/plan-journey.webp" alt="Turquoise lake and snow mountains in Yunnan" fill unoptimized sizes="100vw" /><div className="hero-shade" /><div><h2>Ready to plan your first journey through Yunnan?</h2><p>Tell us your dates, interests and preferred pace. You still travel in your own way—we simply help remove the friction.</p><Link href={whatsapp} className="button button-blue">START ON WHATSAPP</Link></div></section>
+    <section className="cta-band final-cta"><Image src="/home/plan-journey.webp" alt="Turquoise lake and snow mountains in Yunnan" fill unoptimized sizes="100vw" /><div className="hero-shade" /><div><h2>Ready to plan your first journey through Yunnan?</h2><p>Tell us your dates, interests and preferred pace. You still travel in your own way—we simply help remove the friction.</p><EnquireLink className="button button-blue">TELL US ABOUT YOUR TRIP</EnquireLink></div></section>
     <ContentFooter />
   </main>;
 }

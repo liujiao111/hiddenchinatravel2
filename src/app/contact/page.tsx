@@ -4,7 +4,10 @@ import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { ContentFooter } from "@/components/content-footer";
 import { SiteHeader } from "@/components/site-header";
+import { Testimonials } from "@/components/testimonials";
+import { interests } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
+import { getFeaturedTestimonials } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
   title: { absolute: "Contact Hidden China Travel | Talk With Joy Liu" },
@@ -17,7 +20,7 @@ const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=Hi%20Joy%2C%20
 const steps = [
   ["01", "Tell us about your plans", "Share your dates, destinations, and questions."],
   ["02", "We'll review everything personally", "Every inquiry is reviewed by Joy Liu.\n\nNo automated travel templates.\n\nNo outsourced sales teams."],
-  ["03", "We'll explore the possibilities", "If one of our journeys is a good fit, we'll prepare recommendations and next steps."],
+  ["03", "We'll explore the possibilities", "If one of our journeys is a good fit, you'll receive initial suggestions and next steps."],
   ["04", "You decide", "No sales pressure.\n\nNo obligation to book."],
 ];
 
@@ -32,7 +35,11 @@ const questions = [
   "Do I need Alipay, WeChat Pay, or an eSIM?",
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ interest?: string }> }) {
+  const stories = getFeaturedTestimonials();
+  const interest = (await searchParams).interest;
+  const defaultInterest = interests.includes(interest as (typeof interests)[number]) ? interest : undefined;
+
   return (
     <main>
       <SiteHeader />
@@ -44,7 +51,7 @@ export default function ContactPage() {
           <p>Whether you&apos;re planning your first trip to China, exploring Yunnan, or simply looking for practical advice, we&apos;d love to hear from you.</p>
           <div className="contact-hero-emphasis"><span>No pressure.</span><span>No obligation.</span><strong>Just a conversation.</strong></div>
           <Link className="button button-blue" href={whatsapp}>Chat with Joy on WhatsApp</Link>
-          <small>Usually replies within 24 hours.</small>
+          <small>{siteConfig.replyTime}</small>
         </div>
       </section>
 
@@ -82,14 +89,16 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="contact-form-section section">
+      <Testimonials items={stories} heading="Travelers who started with a conversation" intro="A few of the people who wrote to Joy first, then traveled with us through Yunnan." />
+
+      <section className="contact-form-section section" id="enquire">
         <div className="shell contact-form-layout">
           <header>
             <p className="contact-kicker">START THE CONVERSATION</p>
             <h2>Tell Us About Your Trip</h2>
-            <p>The more we know, the better advice we can give.</p>
+            <p>Joy will personally review your enquiry and reply with initial suggestions. {siteConfig.replyTime}</p>
           </header>
-          <ContactForm />
+          <ContactForm defaultInterest={defaultInterest} />
         </div>
       </section>
 
@@ -112,7 +121,7 @@ export default function ContactPage() {
           <div className="contact-method-grid">
             <article><span>01</span><h3>WhatsApp</h3><p>The fastest way to reach us.</p><Link href={whatsapp}>Chat on WhatsApp →</Link></article>
             <article><span>02</span><h3>Email</h3><p>For detailed questions or attachments.</p><a href="mailto:joy.liu@hiddenchinatravel.com">joy.liu@hiddenchinatravel.com</a></article>
-            <article><span>03</span><h3>Response Time</h3><p>Usually within 24 hours.</p></article>
+            <article><span>03</span><h3>Response Time</h3><p>{siteConfig.replyTime}</p></article>
           </div>
         </div>
       </section>

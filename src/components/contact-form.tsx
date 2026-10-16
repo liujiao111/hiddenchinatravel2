@@ -1,36 +1,77 @@
 "use client";
 
-import type { FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { scheduleScrollToEnquire, scrollToEnquire } from "@/components/enquire-link";
+import { enquiryMessage, interests, parseEnquiry, travelWindows } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
 
-const travelWindows = ["Within 1 month", "1–3 months", "3–6 months", "More than 6 months", "Just researching"];
-const interests = ["Yunnan Journey", "Private Travel", "Custom Trip Planning", "China Travel Advice", "Not Sure Yet"];
+type Props = {
+  defaultInterest?: string;
+};
 
-export function ContactForm() {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+export function ContactForm({ defaultInterest }: Props) {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [error, setError] = useState("");
+  const [whatsappHref, setWhatsappHref] = useState("");
+  const selectedInterest = interests.includes(defaultInterest as (typeof interests)[number]) ? defaultInterest : "Yunnan Journey";
+
+  useEffect(() => {
+    scheduleScrollToEnquire();
+    window.addEventListener("hashchange", scrollToEnquire);
+    return () => window.removeEventListener("hashchange", scrollToEnquire);
+  }, []);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const message = [
-      "Hi Joy, I'd like to talk about my China trip.",
-      "",
-      `Name: ${data.get("name")}`,
-      `Email: ${data.get("email")}`,
-      `WhatsApp: ${data.get("whatsapp") || "Not provided"}`,
-      `Travel timing: ${data.get("travelWindow")}`,
-      `Interested in: ${data.get("interest")}`,
-      "",
-      "My plans:",
-      String(data.get("plans") || ""),
-    ].join("\n");
+    const data = Object.fromEntries(new FormData(event.currentTarget).entries());
+    const parsed = parseEnquiry(data);
+    if ("error" in parsed) {
+      setStatus("error");
+      setError(parsed.error);
+      return;
+    }
 
-    window.open(`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    setStatus("sending");
+    setError("");
+    setWhatsappHref(`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(enquiryMessage(parsed))}`);
+
+    try {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsed),
+      });
+      const result = await response.json().catch(() => ({ error: "We could not send this just now." }));
+
+      if (!response.ok) {
+        setStatus("error");
+        setError(typeof result.error === "string" ? result.error : "We could not send this just now.");
+        return;
+      }
+
+      setStatus("success");
+    } catch {
+      setStatus("error");
+      setError("We could not send this just now.");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="contact-form-success">
+        <h3>Thank you. Joy has your note.</h3>
+        <p>He will personally review your enquiry and reply with initial suggestions. {siteConfig.replyTime} There is no obligation to book.</p>
+        <p>If you would rather continue on WhatsApp, you can send the same note now.</p>
+        <a className="button button-blue" href={whatsappHref}>Send on WhatsApp</a>
+      </div>
+    );
   }
 
   return (
     <form className="contact-form" onSubmit={handleSubmit}>
       <div className="contact-field-row">
         <label>
-          <span>Name</span>
+          <span>Your name</span>
           <input name="name" type="text" autoComplete="name" required />
         </label>
         <label>
@@ -39,13 +80,18 @@ export function ContactForm() {
         </label>
       </div>
 
+      <label className="contact-honeypot" aria-hidden="true">
+        <span>Company</span>
+        <input name="company" type="text" tabIndex={-1} autoComplete="off" />
+      </label>
+
       <label>
         <span>WhatsApp <small>(recommended)</small></span>
         <input name="whatsapp" type="tel" autoComplete="tel" />
       </label>
 
       <fieldset>
-        <legend>When are you planning to travel?</legend>
+        <legend>When are you thinking of traveling?</legend>
         <div className="contact-options">
           {travelWindows.map((option, index) => (
             <label key={option}>
@@ -57,11 +103,11 @@ export function ContactForm() {
       </fieldset>
 
       <fieldset>
-        <legend>What are you interested in?</legend>
+        <legend>What are you hoping to plan?</legend>
         <div className="contact-options">
-          {interests.map((option, index) => (
+          {interests.map((option) => (
             <label key={option}>
-              <input name="interest" type="radio" value={option} defaultChecked={index === 4} />
+              <input name="interest" type="radio" value={option} defaultChecked={option === selectedInterest} />
               <span>{option}</span>
             </label>
           ))}
@@ -69,7 +115,7 @@ export function ContactForm() {
       </fieldset>
 
       <label>
-        <span>Tell Us About Your Plans</span>
+        <span>Where are you thinking of going?</span>
         <textarea
           name="plans"
           rows={7}
@@ -78,8 +124,11 @@ export function ContactForm() {
         />
       </label>
 
-      <button className="button button-blue" type="submit">Start the Conversation</button>
-      <p className="contact-form-note">Your answers will open in WhatsApp, ready for you to review and send.</p>
+      <button className="button button-blue" type="submit" disabled={status === "sending"}>
+        {status === "sending" ? "Sending…" : "Send to Joy"}
+      </button>
+      {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}
+      <p className="contact-form-note">Joy will personally review this and reply with initial suggestions. {siteConfig.replyTime}</p>
     </form>
   );
 }

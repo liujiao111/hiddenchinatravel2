@@ -234,7 +234,7 @@ Keep these practical guides handy before you fly:
 
 ## Planning Yunnan from the USA?
 
-Have a passport, flights and a rough route in mind? Send Joy your dates, departure city, travel pace and any Asian stopovers. She can help shape a realistic Yunnan route and connect you with a licensed local partner to arrange it.
+Have a passport, flights and a rough route in mind? Send Joy your dates, departure city, travel pace and any Asian stopovers. He can help shape a realistic Yunnan route and connect you with a licensed local partner to arrange it.
 
 [**PLAN MY YUNNAN TRIP →**](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20planning%20a%20Yunnan%20trip%20from%20the%20USA%20and%20would%20like%20help%20deciding%20on%20visa%20vs%20240-hour%20transit%20and%20shaping%20a%20route)
 

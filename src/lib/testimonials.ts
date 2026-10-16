@@ -1,0 +1,22 @@
+import testimonials from "../../content/testimonials.json";
+
+export type Testimonial = {
+  id: string;
+  title: string;
+  quote: string;
+  name: string;
+  country: string;
+  journeySlugs: string[];
+  featured: boolean;
+};
+
+const allTestimonials = testimonials as Testimonial[];
+
+export function getFeaturedTestimonials() {
+  return allTestimonials.filter((item) => item.featured);
+}
+
+export function getTestimonialsForJourney(slug: string) {
+  const matched = allTestimonials.filter((item) => item.journeySlugs.includes(slug));
+  return matched.length > 0 ? matched : getFeaturedTestimonials();
+}

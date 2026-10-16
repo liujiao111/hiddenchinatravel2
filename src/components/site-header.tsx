@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { SiteSearch } from "@/components/site-search";
+import { EnquireLink } from "@/components/enquire-link";
+import { contactHref } from "@/lib/enquiry";
 
 type MenuName = "destinations" | "journeys" | "guides" | "about";
 
@@ -59,7 +61,8 @@ const hrefFor = (label: string) => {
   if (["Travel at your pace", "Experiences, not checklists", "Responsible local travel"].includes(label)) return "/about-us#our-approach";
   if (label === "Practical preparation") return "/china-travel-essentials";
   if (label === "Get the Dali local guide") return "/dali-travel-guide";
-  if (label.includes("WhatsApp") || label.includes("conversation") || label.includes("route")) return whatsapp;
+  if (label.includes("WhatsApp")) return whatsapp;
+  if (label.includes("conversation") || label.includes("route")) return contactHref();
   return "/#guides";
 };
 
@@ -69,7 +72,7 @@ export function SiteHeader() {
   return <header className="site-header" onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
       <Link href="/" className="brand" aria-label="Hidden China Travel home"><Image src="/brand/logo.webp" alt="Hidden China Travel" width={160} height={80} className="brand-logo" unoptimized /></Link>
-      <div className="header-contact"><span>Local insight, private journeys and personal support</span><Link className="button button-blue" href={whatsapp}>PLAN MY JOURNEY</Link></div>
+      <div className="header-contact"><span>Local insight, private journeys and personal support</span><EnquireLink className="button button-blue">PLAN MY JOURNEY</EnquireLink></div>
     </div>
     <nav className="nav-row" aria-label="Main navigation">
       <div className="shell nav-inner">
@@ -78,6 +81,7 @@ export function SiteHeader() {
           <button className={open === "journeys" ? "active" : ""} onClick={() => setOpen("journeys")} onMouseEnter={() => setOpen("journeys")} aria-expanded={open === "journeys"}>JOURNEYS<span className="nav-chevron" aria-hidden="true" /></button>
           <button className={open === "guides" ? "active" : ""} onClick={() => setOpen("guides")} onMouseEnter={() => setOpen("guides")} aria-expanded={open === "guides"}>TRAVEL GUIDES<span className="nav-chevron" aria-hidden="true" /></button>
           <button className={open === "about" ? "active" : ""} onClick={() => setOpen("about")} onMouseEnter={() => setOpen("about")} aria-expanded={open === "about"}>ABOUT US<span className="nav-chevron" aria-hidden="true" /></button>
+          <Link href="/contact" onMouseEnter={() => setOpen(null)} onClick={() => setOpen(null)}>CONTACT US</Link>
         </div>
         <SiteSearch />
       </div>
@@ -92,11 +96,14 @@ export function SiteHeader() {
         <section className="mega-journey-feature"><p className="kicker">FEATURED JOURNEY</p><Link href="/journeys/kunming-dali-shaxi-lijiang-6-days"><Image src="/home/hero.webp" alt="A private journey through Yunnan" width={460} height={250} unoptimized /><span><small>6 DAYS · PRIVATE JOURNEY</small><b>Kunming, Dali, Shaxi & Lijiang</b><em>Private · Unhurried · No shopping stops</em><strong>VIEW JOURNEY →</strong></span></Link></section>
         <section><h2>Explore by place</h2>{["Yunnan", "Dali", "Shaxi", "Lijiang", "Xishuangbanna", "Shangri-La"].map((item) => <Link key={item} href="/journeys">{item}</Link>)}<Link href="/journeys" className="mega-text-link">VIEW ALL JOURNEYS →</Link></section>
         <section><h2>Travel your way</h2>{["Private journeys", "Slow-paced travel", "First trip to China", "Family journeys", "Journeys for older travelers"].map((item) => <Link key={item} href="/journeys">{item}</Link>)}</section>
-        <section className="mega-callout"><p className="kicker">NOT SURE WHICH ROUTE FITS?</p><h2>Tell Joy how you like to travel.</h2><Link href={whatsapp} className="button button-light">CHAT WITH JOY</Link></section>
+        <section className="mega-callout"><p className="kicker">NOT SURE WHICH ROUTE FITS?</p><h2>Tell Joy how you like to travel.</h2><EnquireLink className="button button-light">TELL JOY</EnquireLink></section>
       </div> : open === "guides" ? <div className="shell mega-groups mega-guides">
         <section className="mega-survival-feature"><Image src="/assets/blog/independent-travel-china/cover.webp" alt="Travelers preparing for a journey through China" fill sizes="(max-width: 700px) 100vw, 30vw" unoptimized /><div><p>START HERE · FREE CHECKLIST</p><h2>Your China trip, prepared in one place.</h2><span>Entry, bookings, eSIM, VPN, payments and what to save before you fly.</span><Link className="button button-light" href="/survival-kit">OPEN THE SURVIVAL KIT →</Link></div></section>
         {menuGroups.guides.map(group => <section key={group.title}><h2>{group.title}</h2>{group.links.map(item => <Link key={item} href={hrefFor(item)}>{item}</Link>)}</section>)}
-      </div> : <div className="shell mega-groups">{menuGroups.about.map((group) => <section key={group.title}><h2>{group.title}</h2>{group.links.map((item) => <Link key={item} href={hrefFor(item)}>{item}</Link>)}</section>)}<section className="mega-callout"><p className="kicker">NOT SURE WHERE TO START?</p><h2>Tell us what kind of China trip you have in mind.</h2><Link href={whatsapp} className="button button-light">CHAT ON WHATSAPP</Link></section></div>}
+      </div> : <div className="shell mega-groups">{menuGroups.about.map((group) => <section key={group.title}><h2>{group.title}</h2>{group.links.map((item) => {
+        const href = hrefFor(item);
+        return href.includes("#enquire") ? <EnquireLink key={item}>{item}</EnquireLink> : <Link key={item} href={href}>{item}</Link>;
+      })}</section>)}<section className="mega-callout"><p className="kicker">NOT SURE WHERE TO START?</p><h2>Tell us what kind of China trip you have in mind.</h2><EnquireLink className="button button-light">START A CONVERSATION</EnquireLink></section></div>}
       <button className="mega-close" onClick={() => setOpen(null)} aria-label="Close menu">×</button>
     </div>}
   </header>;

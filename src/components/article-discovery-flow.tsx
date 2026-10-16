@@ -88,7 +88,7 @@ export function ArticleDiscoveryFlow({
         <p>You&apos;ll be speaking directly with Joy Liu.</p>
         <strong>Born in Yunnan. Shaped by experiences abroad.</strong>
         <Link className="button" href={whatsapp}>Chat with Joy on WhatsApp</Link>
-        <small>Usually replies within 24 hours.<br />No obligation. No pressure.</small>
+        <small>{siteConfig.replyTime}<br />No obligation. No pressure.</small>
       </div>
     </section>
   </>;
