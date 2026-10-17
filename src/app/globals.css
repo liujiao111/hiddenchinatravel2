@@ -1276,6 +1276,13 @@ p { line-height:1.7; }
 .testimonials-heading { max-width:720px; margin:0 auto 52px; text-align:center; }
 .testimonials-heading h2 { margin-bottom:12px; font-size:clamp(1.85rem,2.6vw,2.45rem); }
 .testimonials-heading p { margin:0; color:#5d5d56; }
+.testimonials-rating { display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:18px; }
+.testimonials-rating p { color:#7a6a48; font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.star-rating { display:flex; justify-content:center; gap:4px; color:#a58c5b; }
+.star-rating svg { width:16px; height:16px; fill:currentColor; }
+.testimonials-card .star-rating { margin-bottom:18px; }
+.client-voice .star-rating { justify-content:flex-start; margin-bottom:16px; }
+.client-voices .testimonials-rating { margin:0 0 8px; }
 .testimonials-viewport { overflow:hidden; }
 .testimonials-track { display:flex; align-items:stretch; transition:transform .55s ease; }
 .testimonials-track.is-instant { transition:none; }
@@ -1316,6 +1323,10 @@ p { line-height:1.7; }
 .proof-carousel figure { margin:0; }
 .proof-carousel-image { position:relative; height:clamp(270px,31vw,390px); overflow:hidden; background:#e8e5de; }
 .proof-carousel-portrait .proof-carousel-image img { object-fit:contain; }
+.proof-carousel-poster .proof-carousel-image { height:clamp(460px,52vw,680px); }
+.vehicle-size-switch { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+.vehicle-size-switch button { min-height:42px; padding:0 16px; border:1px solid #29463f; background:transparent; color:#29463f; font:inherit; font-size:.68rem; font-weight:800; letter-spacing:.08em; cursor:pointer; }
+.vehicle-size-switch button[aria-selected="true"] { background:#29463f; color:#fff; }
 .proof-carousel-landscape .proof-carousel-image img { object-fit:cover; }
 .proof-carousel figcaption { min-height:110px; padding:20px 26px 12px; }
 .proof-carousel figcaption>span { color:#927647; font-size:.68rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }

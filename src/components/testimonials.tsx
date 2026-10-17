@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState, type TransitionEvent } from "react";
+import { StarRating } from "@/components/star-rating";
 import type { Testimonial } from "@/lib/testimonials";
 
 type Props = {
@@ -86,6 +87,7 @@ export function Testimonials({ items, heading, intro }: Props) {
     <header className="testimonials-heading shell">
       <h2>{heading}</h2>
       {intro ? <p>{intro}</p> : null}
+      <div className="testimonials-rating"><StarRating label="Overall rating: 5 out of 5 stars" /><p>5.0 · Every guest rated 5 stars</p></div>
     </header>
     <div className="testimonials-viewport" ref={viewportRef}>
       <div
@@ -98,6 +100,7 @@ export function Testimonials({ items, heading, intro }: Props) {
       >
         {slides.map((item, slideIndex) => (
           <figure className="testimonials-card" key={`${item.id}-${slideIndex}`} style={{ width: metrics.card, flexBasis: metrics.card }}>
+            <StarRating />
             <blockquote>“{cardQuote(item.quote)}”</blockquote>
             <figcaption>
               <b>— {item.name}</b>

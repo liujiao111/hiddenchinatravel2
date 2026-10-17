@@ -39,7 +39,7 @@ The custom page complements the existing journey catalogue. Keep the two six-day
 - End-of-article alternative belongs in ArticleDiscoveryFlow; keep the real JourneyCard and the three-section information flow.
 - Product mismatch CTA stays in JourneyPage.
 - Use a small configurable text-link bridge for homepage/hub/manual article placements if repeated; do not introduce another product-card design.
-- Keep partner evidence in HuataiServiceProof. Its compact variant serves the custom page without importing six-day inclusions. The full variant remains on the existing itinerary.
+- Keep partner evidence in JourneyTrustSection. Its compact variant serves the custom page, and the full variant is shared by the journey pages.
 - Contextual article links require editorial placement; do not inject a sales CTA after every generic heading or replace unrelated article titles and metadata.
 
 ## Copy and visual hierarchy

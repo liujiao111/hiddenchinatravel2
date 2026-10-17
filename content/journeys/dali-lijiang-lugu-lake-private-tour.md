@@ -110,7 +110,7 @@ faqs:
   - question: "Are there shopping stops?"
     answer: "The proposed route has no mandatory shopping stops. Any optional purchases remain your choice."
   - question: "Who provides the contract and operates the trip?"
-    answer: "Yunnan Huatai International Travel Service Co., Ltd. is the proposed local operating partner. Contracting and payment details will be specified in the final written proposal."
+    answer: "Yunnan Tengran International Travel Agency Co., Ltd. is the licensed local operator. It confirms the services, handles the contract and operates the trip. The written proposal sets out the exact arrangements."
 ---
 
 ## Why this journey

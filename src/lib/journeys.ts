@@ -43,7 +43,7 @@ export type Journey = { slug: string; frontmatter: JourneyFrontmatter; body: str
 let journeyCache: Journey[] | undefined;
 
 export function getAllJourneys(): Journey[] {
-  if (journeyCache) return journeyCache;
+  if (journeyCache && process.env.NODE_ENV !== "development") return journeyCache;
   const directory = path.join(process.cwd(), "content", "journeys");
   if (!fs.existsSync(directory)) return [];
   journeyCache = fs.readdirSync(directory).filter((file) => file.endsWith(".md")).map((file) => {

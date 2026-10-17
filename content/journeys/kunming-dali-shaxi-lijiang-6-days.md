@@ -94,7 +94,7 @@ faqs:
   - question: "Are there any shopping stops?"
     answer: "No. There are no mandatory shopping stops, tourist factories or commission-led detours in the itinerary."
   - question: "Who arranges and operates the journey?"
-    answer: "The journey is quoted, contracted and operated by a licensed local travel partner. Hidden China Travel helps you shape the route and connect with the right local team."
+    answer: "Yunnan Tengran International Travel Agency Co., Ltd. quotes, contracts and operates the journey. Hidden China Travel helps you shape the route and coordinate the proposal."
 ---
 
 ## Why this journey
