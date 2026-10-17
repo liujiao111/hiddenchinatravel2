@@ -1,3 +1,5 @@
 Country,Region,rule_type,Max Stay Days,Requirement
 Kyrgyzstan,Asia,hainan_30_visa_free,30,Enter through a Hainan open port and remain inside Hainan Province
 Vietnam,Asia,hainan_30_visa_free,30,Enter through a Hainan open port and remain inside Hainan Province
+Mexico,Americas,hainan_30_visa_free,30,Enter through a Hainan open port and remain inside Hainan Province
+Indonesia,Asia,hainan_30_visa_free,30,Enter through a Hainan open port and remain inside Hainan Province

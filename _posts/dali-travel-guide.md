@@ -175,3 +175,6 @@ For the full pre-departure sequence—visa, data, payments, maps, transport, and
 Dali gets worse when it is overpacked. Old Town, Erhai, villages, Cangshan, and a rushed jump to Lijiang can look like five separate “must-dos” until you put the route on a calendar.
 
 If the unresolved part is the route itself—how long to stay, where to base yourselves, or whether to continue through Shaxi to Lijiang—start with the [complete Yunnan travel guide](/china-destinations/yunnan). For travelers who want the difficult logistics handled without joining a coach group, the [6-day private journey](/journeys/kunming-dali-shaxi-lijiang-6-days) is the closest match.
+
+If the six-day route does not fit, [design a private Yunnan journey with more time in Dali](/custom-china-tour). Tell us how many days you have and where you would like to go next.
+

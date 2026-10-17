@@ -160,6 +160,8 @@ None of these places demand a fixed itinerary — that's the point of writing ab
 - **Connectivity**: Rural stretches between these towns have patchy signal. Sort out your data plan before you leave Dali — see our [China eSIM guide](/best-esim-for-china-travel).
 - **Tickets**: Only Shibaoshan requires an actual ticket among the places above. It doesn't currently require advance booking, but that can change during major holidays — see our [guide to attraction reservations in China](/why-china-attractions-require-reservations) if you're traveling during a national holiday week.
 
+Want to weave these quieter places into a longer trip? [Plan a tailor-made Yunnan journey](/custom-china-tour) with time for the villages and countryside that interest you, rather than squeezing them into a rushed detour.
+
 ## FAQ
 
 **Is Shaxi worth a day trip from Dali?**

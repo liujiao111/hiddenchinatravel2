@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://hiddenchinatravel.com/survival-kit", changeFrequency: "monthly", priority: 0.8 },
     { url: "https://hiddenchinatravel.com/china-visa-checker", changeFrequency: "monthly", priority: 0.8 },
     { url: "https://hiddenchinatravel.com/china-currency-converter", changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://hiddenchinatravel.com/custom-china-tour", changeFrequency: "monthly", priority: 0.9 },
     ...getPhase1CountryEditorials().map((country) => ({
       url: `https://hiddenchinatravel.com/china-visa-checker/${country.slug}`,
       lastModified: country.lastReviewed,
@@ -32,3 +33,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 }
+

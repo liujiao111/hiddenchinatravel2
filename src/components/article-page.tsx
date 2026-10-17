@@ -20,8 +20,7 @@ export function ArticlePage({ item }: { item: ContentItem }) {
   const related = getRelatedArticles(item, 6);
   const journeys = getAllJourneys();
   const featuredJourney = journeys.find((journey) => journey.frontmatter.featured) || journeys[0];
-  const jsonLd = {
-    "@context": "https://schema.org",
+  const articleJsonLd = {
     "@type": "Article",
     headline: frontmatter.title,
     description: frontmatter.excerpt,
@@ -31,13 +30,27 @@ export function ArticlePage({ item }: { item: ContentItem }) {
     author: { "@type": "Person", name: frontmatter.author?.name || "Joy Liu" },
     publisher: { "@type": "Organization", name: "Hidden China Travel" },
   };
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      articleJsonLd,
+      ...(frontmatter.faqs?.length ? [{
+        "@type": "FAQPage",
+        mainEntity: frontmatter.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      }] : []),
+    ],
+  };
 
   return <main>
     <SiteHeader />
     <TopicNavigation active={frontmatter.section} />
     <article>
       <header className={frontmatter.coverImage ? "article-hero has-image" : "article-hero"}>
-        {frontmatter.coverImage && <Image src={frontmatter.coverImage} alt={frontmatter.title} fill priority unoptimized sizes="100vw" />}
+        {frontmatter.coverImage && <Image src={frontmatter.coverImage} alt={frontmatter.coverAlt || frontmatter.title} fill priority unoptimized sizes="100vw" />}
         <div className="article-hero-shade" />
         <nav className="breadcrumbs article-breadcrumbs shell" aria-label="Breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/china-travel-essentials">Travel guides</Link><span>›</span><span>{frontmatter.title}</span></nav>
         <div className="article-hero-copy shell">
@@ -52,7 +65,7 @@ export function ArticlePage({ item }: { item: ContentItem }) {
       </div>
     </article>
     {frontmatter.faqs?.length ? <section className="article-faq"><div className="narrow"><p className="article-section">COMMON QUESTIONS</p><h2>Frequently asked questions</h2>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><MarkdownContent compact>{faq.answer}</MarkdownContent></details>)}</div></section> : null}
-    <ArticleDiscoveryFlow related={related} journey={featuredJourney} sourceTitle={frontmatter.title} />
+    <ArticleDiscoveryFlow related={related} journey={featuredJourney} sourceTitle={frontmatter.title} sourceSection={frontmatter.section} />
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;

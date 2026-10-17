@@ -5,9 +5,10 @@ import path from "node:path";
 import matter from "gray-matter";
 
 export type JourneyExperience = { title: string; image: string; description: string };
-export type JourneyDay = { days: string; title: string; meta: string; description: string };
+export type JourneyDay = { days: string; title: string; meta: string; description: string; meals?: string };
 export type JourneyTier = { name: string; price: number; description: string; accommodation: string; idealFor: string; featured?: boolean };
 export type JourneyFaq = { question: string; answer: string };
+export type JourneyNote = { title: string; detail: string };
 
 export type JourneyFrontmatter = {
   title: string;
@@ -31,6 +32,7 @@ export type JourneyFrontmatter = {
   tiers: JourneyTier[];
   inclusions: string[];
   exclusions: string[];
+  bookingNotes?: JourneyNote[];
   faqs: JourneyFaq[];
 };
 

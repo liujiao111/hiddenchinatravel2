@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { scheduleScrollToEnquire, scrollToEnquire } from "@/components/enquire-link";
 import { enquiryMessage, interests, parseEnquiry, travelWindows } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
+import { trackEvent } from "@/lib/analytics";
 
 type Props = {
   defaultInterest?: string;
@@ -31,9 +32,17 @@ export function ContactForm({ defaultInterest }: Props) {
       return;
     }
 
+    const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(enquiryMessage(parsed))}`;
     setStatus("sending");
     setError("");
-    setWhatsappHref(`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(enquiryMessage(parsed))}`);
+    setWhatsappHref(whatsappUrl);
+
+    trackEvent("contact_form_submit", {
+      form_name: "trip_planning_contact",
+      travel_window: parsed.travelWindow,
+      interest: parsed.interest,
+      page_path: window.location.pathname,
+    });
 
     try {
       const response = await fetch("/api/enquiry", {

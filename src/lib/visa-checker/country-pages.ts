@@ -123,6 +123,10 @@ function buildFaqs(
   const { demonym, demonymSingular, displayName } = editorial;
   const faqs: CountryPageFaq[] = [];
 
+  if (["mexico", "indonesia"].includes(editorial.slug) && editorial.faqOverrides) {
+    return editorial.faqOverrides.map((item, i) => ({ id: `${editorial.slug}-${i}`, ...item }));
+  }
+
   if (bucket === "visa_free" && visaFree) {
     faqs.push({
       id: "need-visa",
@@ -218,6 +222,27 @@ function buildCopy(
 > {
   const { demonym, displayName } = editorial;
   const year = "2026";
+
+  if (editorial.slug === "indonesia") {
+    return {
+      title: "Do Indonesians Need a Visa for China? Passport & Transit Rules",
+      description: "Indonesian passport holders usually need a China visa. Compare transit and regional exemptions, visa-on-arrival rules, route examples and application steps.",
+      h1: "Do Indonesian Citizens Need a Visa for China?",
+      conclusionHeadline: "Usually yes for a mainland holiday — exemptions have conditions",
+      conclusionSummary: "Indonesian ordinary passport holders generally need a visa for a mainland China holiday. Qualifying 240-hour transit and regional exemptions are separate options, not nationwide 30-day visa-free entry.",
+    };
+  }
+
+  if (editorial.slug === "mexico") {
+    return {
+      title: "Do Mexicans Need a Visa for China? Visa & Transit Rules",
+      description: "Mexican passport holders usually need a China tourist visa. Compare 240-hour transit and Hainan exemptions, route examples and application steps in Mexico.",
+      h1: "Do Mexican Citizens Need a Visa for China?",
+      conclusionHeadline: "Usually yes for a mainland holiday — with specific exemptions",
+      conclusionSummary: "Mexican ordinary passport holders generally need a visa for a mainland China holiday. Qualifying 240-hour visa-free transit and Hainan-only 30-day entry are exceptions, not nationwide visa-free access.",
+    };
+  }
+
 
   if (bucket === "visa_free" && visaFree) {
     return {

@@ -11,10 +11,12 @@ export type JourneyCardData = {
   duration?: string;
   fromPrice?: string;
   features?: string[];
+  ctaLabel?: string;
+  trackingLocation?: string;
 };
 
 export function JourneyCard({ journey, priority = false }: { journey: JourneyCardData; priority?: boolean }) {
-  return <Link href={journey.href} className="journey-card">
+  return <Link href={journey.href} className="journey-card" data-cta-location={journey.trackingLocation}>
     <Image
       src={journey.image}
       alt={journey.imageAlt || journey.title}
@@ -33,7 +35,7 @@ export function JourneyCard({ journey, priority = false }: { journey: JourneyCar
         {journey.duration ? <b>{journey.duration}</b> : null}
         {journey.fromPrice ? <b>{journey.fromPrice}</b> : null}
       </div> : null}
-      <strong>Explore the journey →</strong>
+      <strong>{journey.ctaLabel || "Explore the journey →"}</strong>
     </div>
   </Link>;
 }

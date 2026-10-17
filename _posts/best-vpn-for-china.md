@@ -1,10 +1,10 @@
 ---
-title: "Best VPN for China in 2026: Tested VPNs that still work"
-seoTitle: "Best VPN for China 2026: Tested VPNs that still work"
-excerpt: "Looking for the best VPN for China 2026? I tested NordVPN, ExpressVPN, and Astrill, see Which VPNs is still work and avoid common setup mistakes"
+title: "Best VPN for China in 2026: What to Choose Before Your Trip"
+seoTitle: "Best VPN for China 2026: Options & Travel Setup"
+excerpt: "Compare ExpressVPN, NordVPN and Astrill for your China trip, understand when an eSIM may be enough, and prepare a backup connection before you fly."
 coverImage: "/assets/blog/best-vpn-for-china/cover.webp"
 date: "2026-06-27T13:53:33+00:00"
-dateModified: "2026-08-26T16:00:00+00:00"
+dateModified: "2026-09-30T00:00:00+00:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -25,21 +25,27 @@ section: "Internet & VPN & SIM in China"
 sourceUrl: "https://hiddenchinatravel.com/best-vpn-for-china"
 faqs:
   - question: "What is the best VPN for China in 2026?"
-    answer: "There is no always-on winner. What I actually use is NordVPN, with Obfuscated Servers plus OpenVPN TCP — it connects, but hotel Wi-Fi can take a long time. ExpressVPN is a simpler app; I have not used it as my daily China VPN. If hotel Wi-Fi matters, install a second app as backup."
+    answer: "ExpressVPN is my current preference based on personal use, while NordVPN is a service I have used extensively. This is not a dated, side-by-side benchmark, and neither recommendation guarantees access on every mainland network. Install before departure and prepare a backup connection."
   - question: "Does LetsVPN still work in China in 2026?"
-    answer: "No. LetsVPN shut down mainland operations in early 2026. Do not plan a trip around it."
+    answer: "I do not have a recent, dated China test for LetsVPN to report here. Check current mainland support with the provider before subscribing, and do not make it your only way to get online."
+  - question: "Does ExpressVPN work in China?"
+    answer: "ExpressVPN is my current choice based on personal experience, but that does not establish how it will perform on your trip. Connections can vary by network and over time. Install before departure, follow the provider’s current troubleshooting guidance and keep a backup."
   - question: "Does NordVPN work in China?"
-    answer: "Yes, with the right settings: Obfuscated Servers and OpenVPN (TCP), not NordLynx. In my use it does connect, but sometimes only after a long wait or a server switch — especially on hotel Wi-Fi."
-  - question: "Can I download a VPN from inside China?"
-    answer: "Do not count on it. Sites and app stores are inconsistent once you land. Buy, install, log in, and test at home."
-  - question: "Is using a VPN legal for tourists in China?"
-    answer: "Technically a gray area. In practice, enforcement against foreign tourists for personal use is essentially nonexistent. This is not legal advice."
+    answer: "In my past use, NordVPN could take time to connect, but speeds were generally good once connected. Follow NordVPN’s current China-specific instructions for your device rather than assuming an older protocol recipe still applies."
+  - question: "Should I use ExpressVPN or NordVPN in China?"
+    answer: "ExpressVPN is my current preference. If you already use NordVPN successfully and know its settings, there is no automatic reason to switch. Check current provider guidance and prepare an alternative connection."
+  - question: "Is Astrill better than ExpressVPN?"
+    answer: "I have not personally tested Astrill enough to make that comparison. It is an option to research for a longer stay, rather than a service I can rank above ExpressVPN from my own test results."
+  - question: "Can I download a VPN after arriving in China?"
+    answer: "Do not rely on being able to download or activate it after arrival. Install the official app, sign in, save support instructions and test the app before departure. A test outside China checks your setup; it does not prove China connectivity."
   - question: "Do I need a VPN if I have a travel eSIM?"
-    answer: "On mobile data, many short trips skip a VPN. Hotel and public Wi-Fi usually still need one. Full split: Do you need a VPN in China?"
+    answer: "Not necessarily. Some international travel eSIMs route mobile data outside mainland China; others may not. Check your specific plan’s routing and access information. An eSIM does not change how hotel Wi-Fi works, so consider a VPN or another backup if you need restricted services on Wi-Fi."
+  - question: "Will my VPN work on hotel Wi-Fi?"
+    answer: "It may, but results vary by network. Complete the hotel’s Wi-Fi login first, then try your VPN. If it fails, follow the provider’s current instructions or switch to a working mobile-data connection."
+  - question: "Can a VPN guarantee access to Google, WhatsApp or Instagram?"
+    answer: "No VPN should be presented as a permanent guarantee. Network restrictions and performance can change. Save important travel information offline and prepare another way to get online."
 ---
 
-
-**Last updated: September 2026**
 
 If you are traveling to China and wondering which VPN actually works, the short answer is: **there isn't one VPN that works perfectly for everyone, everywhere, all the time.**
 
@@ -136,6 +142,14 @@ The eSIM gives you mobile connectivity, while the VPN gives you another way to a
 
 If you're unsure which option makes sense for your trip, see my guides to [whether you need a VPN in China](/do-you-need-vpn-china) and [the best eSIMs for China travel](/best-esim-for-china-travel/).
 
+## What This Recommendation Is Based On
+
+My ExpressVPN and NordVPN comments describe personal use. This guide does not publish dated, comparable tests across the same cities, hotel Wi-Fi networks, mobile carriers and devices. Treat those comments as experience, not a current connection guarantee or a controlled ranking.
+
+I have not tested Astrill enough to rank it against those services, and I do not have a recent, dated China test for LetsVPN to report here. Provider documentation can help you configure an app, but it does not prove that it will connect on your particular network.
+
+Testing an app before departure confirms that your account and setup work outside China. It does not establish that the same connection will work after arrival.
+
 ## How I Evaluate VPNs for China
 
 I don't think "best VPN" should simply mean the VPN with the fastest speed test or the cheapest monthly price.
@@ -190,7 +204,7 @@ I don't want to arrive at a hotel after a long flight and spend 30 minutes tryin
 * Reasonably straightforward troubleshooting
 * Suitable for travelers who don't want to deal with complicated configuration
 
-ExpressVPN currently recommends leaving the protocol on **Automatic** in normal circumstances. If the connection doesn't work, its support documentation recommends trying alternative protocols such as Lightway, WireGuard, and OpenVPN depending on the device and situation.
+ExpressVPN’s [official troubleshooting guide](https://www.expressvpn.com/support/troubleshooting/vpn-connected-no-internet/) recommends starting with **Automatic**, then trying other available protocols if needed. Options vary by device and app version.
 
 That's a useful approach for travelers: **don't start by changing every setting.**
 
@@ -265,9 +279,9 @@ Familiarity matters.
 
 If you've already installed NordVPN, understand its settings, and have a working backup plan, sticking with something you know can be perfectly reasonable.
 
-NordVPN also provides specific troubleshooting guidance for users in countries with restricted internet access, including China. Its current documentation includes options such as NordWhisper, Obfuscated Servers, OpenVPN TCP, and manual IKEv2 depending on the situation and platform.
+NordVPN’s [restricted-network troubleshooting guide](https://support.nordvpn.com/hc/en-us/articles/38297515575697-Troubleshooting-VPN-connection-in-a-country-with-internet-restrictions) directs users in China to separate instructions. Follow the current guidance for your device.
 
-One important 2026 update: NordVPN says its Obfuscated Servers are being upgraded to use **NordWhisper** rather than the older OpenVPN-based implementation. So older China VPN guides that insist you must use a particular combination of "Obfuscated + OpenVPN" may now be outdated.
+NordVPN also [reports an upgrade of Obfuscated Servers to NordWhisper](https://support.nordvpn.com/hc/en-us/articles/46609126551697-NordVPN-Obfuscated-Servers-are-getting-an-upgrade-what-changed). An older guide that prescribes a fixed combination of Obfuscated Servers and OpenVPN may no longer match your app.
 
 ### My NordVPN experience in one sentence
 
@@ -332,7 +346,7 @@ That's a more useful recommendation than simply saying one provider is "the best
 
 **Best for: Travelers staying in China for a longer period**
 
-Astrill has a long-standing reputation among people who regularly deal with restrictive internet environments.
+Astrill is another option to compare for a longer stay. Check its current device support, setup options and provider guidance before subscribing.
 
 It's particularly worth researching if you're:
 
@@ -358,11 +372,11 @@ The problem with VPNs in China is that performance isn't static.
 
 A provider can work well for one traveler and become unreliable later. Network conditions can also vary by location, ISP, hotel, and mobile network.
 
-For that reason, I wouldn't build my entire China connectivity plan around one lesser-tested provider.
+I do not have a recent, dated China test for LetsVPN to report here. Check current mainland support with the provider before subscribing, and keep another connection available.
 
 If you already use LetsVPN successfully, that doesn't necessarily mean you need to stop using it.
 
-But if you're starting from scratch, **I'd rather use a more established option and keep a second connection method available.**
+If you are starting from scratch, choose a service you can install and get support for before departure, and keep a second connection method available.
 
 ## Why Does a VPN Sometimes Stop Working in China?
 
@@ -530,7 +544,7 @@ If you're still confused about what you actually need, here's the simple version
 | What you need                 |         VPN |                  International eSIM |                            China SIM |
 | ----------------------------- | ----------: | ----------------------------------: | -----------------------------------: |
 | Mobile data                   |           ❌ |                                   ✅ |                                    ✅ |
-| Hotel Wi-Fi access            |           ✅ |                                   ❌ |                                    ❌ |
+| Works over hotel Wi-Fi        | Uses an existing connection | No — provides mobile data | No — provides mobile data |
 | Access to restricted services | Potentially | Depends on provider/network routing | Usually requires additional solution |
 | Easy for short trips          |      Medium |                            **Easy** |                               Medium |
 | Requires physical SIM         |          No |                                  No |                              Usually |
@@ -651,58 +665,6 @@ First understand whether your trip requires a VPN, an eSIM, or both.
 >
 > **[Get started with ExpressVPN](/go/expressvpn)**
 
-## FAQ
-
-### Does LetsVPN still work in China in 2026?
-
-I wouldn’t rely on LetsVPN as my primary VPN in China in 2026. It stopped mainland China operations in April 2026, and its later global service restart didn’t restore reliable China support.
-
-### What is the best VPN for China in 2026?
-
-Right now, **ExpressVPN is my preferred option**. I currently use it and have had a good overall experience. NordVPN is another option I have extensive personal experience with.
-
-### Does ExpressVPN work in China?
-
-ExpressVPN is designed to operate in restrictive network environments, but no VPN can guarantee uninterrupted access on every Chinese network. Your experience can vary depending on your network and current VPN infrastructure.
-
-### Does NordVPN work in China?
-
-NordVPN provides specific troubleshooting guidance for connections from China and other restricted networks. I used NordVPN for a long time; my main issue was that it could sometimes take a while to connect, although speeds were generally good once connected.
-
-### Should I use ExpressVPN or NordVPN in China?
-
-If you're buying a VPN specifically for your trip and want my current preference, I'd choose **ExpressVPN**.
-
-If you already use NordVPN and are comfortable with it, there's no automatic reason to switch.
-
-### Is Astrill better than ExpressVPN?
-
-I wouldn't make that claim based on my own experience. Astrill is worth considering, particularly for longer stays, but I haven't personally tested it enough to say it's better.
-
-### Can I download a VPN after arriving in China?
-
-You should **not rely on this**.
-
-Install and test your VPN before departure.
-
-### Do I need both a VPN and an eSIM?
-
-Not necessarily, but they solve different problems.
-
-An eSIM can provide mobile data, while a VPN can help with access to services restricted on mainland Chinese networks.
-
-For many travelers, using both provides a useful backup.
-
-### Will my VPN work on hotel Wi-Fi?
-
-It may, but hotel networks can behave differently from mobile networks. If your VPN doesn't connect, try completing the hotel's Wi-Fi login first, switching servers, changing protocols, or temporarily using mobile data.
-
-### Can a VPN guarantee access to Google, WhatsApp, Instagram or other blocked services?
-
-No VPN should be presented as a permanent guarantee.
-
-Network restrictions and VPN performance can change, so it's better to prepare a backup connection method.
-
 ## More China Internet Guides
 
 If you're preparing for your first trip to China, these guides will help:
@@ -711,11 +673,9 @@ If you're preparing for your first trip to China, these guides will help:
 * [Do You Need a VPN in China?](/do-you-need-vpn-china)
 * [Best eSIM for China Travel](/best-esim-for-china-travel/)
 * [China SIM Card for Foreigners](/china-sim-card-for-foreigners/)
-* [Complete China Travel Survival Guide](/digital-survival-china-survival-kit/)
+* [Complete China Travel Survival Guide](/survival-kit)
 
-**Bottom line:** Don't wait until you're in China to figure out your internet setup.
 
-Install your VPN before departure, test it, have an alternative connection method, and you'll have a much easier trip.
 
 > **Planning your China trip?**
 >
@@ -723,7 +683,3 @@ Install your VPN before departure, test it, have an alternative connection metho
 >
 > **[Check ExpressVPN](/go/expressvpn)**
 > **[See the Best eSIM Options for China](/best-esim-for-china-travel/)**
-
-**Bottom line:** Don't wait until you're in China to figure out your internet setup.
-
-Install your VPN before departure, test it, have an alternative connection method, and you'll have a much easier trip.

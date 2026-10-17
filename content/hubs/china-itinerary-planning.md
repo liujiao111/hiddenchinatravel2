@@ -8,7 +8,7 @@ canonical: /china-itinerary-planning
 eyebrow: "Independent travel · Itinerary hub"
 heroAnswer: "A workable China itinerary starts with pace and systems — not a list of famous sights. Confirm entry rules, lock payments and data, then choose fewer cities connected by high-speed rail. Polish day-by-day only after that stack works."
 description: "Independent China itineraries fail when travelers pack too many cities, treat Google Maps as gospel, or polish sightseeing before Alipay and data work. This hub is the planning layer: how to sequence cities, when a local PDF route helps, and which prep guides to read first."
-dateModified: "2026-08-23"
+dateModified: "2026-09-18"
 keywords:
   - plan China itinerary
   - independent China itinerary
@@ -93,6 +93,21 @@ subtopics:
         excerpt: "Plan Kunming, Dali, Shaxi and Lijiang with realistic pacing—and know when another region is too much."
         badge: "Destination"
         status: published
+      - title: "Yunnan Travel from Singapore"
+        href: /yunnan-travel-from-singapore
+        excerpt: "A first Yunnan route from Singapore, with entry, flight and travel-day decisions."
+        badge: "From Singapore"
+        status: published
+      - title: "Yunnan Travel from the USA"
+        href: /yunnan-travel-from-usa
+        excerpt: "Plan a long-haul Yunnan route and check whether a visa or qualifying transit fits."
+        badge: "From the USA"
+        status: published
+      - title: "Tailor-made private Yunnan tours"
+        href: /custom-china-tour
+        excerpt: "A private tour with local arrangements, shaped around your dates, interests and pace."
+        badge: "Private Tour"
+        status: published
       - title: "Dali hidden gems"
         href: /dali-hidden-gems-off-the-beaten-path
         excerpt: "Shaxi, Weishan, Zhoucheng, Xizhou, and Shibaoshan — 1–3 days outside Dali Old Town."
@@ -159,3 +174,4 @@ relatedHubs:
     href: /internet-in-china
     excerpt: "Data and VPN backup for maps and bookings."
 ---
+

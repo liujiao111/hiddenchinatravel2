@@ -43,12 +43,12 @@ In most cases, payment failure in China does not mean foreigners cannot pay. It 
 
 If you’re already set up but still hitting failures, here’s the short version of what’s usually going wrong:
 
-  * Your card is linked, but it may not be fully travel-ready — some cards behave inconsistently even after successful linking
-  * The merchant accepts QR code payments in general, but your specific payment route isn’t flowing smoothly in that context
-  * Your account needs more identity verification before it will process real payments
-  * Your network is good enough to load the app but not stable enough for a transaction to complete
-  * The transaction looks unusual to the payment system — wrong amount, too many retries, unfamiliar merchant type
-  * The problem is on the issuer side, not the app side
+- **Card:** Your card is linked, but it may not be fully travel-ready — some cards behave inconsistently even after successful linking.
+- **Merchant:** The merchant accepts QR code payments, but your specific payment route may not work smoothly there.
+- **Identity:** Your account needs more verification before it will process real payments.
+- **Network:** Your connection loads the app but may not be stable enough to complete a transaction.
+- **Transaction:** The amount, repeated retries, or merchant type may look unusual to the payment system.
+- **Bank:** The problem may be with your card issuer rather than the app.
 
 For most travelers, the safest default setup is an internationally issued Visa or Mastercard **plus** one backup option — not a single app and a single card. The chain has too many links to rely on just one of them.
 

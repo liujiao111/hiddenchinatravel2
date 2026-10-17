@@ -4,7 +4,7 @@ seoTitle: "Best eSIM for China in 2026: Plans Compared"
 excerpt: "Compare the best eSIMs for China in 2026: data, price, 5G, Google, WhatsApp, VPN requirements, and whether you need a Chinese phone number."
 coverImage: "/assets/blog/best-esim-for-china-travel/cover.webp"
 date: "2026-05-15T12:05:55+00:00"
-dateModified: "2026-09-03T05:00:00+00:00"
+dateModified: "2026-09-21T03:00:00+00:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -156,6 +156,8 @@ Airalo does not currently win either comparison against the matching Trip.com pl
 For 7 days, Trip.com currently offers 3 GB per day for $8.81, or 100 GB per day with a 10 Mbps speed cap for $13.13. Its 15-day 3 GB-per-day option is $16.59. All three listings are labeled **5G eSIM** on China Unicom and ChatGPT Available.
 
 I tested a Trip.com eSIM on mobile data in Yunnan, including mountain areas. Speeds were good for normal travel use, and ChatGPT worked without a separate VPN. That is a field observation, not a promise that every phone, location, or future package will behave identically.
+
+For the plan-by-plan price details, limitations, and exactly what was and was not tested, read the [full Trip.com China eSIM review and Yunnan field test](/trip-com-esim-china-review).
 
 ### Airalo: the dedicated eSIM-app option
 

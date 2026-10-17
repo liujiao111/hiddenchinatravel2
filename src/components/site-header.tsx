@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { SiteSearch } from "@/components/site-search";
-import { EnquireLink } from "@/components/enquire-link";
-import { contactHref } from "@/lib/enquiry";
 
 type MenuName = "destinations" | "journeys" | "guides" | "about";
 
@@ -26,7 +24,7 @@ const menuGroups: Record<"guides" | "about", { title: string; links: string[] }[
   guides: [
     { title: "Before you arrive", links: ["Visa & entry", "Visa checker", "Payments in China", "Currency converter", "Internet, VPN & eSIM", "Hotels for foreigners"] },
     { title: "Getting around", links: ["China trains", "Using Didi", "Maps & navigation", "Booking attraction tickets"] },
-    { title: "Destination guides", links: ["Dali travel guide", "Where to stay in Dali", "Dali hidden gems", "Yunnan itineraries"] },
+    { title: "Destination guides", links: ["Yunnan travel guide", "Dali travel guide", "Where to stay in Dali", "Dali hidden gems"] },
   ],
   about: [
     { title: "Hidden China Travel", links: ["About us", "How we plan your journey", "Why travel with us", "Our local partners"] },
@@ -49,7 +47,7 @@ const guideHrefs: Record<string, string> = {
   "Dali travel guide": "/dali-travel-guide",
   "Where to stay in Dali": "/where-to-stay-in-dali",
   "Dali hidden gems": "/dali-hidden-gems-off-the-beaten-path",
-  "Yunnan itineraries": "/china-destinations/yunnan",
+  "Yunnan travel guide": "/china-destinations/yunnan",
 };
 
 const hrefFor = (label: string) => {
@@ -61,8 +59,7 @@ const hrefFor = (label: string) => {
   if (["Travel at your pace", "Experiences, not checklists", "Responsible local travel"].includes(label)) return "/about-us#our-approach";
   if (label === "Practical preparation") return "/china-travel-essentials";
   if (label === "Get the Dali local guide") return "/dali-travel-guide";
-  if (label.includes("WhatsApp")) return whatsapp;
-  if (label.includes("conversation") || label.includes("route")) return contactHref();
+  if (label.includes("WhatsApp") || label.includes("conversation") || label.includes("route")) return whatsapp;
   return "/#guides";
 };
 
@@ -72,7 +69,7 @@ export function SiteHeader() {
   return <header className="site-header" onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
       <Link href="/" className="brand" aria-label="Hidden China Travel home"><Image src="/brand/logo.webp" alt="Hidden China Travel" width={160} height={80} className="brand-logo" unoptimized /></Link>
-      <div className="header-contact"><span>Local insight, private journeys and personal support</span><EnquireLink className="button button-blue">PLAN MY JOURNEY</EnquireLink></div>
+      <div className="header-contact"><span>Local insight, private journeys and personal support</span><Link className="button button-blue" href="/custom-china-tour" data-cta-location="header_custom">PLAN MY JOURNEY</Link></div>
     </div>
     <nav className="nav-row" aria-label="Main navigation">
       <div className="shell nav-inner">
@@ -91,19 +88,16 @@ export function SiteHeader() {
       {open === "destinations" ? <div className="shell mega-destinations">
         <section><h2>Most popular</h2><div className="mega-columns">{popular.map((item) => <Link key={item} href={destinationHref(item)}>{item}</Link>)}</div><Link className="mega-outline" href="/china-destinations/yunnan">EXPLORE YUNNAN</Link></section>
         <section><h2>Explore by region</h2><div className="mega-list">{regions.map((item) => <Link key={item} href={destinationHref(item)}>{item}</Link>)}</div></section>
-        <section className="mega-featured"><h2>Begin with Yunnan</h2><Link href="/journeys/kunming-dali-shaxi-lijiang-6-days"><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp" alt="Shaxi in Yunnan" width={150} height={88} /><span><b>Kunming, Dali, Shaxi & Lijiang</b><small>A 6-day private journey</small></span></Link><Link href="/about-us"><Image src="/assets/blog/where-to-stay-in-dali/caicun-ecological-corridor.webp" alt="Erhai Lake in Dali" width={150} height={88} /><span><b>New to China?</b><small>See how we make it easier</small></span></Link></section>
+        <section className="mega-featured"><h2>Begin with Yunnan</h2><Link href="/journeys/dali-lijiang-lugu-lake-private-tour"><Image src="/assets/resources/丽江-泸沽湖-419.jpg" alt="Lugu Lake in Yunnan" width={150} height={88} /><span><b>Dali, Lijiang &amp; Lugu Lake</b><small>6 days · 5 nights · Private</small></span></Link><Link href="/journeys/kunming-dali-shaxi-lijiang-6-days"><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp" alt="Shaxi in Yunnan" width={150} height={88} /><span><b>Kunming, Dali, Shaxi &amp; Lijiang</b><small>Another 6-day private route</small></span></Link></section>
       </div> : open === "journeys" ? <div className="shell mega-journeys">
-        <section className="mega-journey-feature"><p className="kicker">FEATURED JOURNEY</p><Link href="/journeys/kunming-dali-shaxi-lijiang-6-days"><Image src="/home/hero.webp" alt="A private journey through Yunnan" width={460} height={250} unoptimized /><span><small>6 DAYS · PRIVATE JOURNEY</small><b>Kunming, Dali, Shaxi & Lijiang</b><em>Private · Unhurried · No shopping stops</em><strong>VIEW JOURNEY →</strong></span></Link></section>
+        <section className="mega-journey-feature"><p className="kicker">FEATURED JOURNEY</p><Link href="/journeys/dali-lijiang-lugu-lake-private-tour"><Image src="/assets/resources/丽江-泸沽湖-419.jpg" alt="Lugu Lake in western Yunnan" width={460} height={250} unoptimized /><span><small>6 DAYS · 5 NIGHTS · PRIVATE</small><b>Dali, Lijiang &amp; Lugu Lake</b><em>Private vehicle · Local guide · Two nights by the lake</em><strong>VIEW JOURNEY →</strong></span></Link></section>
         <section><h2>Explore by place</h2>{["Yunnan", "Dali", "Shaxi", "Lijiang", "Xishuangbanna", "Shangri-La"].map((item) => <Link key={item} href="/journeys">{item}</Link>)}<Link href="/journeys" className="mega-text-link">VIEW ALL JOURNEYS →</Link></section>
-        <section><h2>Travel your way</h2>{["Private journeys", "Slow-paced travel", "First trip to China", "Family journeys", "Journeys for older travelers"].map((item) => <Link key={item} href="/journeys">{item}</Link>)}</section>
-        <section className="mega-callout"><p className="kicker">NOT SURE WHICH ROUTE FITS?</p><h2>Tell Joy how you like to travel.</h2><EnquireLink className="button button-light">TELL JOY</EnquireLink></section>
+        <section><h2>Travel your way</h2><Link href="/custom-china-tour" data-cta-location="header_journeys_custom">Tailor-made Yunnan tours</Link>{["Private journeys", "Slow-paced travel", "First trip to China", "Family journeys", "Journeys for older travelers"].map((item) => <Link key={item} href="/journeys">{item}</Link>)}</section>
+        <section className="mega-callout"><p className="kicker">NOT SURE WHICH ROUTE FITS?</p><h2>A route designed around your plans.</h2><Link href="/custom-china-tour" data-cta-location="header_custom_callout" className="button button-light">DESIGN YOUR JOURNEY</Link></section>
       </div> : open === "guides" ? <div className="shell mega-groups mega-guides">
         <section className="mega-survival-feature"><Image src="/assets/blog/independent-travel-china/cover.webp" alt="Travelers preparing for a journey through China" fill sizes="(max-width: 700px) 100vw, 30vw" unoptimized /><div><p>START HERE · FREE CHECKLIST</p><h2>Your China trip, prepared in one place.</h2><span>Entry, bookings, eSIM, VPN, payments and what to save before you fly.</span><Link className="button button-light" href="/survival-kit">OPEN THE SURVIVAL KIT →</Link></div></section>
-        {menuGroups.guides.map(group => <section key={group.title}><h2>{group.title}</h2>{group.links.map(item => <Link key={item} href={hrefFor(item)}>{item}</Link>)}</section>)}
-      </div> : <div className="shell mega-groups">{menuGroups.about.map((group) => <section key={group.title}><h2>{group.title}</h2>{group.links.map((item) => {
-        const href = hrefFor(item);
-        return href.includes("#enquire") ? <EnquireLink key={item}>{item}</EnquireLink> : <Link key={item} href={href}>{item}</Link>;
-      })}</section>)}<section className="mega-callout"><p className="kicker">NOT SURE WHERE TO START?</p><h2>Tell us what kind of China trip you have in mind.</h2><EnquireLink className="button button-light">START A CONVERSATION</EnquireLink></section></div>}
+        {menuGroups.guides.map(group => <section key={group.title}><h2>{group.title}</h2>{group.links.map(item => <Link key={item} href={hrefFor(item)}>{item}</Link>)}{group.title === "Destination guides" && <div className="mega-country-guides"><h3>Plan from your country</h3><Link href="/yunnan-travel-from-singapore">Yunnan from Singapore</Link><Link href="/yunnan-travel-from-usa">Yunnan from the USA</Link></div>}</section>)}
+      </div> : <div className="shell mega-groups">{menuGroups.about.map((group) => <section key={group.title}><h2>{group.title}</h2>{group.links.map((item) => <Link key={item} href={hrefFor(item)}>{item}</Link>)}</section>)}<section className="mega-callout"><p className="kicker">NOT SURE WHERE TO START?</p><h2>Tell us what kind of China trip you have in mind.</h2><Link href={whatsapp} className="button button-light">CHAT ON WHATSAPP</Link></section></div>}
       <button className="mega-close" onClick={() => setOpen(null)} aria-label="Close menu">×</button>
     </div>}
   </header>;

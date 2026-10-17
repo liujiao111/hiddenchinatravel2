@@ -4,7 +4,7 @@ seoTitle: "China SIM for Foreigners 2026: Buy, Setup, Mistakes"
 excerpt: "Buying a China SIM as a foreigner in 2026: passport + face scan, Unicom vs eSIM, when you need a +86 number, and the store mistakes that get you rejected."
 coverImage: "/assets/blog/china-sim-card-for-foreigners/cover.webp"
 date: "2026-03-19T06:46:13+00:00"
-dateModified: "2026-08-26T12:00:00+00:00"
+dateModified: "2026-09-21T03:00:00+00:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -56,22 +56,22 @@ This is where most guides either oversimplify or contradict each other, so let�
 
 Both give you data in China. The difference is that a physical SIM from a Chinese carrier gives you a **local Chinese phone number** , and an international eSIM doesn’t. That distinction matters more than most people realise.
 
-| **Physical SIM (China Unicom / Mobile)**| **International eSIM (Airalo / Holafly / Nomad)**  
----|---|---  
-**Where to buy**|  Airport counter or city store| Online, before you arrive  
-**Passport & face scan required**| Yes| Usually no  
-**Gets a Chinese phone number**|  ✅ Yes| ❌ No  
-**Can receive SMS verification codes**|  ✅ Yes| ❌ No  
-**Bypasses Great Firewall**|  ❌ No — need a VPN| ✅ Yes — routes outside China  
-**Setup effort**|  20–30 min in store| Scan a QR code  
-**Cost**|  ¥50–100/month| $5–30 for 1–15GB  
-**Best for**|  Stays 2+ weeks, WeChat Pay setup (especially for new users from scratch), local app registration| Short visits, data browsing only  
+| | **Physical SIM (China Unicom / Mobile)** | **International eSIM (Airalo / Holafly / Nomad)** |
+| --- | --- | --- |
+| **Where to buy** | Airport counter or city store | Online, before you arrive |
+| **Passport & face scan required** | Yes | Usually no |
+| **Gets a Chinese phone number** | ✅ Yes | ❌ No |
+| **Can receive SMS verification codes** | ✅ Yes | ❌ No |
+| **Bypasses Great Firewall** | ❌ No — need a VPN | ✅ Yes — routes outside China |
+| **Setup effort** | 20–30 min in store | Scan a QR code |
+| **Cost** | ¥50–100/month | $5–30 for 1–15GB |
+| **Best for** | Stays 2+ weeks, WeChat Pay setup (especially for new users from scratch), local app registration | Short visits, data browsing only |
   
 The key tradeoff: international eSIMs bypass the Great Firewall without a VPN, which is genuinely useful. But they don’t give you a Chinese number, which means you can’t register WeChat with a local number, can’t use Meituan (food delivery, power banks), and may hit walls with certain booking platforms. For most short-term tourists in 2025–2026, **this matters less than it used to** — WeChat Pay and Alipay now accept foreign cards, and Didi works without a local number. But if you’re setting up any accounts from scratch, a local number is still the smoother path.
 
 **In practice, here’s how most people decide:**
 
-  * **Under 2 weeks, mainly maps and browsing** → Buy a travel eSIM before you fly so data works at the airport. [Compare exact eSIM plans](/best-esim-for-china-travel#esim-plan-picker). No queues, no face scan.
+  * **Under 2 weeks, mainly maps and browsing** → Buy a travel eSIM before you fly so data works at the airport. [Compare exact eSIM plans](/best-esim-for-china-travel#esim-plan-picker), or read the [Trip.com China eSIM review](/trip-com-esim-china-review) if that is the provider you are considering. No queues, no face scan.
   * **2+ weeks, or you want WeChat Pay / local app SMS** → Physical SIM. Takes 30 minutes at a store but you’ll be glad you did it.
   * **Heading to western China (Tibet, Xinjiang, rural Sichuan)** → Physical SIM from China Telecom specifically, which has the strongest coverage out west.
   * **Landing tonight with no eSIM** → Official carrier store or airport counter (below). Do not wait for a mall kiosk.

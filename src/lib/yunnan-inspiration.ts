@@ -1,0 +1,10 @@
+export const yunnanPlaces = [
+  { id: "dali", name: "Dali Ancient Town", image: "/assets/destinations/yunnan/dali.webp", alt: "Wuhua Tower in Dali Ancient Town", description: "Old-town lanes, markets and time for everyday life.", guide: "/dali-travel-guide#dali-ancient-town-useful-busy-still-worth-it" },
+  { id: "erhai", name: "Erhai Lake", image: "/assets/destinations/yunnan/erhai.webp", alt: "Erhai Lake with the Cangshan mountains beyond", description: "Lakeside walks, village stops and open mountain views.", guide: "/dali-travel-guide#erhai-do-less-see-more" },
+  { id: "shaxi", name: "Shaxi Ancient Town", image: "/assets/destinations/yunnan/shaxi.webp", alt: "Traditional buildings in Shaxi Ancient Town", description: "Tea Horse Road courtyards and a quieter overnight stay.", guide: "/dali-hidden-gems-off-the-beaten-path#shaxi-ancient-town-what-dali-looked-like-before-the-crowds-arrived" },
+  { id: "lijiang", name: "Lijiang Old Town", image: "/assets/destinations/yunnan/lijiang.webp", alt: "Traditional rooftops in Lijiang Old Town", description: "Old-town streets with the mountain landscape close by." },
+  { id: "jade-dragon", name: "Jade Dragon Snow Mountain", image: "/assets/destinations/yunnan/jade-dragon.webp", alt: "Jade Dragon Snow Mountain above a turquoise lake", description: "Mountain scenery, with visits planned around altitude and comfort." },
+  { id: "blue-moon", name: "Blue Moon Valley", image: "/assets/destinations/yunnan/blue-moon.webp", alt: "Turquoise pools in Blue Moon Valley beneath Jade Dragon Snow Mountain", description: "Turquoise water and a snow-mountain backdrop." },
+  { id: "tiger-leaping", name: "Tiger Leaping Gorge", image: "/assets/destinations/yunnan/tiger-leaping.webp", alt: "The river and steep mountain sides at Tiger Leaping Gorge", description: "Dramatic canyon views or a hike matched to your energy." },
+  { id: "shangri-la", name: "Shangri-La", image: "/assets/destinations/yunnan/shangri-la.webp", alt: "Highland lake and forest in Pudacuo near Shangri-La", description: "Highland landscapes and Tibetan culture, with time to adjust to altitude." },
+] as const;
