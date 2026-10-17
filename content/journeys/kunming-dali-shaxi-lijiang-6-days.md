@@ -14,6 +14,8 @@ priceBasis: "per person"
 coverImage: "/home/hero.webp"
 featured: true
 status: "published"
+displayOrder: 2
+navFeatured: true
 travelStyles:
   - "First trip to China"
   - "Slow-paced travel"

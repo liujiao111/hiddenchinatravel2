@@ -25,7 +25,9 @@ export type JourneyFrontmatter = {
   priceBasis: string;
   coverImage: string;
   featured?: boolean;
-  status?: string;
+  status?: "draft" | "planned" | "published";
+  displayOrder?: number;
+  navFeatured?: boolean;
   travelStyles: string[];
   experiences: JourneyExperience[];
   itinerary: JourneyDay[];
@@ -47,7 +49,13 @@ export function getAllJourneys(): Journey[] {
   journeyCache = fs.readdirSync(directory).filter((file) => file.endsWith(".md")).map((file) => {
     const parsed = matter(fs.readFileSync(path.join(directory, file), "utf8"));
     return { slug: file.replace(/\.md$/, ""), frontmatter: parsed.data as JourneyFrontmatter, body: parsed.content.trim() };
-  }).filter((journey) => journey.frontmatter.status !== "draft");
+  })
+    .filter((journey) => journey.frontmatter.status === "published")
+    .sort((a, b) => {
+      const orderA = a.frontmatter.displayOrder ?? Number.MAX_SAFE_INTEGER;
+      const orderB = b.frontmatter.displayOrder ?? Number.MAX_SAFE_INTEGER;
+      return orderA - orderB || a.frontmatter.title.localeCompare(b.frontmatter.title);
+    });
   return journeyCache;
 }
 

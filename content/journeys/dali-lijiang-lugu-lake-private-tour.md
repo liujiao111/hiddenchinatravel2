@@ -15,6 +15,8 @@ priceBasis: "per person"
 coverImage: "/assets/resources/丽江-泸沽湖-014.jpg"
 featured: false
 status: "published"
+displayOrder: 1
+navFeatured: true
 travelStyles:
   - "Western Yunnan landscapes"
   - "Private travel"

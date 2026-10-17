@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContentFooter } from "@/components/content-footer";
 import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
@@ -21,7 +22,7 @@ export default function JourneysPage() {
   return <main>
     <SiteHeader />
     <header className="journeys-hero"><div className="narrow"><p>PRIVATE JOURNEYS THROUGH YUNNAN</p><h1>See less. Feel more.</h1><span>Thoughtful routes for travelers who want local context, an unhurried pace and support without the feeling of a conventional group tour.</span></div></header>
-    <section className="journeys-list section"><div className="shell"><div className="section-heading"><h2>Start with a journey idea</h2><p>Every route can be adjusted around your dates, interests and preferred level of comfort.</p></div><div className="journeys-card-grid">{journeys.map((journey) => <JourneyCard key={journey.slug} priority={journey.frontmatter.featured} journey={{
+    <section className="journeys-list section"><div className="shell"><div className="section-heading"><h2>Private Yunnan journeys</h2><p>Start with one of our signature journeys, then adjust the dates, pace and details around your party.</p></div><div className="journeys-card-grid">{journeys.map((journey) => <JourneyCard key={journey.slug} priority={journey.frontmatter.featured} journey={{
       title: journey.frontmatter.shortTitle,
       subtitle: journey.frontmatter.excerpt,
       href: `/journeys/${journey.slug}`,
@@ -30,7 +31,12 @@ export default function JourneysPage() {
       destination: journey.frontmatter.route,
       duration: journey.frontmatter.duration,
       fromPrice: priceLabel(journey.frontmatter.fromPrice, journey.frontmatter.currency, journey.frontmatter.priceBasis),
-    }} />)}<JourneyCard journey={{ title: "A journey designed around you", subtitle: "Your dates, interests and preferred pace. Start with Yunnan and request a personalized proposal.", href: "/custom-china-tour", image: "/home/hero.webp", destination: "TAILOR-MADE PRIVATE TRAVEL", duration: "Your preferred duration", fromPrice: "Quote tailored to your plans", ctaLabel: "Design your journey →", trackingLocation: "journeys_custom_card" }} /></div></div></section>
+    }} />)}</div>
+      <aside className="journeys-tailor-made" aria-labelledby="journeys-tailor-made-title">
+        <div><span>PERSONAL PLANNING SERVICE</span><h2 id="journeys-tailor-made-title">A journey designed around you.</h2></div>
+        <div><p>None of these routes quite fit? Start with your own dates, interests, preferred pace and comfort level. Joy will discuss the possibilities with you before a licensed local partner prepares the proposal and operates the trip.</p><ul><li>Your preferred duration and route</li><li>Private transport, guiding and accommodation</li><li>A written itinerary and tailored quote</li></ul><Link href="/custom-china-tour" data-cta-location="journeys_custom_service" className="button button-light">DESIGN YOUR JOURNEY</Link></div>
+      </aside>
+    </div></section>
     <section className="journeys-philosophy section-sand"><div className="shell"><h2>Not a checklist. A journey shaped around you.</h2><div>{["Private travel with your own party", "Local drivers and guides where they matter", "No mandatory shopping stops", "A licensed local partner for contracting and delivery"].map((item, index) => <p key={item}><span>0{index + 1}</span>{item}</p>)}</div></div></section>
     <ContentFooter />
   </main>;
