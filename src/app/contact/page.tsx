@@ -97,6 +97,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             <p className="contact-kicker">START THE CONVERSATION</p>
             <h2>Tell Us About Your Trip</h2>
             <p>Joy will personally review your enquiry and reply with initial suggestions. {siteConfig.replyTime}</p>
+            <p>Want to see a sample itinerary? Fill out the form and download a free 6-day Kunming, Dali and Lijiang sample. It is an example of a real route. Joy will then shape the actual trip around what you want.</p>
             <p>Looking for a private itinerary and quote? <Link href="/custom-china-tour#plan" data-cta-location="contact_custom">Tell us your Yunnan tour plans →</Link></p>
           </header>
           <ContactForm defaultInterest={defaultInterest} />

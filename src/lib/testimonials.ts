@@ -8,7 +8,11 @@ export type Testimonial = {
   country: string;
   journeySlugs: string[];
   featured: boolean;
+  rating: number;
 };
+
+export const overallGuestRating = 4.8;
+export const overallGuestRatingLabel = "4.8 · From guest reviews";
 
 const allTestimonials = testimonials as Testimonial[];
 

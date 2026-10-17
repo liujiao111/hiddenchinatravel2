@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRef, useState, type FormEvent } from "react";
 import { journeyBudgets, journeyComfort, journeyInterests } from "@/lib/custom-journey-enquiry";
+import { siteConfig } from "@/lib/site-config";
 import { JourneyPlaceSelection, useJourneyInspiration } from "@/components/journey-inspiration-context";
 import { trackEvent } from "@/lib/analytics";
 
@@ -34,7 +35,7 @@ export function CustomJourneyForm() {
     }
   }
 
-  if (status === "success") return <div className="custom-enquiry-success" role="status" tabIndex={-1} style={{ scrollMarginTop: 90 }} ref={(confirmation) => { if (!confirmation) return; confirmation.focus({ preventScroll: true }); confirmation.scrollIntoView({ behavior: "instant", block: "start" }); }}><h3>Your enquiry has been sent.</h3><p>Thank you. Joy usually replies by email within 24 hours to discuss your route and next steps. Please check your inbox and spam folder.</p><p>You are requesting a proposal, not making a booking.</p><Link href="/journeys">Explore our journey ideas →</Link></div>;
+  if (status === "success") return <div className="custom-enquiry-success" role="status" tabIndex={-1} style={{ scrollMarginTop: 90 }} ref={(confirmation) => { if (!confirmation) return; confirmation.focus({ preventScroll: true }); confirmation.scrollIntoView({ behavior: "instant", block: "start" }); }}><h3>Your enquiry has been sent.</h3><p>Thank you. Joy usually replies by email within 24 hours to discuss your route and next steps. Please check your inbox and spam folder.</p><p><a href={siteConfig.sampleItineraryPdf} download>Download the 6-day sample itinerary (PDF)</a></p><p>You are requesting a proposal, not making a booking. The sample is an example. Your route is shaped around what you want.</p><Link href="/journeys">Explore our journey ideas →</Link></div>;
 
   return <form className="contact-form custom-enquiry-form" onSubmit={submit} onFocus={() => { if (!started.current) { started.current = true; trackEvent("custom_journey_form_start", { form_name: "custom_journey_enquiry", page_path: "/custom-china-tour" }); } }}>
     <div className="contact-field-row"><label><span>Your name *</span><input name="name" autoComplete="name" type="text" maxLength={100} required /></label><label><span>Email *</span><input name="email" autoComplete="email" type="email" maxLength={254} required /></label></div>
@@ -54,5 +55,6 @@ export function CustomJourneyForm() {
     {status === "error" ? <p className="custom-form-error" role="alert">{message}</p> : null}
     <button className="button journey-primary-action" type="submit" disabled={status === "sending"}>{status === "sending" ? "SENDING YOUR ENQUIRY…" : "REQUEST MY PRIVATE JOURNEY →"}</button>
     <p className="contact-form-note">Usually replies within 24 hours. This starts a conversation; it does not commit you to a booking.</p>
+    <p className="contact-form-privacy">We respect your privacy. No spam, ever. Your details are only used to plan your trip.</p>
   </form>;
 }

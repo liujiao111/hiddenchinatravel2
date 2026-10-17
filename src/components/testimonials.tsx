@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState, type TransitionEvent } from "react";
 import { StarRating } from "@/components/star-rating";
-import type { Testimonial } from "@/lib/testimonials";
+import { overallGuestRating, overallGuestRatingLabel, type Testimonial } from "@/lib/testimonials";
 
 type Props = {
   items: Testimonial[];
@@ -87,7 +87,7 @@ export function Testimonials({ items, heading, intro }: Props) {
     <header className="testimonials-heading shell">
       <h2>{heading}</h2>
       {intro ? <p>{intro}</p> : null}
-      <div className="testimonials-rating"><StarRating label="Overall rating: 5 out of 5 stars" /><p>5.0 · Every guest rated 5 stars</p></div>
+      <div className="testimonials-rating"><StarRating value={overallGuestRating} label="Overall rating: 4.8 out of 5 stars" /><p>{overallGuestRatingLabel}</p></div>
     </header>
     <div className="testimonials-viewport" ref={viewportRef}>
       <div
@@ -100,7 +100,7 @@ export function Testimonials({ items, heading, intro }: Props) {
       >
         {slides.map((item, slideIndex) => (
           <figure className="testimonials-card" key={`${item.id}-${slideIndex}`} style={{ width: metrics.card, flexBasis: metrics.card }}>
-            <StarRating />
+            <div className="testimonial-score"><StarRating value={item.rating} /><span>{item.rating.toFixed(1)}</span></div>
             <blockquote>“{cardQuote(item.quote)}”</blockquote>
             <figcaption>
               <b>— {item.name}</b>

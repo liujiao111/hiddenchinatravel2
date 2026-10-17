@@ -70,6 +70,7 @@ export function ContactForm({ defaultInterest }: Props) {
       <div className="contact-form-success">
         <h3>Thank you. Joy has your note.</h3>
         <p>He will personally review your enquiry and reply with initial suggestions. {siteConfig.replyTime} There is no obligation to book.</p>
+        <p><a href={siteConfig.sampleItineraryPdf} download>Download the 6-day sample itinerary (PDF)</a></p>
         <p>If you would rather continue on WhatsApp, you can send the same note now.</p>
         <a className="button button-blue" href={whatsappHref}>Send on WhatsApp</a>
       </div>
@@ -138,6 +139,7 @@ export function ContactForm({ defaultInterest }: Props) {
       </button>
       {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}
       <p className="contact-form-note">Joy will personally review this and reply with initial suggestions. {siteConfig.replyTime}</p>
+      <p className="contact-form-privacy">We respect your privacy. No spam, ever. Your details are only used to plan your trip.</p>
     </form>
   );
 }

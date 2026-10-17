@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { StarRating } from "@/components/star-rating";
 import { clientVoices, type ClientVoice } from "@/data/client-voices";
+import { overallGuestRating, overallGuestRatingLabel } from "@/lib/testimonials";
 
 type ClientVoicesProps = {
   voices?: ClientVoice[];
@@ -22,12 +23,11 @@ export function ClientVoices({
           <span>WHAT TRAVELERS TELL JOY</span>
           <h2 id="client-voices-title">{title}</h2>
           <p>{description}</p>
-          <div className="testimonials-rating"><StarRating label="Overall rating: 5 out of 5 stars" /><p>5.0 · Every guest rated 5 stars</p></div>
+          <div className="testimonials-rating"><StarRating value={overallGuestRating} label="Overall rating: 4.8 out of 5 stars" /><p>{overallGuestRatingLabel}</p></div>
         </div>
         <div className="client-voices-grid">
           {voices.map((voice) => (
             <figure className="client-voice" key={`${voice.name}-${voice.trip}`}>
-              <StarRating />
               <blockquote>&ldquo;{voice.quote}&rdquo;</blockquote>
               <figcaption>
                 <strong>{voice.name}</strong>
