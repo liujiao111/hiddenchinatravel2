@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { enquiryMessage, parseEnquiry } from "@/lib/enquiry";
+import { enquiryEmailText, enquirySubject, parseEnquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
 
 export async function POST(request: Request) {
@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     return Response.json({ error: parsed.error }, { status: 400 });
   }
 
-  const text = enquiryMessage(parsed);
+  const text = enquiryEmailText(parsed);
   const key = process.env.RESEND_API_KEY;
 
   if (!key) {
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     from: process.env.ENQUIRY_FROM_EMAIL || "Hidden China Travel <beth.t@example.com>",
     to: process.env.ENQUIRY_TO_EMAIL || siteConfig.enquiryEmail,
     replyTo: parsed.email,
-    subject: `New enquiry from ${parsed.name}`,
+    subject: enquirySubject(parsed),
     text,
   });
 

@@ -88,8 +88,8 @@ export function ArticleDiscoveryFlow({
       <Image src="/home/local-support.webp" alt="Local support for a journey through Yunnan" fill unoptimized sizes="100vw" />
       <div className="talk-with-joy-shade" />
       <div className="shell talk-with-joy-copy">
-        <h2>Not Sure Where to Start?</h2>
-        <p>Whether you&apos;re wondering about visas, payments, Yunnan itineraries, or your first trip to China, you&apos;re welcome to ask.</p>
+        <h2>Want this turned into a trip?</h2>
+        <p>Send your dates and group size for a private Yunnan route and a price range, or ask the question this guide left open.</p>
         <p>You&apos;ll be speaking directly with Joy Liu.</p>
         <strong>Born in Yunnan. Shaped by experiences abroad.</strong>
         <Link className="button" href={whatsapp}>Chat with Joy on WhatsApp</Link>

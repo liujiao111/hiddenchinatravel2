@@ -25,5 +25,11 @@ export function ArticleGuideAside({ section }: { section?: string }) {
       <Link className="article-aside-primary" href="/survival-kit">OPEN THE SURVIVAL KIT <span aria-hidden="true">→</span></Link>
       <div className="article-aside-related"><span>READ MORE ON THIS TOPIC</span><Link href={hub.href}>{hub.label} →</Link></div>
     </div>
+    <div className="article-aside-ask">
+      <p>A PRIVATE YUNNAN TRIP</p>
+      <h2>Want a route and a price?</h2>
+      <span>Dates and group size are enough for Joy to reply with a range.</span>
+      <a className="article-aside-primary" href="#ask-joy">ASK JOY <span aria-hidden="true">→</span></a>
+    </div>
   </aside>;
 }

@@ -6,8 +6,10 @@ import { ArticleDiscoveryFlow } from "@/components/article-discovery-flow";
 import { ArticleGuideAside } from "@/components/article-guide-aside";
 import { ContentFooter } from "@/components/content-footer";
 import { MarkdownContent } from "@/components/markdown-content";
+import { QuickAsk } from "@/components/quick-ask";
 import { SiteHeader } from "@/components/site-header";
 import { TopicNavigation } from "@/components/topic-navigation";
+import { isTripPlanningSection } from "@/lib/enquiry";
 import { getAllJourneys } from "@/lib/journeys";
 
 function formatDate(value?: string) {
@@ -59,6 +61,7 @@ export function ArticlePage({ item }: { item: ContentItem }) {
         </div>
       </header>
       {frontmatter.excerpt && <div className="article-intro shell"><p>{frontmatter.excerpt}</p></div>}
+      <QuickAsk source={`/${item.slug}`} sourceTitle={frontmatter.title} intent={isTripPlanningSection(frontmatter.section) ? "trip" : "advice"} />
       <div className="article-layout shell">
         <div className="article-body"><MarkdownContent>{item.body}</MarkdownContent></div>
         <ArticleGuideAside section={frontmatter.section} />
@@ -66,6 +69,7 @@ export function ArticlePage({ item }: { item: ContentItem }) {
     </article>
     {frontmatter.faqs?.length ? <section className="article-faq"><div className="narrow"><p className="article-section">COMMON QUESTIONS</p><h2>Frequently asked questions</h2>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><MarkdownContent compact>{faq.answer}</MarkdownContent></details>)}</div></section> : null}
     <ArticleDiscoveryFlow related={related} journey={featuredJourney} sourceTitle={frontmatter.title} sourceSection={frontmatter.section} />
+    <a className="article-mobile-ask" href="#ask-joy">ASK JOY FOR A ROUTE AND PRICE <span>→</span></a>
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;

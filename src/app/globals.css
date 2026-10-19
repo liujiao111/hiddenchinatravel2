@@ -673,7 +673,7 @@ p { line-height:1.7; }
 .journey-price-grid article { border:1px solid transparent; border-top:4px solid transparent; }
 .journey-price-grid article.featured { border:1px solid #bdc7c1; border-top:4px solid #345d58; }
 .journey-detail-label { display:block; margin-bottom:14px; }
-.journey-mobile-cta { display:none; }
+.journey-mobile-cta,.article-mobile-ask { display:none; }
 
 @media (max-width:1000px) {
   .journey-gallery-viewport { aspect-ratio:16/9; }
@@ -735,7 +735,8 @@ p { line-height:1.7; }
   .journey-days details[open]>p { padding-right:18px; padding-left:82px; }
   .journey-host-image { min-height:480px; }
   .journey-host-copy { padding:64px 24px 75px; }
-  .journey-mobile-cta { position:fixed; z-index:40; right:14px; bottom:14px; left:14px; display:flex; min-height:54px; align-items:center; justify-content:space-between; padding:0 22px; background:#4e7671; box-shadow:0 12px 30px rgba(20,33,28,.28); color:#fff; font-size:.7rem; font-weight:800; letter-spacing:.1em; }
+  .journey-mobile-cta,.article-mobile-ask { position:fixed; z-index:40; right:14px; bottom:14px; left:14px; display:flex; min-height:54px; align-items:center; justify-content:space-between; padding:0 22px; background:#4e7671; box-shadow:0 12px 30px rgba(20,33,28,.28); color:#fff; font-size:.7rem; font-weight:800; letter-spacing:.1em; }
+  main:has(.article-mobile-ask) { padding-bottom:78px; }
 }
 
 
@@ -774,10 +775,10 @@ p { line-height:1.7; }
 .contact-field-row { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
 .contact-form label>span,.contact-form legend { display:block; margin-bottom:10px; color:#294b45; font-size:.78rem; font-weight:750; }
 .contact-form label>span small { color:#74776f; font-weight:500; }
-.contact-form input[type="text"],.contact-form input[type="email"],.contact-form input[type="tel"],.contact-form textarea { width:100%; border:1px solid #cbc7b8; border-radius:0; outline:0; background:#fff; color:#2b2f2b; font:inherit; }
-.contact-form input[type="text"],.contact-form input[type="email"],.contact-form input[type="tel"] { height:50px; padding:0 14px; }
+.contact-form input[type="text"],.contact-form input[type="email"],.contact-form input[type="tel"],.contact-form textarea,.contact-form select { width:100%; border:1px solid #cbc7b8; border-radius:0; outline:0; background:#fff; color:#2b2f2b; font:inherit; }
+.contact-form input[type="text"],.contact-form input[type="email"],.contact-form input[type="tel"],.contact-form select { height:50px; padding:0 14px; }
 .contact-form textarea { resize:vertical; padding:14px; line-height:1.6; }
-.contact-form input:focus,.contact-form textarea:focus { border-color:#4e7671; box-shadow:0 0 0 2px rgba(78,118,113,.13); }
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus { border-color:#4e7671; box-shadow:0 0 0 2px rgba(78,118,113,.13); }
 .contact-form fieldset { margin:0; border:0; padding:0; }
 .contact-options { display:flex; flex-wrap:wrap; gap:9px; }
 .contact-options label { cursor:pointer; }
@@ -791,6 +792,24 @@ p { line-height:1.7; }
 .contact-form-error { margin:-8px 0 0; color:#8a3a32; font-size:.82rem; }
 .contact-form-error a { margin-left:6px; border-bottom:1px solid currentColor; font-weight:700; }
 .contact-honeypot { position:absolute; left:-9999px; height:0; overflow:hidden; }
+.quick-ask { scroll-margin-top:24px; padding:64px 0; background:#e7efe8; }
+.quick-ask-layout { display:grid; grid-template-columns:.85fr 1.15fr; gap:48px; align-items:start; }
+.quick-ask-layout>div>p { margin:0 0 12px; color:#8b734d; font-size:.68rem; font-weight:800; letter-spacing:.14em; }
+.quick-ask-layout h2 { margin:0 0 14px; color:#294b44; font-size:clamp(2rem,4vw,3.1rem); }
+.quick-ask-layout>div>span { display:block; color:#4d564f; font-size:1.02rem; line-height:1.7; }
+.quick-ask-form,.quick-ask-success { gap:16px; }
+.quick-ask-facts { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.quick-ask-quote { display:flex; align-items:flex-start; gap:10px; color:#294b45; font-size:.92rem; }
+.quick-ask-quote input { width:18px; height:18px; margin-top:3px; accent-color:#345d58; }
+.quick-ask-quote span { margin:0 !important; }
+.quick-ask-actions { display:flex; flex-wrap:wrap; align-items:center; gap:16px 22px; }
+.quick-ask-actions a { color:#345d58; font-size:.82rem; font-weight:750; }
+.quick-ask-embedded { scroll-margin-top:24px; }
+.journey-quote-ask { max-width:820px; margin:42px auto 0; }
+.journey-quote-ask h3 { margin:0 0 8px; color:#294b44; font-size:2rem; }
+.journey-quote-ask>p { margin:0 0 18px; color:#5b5e57; }
+.article-aside-ask { margin-top:18px; }
+.article-mobile-ask { display:none; }
 .contact-form-success { display:grid; gap:18px; padding:44px; background:#f9f7f0; box-shadow:0 18px 48px rgba(40,50,44,.1); }
 .contact-form-success h3 { margin:0; font-size:1.7rem; }
 .contact-form-success p { margin:0; color:#5d615a; }
@@ -840,6 +859,10 @@ p { line-height:1.7; }
   .contact-options { display:grid; grid-template-columns:1fr 1fr; }
   .contact-options span { height:100%; }
   .contact-form .button,.contact-form-success .button { width:100%; }
+  .quick-ask { padding:48px 0 96px; }
+  .quick-ask-layout,.quick-ask-facts { grid-template-columns:1fr; }
+  .quick-ask-actions .button { width:100%; }
+  .journey-quote-ask { margin-bottom:84px; }
   .contact-form-success { padding:28px 20px; }
   .contact-questions-layout ul { grid-template-columns:1fr; }
   .contact-method-grid { grid-template-columns:1fr; }
