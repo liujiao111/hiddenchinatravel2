@@ -12,7 +12,7 @@
   {
     "id": "tan-family-nine-day",
     "title": "Professional, reliable, and flexible",
-    "quote": "We chose this company’s 9-day itinerary. Since we speak a little Mandarin, we decided not to use a guide. Joy was a huge help in organizing the trip. The recommended places, such as Shangri-La, Jade Dragon Snow Mountain, and Yuhu Village in Lijiang, were all stunning. Although the train arrangements were a bit hectic during the trip, Joy handled everything well in the end. Our whole family is very grateful for his help.",
+    "quote": "We chose this company’s 6-day itinerary. Since we speak a little Mandarin, we decided not to use a guide. Joy was a huge help in organizing the trip. The recommended places, such as Shangri-La, Jade Dragon Snow Mountain, and Yuhu Village in Lijiang, were all stunning. Although the train arrangements were a bit hectic during the trip, Joy handled everything well in the end. Our whole family is very grateful for his help.",
     "name": "The Tan Family",
     "country": "Malaysia",
     "rating": 4.8,
@@ -31,8 +31,8 @@
   },
   {
     "id": "faisal-aisha-honeymoon",
-    "title": "Smooth communication for a Muslim honeymoon couple",
-    "quote": "As a Muslim couple on our honeymoon, this itinerary involved a lot of walking and usually ended in the late afternoon or evening, so it may be tiring for honeymooners; however, the overall experience was very good, and we were satisfied and happy. Even with the language barrier, we communicated smoothly via WeChat, and our guide Lily also helped translate for us. Joy’s customer service was excellent, and he even gave us a thank-you gift.",
+    "title": "A wonderful honeymoon stop in Yunnan",
+    "quote": "We are a newlywed couple visiting China for our honeymoon, and Yunnan was one of the stops on our trip. Joy was incredibly patient and responsible in helping us plan our Yunnan itinerary; she also provided plenty of advice on pre-trip preparations and suggestions for visiting other destinations. We ended up having a wonderful time!",
     "name": "Faisal & Aisha R.",
     "country": "Indonesia",
     "rating": 4.7,
@@ -81,11 +81,11 @@
   },
   {
     "id": "david-emma-jon",
-    "title": "Guide Jon — fluent English and thoughtful arrangements",
-    "quote": "We also experienced other guides during our time in Yunnan—none of them compared to Jon. His English is excellent. He also arranged a local traditional tie-dye experience in Zhoucheng near Xizhou, an unforgettable stay with a local family in Shaxi, and a cycling trip by Erhai Lake and a visit to a local market. He communicated perfectly, and he and his team were truly outstanding, making sure our entire journey from Kunming to Dali went smoothly. Highly recommended!",
+    "title": "Patient guiding while traveling with children",
+    "quote": "We are so grateful for the tour guide’s patience and dedicated service—especially since things could get a bit stressful for us while traveling with children. Five stars!",
     "name": "David & Emma R.",
     "country": "UK",
-    "rating": 4.7,
+    "rating": 5.0,
     "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
     "featured": true
   },

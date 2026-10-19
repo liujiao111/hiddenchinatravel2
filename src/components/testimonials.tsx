@@ -13,6 +13,9 @@ type Props = {
 function cardQuote(quote: string) {
   const sentences = quote.match(/[^.!?]+[.!?]+/g);
   if (!sentences || sentences.length === 0) return quote;
+  const complete = sentences.map((sentence) => sentence.trim()).join(" ");
+  // A finished note of at most three sentences still fits the card. Longer stories stay as a short excerpt.
+  if (sentences.length <= 3 && complete.length > 260 && complete.length <= 360) return complete;
   const first = sentences[0].trim();
   if (first.length > 210 || sentences.length === 1) return first;
   const two = `${first} ${sentences[1].trim()}`;
