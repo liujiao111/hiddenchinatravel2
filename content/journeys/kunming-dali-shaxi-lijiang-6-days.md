@@ -72,10 +72,11 @@ inclusions:
   - "A Chinese- or English-speaking guide throughout"
   - "24-hour private concierge support, from your first enquiry until the journey ends"
   - "A 4- or 5-diamond hotel, chosen around your budget"
+  - "Breakfast, which the hotel generally includes"
   - "Entrance tickets, mountain entry fees and similar charges for the places on your itinerary"
   - "High-speed train tickets where the route uses the train, in second class unless you request another seat"
 exclusions:
-  - "Meals, apart from breakfast when the hotel includes it. Your guide can suggest restaurants, or you can choose your own."
+  - "Lunch and dinner. They are not part of the journey, so you arrange them yourself. Your guide can suggest restaurants if you want."
   - "Personal spending during the journey"
   - "Extra costs caused by traffic delays, strikes, weather, aircraft or mechanical failure, or flights that are cancelled or rescheduled — and anything not listed as included"
 faqs:
@@ -90,7 +91,7 @@ faqs:
   - question: "What kind of accommodation is included?"
     answer: "Hotels and guesthouses are matched to your selected travel style, with an emphasis on useful locations, comfort and local character. Specific properties are confirmed in your proposal."
   - question: "Are meals included?"
-    answer: "Meals are not included, apart from breakfast when the hotel provides it. Your guide can suggest restaurants, or you can choose your own."
+    answer: "The hotel generally includes breakfast. Lunch and dinner are not part of the journey, so you arrange those yourself. Your guide can suggest restaurants if you want."
   - question: "Are there any shopping stops?"
     answer: "No. There are no mandatory shopping stops, tourist factories or commission-led detours in the itinerary."
   - question: "Who arranges and operates the journey?"
