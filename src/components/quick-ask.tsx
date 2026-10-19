@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { budgetBands, enquiryMessage, isQuoteReady, parseEnquiry, partySizes, travelWindows, type Enquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
 import { trackEvent } from "@/lib/analytics";
@@ -21,6 +21,17 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
   const [sent, setSent] = useState<Enquiry | null>(null);
   const [whatsappHref, setWhatsappHref] = useState("");
   const [quoteRequested, setQuoteRequested] = useState(intent === "trip");
+
+  useEffect(() => {
+    const target = document.getElementById(id);
+    const bars = document.querySelectorAll(".article-mobile-ask, .journey-mobile-cta");
+    if (!target || bars.length === 0) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      bars.forEach((bar) => bar.classList.toggle("ask-bar-hidden", entry.isIntersecting));
+    }, { threshold: 0.2 });
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [id]);
 
   const whatsappPrompt = `Hi Joy, I was looking at "${sourceTitle}". I'd like a private Yunnan route and a price range. My dates are ____, we are ____ travelers, and our budget is about ____ per person.`;
   const standbyWhatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(whatsappPrompt)}`;
@@ -90,7 +101,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
       <a className="button button-blue" href={whatsappHref}>Continue on WhatsApp</a>
     </div>
   ) : (
-    <form className="contact-form quick-ask-form" onSubmit={handleSubmit}>
+    <form className="contact-form quick-ask-form" method="post" action="/api/enquiry" onSubmit={handleSubmit}>
       <div className="contact-field-row">
         <label>
           <span>Your name</span>

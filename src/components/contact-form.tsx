@@ -90,7 +90,7 @@ export function ContactForm({ defaultInterest }: Props) {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className="contact-form" method="post" action="/api/enquiry" onSubmit={handleSubmit}>
       <div className="contact-field-row">
         <label>
           <span>Your name</span>

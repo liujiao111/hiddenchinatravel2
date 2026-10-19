@@ -736,6 +736,7 @@ p { line-height:1.7; }
   .journey-host-image { min-height:480px; }
   .journey-host-copy { padding:64px 24px 75px; }
   .journey-mobile-cta,.article-mobile-ask { position:fixed; z-index:40; right:14px; bottom:14px; left:14px; display:flex; min-height:54px; align-items:center; justify-content:space-between; padding:0 22px; background:#4e7671; box-shadow:0 12px 30px rgba(20,33,28,.28); color:#fff; font-size:.7rem; font-weight:800; letter-spacing:.1em; }
+  .ask-bar-hidden { display:none !important; }
   main:has(.article-mobile-ask) { padding-bottom:78px; }
 }
 
@@ -809,7 +810,6 @@ p { line-height:1.7; }
 .journey-quote-ask h3 { margin:0 0 8px; color:#294b44; font-size:2rem; }
 .journey-quote-ask>p { margin:0 0 18px; color:#5b5e57; }
 .article-aside-ask { margin-top:18px; }
-.article-mobile-ask { display:none; }
 .contact-form-success { display:grid; gap:18px; padding:44px; background:#f9f7f0; box-shadow:0 18px 48px rgba(40,50,44,.1); }
 .contact-form-success h3 { margin:0; font-size:1.7rem; }
 .contact-form-success p { margin:0; color:#5d615a; }
