@@ -10,7 +10,7 @@ export function YunnanTravelNotes() {
   return <section className="journey-yunnan-notes section" id="yunnan-notes" aria-labelledby="yunnan-notes-title"><div className="shell">
     <header className="journey-yunnan-notes-heading">
       <h2 id="yunnan-notes-title">A few things to know about Yunnan.</h2>
-      <p>Elevation, sun, clothing, custom, and food — the same on both routes.</p>
+      <p>Elevation, sun, clothing, custom, and food.</p>
     </header>
     <div className="journey-yunnan-notes-grid">
       {notes.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}

@@ -1371,6 +1371,7 @@ p { line-height:1.7; }
 }
 .journey-days details>p.journey-day-meals { margin:0 36px 24px 94px; padding:14px 18px; border-left:3px solid #a58c5b; background:#f0ede3; font-size:.84rem; line-height:1.6; }
 .journey-day-meals strong { margin-right:10px; color:#345d58; font-size:.67rem; letter-spacing:.13em; }
+.journey-booking-notes { scroll-margin-top:58px; }
 .journey-booking-notes-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
 .journey-booking-notes-grid article { padding:28px 32px; background:#fff; border-top:2px solid #a58c5b; }
 .journey-booking-notes-grid h3 { margin:0 0 12px; color:#29463f; font-family:Georgia,serif; font-size:1.3rem; font-weight:400; }
