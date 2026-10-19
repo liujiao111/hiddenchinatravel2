@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ContentItem } from "@/lib/content";
 import { ContentCta, ContentFooter } from "@/components/content-footer";
+import { QuickAsk } from "@/components/quick-ask";
+import { isTripPlanningSection } from "@/lib/enquiry";
 import { MarkdownContent } from "@/components/markdown-content";
 import { SiteHeader } from "@/components/site-header";
 import { TopicNavigation } from "@/components/topic-navigation";
@@ -19,6 +21,7 @@ export function HubPage({ item }: { item: ContentItem }) {
     {frontmatter.decisionGuide && <section className="hub-decision"><div className="shell"><div><p className="article-section">MAKE THE RIGHT CHOICE</p><h2>{frontmatter.decisionGuide.title}</h2><p>{frontmatter.decisionGuide.intro}</p></div><div><ul>{frontmatter.decisionGuide.points?.map((point) => <li key={point}>{point}</li>)}</ul>{frontmatter.decisionGuide.recommendation && <strong>{frontmatter.decisionGuide.recommendation}</strong>}</div></div></section>}
     {frontmatter.faqs?.length ? <section className="article-faq"><div className="narrow"><p className="article-section">COMMON QUESTIONS</p><h2>{frontmatter.faqHeading || "Frequently asked questions"}</h2>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><MarkdownContent compact>{faq.answer}</MarkdownContent></details>)}</div></section> : null}
     {frontmatter.relatedHubs?.length ? <section className="related-guides shell"><div className="section-heading"><h2>Explore related topics</h2></div><div className="related-grid">{frontmatter.relatedHubs.map((hub) => <Link key={hub.href} href={hub.href}><span>TRAVEL ESSENTIAL</span><h3>{hub.title}</h3><p>{hub.excerpt}</p><b>EXPLORE →</b></Link>)}</div></section> : null}
+    <QuickAsk source={`/${item.slug}`} sourceTitle={frontmatter.title} intent={isTripPlanningSection(frontmatter.title) ? "trip" : "advice"} />
     <ContentCta />
     <ContentFooter />
   </main>;

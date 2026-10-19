@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentFooter } from "@/components/content-footer";
+import { QuickAsk } from "@/components/quick-ask";
 import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { getAllJourneys } from "@/lib/journeys";
@@ -38,6 +39,7 @@ export default function JourneysPage() {
       </aside>
     </div></section>
     <section className="journeys-philosophy section-sand"><div className="shell"><h2>Not a checklist. A journey shaped around you.</h2><div>{["Private travel with your own party", "Local drivers and guides where they matter", "No mandatory shopping stops", "A licensed local partner for contracting and delivery"].map((item, index) => <p key={item}><span>0{index + 1}</span>{item}</p>)}</div></div></section>
+    <QuickAsk source="/journeys" sourceTitle="Private Yunnan journeys" intent="trip" />
     <ContentFooter />
   </main>;
 }

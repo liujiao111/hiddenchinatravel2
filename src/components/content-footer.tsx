@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { EnquireLink } from "@/components/enquire-link";
 import { siteConfig } from "@/lib/site-config";
 
 const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=Hi%2C%20I%27d%20like%20help%20planning%20my%20China%20trip`;
 
 export function ContentCta() {
-  return <section className="content-cta"><div><p>PLANNING A TRIP TO YUNNAN?</p><h2>Travel China at your own pace.</h2><span>Tell Joy your dates, interests and preferred rhythm. We’ll help make the unfamiliar parts easier.</span><EnquireLink className="button button-light">TELL US ABOUT YOUR TRIP</EnquireLink></div></section>;
+  return <section className="content-cta"><div><p>PLANNING A TRIP TO YUNNAN?</p><h2>Travel China at your own pace.</h2><span>Dates, group size and a budget are enough for a route sketch and a price range.</span><a className="button button-light" href="#ask-joy">REQUEST A ROUTE AND PRICE</a></div></section>;
 }
 
 export function ContentFooter() {

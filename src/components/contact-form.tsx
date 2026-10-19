@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { scheduleScrollToEnquire, scrollToEnquire } from "@/components/enquire-link";
-import { enquiryMessage, interests, parseEnquiry, travelWindows } from "@/lib/enquiry";
+import { budgetBands, enquiryMessage, interests, isQuoteReady, parseEnquiry, partySizes, travelWindows, type Enquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
 import { trackEvent } from "@/lib/analytics";
 
@@ -10,10 +10,21 @@ type Props = {
   defaultInterest?: string;
 };
 
+function enquirySource() {
+  try {
+    const referrer = new URL(document.referrer);
+    if (referrer.origin === window.location.origin && referrer.pathname.startsWith("/") && !/[\s<>]/.test(referrer.pathname)) return referrer.pathname;
+  } catch {
+    // Direct visits have no usable referrer.
+  }
+  return "/contact";
+}
+
 export function ContactForm({ defaultInterest }: Props) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const [whatsappHref, setWhatsappHref] = useState("");
+  const [sent, setSent] = useState<Enquiry | null>(null);
   const selectedInterest = interests.includes(defaultInterest as (typeof interests)[number]) ? defaultInterest : "Yunnan Journey";
 
   useEffect(() => {
@@ -25,7 +36,7 @@ export function ContactForm({ defaultInterest }: Props) {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(event.currentTarget).entries());
-    const parsed = parseEnquiry(data);
+    const parsed = parseEnquiry({ ...data, source: enquirySource() });
     if ("error" in parsed) {
       setStatus("error");
       setError(parsed.error);
@@ -58,6 +69,7 @@ export function ContactForm({ defaultInterest }: Props) {
         return;
       }
 
+      setSent(parsed);
       setStatus("success");
     } catch {
       setStatus("error");
@@ -68,8 +80,8 @@ export function ContactForm({ defaultInterest }: Props) {
   if (status === "success") {
     return (
       <div className="contact-form-success">
-        <h3>Thank you. Joy has your note.</h3>
-        <p>He will personally review your enquiry and reply with initial suggestions. {siteConfig.replyTime} There is no obligation to book.</p>
+        <h3>{sent && isQuoteReady(sent) ? "Thank you. Joy can price a route from this." : "Thank you. Joy has your note."}</h3>
+        <p>{sent && isQuoteReady(sent) ? "He will reply with a route sketch and a price range, including what is covered." : "He will personally review your enquiry and reply with initial suggestions. Add dates, group size and a budget if you would like a price."} {siteConfig.replyTime} There is no obligation to book.</p>
         <p><a href={siteConfig.sampleItineraryPdf} download>Download the 6-day sample itinerary (PDF)</a></p>
         <p>If you would rather continue on WhatsApp, you can send the same note now.</p>
         <a className="button button-blue" href={whatsappHref}>Send on WhatsApp</a>
@@ -78,7 +90,7 @@ export function ContactForm({ defaultInterest }: Props) {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className="contact-form" method="post" action="/api/enquiry" onSubmit={handleSubmit}>
       <div className="contact-field-row">
         <label>
           <span>Your name</span>
@@ -97,7 +109,7 @@ export function ContactForm({ defaultInterest }: Props) {
 
       <label>
         <span>WhatsApp <small>(recommended)</small></span>
-        <input name="whatsapp" type="tel" autoComplete="tel" />
+        <input name="whatsapp" type="tel" autoComplete="tel" maxLength={40} />
       </label>
 
       <fieldset>
@@ -105,7 +117,7 @@ export function ContactForm({ defaultInterest }: Props) {
         <div className="contact-options">
           {travelWindows.map((option, index) => (
             <label key={option}>
-              <input name="travelWindow" type="radio" value={option} defaultChecked={index === 4} />
+              <input name="travelWindow" type="radio" value={option} required={index === 0} />
               <span>{option}</span>
             </label>
           ))}
@@ -124,6 +136,23 @@ export function ContactForm({ defaultInterest }: Props) {
         </div>
       </fieldset>
 
+      <div className="contact-field-row">
+        <label>
+          <span>Travelers <small>(helps Joy price a route)</small></span>
+          <select name="travelers" defaultValue="">
+            <option value="">Add if you know</option>
+            {partySizes.map((option) => <option key={option}>{option}</option>)}
+          </select>
+        </label>
+        <label>
+          <span>Budget per person <small>(USD, excluding flights)</small></span>
+          <select name="budget" defaultValue="">
+            <option value="">Add if you know</option>
+            {budgetBands.map((option) => <option key={option}>{option}</option>)}
+          </select>
+        </label>
+      </div>
+
       <label>
         <span>Where are you thinking of going?</span>
         <textarea
@@ -138,7 +167,7 @@ export function ContactForm({ defaultInterest }: Props) {
         {status === "sending" ? "Sending…" : "Send to Joy"}
       </button>
       {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}
-      <p className="contact-form-note">Joy will personally review this and reply with initial suggestions. {siteConfig.replyTime}</p>
+      <p className="contact-form-note">Dates, group size and budget let Joy reply with a route and a price range. {siteConfig.replyTime}</p>
       <p className="contact-form-privacy">We respect your privacy. No spam, ever. Your details are only used to plan your trip.</p>
     </form>
   );

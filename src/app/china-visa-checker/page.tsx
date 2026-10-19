@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
+import { QuickAsk } from "@/components/quick-ask";
 import { VisaChecker } from "@/components/travel-tools/visa-checker";
 import { getCountrySelectOptions, getPortSelectOptions } from "@/lib/visa-checker/load-rules";
 import { getPhase1CountryEditorials } from "@/lib/visa-checker/country-pages";
@@ -27,7 +28,9 @@ export default function ChinaVisaCheckerPage() {
     <section className="tool-section"><div className="shell tool-main"><VisaChecker countries={getCountrySelectOptions()} ports={getPortSelectOptions()} /><aside className="tool-aside"><span>GOOD TO KNOW</span><h2>One question can change the answer.</h2><p>A return flight to your starting country is different from a confirmed transit to a third country. The arrival port and length of stay also matter.</p><Link href="/do-i-need-a-visa-for-china">Read the China visa guide →</Link><Link href="/survival-kit">Open the travel checklist →</Link></aside></div></section>
     <section className="tool-section tool-sand" id="countries"><div className="shell"><div className="tool-section-heading"><span>COUNTRY GUIDES</span><h2>Start with your passport.</h2><p>Country pages explain the general rule. Use the checker above for your specific route.</p></div><div className="tool-country-grid">{countryLinks.map((country) => <Link key={country.slug} href={`/china-visa-checker/${country.slug}`}>{country.displayName}<span>VIEW GUIDE →</span></Link>)}</div></div></section>
     <section className="tool-section" id="official-sources"><div className="shell tool-two-cols"><div><span className="tool-kicker">VERIFY BEFORE DEPARTURE</span><h2>Official sources</h2><p>Policies and eligible ports can change. Check the published rules for your passport and ask your airline to confirm travel-document requirements.</p></div><div className="tool-link-list"><a href="https://en.nia.gov.cn/" target="_blank" rel="noopener noreferrer">National Immigration Administration ↗</a><a href="https://www.fmprc.gov.cn/mfa_eng/" target="_blank" rel="noopener noreferrer">Chinese Ministry of Foreign Affairs ↗</a><a href="https://www.visaforchina.cn/" target="_blank" rel="noopener noreferrer">China Visa Application Service Center ↗</a></div></div></section>
-    <section className="tool-section tool-sand"><div className="shell tool-two-cols"><div><span className="tool-kicker">COMMON QUESTIONS</span><h2>Before you rely on an entry rule</h2></div><div className="tool-faq">{faq.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></div></section><ContentFooter />
+    <section className="tool-section tool-sand"><div className="shell tool-two-cols"><div><span className="tool-kicker">COMMON QUESTIONS</span><h2>Before you rely on an entry rule</h2></div><div className="tool-faq">{faq.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></div></section>
+    <QuickAsk source="/china-visa-checker" sourceTitle="China Visa Checker" intent="trip" />
+    <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "China Visa Checker", url: "https://hiddenchinatravel.com/china-visa-checker", applicationCategory: "TravelApplication", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
   </main>;
 }
