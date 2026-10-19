@@ -1321,6 +1321,9 @@ p { line-height:1.7; }
 
 /* Evidence from the local operating partner on the six-day journey. */
 .journey-day-photo { position:relative; height:clamp(190px,28vw,300px); margin:0 36px 30px 94px; overflow:hidden; background:#e9e6dc; }
+.journey-day-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:0 36px 32px 94px; }
+.journey-day-pair figure { position:relative; aspect-ratio:3/4; margin:0; overflow:hidden; background:#e9e6dc; }
+.journey-day-pair img { object-fit:cover; }
 .journey-day-photo img { object-fit:cover; }
 .journey-day-photo figcaption { position:absolute; right:12px; bottom:12px; padding:7px 10px; background:rgba(20,43,38,.8); color:#fff; font-size:.7rem; }
 .journey-proof-grid,.journey-proof-license { display:grid; grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr); gap:clamp(28px,6vw,90px); align-items:center; padding:48px 0; border-top:1px solid #d5d1c4; }
@@ -1354,7 +1357,7 @@ p { line-height:1.7; }
 .journey-proof-documents span { padding:13px 3px 3px; font-size:.78rem; font-weight:700; }
 @media (max-width:700px) {
   .journey-proof-grid,.journey-proof-license { grid-template-columns:1fr; gap:22px; }
-  .journey-day-photo { margin:0 18px 22px; }
+  .journey-day-photo,.journey-day-pair { margin:0 18px 22px; }
   .proof-carousel-image { height:320px; }
 }
 .client-voices .journey-editorial-heading { display:block; max-width:850px; margin:0 auto 46px; text-align:center; }
