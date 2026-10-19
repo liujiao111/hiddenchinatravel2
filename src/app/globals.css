@@ -1443,6 +1443,23 @@ p { line-height:1.7; }
 .journey-booking-notes-compact .journey-booking-notes-grid details p { margin:0; padding:0 24px 24px; color:#5f655d; font-size:.86rem; line-height:1.7; }
 @media (max-width:700px) { .journey-booking-notes-compact .journey-booking-notes-grid { grid-template-columns:1fr; } }
 
+.journey-yunnan-notes { scroll-margin-top:58px; padding:76px 0; background:var(--sand); }
+.journey-yunnan-notes-heading { max-width:640px; margin-bottom:36px; }
+.journey-yunnan-notes-heading h2 { margin:0; color:#243f39; font-family:Georgia,serif; font-size:clamp(1.8rem,2.4vw,2.4rem); font-weight:400; line-height:1.15; }
+.journey-yunnan-notes-heading p { margin:14px 0 0; color:#61665f; line-height:1.7; }
+.journey-yunnan-notes-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.journey-yunnan-notes-grid article { padding:28px 32px; background:#fff; }
+.journey-yunnan-notes-grid article:last-child { grid-column:1 / -1; }
+.journey-yunnan-notes-grid article>span { color:#a58c5b; font-size:.72rem; font-weight:800; letter-spacing:.12em; }
+.journey-yunnan-notes-grid h3 { margin:10px 0 12px; color:#29463f; font-family:Georgia,serif; font-size:1.35rem; font-weight:400; }
+.journey-yunnan-notes-grid p { margin:0; color:#5f655d; font-size:1rem; line-height:1.7; }
+@media (max-width:800px) {
+  .journey-yunnan-notes { padding:64px 0; }
+  .journey-yunnan-notes-grid { grid-template-columns:1fr; }
+  .journey-yunnan-notes-grid article:last-child { grid-column:auto; }
+  .journey-yunnan-notes-grid article { padding:24px; }
+}
+
 /* Bridge from editorial travel advice to a specific private journey. */
 .article-yunnan { background:#e9ebe4; }
 .article-yunnan-layout { display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1fr); gap:clamp(42px,7vw,110px); align-items:center; }
