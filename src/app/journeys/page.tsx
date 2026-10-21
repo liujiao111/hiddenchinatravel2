@@ -35,10 +35,10 @@ export default function JourneysPage() {
     }} />)}</div>
       <aside className="journeys-tailor-made" aria-labelledby="journeys-tailor-made-title">
         <div><span>PERSONAL PLANNING SERVICE</span><h2 id="journeys-tailor-made-title">A journey designed around you.</h2></div>
-        <div><p>None of these routes quite fit? Start with your own dates, interests, preferred pace and comfort level. Joy will discuss the possibilities with you before a licensed local partner prepares the proposal and operates the trip.</p><ul><li>Your preferred duration and route</li><li>Private transport, guiding and accommodation</li><li>A written itinerary and tailored quote</li></ul><Link href="/custom-china-tour" data-cta-location="journeys_custom_service" className="button button-light">DESIGN YOUR JOURNEY</Link></div>
+        <div><p>None of these routes quite fit? Start with your own dates, interests, preferred pace and comfort level. Joy will discuss the possibilities with you before the licensed operator prepares the proposal and operates the trip.</p><ul><li>Your preferred duration and route</li><li>Private transport, guiding and accommodation</li><li>A written itinerary and tailored quote</li></ul><Link href="/custom-china-tour" data-cta-location="journeys_custom_service" className="button button-light">DESIGN YOUR JOURNEY</Link></div>
       </aside>
     </div></section>
-    <section className="journeys-philosophy section-sand"><div className="shell"><h2>Not a checklist. A journey shaped around you.</h2><div>{["Private travel with your own party", "Local drivers and guides where they matter", "No mandatory shopping stops", "A licensed local partner for contracting and delivery"].map((item, index) => <p key={item}><span>0{index + 1}</span>{item}</p>)}</div></div></section>
+    <section className="journeys-philosophy section-sand"><div className="shell"><h2>Not a checklist. A journey shaped around you.</h2><div>{["Private travel with your own party", "Local drivers and guides where they matter", "No mandatory shopping stops", "A licensed local operator for contracting and delivery"].map((item, index) => <p key={item}><span>0{index + 1}</span>{item}</p>)}</div></div></section>
     <QuickAsk source="/journeys" sourceTitle="Private Yunnan journeys" intent="trip" />
     <ContentFooter />
   </main>;

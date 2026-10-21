@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ContentFooter } from "@/components/content-footer";
+import { OperatorCredentials } from "@/components/operator-credentials";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
+import { licensedOperator } from "@/lib/journey-trust";
 import { siteConfig } from "@/lib/site-config";
 import { getFeaturedTestimonials } from "@/lib/testimonials";
 import styles from "./about.module.css";
@@ -23,7 +25,7 @@ const reasons = [
 ];
 const questions = [
   ["Will I speak with Joy directly?", "Yes. When you contact Hidden China Travel about a trip, you speak with Joy Liu, the founder. He helps you clarify your ideas and shape the plan with the local operator."],
-  ["Who operates the trip and handles payment?", "Booked tours are operated by licensed local travel partners, who handle the travel contract, payment and delivery of the agreed services. Their details and terms are shared before booking."],
+  ["Who operates the trip and handles payment?", `${licensedOperator.nameEn} (${licensedOperator.nameZh}) operates booked tours. It handles the travel contract, payment and delivery of the agreed services. Its travel agency permit number is ${licensedOperator.permitNumber}.`],
   ["Do I need a finished itinerary?", "No. Tell Joy roughly when you want to travel, who is coming and what you enjoy. You can start with an existing journey or discuss adjustments to the route, hotels and pace."],
   ["What if weather or availability changes?", "Weather, attraction access and hotel availability can change. Alternatives and any effect on price or schedule are discussed with the operator; your booking terms explain changes and cancellations."],
 ];
@@ -42,7 +44,7 @@ export default function AboutPage() {
         <Link href="#joy" className="button button-light">MEET JOY</Link>
       </div>
     </section>
-    <nav className={styles.subnav} aria-label="About sections"><Link href="#joy">Meet Joy</Link><Link href="#philosophy">Our philosophy</Link><Link href="#why-us">Why travel with us</Link><Link href="#booking">Booking with confidence</Link><Link href="#stories">Stories</Link></nav>
+    <nav className={styles.subnav} aria-label="About sections"><Link href="#joy">Meet Joy</Link><Link href="#philosophy">Our philosophy</Link><Link href="#why-us">Why travel with us</Link><Link href="#booking">Booking with confidence</Link><Link href="#local-partners">Local operator</Link><Link href="#stories">Stories</Link></nav>
 
     <section className={`shell ${styles.founder}`} id="joy">
       <figure className={styles.portrait}><Image src="/brand/founder/portrait.webp" alt="Joy Liu, founder of Hidden China Travel" fill sizes="(max-width: 800px) 100vw, 42vw" /><figcaption><strong>Joy Liu</strong><span>Founder, Hidden China Travel</span><span>Based in Kunming, Yunnan, China</span></figcaption></figure>
@@ -75,8 +77,9 @@ export default function AboutPage() {
 
     <section className={styles.booking} id="booking"><div className="shell"><div className={styles.heading}><h2>Personal service.<br />Clear responsibilities.</h2><p>Trust means knowing who you are speaking to, what you are paying for and who will welcome you on the ground.</p></div><div className={styles.roles}>
       <article><h3>Your planning contact: Joy</h3><p>I listen to what matters to you, help shape the route and coordinate the proposal with the local operator. You have a named person to talk to, not just a tour listing.</p></article>
-      <article><h3>Your trip operator: a licensed local partner</h3><p>The operator arranges and delivers the booked transport, guiding and accommodation. Your travel contract and payment are handled directly by that operator.</p></article>
-    </div><div className={styles.checklist}><h3>Before you commit, we work through:</h3><ul><li>Your route, pace and hotel arrangements</li><li>What the price includes—and excludes</li><li>The operator’s identity, payment and cancellation terms</li><li>Local contacts and arrangements for changes</li></ul><p>No pressure to decide before your questions are answered.</p></div></div></section>
+      <article><h3>Your trip operator: {licensedOperator.nameEn}</h3><p>{licensedOperator.nameEn} ({licensedOperator.nameZh}) arranges and delivers the booked transport, guiding and accommodation. Your travel contract and payment are handled directly by that operator. Its travel agency permit number is {licensedOperator.permitNumber}.</p></article>
+    </div><div className={styles.checklist}><h3>Before you commit, we work through:</h3><ul><li>Your route, pace and hotel arrangements</li><li>What the price includes—and excludes</li><li>The operator’s identity, payment and cancellation terms</li><li>Local contacts and arrangements for changes</li></ul><p>No pressure to decide before your questions are answered.</p></div>
+    <div id="local-partners"><OperatorCredentials /></div></div></section>
 
     <Testimonials items={stories} heading="What travelers remember" intro="Guests who followed this same path, from first conversation to arrival in Yunnan." />
 
