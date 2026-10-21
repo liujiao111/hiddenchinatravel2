@@ -6,6 +6,7 @@ import { EnquireLink } from "@/components/enquire-link";
 import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
+import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
 import { getHomeTestimonials } from "@/lib/testimonials";
 
@@ -119,7 +120,7 @@ export default function Home() {
             imageAlt: classic.frontmatter.coverAlt || classic.frontmatter.title,
             destination: classic.frontmatter.route,
             duration: classic.frontmatter.duration,
-            fromPrice: "From US$600 per person",
+            fromPrice: `From ${formatPriceLabel(classic.frontmatter.fromPrice, classic.frontmatter.currency)} ${classic.frontmatter.priceBasis}`,
             priceNote: "Complete 8-day journey, based on two adults sharing one room.",
             features: ["Private party", "Driver-host", "Seven hotel nights", "No shopping stops"],
             ctaLabel: "View this journey →",

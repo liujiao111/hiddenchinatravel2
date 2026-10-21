@@ -8,7 +8,7 @@ duration: "6 days / 5 nights"
 route: "Kunming → Dali → Shaxi → Lijiang"
 pace: "Unhurried"
 journeyType: "Private journey"
-fromPrice: 523
+fromPrice: 480
 currency: "USD"
 priceBasis: "per person"
 coverImage: "/home/hero.webp"
@@ -58,28 +58,31 @@ itinerary:
     title: "Under Jade Dragon Snow Mountain"
     meta: "Mountain and valley · Departure from Lijiang"
     description: "Spend the day beneath Jade Dragon Snow Mountain, and in Blue Moon Valley when the weather and tickets allow. Your driver then takes you to the airport or station. An early flight can mean moving the mountain day, or adding a night."
+pricingHeading: "Choose a hotel style"
+pricingIntro: "Premium is our recommended option. Starting prices on cards and listings use the Comfort rate. Prices are per person for the complete journey, based on two adults sharing one room."
+priceExplanation: "Final pricing depends on travel dates, group size, hotel availability and any route adjustments. Your licensed local travel partner confirms the quotation and contract before you decide."
 tiers:
-  - name: "Essential"
-    price: 523
-    description: "For travelers who value comfort, authenticity and good value."
-    accommodation: "Comfortable 3-star hotels"
-    idealFor: "Friends · Couples · First-time visitors"
   - name: "Comfort"
-    price: 562
-    description: "A balanced option with upgraded hotels and a little more comfort."
-    accommodation: "Selected 4-star hotels"
+    price: 480
+    description: "Local quality 4-star and highly rated boutique hotels."
+    accommodation: "Local 4-star / highly rated boutique hotels"
+    idealFor: "First visits · Couples and friends · Good value"
+  - name: "Premium"
+    price: 530
+    description: "International 4-star+ and light luxury 5-star hotels."
+    accommodation: "International 4-star+ / light luxury 5-star"
     idealFor: "Most travelers · Couples · Small private groups"
     featured: true
-  - name: "Premium"
-    price: 678
-    description: "For travelers who prefer boutique stays and a more refined experience."
-    accommodation: "Selected 5-star hotels"
-    idealFor: "Honeymooners · Special occasions · Comfort-focused travelers"
+  - name: "Luxury"
+    price: 580
+    description: "A higher-end stay with more exclusive hotels throughout the route."
+    accommodation: "Luxury 5-star hotels"
+    idealFor: "Special occasions · Higher-end stays"
 inclusions:
   - "A spacious, comfortable private vehicle for the whole journey. You choose gasoline or electric, with five or seven seats."
   - "A Chinese- or English-speaking guide throughout"
   - "24-hour private concierge support, from your first enquiry until the journey ends"
-  - "A 4- or 5-diamond hotel, chosen around your budget"
+  - "Hotels matched to your chosen style: Comfort, Premium or Luxury"
   - "Breakfast, which the hotel generally includes"
   - "Entrance tickets, mountain entry fees and similar charges for the places on your itinerary"
   - "High-speed train tickets where the route uses the train, in second class unless you request another seat"
@@ -97,7 +100,9 @@ faqs:
   - question: "Do I need to speak Chinese?"
     answer: "No. Local partners experienced in assisting international travelers support the journey, and English-speaking guides can be arranged where appropriate."
   - question: "What kind of accommodation is included?"
-    answer: "Hotels and guesthouses are matched to your selected travel style, with an emphasis on useful locations, comfort and local character. Specific properties are confirmed in your proposal."
+    answer: "Choose Comfort, Premium or Luxury. Comfort uses local quality 4-star and highly rated boutique hotels. Premium, our recommended option, uses international 4-star+ and light luxury 5-star hotels. Luxury is the higher-end hotel selection. Specific properties are confirmed in your proposal."
+  - question: "Is US$480 the price per day?"
+    answer: "No. US$480 is the Comfort starting price per person for the complete 6-day journey, based on two adults sharing one room. Premium is US$530 and Luxury is US$580."
   - question: "Are meals included?"
     answer: "The hotel generally includes breakfast. Lunch and dinner are not part of the journey, so you arrange those yourself. Your guide can suggest restaurants if you want."
   - question: "Are there any shopping stops?"

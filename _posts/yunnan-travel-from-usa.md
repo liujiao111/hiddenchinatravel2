@@ -183,7 +183,7 @@ It's a particularly good match for:
 | Shaxi | 1–2 |
 | Lijiang | 2–3 |
 
-This pace leaves time in each town without making every morning a transfer day. Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) private journey (guide price from **US$523 per person**, subject to dates, group size and final quote) covers the core route with private transport arranged by a licensed local partner. It can form the center of a longer trip on a suitable visa. Under 240-hour transit, count arrival and departure against the permitted China stay.
+This pace leaves time in each town without making every morning a transfer day. Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) private journey (Comfort guide price from **US$480 per person**, subject to dates, group size and final quote) covers the core route with private transport arranged by a licensed local partner. It can form the center of a longer trip on a suitable visa. Under 240-hour transit, count arrival and departure against the permitted China stay.
 
 > **Still deciding whether Dali deserves an extra night?** Request the free **Dali Local Guide PDF** for neighborhood and local planning ideas. [Ask Joy for the free guide →](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20planning%20a%20Yunnan%20trip%20from%20the%20USA%20and%20would%20like%20the%20free%20Dali%20Local%20Guide%20PDF)
 
