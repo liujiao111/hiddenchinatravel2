@@ -8,7 +8,7 @@ import { getSearchIndex } from "@/lib/search-index";
 import { matchSearchItems } from "@/lib/search-types";
 
 export const metadata: Metadata = {
-  title: "Search China Travel Guides | Hidden China Travel",
+  title: "Search China Travel Guides",
   description: "Search Hidden China Travel destination advice, planning essentials and practical guides.",
   robots: { index: false, follow: true },
 };

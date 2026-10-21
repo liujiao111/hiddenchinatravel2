@@ -1,7 +1,7 @@
 ---
 title: "The Essence of Yunnan"
 shortTitle: "The Essence of Yunnan"
-seoTitle: "The Essence of Yunnan: 8-Day Private Tour | Kunming, Dali, Lijiang & Shangri-La"
+seoTitle: "The Essence of Yunnan: 8-Day Private Tour"
 metaDescription: "The Essence of Yunnan is a private 8-day journey through Kunming, Dali, Lijiang and Shangri-La, with private transport, a driver-host and from US$580 per person for the complete trip."
 excerpt: "Erhai Lake • Jade Dragon Snow Mountain • Tiger Leaping Gorge"
 duration: "8 days / 7 nights"

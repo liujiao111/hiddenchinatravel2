@@ -10,10 +10,28 @@ import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
 import { getHomeTestimonials } from "@/lib/testimonials";
 
+const canonical = "https://hiddenchinatravel.com/";
+const title = "Private Yunnan Tours & Tailor-Made Journeys";
+const description = "Plan a private Yunnan journey through Kunming, Dali, Lijiang and Shaxi, with tailor-made itineraries, private transport, local guides and personal support.";
+
 export const metadata: Metadata = {
-  title: "Private Yunnan Tours & Tailor-Made Journeys",
-  description: "Plan a private Yunnan journey through Kunming, Dali, Lijiang, Shaxi, Lugu Lake and Shangri-La, with tailor-made itineraries, private transport, local guides and personal support.",
-  alternates: { canonical: "https://hiddenchinatravel.com/" },
+  title,
+  description,
+  alternates: { canonical },
+  openGraph: {
+    title,
+    description,
+    url: canonical,
+    type: "website",
+    siteName: "Hidden China Travel",
+    images: [{ url: "/home/hero.webp", alt: "Snow-capped mountains in Yunnan" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/home/hero.webp"],
+  },
 };
 
 const whatsapp = "https://wa.me/8618880441791?text=" + encodeURIComponent("Hi Joy, I'd like help planning a private Yunnan journey.");
@@ -37,7 +55,7 @@ const supportItems = [
   { title: "Maps and Transportation", detail: "Prepare maps, trains and everyday transport before arrival.", href: "/survival-kit#maps" },
 ];
 const destinations = [
-  ["Kunming", "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.", "/assets/resources/昆明-石林-352.jpg", "/china-destinations/yunnan", "EXPLORE KUNMING"],
+  ["Kunming", "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.", "/assets/resources/昆明-石林-352.jpg", "/kunming-travel-guide", "EXPLORE KUNMING"],
   ["Dali", "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.", "/assets/destinations/yunnan/dali.webp", "/dali-travel-guide", "EXPLORE DALI"],
   ["Shaxi", "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.", "/assets/destinations/yunnan/shaxi.webp", "/dali-hidden-gems-off-the-beaten-path", "DISCOVER SHAXI"],
   ["Lijiang", "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", "/assets/destinations/yunnan/lijiang.webp", "/china-destinations/yunnan", "EXPLORE LIJIANG"],
@@ -58,14 +76,29 @@ export default function Home() {
   const stories = getHomeTestimonials();
   const firstEncounter = journeys.find((journey) => journey.slug === "kunming-dali-shaxi-lijiang-6-days");
   const classic = journeys.find((journey) => journey.slug === "kunming-dali-lijiang-shangri-la-private-tour");
-  const faqSchema = {
+  const graph = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map(([question, answer]) => ({
-      "@type": "Question",
-      name: question,
-      acceptedAnswer: { "@type": "Answer", text: answer },
-    })),
+    "@graph": [
+      {
+        "@type": "Organization",
+        name: "Hidden China Travel",
+        url: "https://hiddenchinatravel.com",
+        logo: "https://hiddenchinatravel.com/brand/logo.webp",
+      },
+      {
+        "@type": "WebSite",
+        name: "Hidden China Travel",
+        url: "https://hiddenchinatravel.com",
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map(([question, answer]) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: { "@type": "Answer", text: answer },
+        })),
+      },
+    ],
   };
 
   return <main><SiteHeader />
@@ -238,6 +271,6 @@ export default function Home() {
       </div>
     </section>
     <ContentFooter />
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }} />
   </main>;
 }

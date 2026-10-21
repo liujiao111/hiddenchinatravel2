@@ -6,10 +6,26 @@ import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { getAllJourneys } from "@/lib/journeys";
 
+const title = "Private Yunnan Journeys";
+const description = "Explore private, slower-paced journeys through Yunnan with trusted local drivers, guides and personal planning support from Joy Liu.";
+
 export const metadata: Metadata = {
-  title: "Private Yunnan Journeys",
-  description: "Explore private, slower-paced journeys through Yunnan with trusted local drivers, guides and personal planning support from Joy Liu.",
+  title,
+  description,
   alternates: { canonical: "https://hiddenchinatravel.com/journeys" },
+  openGraph: {
+    title,
+    description,
+    url: "https://hiddenchinatravel.com/journeys",
+    type: "website",
+    images: [{ url: "/home/hero.webp", alt: "Snow-capped mountains in Yunnan" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/home/hero.webp"],
+  },
 };
 
 function priceLabel(value: number, currency: string, basis: string) {

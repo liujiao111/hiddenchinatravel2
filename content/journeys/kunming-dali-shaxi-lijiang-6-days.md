@@ -1,7 +1,7 @@
 ---
 title: "First Encounter Yunnan"
 shortTitle: "First Encounter Yunnan"
-seoTitle: "First Encounter Yunnan: 6-Day Private Tour | Kunming, Dali, Lijiang & Shaxi"
+seoTitle: "First Encounter Yunnan: 6-Day Private Tour"
 metaDescription: "First Encounter Yunnan is a private 6-day journey through Kunming, Dali, Lijiang and Shaxi, shaped around local culture, unhurried travel and personal support."
 excerpt: "Kunming • Dali • Lijiang • Shaxi"
 duration: "6 days / 5 nights"

@@ -36,7 +36,7 @@ export function ContentFooter() {
               <Link href="/china-destinations/yunnan">Yunnan</Link>
               <Link href="/dali-travel-guide">Dali</Link>
               <Link href="/search?q=Lijiang">Lijiang</Link>
-              <Link href="/search?q=Kunming">Kunming</Link>
+              <Link href="/kunming-travel-guide">Kunming</Link>
               <Link className="footer-explore-more" href="/search">Explore more →</Link>
             </div>
           </div>

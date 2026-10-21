@@ -10,10 +10,26 @@ import { siteConfig } from "@/lib/site-config";
 import { getFeaturedTestimonials } from "@/lib/testimonials";
 import styles from "./about.module.css";
 
+const title = "Meet Joy Liu | About Hidden China Travel";
+const description = "Meet Joy Liu, Yunnan-born founder of Hidden China Travel, and discover the local insight and thoughtful planning behind our private Yunnan journeys.";
+
 export const metadata: Metadata = {
-  title: "Meet Joy Liu | About Hidden China Travel",
-  description: "Meet Joy Liu, Yunnan-born founder of Hidden China Travel, and discover the local insight and thoughtful planning behind our private Yunnan journeys.",
+  title: { absolute: title },
+  description,
   alternates: { canonical: "/about-us" },
+  openGraph: {
+    title,
+    description,
+    url: "/about-us",
+    type: "website",
+    images: [{ url: "/brand/founder/portrait.webp", alt: "Joy Liu, founder of Hidden China Travel" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/brand/founder/portrait.webp"],
+  },
 };
 
 const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent("Hi Joy, I read your story on the About page and would love to discuss a Yunnan trip.")}`;
