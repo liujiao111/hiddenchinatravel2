@@ -103,7 +103,7 @@ faqs:
   - question: "Are there any shopping stops?"
     answer: "No. There are no mandatory shopping stops, tourist factories or commission-led detours in the itinerary."
   - question: "Who arranges and operates the journey?"
-    answer: "Yunnan Tengran International Travel Agency Co., Ltd. quotes, contracts and operates the journey. Hidden China Travel helps you shape the route and coordinate the proposal."
+    answer: "Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) quotes, contracts and operates the journey. Its travel agency permit number is L-YN-1017500. Hidden China Travel helps you shape the route and coordinate the proposal."
 ---
 
 ## Why this journey

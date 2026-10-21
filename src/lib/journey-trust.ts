@@ -15,8 +15,16 @@ export type CredentialDocument = {
   height: number;
 };
 
+export const licensedOperator = {
+  nameEn: "Yunnan Meizhen International Travel Agency Co., Ltd.",
+  nameZh: "云南美珍国际旅行社有限公司",
+  permitNumber: "L-YN-1017500",
+  unifiedSocialCreditCode: "9153001111MACHIXW95XT",
+} as const;
+
 const teamRoot = "/assets/partners/huatai";
-const tengranRoot = "/assets/partners/tengran";
+const vehicleRoot = "/assets/partners/vehicles";
+const credentialsRoot = "/assets/partners/meizhen";
 
 export const localGuideProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
   kicker: "01 / YOUR GUIDE",
@@ -40,9 +48,9 @@ export const vehicleProof: TrustCopy & { groups: { id: "five" | "seven"; label: 
       label: "7 SEATS",
       carouselLabel: "Seven-seat vehicle examples",
       slides: [
-        { src: `${tengranRoot}/vehicles/seven-seat-van.webp`, alt: "Example of a seven-seat passenger van, including its exterior and seating", title: "Seven-seat van", detail: "Example · passenger van", copy: "Exterior, captain seats and rear seating." },
-        { src: `${tengranRoot}/vehicles/seven-seat-maxus.webp`, alt: "Example of a seven-seat Maxus MPV, cabin and luggage space", title: "Seven-seat MPV", detail: "Example · Maxus", copy: "Cabin space and luggage room for a small private party." },
-        { src: `${tengranRoot}/vehicles/seven-seat-interiors.webp`, alt: "Examples of seven-seat MPV exteriors, seating and luggage areas", title: "Seven-seat interiors", detail: "Example · MPV seating", copy: "Additional interior examples. The final vehicle depends on your party and luggage." },
+        { src: `${vehicleRoot}/seven-seat-van.webp`, alt: "Example of a seven-seat passenger van, including its exterior and seating", title: "Seven-seat van", detail: "Example · passenger van", copy: "Exterior, captain seats and rear seating." },
+        { src: `${vehicleRoot}/seven-seat-maxus.webp`, alt: "Example of a seven-seat Maxus MPV, cabin and luggage space", title: "Seven-seat MPV", detail: "Example · Maxus", copy: "Cabin space and luggage room for a small private party." },
+        { src: `${vehicleRoot}/seven-seat-interiors.webp`, alt: "Examples of seven-seat MPV exteriors, seating and luggage areas", title: "Seven-seat interiors", detail: "Example · MPV seating", copy: "Additional interior examples. The final vehicle depends on your party and luggage." },
       ],
     },
     {
@@ -50,9 +58,9 @@ export const vehicleProof: TrustCopy & { groups: { id: "five" | "seven"; label: 
       label: "5 SEATS",
       carouselLabel: "Five-seat vehicle examples",
       slides: [
-        { src: `${tengranRoot}/vehicles/five-seat-hongqi.webp`, alt: "Example of a five-seat Hongqi sedan and its rear seats", title: "Five-seat sedan", detail: "Example · Hongqi", copy: "Exterior and rear seating for a smaller party." },
-        { src: `${tengranRoot}/vehicles/five-seat-aion.webp`, alt: "Example of a five-seat GAC Aion SUV, passenger seats and front cabin", title: "Five-seat SUV", detail: "Example · GAC Aion", copy: "Another five-seat option, shown outside and inside." },
-        { src: `${tengranRoot}/vehicles/five-seat-toyota.webp`, alt: "Example of a five-seat Toyota SUV and its passenger seating", title: "Five-seat SUV", detail: "Example · Toyota", copy: "A further five-seat example from the vehicle catalog." },
+        { src: `${vehicleRoot}/five-seat-hongqi.webp`, alt: "Example of a five-seat Hongqi sedan and its rear seats", title: "Five-seat sedan", detail: "Example · Hongqi", copy: "Exterior and rear seating for a smaller party." },
+        { src: `${vehicleRoot}/five-seat-aion.webp`, alt: "Example of a five-seat GAC Aion SUV, passenger seats and front cabin", title: "Five-seat SUV", detail: "Example · GAC Aion", copy: "Another five-seat option, shown outside and inside." },
+        { src: `${vehicleRoot}/five-seat-toyota.webp`, alt: "Example of a five-seat Toyota SUV and its passenger seating", title: "Five-seat SUV", detail: "Example · Toyota", copy: "A further five-seat example from the vehicle catalog." },
       ],
     },
   ],
@@ -61,9 +69,9 @@ export const vehicleProof: TrustCopy & { groups: { id: "five" | "seven"; label: 
 export const operatorCredentials: TrustCopy & { documents: CredentialDocument[] } = {
   kicker: "THE LOCAL OPERATOR",
   title: "Company documents you can inspect",
-  copy: "Yunnan Tengran International Travel Agency Co., Ltd. (云南腾然国际旅行社有限公司) is the licensed operator for these journeys. It confirms the services, handles the travel contract and operates the trip. Its travel agency permit number is L-YN-101846.",
+  copy: `${licensedOperator.nameEn} (${licensedOperator.nameZh}) is the licensed operator for these journeys. It confirms the services, handles the travel contract and operates the trip. Its travel agency permit number is ${licensedOperator.permitNumber}. Its unified social credit code is ${licensedOperator.unifiedSocialCreditCode}.`,
   documents: [
-    { href: `${tengranRoot}/credentials/business-license.webp`, src: `${tengranRoot}/credentials/business-license.webp`, alt: "Business license of Yunnan Tengran International Travel Agency Co., Ltd.", label: "View business license ↗", width: 2000, height: 1415 },
-    { href: `${tengranRoot}/credentials/travel-agency-permit.webp`, src: `${tengranRoot}/credentials/travel-agency-permit.webp`, alt: "Travel agency business permit L-YN-101846 for Yunnan Tengran International Travel Agency Co., Ltd.", label: "View travel agency permit ↗", width: 2000, height: 1499 },
+    { href: `${credentialsRoot}/credentials/business-license.jpg`, src: `${credentialsRoot}/credentials/business-license.jpg`, alt: `Business license of ${licensedOperator.nameEn}`, label: "View business license ↗", width: 2000, height: 1454 },
+    { href: `${credentialsRoot}/credentials/travel-agency-permit.jpg`, src: `${credentialsRoot}/credentials/travel-agency-permit.jpg`, alt: `Travel agency business permit ${licensedOperator.permitNumber} for ${licensedOperator.nameEn}`, label: "View travel agency permit ↗", width: 2000, height: 1434 },
   ],
 };

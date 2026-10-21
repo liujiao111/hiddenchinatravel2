@@ -19,7 +19,7 @@ const whatsapp = "https://wa.me/8618880441791?text=Hi%2C%20I%27d%20like%20help%2
 const reasons = [
   ["01", "Private journeys", "Travel with your own party, at a pace that fits you—not a large coach group or fixed sightseeing schedule."],
   ["02", "No shopping stops", "Journeys are built around places, people and experiences, never mandatory shopping or commission-led detours."],
-  ["03", "Licensed local partners", "Local travel partners provide the guides, drivers and on-the-ground services confirmed in your proposal."],
+  ["03", "Licensed local operator", "A licensed Yunnan travel agency provides the guides, drivers and on-the-ground services confirmed in your proposal."],
   ["04", "First-time China friendly", "We include the practical details that help an unfamiliar first trip feel much easier."],
   ["05", "Local support", "Questions and unexpected changes do not have to become travel-day stress."],
 ];
