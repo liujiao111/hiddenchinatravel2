@@ -132,7 +132,7 @@ export default function Home() {
             imageAlt: classic.frontmatter.coverAlt || classic.frontmatter.title,
             duration: "8 Days / 7 Nights Private Journey",
             fromPrice: `From ${formatPriceLabel(classic.frontmatter.fromPrice, classic.frontmatter.currency)} ${classic.frontmatter.priceBasis}`,
-            features: ["Private driver-guide", "Handpicked hotels", "Full-trip travel insurance", "No shopping stops"],
+            features: ["Private driver-host", "Handpicked hotels", "Full-trip travel insurance", "No shopping stops"],
             ctaLabel: "View this journey →",
             trackingLocation: "home_featured_classic",
           }} /> : null}

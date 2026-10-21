@@ -16,7 +16,7 @@
     "name": "The Tan Family",
     "country": "Malaysia",
     "rating": 4.8,
-    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "journeySlugs": [],
     "featured": true
   },
   {
@@ -66,7 +66,7 @@
     "name": "Mark & Susan T.",
     "country": "Australia",
     "rating": 4.8,
-    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "journeySlugs": ["kunming-dali-lijiang-shangri-la-private-tour"],
     "featured": true
   },
   {
@@ -96,7 +96,7 @@
     "name": "Peter & Jenny K.",
     "country": "Germany",
     "rating": 4.8,
-    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "journeySlugs": [],
     "featured": true
   }
 ]
