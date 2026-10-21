@@ -56,8 +56,8 @@ const faqs = [
 export default function Home() {
   const journeys = getAllJourneys();
   const stories = getHomeTestimonials();
+  const firstEncounter = journeys.find((journey) => journey.slug === "kunming-dali-shaxi-lijiang-6-days");
   const classic = journeys.find((journey) => journey.slug === "kunming-dali-lijiang-shangri-la-private-tour");
-  const lugu = journeys.find((journey) => journey.slug === "dali-lijiang-lugu-lake-private-tour");
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -112,7 +112,19 @@ export default function Home() {
           <p>Choose one of our suggested journeys or use it as inspiration for a route designed around you. Every private journey can be adjusted to suit your dates, group and preferred pace.</p>
         </div>
         <div className="journeys-card-grid home-journeys-grid">
-          {classic ? <JourneyCard priority journey={{
+          {firstEncounter ? <JourneyCard priority journey={{
+            title: "First Encounter Yunnan",
+            subtitle: "Kunming • Dali • Lijiang • Shaxi",
+            href: `/journeys/${firstEncounter.slug}`,
+            image: firstEncounter.frontmatter.coverImage,
+            imageAlt: firstEncounter.frontmatter.coverAlt || firstEncounter.frontmatter.title,
+            duration: "6 Days / 5 Nights Private Journey",
+            fromPrice: `From ${formatPriceLabel(firstEncounter.frontmatter.fromPrice, firstEncounter.frontmatter.currency)} ${firstEncounter.frontmatter.priceBasis}`,
+            features: ["Private vehicle", "English-speaking guide", "Handpicked hotels", "No shopping stops"],
+            ctaLabel: "View this journey →",
+            trackingLocation: "home_featured_first_encounter",
+          }} /> : null}
+          {classic ? <JourneyCard journey={{
             title: "The Essence of Yunnan",
             subtitle: "Erhai Lake • Jade Dragon Snow Mountain • Tiger Leaping Gorge",
             href: `/journeys/${classic.slug}`,
@@ -123,20 +135,6 @@ export default function Home() {
             features: ["Private driver-guide", "Handpicked hotels", "Full-trip travel insurance", "No shopping stops"],
             ctaLabel: "View this journey →",
             trackingLocation: "home_featured_classic",
-          }} /> : null}
-          {lugu ? <JourneyCard journey={{
-            title: "Dali, Lijiang & Lugu Lake",
-            subtitle: "Travel from the lakeside villages of Dali to the mountain landscapes of Lijiang, followed by two quieter nights beside Lugu Lake.",
-            href: `/journeys/${lugu.slug}`,
-            image: lugu.frontmatter.coverImage,
-            imageAlt: lugu.frontmatter.title,
-            destination: "Dali → Lijiang → Lugu Lake → Lijiang",
-            duration: lugu.frontmatter.duration,
-            fromPrice: "Tailored quotation for your dates and group",
-            priceNote: "Final pricing depends on travel dates, hotel choice and selected services.",
-            features: ["Private vehicle", "Local guide", "Five hotel nights", "Flexible pace"],
-            ctaLabel: "View this journey →",
-            trackingLocation: "home_featured_lugu",
           }} /> : null}
           <JourneyCard journey={{
             title: "Tailor-Made Yunnan",
