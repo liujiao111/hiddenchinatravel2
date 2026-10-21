@@ -62,7 +62,8 @@ p { line-height:1.7; }
 .mega-featured img { width:125px; height:88px; object-fit:cover; }
 .mega-featured span { display:flex; flex-direction:column; justify-content:center; padding:12px 16px; }
 .mega-featured b { font-size:.82rem; }
-.mega-featured small { margin-top:10px; line-height:1.4; }
+.mega-featured small { display:-webkit-box; margin-top:6px; overflow:hidden; color:#edf2ed; font-size:.68rem; font-weight:500; letter-spacing:0; line-height:1.35; -webkit-box-orient:vertical; -webkit-line-clamp:2; }
+.mega-featured .mega-journey-price { margin-top:6px; color:#e1cda1; font-size:.68rem; font-style:normal; font-weight:750; letter-spacing:.04em; }
 .mega-groups { display:grid; grid-template-columns:repeat(3,1fr) 1.25fr; gap:42px; }
 .mega-groups>section { display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
 .mega-groups h2 { margin-bottom:10px; }
@@ -99,6 +100,11 @@ p { line-height:1.7; }
 .hero-text-link { display:inline-block; margin-top:16px; padding-bottom:4px; border-bottom:1px solid rgba(255,255,255,.7); font-size:.8rem; font-weight:750; letter-spacing:.04em; }
 .hero-mobile-only { display:none; }
 .header-menu-toggle,.mobile-nav,.header-cta-short { display:none; }
+.mobile-nav-kicker { margin:0; padding:14px 20px 4px; color:#6a6d66; font-size:.58rem; font-weight:800; letter-spacing:.14em; }
+.mobile-nav a.mobile-nav-journey { display:flex; flex-direction:column; align-items:flex-start; gap:5px; padding:12px 20px; letter-spacing:0; }
+.mobile-nav-journey b { font-family:Georgia,serif; font-size:1.02rem; font-weight:400; letter-spacing:0; line-height:1.25; }
+.mobile-nav-journey small { color:#5c5f57; font-size:.72rem; font-weight:500; letter-spacing:0; line-height:1.4; }
+.mobile-nav a.mobile-nav-all { font-size:.66rem; }
 .intro { padding:88px 0; }
 .intro .narrow>p:not(.kicker),.process .narrow>p:not(.kicker) { font-size:1.05rem; }
 .intro .button { margin-top:20px; }
@@ -342,12 +348,14 @@ a.utility-card { color:inherit; }
 .mega-journeys-current { grid-template-columns:1fr; gap:24px; }
 .mega-current-journeys>h2 { max-width:580px; margin-top:0; }
 .mega-current-journey-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; width:100%; }
-.mega-current-journey-grid>a { display:grid; grid-template-columns:145px minmax(0,1fr); min-height:145px; overflow:hidden; background:rgba(255,255,255,.12); }
+.mega-current-journey-grid>a { display:grid; grid-template-columns:145px minmax(0,1fr); min-height:188px; overflow:hidden; background:rgba(255,255,255,.12); }
 .mega-current-journey-grid img { width:145px; height:100%; object-fit:cover; }
-.mega-current-journey-grid>a>span { display:flex; min-width:0; flex-direction:column; align-items:flex-start; padding:18px; }
+.mega-current-journey-grid>a>span { display:flex; min-width:0; height:100%; min-height:188px; flex-direction:column; align-items:flex-start; padding:16px 18px; }
 .mega-current-journey-grid small { color:#e0d7be; font-size:.56rem; font-weight:800; letter-spacing:.1em; }
-.mega-current-journey-grid b { margin-top:10px; font-family:Georgia,serif; font-size:1.05rem; font-weight:400; line-height:1.25; }
-.mega-current-journey-grid strong { margin-top:auto; font-size:.6rem; letter-spacing:.09em; }
+.mega-current-journey-grid b { margin-top:8px; font-family:Georgia,serif; font-size:1.05rem; font-weight:400; line-height:1.25; }
+.mega-current-journey-grid em { display:-webkit-box; margin-top:6px; overflow:hidden; color:#edf2ed; font-size:.72rem; font-style:normal; line-height:1.4; -webkit-box-orient:vertical; -webkit-line-clamp:2; }
+.mega-current-journey-grid .mega-journey-price { margin-top:8px; color:#e1cda1; font-size:.78rem; font-weight:750; letter-spacing:.03em; }
+.mega-current-journey-grid strong { margin-top:auto; padding-top:10px; font-size:.6rem; letter-spacing:.09em; }
 .mega-tailor-made { justify-content:center; padding-right:26px; }
 .mega-tailor-made>p:not(.kicker) { margin:0 0 9px; color:#e8eeeb; font-size:.84rem; line-height:1.65; }
 .mega-tailor-made .button { margin:8px 0 4px; color:#29463f; }
