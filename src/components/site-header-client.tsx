@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { EnquireLink } from "@/components/enquire-link";
 import { SiteSearch } from "@/components/site-search";
 import { YunnanCountryGuideLink } from "@/components/yunnan-country-guide-link";
 
@@ -78,7 +79,7 @@ export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
   return <header className="site-header" onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
       <Link href="/" className="brand" aria-label="Hidden China Travel home"><Image src="/brand/logo.webp" alt="Hidden China Travel" width={160} height={80} className="brand-logo" unoptimized /></Link>
-      <div className="header-contact"><span>Local insight, private journeys and personal support</span><Link className="button button-blue" href="/custom-china-tour" data-cta-location="header_custom"><span className="header-cta-full">PLAN MY YUNNAN TRIP</span><span className="header-cta-short">PLAN MY TRIP</span></Link></div>
+      <div className="header-contact"><span>Local insight, private journeys and personal support</span><EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">PLAN MY YUNNAN TRIP</span><span className="header-cta-short">PLAN MY TRIP</span></EnquireLink></div>
       <button type="button" className="header-menu-toggle" aria-expanded={mobileOpen} aria-controls="mobile-nav" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? "CLOSE" : "MENU"}</button>
     </div>
     {mobileOpen ? <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
