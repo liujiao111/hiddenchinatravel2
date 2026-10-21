@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Hidden China Travel",
-  url: "https://www.hiddenchinatravel.com",
+  url: "https://hiddenchinatravel.com",
   locale: "en_US",
   whatsappNumber: "8618880441791",
   enquiryEmail: "joy.liu@hiddenchinatravel.com",

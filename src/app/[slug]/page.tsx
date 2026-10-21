@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = getContentBySlug(slug);
   if (!item) return {};
   const { frontmatter } = item;
-  const description = frontmatter.excerpt || frontmatter.metaDescription || frontmatter.description;
+  const description = frontmatter.metaDescription || frontmatter.excerpt || frontmatter.description;
   const image = frontmatter.ogImage?.url || frontmatter.coverImage;
   const seoTitle = frontmatter.absoluteSeoTitle || frontmatter.seoTitle || frontmatter.title;
   return {
@@ -34,6 +34,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: image ? [{ url: absoluteUrl(image) }] : undefined,
       publishedTime: item.kind === "article" ? frontmatter.date : undefined,
       modifiedTime: item.kind === "article" ? frontmatter.dateModified : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoTitle,
+      description,
+      images: image ? [absoluteUrl(image)] : undefined,
     },
   };
 }

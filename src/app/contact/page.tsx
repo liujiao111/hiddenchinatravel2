@@ -8,10 +8,26 @@ import { Testimonials } from "@/components/testimonials";
 import { siteConfig } from "@/lib/site-config";
 import { getFeaturedTestimonials } from "@/lib/testimonials";
 
+const title = "Contact Hidden China Travel | Talk With Joy Liu";
+const description = "Have questions about Yunnan, China travel, visas, payments, or trip planning? Contact Joy Liu directly and start the conversation.";
+
 export const metadata: Metadata = {
-  title: { absolute: "Contact Hidden China Travel | Talk With Joy Liu" },
-  description: "Have questions about Yunnan, China travel, visas, payments, or trip planning? Contact Joy Liu directly and start the conversation.",
+  title: { absolute: title },
+  description,
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title,
+    description,
+    url: "/contact",
+    type: "website",
+    images: [{ url: "/brand/founder/portrait.webp", alt: "Joy Liu, founder of Hidden China Travel" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/brand/founder/portrait.webp"],
+  },
 };
 
 const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=Hi%20Joy%2C%20I%27d%20like%20to%20talk%20about%20my%20China%20journey.`;
