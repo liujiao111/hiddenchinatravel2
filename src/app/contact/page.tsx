@@ -5,7 +5,6 @@ import { ContactForm } from "@/components/contact-form";
 import { ContentFooter } from "@/components/content-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
-import { interests } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
 import { getFeaturedTestimonials } from "@/lib/testimonials";
 
@@ -35,10 +34,8 @@ const questions = [
   "Do I need Alipay, WeChat Pay, or an eSIM?",
 ];
 
-export default async function ContactPage({ searchParams }: { searchParams: Promise<{ interest?: string }> }) {
+export default async function ContactPage() {
   const stories = getFeaturedTestimonials();
-  const interest = (await searchParams).interest;
-  const defaultInterest = interests.includes(interest as (typeof interests)[number]) ? interest : undefined;
 
   return (
     <main>
@@ -95,12 +92,12 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         <div className="shell contact-form-layout">
           <header>
             <p className="contact-kicker">START THE CONVERSATION</p>
-            <h2>Tell Us About Your Trip</h2>
-            <p>Joy will personally review your enquiry and reply with initial suggestions. {siteConfig.replyTime}</p>
-            <p>Want to see a sample itinerary? Fill out the form and download a free 6-day Kunming, Dali and Lijiang sample. It is an example of a real route. Joy will then shape the actual trip around what you want.</p>
-            <p>Looking for a private itinerary and quote? <Link href="/custom-china-tour#plan" data-cta-location="contact_custom">Tell us your Yunnan tour plans →</Link></p>
+            <h2>Tell Us About Your Yunnan Trip</h2>
+            <p>You do not need a finished itinerary. Share what you already know, and Joy will help turn your ideas into a practical journey.</p>
+            <p>Joy personally reviews every enquiry and usually replies within 24 hours.</p>
+            <p><strong>No payment or booking commitment is required.</strong></p>
           </header>
-          <ContactForm defaultInterest={defaultInterest} />
+          <ContactForm />
         </div>
       </section>
 
