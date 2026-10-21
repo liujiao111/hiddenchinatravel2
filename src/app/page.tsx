@@ -47,9 +47,32 @@ export default function Home() {
   const journeyFacts = [featuredJourney.frontmatter.duration, featuredJourney.frontmatter.route, "Private vehicle & guide", "Five hotel nights"];
   const journeyHighlights = featuredJourney.frontmatter.experiences.slice(0, 4).map((experience) => experience.title);
 
+  const heroTrust = [
+    "Private journeys",
+    "No shopping stops",
+    "Licensed local operator",
+    "Support before and during your trip",
+    ...(pricedFrom ? [`Journeys from ${formatPriceLabel(pricedFrom.frontmatter.fromPrice, pricedFrom.frontmatter.currency)} per person`] : []),
+  ];
+
   return <main><SiteHeader />
-    <section className="hero"><Image src="/home/hero.webp" alt="Snow-capped mountains in Yunnan" fill preload unoptimized sizes="100vw" /><div className="hero-shade" /><div className="hero-copy"><h1>China, at Your Pace.</h1><p>Discover a more personal side of China through journeys shaped by local knowledge, slower travel, and meaningful experiences.<span>Born in Yunnan, Shaped by experiences abroad.</span></p><div className="hero-actions"><Link href="/journeys" className="button button-light">EXPLORE JOURNEYS</Link><Link href="/custom-china-tour" data-cta-location="home_hero_custom" className="button button-blue">DESIGN MY YUNNAN TRIP</Link></div></div></section>
-    <section className="hero-bridge"><div className="narrow"><h2>A more personal way to experience China</h2><p>Choose a thoughtfully designed private journey or ask Joy to shape one around your dates, interests and preferred pace. Trusted local people make the unfamiliar parts easier.</p></div></section>
+    <section className="hero">
+      <Image src="/home/hero.webp" alt="Snow-capped mountains in Yunnan" fill preload unoptimized sizes="100vw" />
+      <div className="hero-shade" />
+      <div className="hero-copy">
+        <p className="hero-kicker">PRIVATE JOURNEYS THROUGH YUNNAN</p>
+        <h1>Discover Yunnan at Your Own Pace</h1>
+        <p>Explore Dali, Lijiang, Shaxi, Lugu Lake and Shangri-La through a private journey designed around your dates, interests and preferred pace.</p>
+        <p>With trusted local guides, private transport and personal support before and during your trip, unfamiliar parts of China become much easier to navigate.</p>
+        <p className="hero-brand">Born in Yunnan. Shaped by experiences abroad.</p>
+        <div className="hero-actions">
+          <Link href="/custom-china-tour" data-cta-location="home_hero_custom" className="button button-blue">PLAN MY YUNNAN TRIP</Link>
+          <Link href="/journeys" className="button button-light">EXPLORE JOURNEYS</Link>
+        </div>
+        <ul className="hero-trust">{heroTrust.map((item) => <li key={item}>{item}</li>)}</ul>
+        <small>Share your dates and travel ideas. Joy will reply personally within 24 hours.</small>
+      </div>
+    </section>
 
     <section className="about-feature home-featured" id="journeys"><div className="about-feature-image"><Image src={featuredJourney.frontmatter.coverImage} alt="Lugu Lake in western Yunnan" fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="about-feature-copy"><h2>Featured Yunnan journey</h2><h3 className="feature-name">{featuredJourney.frontmatter.title}</h3><p>Travel from Dali&apos;s lakeside villages through Lijiang to two nights beside Lugu Lake, with a private vehicle and local guide throughout.</p><div className="journey-facts">{journeyFacts.map((fact) => <span key={fact}>{fact}</span>)}</div><ul className="highlight-list">{journeyHighlights.map((item) => <li key={item}>✓ <span>{item}</span></li>)}</ul><p className="journey-price">{pricedFrom ? `Private Yunnan journeys from ${formatPriceLabel(pricedFrom.frontmatter.fromPrice, pricedFrom.frontmatter.currency)} per person. This route is quoted separately for your dates.` : "Tailored quote for your dates and group"}</p><Link href={journeyHref}>Explore this journey →</Link><CustomJourneyLink prompt="Different dates or another route in mind?" label="Design your own Yunnan journey →" location="home_journey_alternative" /></div></section>
 
