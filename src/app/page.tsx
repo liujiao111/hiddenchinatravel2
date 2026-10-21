@@ -55,8 +55,8 @@ const faqs = [
 export default function Home() {
   const journeys = getAllJourneys();
   const stories = getHomeTestimonials();
+  const classic = journeys.find((journey) => journey.slug === "kunming-dali-lijiang-shangri-la-private-tour");
   const lugu = journeys.find((journey) => journey.slug === "dali-lijiang-lugu-lake-private-tour");
-  const shaxi = journeys.find((journey) => journey.slug === "kunming-dali-shaxi-lijiang-6-days");
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -111,7 +111,21 @@ export default function Home() {
           <p>Choose one of our suggested journeys or use it as inspiration for a route designed around you. Every private journey can be adjusted to suit your dates, group and preferred pace.</p>
         </div>
         <div className="journeys-card-grid home-journeys-grid">
-          {lugu ? <JourneyCard priority journey={{
+          {classic ? <JourneyCard priority journey={{
+            title: "Classic Yunnan",
+            subtitle: "Begin beside Erhai Lake, continue beneath Jade Dragon Snow Mountain, then travel through Tiger Leaping Gorge to the highlands of Shangri-La.",
+            href: `/journeys/${classic.slug}`,
+            image: classic.frontmatter.coverImage,
+            imageAlt: classic.frontmatter.coverAlt || classic.frontmatter.title,
+            destination: classic.frontmatter.route,
+            duration: classic.frontmatter.duration,
+            fromPrice: "From US$600 per person",
+            priceNote: "Complete 8-day journey, based on two adults sharing one room.",
+            features: ["Private party", "Driver-host", "Seven hotel nights", "No shopping stops"],
+            ctaLabel: "View this journey →",
+            trackingLocation: "home_featured_classic",
+          }} /> : null}
+          {lugu ? <JourneyCard journey={{
             title: "Dali, Lijiang & Lugu Lake",
             subtitle: "Travel from the lakeside villages of Dali to the mountain landscapes of Lijiang, followed by two quieter nights beside Lugu Lake.",
             href: `/journeys/${lugu.slug}`,
@@ -124,19 +138,6 @@ export default function Home() {
             features: ["Private vehicle", "Local guide", "Five hotel nights", "Flexible pace"],
             ctaLabel: "View this journey →",
             trackingLocation: "home_featured_lugu",
-          }} /> : null}
-          {shaxi ? <JourneyCard journey={{
-            title: "Dali, Shaxi & Lijiang",
-            subtitle: "Follow part of the old Tea Horse Road through Dali, the quieter historic town of Shaxi and the mountain landscapes surrounding Lijiang.",
-            href: `/journeys/${shaxi.slug}`,
-            image: shaxi.frontmatter.coverImage,
-            imageAlt: shaxi.frontmatter.title,
-            destination: "Dali → Shaxi → Lijiang",
-            duration: shaxi.frontmatter.duration,
-            fromPrice: "Tailored quotation for your dates and group",
-            features: ["Private vehicle", "Cultural experiences", "Slower travel", "Flexible pace"],
-            ctaLabel: "View this journey →",
-            trackingLocation: "home_featured_shaxi",
           }} /> : null}
           <JourneyCard journey={{
             title: "Your Own Yunnan Journey",

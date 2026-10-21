@@ -106,14 +106,14 @@ export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
       {open === "destinations" ? <div className="shell mega-destinations">
         <section><h2>Most popular</h2><div className="mega-columns">{popular.map((item) => <Link key={item} href={destinationHref(item)}>{item}</Link>)}</div><Link className="mega-outline" href="/china-destinations/yunnan">EXPLORE YUNNAN</Link></section>
         <section><h2>Explore by region</h2><div className="mega-list">{regions.map((item) => <Link key={item} href={destinationHref(item)}>{item}</Link>)}</div></section>
-        <section className="mega-featured"><h2>Begin with Yunnan</h2>{journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`}><Image src={journey.image} alt={journey.title} width={150} height={88} unoptimized /><span><b>{journey.title}</b><small>{journey.duration} · Private</small></span></Link>)}</section>
+        <section className="mega-featured"><h2>Begin with Yunnan</h2>{journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`}><Image src={encodeURI(journey.image)} alt={journey.title} width={150} height={88} unoptimized /><span><b>{journey.title}</b><small>{journey.duration} · Private</small></span></Link>)}</section>
       </div> : open === "journeys" ? <div className="shell mega-journeys mega-journeys-current">
         <section className="mega-current-journeys">
           <p className="kicker">PRIVATE YUNNAN JOURNEYS</p>
           <h2>Start with one of our signature journeys.</h2>
           <div className="mega-current-journey-grid">
             {journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`}>
-              <Image src={journey.image} alt={journey.title} width={300} height={178} unoptimized />
+              <Image src={encodeURI(journey.image)} alt={journey.title} width={300} height={178} unoptimized />
               <span><small>{journey.duration} · PRIVATE</small><b>{journey.title}</b><strong>VIEW JOURNEY →</strong></span>
             </Link>)}
           </div>
