@@ -53,7 +53,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
   const storiesFromThisJourney = stories.some((story) => story.journeySlugs.includes(journey.slug));
   const isDaliLijiangLuguLakeJourney = journey.slug === "dali-lijiang-lugu-lake-private-tour";
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
-  const isClassicYunnanJourney = journey.slug === "kunming-dali-lijiang-shangri-la-8-days";
+  const isClassicYunnanJourney = journey.slug === "kunming-dali-lijiang-shangri-la-private-tour";
   const routePhotos = [
     ["/assets/resources/大理-崇圣寺三塔-271.jpg", "Three Pagodas near Dali"],
     ["/assets/resources/大理-洱海-215.jpg", "Erhai Lake near Dali"],
