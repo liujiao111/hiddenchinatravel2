@@ -114,15 +114,13 @@ export default function Home() {
         <div className="journeys-card-grid home-journeys-grid">
           {classic ? <JourneyCard priority journey={{
             title: "The Essence of Yunnan",
-            subtitle: "Kunming • Dali • Lijiang • Shangri-La",
+            subtitle: "Erhai Lake • Jade Dragon Snow Mountain • Tiger Leaping Gorge",
             href: `/journeys/${classic.slug}`,
             image: classic.frontmatter.coverImage,
             imageAlt: classic.frontmatter.coverAlt || classic.frontmatter.title,
-            destination: classic.frontmatter.route,
-            duration: classic.frontmatter.duration,
+            duration: "8 Days / 7 Nights Private Journey",
             fromPrice: `From ${formatPriceLabel(classic.frontmatter.fromPrice, classic.frontmatter.currency)} ${classic.frontmatter.priceBasis}`,
-            priceNote: "Complete 8-day journey, based on two adults sharing one room.",
-            features: ["Private party", "Driver-host", "Seven hotel nights", "No shopping stops"],
+            features: ["Private driver-guide", "Handpicked hotels", "Full-trip travel insurance", "No shopping stops"],
             ctaLabel: "View this journey →",
             trackingLocation: "home_featured_classic",
           }} /> : null}

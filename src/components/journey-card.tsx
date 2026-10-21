@@ -31,11 +31,9 @@ export function JourneyCard({ journey, priority = false }: { journey: JourneyCar
       {journey.destination ? <span>{journey.destination}</span> : null}
       <h3>{journey.title}</h3>
       {journey.subtitle ? <p>{journey.subtitle}</p> : null}
+      {journey.duration ? <p className="journey-card-duration">{journey.duration}</p> : null}
       {journey.features?.length ? <ul>{journey.features.map((feature) => <li key={feature}>✓ {feature}</li>)}</ul> : null}
-      {journey.duration || journey.fromPrice ? <div className="journey-card-meta">
-        {journey.duration ? <b>{journey.duration}</b> : null}
-        {journey.fromPrice ? <b>{journey.fromPrice}</b> : null}
-      </div> : null}
+      {journey.fromPrice ? <b className="journey-card-price">{journey.fromPrice}</b> : null}
       {journey.priceNote ? <small className="journey-card-note">{journey.priceNote}</small> : null}
       <strong>{journey.ctaLabel || "Explore the journey →"}</strong>
     </div>

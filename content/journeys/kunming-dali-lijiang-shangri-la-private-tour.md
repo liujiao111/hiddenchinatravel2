@@ -2,13 +2,13 @@
 title: "The Essence of Yunnan"
 shortTitle: "The Essence of Yunnan"
 seoTitle: "The Essence of Yunnan: 8-Day Private Tour | Kunming, Dali, Lijiang & Shangri-La"
-metaDescription: "The Essence of Yunnan is a private 8-day journey through Kunming, Dali, Lijiang and Shangri-La, with private transport, a driver-host and from US$580 per person for the complete trip."
-excerpt: "Kunming • Dali • Lijiang • Shangri-La"
+metaDescription: "The Essence of Yunnan is a private 8-day journey through Kunming, Dali, Lijiang and Shangri-La, with private transport, a driver-host and from US$899 per person for the complete trip."
+excerpt: "Erhai Lake • Jade Dragon Snow Mountain • Tiger Leaping Gorge"
 duration: "8 days / 7 nights"
 route: "Kunming → Dali → Lijiang → Shangri-La → Kunming"
 pace: "Full, with several longer travel days"
 journeyType: "Private journey for your party only"
-fromPrice: 580
+fromPrice: 899
 currency: "USD"
 priceBasis: "per person"
 coverImage: "/assets/destinations/yunnan/shangri-la.webp"
@@ -19,7 +19,8 @@ displayOrder: 3
 navFeatured: true
 heroEyebrow: "8 DAYS / 7 NIGHTS · PRIVATE JOURNEY"
 heroSecondaryLabel: "EXPLORE THE 8-DAY ITINERARY"
-heroNote: "Share your dates, group size and hotel preferences to receive a confirmed itinerary and quotation."
+heroDescription: "Explore Yunnan's most iconic landscapes, from Erhai Lake and Lijiang to Tiger Leaping Gorge and Shangri-La."
+heroNote: "Yunnan's most iconic private journey for first-time visitors."
 overviewTitle: "The Essence of Yunnan, at a glance."
 overviewDescription: "An eight-day private route through Yunnan’s lakeside towns, historic streets, snow mountains and highland landscapes, with the main transfers arranged for you."
 overviewItems:
@@ -28,7 +29,7 @@ overviewItems:
   - label: "YOUR JOURNEY"
     value: "Private party · Driver-host · No shopping stops"
   - label: "GUIDE PRICE"
-    value: "From US$580 per person for the complete 8-day journey"
+    value: "From US$899 per person for the complete 8-day journey"
 manifestoKicker: "THE ESSENCE OF YUNNAN"
 manifestoLead: "Lakeside towns beside Erhai. Old streets and snow mountains in Lijiang. Tiger Leaping Gorge, then the highlands of Shangri-La."
 manifestoClose: "The transfers between airports, stations, hotels and the main visits are arranged for you."
@@ -123,18 +124,18 @@ itinerary:
     meals: "Breakfast included. Transport: private airport transfer. Pace: relaxed."
 tiers:
   - name: "Comfort"
-    price: 580
+    price: 899
     description: "Local quality 4-star and highly rated boutique hotels."
     accommodation: "Local 4-star / highly rated boutique hotels"
     idealFor: "First visits · Couples and friends · Good value"
   - name: "Premium"
-    price: 630
+    price: 949
     description: "International 4-star+ and light luxury 5-star hotels."
     accommodation: "International 4-star+ / light luxury 5-star"
     idealFor: "Most travelers · Couples · Small private groups"
     featured: true
   - name: "Luxury"
-    price: 680
+    price: 999
     description: "A higher-end stay with more exclusive hotels throughout the route."
     accommodation: "Luxury 5-star hotels"
     idealFor: "Special occasions · Higher-end stays"
@@ -184,8 +185,8 @@ faqs:
     answer: "The driver-host looks after transport, route coordination and general travel help. The driver usually does not accompany you throughout the inside of attractions and does not provide a professional site commentary."
   - question: "Can the itinerary be adjusted?"
     answer: "Hotels, some visits and the daily pace can be adjusted around your dates, interests and available services. A larger change to the route will be re-quoted."
-  - question: "Is US$580 the price per day?"
-    answer: "No. US$580 is the Comfort starting price per person for the complete 8-day journey, based on two adults traveling together and sharing one room. Premium is US$630 and Luxury is US$680."
+  - question: "Is US$899 the price per day?"
+    answer: "No. US$899 is the Comfort starting price per person for the complete 8-day journey, based on two adults traveling together and sharing one room. Premium is US$949 and Luxury is US$999."
   - question: "How are lunch and dinner arranged?"
     answer: "Apart from the meals listed as included, other main meals are your own choice. The driver-host can suggest local restaurants."
   - question: "When are the hotels and trains confirmed?"
