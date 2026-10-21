@@ -73,12 +73,21 @@ const hrefFor = (label: string) => {
 
 export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
   const [open, setOpen] = useState<MenuName | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return <header className="site-header" onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
       <Link href="/" className="brand" aria-label="Hidden China Travel home"><Image src="/brand/logo.webp" alt="Hidden China Travel" width={160} height={80} className="brand-logo" unoptimized /></Link>
-      <div className="header-contact"><span>Local insight, private journeys and personal support</span><Link className="button button-blue" href="/custom-china-tour" data-cta-location="header_custom">PLAN MY JOURNEY</Link></div>
+      <div className="header-contact"><span>Local insight, private journeys and personal support</span><Link className="button button-blue" href="/custom-china-tour" data-cta-location="header_custom"><span className="header-cta-full">PLAN MY YUNNAN TRIP</span><span className="header-cta-short">PLAN MY TRIP</span></Link></div>
+      <button type="button" className="header-menu-toggle" aria-expanded={mobileOpen} aria-controls="mobile-nav" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? "CLOSE" : "MENU"}</button>
     </div>
+    {mobileOpen ? <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
+      <Link href="/china-destinations/yunnan" onClick={() => setMobileOpen(false)}>DESTINATIONS</Link>
+      <Link href="/journeys" onClick={() => setMobileOpen(false)}>JOURNEYS</Link>
+      <Link href="/survival-kit" onClick={() => setMobileOpen(false)}>TRAVEL GUIDES</Link>
+      <Link href="/about-us" onClick={() => setMobileOpen(false)}>ABOUT US</Link>
+      <Link href="/contact" onClick={() => setMobileOpen(false)}>CONTACT US</Link>
+    </nav> : null}
     <nav className="nav-row" aria-label="Main navigation">
       <div className="shell nav-inner">
         <div className="nav-links">
