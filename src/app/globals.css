@@ -610,6 +610,7 @@ a.utility-card { color:inherit; }
 .journey-hero-copy>div>p { margin:0 0 19px; color:#e1cda1; font-size:.68rem; font-weight:800; letter-spacing:.18em; }
 .journey-hero h1 { margin:0 auto; }
 .journey-hero-copy>div>span { display:block; max-width:700px; margin:26px auto 0; font-family:Georgia,serif; font-size:clamp(1.05rem,2vw,1.35rem); line-height:1.55; }
+.journey-hero-price { display:block; margin:18px auto 0; color:#e1cda1; font-family:Georgia,serif; font-size:clamp(1.05rem,1.8vw,1.28rem); font-weight:400; }
 .journey-hero-rating { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px 10px; margin:22px auto 0; color:#e1cda1; font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; }
 .journey-hero-rating .star-rating { color:#e1cda1; gap:3px; }
 .journey-hero-rating .star-rating-star { width:13px; height:13px; }
@@ -1152,8 +1153,10 @@ a.utility-card { color:inherit; }
 .journey-card-copy>span { display:block; margin-bottom:12px; font-size:.67rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
 .journey-card-copy h3 { max-width:620px; margin:0; color:#fff; font-family:Georgia,serif; font-size:clamp(1.8rem,3vw,2.55rem); font-style:italic; font-weight:400; line-height:1.08; }
 .journey-card-copy>p { max-width:620px; margin:13px 0 0; color:rgba(255,255,255,.88); font-size:.92rem; line-height:1.55; }
-.journey-card-copy ul { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 22px; margin:22px 0 0; padding:0; list-style:none; font-size:.83rem; }
+.journey-card-duration { margin:12px 0 0; color:rgba(255,255,255,.84); font-size:.78rem; font-weight:700; letter-spacing:.04em; }
+.journey-card-copy ul { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 22px; margin:18px 0 0; padding:0; list-style:none; font-size:.83rem; }
 .journey-card-meta { display:flex; flex-wrap:wrap; gap:9px 20px; margin-top:20px; font-size:.77rem; }
+.journey-card-price { display:block; margin-top:18px; color:#fff; font-family:Georgia,serif; font-size:1.12rem; font-weight:400; }
 .journey-card-copy>strong { display:block; margin-top:24px; padding-top:18px; border-top:1px solid rgba(255,255,255,.55); font-size:.7rem; letter-spacing:.09em; text-transform:uppercase; }
 
 .article-discovery { padding:96px 0; }

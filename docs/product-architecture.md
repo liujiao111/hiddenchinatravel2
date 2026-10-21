@@ -11,7 +11,8 @@ Multi-day sample routes that can be adjusted around the traveler's dates,
 party, pace and comfort preferences.
 
 - Dali, Lijiang & Lugu Lake
-- Kunming, Dali, Shaxi & Lijiang
+- First Encounter Yunnan
+- The Essence of Yunnan
 
 Published journey content uses:
 
@@ -25,7 +26,7 @@ Only `published` journeys are returned by `getAllJourneys()`. Content marked
 `draft` or `planned` remains hidden from listings, navigation, sitemap-driven
 journey routes and related-content modules.
 
-### Tailor-made Yunnan
+### Tailor-Made Yunnan
 
 This is a planning service, not a third fixed itinerary. It should be visually
 separate from journey cards and lead to `/custom-china-tour`.

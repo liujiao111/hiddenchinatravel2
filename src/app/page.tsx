@@ -6,6 +6,7 @@ import { EnquireLink } from "@/components/enquire-link";
 import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
+import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
 import { getHomeTestimonials } from "@/lib/testimonials";
 
@@ -112,16 +113,14 @@ export default function Home() {
         </div>
         <div className="journeys-card-grid home-journeys-grid">
           {classic ? <JourneyCard priority journey={{
-            title: "Classic Yunnan",
-            subtitle: "Begin beside Erhai Lake, continue beneath Jade Dragon Snow Mountain, then travel through Tiger Leaping Gorge to the highlands of Shangri-La.",
+            title: "The Essence of Yunnan",
+            subtitle: "Erhai Lake • Jade Dragon Snow Mountain • Tiger Leaping Gorge",
             href: `/journeys/${classic.slug}`,
             image: classic.frontmatter.coverImage,
             imageAlt: classic.frontmatter.coverAlt || classic.frontmatter.title,
-            destination: classic.frontmatter.route,
-            duration: classic.frontmatter.duration,
-            fromPrice: "From US$600 per person",
-            priceNote: "Complete 8-day journey, based on two adults sharing one room.",
-            features: ["Private party", "Driver-host", "Seven hotel nights", "No shopping stops"],
+            duration: "8 Days / 7 Nights Private Journey",
+            fromPrice: `From ${formatPriceLabel(classic.frontmatter.fromPrice, classic.frontmatter.currency)} ${classic.frontmatter.priceBasis}`,
+            features: ["Private driver-guide", "Handpicked hotels", "Full-trip travel insurance", "No shopping stops"],
             ctaLabel: "View this journey →",
             trackingLocation: "home_featured_classic",
           }} /> : null}
@@ -140,8 +139,8 @@ export default function Home() {
             trackingLocation: "home_featured_lugu",
           }} /> : null}
           <JourneyCard journey={{
-            title: "Your Own Yunnan Journey",
-            subtitle: "Not every traveler wants the same route. Tell Joy what you have in mind, even if it is only a rough idea.",
+            title: "Tailor-Made Yunnan",
+            subtitle: "Private Journey Designed Around You",
             href: "/custom-china-tour",
             image: "/home/local-support.webp",
             imageAlt: "A wooden boat on a highland lake in Yunnan",

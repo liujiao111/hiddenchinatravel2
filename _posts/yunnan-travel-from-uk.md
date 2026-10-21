@@ -139,7 +139,7 @@ With **13–14 UK-to-UK days**, the better use of extra time may be a second nig
 
 *Pudacuo is an optional northwest extension; allow time to adjust to the higher elevation.*
 
-Our [6-day Kunming, Dali, Shaxi & Lijiang private journey](/journeys/kunming-dali-shaxi-lijiang-6-days) covers the compact core as a **6-day/5-night land itinerary**, not a 12-day UK holiday. It can be a starting point for a longer conversation. International flights, extra nights and an extension to the gorge or Shangri-La are not included merely because they appear in this article; the licensed local travel partner gives the final scope and quote.
+Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) private journey covers the compact core as a **6-day/5-night land itinerary**, not a 12-day UK holiday. It can be a starting point for a longer conversation. International flights, extra nights and an extension to the gorge or Shangri-La are not included merely because they appear in this article; the licensed local travel partner gives the final scope and quote.
 
 ## When Should You Go?
 
@@ -151,7 +151,7 @@ Also compare UK school holidays with China's major public holidays before fixing
 
 A UK-to-UK holiday and a land-only Yunnan journey are different purchases. Price your international flights separately from accommodation, trains, road transfers, guide or driver arrangements, meals, admission tickets, insurance and additional nights.
 
-The [six-day journey page](/journeys/kunming-dali-shaxi-lijiang-6-days) shows its current **USD guide price and stated inclusions**. It does not price the ten-night examples above or include flights from the UK. Compare the final partner proposal with your flight and independently booked items, checking group size, hotel level, guide coverage, transfer points and any holiday-date changes. I would not turn a land-only USD starting price into a fixed GBP cost for your whole holiday.
+The [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) page shows its current **USD guide price and stated inclusions**. It does not price the ten-night examples above or include flights from the UK. Compare the final partner proposal with your flight and independently booked items, checking group size, hotel level, guide coverage, transfer points and any holiday-date changes. I would not turn a land-only USD starting price into a fixed GBP cost for your whole holiday.
 
 ## Travel Independently or Arrange Local Support?
 

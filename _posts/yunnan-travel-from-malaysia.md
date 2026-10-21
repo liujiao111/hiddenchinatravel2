@@ -232,7 +232,7 @@ Hidden China Travel is not a dedicated Muslim-tour specialist. Local partners ca
 | Support for selected legs | Rail and hotels yourself; ask about a driver for Shaxi | Travellers who mainly need help with the road transfers |
 | Private journey | Agree a route and service scope with the licensed local operator | Families, couples and friends who prefer coordinated logistics |
 
-Our [six-day Kunming, Dali, Shaxi & Lijiang journey](/journeys/kunming-dali-shaxi-lijiang-6-days) is a starting point for an in-Yunnan proposal. Its current itinerary combines rail and private road transfers; it is not an all-road version of the eight-day table above. Confirm the day-by-day route, hotel nights, guide arrangements and airport transfers against the product page and written proposal. International flights and additional nights need separate planning.
+Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) journey is a starting point for an in-Yunnan proposal. Its current itinerary combines rail and private road transfers; it is not an all-road version of the eight-day table above. Confirm the day-by-day route, hotel nights, guide arrangements and airport transfers against the product page and written proposal. International flights and additional nights need separate planning.
 
 **Joy Liu discusses your route; licensed local partners confirm the proposal, price, contract, payment arrangements and operation.** If you are comparing a Malaysia-departure package with this option, check where the international flights and service responsibility sit in each quote.
 
