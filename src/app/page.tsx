@@ -9,10 +9,30 @@ import { Testimonials } from "@/components/testimonials";
 import { getAllJourneys } from "@/lib/journeys";
 import { getHomeTestimonials } from "@/lib/testimonials";
 
+const canonical = "https://hiddenchinatravel.com/";
+const title = "Private Yunnan Tours & Tailor-Made Journeys";
+const description = "Plan a private Yunnan journey through Kunming, Dali, Lijiang and Shaxi, with tailor-made itineraries, private transport, local guides and personal support.";
+
 export const metadata: Metadata = {
-  title: "Private Yunnan Tours & Tailor-Made Journeys",
-  description: "Plan a private Yunnan journey through Kunming, Dali, Lijiang, Shaxi, Lugu Lake and Shangri-La, with tailor-made itineraries, private transport, local guides and personal support.",
-  alternates: { canonical: "https://hiddenchinatravel.com/" },
+  title: { absolute: `${title} | Hidden China Travel` },
+  description,
+  keywords: ["private Yunnan tours", "Yunnan private tour", "Kunming", "Dali", "Lijiang", "Shaxi", "tailor-made China tours"],
+  alternates: { canonical },
+  openGraph: {
+    title,
+    description,
+    url: canonical,
+    siteName: "Hidden China Travel",
+    locale: "en_US",
+    type: "website",
+    images: [{ url: "https://hiddenchinatravel.com/home/hero.webp", alt: "Snow-capped mountains in Yunnan" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["https://hiddenchinatravel.com/home/hero.webp"],
+  },
 };
 
 const whatsapp = "https://wa.me/8618880441791?text=" + encodeURIComponent("Hi Joy, I'd like help planning a private Yunnan journey.");
@@ -36,12 +56,12 @@ const supportItems = [
   { title: "Maps and Transportation", detail: "Prepare maps, trains and everyday transport before arrival.", href: "/survival-kit#maps" },
 ];
 const destinations = [
-  ["Kunming", "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.", "/assets/resources/昆明-石林-352.jpg", "/china-destinations/yunnan", "EXPLORE KUNMING"],
-  ["Dali", "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.", "/assets/destinations/yunnan/dali.webp", "/dali-travel-guide", "EXPLORE DALI"],
-  ["Shaxi", "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.", "/assets/destinations/yunnan/shaxi.webp", "/dali-hidden-gems-off-the-beaten-path", "DISCOVER SHAXI"],
-  ["Lijiang", "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", "/assets/destinations/yunnan/lijiang.webp", "/china-destinations/yunnan", "EXPLORE LIJIANG"],
-  ["Lugu Lake", "Mountain roads, lakeside villages and a quieter side of northwest Yunnan.", "/assets/resources/丽江-泸沽湖-419.jpg", "/china-destinations/yunnan", "DISCOVER LUGU LAKE"],
-  ["Shangri-La", "High-altitude landscapes and a distinctly different side of Yunnan.", "/assets/destinations/yunnan/shangri-la.webp", "/china-destinations/yunnan", "EXPLORE SHANGRI-LA"],
+  { name: "Kunming", note: "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.", image: "/assets/resources/昆明-石林-352.jpg", href: "/kunming-travel-guide", cta: "EXPLORE KUNMING", alt: "Stone Forest limestone pinnacles near Kunming" },
+  { name: "Dali", note: "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.", image: "/assets/destinations/yunnan/dali.webp", href: "/dali-travel-guide", cta: "EXPLORE DALI", alt: "Dali Ancient Town with the Cangshan mountains beyond" },
+  { name: "Shaxi", note: "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.", image: "/assets/destinations/yunnan/shaxi.webp", href: "/dali-hidden-gems-off-the-beaten-path", cta: "DISCOVER SHAXI", alt: "Historic streets in Shaxi Ancient Town" },
+  { name: "Lijiang", note: "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", image: "/assets/destinations/yunnan/lijiang.webp", href: "/china-destinations/yunnan", cta: "EXPLORE LIJIANG", alt: "Historic streets in Lijiang Old Town" },
+  { name: "Lugu Lake", note: "Mountain roads, lakeside villages and a quieter side of northwest Yunnan.", image: "/assets/resources/丽江-泸沽湖-419.jpg", href: "/china-destinations/yunnan", cta: "DISCOVER LUGU LAKE", alt: "Lakeside villages around Lugu Lake" },
+  { name: "Shangri-La", note: "High-altitude landscapes and a distinctly different side of Yunnan.", image: "/assets/destinations/yunnan/shangri-la.webp", href: "/china-destinations/yunnan", cta: "EXPLORE SHANGRI-LA", alt: "High-altitude landscapes around Shangri-La" },
 ];
 const faqs = [
   ["How much does a private Yunnan journey cost?", "Pricing depends on the route, number of travelers, travel dates, hotel standard and whether you require a guide throughout the journey. After learning more about your plans, we will provide a tailored quotation with the inclusions and exclusions clearly explained."],
@@ -57,14 +77,37 @@ export default function Home() {
   const stories = getHomeTestimonials();
   const lugu = journeys.find((journey) => journey.slug === "dali-lijiang-lugu-lake-private-tour");
   const shaxi = journeys.find((journey) => journey.slug === "kunming-dali-shaxi-lijiang-6-days");
-  const faqSchema = {
+  const graph = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map(([question, answer]) => ({
-      "@type": "Question",
-      name: question,
-      acceptedAnswer: { "@type": "Answer", text: answer },
-    })),
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://hiddenchinatravel.com/#organization",
+        name: "Hidden China Travel",
+        url: "https://hiddenchinatravel.com",
+        logo: "https://hiddenchinatravel.com/brand/logo.webp",
+        email: "joy.liu@hiddenchinatravel.com",
+        description: "Hidden China Travel helps international visitors plan private Yunnan journeys. Licensed local partners provide the guides, vehicles and on-the-ground travel services.",
+        founder: { "@type": "Person", name: "Joy Liu" },
+        areaServed: { "@type": "AdministrativeArea", name: "Yunnan, China" },
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://hiddenchinatravel.com/#website",
+        url: "https://hiddenchinatravel.com",
+        name: "Hidden China Travel",
+        publisher: { "@id": "https://hiddenchinatravel.com/#organization" },
+        inLanguage: "en",
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map(([question, answer]) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: { "@type": "Answer", text: answer },
+        })),
+      },
+    ],
   };
 
   return <main><SiteHeader />
@@ -212,7 +255,7 @@ export default function Home() {
           <p>Yunnan is more than one route. Begin with the places we know best, then combine them in a way that suits your time and interests.</p>
           <Link className="section-heading-link" href="/china-destinations/yunnan">Open the complete Yunnan travel guide →</Link>
         </div>
-        <div className="destination-grid home-destination-grid">{destinations.map(([name, note, image, href, cta]) => <article className="image-card" key={name}><Image src={image} alt={name} fill sizes="(max-width: 700px) 100vw, 33vw" /><div className="card-shade" /><div className="image-card-copy"><p>{note}</p><h3>{name}</h3><Link href={href} className="button button-light">{cta}</Link></div></article>)}</div>
+        <div className="destination-grid home-destination-grid">{destinations.map(({ name, note, image, href, cta, alt }) => <article className="image-card" key={name}><Image src={image} alt={alt} fill sizes="(max-width: 700px) 100vw, 33vw" /><div className="card-shade" /><div className="image-card-copy"><p>{note}</p><h3>{name}</h3><Link href={href} className="button button-light">{cta}</Link></div></article>)}</div>
       </div>
     </section>
 
@@ -240,6 +283,6 @@ export default function Home() {
       </div>
     </section>
     <ContentFooter />
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }} />
   </main>;
 }

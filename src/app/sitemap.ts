@@ -5,7 +5,7 @@ import { getPhase1CountryEditorials } from "@/lib/visa-checker/country-pages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: "https://hiddenchinatravel.com", changeFrequency: "weekly", priority: 1 },
+    { url: "https://hiddenchinatravel.com", lastModified: new Date("2026-10-21"), changeFrequency: "weekly", priority: 1 },
     { url: "https://hiddenchinatravel.com/about-us", changeFrequency: "monthly", priority: 0.6 },
     { url: "https://hiddenchinatravel.com/contact", changeFrequency: "monthly", priority: 0.7 },
     { url: "https://hiddenchinatravel.com/china-destinations/yunnan", changeFrequency: "weekly", priority: 0.9 },
