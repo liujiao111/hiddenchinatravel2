@@ -12,6 +12,16 @@ export type HeaderJourney = {
   title: string;
   duration: string;
   image: string;
+  sellingPoint: string;
+  priceLabel: string;
+};
+
+const tailorMade = {
+  href: "/custom-china-tour",
+  title: "Tailor-Made Yunnan",
+  duration: "Custom · Private",
+  sellingPoint: "Private Journey Designed Around You",
+  image: "/home/local-support.webp",
 };
 
 type MenuName = "destinations" | "journeys" | "guides" | "about";
@@ -84,8 +94,16 @@ export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
     </div>
     {mobileOpen ? <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
       <Link href="/china-destinations/yunnan" onClick={() => setMobileOpen(false)}>DESTINATIONS</Link>
-      <Link href="/journeys" onClick={() => setMobileOpen(false)}>JOURNEYS</Link>
-      <Link href="/custom-china-tour" onClick={() => setMobileOpen(false)}>TAILOR-MADE YUNNAN</Link>
+      <p className="mobile-nav-kicker">JOURNEYS</p>
+      {journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`} className="mobile-nav-journey" onClick={() => setMobileOpen(false)}>
+        <b>{journey.title}</b>
+        <small>{[journey.priceLabel, journey.sellingPoint].filter(Boolean).join(" · ")}</small>
+      </Link>)}
+      <Link href={tailorMade.href} className="mobile-nav-journey" onClick={() => setMobileOpen(false)}>
+        <b>{tailorMade.title}</b>
+        <small>{tailorMade.sellingPoint}</small>
+      </Link>
+      <Link href="/journeys" className="mobile-nav-all" onClick={() => setMobileOpen(false)}>VIEW ALL JOURNEYS</Link>
       <Link href="/survival-kit" onClick={() => setMobileOpen(false)}>TRAVEL GUIDES</Link>
       <Link href="/about-us" onClick={() => setMobileOpen(false)}>ABOUT US</Link>
       <Link href="/contact" onClick={() => setMobileOpen(false)}>CONTACT US</Link>
@@ -107,7 +125,7 @@ export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
       {open === "destinations" ? <div className="shell mega-destinations">
         <section><h2>Most popular</h2><div className="mega-columns">{popular.map((item) => <Link key={item} href={destinationHref(item)}>{item}</Link>)}</div><Link className="mega-outline" href="/china-destinations/yunnan">EXPLORE YUNNAN</Link></section>
         <section><h2>Explore by region</h2><div className="mega-list">{regions.map((item) => <Link key={item} href={destinationHref(item)}>{item}</Link>)}</div></section>
-        <section className="mega-featured"><h2>Begin with Yunnan</h2>{journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`}><Image src={encodeURI(journey.image)} alt={journey.title} width={150} height={88} unoptimized /><span><b>{journey.title}</b><small>{journey.duration} · Private</small></span></Link>)}</section>
+        <section className="mega-featured"><h2>Begin with Yunnan</h2>{journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`}><Image src={encodeURI(journey.image)} alt={journey.title} width={150} height={88} unoptimized /><span><b>{journey.title}</b><small>{journey.sellingPoint}</small><em className="mega-journey-price">{journey.priceLabel}</em></span></Link>)}</section>
       </div> : open === "journeys" ? <div className="shell mega-journeys mega-journeys-current">
         <section className="mega-current-journeys">
           <p className="kicker">PRIVATE YUNNAN JOURNEYS</p>
@@ -115,11 +133,22 @@ export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
           <div className="mega-current-journey-grid">
             {journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`}>
               <Image src={encodeURI(journey.image)} alt={journey.title} width={300} height={178} unoptimized />
-              <span><small>{journey.duration} · PRIVATE</small><b>{journey.title}</b><strong>VIEW JOURNEY →</strong></span>
+              <span>
+                <small>{journey.duration} · PRIVATE</small>
+                <b>{journey.title}</b>
+                <em>{journey.sellingPoint}</em>
+                {journey.priceLabel ? <span className="mega-journey-price">{journey.priceLabel}</span> : null}
+                <strong>VIEW JOURNEY →</strong>
+              </span>
             </Link>)}
-            <Link href="/custom-china-tour" data-cta-location="header_journeys_custom">
-              <Image src="/home/local-support.webp" alt="Tailor-Made Yunnan" width={300} height={178} unoptimized />
-              <span><small>CUSTOM · PRIVATE</small><b>Tailor-Made Yunnan</b><strong>DESIGN YOUR JOURNEY →</strong></span>
+            <Link href={tailorMade.href} data-cta-location="header_journeys_custom">
+              <Image src={tailorMade.image} alt={tailorMade.title} width={300} height={178} unoptimized />
+              <span>
+                <small>{tailorMade.duration}</small>
+                <b>{tailorMade.title}</b>
+                <em>{tailorMade.sellingPoint}</em>
+                <strong>DESIGN YOUR JOURNEY →</strong>
+              </span>
             </Link>
           </div>
           <Link href="/journeys" className="mega-text-link">VIEW ALL JOURNEYS →</Link>

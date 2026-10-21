@@ -1,5 +1,18 @@
 import { SiteHeaderClient, type HeaderJourney } from "@/components/site-header-client";
-import { getAllJourneys } from "@/lib/journeys";
+import { formatPriceLabel } from "@/lib/format-price";
+import { getAllJourneys, type Journey } from "@/lib/journeys";
+
+function navSellingPoint(journey: Journey) {
+  const excerpt = journey.frontmatter.excerpt?.trim() ?? "";
+  return excerpt.length > 0 && excerpt.length <= 72 ? excerpt : journey.frontmatter.route;
+}
+
+function navPriceLabel(journey: Journey) {
+  if (journey.frontmatter.fromPrice > 0) {
+    return `From ${formatPriceLabel(journey.frontmatter.fromPrice, journey.frontmatter.currency)}`;
+  }
+  return "Tailored quote";
+}
 
 export function SiteHeader() {
   const journeys: HeaderJourney[] = getAllJourneys()
@@ -9,6 +22,8 @@ export function SiteHeader() {
       title: journey.frontmatter.title,
       duration: journey.frontmatter.duration,
       image: journey.frontmatter.coverImage,
+      sellingPoint: navSellingPoint(journey),
+      priceLabel: navPriceLabel(journey),
     }));
 
   return <SiteHeaderClient journeys={journeys} />;
