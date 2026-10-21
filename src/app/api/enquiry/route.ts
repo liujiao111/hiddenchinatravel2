@@ -2,10 +2,17 @@ import { Resend } from "resend";
 import { enquiryEmailText, enquirySubject, parseEnquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
 
+async function readEnquiryBody(request: Request) {
+  const contentType = request.headers.get("content-type") ?? "";
+  if (contentType.includes("application/json")) return request.json() as Promise<Record<string, unknown>>;
+  const form = await request.formData();
+  return Object.fromEntries(form.entries());
+}
+
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
   try {
-    body = await request.json();
+    body = await readEnquiryBody(request);
   } catch {
     return Response.json({ error: "Unable to read this enquiry." }, { status: 400 });
   }

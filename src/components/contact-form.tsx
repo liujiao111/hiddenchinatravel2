@@ -107,7 +107,7 @@ export function ContactForm() {
         <input name="whatsapp" type="tel" autoComplete="tel" maxLength={40} placeholder="+65 1234 5678" />
       </label>
 
-      <div className="contact-field-row">
+      <div className="contact-field-row contact-trip-row">
         <label>
           <span>When would you like to travel?</span>
           <input name="travelWindow" type="text" maxLength={180} placeholder={'Exact dates, approximate month, or “not decided yet”'} required />
