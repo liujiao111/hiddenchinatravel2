@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 };
 
 const whatsapp = "https://wa.me/8618880441791?text=Hi%2C%20I%27d%20like%20help%20planning%20my%20first%20journey%20through%20Yunnan";
+const heroTrust = ["Private journeys", "No shopping stops", "Licensed local operator", "Free 1-to-1 trip planning"];
 const reasons = [
   ["01", "Private journeys", "Travel with your own party, at a pace that fits you—not a large coach group or fixed sightseeing schedule."],
   ["02", "No shopping stops", "Journeys are built around places, people and experiences, never mandatory shopping or commission-led detours."],
@@ -47,14 +48,6 @@ export default function Home() {
   const journeyFacts = [featuredJourney.frontmatter.duration, featuredJourney.frontmatter.route, "Private vehicle & guide", "Five hotel nights"];
   const journeyHighlights = featuredJourney.frontmatter.experiences.slice(0, 4).map((experience) => experience.title);
 
-  const heroTrust = [
-    "Private journeys",
-    "No shopping stops",
-    "Licensed local operator",
-    "Support before and during your trip",
-    ...(pricedFrom ? [`Journeys from ${formatPriceLabel(pricedFrom.frontmatter.fromPrice, pricedFrom.frontmatter.currency)} per person`] : []),
-  ];
-
   return <main><SiteHeader />
     <section className="hero">
       <Image src="/home/hero.webp" alt="Snow-capped mountains in Yunnan" fill preload unoptimized sizes="100vw" />
@@ -63,7 +56,6 @@ export default function Home() {
         <p className="hero-kicker">PRIVATE JOURNEYS THROUGH YUNNAN</p>
         <h1>Discover Yunnan at Your Own Pace</h1>
         <p>Explore Dali, Lijiang, Shaxi, Lugu Lake and Shangri-La through a private journey designed around your dates, interests and preferred pace.</p>
-        <p>With trusted local guides, private transport and personal support before and during your trip, unfamiliar parts of China become much easier to navigate.</p>
         <p className="hero-brand">Born in Yunnan. Shaped by experiences abroad.</p>
         <div className="hero-actions">
           <Link href="/custom-china-tour" data-cta-location="home_hero_custom" className="button button-blue">PLAN MY YUNNAN TRIP</Link>
