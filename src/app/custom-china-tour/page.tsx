@@ -39,22 +39,22 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: "Tailor-Made Yunnan Tours & Private Itineraries",
-  description: "Plan a tailor-made private Yunnan tour around your dates, interests and pace. Discuss Dali, Lijiang, Shaxi and more with Joy Liu, then receive an itinerary and quote.",
+  title: "Tailor-Made Yunnan",
+  description: "Private Journey Designed Around You. Plan a custom Yunnan itinerary around your dates, interests and pace with Joy Liu.",
   alternates: { canonical },
-  openGraph: { title: "Your private Yunnan tour, designed around you", description: "A custom Yunnan itinerary and quote, shaped around your dates, party and interests.", url: canonical, images: [{ url: "https://hiddenchinatravel.com/home/hero.webp" }], type: "website" },
+  openGraph: { title: "Tailor-Made Yunnan", description: "Private Journey Designed Around You.", url: canonical, images: [{ url: "https://hiddenchinatravel.com/home/hero.webp" }], type: "website" },
 };
 
 export default function CustomChinaTourPage() {
   const journeys = getAllJourneys();
   const stories = getFeaturedTestimonials();
   const jsonLd = { "@context": "https://schema.org", "@graph": [
-    { "@type": "Service", name: "Tailor-made private Yunnan tours", url: canonical, description: metadata.description, areaServed: { "@type": "Place", name: "Yunnan, China" }, provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" } },
+    { "@type": "Service", name: "Tailor-Made Yunnan", url: canonical, description: metadata.description, areaServed: { "@type": "Place", name: "Yunnan, China" }, provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" } },
     { "@type": "FAQPage", mainEntity: faqs.map(faq => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) },
   ] };
   return <JourneyInspirationProvider><main className="custom-journey-page">
     <SiteHeader />
-    <JourneyHero title="Your private Yunnan tour, designed around you." image="/home/hero.webp" imageAlt="Mountains and countryside in Yunnan" eyebrow="TAILOR-MADE YUNNAN TOURS" description="Travel with your own party, on your dates and at your pace. Tell us what you’d love to see in Yunnan, and receive a personal itinerary and quote for the hotels, transport and guiding you need." primary={{ href: "#plan", label: "START PLANNING MY TRIP" }} secondary={{ href: "#possibilities", label: "EXPLORE THE POSSIBILITIES" }} note="Plan directly with Joy. Usually replies within 24 hours. No booking commitment." rating={stories.length > 0 ? { href: "#stories", label: overallGuestRatingLabel, value: overallGuestRating } : undefined} />
+    <JourneyHero title="Tailor-Made Yunnan" image="/home/hero.webp" imageAlt="Mountains and countryside in Yunnan" eyebrow="TAILOR-MADE YUNNAN" description="Private Journey Designed Around You" primary={{ href: "#plan", label: "START PLANNING MY TRIP" }} secondary={{ href: "#possibilities", label: "EXPLORE THE POSSIBILITIES" }} note="Plan directly with Joy. Usually replies within 24 hours. No booking commitment." rating={stories.length > 0 ? { href: "#stories", label: overallGuestRatingLabel, value: overallGuestRating } : undefined} />
     <JourneySectionNav links={[{ href: "#possibilities", label: "Make it yours" }, { href: "#places", label: "Places & ideas" }, { href: "#process", label: "How it works" }, ...(stories.length > 0 ? [{ href: "#stories", label: "Stories" }] : []), { href: "#local-team", label: "Local team" }, { href: "#quote", label: "Your proposal" }, { href: "#questions", label: "Useful details" }]} action={{ href: "#plan", label: "Start planning" }} />
     <JourneyOverview title="Start with your plans, not a package." description="Our existing routes are a starting point. If they don’t fit your trip, we can discuss a journey designed from the ground up." items={[{ label: "WHERE", value: "Yunnan first · Other China destinations by request" }, { label: "HOW YOU TRAVEL", value: "A private party · Dates and duration shaped around you" }, { label: "YOUR QUOTE", value: "Prepared around your route, dates and preferences" }]} action={{ href: "#plan", label: "TELL US WHAT YOU HAVE IN MIND" }} />
     <section className="journey-manifesto" id="possibilities"><div className="shell journey-manifesto-grid"><div className="journey-manifesto-copy"><h2><span>A journey that feels</span> <em>like yours.</em></h2><i aria-hidden="true" /><p>A quiet morning rather than another early start. More time with a place, less time moving between hotels. The freedom to follow what interests you.</p><strong>We begin by listening.</strong></div></div></section>

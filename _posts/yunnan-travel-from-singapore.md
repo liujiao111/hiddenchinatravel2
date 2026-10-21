@@ -116,7 +116,7 @@ If your departure is from Kunming, protect enough time for the return transfer: 
 
 ### Prefer to have the transfers arranged?
 
-Our [6-day Kunming, Dali, Shaxi & Lijiang private journey](/journeys/kunming-dali-shaxi-lijiang-6-days) follows this route, starting with travel **from Kunming to Dali on its first day**. The current guide price starts at **US$523 per person**; flights, dates, group size and hotel choice affect the final proposal. Use the [currency converter](/china-currency-converter) to estimate the amount in Singapore dollars or yuan. Allow a separate arrival day from Singapore and check your flight home against the journey's finish in Lijiang.
+Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) private journey follows this route, starting with travel **from Kunming to Dali on its first day**. The current guide price starts at **US$523 per person**; flights, dates, group size and hotel choice affect the final proposal. Use the [currency converter](/china-currency-converter) to estimate the amount in Singapore dollars or yuan. Allow a separate arrival day from Singapore and check your flight home against the journey's finish in Lijiang.
 
 [**Ask about the 6-day Yunnan journey on WhatsApp →**](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20travelling%20from%20Singapore%20and%20interested%20in%20the%206-day%20Kunming-Dali-Shaxi-Lijiang%20private%20journey.%20My%20travel%20dates%20are%3A)
 

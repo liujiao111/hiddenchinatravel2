@@ -13,7 +13,7 @@ The custom page complements the existing journey catalogue. Keep the two six-day
 - Journeys mega menu: Tailor-made journeys link and a custom planning callout.
 - /journeys: a tailor-made JourneyCard.
 - Existing journey detail template: Looking for a different journey? section, affecting both products.
-- Shared footer: Tailor-Made Private Journeys.
+- Shared footer: Tailor-Made Yunnan.
 - Custom page: reverse links to both existing journeys.
 - Sitemap: custom page included.
 

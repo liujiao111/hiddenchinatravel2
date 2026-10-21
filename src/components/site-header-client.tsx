@@ -121,8 +121,8 @@ export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
         </section>
         <section className="mega-tailor-made">
           <p className="kicker">TAILOR-MADE YUNNAN</p>
-          <h2>A journey designed around you.</h2>
-          <p>Your dates, interests, preferred pace and comfort level—planned personally with Joy.</p>
+          <h2>Tailor-Made Yunnan</h2>
+          <p>Private Journey Designed Around You</p>
           <Link href="/custom-china-tour" data-cta-location="header_journeys_custom" className="button button-light">DESIGN YOUR JOURNEY</Link>
           <small>Not another fixed itinerary. Start with your own plans.</small>
         </section>

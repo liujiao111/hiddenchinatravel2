@@ -112,8 +112,8 @@ export default function Home() {
         </div>
         <div className="journeys-card-grid home-journeys-grid">
           {classic ? <JourneyCard priority journey={{
-            title: "Classic Yunnan",
-            subtitle: "Begin beside Erhai Lake, continue beneath Jade Dragon Snow Mountain, then travel through Tiger Leaping Gorge to the highlands of Shangri-La.",
+            title: "The Essence of Yunnan",
+            subtitle: "Kunming • Dali • Lijiang • Shangri-La",
             href: `/journeys/${classic.slug}`,
             image: classic.frontmatter.coverImage,
             imageAlt: classic.frontmatter.coverAlt || classic.frontmatter.title,
@@ -140,8 +140,8 @@ export default function Home() {
             trackingLocation: "home_featured_lugu",
           }} /> : null}
           <JourneyCard journey={{
-            title: "Your Own Yunnan Journey",
-            subtitle: "Not every traveler wants the same route. Tell Joy what you have in mind, even if it is only a rough idea.",
+            title: "Tailor-Made Yunnan",
+            subtitle: "Private Journey Designed Around You",
             href: "/custom-china-tour",
             image: "/home/local-support.webp",
             imageAlt: "A wooden boat on a highland lake in Yunnan",

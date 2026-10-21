@@ -127,7 +127,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
     <section className="journey-faq section"><div className="narrow"><div className="section-heading"><h2>Frequently asked questions</h2></div>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><p>{faq.answer}</p></details>)}</div></section>
 
-    <section className="custom-route-bridge section section-sand"><div className="narrow"><h2>Looking for a different journey?</h2><p>Different dates, more time, or somewhere else in mind? Start with your own plans and we’ll discuss a route shaped around you.</p><Link href="/custom-china-tour" data-cta-location="journey_custom_alternative">EXPLORE TAILOR-MADE JOURNEYS →</Link></div></section>
+    <section className="custom-route-bridge section section-sand"><div className="narrow"><h2>Looking for a different journey?</h2><p>Different dates, more time, or somewhere else in mind? Start with your own plans and we’ll discuss a route shaped around you.</p><Link href="/custom-china-tour" data-cta-location="journey_custom_alternative">EXPLORE TAILOR-MADE YUNNAN →</Link></div></section>
 
     <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Planning starts with a conversation.</h2><span>Send Joy your dates, group size and preferred travel pace. We’ll help you decide whether this journey is the right fit.</span><Link href={whatsapp} className="button button-light">PLAN THIS JOURNEY</Link></div></section>
     <Link href={whatsapp} className="journey-mobile-cta">PLAN THIS JOURNEY <span>→</span></Link>

@@ -81,7 +81,7 @@ Dali can be busy and commercial, especially around public holidays and the main 
 
 **Four nights or more:** worthwhile if you like cycling, photography, village stays, or a slower route with no pressure to cover the entire lake.
 
-For a wider route, do not rebuild the regional itinerary from scratch. The [Yunnan guide](/china-destinations/yunnan) explains how Dali fits between Kunming, Shaxi and Lijiang. If you would rather have the transport, stays and local experiences arranged, see the [6-day private Yunnan journey](/journeys/kunming-dali-shaxi-lijiang-6-days) before booking a string of non-refundable stays.
+For a wider route, do not rebuild the regional itinerary from scratch. The [Yunnan guide](/china-destinations/yunnan) explains how Dali fits between Kunming, Shaxi and Lijiang. If you would rather have the transport, stays and local experiences arranged, see [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) before booking a string of non-refundable stays.
 
 <!-- yunnan-route-check -->
 
@@ -174,7 +174,7 @@ For the full pre-departure sequence—visa, data, payments, maps, transport, and
 
 Dali gets worse when it is overpacked. Old Town, Erhai, villages, Cangshan, and a rushed jump to Lijiang can look like five separate “must-dos” until you put the route on a calendar.
 
-If the unresolved part is the route itself—how long to stay, where to base yourselves, or whether to continue through Shaxi to Lijiang—start with the [complete Yunnan travel guide](/china-destinations/yunnan). For travelers who want the difficult logistics handled without joining a coach group, the [6-day private journey](/journeys/kunming-dali-shaxi-lijiang-6-days) is the closest match.
+If the unresolved part is the route itself—how long to stay, where to base yourselves, or whether to continue through Shaxi to Lijiang—start with the [complete Yunnan travel guide](/china-destinations/yunnan). For travelers who want the difficult logistics handled without joining a coach group, [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) is the closest match.
 
 If the six-day route does not fit, [design a private Yunnan journey with more time in Dali](/custom-china-tour). Tell us how many days you have and where you would like to go next.
 

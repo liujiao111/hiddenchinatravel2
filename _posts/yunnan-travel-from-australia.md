@@ -207,9 +207,9 @@ Related reading: [Yunnan destination guide](/china-destinations/yunnan), and for
 
 **Planning Yunnan from Australia?** Tell Joy your dates, preferred pace and the places you're considering. She can help you shape the route before you commit to every hotel and transfer.
 
-[**EXPLORE THE 6-DAY YUNNAN JOURNEY →**](/journeys/kunming-dali-shaxi-lijiang-6-days)
+[**EXPLORE FIRST ENCOUNTER YUNNAN →**](/journeys/kunming-dali-shaxi-lijiang-6-days)
 
-Our [6-Day Kunming, Dali, Shaxi & Lijiang Private Journey](/journeys/kunming-dali-shaxi-lijiang-6-days) (from **US$523 per person**) covers this route with private transport already arranged, and leaves room either side for your international travel days.
+Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) private journey (from **US$523 per person**) covers this route with private transport already arranged, and leaves room either side for your international travel days.
 
 ## Recommended 8+ Day Route: Adding Shangri-La
 
