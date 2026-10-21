@@ -24,8 +24,9 @@ const regions = ["Yunnan", "Sichuan & Chongqing", "Beijing & North China", "Shan
 const destinationHref = (label: string) => {
   if (label === "Yunnan") return "/china-destinations/yunnan";
   if (label === "Dali") return "/dali-travel-guide";
+  if (label === "Kunming") return "/kunming-travel-guide";
   if (label === "Shaxi") return "/dali-hidden-gems-off-the-beaten-path#shaxi-ancient-town-what-dali-looked-like-before-the-crowds-arrived";
-  if (label === "Lijiang" || label === "Kunming") return "/china-destinations/yunnan#route";
+  if (label === "Lijiang") return "/china-destinations/yunnan#route";
   return `/search?q=${encodeURIComponent(label)}`;
 };
 
@@ -33,7 +34,7 @@ const menuGroups: Record<"guides" | "about", { title: string; links: string[] }[
   guides: [
     { title: "Before you arrive", links: ["Visa & entry", "Visa checker", "Payments in China", "Currency converter", "Internet, VPN & eSIM", "Hotels for foreigners"] },
     { title: "Getting around", links: ["China trains", "Using Didi", "Maps & navigation", "Booking attraction tickets"] },
-    { title: "Destination guides", links: ["Yunnan travel guide", "Dali travel guide", "Where to stay in Dali", "Dali hidden gems"] },
+    { title: "Destination guides", links: ["Yunnan travel guide", "Kunming travel guide", "Dali travel guide", "Where to stay in Dali", "Dali hidden gems"] },
   ],
   about: [
     { title: "Hidden China Travel", links: ["About us", "How we plan your journey", "Why travel with us", "Our local partners"] },
@@ -53,6 +54,7 @@ const guideHrefs: Record<string, string> = {
   "Using Didi": "/how-to-use-didi-china-foreigners",
   "Maps & navigation": "/maps-navigation-in-china",
   "Booking attraction tickets": "/attraction-tickets-in-china",
+  "Kunming travel guide": "/kunming-travel-guide",
   "Dali travel guide": "/dali-travel-guide",
   "Where to stay in Dali": "/where-to-stay-in-dali",
   "Dali hidden gems": "/dali-hidden-gems-off-the-beaten-path",
