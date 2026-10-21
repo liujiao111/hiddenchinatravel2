@@ -8,6 +8,9 @@ type Props = {
   items: Testimonial[];
   heading: string;
   intro?: string;
+  eyebrow?: string;
+  note?: string;
+  showRating?: boolean;
 };
 
 function cardQuote(quote: string) {
@@ -15,14 +18,15 @@ function cardQuote(quote: string) {
   if (!sentences || sentences.length === 0) return quote;
   const complete = sentences.map((sentence) => sentence.trim()).join(" ");
   // A finished note of at most three sentences still fits the card. Longer stories stay as a short excerpt.
-  if (sentences.length <= 3 && complete.length > 260 && complete.length <= 360) return complete;
+  if (sentences.length <= 4 && complete.length <= 420) return complete;
   const first = sentences[0].trim();
   if (first.length > 210 || sentences.length === 1) return first;
   const two = `${first} ${sentences[1].trim()}`;
-  return two.length > 260 ? first : two;
+  if (two.length <= 320) return two;
+  return first;
 }
 
-export function Testimonials({ items, heading, intro }: Props) {
+export function Testimonials({ items, heading, intro, eyebrow, note, showRating = true }: Props) {
   const count = items.length;
   const loop = count > 3;
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -51,7 +55,7 @@ export function Testimonials({ items, heading, intro }: Props) {
   }, []);
 
   useEffect(() => {
-    if (count < 2 || paused) return;
+    if (count < 2 || count <= 3 || paused) return;
     const timer = window.setInterval(() => {
       setAnimate(true);
       setIndex((value) => (loop ? value + 1 : (value + 1) % count));
@@ -86,12 +90,32 @@ export function Testimonials({ items, heading, intro }: Props) {
     }
   };
 
-  return <section className="testimonials" id="stories" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-    <header className="testimonials-heading shell">
+  const headingBlock = <header className="testimonials-heading shell">
+      {eyebrow ? <p className="kicker">{eyebrow}</p> : null}
       <h2>{heading}</h2>
       {intro ? <p>{intro}</p> : null}
-      <div className="testimonials-rating"><StarRating value={overallGuestRating} label="Overall rating: 4.8 out of 5 stars" /><p>{overallGuestRatingLabel}</p></div>
-    </header>
+      {showRating ? <div className="testimonials-rating"><StarRating value={overallGuestRating} label="Overall rating: 4.8 out of 5 stars" /><p>{overallGuestRatingLabel}</p></div> : null}
+    </header>;
+  const noteText = note ?? "Guest names may be shortened. Some reviews were translated from Chinese for clarity.";
+
+  if (count <= 3) {
+    return <section className="testimonials" id="stories">
+      {headingBlock}
+      <div className="testimonials-static shell">{items.map((item) => (
+        <figure className="testimonials-card" key={item.id}>
+          <blockquote>“{cardQuote(item.quote)}”</blockquote>
+          <figcaption>
+            <b>— {item.name}</b>
+            <span>{item.country}</span>
+          </figcaption>
+        </figure>
+      ))}</div>
+      <p className="testimonials-note">{noteText}</p>
+    </section>;
+  }
+
+  return <section className="testimonials" id="stories" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+    {headingBlock}
     <div className="testimonials-viewport" ref={viewportRef}>
       <div
         className={`testimonials-track${animate ? "" : " is-instant"}`}
@@ -133,6 +157,6 @@ export function Testimonials({ items, heading, intro }: Props) {
       </div>
       <button type="button" className="testimonials-arrow" aria-label="Next traveler story" onClick={() => go(1)}>›</button>
     </div>
-    <p className="testimonials-note">Guest names may be shortened. Some reviews were translated from Chinese for clarity.</p>
+    <p className="testimonials-note">{noteText}</p>
   </section>;
 }

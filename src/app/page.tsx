@@ -5,129 +5,222 @@ import { ContentFooter } from "@/components/content-footer";
 import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
-import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
 import { getHomeTestimonials } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
-  title: "Yunnan Private Tours & China Travel Guides | Hidden China Travel",
-  description: "Discover private Yunnan journeys, practical China travel guides, local support, and personalized help for first-time visitors to China.",
+  title: "Private Yunnan Tours & Tailor-Made Journeys",
+  description: "Plan a private Yunnan journey through Dali, Lijiang, Shaxi, Lugu Lake and Shangri-La, with tailor-made itineraries, private transport, local guides and personal support.",
+  alternates: { canonical: "https://hiddenchinatravel.com/" },
 };
 
-const whatsapp = "https://wa.me/8618880441791?text=Hi%2C%20I%27d%20like%20help%20planning%20my%20first%20journey%20through%20Yunnan";
-const heroTrust = ["Private journeys", "No shopping stops", "Licensed local operator", "Free 1-to-1 trip planning"];
+const whatsapp = "https://wa.me/8618880441791?text=" + encodeURIComponent("Hi Joy, I'd like help planning a private Yunnan journey.");
+const howItWorks = [
+  ["01", "Share Your Ideas", "Tell us when you plan to travel, how many people are joining and what you would most like to experience."],
+  ["02", "Receive a Proposed Route", "Joy will suggest a practical route based on travel times, seasonal conditions and your preferred pace."],
+  ["03", "Refine and Confirm", "Adjust the itinerary, hotels and services before reviewing the final quotation and deciding whether to book."],
+];
 const reasons = [
-  ["01", "We make China easier", "First-time visitors often worry about payments, internet, transport and language. We help remove the guesswork before you arrive, so you can focus on the journey."],
-  ["02", "Local knowledge from both sides", "Raised in Yunnan. Lived abroad. We know China, and we understand what foreign travelers actually need."],
-  ["03", "No shopping stops", "We never include commission-based shopping detours. Journeys stay focused on places, people and experiences."],
-  ["04", "Private travel only", "No large groups. No fixed schedules. Travel with your own party, at your own pace."],
+  ["01", "Private by design", "Travel with your own party, private vehicle and agreed itinerary. There are no large coach groups or fixed sightseeing schedules."],
+  ["02", "No shopping stops", "Your journey is designed around places, people and experiences, without mandatory shopping stops or commission-led detours."],
+  ["03", "Licensed local operation", "The guides, vehicles and on-the-ground travel services described in your proposal are provided by a licensed Yunnan travel agency."],
+  ["04", "Clear details before payment", "Review the proposed route, services, inclusions, exclusions and quoted price before deciding whether to confirm."],
+  ["05", "First-time China friendly", "Receive practical guidance about payments, mobile data, transportation, maps and arrival preparation."],
+  ["06", "Personal support", "Joy remains available before and during your journey, so questions and unexpected changes do not have to become travel-day stress."],
 ];
-const essentials = [
-  { title: "How to Pay in China", detail: "Alipay, WeChat Pay, foreign cards and a sensible backup.", href: "/digital-survival-china-payment-guide" },
-  { title: "Internet & eSIM Guide", detail: "What works for Google, WhatsApp and everyday data.", href: "/digital-survival-china-internet-guide" },
-  { title: "China Visa-Free Guide", detail: "Check visa-free and transit options before you book.", href: "/china-visa-free-countries-2026" },
-  { title: "Didi for Foreign Visitors", detail: "Set up ride-hailing, choose a pickup point and pay.", href: "/how-to-use-didi-china-foreigners" },
-  { title: "Hotels in China", detail: "Choose suitable stays and prepare for passport registration.", href: "/hotels-in-china-for-foreigners" },
+const supportItems = [
+  { title: "Entry Requirements", detail: "Check visa, visa-free or transit rules for your passport and route.", href: "/survival-kit#entry" },
+  { title: "Payments", detail: "Set up Alipay and a backup way to pay before you leave.", href: "/survival-kit#payment" },
+  { title: "Mobile Data and Internet", detail: "Choose roaming or a travel eSIM and save the setup instructions.", href: "/survival-kit#esim" },
+  { title: "Maps and Transportation", detail: "Prepare maps, trains and everyday transport before arrival.", href: "/survival-kit#maps" },
 ];
-const planChecks = ["Your dates", "Number of travelers", "Interests", "Budget"];
-
-function routeStops(route: string) {
-  return route.replace(/\s*→\s*/g, " • ");
-}
+const destinations = [
+  ["Dali", "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.", "/assets/destinations/yunnan/dali.webp", "/dali-travel-guide", "EXPLORE DALI"],
+  ["Shaxi", "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.", "/assets/destinations/yunnan/shaxi.webp", "/dali-hidden-gems-off-the-beaten-path", "DISCOVER SHAXI"],
+  ["Lijiang", "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", "/assets/destinations/yunnan/lijiang.webp", "/china-destinations/yunnan", "EXPLORE LIJIANG"],
+  ["Lugu Lake", "Mountain roads, lakeside villages and a quieter side of northwest Yunnan.", "/assets/resources/丽江-泸沽湖-419.jpg", "/china-destinations/yunnan", "DISCOVER LUGU LAKE"],
+  ["Shangri-La", "High-altitude landscapes and a distinctly different side of Yunnan.", "/assets/destinations/yunnan/shangri-la.webp", "/china-destinations/yunnan", "EXPLORE SHANGRI-LA"],
+];
+const faqs = [
+  ["How much does a private Yunnan journey cost?", "Pricing depends on the route, number of travelers, travel dates, hotel standard and whether you require a guide throughout the journey. After learning more about your plans, we will provide a tailored quotation with the inclusions and exclusions clearly explained."],
+  ["Can the itinerary be customized?", "Yes. Suggested journeys are starting points rather than fixed packages. We can adjust the number of days, pace, hotels, destinations, activities and level of guiding according to your group’s interests and requirements."],
+  ["Do I need to pay before receiving a proposed route?", "No. You can begin by sharing your dates, approximate trip length, group size and interests. Payment is only discussed after you have reviewed the proposed arrangements and quotation."],
+  ["Who operates the journey in Yunnan?", "The guides, drivers, vehicles and on-the-ground travel services confirmed in your proposal are provided by a licensed Yunnan travel agency. Hidden China Travel helps with trip planning, communication and traveler support before and during the journey."],
+  ["What is normally included?", "Inclusions vary by journey but may include private transportation, local guides, accommodation, selected attraction tickets and trip-planning support. Your proposal will clearly state what is included and what you will need to arrange or pay for separately."],
+  ["How soon will I receive a reply?", "Joy normally replies personally within 24 hours. More detailed proposals may require additional time, especially for complex routes or journeys during busy travel periods."],
+];
 
 export default function Home() {
   const journeys = getAllJourneys();
   const stories = getHomeTestimonials();
-  const featuredJourney = journeys.find((journey) => journey.frontmatter.featured && journey.frontmatter.fromPrice > 0)
-    ?? journeys.find((journey) => journey.frontmatter.fromPrice > 0);
+  const lugu = journeys.find((journey) => journey.slug === "dali-lijiang-lugu-lake-private-tour");
+  const shaxi = journeys.find((journey) => journey.slug === "kunming-dali-shaxi-lijiang-6-days");
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  };
 
   return <main><SiteHeader />
     <section className="hero">
       <Image src="/home/hero.webp" alt="Snow-capped mountains in Yunnan" fill preload unoptimized sizes="100vw" />
       <div className="hero-shade" />
       <div className="hero-copy">
-        <p className="hero-kicker">PRIVATE JOURNEYS THROUGH YUNNAN</p>
-        <h1>Discover China from Yunnan at Your Pace</h1>
-        <p>Explore Dali, Lijiang, Shaxi, Lugu Lake and Shangri-La through a private journey designed around your dates, interests and preferred pace.</p>
-        <p className="hero-brand">Born in Yunnan. Shaped by experiences abroad.</p>
+        <p className="hero-kicker">PRIVATE YUNNAN JOURNEYS</p>
+        <h1>Discover Yunnan<br />at Your Own Pace</h1>
+        <p className="hero-lead hero-desktop-only">Explore Dali, Lijiang and beyond through a private journey shaped around your dates, interests and preferred pace.</p>
+        <p className="hero-lead hero-mobile-only">Private journeys through Dali, Lijiang and beyond, shaped around your dates, interests and pace.</p>
+        <p className="hero-brand hero-desktop-only">Born in Yunnan. Shaped by experiences abroad.</p>
         <div className="hero-actions">
           <Link href="/custom-china-tour" data-cta-location="home_hero_custom" className="button button-blue">PLAN MY YUNNAN TRIP</Link>
-          <Link href="/journeys" className="button button-light">EXPLORE JOURNEYS</Link>
+          <Link href="/journeys" className="button button-light hero-desktop-only">EXPLORE JOURNEYS</Link>
         </div>
-        <ul className="hero-trust">{heroTrust.map((item) => <li key={item}>{item}</li>)}</ul>
-        <small>Share your dates and travel ideas. Joy will reply personally within 24 hours.</small>
+        <p className="hero-trust-line hero-desktop-only">Private journeys · No shopping stops · Licensed local operator · Personal support</p>
+        <p className="hero-trust-line hero-mobile-only">Private transport · Local support · No shopping stops</p>
+        <small>Personal reply from Joy within 24 hours.</small>
+        <Link href="/journeys" className="hero-text-link hero-mobile-only">Explore journeys →</Link>
       </div>
     </section>
 
-    <section className="section why" id="why-us">
+    <section className="section process" id="how-it-works">
+      <div className="narrow">
+        <p className="kicker">HOW IT WORKS</p>
+        <h2>Planning Your Yunnan Journey Is Simple</h2>
+        <p>You do not need a finished itinerary. Share your dates, group size and travel interests, and Joy will help turn your ideas into a practical private journey.</p>
+      </div>
       <div className="shell">
-        <div className="section-heading light">
-          <h2>Why travelers choose Hidden China Travel</h2>
+        <div className="process-grid">{howItWorks.map(([number, title, text]) => <div key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></div>)}</div>
+        <div className="center">
+          <Link href="/custom-china-tour" data-cta-location="home_how_it_works" className="button button-blue">PLAN MY YUNNAN TRIP</Link>
+          <p className="home-helper">No payment is required to start planning.</p>
         </div>
-        <div className="reason-grid">{reasons.map(([number, title, text]) => <article key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></article>)}</div>
       </div>
     </section>
 
     <section className="section section-sand home-journeys" id="journeys">
       <div className="shell">
         <div className="section-heading">
-          <h2>Featured private journeys</h2>
-          <p>Start with a proven Yunnan route, or ask Joy to shape one around your dates.</p>
+          <p className="kicker">FEATURED PRIVATE JOURNEYS</p>
+          <h2>A Thoughtful Starting Point for Your Yunnan Trip</h2>
+          <p>Choose one of our suggested journeys or use it as inspiration for a route designed around you. Every private journey can be adjusted to suit your dates, group and preferred pace.</p>
         </div>
-        <div className="journeys-card-grid">
-          {featuredJourney ? <JourneyCard priority journey={{
-            title: "Classic Yunnan",
-            subtitle: featuredJourney.frontmatter.excerpt,
-            href: `/journeys/${featuredJourney.slug}`,
-            image: featuredJourney.frontmatter.coverImage,
-            imageAlt: featuredJourney.frontmatter.title,
-            destination: routeStops(featuredJourney.frontmatter.route),
-            duration: featuredJourney.frontmatter.duration,
-            fromPrice: `From ${formatPriceLabel(featuredJourney.frontmatter.fromPrice, featuredJourney.frontmatter.currency)} per person`,
-            features: ["Private vehicle", "Local guide", "Flexible pace"],
-            ctaLabel: "View journey →",
-            trackingLocation: "home_featured_classic",
+        <div className="journeys-card-grid home-journeys-grid">
+          {lugu ? <JourneyCard priority journey={{
+            title: "Dali, Lijiang & Lugu Lake",
+            subtitle: "Travel from the lakeside villages of Dali to the mountain landscapes of Lijiang, followed by two quieter nights beside Lugu Lake.",
+            href: `/journeys/${lugu.slug}`,
+            image: lugu.frontmatter.coverImage,
+            imageAlt: lugu.frontmatter.title,
+            destination: "Dali → Lijiang → Lugu Lake → Lijiang",
+            duration: lugu.frontmatter.duration,
+            fromPrice: "Tailored quotation for your dates and group",
+            priceNote: "Final pricing depends on travel dates, hotel choice and selected services.",
+            features: ["Private vehicle", "Local guide", "Five hotel nights", "Flexible pace"],
+            ctaLabel: "View this journey →",
+            trackingLocation: "home_featured_lugu",
+          }} /> : null}
+          {shaxi ? <JourneyCard journey={{
+            title: "Dali, Shaxi & Lijiang",
+            subtitle: "Follow part of the old Tea Horse Road through Dali, the quieter historic town of Shaxi and the mountain landscapes surrounding Lijiang.",
+            href: `/journeys/${shaxi.slug}`,
+            image: shaxi.frontmatter.coverImage,
+            imageAlt: shaxi.frontmatter.title,
+            destination: "Dali → Shaxi → Lijiang",
+            duration: shaxi.frontmatter.duration,
+            fromPrice: "Tailored quotation for your dates and group",
+            features: ["Private vehicle", "Cultural experiences", "Slower travel", "Flexible pace"],
+            ctaLabel: "View this journey →",
+            trackingLocation: "home_featured_shaxi",
           }} /> : null}
           <JourneyCard journey={{
-            title: "Tailor-Made Journey",
-            subtitle: "Not sure yet? Tell us your dates and interests. We'll create a custom proposal.",
+            title: "Your Own Yunnan Journey",
+            subtitle: "Not every traveler wants the same route. Tell Joy what you have in mind, even if it is only a rough idea.",
             href: "/custom-china-tour",
             image: "/home/local-support.webp",
             imageAlt: "A wooden boat on a highland lake in Yunnan",
-            destination: "Designed around you",
-            features: ["Your dates", "Your interests", "Written proposal"],
-            ctaLabel: "Design my trip →",
+            destination: "Designed around your dates, interests and pace",
+            features: ["Couples, families and friends", "Driver-only or guided options", "Slower routes with fewer hotel changes", "First-time China travel support"],
+            ctaLabel: "Design my Yunnan journey →",
             trackingLocation: "home_featured_custom",
           }} />
         </div>
+        <p className="home-helper">A travel month, number of days and approximate group size are enough to begin.</p>
       </div>
     </section>
 
-    <Testimonials items={stories} heading="What travelers say" intro="A few notes from guests who explored Yunnan with Joy and our local partners." />
+    <section className="section why" id="why-us">
+      <div className="shell">
+        <div className="section-heading light">
+          <p className="kicker">WHY HIDDEN CHINA TRAVEL</p>
+          <h2>Local Knowledge, Seen From Both Sides</h2>
+          <p>Hidden China Travel combines firsthand knowledge of Yunnan with an understanding of the questions international travelers often have before visiting China.</p>
+        </div>
+        <div className="reason-grid reason-grid-six">{reasons.map(([number, title, text]) => <article key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></article>)}</div>
+      </div>
+    </section>
+
+    <Testimonials
+      items={stories}
+      eyebrow="TRAVELER STORIES"
+      heading="What Travelers Remember"
+      intro="Words from guests who explored Yunnan with Joy and our licensed local travel partners."
+      showRating={false}
+      note="Some guest names have been shortened for privacy. Reviews translated from another language have been lightly edited for clarity without changing their meaning."
+    />
 
     <section className="about-feature reverse home-founder" id="joy">
       <div className="about-feature-image">
         <Image src="/brand/founder/portrait.webp" alt="Joy Liu, founder of Hidden China Travel" fill sizes="(max-width: 800px) 100vw, 50vw" />
       </div>
       <div className="about-feature-copy">
-        <h2>Meet Joy</h2>
-        <h3 className="feature-name">Born in Yunnan. Shaped by experiences abroad.</h3>
+        <p className="kicker">MEET YOUR TRAVEL PLANNER</p>
+        <h2>Born in Yunnan. Shaped by Experiences Abroad.</h2>
         <p>I grew up in Yunnan and later lived in Japan and the Philippines.</p>
-        <p>Being a foreigner myself taught me how intimidating China can feel before arrival.</p>
-        <p>Hidden China Travel exists to make that first journey easier, smoother and more personal.</p>
-        <Link href="/about-us">Read our story →</Link>
+        <p>Living abroad meant becoming the foreign visitor myself. Everyday tasks that local people take for granted, such as making payments, using transportation or understanding unfamiliar systems, suddenly required more preparation and trusted local context.</p>
+        <p>That experience changed the way I think about travel.</p>
+        <p>I created Hidden China Travel to help international visitors experience Yunnan with fewer uncertainties, more personal support and enough time to appreciate the places between the famous landmarks.</p>
+        <p>I help shape the route before your journey, while licensed local partners provide the guides, drivers and travel services confirmed in your proposal.</p>
+        <p className="home-signature"><b>Joy Liu</b><span>Founder and Yunnan Travel Planner</span></p>
+        <Link href="/about-us">Read Joy’s story →</Link>
+        <Link href="/contact">Ask Joy a question →</Link>
       </div>
     </section>
 
     <section className="section home-preparation" id="guides">
       <div className="shell">
         <header className="home-preparation-heading">
-          <h2>China travel essentials</h2>
-          <p>Practical guides for the details that are easier to settle before you fly — payments, data, visas, rides and hotels.</p>
-          <Link className="section-heading-link" href="/china-destinations/yunnan">Open the Yunnan travel guide →</Link>
+          <p className="kicker">FIRST-TIME CHINA SUPPORT</p>
+          <h2>We Help With More Than the Itinerary</h2>
+          <p>Payments, mobile data, maps, transportation and attraction bookings can work differently in China. Our practical travel guides help you prepare before departure, while guests booking a private journey receive relevant preparation advice for their route.</p>
         </header>
-        <div className="utility-grid">{essentials.map((item, index) => <Link href={item.href} key={item.title} className="utility-card"><i>0{index + 1}</i><h3>{item.title}</h3><p>{item.detail}</p><span>READ THE GUIDE →</span></Link>)}</div>
-        <Link href="/survival-kit" className="button button-green home-preparation-cta">OPEN SURVIVAL KIT →</Link>
+        <div className="utility-grid home-support-grid">{supportItems.map((item, index) => <Link href={item.href} key={item.title} className="utility-card"><i>0{index + 1}</i><h3>{item.title}</h3><p>{item.detail}</p><span>GET READY →</span></Link>)}</div>
+        <Link href="/survival-kit" className="button button-green home-preparation-cta">OPEN THE CHINA PRE-DEPARTURE CHECKLIST →</Link>
+      </div>
+    </section>
+
+    <section className="section destinations-section" id="destinations">
+      <div className="shell">
+        <div className="section-heading">
+          <p className="kicker">EXPLORE YUNNAN</p>
+          <h2>Find the Places That Fit Your Journey</h2>
+          <p>Yunnan is more than one route. Begin with the places we know best, then combine them in a way that suits your time and interests.</p>
+          <Link className="section-heading-link" href="/china-destinations/yunnan">Open the complete Yunnan travel guide →</Link>
+        </div>
+        <div className="destination-grid home-destination-grid">{destinations.map(([name, note, image, href, cta]) => <article className="image-card" key={name}><Image src={image} alt={name} fill sizes="(max-width: 700px) 100vw, 33vw" /><div className="card-shade" /><div className="image-card-copy"><p>{note}</p><h3>{name}</h3><Link href={href} className="button button-light">{cta}</Link></div></article>)}</div>
+      </div>
+    </section>
+
+    <section className="journey-faq section" id="questions">
+      <div className="narrow">
+        <div className="section-heading">
+          <p className="kicker">BEFORE YOU START</p>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        {faqs.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}
       </div>
     </section>
 
@@ -135,15 +228,16 @@ export default function Home() {
       <Image src="/home/plan-journey.webp" alt="Turquoise lake and snow mountains in Yunnan" fill unoptimized sizes="100vw" />
       <div className="hero-shade" />
       <div>
-        <h2>Ready to explore Yunnan?</h2>
-        <p>Tell us a few details and receive a personalized itinerary within 24 hours.</p>
-        <ul className="final-cta-checks">{planChecks.map((item) => <li key={item}>{item}</li>)}</ul>
+        <h2>Ready to Start Planning Yunnan?</h2>
+        <p>You do not need a finished itinerary. Tell us your travel dates or approximate month, number of travelers and the places or experiences that interest you. Joy will help turn those ideas into a practical private journey.</p>
         <div className="hero-actions">
-          <Link href="/custom-china-tour#plan" data-cta-location="home_final_custom" className="button button-blue">PLAN MY TRIP</Link>
-          <Link href={whatsapp} data-cta-location="home_final_whatsapp" className="button button-light">WHATSAPP JOY</Link>
+          <Link href="/custom-china-tour#plan" data-cta-location="home_final_custom" className="button button-blue">PLAN MY YUNNAN TRIP</Link>
+          <Link href={whatsapp} data-cta-location="home_final_whatsapp" className="button button-light">CHAT WITH JOY ON WHATSAPP</Link>
         </div>
+        <p className="final-cta-trust">Personal reply from Joy · No payment required to start planning · Your journey can be adjusted before confirmation</p>
       </div>
     </section>
     <ContentFooter />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }} />
   </main>;
 }

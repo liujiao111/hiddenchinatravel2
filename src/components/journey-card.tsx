@@ -10,6 +10,7 @@ export type JourneyCardData = {
   destination?: string;
   duration?: string;
   fromPrice?: string;
+  priceNote?: string;
   features?: string[];
   ctaLabel?: string;
   trackingLocation?: string;
@@ -35,6 +36,7 @@ export function JourneyCard({ journey, priority = false }: { journey: JourneyCar
         {journey.duration ? <b>{journey.duration}</b> : null}
         {journey.fromPrice ? <b>{journey.fromPrice}</b> : null}
       </div> : null}
+      {journey.priceNote ? <small className="journey-card-note">{journey.priceNote}</small> : null}
       <strong>{journey.ctaLabel || "Explore the journey →"}</strong>
     </div>
   </Link>;
