@@ -26,16 +26,34 @@ const teamRoot = "/assets/partners/huatai";
 const vehicleRoot = "/assets/partners/vehicles";
 const credentialsRoot = "/assets/partners/meizhen";
 
+const localTeamSlides: ProofSlide[] = [
+  { src: `${teamRoot}/guides/zhang-zihang.webp`, alt: "Portrait of Zhang Zihang", title: "Zhang Zihang (Jason)", detail: "English-speaking guide · English guide qualification", copy: "A profile from the local guide team. Final assignment depends on your dates." },
+  { src: `${teamRoot}/guides/kuang-jintao.webp`, alt: "Portrait of Kuang Jintao", title: "Kuang Jintao (Taozi)", detail: "Chinese-speaking guide · 8 years of experience", copy: "Experienced with private and custom journeys." },
+  { src: `${teamRoot}/guides/huang-qun.webp`, alt: "Portrait of Huang Qun", title: "Huang Qun (Daxiang)", detail: "Chinese-speaking guide · 7 years of experience", copy: "Experienced with private and educational journeys." },
+];
+
 export const localGuideProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
   kicker: "01 / YOUR GUIDE",
   title: "A person who knows the route",
   copy: "A local guide is included throughout the journey. Choose Chinese or English, and ask Joy about another language in advance. These profiles are examples from the guide team supporting these journeys. The final assignment depends on your dates and is confirmed in writing.",
   label: "Local guide profiles",
-  slides: [
-    { src: `${teamRoot}/guides/zhang-zihang.webp`, alt: "Portrait of Zhang Zihang", title: "Zhang Zihang (Jason)", detail: "English-speaking guide · English guide qualification", copy: "A profile from the local guide team. Final assignment depends on your dates." },
-    { src: `${teamRoot}/guides/kuang-jintao.webp`, alt: "Portrait of Kuang Jintao", title: "Kuang Jintao (Taozi)", detail: "Chinese-speaking guide · 8 years of experience", copy: "Experienced with private and custom journeys." },
-    { src: `${teamRoot}/guides/huang-qun.webp`, alt: "Portrait of Huang Qun", title: "Huang Qun (Daxiang)", detail: "Chinese-speaking guide · 7 years of experience", copy: "Experienced with private and educational journeys." },
-  ],
+  slides: localTeamSlides,
+};
+
+export const driverHostProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
+  kicker: "01 / YOUR DRIVER-HOST",
+  title: "A person who knows the route",
+  copy: "A Chinese- or English-speaking driver-host is included. They handle the listed pickups, private transport and route coordination, and can offer local context and restaurant suggestions. This is not a professional attraction-guide service. The driver usually does not accompany you inside attractions. A specialist site guide can be arranged separately.",
+  label: "Local team profiles",
+  slides: localTeamSlides.map((slide) => ({ ...slide, detail: "Local team example · Final assignment depends on your dates" })),
+};
+
+export const optionalGuideProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
+  kicker: "01 / YOUR LOCAL TEAM",
+  title: "Driver-only or guided, confirmed in writing",
+  copy: "A tailor-made journey can be driver-only or include a Chinese- or English-speaking guide. The profiles below are examples from the local team. Nothing is included until the licensed operator confirms it in your proposal.",
+  label: "Local team profiles",
+  slides: localTeamSlides.map((slide) => ({ ...slide, detail: "Local team example · Confirmed in your proposal" })),
 };
 
 export const vehicleProof: TrustCopy & { groups: { id: "five" | "seven"; label: string; carouselLabel: string; slides: ProofSlide[] }[] } = {
