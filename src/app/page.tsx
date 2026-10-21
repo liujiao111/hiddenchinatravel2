@@ -14,7 +14,7 @@ const title = "Private Yunnan Tours & Tailor-Made Journeys";
 const description = "Plan a private Yunnan journey through Kunming, Dali, Lijiang and Shaxi, with tailor-made itineraries, private transport, local guides and personal support.";
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: `${title} | Hidden China Travel` },
   description,
   keywords: ["private Yunnan tours", "Yunnan private tour", "Kunming", "Dali", "Lijiang", "Shaxi", "tailor-made China tours"],
   alternates: { canonical },
