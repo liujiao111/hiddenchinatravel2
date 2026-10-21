@@ -45,7 +45,7 @@ export const driverHostProof: TrustCopy & { label: string; slides: ProofSlide[] 
   title: "A person who knows the route",
   copy: "A Chinese- or English-speaking driver-host is included. They handle the listed pickups, private transport and route coordination, and can offer local context and restaurant suggestions. This is not a professional attraction-guide service. The driver usually does not accompany you inside attractions. A specialist site guide can be arranged separately.",
   label: "Local team profiles",
-  slides: localTeamSlides,
+  slides: localTeamSlides.map((slide) => ({ ...slide, detail: "Local team example · Final assignment depends on your dates" })),
 };
 
 export const optionalGuideProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
@@ -53,7 +53,7 @@ export const optionalGuideProof: TrustCopy & { label: string; slides: ProofSlide
   title: "Driver-only or guided, confirmed in writing",
   copy: "A tailor-made journey can be driver-only or include a Chinese- or English-speaking guide. The profiles below are examples from the local team. Nothing is included until the licensed operator confirms it in your proposal.",
   label: "Local team profiles",
-  slides: localTeamSlides,
+  slides: localTeamSlides.map((slide) => ({ ...slide, detail: "Local team example · Confirmed in your proposal" })),
 };
 
 export const vehicleProof: TrustCopy & { groups: { id: "five" | "seven"; label: string; carouselLabel: string; slides: ProofSlide[] }[] } = {
