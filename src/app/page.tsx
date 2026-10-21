@@ -54,8 +54,8 @@ export default function Home() {
       <div className="hero-shade" />
       <div className="hero-copy">
         <p className="hero-kicker">PRIVATE JOURNEYS THROUGH YUNNAN</p>
-        <h1>Discover China from Yunnan at Your Pace</h1>
-        <p>Explore Dali, Lijiang, Shaxi, Lugu Lake and Shangri-La through a private journey designed around your dates, interests and preferred pace.</p>
+        <h1>Discover Yunnan at Your Own Pace</h1>
+        <p className="hero-lead">Explore Dali, Lijiang, Shangri-La and beyond through a private journey designed around your dates, interests and preferred pace.</p>
         <p className="hero-brand">Born in Yunnan. Shaped by experiences abroad.</p>
         <div className="hero-actions">
           <Link href="/custom-china-tour" data-cta-location="home_hero_custom" className="button button-blue">PLAN MY YUNNAN TRIP</Link>
