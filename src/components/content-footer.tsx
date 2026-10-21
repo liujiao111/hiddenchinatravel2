@@ -22,6 +22,7 @@ export function ContentFooter() {
           <h3>Journeys</h3>
           <Link href="/journeys/dali-lijiang-lugu-lake-private-tour">Dali, Lijiang &amp; Lugu Lake Private Journey</Link>
           <Link href="/journeys/kunming-dali-shaxi-lijiang-6-days">Dali, Shaxi &amp; Lijiang Private Journey</Link>
+          <Link href="/journeys/kunming-dali-lijiang-shangri-la-8-days">Classic Yunnan Private Journey</Link>
           <Link href="/journeys">Yunnan Journeys</Link>
           <Link href="/custom-china-tour">Tailor-Made Private Journeys</Link>
         </nav>

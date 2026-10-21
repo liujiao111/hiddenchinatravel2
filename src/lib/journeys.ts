@@ -5,10 +5,11 @@ import path from "node:path";
 import matter from "gray-matter";
 
 export type JourneyExperience = { title: string; image: string; description: string };
-export type JourneyDay = { days: string; title: string; meta: string; description: string; meals?: string };
+export type JourneyDay = { days: string; title: string; meta: string; description: string; meals?: string; image?: string; imageAlt?: string };
 export type JourneyTier = { name: string; price: number; description: string; accommodation: string; idealFor: string; featured?: boolean };
 export type JourneyFaq = { question: string; answer: string };
 export type JourneyNote = { title: string; detail: string };
+export type JourneyOverviewItem = { label: string; value: string };
 
 export type JourneyFrontmatter = {
   title: string;
@@ -24,10 +25,31 @@ export type JourneyFrontmatter = {
   currency: string;
   priceBasis: string;
   coverImage: string;
+  coverAlt?: string;
   featured?: boolean;
   status?: "draft" | "planned" | "published";
   displayOrder?: number;
   navFeatured?: boolean;
+  heroEyebrow?: string;
+  heroSecondaryLabel?: string;
+  heroNote?: string;
+  overviewTitle?: string;
+  overviewDescription?: string;
+  overviewItems?: JourneyOverviewItem[];
+  manifestoKicker?: string;
+  manifestoLead?: string;
+  manifestoClose?: string;
+  fitKicker?: string;
+  fitHeading?: string;
+  goodFit?: string[];
+  poorFit?: string[];
+  itineraryKicker?: string;
+  itineraryHeading?: string;
+  itineraryIntro?: string;
+  midCtaHeading?: string;
+  pricingHeading?: string;
+  pricingIntro?: string;
+  priceExplanation?: string;
   travelStyles: string[];
   experiences: JourneyExperience[];
   itinerary: JourneyDay[];
