@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ContentFooter } from "@/components/content-footer";
+import { EnquireLink } from "@/components/enquire-link";
 import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
@@ -10,7 +11,7 @@ import { getHomeTestimonials } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
   title: "Private Yunnan Tours & Tailor-Made Journeys",
-  description: "Plan a private Yunnan journey through Dali, Lijiang, Shaxi, Lugu Lake and Shangri-La, with tailor-made itineraries, private transport, local guides and personal support.",
+  description: "Plan a private Yunnan journey through Kunming, Dali, Lijiang, Shaxi, Lugu Lake and Shangri-La, with tailor-made itineraries, private transport, local guides and personal support.",
   alternates: { canonical: "https://hiddenchinatravel.com/" },
 };
 
@@ -35,6 +36,7 @@ const supportItems = [
   { title: "Maps and Transportation", detail: "Prepare maps, trains and everyday transport before arrival.", href: "/survival-kit#maps" },
 ];
 const destinations = [
+  ["Kunming", "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.", "/assets/resources/昆明-石林-352.jpg", "/china-destinations/yunnan", "EXPLORE KUNMING"],
   ["Dali", "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.", "/assets/destinations/yunnan/dali.webp", "/dali-travel-guide", "EXPLORE DALI"],
   ["Shaxi", "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.", "/assets/destinations/yunnan/shaxi.webp", "/dali-hidden-gems-off-the-beaten-path", "DISCOVER SHAXI"],
   ["Lijiang", "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", "/assets/destinations/yunnan/lijiang.webp", "/china-destinations/yunnan", "EXPLORE LIJIANG"],
@@ -76,7 +78,7 @@ export default function Home() {
         <p className="hero-lead hero-mobile-only">Private journeys through Dali, Lijiang and beyond, shaped around your dates, interests and pace.</p>
         <p className="hero-brand hero-desktop-only">Born in Yunnan. Shaped by experiences abroad.</p>
         <div className="hero-actions">
-          <Link href="/custom-china-tour" data-cta-location="home_hero_custom" className="button button-blue">PLAN MY YUNNAN TRIP</Link>
+          <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">PLAN MY YUNNAN TRIP</EnquireLink>
           <Link href="/journeys" className="button button-light hero-desktop-only">EXPLORE JOURNEYS</Link>
         </div>
         <p className="hero-trust-line hero-desktop-only">Private journeys · No shopping stops · Licensed local operator · Personal support</p>
@@ -95,7 +97,7 @@ export default function Home() {
       <div className="shell">
         <div className="process-grid">{howItWorks.map(([number, title, text]) => <div key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></div>)}</div>
         <div className="center">
-          <Link href="/custom-china-tour" data-cta-location="home_how_it_works" className="button button-blue">PLAN MY YUNNAN TRIP</Link>
+          <EnquireLink data-cta-location="home_how_it_works" className="button button-blue">PLAN MY YUNNAN TRIP</EnquireLink>
           <p className="home-helper">No payment is required to start planning.</p>
         </div>
       </div>
@@ -190,15 +192,15 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="section home-preparation" id="guides">
+    <section className="yunnan-prepare section" id="guides">
       <div className="shell">
-        <header className="home-preparation-heading">
-          <p className="kicker">FIRST-TIME CHINA SUPPORT</p>
+        <div className="yunnan-section-heading light">
+          <span>FIRST-TIME CHINA SUPPORT</span>
           <h2>We Help With More Than the Itinerary</h2>
           <p>Payments, mobile data, maps, transportation and attraction bookings can work differently in China. Our practical travel guides help you prepare before departure, while guests booking a private journey receive relevant preparation advice for their route.</p>
-        </header>
-        <div className="utility-grid home-support-grid">{supportItems.map((item, index) => <Link href={item.href} key={item.title} className="utility-card"><i>0{index + 1}</i><h3>{item.title}</h3><p>{item.detail}</p><span>GET READY →</span></Link>)}</div>
-        <Link href="/survival-kit" className="button button-green home-preparation-cta">OPEN THE CHINA PRE-DEPARTURE CHECKLIST →</Link>
+        </div>
+        <div className="yunnan-practical-grid">{supportItems.map((item, index) => <Link href={item.href} key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p><b>GET READY →</b></Link>)}</div>
+        <div className="center"><Link href="/survival-kit" className="button button-light">OPEN THE CHINA PRE-DEPARTURE CHECKLIST →</Link></div>
       </div>
     </section>
 
@@ -231,7 +233,7 @@ export default function Home() {
         <h2>Ready to Start Planning Yunnan?</h2>
         <p>You do not need a finished itinerary. Tell us your travel dates or approximate month, number of travelers and the places or experiences that interest you. Joy will help turn those ideas into a practical private journey.</p>
         <div className="hero-actions">
-          <Link href="/custom-china-tour#plan" data-cta-location="home_final_custom" className="button button-blue">PLAN MY YUNNAN TRIP</Link>
+          <EnquireLink data-cta-location="home_final_custom" className="button button-blue">PLAN MY YUNNAN TRIP</EnquireLink>
           <Link href={whatsapp} data-cta-location="home_final_whatsapp" className="button button-light">CHAT WITH JOY ON WHATSAPP</Link>
         </div>
         <p className="final-cta-trust">Personal reply from Joy · No payment required to start planning · Your journey can be adjusted before confirmation</p>
