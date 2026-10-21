@@ -339,7 +339,7 @@ a.utility-card { color:inherit; }
 .mega-journeys>section { display:flex; flex-direction:column; align-items:flex-start; gap:11px; }
 .mega-journeys>section+section { padding-left:30px; border-left:1px solid rgba(255,255,255,.22); }
 .mega-journeys h2 { margin-bottom:8px; }
-.mega-journeys-current { grid-template-columns:minmax(0,2fr) minmax(280px,.78fr); gap:42px; }
+.mega-journeys-current { grid-template-columns:1fr; gap:24px; }
 .mega-current-journeys>h2 { max-width:580px; margin-top:0; }
 .mega-current-journey-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; width:100%; }
 .mega-current-journey-grid>a { display:grid; grid-template-columns:145px minmax(0,1fr); min-height:145px; overflow:hidden; background:rgba(255,255,255,.12); }
@@ -482,8 +482,8 @@ a.utility-card { color:inherit; }
 .journeys-philosophy p span { color:#345d58; font-family:Georgia,serif; }
 @media (max-width:1000px) {
   .mega-journeys { grid-template-columns:1.5fr 1fr 1fr; }
-  .mega-journeys-current { grid-template-columns:minmax(0,1.6fr) minmax(240px,.8fr); }
-  .mega-current-journey-grid { grid-template-columns:1fr; }
+  .mega-journeys-current { grid-template-columns:1fr; }
+  .mega-current-journey-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .mega-journeys .mega-callout { display:none; }
   .journey-experience-grid { grid-template-columns:repeat(2,1fr); }
 }
@@ -504,9 +504,9 @@ a.utility-card { color:inherit; }
   .mega-journeys>section+section { padding:28px 0 0; border-top:1px solid rgba(255,255,255,.22); border-left:0; }
   .mega-journey-feature>a { grid-template-columns:125px 1fr; }
   .mega-journey-feature img { width:125px; height:160px; }
+  .mega-current-journey-grid { grid-template-columns:1fr; }
   .mega-current-journey-grid>a { grid-template-columns:125px minmax(0,1fr); }
   .mega-current-journey-grid img { width:125px; }
-  .mega-tailor-made { padding-right:0; }
   .journey-breadcrumbs { margin-bottom:0; padding-top:14px; padding-bottom:14px; }
   .journey-hero { min-height:640px; }
   .journey-hero-copy { padding:75px 20px; }

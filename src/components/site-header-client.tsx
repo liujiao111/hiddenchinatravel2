@@ -85,6 +85,7 @@ export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
     {mobileOpen ? <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
       <Link href="/china-destinations/yunnan" onClick={() => setMobileOpen(false)}>DESTINATIONS</Link>
       <Link href="/journeys" onClick={() => setMobileOpen(false)}>JOURNEYS</Link>
+      <Link href="/custom-china-tour" onClick={() => setMobileOpen(false)}>TAILOR-MADE YUNNAN</Link>
       <Link href="/survival-kit" onClick={() => setMobileOpen(false)}>TRAVEL GUIDES</Link>
       <Link href="/about-us" onClick={() => setMobileOpen(false)}>ABOUT US</Link>
       <Link href="/contact" onClick={() => setMobileOpen(false)}>CONTACT US</Link>
@@ -116,15 +117,12 @@ export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
               <Image src={encodeURI(journey.image)} alt={journey.title} width={300} height={178} unoptimized />
               <span><small>{journey.duration} · PRIVATE</small><b>{journey.title}</b><strong>VIEW JOURNEY →</strong></span>
             </Link>)}
+            <Link href="/custom-china-tour" data-cta-location="header_journeys_custom">
+              <Image src="/home/local-support.webp" alt="Tailor-Made Yunnan" width={300} height={178} unoptimized />
+              <span><small>CUSTOM · PRIVATE</small><b>Tailor-Made Yunnan</b><strong>DESIGN YOUR JOURNEY →</strong></span>
+            </Link>
           </div>
           <Link href="/journeys" className="mega-text-link">VIEW ALL JOURNEYS →</Link>
-        </section>
-        <section className="mega-tailor-made">
-          <p className="kicker">TAILOR-MADE YUNNAN</p>
-          <h2>Tailor-Made Yunnan</h2>
-          <p>Private Journey Designed Around You</p>
-          <Link href="/custom-china-tour" data-cta-location="header_journeys_custom" className="button button-light">DESIGN YOUR JOURNEY</Link>
-          <small>Not another fixed itinerary. Start with your own plans.</small>
         </section>
       </div> : open === "guides" ? <div className="shell mega-groups mega-guides">
         <section className="mega-survival-feature"><Image src="/assets/blog/independent-travel-china/cover.webp" alt="Travelers preparing for a journey through China" fill sizes="(max-width: 700px) 100vw, 30vw" unoptimized /><div><p>START HERE · FREE CHECKLIST</p><h2>Your China trip, prepared in one place.</h2><span>Entry, bookings, eSIM, VPN, payments and what to save before you fly.</span><Link className="button button-light" href="/survival-kit">OPEN THE SURVIVAL KIT →</Link></div></section>
