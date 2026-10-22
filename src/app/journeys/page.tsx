@@ -40,7 +40,7 @@ export default function JourneysPage() {
   return <main>
     <SiteHeader />
     <header className="journeys-hero"><div className="narrow"><p>PRIVATE JOURNEYS THROUGH YUNNAN</p><h1>Private Yunnan journeys</h1><span>Thoughtful routes for travelers who want local context, an unhurried pace and support without the feeling of a conventional group tour.</span></div></header>
-    <section className="journeys-list section"><div className="shell"><div className="section-heading"><h2>Private Yunnan journeys</h2><p>Start with one of our signature journeys, then adjust the dates, pace and details around your party.</p></div><div className="journeys-card-grid">{journeys.map((journey) => <JourneyCard key={journey.slug} priority={journey.frontmatter.featured} journey={{
+    <section className="journeys-list section"><div className="shell"><div className="section-heading"><h2>Start with a signature route</h2><p>Start with one of our signature journeys, then adjust the dates, pace and details around your party.</p></div><div className="journeys-card-grid">{journeys.map((journey) => <JourneyCard key={journey.slug} priority={journey.frontmatter.featured} journey={{
       title: journey.frontmatter.shortTitle,
       subtitle: journey.frontmatter.excerpt,
       href: `/journeys/${journey.slug}`,
