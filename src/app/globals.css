@@ -635,8 +635,8 @@ a.utility-card { color:inherit; }
 .journey-hero-copy>div>span { display:block; max-width:700px; margin:26px auto 0; font-family:Georgia,serif; font-size:clamp(1.05rem,2vw,1.35rem); line-height:1.55; }
 .journey-hero-price { display:block; margin:18px auto 0; color:#e1cda1; font-family:Georgia,serif; font-size:clamp(1.05rem,1.8vw,1.28rem); font-weight:400; }
 .journey-hero-includes { display:flex; flex-wrap:wrap; justify-content:center; gap:8px 22px; max-width:720px; margin:16px auto 0; padding:0; list-style:none; }
-.journey-hero-includes li { position:relative; padding-left:16px; color:rgba(255,255,255,.88); font-size:.78rem; letter-spacing:.02em; }
-.journey-hero-includes li::before { content:"✓"; position:absolute; left:0; color:#e1cda1; font-size:.7rem; }
+.journey-hero-includes li { position:relative; padding-left:14px; color:rgba(255,255,255,.88); font-size:.78rem; letter-spacing:.02em; }
+.journey-hero-includes li::before { content:""; position:absolute; left:0; top:.55em; width:5px; height:5px; background:#e1cda1; }
 .journey-hero-whatsapp { display:inline-block; margin-top:14px; color:#e1cda1; font-size:.78rem; text-decoration:underline; text-underline-offset:3px; }
 .journey-hero-whatsapp:hover { color:#fff; }
 .journey-hero-rating { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px 10px; margin:22px auto 0; color:#e1cda1; font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; }
