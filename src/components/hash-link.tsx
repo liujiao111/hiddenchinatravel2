@@ -4,6 +4,7 @@ import type { MouseEvent, ReactNode } from "react";
 
 type Props = {
   href: string;
+  id?: string;
   className?: string;
   children: ReactNode;
   onJump?: () => void;

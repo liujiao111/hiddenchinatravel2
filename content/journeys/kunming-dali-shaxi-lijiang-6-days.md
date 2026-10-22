@@ -17,18 +17,16 @@ featured: true
 status: "published"
 displayOrder: 2
 navFeatured: true
-heroEyebrow: "FIRST ENCOUNTER · 6 DAYS / 5 NIGHTS · PRIVATE"
-heroTitle: "6-Day Private Yunnan"
-heroSecondaryLabel: "EXPLORE THE 6-DAY ITINERARY"
-heroDescription: "Dali Ancient Town, a morning on Erhai’s west shore, a Bai tie-dye workshop, one night in Shaxi, then two nights in Lijiang with Jade Dragon Snow Mountain as a full day of its own."
+heroEyebrow: "FIRST ENCOUNTER"
+heroTitle: "6-Day Private Yunnan Tour"
+heroSecondaryLabel: "SEE THE DAYS"
+heroDescription: "A private Kunming-to-Lijiang route, with Jade Dragon as a day of its own."
 heroNote: "Two adults sharing one room. Not a daily rate."
 heroBounds: "Starts in Kunming (high-speed train to Dali) · Ends in Lijiang · Breakfast included; lunch and dinner are not."
 heroIncludes:
   - "Private party · no shopping stops"
   - "Muslim-friendly as standard"
   - "Jade Dragon as a full day, not on a departure"
-  - "One night in Shaxi after the coaches leave"
-  - "Your own driver-guide throughout"
 whoFor: "Couples, friends and small private groups on a first Yunnan trip who would rather give Jade Dragon a full day than pack the glacier onto a departure."
 whenToGo: "March–May and September–November are the most comfortable. Summer is lush and busier; winter is quieter, with a colder mountain day."
 overviewTitle: "At a glance."

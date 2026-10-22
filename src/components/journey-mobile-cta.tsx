@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { HashLink } from "@/components/hash-link";
 
-const formIds = ["ask-joy", "ask-joy-price"];
+const hideWhenVisible = ["ask-joy", "ask-joy-price", "hero-quote"];
 
 export function JourneyMobileCta() {
   const [hidden, setHidden] = useState(false);
@@ -15,7 +15,7 @@ export function JourneyMobileCta() {
 
     function watch() {
       if (cancelled) return;
-      const forms = formIds.flatMap((id) => {
+      const forms = hideWhenVisible.flatMap((id) => {
         const el = document.getElementById(id);
         return el ? [el] : [];
       });
