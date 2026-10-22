@@ -23,10 +23,11 @@ const sixDayPhotos: Record<string, readonly [string, string]> = {
 };
 
 const defaultIncludes = [
-  "Private driver-guide and vehicle",
+  "Private party · no shopping stops",
+  "Muslim-friendly as standard",
+  "Private driver-guide throughout",
   "Hotels in your chosen style, with breakfast",
-  "Tickets named in your quotation",
-  "No shopping stops",
+  "Licensed Kunming agency for the contract",
 ];
 
 const sharedTierPoints = [
