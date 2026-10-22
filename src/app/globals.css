@@ -696,6 +696,7 @@ a.utility-card { color:inherit; }
 .journey-why-decision { display:grid; grid-template-columns:1.15fr 1fr 1fr; gap:1px; margin-bottom:22px; background:#d5d1c4; }
 .journey-why-decision article { padding:26px 24px; background:#faf9f2; }
 .journey-why-decision span { color:#8f7446; font-size:.65rem; font-weight:800; letter-spacing:.16em; }
+.journey-why-decision .star-rating { justify-content:flex-start; margin:12px 0 2px; }
 .journey-why-decision h3 { margin:10px 0 12px; color:#29463f; font-family:Georgia,serif; font-size:1.35rem; font-weight:400; line-height:1.2; }
 .journey-why-decision p { margin:0; color:#5f655d; font-size:.9rem; line-height:1.65; }
 .journey-why-decision a { display:inline-block; margin-top:14px; color:#345d58; font-size:.68rem; font-weight:800; letter-spacing:.1em; }

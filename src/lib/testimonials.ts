@@ -12,7 +12,9 @@ export type Testimonial = {
 };
 
 export const overallGuestRating = 4.8;
-export const overallGuestRatingLabel = "4.8 · From guest reviews";
+export const overallGuestRatingLabel = "4.8 out of 5 · Guest reviews";
+export const overallGuestRatingHeading = "Rated 4.8 out of 5 by guests";
+export const overallGuestRatingIntro = "These notes are from guests on private Yunnan routes we planned. They are not written about this one itinerary.";
 
 export const selectedTestimonialsCopy = {
   eyebrow: "TRAVELER STORIES",

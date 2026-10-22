@@ -3,7 +3,8 @@ import Link from "next/link";
 import { OperatorCredentials } from "@/components/operator-credentials";
 import { brandIdentity } from "@/lib/booking-terms";
 import { licensedOperator } from "@/lib/journey-trust";
-import { getSelectedTestimonials } from "@/lib/testimonials";
+import { StarRating } from "@/components/star-rating";
+import { getSelectedTestimonials, overallGuestRating, overallGuestRatingHeading, overallGuestRatingIntro } from "@/lib/testimonials";
 
 function firstSentence(quote: string) {
   const match = quote.match(/^[^.!?]+[.!?]/);
@@ -36,9 +37,10 @@ export function JourneyWhy() {
           <a href="#why-us-licence">Inspect the documents ↓</a>
         </article>
         <article>
-          <span>FROM EARLIER GUESTS</span>
-          <h3>4.8 from private Yunnan journeys.</h3>
-          <p>These notes are from guests we planned for. They are not written about one current itinerary.</p>
+          <span>GUEST REVIEWS</span>
+          <StarRating value={overallGuestRating} label="Overall guest rating: 4.8 out of 5 stars" />
+          <h3>{overallGuestRatingHeading}</h3>
+          <p>{overallGuestRatingIntro}</p>
         </article>
       </div>
 
