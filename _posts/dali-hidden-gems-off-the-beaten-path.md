@@ -64,7 +64,7 @@ Sifang Street itself is free to walk. Cars aren't allowed inside the old town co
 Shaxi is about 140 km from Dali Old Town — figure on 2 to 2.5 hours by direct tourist coach (around ¥42, departing from Dali's long-distance bus station) or private car. Given the distance, this is realistically an overnight trip rather than a day trip. A handful of small guesthouses in Sifang Street's old buildings are worth booking ahead — [browse options here](/go/trip-hotels).
 
 > **Want to include Shaxi without turning it into a rushed day trip?**
-> Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) private journey includes two nights in Shaxi between Dali and Lijiang, with the road transport arranged around the route.
+> Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) private journey includes one night in Shaxi between Dali and Lijiang, with the road transport arranged around the route.
 
 ## Weishan Ancient Town — Yunnan's Emptiest "Forgotten Capital"
 

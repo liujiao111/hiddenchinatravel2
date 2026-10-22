@@ -107,7 +107,7 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
       label: "SHAXI",
       carouselLabel: "Shaxi hotel examples",
       slides: [
-        { src: `${hotelRoot}/shaxi-boutique-courtyard.webp`, alt: "Example of a Shaxi boutique courtyard hotel stay", title: "Shaxi boutique courtyard", detail: "Example · Shaxi", copy: "Two nights on the 6-day route are in Shaxi. The property is a boutique courtyard stay, named in your proposal." },
+        { src: `${hotelRoot}/shaxi-boutique-courtyard.webp`, alt: "Example of a Shaxi boutique courtyard hotel stay", title: "Shaxi boutique courtyard", detail: "Example · Shaxi", copy: "One night on the 6-day route is in Shaxi. The property is a boutique courtyard stay, named in your proposal." },
         { src: `${hotelRoot}/shaxi-boutique-lanes.webp`, alt: "Example of a Shaxi town hotel stay", title: "Shaxi town stay", detail: "Example · Shaxi lanes", copy: "Cars stop at the edge of town. The hotel is reached on foot." },
       ],
     },

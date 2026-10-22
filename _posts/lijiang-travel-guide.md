@@ -100,7 +100,7 @@ The [8-day Essence of Yunnan](/journeys/kunming-dali-lijiang-shangri-la-private-
 
 ## How this fits the 6-day and 8-day journeys
 
-**[First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) (6 days):** Lijiang is the finish. You arrive after two nights in Shaxi, spend time in the old town once the midday lanes ease, and use the last day around Jade Dragon and Blue Moon Valley. That is a coherent end to the westbound route, not a second province.
+**[First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) (6 days):** Lijiang is the finish. You arrive after one night in Shaxi, sleep in Lijiang the night before Jade Dragon Snow Mountain, give the mountain a full day of its own, and use the last morning for Shuhe and the old town. That is a coherent end to the westbound route, not a second province.
 
 **[The Essence of Yunnan](/journeys/kunming-dali-lijiang-shangri-la-private-tour) (8 days):** Lijiang is the middle, not the end. After Dali you continue north toward Tiger Leaping Gorge and Shangri-La. The extra days exist so the mountain day and the highland transfer are not the same afternoon.
 
