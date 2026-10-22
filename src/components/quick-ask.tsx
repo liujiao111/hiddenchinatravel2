@@ -3,7 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { budgetBands, enquiryMessage, isQuoteReady, parseEnquiry, partySizes, travelWindows, type Enquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
-import { metaClickIds, newAnalyticsEventId, trackEvent } from "@/lib/analytics";
+import { newAnalyticsEventId, trackEvent } from "@/lib/analytics";
 
 type Intent = "trip" | "advice";
 
@@ -61,20 +61,12 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
     setError("");
     setWhatsappHref(whatsappUrl);
     const eventId = newAnalyticsEventId();
-    const clickIds = metaClickIds();
 
     try {
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...parsed,
-          eventId,
-          sourceUrl: clickIds.sourceUrl,
-          fbp: clickIds.fbp,
-          fbc: clickIds.fbc,
-          contentName: "quick_ask",
-        }),
+        body: JSON.stringify(parsed),
       });
       const result = await response.json().catch(() => ({ error: "We could not send this just now." }));
       if (!response.ok) {

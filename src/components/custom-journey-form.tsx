@@ -5,7 +5,7 @@ import { useRef, useState, type FormEvent } from "react";
 import { journeyBudgets, journeyComfort, journeyInterests } from "@/lib/custom-journey-enquiry";
 import { siteConfig } from "@/lib/site-config";
 import { JourneyPlaceSelection, useJourneyInspiration } from "@/components/journey-inspiration-context";
-import { metaClickIds, trackEvent } from "@/lib/analytics";
+import { trackEvent } from "@/lib/analytics";
 
 export function CustomJourneyForm() {
   const { selected } = useJourneyInspiration();
@@ -24,8 +24,7 @@ export function CustomJourneyForm() {
     setStatus("sending");
     setMessage("");
     try {
-      const clickIds = metaClickIds();
-    const response = await fetch("/api/custom-journey", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...fields, adults: Number(data.get("adults")), children: Number(data.get("children")), interests: data.getAll("interests"), consent: data.get("consent") === "on", requestId: requestId.current, ...clickIds, contentName: "custom_journey_enquiry" }) });
+      const response = await fetch("/api/custom-journey", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...fields, adults: Number(data.get("adults")), children: Number(data.get("children")), interests: data.getAll("interests"), consent: data.get("consent") === "on", requestId: requestId.current }) });
       const result = await response.json();
       if (!response.ok || result.success !== true) throw new Error(result.error || "We could not send your enquiry. Please try again.");
       setStatus("success");

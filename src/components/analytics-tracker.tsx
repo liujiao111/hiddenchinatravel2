@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { trackEvent } from "@/lib/analytics";
 
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.match(/^\d+$/)?.[0];
 
 function cleanText(value: string | null) {
   return value?.replace(/\s+/g, " ").trim().slice(0, 100) || "unknown";
@@ -32,18 +31,6 @@ export function AnalyticsTracker() {
     window.addEventListener("ga-ready", sendPageView);
     sendPageView();
     return () => window.removeEventListener("ga-ready", sendPageView);
-  }, [pathname]);
-
-  const lastMetaPath = useRef<string | null>(null);
-  useEffect(() => {
-    if (!metaPixelId || !window.fbq) return;
-    if (lastMetaPath.current === null) {
-      lastMetaPath.current = pathname;
-      return;
-    }
-    if (lastMetaPath.current === pathname) return;
-    lastMetaPath.current = pathname;
-    window.fbq("track", "PageView");
   }, [pathname]);
 
   useEffect(() => {
