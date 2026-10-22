@@ -437,7 +437,8 @@ a.utility-card { color:inherit; }
 .journey-partner-grid figcaption { padding:17px 20px; color:#344f49; font-size:.85rem; font-weight:600; }
 .journey-partner-note { max-width:850px; margin:24px auto 0; color:#62655f; font-size:.84rem; line-height:1.7; text-align:center; }
 .journey-price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:45px; align-items:stretch; }
-.journey-price-grid article { position:relative; padding:40px 34px; background:#f8f6ed; border-top:4px solid transparent; }
+.journey-price-grid article { position:relative; display:flex; flex-direction:column; padding:40px 34px; background:#f8f6ed; border-top:4px solid transparent; }
+.journey-tier-quote { display:inline-block; margin-top:auto; padding-top:18px; color:#345d58; font-size:.68rem; font-weight:800; letter-spacing:.1em; }
 .journey-price-grid article.featured { border-color:#345d58; background:white; box-shadow:0 12px 35px rgba(35,55,49,.1); }
 .price-choice { position:absolute; top:-25px; right:0; left:0; color:#345d58; font-size:.58rem; font-weight:800; letter-spacing:.14em; text-align:center; }
 .journey-price-grid h3 { margin:0 0 19px; font-size:1.65rem; }
@@ -867,7 +868,7 @@ a.utility-card { color:inherit; }
   .journey-host-image { min-height:480px; }
   .journey-host-compact .journey-host-image { min-height:240px; }
   .journey-host-copy { padding:64px 24px 75px; }
-  .journey-mobile-cta,.article-mobile-ask { position:fixed; z-index:40; right:14px; bottom:14px; left:14px; display:flex; min-height:54px; align-items:center; justify-content:space-between; padding:0 22px; background:#4e7671; box-shadow:0 12px 30px rgba(20,33,28,.28); color:#fff; font-size:.7rem; font-weight:800; letter-spacing:.1em; }
+  .journey-mobile-cta,.article-mobile-ask { position:fixed; z-index:80; right:14px; bottom:max(14px, env(safe-area-inset-bottom, 0px)); left:14px; display:flex; min-height:56px; align-items:center; justify-content:space-between; padding:0 22px; background:#4e7671; box-shadow:0 12px 30px rgba(20,33,28,.28); color:#fff; font-size:.7rem; font-weight:800; letter-spacing:.1em; pointer-events:auto; touch-action:manipulation; cursor:pointer; }
   .ask-bar-hidden { display:none !important; }
   main:has(.article-mobile-ask),main:has(.journey-mobile-cta) { padding-bottom:78px; }
 }
@@ -941,7 +942,7 @@ a.utility-card { color:inherit; }
 .quick-ask-quote span { margin:0 !important; }
 .quick-ask-actions { display:flex; flex-wrap:wrap; align-items:center; gap:16px 22px; }
 .quick-ask-actions a { color:#345d58; font-size:.82rem; font-weight:750; }
-.quick-ask-embedded { scroll-margin-top:24px; }
+.quick-ask-embedded { scroll-margin-top:72px; }
 .journey-fold-ask { padding:48px 0 56px; background:#e7efe8; }
 .journey-fold-ask .journey-quote-ask { margin:0 auto; }
 .journey-price-convert { display:flex; flex-direction:column; gap:42px; margin-top:36px; }

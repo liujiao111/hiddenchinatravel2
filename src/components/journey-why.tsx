@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { OperatorCredentials } from "@/components/operator-credentials";
 import { StarRating } from "@/components/star-rating";
-import { brandIdentity } from "@/lib/booking-terms";
 import { licensedOperator } from "@/lib/journey-trust";
 import { getSelectedTestimonials, overallGuestRating, overallGuestRatingHeading, overallGuestRatingIntro } from "@/lib/testimonials";
 
@@ -18,8 +17,7 @@ export function JourneyWhy() {
     <div className="shell">
       <div className="journey-editorial-heading journey-why-intro">
         <span>WHY TRAVEL WITH US</span>
-        <h2 id="why-us-title">You plan with Joy. The contract is with a licensed Kunming agency.</h2>
-        <p>{brandIdentity.short} {brandIdentity.consultant}</p>
+        <h2 id="why-us-title">Rated {overallGuestRating} by guests. Planned from Kunming.</h2>
       </div>
 
       <div className="journey-why-decision">
@@ -27,7 +25,7 @@ export function JourneyWhy() {
           <div className="journey-why-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy Liu, travel consultant at Hidden China Travel" fill sizes="96px" unoptimized /></div>
           <span>YOUR CONSULTANT</span>
           <h3>You’ll be planning with Joy.</h3>
-          <p>Joy Liu was born in Yunnan and plans from Kunming. You speak with her from the first enquiry through the trip.</p>
+          <p>Joy Liu was born in Yunnan and plans from Kunming. You speak with him from the first enquiry through the trip.</p>
           <Link href="/about-us">MEET JOY →</Link>
         </article>
         <article>

@@ -58,7 +58,7 @@ poorFit:
 itineraryKicker: "YOUR 8 DAYS IN YUNNAN"
 itineraryHeading: "Lakes, old towns, snow mountains and the plateau."
 itineraryIntro: "This is a full classic route. Days 5 and 6 are longer travel days. The visiting order can move around trains, weather, performances and ticket availability."
-midCtaHeading: "Ask Joy to price this route for your dates."
+midCtaHeading: "Get a quote for your dates."
 pricingHeading: "Choose a hotel style"
 pricingIntro: "Premium is our recommended option. Starting prices use the Comfort rate: US$580 per person for the complete 8-day journey, two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Other lunches and dinners are not, except the Day 7 rice-noodle meal."
 priceExplanation: "US$580 / US$630 / US$680 are Comfort, Premium and Luxury starting prices per person for all eight days, not a price per day. Final pricing depends on travel dates, group size, hotel selection, service language and travel availability. Higher rates may apply during Chinese public holidays and peak travel periods. The licensed operator confirms the quotation and contract before you decide."

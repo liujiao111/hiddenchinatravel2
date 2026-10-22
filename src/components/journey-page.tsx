@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Journey } from "@/lib/journeys";
 import { ContentFooter } from "@/components/content-footer";
+import { HashLink } from "@/components/hash-link";
 import { SiteHeader } from "@/components/site-header";
 import { QuickAsk } from "@/components/quick-ask";
 import { formatPriceLabel } from "@/lib/format-price";
@@ -9,7 +10,7 @@ import { JourneyHero, JourneyOverview, JourneySectionNav } from "@/components/jo
 import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { JourneyWhy } from "@/components/journey-why";
 import { YunnanTravelNotes } from "@/components/yunnan-travel-notes";
-import { bookingDocumentHref, bookingTermCards, contractCopy } from "@/lib/booking-terms";
+import { bookingDocumentHref, bookingTermCards } from "@/lib/booking-terms";
 import { overallGuestRating, overallGuestRatingLabel } from "@/lib/testimonials";
 import { breadcrumbList } from "@/components/json-ld";
 
@@ -71,7 +72,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
   };
 
   return <main>
-    <SiteHeader conversion cta={{ href: "#ask-joy", label: "REQUEST A PRICE", location: "header_journey_price" }} />
+    <SiteHeader conversion cta={{ href: "#ask-joy", label: "GET A QUOTE", location: "header_journey_price" }} />
     <JourneyHero
       title={frontmatter.heroTitle || frontmatter.title}
       name={frontmatter.heroTitle ? frontmatter.title : undefined}
@@ -83,7 +84,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       includes={heroIncludes}
       bounds={frontmatter.heroBounds}
       rating={{ href: "#why-us", label: overallGuestRatingLabel, value: overallGuestRating }}
-      primary={{ href: "#ask-joy", label: "REQUEST A PRICE" }}
+      primary={{ href: "#ask-joy", label: "GET A QUOTE" }}
       secondary={{ href: "#itinerary", label: frontmatter.heroSecondaryLabel || "SEE THE DAYS" }}
       chat={{ href: whatsapp, label: "Prefer WhatsApp? Message Joy →" }}
       note={frontmatter.heroNote || "Two adults sharing one room. Not a daily rate. Breakfast included; lunch and dinner are not."}
@@ -91,15 +92,15 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     <section className="journey-fold-ask" id="quote">
       <div className="shell">
         <div className="journey-quote-ask">
-          <h3>Ask Joy to price this route for your dates.</h3>
-          <p>A group size, a month and a budget are enough. You will get a route sketch and a range before anyone asks you to book.</p>
+          <h3>Get a quote for your dates.</h3>
+          <p>{completePrice}. A month, group size and hotel style are enough. Joy replies with a range for those dates — nothing is booked.</p>
           <QuickAsk layout="embedded" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" />
-          <p className="journey-quote-contract">{contractCopy.full} Joy replies to this form.</p>
+          <p className="journey-quote-contract">Joy replies to this note.</p>
         </div>
       </div>
     </section>
-    <JourneySectionNav links={[{ href: "#glance", label: "At a glance" }, ...(frontmatter.experiences.length ? [{ href: "#experiences", label: "Experiences" }] : []), { href: "#itinerary", label: "Day by day" }, { href: "#why-us", label: "Why us" }, { href: "#pricing", label: "Price" }, { href: "#private-journey", label: "Your journey" }]} action={{ href: "#ask-joy", label: "Request a price" }} />
-    <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: "#ask-joy", label: "REQUEST A PRICE" }} />
+    <JourneySectionNav links={[{ href: "#glance", label: "At a glance" }, ...(frontmatter.experiences.length ? [{ href: "#experiences", label: "Experiences" }] : []), { href: "#itinerary", label: "Day by day" }, { href: "#why-us", label: "Why us" }, { href: "#pricing", label: "Price" }, { href: "#private-journey", label: "Your journey" }]} action={{ href: "#ask-joy", label: "Get a quote" }} />
+    <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: "#ask-joy", label: "GET A QUOTE" }} />
     {frontmatter.whoFor || frontmatter.whenToGo ? <section className="journey-fit-season"><div className="shell">{frontmatter.whoFor ? <article><span>WHO IT’S FOR</span><p>{frontmatter.whoFor}</p></article> : null}{frontmatter.whenToGo ? <article><span>WHEN TO GO</span><p>{frontmatter.whenToGo}</p></article> : null}</div></section> : null}
 
     {frontmatter.experiences.length ? <section className="journey-experiences section section-sand" id="experiences"><div className="shell"><div className="section-heading"><h2>Signature experiences</h2><p>{isSixDayYunnanJourney ? "The moments this route is built around: Erhai’s west shore, indigo in Zhoucheng, one night in Shaxi, and a full day on Jade Dragon Snow Mountain." : "A journey built around moments, local people and enough time to take them in."}</p></div><div className="journey-experience-grid">{frontmatter.experiences.map((experience, index) => <article key={experience.title}><div><Image src={experience.image} alt={experience.imageAlt || experience.title} fill sizes="(max-width: 700px) 100vw, 50vw" unoptimized /></div><span>0{index + 1}</span><h3>{experience.title}</h3><p>{experience.description}</p></article>)}</div></div></section> : null}
@@ -116,11 +117,11 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     <section className="journey-price-module" id="pricing">
       <section className="journey-pricing section section-sand"><div className="shell"><div className="journey-editorial-heading"><span>PRICE</span><h2>{frontmatter.pricingHeading || (frontmatter.tiers.length ? "Choose a hotel style" : "A journey shaped around your dates")}</h2><p>{frontmatter.pricingIntro || "Starting prices are per person for the complete journey, based on two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Lunch and dinner are not."}</p></div>
       <div className="journey-price-convert">
-        <div className="journey-quote-ask"><h3>Ask Joy to price this route for your dates.</h3><p>A group size, a month and a budget are enough. You will get a route sketch and a range before anyone asks you to book.</p><QuickAsk layout="embedded" id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" /><p className="journey-quote-contract">{contractCopy.full} Joy replies to this form.</p></div>
         <div>
-          {frontmatter.tiers.length ? <div className="journey-price-grid">{frontmatter.tiers.map((tier) => <article key={tier.name} className={tier.featured ? "featured" : ""}>{tier.featured ? <span className="price-choice">RECOMMENDED</span> : null}<h3>{tier.name}</h3><div className="journey-tier-price">From <b>{formatPriceLabel(tier.price, frontmatter.currency)}</b> <span>per person</span></div><p>{tier.description}</p><ul><li>{tier.accommodation}</li>{sharedTierPoints.map((point) => <li key={point}>{point}</li>)}</ul><small>IDEAL FOR</small><strong>{tier.idealFor}</strong></article>)}</div> : <div className="journey-price-note">{frontmatter.priceExplanation ? <><b>{completePrice}.</b> {frontmatter.priceExplanation}</> : <><b>Request a tailored quote.</b> The final proposal confirms the hotel nights, guide language, vehicle, attraction tickets and meals before you decide.</>}</div>}
+          {frontmatter.tiers.length ? <div className="journey-price-grid">{frontmatter.tiers.map((tier) => <article key={tier.name} className={tier.featured ? "featured" : ""}>{tier.featured ? <span className="price-choice">RECOMMENDED</span> : null}<h3>{tier.name}</h3><div className="journey-tier-price">From <b>{formatPriceLabel(tier.price, frontmatter.currency)}</b> <span>per person</span></div><p>{tier.description}</p><ul><li>{tier.accommodation}</li>{sharedTierPoints.map((point) => <li key={point}>{point}</li>)}</ul><small>IDEAL FOR</small><strong>{tier.idealFor}</strong><HashLink className="journey-tier-quote" href="#ask-joy-price">Quote this style</HashLink></article>)}</div> : <div className="journey-price-note">{frontmatter.priceExplanation ? <><b>{completePrice}.</b> {frontmatter.priceExplanation}</> : <><b>Get a tailored quote.</b> The final proposal confirms the hotel nights, guide language, vehicle, attraction tickets and meals before you decide.</>}</div>}
           {frontmatter.tiers.length ? <p className="journey-price-note">{frontmatter.priceExplanation || "Prices are a guide in USD. Final pricing depends on travel dates, group size, hotel availability and any route adjustments. Your licensed local travel partner confirms the quotation and contract before you decide."}</p> : frontmatter.priceExplanation ? null : <p className="journey-price-note">Final pricing depends on travel dates, group size, hotel availability and any route customizations. Your licensed local travel partner will provide the final proposal and contract.</p>}
         </div>
+        <div className="journey-quote-ask"><h3>{frontmatter.tiers.length ? "Get a quote for the style you prefer." : "Get a quote for your dates."}</h3><p>{completePrice}. {frontmatter.tiers.length ? "Pick Comfort, Premium or Luxury, then send a month and group size." : "A month and group size are enough."} Joy replies with a range for those dates — nothing is booked.</p><QuickAsk layout="embedded" id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" /><p className="journey-quote-contract">Joy replies to this note.</p></div>
       </div></div></section>
 
       <section className="journey-inclusions section journey-inclusions-compact" id="details"><div className="shell journey-inclusion-grid"><div><span className="journey-detail-label">THE DETAILS</span><h2>What’s included</h2>{frontmatter.inclusions.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><span className="journey-detail-label">GOOD TO KNOW</span><h2>What’s not included</h2>{frontmatter.exclusions.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></section>
@@ -145,8 +146,8 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
     <section className="journey-faq section" id="questions"><div className="narrow"><div className="section-heading"><h2>Frequently asked questions</h2></div>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><p>{faq.answer}</p></details>)}</div></section>
 
-    <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Planning starts with a conversation.</h2><span>Send Joy your dates, group size and preferred travel pace. We’ll help you decide whether this journey is the right fit.</span><Link href="#ask-joy" className="button button-light">REQUEST A PRICE</Link><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>
-    <Link href="#ask-joy" className="journey-mobile-cta">REQUEST A PRICE <span>→</span></Link>
+    <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked.</span><HashLink href="#ask-joy" className="button button-light">GET A QUOTE</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>
+    <HashLink href="#ask-joy" className="journey-mobile-cta">GET A QUOTE <span>→</span></HashLink>
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;

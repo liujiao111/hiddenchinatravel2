@@ -60,7 +60,7 @@ poorFit:
 itineraryKicker: "YOUR 6 DAYS IN YUNNAN"
 itineraryHeading: "Give Jade Dragon Snow Mountain a full day of its own."
 itineraryIntro: "Two nights in Dali, one night in Shaxi, two nights in Lijiang. Day 5 is the mountain, with a Lijiang night before it and after it. Hotel breakfast is generally included. Lunch and dinner are not."
-midCtaHeading: "Ask Joy to price this route for your dates."
+midCtaHeading: "Get a quote for your dates."
 pricingHeading: "Choose a hotel style"
 pricingIntro: "Premium is our recommended option. Starting prices use the Comfort rate: US$480 per person for the complete 6-day journey, two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Lunch and dinner are not."
 priceExplanation: "US$480 / US$530 / US$580 are Comfort, Premium and Luxury starting prices per person for all six days, not a price per day. Final pricing depends on travel dates, group size, hotel availability and any route adjustments. Your licensed local travel partner confirms the quotation and contract before you decide."

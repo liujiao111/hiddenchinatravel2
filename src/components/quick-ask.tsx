@@ -15,6 +15,15 @@ type Props = {
   layout?: "band" | "embedded";
 };
 
+const visibleAskTargets = new Set<string>();
+
+function syncMobileAskBars() {
+  const hide = visibleAskTargets.size > 0;
+  document.querySelectorAll(".article-mobile-ask, .journey-mobile-cta").forEach((bar) => {
+    bar.classList.toggle("ask-bar-hidden", hide);
+  });
+}
+
 export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout = "band" }: Props) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
@@ -27,10 +36,16 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
     const bars = document.querySelectorAll(".article-mobile-ask, .journey-mobile-cta");
     if (!target || bars.length === 0) return;
     const observer = new IntersectionObserver(([entry]) => {
-      bars.forEach((bar) => bar.classList.toggle("ask-bar-hidden", entry.isIntersecting));
+      if (entry.isIntersecting) visibleAskTargets.add(id);
+      else visibleAskTargets.delete(id);
+      syncMobileAskBars();
     }, { threshold: 0.2 });
     observer.observe(target);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      visibleAskTargets.delete(id);
+      syncMobileAskBars();
+    };
   }, [id]);
 
   const whatsappPrompt = `Hi Joy, I was looking at "${sourceTitle}". I'd like a private Yunnan route and a price range. My dates are ____, we are ____ travelers, and our budget is about ____ per person.`;
@@ -92,7 +107,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
 
   const form = status === "success" && sent ? (
     <div className="contact-form-success quick-ask-success" role="status">
-      <h3>{isQuoteReady(sent) ? "Joy has what she needs to price a route." : "Joy has your note."}</h3>
+      <h3>{isQuoteReady(sent) ? "Joy has what he needs to quote this route." : "Joy has your note."}</h3>
       <p>
         {isQuoteReady(sent)
           ? "Expect a short route sketch and a price range, with what is included. There is no need to book from that reply."
@@ -151,10 +166,10 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
       ) : null}
       <label>
         <span>{intent === "trip" ? "What should this trip include?" : "Your question"} <small>{intent === "trip" ? "(optional)" : ""}</small></span>
-        <textarea name="plans" rows={intent === "trip" ? 3 : 4} required={intent === "advice" && !quoteRequested} placeholder={intent === "trip" || quoteRequested ? "A slower pace, more time in Dali, hotels, or leave this blank for a first suggestion." : "Ask about this guide, or say where you would like to go."} />
+        <textarea name="plans" rows={intent === "trip" ? 3 : 4} required={intent === "advice" && !quoteRequested} placeholder={intent === "trip" || quoteRequested ? "Comfort, Premium or Luxury, more time in Dali, or leave this blank for a first suggestion." : "Ask about this guide, or say where you would like to go."} />
       </label>
       <div className="quick-ask-actions">
-        <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : intent === "trip" || quoteRequested ? "Request a route and price" : "Ask Joy"}</button>
+        <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : intent === "trip" || quoteRequested ? "Get a quote" : "Ask Joy"}</button>
         <a href={standbyWhatsapp}>Or WhatsApp Joy →</a>
       </div>
       {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}

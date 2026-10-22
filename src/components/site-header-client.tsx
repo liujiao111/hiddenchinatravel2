@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { EnquireLink } from "@/components/enquire-link";
+import { HashLink } from "@/components/hash-link";
 import { SiteSearch } from "@/components/site-search";
 import { YunnanCountryGuideLink } from "@/components/yunnan-country-guide-link";
 
@@ -93,7 +94,7 @@ export function SiteHeaderClient({ journeys, cta, conversion }: { journeys: Head
       <Link href="/" className="brand" aria-label="Hidden China Travel home"><Image src="/brand/logo.webp" alt="Hidden China Travel" width={160} height={80} className="brand-logo" unoptimized /></Link>
       <div className="header-contact">
         {conversion ? <Link href="/journeys" className="header-quiet-link">JOURNEYS</Link> : <span>Local insight, private journeys and personal support</span>}
-        {cta ? <Link className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</Link> : <EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">PLAN MY YUNNAN TRIP</span><span className="header-cta-short">PLAN MY TRIP</span></EnquireLink>}
+        {cta ? (cta.href.startsWith("#") ? <HashLink className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</HashLink> : <Link className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</Link>) : <EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">PLAN MY YUNNAN TRIP</span><span className="header-cta-short">PLAN MY TRIP</span></EnquireLink>}
       </div>
       {conversion ? null : <button type="button" className="header-menu-toggle" aria-expanded={mobileOpen} aria-controls="mobile-nav" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? "CLOSE" : "MENU"}</button>}
     </div>
