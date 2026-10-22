@@ -58,14 +58,14 @@ These apply to every confirmed private journey:
 1. **Share your plans.** Dates, group size and how you want the journey to feel.
 2. **Review the written proposal.** Joy sends an itinerary, inclusions and a quote you can adjust. An enquiry is not a booking.
 3. **Confirm and pay the deposit.** Sign the travel contract with the licensed agency and pay a 20% deposit to its corporate account. Arrangements start after that.
-4. **Travel, then settle the balance.** The remaining 80% is due after airport pickup, when the journey starts.
+4. **Travel, then settle the balance.** The remaining 80% is due after your first pickup, when the journey starts.
 
 ---
 
 ## Payment
 
 - **20% deposit** after you confirm the written itinerary and travel contract.
-- **80% balance** after airport pickup, when the journey starts.
+- **80% balance** after your first pickup, when the journey starts. The meeting point is the one named in your proposal (airport or railway station).
 - **Alipay or WeChat** to the licensed agency’s corporate account.
 - **Stripe** is a backup if Alipay or WeChat are not set up. Stripe charges currently appear under a personal name until the agency’s business merchant account is approved.
 

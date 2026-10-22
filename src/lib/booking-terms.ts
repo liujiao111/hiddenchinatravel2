@@ -19,9 +19,10 @@ export const insuranceCopy = {
 
 export const paymentCopy = {
   deposit: "20% deposit to the licensed agency’s corporate account after you confirm the written itinerary and travel contract",
-  balance: "The remaining 80% is due after airport pickup, when the journey starts",
-  methods: "Pay by Alipay or WeChat. Stripe is a backup if those are not set up. Stripe charges currently appear under a personal name until the agency’s business merchant account is approved.",
-  full: `After you confirm the written itinerary and travel contract, pay a 20% deposit to ${licensedOperator.nameEn}’s corporate account by Alipay or WeChat. We then book hotels, tickets and the vehicle. The remaining 80% is due after your airport pickup, when the journey starts. Stripe is a backup if Alipay or WeChat are not set up. Stripe charges currently appear under a personal name until the agency’s business merchant account is approved.`,
+  balance: "The remaining 80% is due after your first pickup, when the journey starts",
+  methods: "Pay by Alipay or WeChat to the agency’s corporate account. Card payment can be arranged if those are not set up.",
+  product: `After you confirm the written itinerary and travel contract, pay a 20% deposit to ${licensedOperator.nameEn}’s corporate account by Alipay or WeChat. We then book hotels, tickets and the vehicle. The remaining 80% is due after your first pickup, when the journey starts. Card payment can be arranged if Alipay or WeChat are not set up.`,
+  full: `After you confirm the written itinerary and travel contract, pay a 20% deposit to ${licensedOperator.nameEn}’s corporate account by Alipay or WeChat. We then book hotels, tickets and the vehicle. The remaining 80% is due after your first pickup, when the journey starts. Stripe is a backup if Alipay or WeChat are not set up. Stripe charges currently appear under a personal name until the agency’s business merchant account is approved.`,
 } as const;
 
 export const cancellationCopy = {
@@ -34,7 +35,7 @@ export const contractCopy = {
 
 export const bookingFaq = {
   question: "How do payment and cancellation work?",
-  answer: `${paymentCopy.full} ${cancellationCopy.full}`,
+  answer: `${paymentCopy.product} ${cancellationCopy.full}`,
 };
 
 export const operatorFaq = {
@@ -46,14 +47,14 @@ export const bookingSteps = [
   ["01", "Share your plans", "Send your dates, group size and what you would like the journey to feel like."],
   ["02", "Review the written proposal", "Joy sends an itinerary, inclusions and a quote you can adjust before anything is booked."],
   ["03", "Confirm and pay the deposit", "Sign the travel contract with the licensed agency and pay a 20% deposit to its corporate account."],
-  ["04", "Travel, then settle the balance", "Hotels, tickets and the vehicle are arranged after the deposit. The remaining 80% is due after airport pickup."],
+  ["04", "Travel, then settle the balance", "Hotels, tickets and the vehicle are arranged after the deposit. The remaining 80% is due after your first pickup."],
 ] as const;
 
 export const bookingDocumentHref = "/booking";
 
 export const bookingTermCards = [
   ["Who you contract with", contractCopy.full],
-  ["How you pay", paymentCopy.full],
+  ["How you pay", paymentCopy.product],
   ["If plans change", cancellationCopy.full],
   ["Insurance", insuranceCopy.full],
 ] as const;

@@ -2,13 +2,13 @@
 title: "The Essence of Yunnan"
 shortTitle: "The Essence of Yunnan"
 seoTitle: "The Essence of Yunnan: 8-Day Private Tour"
-metaDescription: "The Essence of Yunnan is a private 8-day journey through Kunming, Dali, Lijiang and Shangri-La, with private transport, a driver-guide and from US$580 per person for the complete trip."
+metaDescription: "The Essence of Yunnan is a private 8-day journey through Kunming, Dali, Lijiang and Shangri-La, with private transport, a driver-guide and from US$650 per person for the complete trip."
 excerpt: "Erhai Lake • Jade Dragon Snow Mountain • Tiger Leaping Gorge"
 duration: "8 days / 7 nights"
 route: "Kunming → Dali → Lijiang → Shangri-La → Kunming"
 pace: "Full, with several longer travel days"
 journeyType: "Private journey for your party only"
-fromPrice: 580
+fromPrice: 650
 currency: "USD"
 priceBasis: "per person"
 coverImage: "/assets/destinations/yunnan/shangri-la.webp"
@@ -20,7 +20,7 @@ navFeatured: true
 heroEyebrow: "8 DAYS / 7 NIGHTS · PRIVATE JOURNEY"
 heroSecondaryLabel: "EXPLORE THE 8-DAY ITINERARY"
 heroDescription: "Explore Yunnan's most iconic landscapes, from Erhai Lake and Lijiang to Tiger Leaping Gorge and Shangri-La."
-heroNote: "Two adults sharing one room. Not a daily rate. Breakfast included; other lunches and dinners are not, except the Day 7 rice-noodle meal."
+heroNote: "Two adults sharing one room. Not a daily rate. Hotel breakfast is generally included; other lunches and dinners are not, except the Day 7 rice-noodle meal."
 heroIncludes:
   - "Private party · no shopping stops"
   - "Muslim-friendly as standard"
@@ -37,7 +37,7 @@ overviewItems:
   - label: "YOUR JOURNEY"
     value: "Private party · Driver-guide · No shopping stops"
   - label: "GUIDE PRICE"
-    value: "From US$580 per person for the complete 8-day journey, not a daily rate"
+    value: "From US$650 per person for the complete 8-day journey, not a daily rate"
 manifestoKicker: "THE ESSENCE OF YUNNAN"
 manifestoLead: "Lakeside towns beside Erhai. Old streets and snow mountains in Lijiang. Tiger Leaping Gorge, then the highlands of Shangri-La."
 manifestoClose: "The transfers between airports, stations, hotels and the main visits are arranged for you."
@@ -60,8 +60,8 @@ itineraryHeading: "Lakes, old towns, snow mountains and the plateau."
 itineraryIntro: "This is a full classic route. Days 5 and 6 are longer travel days. The visiting order can move around trains, weather, performances and ticket availability."
 midCtaHeading: "Get a quote for your dates."
 pricingHeading: "Choose a hotel style"
-pricingIntro: "Premium is our recommended option. Starting prices use the Comfort rate: US$580 per person for the complete 8-day journey, two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Other lunches and dinners are not, except the Day 7 rice-noodle meal."
-priceExplanation: "US$580 / US$630 / US$680 are Comfort, Premium and Luxury starting prices per person for all eight days, not a price per day. Final pricing depends on travel dates, group size, hotel selection, service language and travel availability. Higher rates may apply during Chinese public holidays and peak travel periods. The licensed operator confirms the quotation and contract before you decide."
+pricingIntro: "Premium is our recommended option. Starting prices use the Comfort rate: US$650 per person for the complete 8-day journey, two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Other lunches and dinners are not, except the Day 7 rice-noodle meal. Hotels on the cards are a style, not a named property."
+priceExplanation: "US$650 / US$750 / US$830 are Comfort, Premium and Luxury starting prices per person for all eight days, not a price per day. Final pricing depends on travel dates, group size, hotel selection, service language and travel availability. Higher rates may apply during Chinese public holidays and peak travel periods. The hotel in each place is named in your written proposal."
 travelStyles:
   - "First trip to Yunnan"
   - "Classic destinations"
@@ -136,20 +136,20 @@ itinerary:
     meals: "Breakfast included. Transport: private airport transfer. Pace: relaxed."
 tiers:
   - name: "Comfort"
-    price: 580
-    description: "Local quality 4-star and highly rated boutique hotels."
-    accommodation: "Local 4-star / highly rated boutique hotels"
+    price: 650
+    description: "Local 4-star and boutique hotels. The property in each place is named in your proposal."
+    accommodation: "Local 4-star / boutique · named in the proposal"
     idealFor: "First visits · Couples and friends · Good value"
   - name: "Premium"
-    price: 630
-    description: "International 4-star+ and light luxury 5-star hotels."
-    accommodation: "International 4-star+ / light luxury 5-star"
+    price: 750
+    description: "International 4-star+ and light luxury 5-star hotels. The property in each place is named in your proposal."
+    accommodation: "International 4-star+ / light 5-star · named in the proposal"
     idealFor: "Most travelers · Couples · Small private groups"
     featured: true
   - name: "Luxury"
-    price: 680
-    description: "A higher-end stay with more exclusive hotels throughout the route."
-    accommodation: "Luxury 5-star hotels"
+    price: 830
+    description: "A higher-end stay. The property in each place is named in your proposal."
+    accommodation: "Luxury 5-star hotels · named in the proposal"
     idealFor: "Special occasions · Higher-end stays"
 inclusions:
   - "Airport and railway station transfers listed in the itinerary"
@@ -197,13 +197,13 @@ faqs:
   - question: "Does the driver-guide come into the attractions with us?"
     answer: "The driver-guide looks after transport, route coordination and local context. This is not a separate attraction lecturer inside every site. A specialist site guide can be added in your proposal."
   - question: "How do payment and cancellation work?"
-    answer: "After you confirm the written itinerary and travel contract, pay a 20% deposit to Yunnan Meizhen International Travel Agency Co., Ltd. by Alipay or WeChat. The remaining 80% is due after airport pickup. Stripe is a backup if those apps are not set up; Stripe charges currently appear under a personal name until the agency’s business merchant account is approved. Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit."
+    answer: "After you confirm the written itinerary and travel contract, pay a 20% deposit to Yunnan Meizhen International Travel Agency Co., Ltd. by Alipay or WeChat. The remaining 80% is due after your first pickup, when the journey starts. Card payment can be arranged if those apps are not set up. Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit."
   - question: "Is travel insurance included?"
     answer: "Travel insurance for the confirmed journey period is included. It does not replace your own international travel insurance."
   - question: "Can the itinerary be adjusted?"
     answer: "Hotels, some visits and the daily pace can be adjusted around your dates, interests and available services. A larger change to the route will be re-quoted."
-  - question: "Is US$580 the price per day?"
-    answer: "No. US$580 is the Comfort starting price per person for the complete 8-day journey, based on two adults traveling together and sharing one room. Premium is US$630 and Luxury is US$680."
+  - question: "Is US$650 the price per day?"
+    answer: "No. US$650 is the Comfort starting price per person for the complete 8-day journey, based on two adults traveling together and sharing one room. Premium is US$750 and Luxury is US$830."
   - question: "How are lunch and dinner arranged?"
     answer: "Apart from the meals listed as included, other main meals are your own choice. The driver-guide can suggest local restaurants."
   - question: "Can you arrange a Muslim-friendly journey?"

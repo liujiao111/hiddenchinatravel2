@@ -2,13 +2,13 @@
 title: "First Encounter Yunnan"
 shortTitle: "First Encounter Yunnan"
 seoTitle: "6-Day Private Yunnan Tour: Dali, Shaxi, Lijiang"
-metaDescription: "A 6-day private Yunnan journey from Kunming to Lijiang: Dali, one night in Shaxi, and a full day on Jade Dragon Snow Mountain. From US$480 per person for the complete trip. Breakfast included; lunch and dinner are not."
+metaDescription: "A 6-day private Yunnan journey from Kunming to Lijiang: Dali, one night in Shaxi, and a full day on Jade Dragon Snow Mountain. From US$550 per person for the complete trip. Hotel breakfast is generally included; lunch and dinner are not."
 excerpt: "Kunming • Dali • Lijiang • Shaxi"
 duration: "6 days / 5 nights"
 route: "Kunming → Dali → Shaxi → Lijiang"
 pace: "Unhurried, with one high-altitude day"
 journeyType: "Private journey"
-fromPrice: 480
+fromPrice: 550
 currency: "USD"
 priceBasis: "per person"
 coverImage: "/assets/destinations/yunnan/jade-dragon.webp"
@@ -22,7 +22,7 @@ heroTitle: "6-Day Private Yunnan Tour"
 heroSecondaryLabel: "SEE THE DAYS"
 heroDescription: "A private Kunming-to-Lijiang route, with Jade Dragon as a day of its own."
 heroNote: "Two adults sharing one room. Not a daily rate."
-heroBounds: "Starts in Kunming (high-speed train to Dali) · Ends in Lijiang · Breakfast included; lunch and dinner are not."
+heroBounds: "Starts in Kunming (high-speed train to Dali) · Ends in Lijiang · Hotel breakfast is generally included; lunch and dinner are not."
 heroIncludes:
   - "Private party · no shopping stops"
   - "Muslim-friendly as standard"
@@ -37,9 +37,9 @@ overviewItems:
   - label: "YOUR JOURNEY"
     value: "Private party · Driver-guide · No shopping stops"
   - label: "MEALS"
-    value: "Breakfast included · Lunch and dinner are not"
+    value: "Hotel breakfast generally included · Lunch and dinner are not"
   - label: "GUIDE PRICE"
-    value: "From US$480 per person for the complete 6-day journey, not a daily rate"
+    value: "From US$550 per person for the complete 6-day journey, not a daily rate"
 manifestoKicker: "OUR WAY OF TRAVELLING"
 manifestoLead: "A quiet evening on the Tea Horse Road in Shaxi. Indigo dye on your hands in Zhoucheng. Breakfast beside Erhai, then a full day under Jade Dragon Snow Mountain."
 manifestoClose: "The best memories are rarely made in a hurry."
@@ -60,8 +60,8 @@ itineraryHeading: "Give Jade Dragon Snow Mountain a full day of its own."
 itineraryIntro: "Two nights in Dali, one night in Shaxi, two nights in Lijiang. Day 5 is the mountain, with a Lijiang night before it and after it. Hotel breakfast is generally included. Lunch and dinner are not."
 midCtaHeading: "Get a quote for your dates."
 pricingHeading: "Choose a hotel style"
-pricingIntro: "Premium is our recommended option. Starting prices use the Comfort rate: US$480 per person for the complete 6-day journey, two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Lunch and dinner are not."
-priceExplanation: "US$480 / US$530 / US$580 are Comfort, Premium and Luxury starting prices per person for all six days, not a price per day. Final pricing depends on travel dates, group size, hotel availability and any route adjustments. Your licensed local travel partner confirms the quotation and contract before you decide."
+pricingIntro: "Premium is our recommended option. Starting prices use the Comfort rate: US$550 per person for the complete 6-day journey, two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Lunch and dinner are not. Hotels on the cards are a style, not a named property."
+priceExplanation: "US$550 / US$650 / US$730 are Comfort, Premium and Luxury starting prices per person for all six days, not a price per day. Final pricing depends on travel dates, group size, hotel availability and any route adjustments. The hotel in each place is named in your written proposal."
 travelStyles:
   - "First trip to China"
   - "Slow-paced travel"
@@ -128,20 +128,20 @@ itinerary:
     imageAlt: "A canal lane in Lijiang Old Town"
 tiers:
   - name: "Comfort"
-    price: 480
-    description: "Local quality 4-star and highly rated boutique hotels."
-    accommodation: "Local 4-star / highly rated boutique hotels"
+    price: 550
+    description: "Local 4-star and boutique hotels. The property in each place is named in your proposal."
+    accommodation: "Local 4-star / boutique · named in the proposal"
     idealFor: "First visits · Couples and friends · Good value"
   - name: "Premium"
-    price: 530
-    description: "International 4-star+ and light luxury 5-star hotels."
-    accommodation: "International 4-star+ / light luxury 5-star"
+    price: 650
+    description: "International 4-star+ and light luxury 5-star hotels. The property in each place is named in your proposal."
+    accommodation: "International 4-star+ / light 5-star · named in the proposal"
     idealFor: "Most travelers · Couples · Small private groups"
     featured: true
   - name: "Luxury"
-    price: 580
-    description: "A higher-end stay with more exclusive hotels throughout the route."
-    accommodation: "Luxury 5-star hotels"
+    price: 730
+    description: "A higher-end stay. The property in each place is named in your proposal."
+    accommodation: "Luxury 5-star hotels · named in the proposal"
     idealFor: "Special occasions · Higher-end stays"
 inclusions:
   - "A private five- or seven-seat vehicle for the whole journey, confirmed in your proposal"
@@ -184,8 +184,8 @@ faqs:
     answer: "We include the glacier cable car when tickets, weather and your health allow, and we apply for it when we confirm the booking. If it cannot run, the usual replacement is the Yunshanping cable car, with any fare difference explained in the proposal. A village walk is not used as the mountain substitute."
   - question: "Can I take a morning flight from Lijiang on Day 6?"
     answer: "Yes. The mountain day is Day 5, with a second night in Lijiang after it. A morning departure on Day 6 shortens Shuhe and the old town rather than moving the mountain. Share your flight or train time before booking so the last morning is timed around it."
-  - question: "Is US$480 the price per day?"
-    answer: "No. US$480 is the Comfort starting price per person for the complete 6-day journey, based on two adults sharing one room. Premium is US$530 and Luxury is US$580."
+  - question: "Is US$550 the price per day?"
+    answer: "No. US$550 is the Comfort starting price per person for the complete 6-day journey, based on two adults sharing one room. Premium is US$650 and Luxury is US$730."
   - question: "Are meals included?"
     answer: "The hotel generally includes breakfast. Lunch and dinner are not part of the journey, so you arrange those yourself. Your guide can suggest restaurants if you want, including Xizhou courtyard food and Lijiang mushroom hotpot."
   - question: "Can you arrange a Muslim-friendly journey?"

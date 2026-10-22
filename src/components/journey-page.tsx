@@ -88,7 +88,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       primary={{ href: "#ask-joy", label: "GET A QUOTE" }}
       secondary={{ href: "#itinerary", label: frontmatter.heroSecondaryLabel || "SEE THE DAYS" }}
       chat={{ href: whatsapp, label: "Prefer WhatsApp? Message Joy →" }}
-      note={frontmatter.heroNote || "Two adults sharing one room. Not a daily rate. Breakfast included; lunch and dinner are not."}
+      note={frontmatter.heroNote || "Two adults sharing one room. Not a daily rate. Hotel breakfast is generally included; lunch and dinner are not."}
     />
     <section className="journey-fold-ask" id="quote">
       <div className="shell">

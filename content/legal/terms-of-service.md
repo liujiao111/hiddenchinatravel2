@@ -76,7 +76,7 @@ Visa and entry information should always be confirmed directly with relevant gov
 
 A website enquiry is not a booking. A booking starts only after you confirm the written itinerary and sign the travel contract with Yunnan Meizhen International Travel Agency Co., Ltd.
 
-After that confirmation, a 20% deposit is paid to the agency’s corporate account by Alipay or WeChat. The remaining 80% is due after airport pickup, when the journey starts. Stripe is a backup if Alipay or WeChat are not set up. Stripe charges currently appear under a personal name until the agency’s business merchant account is approved.
+After that confirmation, a 20% deposit is paid to the agency’s corporate account by Alipay or WeChat. The remaining 80% is due after your first pickup, when the journey starts. Stripe is a backup if Alipay or WeChat are not set up. Stripe charges currently appear under a personal name until the agency’s business merchant account is approved.
 
 Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit.
 

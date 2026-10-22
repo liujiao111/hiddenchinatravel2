@@ -70,7 +70,7 @@ const faqs = [
   ["Can the itinerary be customized?", "Yes. Suggested journeys are starting points rather than fixed packages. We can adjust the number of days, pace, hotels, destinations, activities and level of guiding according to your group’s interests and requirements."],
   ["Do I need to pay before receiving a proposed route?", "No. You can begin by sharing your dates, approximate trip length, group size and interests. Payment is only discussed after you have reviewed the proposed arrangements and quotation."],
   ["Who operates the journey in Yunnan?", `${brandIdentity.short} ${brandIdentity.consultant} The travel contract and payments are with that agency, to its corporate account.`],
-  ["How do payment and cancellation work?", `${paymentCopy.full} ${cancellationCopy.full}`],
+  ["How do payment and cancellation work?", `${paymentCopy.product} ${cancellationCopy.full}`],
   ["What is normally included?", `Inclusions vary by journey but include private transport, a driver-guide throughout, accommodation, selected attraction tickets and ${insuranceCopy.inclusion.toLowerCase()}. Your proposal states what is included and what you pay for separately. ${insuranceCopy.full}`],
   ["How soon will I receive a reply?", "Joy normally replies within 2 hours on weekdays, 9:00–18:00 Beijing time, and within 24 hours at other times. More detailed proposals may take longer for complex routes or busy dates."],
 ];

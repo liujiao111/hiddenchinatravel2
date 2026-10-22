@@ -210,7 +210,7 @@ Related reading: [Yunnan destination guide](/china-destinations/yunnan), and for
 
 [**EXPLORE FIRST ENCOUNTER YUNNAN →**](/journeys/kunming-dali-shaxi-lijiang-6-days)
 
-Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) private journey (from **US$480 per person**) covers this route with private transport already arranged, and leaves room either side for your international travel days.
+Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) private journey (from **US$550 per person**) covers this route with private transport already arranged, and leaves room either side for your international travel days.
 
 ## Recommended 8+ Day Route: Adding Shangri-La
 

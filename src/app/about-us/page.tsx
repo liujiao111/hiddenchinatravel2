@@ -43,7 +43,7 @@ const reasons = [
 ];
 const questions = [
   ["Will I speak with Joy directly?", "Yes. Joy Liu is your travel consultant at the licensed agency. He helps you clarify your ideas and stays with you from the first enquiry through the journey."],
-  ["Who operates the trip and handles payment?", `${brandIdentity.short} ${contractCopy.full} ${paymentCopy.full} ${cancellationCopy.full}`],
+  ["Who operates the trip and handles payment?", `${brandIdentity.short} ${contractCopy.full} ${paymentCopy.product} ${cancellationCopy.full}`],
   ["Do I need a finished itinerary?", "No. Tell Joy roughly when you want to travel, who is coming and what you enjoy. You can start with an existing journey or discuss adjustments to the route, hotels and pace."],
   ["What if weather or availability changes?", "Weather, attraction access and hotel availability can change. Alternatives and any effect on price or schedule are discussed with the operator; your booking terms explain changes and cancellations."],
 ];
