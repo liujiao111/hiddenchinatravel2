@@ -28,7 +28,8 @@ function cardQuote(quote: string) {
 
 export function Testimonials({ items, heading, intro, eyebrow, note, showRating = true }: Props) {
   const count = items.length;
-  const loop = count > 3;
+  const useStatic = count <= 5;
+  const loop = !useStatic;
   const viewportRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(loop ? count : 0);
   const [paused, setPaused] = useState(false);
@@ -98,10 +99,10 @@ export function Testimonials({ items, heading, intro, eyebrow, note, showRating 
     </header>;
   const noteText = note ?? "Guest names may be shortened. Some reviews were translated from Chinese for clarity.";
 
-  if (count <= 3) {
+  if (useStatic) {
     return <section className="testimonials" id="stories">
       {headingBlock}
-      <div className="testimonials-static shell">{items.map((item) => (
+      <div className="testimonials-static shell" data-count={count}>{items.map((item) => (
         <figure className="testimonials-card" key={item.id}>
           <blockquote>“{cardQuote(item.quote)}”</blockquote>
           <figcaption>

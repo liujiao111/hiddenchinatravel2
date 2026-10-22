@@ -12,7 +12,7 @@ import { BookingTerms } from "@/components/booking-terms";
 import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { YunnanTravelNotes } from "@/components/yunnan-travel-notes";
 import { bookingSteps, brandIdentity } from "@/lib/booking-terms";
-import { getTestimonialsForJourney, overallGuestRating, overallGuestRatingLabel } from "@/lib/testimonials";
+import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
 
 const sixDayPhotos: Record<string, readonly [string, string]> = {
   "Day 1": ["/assets/blog/dali-travel-guide/dali-ancient-town-rooftops.webp", "Rooftops in Dali Old Town, with Cangshan behind"],
@@ -50,8 +50,7 @@ const journeyGuides = [
 
 export function JourneyPage({ journey }: { journey: Journey }) {
   const { frontmatter } = journey;
-  const stories = getTestimonialsForJourney(journey.slug);
-  const storiesFromThisJourney = stories.some((story) => story.journeySlugs.includes(journey.slug));
+  const stories = getSelectedTestimonials();
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
   const isClassicYunnanJourney = journey.slug === "kunming-dali-lijiang-shangri-la-private-tour";
   const whatsapp = `https://wa.me/8618880441791?text=${encodeURIComponent(`Hi Joy, I’m interested in the ${frontmatter.title} journey. My travel dates are ____ and there will be ____ travelers.`)}`;
@@ -78,7 +77,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
   return <main>
     <SiteHeader />
-    <JourneyHero title={frontmatter.title} image={frontmatter.coverImage} imageAlt={frontmatter.coverAlt || "Mountains and countryside along a Yunnan journey"} eyebrow={frontmatter.heroEyebrow || "A PRIVATE YUNNAN JOURNEY"} description={frontmatter.heroDescription || frontmatter.excerpt} price={frontmatter.fromPrice > 0 ? `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} ${frontmatter.priceBasis}` : undefined} primary={{ href: whatsapp, label: "PLAN THIS JOURNEY" }} secondary={{ href: "#itinerary", label: frontmatter.heroSecondaryLabel || "EXPLORE THE 6-DAY ITINERARY" }} note={frontmatter.heroNote || "Start with your dates and preferred pace. No pressure to book."} rating={stories.length > 0 ? { href: "#stories", label: overallGuestRatingLabel, value: overallGuestRating } : undefined} />
+    <JourneyHero title={frontmatter.title} image={frontmatter.coverImage} imageAlt={frontmatter.coverAlt || "Mountains and countryside along a Yunnan journey"} eyebrow={frontmatter.heroEyebrow || "A PRIVATE YUNNAN JOURNEY"} description={frontmatter.heroDescription || frontmatter.excerpt} price={frontmatter.fromPrice > 0 ? `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} ${frontmatter.priceBasis}` : undefined} primary={{ href: whatsapp, label: "PLAN THIS JOURNEY" }} secondary={{ href: "#itinerary", label: frontmatter.heroSecondaryLabel || "EXPLORE THE 6-DAY ITINERARY" }} note={frontmatter.heroNote || "Start with your dates and preferred pace. No pressure to book."} />
     <JourneySectionNav links={[{ href: "#story", label: "The feeling" }, { href: "#experiences", label: "Experiences" }, { href: "#itinerary", label: "Day-to-day itinerary" }, ...(stories.length > 0 ? [{ href: "#stories", label: "Stories" }] : []), { href: "#local-team", label: "Local team" }, { href: "#pricing", label: frontmatter.tiers.length ? "Hotel styles" : "Pricing" }, { href: "#details", label: "What’s included" }, { href: "#booking-terms", label: "Booking & payment" }, { href: frontmatter.bookingNotes?.length ? "#travel-notes" : "#yunnan-notes", label: "Travel notes" }]} action={{ href: whatsapp, label: "Plan your journey" }} />
     <JourneyOverview title={frontmatter.overviewTitle || "Your private Yunnan journey, at a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: whatsapp, label: "ASK JOY ABOUT THIS JOURNEY" }} />
 
@@ -98,7 +97,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
     <section className="journey-mid-cta"><div className="shell"><div><p>MAKE THE ROUTE YOURS</p><h2>{frontmatter.midCtaHeading || "More time in Dali—or an extra night in Shaxi?"}</h2></div><div><Link href={whatsapp} className="button button-light">ASK JOY TO ADJUST THIS ROUTE</Link><span>Tell us what you would slow down, add or leave out.</span></div></div></section>
 
-    {stories.length > 0 ? <Testimonials items={stories} heading={storiesFromThisJourney ? "Travelers on this journey" : "What travelers remember"} intro={storiesFromThisJourney ? "Words from guests who explored this route with Joy and our local partners." : "Words from guests who explored Yunnan with Joy and our local partners."} /> : null}
+    {stories.length > 0 ? <Testimonials items={stories} eyebrow={selectedTestimonialsCopy.eyebrow} heading={selectedTestimonialsCopy.heading} intro={selectedTestimonialsCopy.intro} showRating={false} note={selectedTestimonialsCopy.note} /> : null}
 
     <section className="journey-support section journey-support-flow custom-planning-flow"><div className="shell journey-section-layout"><header><p>PRIVATE TRAVEL, LOCAL SUPPORT</p><h2>A personal route, with a licensed agency behind it.</h2><span>{brandIdentity.short} {brandIdentity.consultant}</span></header><div className="journey-support-grid">{bookingSteps.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
 

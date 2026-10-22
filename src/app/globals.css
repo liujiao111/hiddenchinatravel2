@@ -176,6 +176,10 @@ p { line-height:1.7; }
 .home-signature span { display:block; color:#5c5c55; font-size:.84rem; }
 a.utility-card { color:inherit; }
 .testimonials-static { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.testimonials-static[data-count="5"] { grid-template-columns:repeat(6,minmax(0,1fr)); }
+.testimonials-static[data-count="5"] .testimonials-card { grid-column:span 2; }
+.testimonials-static[data-count="5"] .testimonials-card:nth-child(4) { grid-column:2 / span 2; }
+.testimonials-static[data-count="5"] .testimonials-card:nth-child(5) { grid-column:4 / span 2; }
 .final-cta .hero-actions { margin-top:22px; }
 .final-cta-trust { margin-top:20px; color:rgba(255,255,255,.88); font-size:.88rem; line-height:1.65; }
 
@@ -321,6 +325,8 @@ a.utility-card { color:inherit; }
   .reason-grid-five,.reason-grid-six { grid-template-columns:repeat(2,1fr); }
   .utility-grid { grid-template-columns:repeat(2,1fr); }
   .home-journeys-grid,.journeys-card-grid.home-journeys-grid,.testimonials-static { grid-template-columns:1fr; }
+  .testimonials-static[data-count="5"] { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .testimonials-static[data-count="5"] .testimonials-card { grid-column:auto; }
   .header-cta-full { display:none; }
   .header-cta-short { display:inline; }
   .utility-card:nth-child(2n) { border-right:0; }
@@ -581,7 +587,7 @@ a.utility-card { color:inherit; }
   .story blockquote { font-size:1.3rem; }
   .story-note { grid-column:auto; }
   .reason-grid { grid-template-columns:1fr; }
-  .reason-grid-five,.reason-grid-six,.utility-grid,.home-destination-grid,.testimonials-static { grid-template-columns:1fr; }
+  .reason-grid-five,.reason-grid-six,.utility-grid,.home-destination-grid,.testimonials-static,.testimonials-static[data-count="5"] { grid-template-columns:1fr; }
   .guide-tabs { display:flex; overflow-x:auto; }
   .guide-tabs button { min-width:130px; }
   .guide-cover-grid { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; }
@@ -1391,7 +1397,7 @@ a.utility-card { color:inherit; }
 .testimonials-progress button:after { content:""; display:block; height:2px; background:#c9c4b0; }
 .testimonials-progress button.active { flex:2.4; }
 .testimonials-progress button.active:after { background:#2f2f2a; }
-.testimonials-note { max-width:560px; margin:22px auto 0; color:#7a776c; font-size:.72rem; text-align:center; }
+.testimonials-note { max-width:720px; margin:22px auto 0; color:#7a776c; font-size:.72rem; text-align:center; line-height:1.6; }
 
 @media (max-width:980px) {
   .testimonials-card { min-height:260px; padding:34px 26px 30px; }

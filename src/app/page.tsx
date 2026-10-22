@@ -10,7 +10,7 @@ import { brandIdentity, cancellationCopy, insuranceCopy, paymentCopy } from "@/l
 import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
 import { siteConfig } from "@/lib/site-config";
-import { getHomeTestimonials } from "@/lib/testimonials";
+import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
 
 const canonical = "https://hiddenchinatravel.com/";
 const title = "Private Yunnan Tours & Tailor-Made Journeys";
@@ -76,7 +76,7 @@ const faqs = [
 
 export default function Home() {
   const journeys = getAllJourneys();
-  const stories = getHomeTestimonials();
+  const stories = getSelectedTestimonials();
   const firstEncounter = journeys.find((journey) => journey.slug === "kunming-dali-shaxi-lijiang-6-days");
   const classic = journeys.find((journey) => journey.slug === "kunming-dali-lijiang-shangri-la-private-tour");
   const graph = {
@@ -202,11 +202,11 @@ export default function Home() {
 
     <Testimonials
       items={stories}
-      eyebrow="TRAVELER STORIES"
-      heading="What Travelers Remember"
-      intro="Words from guests who explored Yunnan with Joy and our licensed local travel partners."
+      eyebrow={selectedTestimonialsCopy.eyebrow}
+      heading={selectedTestimonialsCopy.heading}
+      intro={selectedTestimonialsCopy.intro}
       showRating={false}
-      note="Some guest names have been shortened for privacy. Reviews translated from another language have been lightly edited for clarity without changing their meaning."
+      note={selectedTestimonialsCopy.note}
     />
 
     <section className="about-feature reverse home-founder" id="joy">
