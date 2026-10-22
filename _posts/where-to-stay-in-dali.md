@@ -3,6 +3,7 @@ title: "Where to Stay in Dali: Ancient Town, Erhai, or a Village?"
 seoTitle: "Where to Stay in Dali (2026): Best Areas for First-Time Visitors"
 excerpt: "Dali's best area depends on your pace: convenience in the Ancient Town, quiet mornings on Erhai's west shore, or a slower village stay. Here is how to choose, and what to confirm before you book."
 coverImage: "/assets/blog/where-to-stay-in-dali/cover-ancient-town-dusk.webp"
+coverAlt: "Dusk light over rooftops in Dali Ancient Town"
 date: "2026-09-03T08:00:00+08:00"
 dateModified: "2026-09-13T10:00:00+08:00"
 author:

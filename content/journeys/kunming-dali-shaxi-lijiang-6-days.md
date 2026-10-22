@@ -12,6 +12,7 @@ fromPrice: 480
 currency: "USD"
 priceBasis: "per person"
 coverImage: "/home/hero.webp"
+coverAlt: "Boardwalk beside a turquoise alpine lake under snow mountains in Yunnan"
 featured: true
 status: "published"
 displayOrder: 2
@@ -23,15 +24,19 @@ travelStyles:
 experiences:
   - title: "Wake up beside Erhai Lake"
     image: "/assets/blog/dali-travel-guide/erhai-lake-cangshan.webp"
+    imageAlt: "Small fishing boat on Erhai Lake with Cangshan across the water"
     description: "Leave room for a quiet lakeside morning, changing light and the everyday rhythm of Dali's villages."
   - title: "Meet Dali's living traditions"
-    image: "https://hiddenchinatravel.com/assets/blog/dali-hidden-gems-off-the-beaten-path/zhoucheng-bai-tie-dye.webp"
+    image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/zhoucheng-bai-tie-dye.webp"
+    imageAlt: "Bai indigo tie-dye cloth being pulled from a dye vat in Zhoucheng"
     description: "Step inside a traditional Bai tie-dye workshop and meet the people keeping the craft alive."
   - title: "Slow down in Shaxi"
     image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp"
+    imageAlt: "Stone-paved lane between traditional buildings in Shaxi"
     description: "Stay after the day visitors leave, when the old Tea Horse Road square grows quiet and lanterns begin to glow."
   - title: "Stand beneath Jade Dragon Snow Mountain"
-    image: "/home/hero.webp"
+    image: "/assets/destinations/yunnan/jade-dragon.webp"
+    imageAlt: "Jade Dragon Snow Mountain above a turquoise lake"
     description: "End among Yunnan's high peaks, moving from quiet countryside to dramatic alpine scenery."
 itinerary:
   - days: "Day 1"

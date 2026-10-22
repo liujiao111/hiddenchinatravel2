@@ -3,6 +3,7 @@ title: "Dali Hidden Gems Beyond the Old Town: Shaxi, Weishan, Zhoucheng, Xizhou 
 seoTitle: "Dali Hidden Gems: Shaxi, Weishan, Xizhou & Shibaoshan (2026)"
 excerpt: "Skip the crowds in Dali Old Town. A fact-checked 2026 guide to Shaxi, Weishan, Zhoucheng, Xizhou and Shibaoshan — real distances, prices, and how to fit them into 1-3 days."
 coverImage: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
+coverAlt: "River and tiled roofs in Shaxi Ancient Town"
 date: "2026-09-08T12:00:00+08:00"
 dateModified: "2026-09-16T19:00:00+08:00"
 author:
