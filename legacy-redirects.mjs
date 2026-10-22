@@ -87,24 +87,28 @@ const categories = {
   "visa-entry": "/china-visa-checker",
 };
 
-function rule(source, destination) {
-  return { source, destination, permanent: true };
+function withSlash(source, destination) {
+  const rules = [{ source, destination, permanent: true }];
+  if (source !== "/" && !source.endsWith("/")) {
+    rules.push({ source: `${source}/`, destination, permanent: true });
+  }
+  return rules;
 }
 
 function prefixed(prefix, map) {
   return Object.entries(map).flatMap(([slug, destination]) => [
-    rule(`${prefix}/${slug}`, destination),
-    rule(`${prefix}/${slug}/feed`, destination),
+    ...withSlash(`${prefix}/${slug}`, destination),
+    ...withSlash(`${prefix}/${slug}/feed`, destination),
   ]);
 }
 
 export function legacyRedirects() {
   return [
-    ...Object.entries(pages).map(([source, destination]) => rule(source, destination)),
-    rule("/:slug/feed", "/:slug"),
+    ...Object.entries(pages).flatMap(([source, destination]) => withSlash(source, destination)),
+    ...withSlash("/:slug/feed", "/:slug"),
     ...prefixed("/tag", tags),
     ...prefixed("/category", categories),
-    rule("/tag/:slug*", "/china-travel-essentials"),
-    rule("/category/:slug*", "/china-travel-essentials"),
+    ...withSlash("/tag/:slug*", "/china-travel-essentials"),
+    ...withSlash("/category/:slug*", "/china-travel-essentials"),
   ];
 }
