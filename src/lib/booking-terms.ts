@@ -49,6 +49,8 @@ export const bookingSteps = [
   ["04", "Travel, then settle the balance", "Hotels, tickets and the vehicle are arranged after the deposit. The remaining 80% is due after airport pickup."],
 ] as const;
 
+export const bookingDocumentHref = "/booking";
+
 export const bookingTermCards = [
   ["Who you contract with", contractCopy.full],
   ["How you pay", paymentCopy.full],

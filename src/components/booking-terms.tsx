@@ -1,4 +1,5 @@
-import { bookingTermCards } from "@/lib/booking-terms";
+import Link from "next/link";
+import { bookingDocumentHref, bookingTermCards } from "@/lib/booking-terms";
 
 export function BookingTerms({
   heading = "Booking, payment and cancellation",
@@ -23,6 +24,7 @@ export function BookingTerms({
             </article>
           ))}
         </div>
+        <p className="journey-booking-notes-source"><Link href={bookingDocumentHref}>Read the full booking and service note →</Link></p>
       </div>
     </section>
   );

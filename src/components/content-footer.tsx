@@ -52,6 +52,7 @@ export function ContentFooter() {
         <nav className="footer-nav" aria-label="Company">
           <h3>Company</h3>
           <Link href="/about-us">About Joy Liu</Link>
+          <Link href="/booking">Booking &amp; service</Link>
           <Link href="/contact">Contact</Link>
           <Link href={whatsapp}>WhatsApp</Link>
         </nav>
@@ -66,6 +67,7 @@ export function ContentFooter() {
         <span>© 2026 Hidden China Travel</span>
         <nav className="footer-legal" aria-label="Legal and company links">
           <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/booking">Booking &amp; service</Link>
           <Link href="/terms-of-service">Terms of Use</Link>
           <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
           <Link href="/contact">Contact</Link>

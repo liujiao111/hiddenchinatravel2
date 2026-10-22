@@ -13,7 +13,7 @@ The visual system takes structural inspiration from established tailor-made trav
 
 - Immersive: lead with real, place-specific photography.
 - Unhurried: generous spacing and a restrained content rhythm.
-- Trustworthy: clear language, real capabilities, no invented social proof.
+- Trustworthy: clear language, real capabilities.
 - Experience-led: emphasize pace, people, local life, and feeling—not attraction checklists.
 - Practical: conversion paths and China travel preparation should remain easy to find.
 
