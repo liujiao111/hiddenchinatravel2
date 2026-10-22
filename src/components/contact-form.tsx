@@ -76,7 +76,7 @@ export function ContactForm() {
     return (
       <div className="contact-form-success">
         <h3>Thank you. Joy has your note.</h3>
-        <p>Joy will personally review your enquiry and usually replies within 24 hours. There is no obligation to book.</p>
+        <p>Joy will personally review your enquiry. {siteConfig.replyTime} There is no obligation to book.</p>
         {sent ? <p><a href={siteConfig.sampleItineraryPdf} download>Download the 6-day sample itinerary (PDF)</a></p> : null}
         <p>If you would rather continue on WhatsApp, you can send the same note now.</p>
         <a className="button button-blue" href={whatsappHref}>Send on WhatsApp</a>
@@ -135,7 +135,7 @@ export function ContactForm() {
         {status === "sending" ? "Sending…" : "PLAN MY YUNNAN TRIP"}
       </button>
       {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}
-      <p className="contact-form-note">Joy will personally reply within 24 hours.</p>
+      <p className="contact-form-note">{siteConfig.replyTime}</p>
       <p className="contact-form-privacy">We respect your privacy. No spam, ever. Your details are only used to plan your trip.</p>
     </form>
   );

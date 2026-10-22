@@ -2,7 +2,7 @@
 title: "The Essence of Yunnan"
 shortTitle: "The Essence of Yunnan"
 seoTitle: "The Essence of Yunnan: 8-Day Private Tour"
-metaDescription: "The Essence of Yunnan is a private 8-day journey through Kunming, Dali, Lijiang and Shangri-La, with private transport, a driver-host and from US$580 per person for the complete trip."
+metaDescription: "The Essence of Yunnan is a private 8-day journey through Kunming, Dali, Lijiang and Shangri-La, with private transport, a driver-guide and from US$580 per person for the complete trip."
 excerpt: "Erhai Lake • Jade Dragon Snow Mountain • Tiger Leaping Gorge"
 duration: "8 days / 7 nights"
 route: "Kunming → Dali → Lijiang → Shangri-La → Kunming"
@@ -27,7 +27,7 @@ overviewItems:
   - label: "8 DAYS / 7 NIGHTS"
     value: "Kunming → Dali → Lijiang → Shangri-La → Kunming"
   - label: "YOUR JOURNEY"
-    value: "Private party · Driver-host · No shopping stops"
+    value: "Private party · Driver-guide · No shopping stops"
   - label: "GUIDE PRICE"
     value: "From US$580 per person for the complete 8-day journey"
 manifestoKicker: "THE ESSENCE OF YUNNAN"
@@ -64,7 +64,7 @@ experiences:
     description: "Travel only with the people in your booking, without being combined with unrelated travelers."
   - title: "Private transport"
     image: "/assets/resources/丽江-虎跳峡-469.jpg"
-    description: "Private vehicles and a driver-host make the connections between Yunnan’s major destinations easier."
+    description: "Private vehicles and a driver-guide make the connections between Yunnan’s major destinations easier."
   - title: "Yunnan’s classic route"
     image: "/assets/resources/香格里拉-普达措-394.jpg"
     description: "Experience lakeside towns, historic streets, snow mountains, dramatic gorges and the highlands of Shangri-La in one eight-day journey."
@@ -148,8 +148,8 @@ inclusions:
   - "Seven hotel breakfasts"
   - "The crossing-the-bridge rice noodle meal on Day 7"
   - "Attraction tickets and related services listed in the final quotation, including scenic transport, cable cars, ferries and performances named in that quotation"
-  - "Chinese- or English-speaking driver-host"
-  - "Travel insurance for the confirmed journey period"
+  - "Chinese- or English-speaking driver-guide throughout"
+  - "Travel insurance for the confirmed journey period. It does not replace your own international travel insurance."
   - "Pre-departure coordination and on-trip support"
 exclusions:
   - "Flights to and from Yunnan"
@@ -162,8 +162,8 @@ exclusions:
   - "Voluntary gratuities"
   - "Additional costs caused by weather, transport disruption or temporary attraction closure"
 bookingNotes:
-  - title: "Driver-host service"
-    detail: "The driver-host handles the listed pickups, private transport and route coordination, and can offer local context, restaurant suggestions and general travel help. This is not a professional attraction-guide service. The driver usually does not accompany you throughout the inside of attractions. A specialist site guide can be discussed in advance and arranged separately."
+  - title: "Driver-guide service"
+    detail: "A Chinese- or English-speaking driver-guide is included throughout. One local host drives, coordinates the route and offers context. This is not a separate attraction lecturer inside every site. A specialist site guide can be discussed in advance and arranged separately."
   - title: "Private vehicles"
     detail: "A five- or seven-seat vehicle is arranged according to group size, luggage, the route and vehicle availability. A specific brand or model cannot be requested. Vehicle service is usually from 08:00 to 18:00, with flexibility around the confirmed itinerary. Drivers and vehicles may change between destinations and around high-speed train transfers."
   - title: "Hotels"
@@ -173,7 +173,7 @@ bookingNotes:
   - title: "Children"
     detail: "Children’s pricing depends on age, height, whether a bed is required and attraction policy. A child may share an existing bed where the hotel allows it. One adult traveling with one child may still be priced as a full room."
   - title: "Meals"
-    detail: "Apart from the meals listed as included, lunches and dinners are at your own expense. The driver-host can suggest restaurants according to the day’s route and your preferences."
+    detail: "Apart from the meals listed as included, lunches and dinners are at your own expense. The driver-guide can suggest restaurants according to the day’s route and your preferences."
   - title: "Itinerary changes"
     detail: "Weather, roads, attraction opening, cable cars, performances and tickets may affect the itinerary. Reasonable changes will be discussed before they are made. Extra transport, tickets or overtime from added or cancelled visits will be explained before the change is made."
   - title: "Shopping and optional extras"
@@ -181,20 +181,24 @@ bookingNotes:
 faqs:
   - question: "Is this a private tour or a group tour?"
     answer: "This is a private journey for your own party. You will not be combined with travelers from other bookings."
-  - question: "Does the driver come into the attractions with us?"
-    answer: "The driver-host looks after transport, route coordination and general travel help. The driver usually does not accompany you throughout the inside of attractions and does not provide a professional site commentary."
+  - question: "Does the driver-guide come into the attractions with us?"
+    answer: "The driver-guide looks after transport, route coordination and local context. This is not a separate attraction lecturer inside every site. A specialist site guide can be added in your proposal."
+  - question: "How do payment and cancellation work?"
+    answer: "After you confirm the written itinerary and travel contract, pay a 20% deposit to Yunnan Meizhen International Travel Agency Co., Ltd. by Alipay or WeChat. The remaining 80% is due after airport pickup. Stripe is a backup if those apps are not set up; Stripe charges currently appear under a personal name until the agency’s business merchant account is approved. Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit."
+  - question: "Is travel insurance included?"
+    answer: "Travel insurance for the confirmed journey period is included. It does not replace your own international travel insurance."
   - question: "Can the itinerary be adjusted?"
     answer: "Hotels, some visits and the daily pace can be adjusted around your dates, interests and available services. A larger change to the route will be re-quoted."
   - question: "Is US$580 the price per day?"
     answer: "No. US$580 is the Comfort starting price per person for the complete 8-day journey, based on two adults traveling together and sharing one room. Premium is US$630 and Luxury is US$680."
   - question: "How are lunch and dinner arranged?"
-    answer: "Apart from the meals listed as included, other main meals are your own choice. The driver-host can suggest local restaurants."
+    answer: "Apart from the meals listed as included, other main meals are your own choice. The driver-guide can suggest local restaurants."
   - question: "When are the hotels and trains confirmed?"
     answer: "Hotel names, room types, train times and the final services are listed in the formal quotation and booking confirmation."
   - question: "What language is the service in?"
     answer: "Chinese or English. Other languages need to be confirmed in advance."
   - question: "Who provides the contract and operates the trip?"
-    answer: "Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) is the licensed local operator. It confirms the services, handles the contract and operates the trip. Its travel agency permit number is L-YN-1017500. Hidden China Travel helps you shape the route and coordinate the proposal."
+    answer: "Hidden China Travel is the English-language site of Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司), a licensed travel agency in Kunming. Joy Liu is your travel consultant. The travel contract and all payments are with that agency, to its corporate account. Its travel agency permit number is L-YN-1017500."
 ---
 
 ## Why this journey
@@ -205,4 +209,4 @@ The pace is full. Days 5 and 6 cover a lot of ground. If you would rather stay t
 
 ## How the service works
 
-A driver-host looks after the listed pickups, private vehicle and route coordination. A specialist attraction guide is not included unless it is arranged separately. Vehicles are matched to your party and the route; a specific model cannot be promised. Drivers and vehicles may change between destinations.
+A driver-guide looks after the listed pickups, private vehicle and route coordination. A specialist attraction guide is not included unless it is arranged separately. Vehicles are matched to your party and the route; a specific model cannot be promised. Drivers and vehicles may change between destinations.

@@ -6,9 +6,11 @@ import { EnquireLink } from "@/components/enquire-link";
 import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
+import { brandIdentity, cancellationCopy, insuranceCopy, paymentCopy } from "@/lib/booking-terms";
 import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
-import { getHomeTestimonials } from "@/lib/testimonials";
+import { siteConfig } from "@/lib/site-config";
+import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
 
 const canonical = "https://hiddenchinatravel.com/";
 const title = "Private Yunnan Tours & Tailor-Made Journeys";
@@ -43,7 +45,7 @@ const howItWorks = [
 const reasons = [
   ["01", "Private by design", "Travel with your own party, private vehicle and agreed itinerary. There are no large coach groups or fixed sightseeing schedules."],
   ["02", "No shopping stops", "Your journey is designed around places, people and experiences, without mandatory shopping stops or commission-led detours."],
-  ["03", "Licensed local operation", "The guides, vehicles and on-the-ground travel services described in your proposal are provided by a licensed Yunnan travel agency."],
+  ["03", "Licensed local operation", "Hidden China Travel is the English-language site of a licensed Kunming travel agency. The travel contract and payments go to that agency’s corporate account."],
   ["04", "Clear details before payment", "Review the proposed route, services, inclusions, exclusions and quoted price before deciding whether to confirm."],
   ["05", "First-time China friendly", "Receive practical guidance about payments, mobile data, transportation, maps and arrival preparation."],
   ["06", "Personal support", "Joy remains available before and during your journey, so questions and unexpected changes do not have to become travel-day stress."],
@@ -63,17 +65,18 @@ const destinations = [
   ["Shangri-La", "High-altitude landscapes and a distinctly different side of Yunnan.", "/assets/destinations/yunnan/shangri-la.webp", "/china-destinations/yunnan", "EXPLORE SHANGRI-LA"],
 ];
 const faqs = [
-  ["How much does a private Yunnan journey cost?", "Pricing depends on the route, number of travelers, travel dates, hotel standard and whether you require a guide throughout the journey. After learning more about your plans, we will provide a tailored quotation with the inclusions and exclusions clearly explained."],
+  ["How much does a private Yunnan journey cost?", "Pricing depends on the route, number of travelers, travel dates and hotel standard. After learning more about your plans, we will provide a tailored quotation with the inclusions and exclusions clearly explained."],
   ["Can the itinerary be customized?", "Yes. Suggested journeys are starting points rather than fixed packages. We can adjust the number of days, pace, hotels, destinations, activities and level of guiding according to your group’s interests and requirements."],
   ["Do I need to pay before receiving a proposed route?", "No. You can begin by sharing your dates, approximate trip length, group size and interests. Payment is only discussed after you have reviewed the proposed arrangements and quotation."],
-  ["Who operates the journey in Yunnan?", "The guides, drivers, vehicles and on-the-ground travel services confirmed in your proposal are provided by a licensed Yunnan travel agency. Hidden China Travel helps with trip planning, communication and traveler support before and during the journey."],
-  ["What is normally included?", "Inclusions vary by journey but may include private transportation, local guides, accommodation, selected attraction tickets and trip-planning support. Your proposal will clearly state what is included and what you will need to arrange or pay for separately."],
-  ["How soon will I receive a reply?", "Joy normally replies personally within 24 hours. More detailed proposals may require additional time, especially for complex routes or journeys during busy travel periods."],
+  ["Who operates the journey in Yunnan?", `${brandIdentity.short} ${brandIdentity.consultant} The travel contract and payments are with that agency, to its corporate account.`],
+  ["How do payment and cancellation work?", `${paymentCopy.full} ${cancellationCopy.full}`],
+  ["What is normally included?", `Inclusions vary by journey but include private transport, a driver-guide throughout, accommodation, selected attraction tickets and ${insuranceCopy.inclusion.toLowerCase()}. Your proposal states what is included and what you pay for separately. ${insuranceCopy.full}`],
+  ["How soon will I receive a reply?", "Joy normally replies within 2 hours on weekdays, 9:00–18:00 Beijing time, and within 24 hours at other times. More detailed proposals may take longer for complex routes or busy dates."],
 ];
 
 export default function Home() {
   const journeys = getAllJourneys();
-  const stories = getHomeTestimonials();
+  const stories = getSelectedTestimonials();
   const firstEncounter = journeys.find((journey) => journey.slug === "kunming-dali-shaxi-lijiang-6-days");
   const classic = journeys.find((journey) => journey.slug === "kunming-dali-lijiang-shangri-la-private-tour");
   const graph = {
@@ -82,6 +85,7 @@ export default function Home() {
       {
         "@type": "Organization",
         name: "Hidden China Travel",
+        legalName: "Yunnan Meizhen International Travel Agency Co., Ltd.",
         url: "https://hiddenchinatravel.com",
         logo: "https://hiddenchinatravel.com/brand/logo.webp",
       },
@@ -117,7 +121,7 @@ export default function Home() {
         </div>
         <p className="hero-trust-line hero-desktop-only">Private journeys · No shopping stops · Licensed local operator · Personal support</p>
         <p className="hero-trust-line hero-mobile-only">Private transport · Local support · No shopping stops</p>
-        <small>Personal reply from Joy within 24 hours.</small>
+        <small>{siteConfig.replyTime}</small>
         <Link href="/journeys" className="hero-text-link hero-mobile-only">Explore journeys →</Link>
       </div>
     </section>
@@ -153,7 +157,7 @@ export default function Home() {
             imageAlt: firstEncounter.frontmatter.coverAlt || firstEncounter.frontmatter.title,
             duration: "6 Days / 5 Nights Private Journey",
             fromPrice: `From ${formatPriceLabel(firstEncounter.frontmatter.fromPrice, firstEncounter.frontmatter.currency)} ${firstEncounter.frontmatter.priceBasis}`,
-            features: ["Private vehicle", "English-speaking guide", "Handpicked hotels", "No shopping stops"],
+            features: ["Private vehicle", "Driver-guide throughout", "Travel insurance included", "No shopping stops"],
             ctaLabel: "View this journey →",
             trackingLocation: "home_featured_first_encounter",
           }} /> : null}
@@ -165,7 +169,7 @@ export default function Home() {
             imageAlt: classic.frontmatter.coverAlt || classic.frontmatter.title,
             duration: "8 Days / 7 Nights Private Journey",
             fromPrice: `From ${formatPriceLabel(classic.frontmatter.fromPrice, classic.frontmatter.currency)} ${classic.frontmatter.priceBasis}`,
-            features: ["Private driver-host", "Handpicked hotels", "Full-trip travel insurance", "No shopping stops"],
+            features: ["Driver-guide throughout", "Handpicked hotels", "Travel insurance included", "No shopping stops"],
             ctaLabel: "View this journey →",
             trackingLocation: "home_featured_classic",
           }} /> : null}
@@ -176,7 +180,7 @@ export default function Home() {
             image: "/home/local-support.webp",
             imageAlt: "A wooden boat on a highland lake in Yunnan",
             destination: "Designed around your dates, interests and pace",
-            features: ["Couples, families and friends", "Driver-only or guided options", "Slower routes with fewer hotel changes", "First-time China travel support"],
+            features: ["Couples, families and friends", "Driver-guide throughout", "Slower routes with fewer hotel changes", "First-time China travel support"],
             ctaLabel: "Design my Yunnan journey →",
             trackingLocation: "home_featured_custom",
           }} />
@@ -198,11 +202,11 @@ export default function Home() {
 
     <Testimonials
       items={stories}
-      eyebrow="TRAVELER STORIES"
-      heading="What Travelers Remember"
-      intro="Words from guests who explored Yunnan with Joy and our licensed local travel partners."
+      eyebrow={selectedTestimonialsCopy.eyebrow}
+      heading={selectedTestimonialsCopy.heading}
+      intro={selectedTestimonialsCopy.intro}
       showRating={false}
-      note="Some guest names have been shortened for privacy. Reviews translated from another language have been lightly edited for clarity without changing their meaning."
+      note={selectedTestimonialsCopy.note}
     />
 
     <section className="about-feature reverse home-founder" id="joy">
@@ -216,7 +220,7 @@ export default function Home() {
         <p>Living abroad meant becoming the foreign visitor myself. Everyday tasks that local people take for granted, such as making payments, using transportation or understanding unfamiliar systems, suddenly required more preparation and trusted local context.</p>
         <p>That experience changed the way I think about travel.</p>
         <p>I created Hidden China Travel to help international visitors experience Yunnan with fewer uncertainties, more personal support and enough time to appreciate the places between the famous landmarks.</p>
-        <p>I help shape the route before your journey, while licensed local partners provide the guides, drivers and travel services confirmed in your proposal.</p>
+        <p>I am your travel consultant at Yunnan Meizhen International Travel Agency. I help shape the route, then the agency confirms the contract, receives payment and operates the journey.</p>
         <p className="home-signature"><b>Joy Liu</b><span>Founder and Yunnan Travel Planner</span></p>
         <Link href="/about-us">Read Joy’s story →</Link>
         <Link href="/contact">Ask Joy a question →</Link>

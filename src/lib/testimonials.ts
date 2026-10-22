@@ -14,26 +14,36 @@ export type Testimonial = {
 export const overallGuestRating = 4.8;
 export const overallGuestRatingLabel = "4.8 · From guest reviews";
 
+export const selectedTestimonialsCopy = {
+  eyebrow: "TRAVELER STORIES",
+  heading: "What Travelers Remember",
+  intro: "These stories come from previous guests who traveled different Yunnan routes with us. They are not written about one current itinerary.",
+  note: "Guest names may be shortened. Some reviews were translated from another language and lightly edited for clarity, without changing their meaning.",
+};
+
 const allTestimonials = testimonials as Testimonial[];
-const homeTestimonialIds = [
+
+/** Representative reviews shown on the homepage and journey detail pages. */
+const selectedTestimonialIds = [
   "daniel-sarah-yunnan-family",
   "rachel-kevin-lisa",
   "claire-thomas-sebastien",
+  "mark-susan-tiger-leaping",
+  "michelle-lily-lijiang",
 ] as const;
 
 export function getFeaturedTestimonials() {
   return allTestimonials.filter((item) => item.featured);
 }
 
-export function getHomeTestimonials() {
+export function getSelectedTestimonials() {
   const byId = new Map(allTestimonials.map((item) => [item.id, item]));
-  return homeTestimonialIds.flatMap((id) => {
+  return selectedTestimonialIds.flatMap((id) => {
     const item = byId.get(id);
     return item ? [item] : [];
   });
 }
 
-export function getTestimonialsForJourney(slug: string) {
-  const matched = allTestimonials.filter((item) => item.journeySlugs.includes(slug));
-  return matched.length > 0 ? matched : getFeaturedTestimonials();
+export function getHomeTestimonials() {
+  return getSelectedTestimonials();
 }

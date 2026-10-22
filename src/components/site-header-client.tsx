@@ -47,7 +47,7 @@ const menuGroups: Record<"guides" | "about", { title: string; links: string[] }[
     { title: "Destination guides", links: ["Yunnan travel guide", "Kunming travel guide", "Dali travel guide", "Where to stay in Dali", "Dali hidden gems"] },
   ],
   about: [
-    { title: "Hidden China Travel", links: ["About us", "How we plan your journey", "Why travel with us", "Our local partners"] },
+    { title: "Hidden China Travel", links: ["About us", "Booking & service", "Why travel with us", "Our licensed agency"] },
     { title: "Our approach", links: ["Travel at your pace", "Experiences, not checklists", "Practical preparation", "Responsible local travel"] },
     { title: "Talk to us", links: ["Start a conversation", "Request a route check", "Get the Dali local guide", "WhatsApp support"] },
   ],
@@ -74,9 +74,9 @@ const guideHrefs: Record<string, string> = {
 const hrefFor = (label: string) => {
   if (guideHrefs[label]) return guideHrefs[label];
   if (label === "About us") return "/about-us";
-  if (label === "How we plan your journey") return "/about-us#how-it-works";
+  if (label === "How we plan your journey" || label === "Booking & service") return "/booking";
   if (label === "Why travel with us") return "/about-us#why-us";
-  if (label === "Our local partners") return "/about-us#local-partners";
+  if (label === "Our licensed agency" || label === "Our local partners") return "/about-us#local-partners";
   if (["Travel at your pace", "Experiences, not checklists", "Responsible local travel"].includes(label)) return "/about-us#our-approach";
   if (label === "Practical preparation") return "/china-travel-essentials";
   if (label === "Get the Dali local guide") return "/dali-travel-guide";
@@ -108,6 +108,7 @@ export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
       <Link href="/journeys" className="mobile-nav-all" onClick={() => setMobileOpen(false)}>VIEW ALL JOURNEYS</Link>
       <Link href="/survival-kit" onClick={() => setMobileOpen(false)}>TRAVEL GUIDES</Link>
       <Link href="/about-us" onClick={() => setMobileOpen(false)}>ABOUT US</Link>
+      <Link href="/booking" onClick={() => setMobileOpen(false)}>BOOKING &amp; SERVICE</Link>
       <Link href="/contact" onClick={() => setMobileOpen(false)}>CONTACT US</Link>
     </nav> : null}
     <nav className="nav-row" aria-label="Main navigation">

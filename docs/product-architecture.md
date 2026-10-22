@@ -10,7 +10,6 @@ that are not yet ready to sell.
 Multi-day sample routes that can be adjusted around the traveler's dates,
 party, pace and comfort preferences.
 
-- Dali, Lijiang & Lugu Lake
 - First Encounter Yunnan
 - The Essence of Yunnan
 

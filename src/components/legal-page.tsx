@@ -17,7 +17,7 @@ export function LegalPage({ item }: { item: ContentItem }) {
             <span aria-hidden="true">›</span>
             <span>{frontmatter.title}</span>
           </nav>
-          <p className="legal-eyebrow">Legal information</p>
+          <p className="legal-eyebrow">{frontmatter.eyebrow || "Legal information"}</p>
           <h1>{frontmatter.title}</h1>
           {frontmatter.lastUpdated && <p className="legal-updated">Last updated: {frontmatter.lastUpdated}</p>}
         </div>

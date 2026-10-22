@@ -4,8 +4,8 @@ title: "Privacy Policy"
 seoTitle: "Privacy Policy"
 metaDescription: "Learn what personal information Hidden China Travel collects, how it is used, and the choices available to website visitors."
 canonical: "/privacy-policy"
-dateModified: "2026-09-01"
-lastUpdated: "September 2026"
+dateModified: "2026-10-22"
+lastUpdated: "October 2026"
 ---
 
 Hidden China Travel ("we", "our", or "us") respects your privacy and is committed to protecting your personal information.
@@ -16,7 +16,7 @@ This Privacy Policy explains what information we collect, how we use it, and the
 
 ## Who We Are
 
-Hidden China Travel provides travel guides, planning resources, destination information, and personalized travel services for visitors exploring China.
+Hidden China Travel is the English-language site of Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司). It provides travel guides, planning resources, destination information, and private journey planning for visitors exploring China.
 
 If you have any questions regarding this policy, please contact:
 
@@ -52,11 +52,11 @@ We use the information you provide to:
 - Respond to inquiries
 - Discuss travel plans
 - Prepare travel proposals
-- Deliver requested services
+- Issue a travel contract and operate a booked journey
 - Improve our website and resources
 - Communicate regarding your request
 
-We do not sell your personal information to third parties.
+Enquiry and booking details are used by Yunnan Meizhen International Travel Agency Co., Ltd. to reply and, if you book, to deliver the journey. We do not sell your personal information to third parties.
 
 ---
 

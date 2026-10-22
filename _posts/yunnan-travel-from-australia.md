@@ -286,7 +286,7 @@ Independent travel through Yunnan is entirely doable. A private journey tends to
 - people who prefer a flexible pace rather than a fixed group schedule
 - travellers who'd rather not navigate language, transfers and digital payment systems solo
 
-Hidden China Travel helps you design the route and connects you with local, licensed partners on the ground — we're not claiming to run every part of the trip ourselves, and we won't tell you we're the "best" or "exclusive" option. We help you plan it properly and put you in touch with people who know the roads.
+Hidden China Travel is the English-language site of a licensed Kunming travel agency. Joy helps you design the route; the agency issues the contract and operates the journey. We won't tell you we're the "best" or "exclusive" option. We help you plan it properly.
 
 ## Plan Your Yunnan Journey from Australia
 

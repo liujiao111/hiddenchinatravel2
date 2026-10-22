@@ -110,7 +110,7 @@ export default async function ContactPage() {
             <p className="contact-kicker">START THE CONVERSATION</p>
             <h2>Tell Us About Your Yunnan Trip</h2>
             <p>You do not need a finished itinerary. Share what you already know, and Joy will help turn your ideas into a practical journey.</p>
-            <p>Joy personally reviews every enquiry and usually replies within 24 hours.</p>
+            <p>Joy personally reviews every enquiry. {siteConfig.replyTime}</p>
             <p><strong>No payment or booking commitment is required.</strong></p>
           </header>
           <ContactForm />

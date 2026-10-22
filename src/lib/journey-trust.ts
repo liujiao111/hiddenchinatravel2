@@ -19,41 +19,25 @@ export const licensedOperator = {
   nameEn: "Yunnan Meizhen International Travel Agency Co., Ltd.",
   nameZh: "云南美珍国际旅行社有限公司",
   permitNumber: "L-YN-1017500",
-  unifiedSocialCreditCode: "9153001111MACHIXW95XT",
+  unifiedSocialCreditCode: "91530111MACHXW95XT",
 } as const;
 
-const teamRoot = "/assets/partners/huatai";
+const teamRoot = "/assets/partners/meizhen";
 const vehicleRoot = "/assets/partners/vehicles";
 const credentialsRoot = "/assets/partners/meizhen";
 
 const localTeamSlides: ProofSlide[] = [
-  { src: `${teamRoot}/guides/zhang-zihang.webp`, alt: "Portrait of Zhang Zihang", title: "Zhang Zihang (Jason)", detail: "English-speaking guide · English guide qualification", copy: "A profile from the local guide team. Final assignment depends on your dates." },
-  { src: `${teamRoot}/guides/kuang-jintao.webp`, alt: "Portrait of Kuang Jintao", title: "Kuang Jintao (Taozi)", detail: "Chinese-speaking guide · 8 years of experience", copy: "Experienced with private and custom journeys." },
-  { src: `${teamRoot}/guides/huang-qun.webp`, alt: "Portrait of Huang Qun", title: "Huang Qun (Daxiang)", detail: "Chinese-speaking guide · 7 years of experience", copy: "Experienced with private and educational journeys." },
+  { src: `${teamRoot}/guides/zhang-zihang.webp`, alt: "Portrait of Zhang Zihang", title: "Zhang Zihang (Jason)", detail: "English-speaking driver-guide · Final assignment depends on your dates", copy: "A profile from the local team. The person on your journey is confirmed in writing." },
+  { src: `${teamRoot}/guides/kuang-jintao.webp`, alt: "Portrait of Kuang Jintao", title: "Kuang Jintao (Taozi)", detail: "Chinese-speaking driver-guide · 8 years of experience", copy: "Experienced with private and custom journeys." },
+  { src: `${teamRoot}/guides/huang-qun.webp`, alt: "Portrait of Huang Qun", title: "Huang Qun (Daxiang)", detail: "Chinese-speaking driver-guide · 7 years of experience", copy: "Experienced with private and educational journeys." },
 ];
 
-export const localGuideProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
-  kicker: "01 / YOUR GUIDE",
+export const driverGuideProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
+  kicker: "01 / YOUR DRIVER-GUIDE",
   title: "A person who knows the route",
-  copy: "A local guide is included throughout the journey. Choose Chinese or English, and ask Joy about another language in advance. These profiles are examples from the guide team supporting these journeys. The final assignment depends on your dates and is confirmed in writing.",
-  label: "Local guide profiles",
+  copy: "A Chinese- or English-speaking driver-guide is included throughout. One local host drives, coordinates the route and offers context. This is not a separate attraction lecturer inside every site. A specialist site guide can be added in your proposal. These profiles are examples from the team. The final assignment depends on your dates and is confirmed in writing.",
+  label: "Local team profiles",
   slides: localTeamSlides,
-};
-
-export const driverHostProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
-  kicker: "01 / YOUR DRIVER-HOST",
-  title: "A person who knows the route",
-  copy: "A Chinese- or English-speaking driver-host is included. They handle the listed pickups, private transport and route coordination, and can offer local context and restaurant suggestions. This is not a professional attraction-guide service. The driver usually does not accompany you inside attractions. A specialist site guide can be arranged separately.",
-  label: "Local team profiles",
-  slides: localTeamSlides.map((slide) => ({ ...slide, detail: "Local team example · Final assignment depends on your dates" })),
-};
-
-export const optionalGuideProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
-  kicker: "01 / YOUR LOCAL TEAM",
-  title: "Driver-only or guided, confirmed in writing",
-  copy: "A tailor-made journey can be driver-only or include a Chinese- or English-speaking guide. The profiles below are examples from the local team. Nothing is included until the licensed operator confirms it in your proposal.",
-  label: "Local team profiles",
-  slides: localTeamSlides.map((slide) => ({ ...slide, detail: "Local team example · Confirmed in your proposal" })),
 };
 
 export const vehicleProof: TrustCopy & { groups: { id: "five" | "seven"; label: string; carouselLabel: string; slides: ProofSlide[] }[] } = {
@@ -85,9 +69,9 @@ export const vehicleProof: TrustCopy & { groups: { id: "five" | "seven"; label: 
 };
 
 export const operatorCredentials: TrustCopy & { documents: CredentialDocument[] } = {
-  kicker: "THE LOCAL OPERATOR",
+  kicker: "THE LICENSED AGENCY",
   title: "Company documents you can inspect",
-  copy: `${licensedOperator.nameEn} (${licensedOperator.nameZh}) is the licensed operator for these journeys. It confirms the services, handles the travel contract and operates the trip. Its travel agency permit number is ${licensedOperator.permitNumber}. Its unified social credit code is ${licensedOperator.unifiedSocialCreditCode}.`,
+  copy: `${licensedOperator.nameEn} (${licensedOperator.nameZh}) is the licensed travel agency behind Hidden China Travel. It issues the travel contract, receives payment to its corporate account and operates the journey. Its travel agency permit number is ${licensedOperator.permitNumber}. Its unified social credit code is ${licensedOperator.unifiedSocialCreditCode}.`,
   documents: [
     { href: `${credentialsRoot}/credentials/business-license.jpg`, src: `${credentialsRoot}/credentials/business-license.jpg`, alt: `Business license of ${licensedOperator.nameEn}`, label: "View business license ↗", width: 2000, height: 1454 },
     { href: `${credentialsRoot}/credentials/travel-agency-permit.jpg`, src: `${credentialsRoot}/credentials/travel-agency-permit.jpg`, alt: `Travel agency business permit ${licensedOperator.permitNumber} for ${licensedOperator.nameEn}`, label: "View travel agency permit ↗", width: 2000, height: 1434 },
