@@ -1,3 +1,4 @@
+import { HotelProof } from "@/components/hotel-proof";
 import { LocalTeamProof } from "@/components/local-team-proof";
 import { OperatorCredentials } from "@/components/operator-credentials";
 import { VehicleProof } from "@/components/vehicle-proof";
@@ -14,11 +15,12 @@ export function JourneyTrustSection({
   return <section className="journey-proof section section-sand" id="local-team" aria-labelledby="local-team-title"><div className="shell">
     <div className="journey-editorial-heading">
       {compact ? null : <span>THE PEOPLE BEHIND YOUR JOURNEY</span>}
-      <h2 id="local-team-title">{compact ? "The local team and licensed agency." : "Meet your driver-guide and see the vehicles."}</h2>
-      <p>{brandIdentity.short} {brandIdentity.consultant} A driver-guide and vehicle are confirmed in writing.</p>
+      <h2 id="local-team-title">{compact ? "The local team, hotels and licensed agency." : "Meet your driver-guide, vehicles and hotels."}</h2>
+      <p>{brandIdentity.short} {brandIdentity.consultant} A driver-guide, vehicle and hotel examples are confirmed in writing.</p>
     </div>
     <LocalTeamProof group={driverGuideProof} />
     <VehicleProof />
+    <HotelProof />
     <OperatorCredentials />
   </div></section>;
 }

@@ -1,4 +1,4 @@
-export const journeyInterests = ["Local culture", "Food & markets", "Photography", "Nature & walking", "Family time", "A slower pace", "Tea & crafts", "Not sure yet"] as const;
+export const journeyInterests = ["Local culture", "Food & markets", "Photography", "Nature & walking", "Family time", "A slower pace", "Tea & crafts", "Halal / Muslim-friendly", "Not sure yet"] as const;
 export const journeyBudgets = ["Please advise", "Under US$1,500", "US$1,500–2,500", "US$2,500–4,000", "US$4,000+"] as const;
 export const journeyComfort = ["Please advise", "Comfortable hotels", "Boutique stays", "Luxury stays", "A mix"] as const;
 

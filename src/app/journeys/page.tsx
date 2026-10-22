@@ -55,7 +55,7 @@ export default function JourneysPage() {
         <div><p>Private Journey Designed Around You. None of these routes quite fit? Start with your own dates, interests, preferred pace and comfort level. Joy will discuss the possibilities with you. The travel contract and payments are with the licensed agency behind Hidden China Travel.</p><ul><li>Your preferred duration and route</li><li>Private transport, guiding and accommodation</li><li>A written itinerary and tailored quote</li></ul><Link href="/custom-china-tour" data-cta-location="journeys_custom_service" className="button button-light">DESIGN YOUR JOURNEY</Link></div>
       </aside>
     </div></section>
-    <section className="journeys-philosophy section-sand"><div className="shell"><h2>Not a checklist. A journey shaped around you.</h2><div>{["Private travel with your own party", "A driver-guide throughout", "No mandatory shopping stops", "A licensed Kunming agency for the contract and payment"].map((item, index) => <p key={item}><span>0{index + 1}</span>{item}</p>)}</div></div></section>
+    <section className="journeys-philosophy section-sand"><div className="shell"><h2>Not a checklist. A journey shaped around you.</h2><div>{["Private travel with your own party", "A driver-guide throughout", "Muslim-friendly arrangements on every journey", "No mandatory shopping stops", "A licensed Kunming agency for the contract and payment"].map((item, index) => <p key={item}><span>0{index + 1}</span>{item}</p>)}</div></div></section>
     <QuickAsk source="/journeys" sourceTitle="Private Yunnan journeys" intent="trip" />
     <ContentFooter />
     <JsonLd data={{

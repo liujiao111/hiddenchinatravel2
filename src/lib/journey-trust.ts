@@ -68,6 +68,77 @@ export const vehicleProof: TrustCopy & { groups: { id: "five" | "seven"; label: 
   ],
 };
 
+const hotelRoot = "/assets/partners/hotels";
+
+export const hotelProof: TrustCopy & { groups: { id: string; label: string; carouselLabel: string; slides: ProofSlide[] }[] } = {
+  kicker: "03 / YOUR HOTELS",
+  title: "Stays named in your proposal.",
+  copy: "Comfort, Premium or Luxury sets the style. These are examples from the hotel catalog we use on Yunnan journeys, not a promise of one exact property. The hotel in each city is named in your written proposal.",
+  groups: [
+    {
+      id: "dali",
+      label: "DALI",
+      carouselLabel: "Dali hotel examples",
+      slides: [
+        { src: `${hotelRoot}/dali-liuheyunyan.webp`, alt: "Example of a Dali hotel stay: LiuHeYunYan Hotel or equivalent", title: "LiuHeYunYan Hotel", detail: "Example · Dali", copy: "LiuHeYunYan Hotel, or an equivalent, is named in your proposal." },
+        { src: `${hotelRoot}/dali-courtyard.webp`, alt: "Example of a Dali courtyard hotel stay: Courtyard Hotel or equivalent", title: "Courtyard Hotel", detail: "Example · Dali courtyard", copy: "A courtyard stay near the old town, or an equivalent in the same style." },
+      ],
+    },
+    {
+      id: "lijiang",
+      label: "LIJIANG",
+      carouselLabel: "Lijiang hotel examples",
+      slides: [
+        { src: `${hotelRoot}/lijiang-gelle-freres.webp`, alt: "Example of a Lijiang hotel stay: Gellé Frères Garden Hotel or equivalent", title: "Gellé Frères Garden Hotel", detail: "Example · Lijiang · Shuhe", copy: "Gellé Frères Garden Hotel, or an equivalent, is named in your proposal." },
+        { src: `${hotelRoot}/lijiang-international.webp`, alt: "Example of a Lijiang hotel stay: Lijiang International Hotel or equivalent", title: "Lijiang International Hotel", detail: "Example · Lijiang old town", copy: "A stay near the old town, or an equivalent in the same class." },
+      ],
+    },
+    {
+      id: "kunming",
+      label: "KUNMING",
+      carouselLabel: "Kunming hotel examples",
+      slides: [
+        { src: `${hotelRoot}/kunming-linyin-mixc.webp`, alt: "Example of a Kunming hotel stay: Linyin Hotel at MixC or equivalent", title: "Linyin Hotel, MixC", detail: "Example · Kunming", copy: "Used when a Kunming night is in the route. Linyin Hotel at MixC, or an equivalent, is named in your proposal." },
+        { src: `${hotelRoot}/kunming-mehood-lestie.webp`, alt: "Example of a Kunming hotel stay: Mehood Lestie Hotel or equivalent", title: "Mehood Lestie Hotel", detail: "Example · Kunming", copy: "Another Kunming example from the catalog. The named property is confirmed in writing." },
+      ],
+    },
+    {
+      id: "shaxi",
+      label: "SHAXI",
+      carouselLabel: "Shaxi hotel examples",
+      slides: [
+        { src: `${hotelRoot}/shaxi-boutique-courtyard.webp`, alt: "Example of a Shaxi boutique courtyard hotel stay", title: "Shaxi boutique courtyard", detail: "Example · Shaxi", copy: "Two nights on the 6-day route are in Shaxi. The property is a boutique courtyard stay, named in your proposal." },
+        { src: `${hotelRoot}/shaxi-boutique-lanes.webp`, alt: "Example of a Shaxi town hotel stay", title: "Shaxi town stay", detail: "Example · Shaxi lanes", copy: "Cars stop at the edge of town. The hotel is reached on foot." },
+      ],
+    },
+    {
+      id: "shangri-la",
+      label: "SHANGRI-LA",
+      carouselLabel: "Shangri-La hotel examples",
+      slides: [
+        { src: `${hotelRoot}/shangri-la-highland.webp`, alt: "Example of a Shangri-La highland hotel stay", title: "Shangri-La highland hotel", detail: "Example · Shangri-La", copy: "Used on the 8-day route. The named highland hotel is confirmed in your proposal." },
+        { src: `${hotelRoot}/shangri-la-lakeside.webp`, alt: "Example of a Shangri-La lakeside hotel stay", title: "Shangri-La lakeside stay", detail: "Example · Shangri-La", copy: "A further plateau example. The final property depends on dates and hotel style." },
+      ],
+    },
+  ],
+};
+
+export const muslimFriendly = {
+  kicker: "ON EVERY JOURNEY",
+  title: "Muslim-friendly, as a standard.",
+  copy: "Tell Joy when you enquire. We write what we can arrange into the proposal. We do not claim a certified-halal kitchen in every hotel.",
+  points: [
+    { title: "Breakfast you can choose", detail: "Hotel breakfast is generally included. We note your dietary needs so you can select suitable items, or skip breakfast and we help you find a nearby option." },
+    { title: "Halal meals on the route", detail: "When lunch or dinner is in your quote, we arrange a halal restaurant or packed meal, or refund that meal if a suitable option cannot be confirmed. When meals are not in the quote, the driver-guide helps you find a restaurant or takeaway along the day’s route." },
+    { title: "Prayer-time reminders", detail: "The driver-guide can remind you of prayer times and help find a quiet place or a mosque when the day’s route allows." },
+  ],
+  inclusion: "Muslim-friendly arrangements: breakfast choice, help finding halal meals along the route, and prayer-time reminders. Confirmed in your proposal.",
+  faq: {
+    question: "Can you arrange a Muslim-friendly journey?",
+    answer: "Yes. It is a standard feature on every private journey, not a special package. Tell Joy at enquiry. Hotel breakfast is generally included and you can choose suitable items or skip it. When lunch or dinner is in the quote, we arrange a halal restaurant or packed meal, or refund that meal if we cannot confirm a suitable option. When those meals are not in the quote, the driver-guide helps you find a restaurant or takeaway. Prayer-time reminders and a quiet place or mosque can be arranged when the route allows. We do not claim certified-halal hotel kitchens.",
+  },
+} as const;
+
 export const operatorCredentials: TrustCopy & { documents: CredentialDocument[] } = {
   kicker: "THE LICENSED AGENCY",
   title: "Company documents you can inspect",

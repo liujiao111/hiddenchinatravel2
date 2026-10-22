@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookingTerms } from "@/components/booking-terms";
 import { JourneyTrustSection } from "@/components/journey-trust-section";
+import { MuslimFriendly } from "@/components/muslim-friendly";
 import { Testimonials } from "@/components/testimonials";
 import { ContentFooter } from "@/components/content-footer";
 import { JourneyInspirationProvider } from "@/components/journey-inspiration-context";
@@ -33,6 +34,7 @@ const faqs = [
   { question: "How is a custom private journey priced?", answer: "The quote depends on your dates, route, party size, accommodation, transport, guide language and chosen activities. It will state the currency, inclusions, exclusions and payment terms before you decide. Budget ranges in the form are planning preferences, not advertised tour prices." },
   { question: "Is this a group tour?", answer: "The journey is planned for your own party, rather than joining a scheduled coach group. Public attractions, restaurants or activities may still be shared with other visitors; your proposal will clarify any shared arrangements." },
   { question: "Can you accommodate family, dietary or accessibility needs?", answer: "Please describe what matters to you in the form. We will check the relevant hotel, vehicle, food and activity arrangements before confirming whether they can be met." },
+  { question: "Can you arrange a Muslim-friendly journey?", answer: "Yes. Muslim-friendly arrangements are a standard feature on every private journey, including tailor-made routes. Tell Joy at enquiry. Hotel breakfast is generally included and you can choose suitable items or skip it. When lunch or dinner is in the quote, we arrange a halal restaurant or packed meal, or refund that meal if we cannot confirm a suitable option. When those meals are not in the quote, the driver-guide helps you find a restaurant or takeaway. Prayer-time reminders and a quiet place or mosque can be arranged when the route allows. We do not claim certified-halal hotel kitchens." },
   operatorFaq,
   bookingFaq,
   { question: "Does submitting this form commit me to a booking?", answer: "No. It starts a conversation about your plans. You can review the proposal and terms before deciding whether to proceed." },
@@ -56,8 +58,9 @@ export default function CustomChinaTourPage() {
   return <JourneyInspirationProvider><main className="custom-journey-page">
     <SiteHeader />
     <JourneyHero title="Tailor-Made Yunnan" image="/home/hero.webp" imageAlt="Mountains and countryside in Yunnan" eyebrow="TAILOR-MADE YUNNAN" description="Private Journey Designed Around You" primary={{ href: "#plan", label: "START PLANNING MY TRIP" }} secondary={{ href: "#possibilities", label: "EXPLORE THE POSSIBILITIES" }} note={`Plan directly with Joy. ${siteConfig.replyTime} No booking commitment.`} />
-    <JourneySectionNav links={[{ href: "#possibilities", label: "Make it yours" }, { href: "#places", label: "Places & ideas" }, { href: "#process", label: "How it works" }, ...(stories.length > 0 ? [{ href: "#stories", label: "Stories" }] : []), { href: "#local-team", label: "Local team" }, { href: "#quote", label: "Your proposal" }, { href: "#booking-terms", label: "Booking & payment" }, { href: "#questions", label: "Useful details" }]} action={{ href: "#plan", label: "Start planning" }} />
+    <JourneySectionNav links={[{ href: "#possibilities", label: "Make it yours" }, { href: "#muslim-friendly", label: "Muslim-friendly" }, { href: "#places", label: "Places & ideas" }, { href: "#process", label: "How it works" }, ...(stories.length > 0 ? [{ href: "#stories", label: "Stories" }] : []), { href: "#local-team", label: "Guide, vehicle & hotels" }, { href: "#quote", label: "Your proposal" }, { href: "#booking-terms", label: "Booking & payment" }, { href: "#questions", label: "Useful details" }]} action={{ href: "#plan", label: "Start planning" }} />
     <JourneyOverview title="Start with your plans, not a package." description="Our existing routes are a starting point. If they don’t fit your trip, we can discuss a journey designed from the ground up." items={[{ label: "WHERE", value: "Yunnan first · Other China destinations by request" }, { label: "HOW YOU TRAVEL", value: "A private party · Dates and duration shaped around you" }, { label: "YOUR QUOTE", value: "Prepared around your route, dates and preferences" }]} action={{ href: "#plan", label: "TELL US WHAT YOU HAVE IN MIND" }} />
+    <MuslimFriendly />
     <section className="journey-manifesto" id="possibilities"><div className="shell journey-manifesto-grid"><div className="journey-manifesto-copy"><h2><span>A journey that feels</span> <em>like yours.</em></h2><i aria-hidden="true" /><p>A quiet morning rather than another early start. More time with a place, less time moving between hotels. The freedom to follow what interests you.</p><strong>We begin by listening.</strong></div></div></section>
     <section className="section section-sand custom-travel-preferences"><div className="narrow journey-editorial-heading"><h2>What would make this your kind of trip?</h2><p>Later starts, fewer hotel changes, time for markets or photography. Tell us what matters to your party, and we’ll shape the days around it.</p></div></section>
     <YunnanInspiration selectable />

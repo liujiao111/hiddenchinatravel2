@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Journey } from "@/lib/journeys";
 import { ContentFooter } from "@/components/content-footer";
-import { GuideCard } from "@/components/guide-card";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { QuickAsk } from "@/components/quick-ask";
@@ -10,8 +9,9 @@ import { formatPriceLabel } from "@/lib/format-price";
 import { JourneyHero, JourneyOverview, JourneySectionNav } from "@/components/journey-landing";
 import { BookingTerms } from "@/components/booking-terms";
 import { JourneyTrustSection } from "@/components/journey-trust-section";
+import { MuslimFriendly } from "@/components/muslim-friendly";
 import { YunnanTravelNotes } from "@/components/yunnan-travel-notes";
-import { bookingSteps, brandIdentity } from "@/lib/booking-terms";
+import { brandIdentity } from "@/lib/booking-terms";
 import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
 import { breadcrumbList } from "@/components/json-ld";
 
@@ -25,38 +25,11 @@ const sixDayPhotos: Record<string, readonly [string, string]> = {
 
 const goodFit = ["Experiences over checklists", "Local culture and daily life", "A comfortable, unhurried pace", "Stories worth bringing home"];
 const poorFit = ["The maximum number of sights", "A fast-paced coach tour", "The lowest-cost package", "A rigid, minute-by-minute schedule"];
-const journeyGuides = [
-  {
-    title: "Yunnan Travel Guide",
-    excerpt: "Understand Yunnan’s landscapes, seasons and travel distances before choosing your pace.",
-    href: "/china-destinations/yunnan",
-    image: "/home/hero.webp",
-    imageAlt: "Boardwalk beside a turquoise alpine lake under snow mountains in Yunnan",
-    readTime: "START HERE",
-  },
-  {
-    title: "Dali Travel Guide",
-    excerpt: "Plan your time around Erhai, the old town, Bai villages and the parts of Dali worth slowing down for.",
-    href: "/dali-travel-guide",
-    image: "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp",
-    imageAlt: "Cangshan mountains and Erhai Lake near Dali",
-    readTime: "DESTINATION GUIDE",
-  },
-  {
-    title: "Dali Hidden Gems & Shaxi",
-    excerpt: "Learn why Shaxi deserves an overnight stay and what else lies beyond Dali's busiest streets.",
-    href: "/dali-hidden-gems-off-the-beaten-path",
-    image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-theater-courtyard.webp",
-    imageAlt: "Traditional theater courtyard in Shaxi Ancient Town",
-    readTime: "LOCAL GUIDE",
-  },
-];
 
 export function JourneyPage({ journey }: { journey: Journey }) {
   const { frontmatter } = journey;
   const stories = getSelectedTestimonials();
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
-  const isClassicYunnanJourney = journey.slug === "kunming-dali-lijiang-shangri-la-private-tour";
   const whatsapp = `https://wa.me/8618880441791?text=${encodeURIComponent(`Hi Joy, I’m interested in the ${frontmatter.title} journey. My travel dates are ____ and there will be ____ travelers.`)}`;
   const guidePrice = frontmatter.fromPrice > 0 ? `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} ${frontmatter.priceBasis}` : "Tailored quote after we confirm your dates and group";
   const selectedGoodFit = frontmatter.goodFit ?? goodFit;
@@ -66,7 +39,6 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     { label: "YOUR JOURNEY", value: `${frontmatter.journeyType} · Driver-guide · Private transport` },
     { label: "GUIDE PRICE", value: guidePrice },
   ];
-  const relatedGuides = isClassicYunnanJourney ? journeyGuides.slice(0, 2) : journeyGuides;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -91,16 +63,11 @@ export function JourneyPage({ journey }: { journey: Journey }) {
   return <main>
     <SiteHeader />
     <JourneyHero title={frontmatter.title} image={frontmatter.coverImage} imageAlt={frontmatter.coverAlt || "Mountains and countryside along a Yunnan journey"} eyebrow={frontmatter.heroEyebrow || "A PRIVATE YUNNAN JOURNEY"} description={frontmatter.heroDescription || frontmatter.excerpt} price={frontmatter.fromPrice > 0 ? `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} ${frontmatter.priceBasis}` : undefined} primary={{ href: whatsapp, label: "PLAN THIS JOURNEY" }} secondary={{ href: "#itinerary", label: frontmatter.heroSecondaryLabel || "EXPLORE THE 6-DAY ITINERARY" }} note={frontmatter.heroNote || "Start with your dates and preferred pace. No pressure to book."} />
-    <JourneySectionNav links={[{ href: "#story", label: "The feeling" }, { href: "#experiences", label: "Experiences" }, { href: "#itinerary", label: "Day-to-day itinerary" }, ...(stories.length > 0 ? [{ href: "#stories", label: "Stories" }] : []), { href: "#local-team", label: "Local team" }, { href: "#pricing", label: frontmatter.tiers.length ? "Hotel styles" : "Pricing" }, { href: "#details", label: "What’s included" }, { href: "#booking-terms", label: "Booking & payment" }, { href: frontmatter.bookingNotes?.length ? "#travel-notes" : "#yunnan-notes", label: "Travel notes" }]} action={{ href: whatsapp, label: "Plan your journey" }} />
+    <JourneySectionNav links={[{ href: "#muslim-friendly", label: "Muslim-friendly" }, { href: "#itinerary", label: "Day-to-day itinerary" }, ...(stories.length > 0 ? [{ href: "#stories", label: "Stories" }] : []), { href: "#local-team", label: "Guide, vehicle & hotels" }, { href: "#pricing", label: frontmatter.tiers.length ? "Hotel styles" : "Pricing" }, { href: "#details", label: "What’s included" }, { href: "#booking-terms", label: "Booking & payment" }, { href: frontmatter.bookingNotes?.length ? "#travel-notes" : "#yunnan-notes", label: "Travel notes" }]} action={{ href: whatsapp, label: "Plan your journey" }} />
     <JourneyOverview title={frontmatter.overviewTitle || "Your private Yunnan journey, at a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: whatsapp, label: "ASK JOY ABOUT THIS JOURNEY" }} />
-
-    <section className="journey-manifesto" id="story"><div className="shell journey-manifesto-grid"><div className="journey-manifesto-copy"><span>{frontmatter.manifestoKicker || "OUR WAY OF TRAVELLING"}</span><h2><span>Remember</span> <em>how Yunnan felt,</em> <span>not just where you went.</span></h2><i aria-hidden="true" /><p>{frontmatter.manifestoLead || "A quiet evening in an old Tea Horse Road town. A conversation inside a traditional tie-dye workshop. A slow breakfast overlooking Erhai Lake."}</p><strong>{frontmatter.manifestoClose || "The best memories are rarely made in a hurry."}</strong></div></div></section>
-
-
+    <MuslimFriendly />
 
     <section className="journey-fit"><div className="shell"><header><span>{frontmatter.fitKicker || "IS THIS YOUR KIND OF JOURNEY?"}</span><h2>{frontmatter.fitHeading || "For travelers who would rather go deeper than go faster."}</h2></header><div className="journey-fit-columns"><div><h3>You’ll probably love it if you value…</h3>{selectedGoodFit.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><h3>It may not be for you if you want…</h3>{selectedPoorFit.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></div></section>
-
-    <section className="journey-experiences section section-sand" id="experiences"><div className="shell"><div className="journey-editorial-heading"><span>THE MOMENTS THAT STAY WITH YOU</span><h2>Signature experiences</h2><p>Not additions made to fill an itinerary—moments chosen to give you more time with a place.</p></div><div className="journey-experience-grid">{frontmatter.experiences.map((experience, index) => <article key={experience.title}><div><Image src={encodeURI(experience.image)} alt={experience.imageAlt || experience.title} fill sizes={index === 0 || index === 3 ? "(max-width: 700px) 100vw, 58vw" : "(max-width: 700px) 100vw, 42vw"} unoptimized /></div><span>0{index + 1} · EXPERIENCE</span><h3>{experience.title}</h3><p>{experience.description}</p></article>)}</div></div></section>
 
     <section className="journey-itinerary section" id="itinerary"><div className="shell journey-section-layout"><header><p>{frontmatter.itineraryKicker || "YOUR 6 DAYS IN YUNNAN"}</p><h2>{frontmatter.itineraryHeading || (isSixDayYunnanJourney ? "Stay in Shaxi after the day trips have left." : "A rhythm of arrival, discovery and rest.")}</h2><span>{frontmatter.itineraryIntro || (isSixDayYunnanJourney ? "Day 1 is the train into Dali Ancient Town. Day 2 stays on Erhai’s west shore. Two nights in Shaxi follow the Three Pagodas, then Lijiang Old Town and a full mountain day. Hotel breakfast is generally included. Lunch and dinner are not." : "This is a starting point rather than a rigid package. We can adjust the route around your dates and preferred pace.")}</span></header><div className="journey-days">{frontmatter.itinerary.map((day, index) => {
       const dayPhoto = day.image ? [day.image, day.imageAlt || day.title] as const : isSixDayYunnanJourney ? sixDayPhotos[day.days] : undefined;
@@ -109,11 +76,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       return <details key={day.days} open={index === 0}><summary><span>{day.days}</span><div><h3>{day.title}</h3><p>{day.meta}</p></div><b aria-hidden="true">+</b></summary>{dayCopy.map((paragraph, paragraphIndex) => <p key={`${day.days}-${paragraphIndex}`}>{paragraph}</p>)}{day.meals ? <p className="journey-day-meals"><strong>{/Overnight|Pace:/.test(day.meals) ? "THE DAY" : "MEALS"}</strong> {day.meals}</p> : null}{dayPhoto ? <figure className="journey-day-photo"><Image src={encodeURI(dayPhoto[0])} alt={dayPhoto[1]} fill sizes="(max-width:700px) 100vw, 640px" unoptimized /><figcaption>{dayPhoto[1]}</figcaption></figure> : null}{isShaxiStay ? <div className="journey-day-pair"><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp" alt="Stone-paved lane between traditional buildings in Shaxi" fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="A shepherd and goats beside the river outside Shaxi" fill sizes="(max-width: 700px) 45vw, 20vw" unoptimized /></figure></div> : null}</details>;
     })}</div></div></section>
 
-    <section className="journey-mid-cta"><div className="shell"><div><p>MAKE THE ROUTE YOURS</p><h2>{frontmatter.midCtaHeading || "More time in Dali—or an extra night in Shaxi?"}</h2></div><div><Link href={whatsapp} className="button button-light">ASK JOY TO ADJUST THIS ROUTE</Link><span>Tell us what you would slow down, add or leave out.</span></div></div></section>
-
     {stories.length > 0 ? <Testimonials items={stories} eyebrow={selectedTestimonialsCopy.eyebrow} heading={selectedTestimonialsCopy.heading} intro={selectedTestimonialsCopy.intro} showRating={false} note={selectedTestimonialsCopy.note} /> : null}
-
-    <section className="journey-support section journey-support-flow custom-planning-flow"><div className="shell journey-section-layout"><header><p>PRIVATE TRAVEL, LOCAL SUPPORT</p><h2>A personal route, with a licensed agency behind it.</h2><span>{brandIdentity.short} {brandIdentity.consultant}</span></header><div className="journey-support-grid">{bookingSteps.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
 
     <JourneyTrustSection />
 
@@ -130,8 +93,6 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
     {frontmatter.bookingNotes?.length ? <section className="journey-booking-notes section section-sand journey-booking-notes-compact" id="travel-notes"><div className="shell"><div className="journey-editorial-heading"><span>BEFORE YOU TRAVEL</span><h2>Good to know before you travel.</h2><p>Check these practical points as you choose your dates and pace.</p></div><div className="journey-booking-notes-grid">{frontmatter.bookingNotes.map((note) => <details key={note.title}><summary>{note.title}<span aria-hidden="true">+</span></summary><p>{note.detail}</p></details>)}</div><p className="journey-booking-notes-source">For medical questions about high-elevation travel, consult your clinician and the <a href="https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/high-altitude-travel-and-altitude-illness.html" target="_blank" rel="noopener noreferrer">CDC high-altitude guidance ↗</a>.</p></div></section> : null}
 
-    <section className="journey-reading section section-sand"><div className="shell"><div className="journey-editorial-heading"><span>PREPARE FOR THE JOURNEY</span><h2>Read the route before you travel it.</h2><p>Use these guides to understand the places, choose your pace and arrive with more useful context.</p></div><div className="journey-reading-grid">{relatedGuides.map((guide) => <GuideCard key={guide.href} guide={guide} />)}</div></div></section>
-
     <section className="journey-faq section"><div className="narrow"><div className="section-heading"><h2>Frequently asked questions</h2></div>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><p>{faq.answer}</p></details>)}</div></section>
 
     <section className="custom-route-bridge section section-sand"><div className="narrow"><h2>Looking for a different journey?</h2><p>Different dates, more time, or somewhere else in mind? Start with your own plans and we’ll discuss a route shaped around you.</p><Link href="/custom-china-tour" data-cta-location="journey_custom_alternative">EXPLORE TAILOR-MADE YUNNAN →</Link></div></section>
@@ -142,4 +103,3 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;
 }
-
