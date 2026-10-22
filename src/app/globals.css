@@ -176,10 +176,12 @@ p { line-height:1.7; }
 .home-signature span { display:block; color:#5c5c55; font-size:.84rem; }
 a.utility-card { color:inherit; }
 .testimonials-static { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-.testimonials-static[data-count="5"] { grid-template-columns:repeat(6,minmax(0,1fr)); }
-.testimonials-static[data-count="5"] .testimonials-card { grid-column:span 2; }
-.testimonials-static[data-count="5"] .testimonials-card:nth-child(4) { grid-column:2 / span 2; }
-.testimonials-static[data-count="5"] .testimonials-card:nth-child(5) { grid-column:4 / span 2; }
+@media (min-width:1001px) {
+  .testimonials-static[data-count="5"] { grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .testimonials-static[data-count="5"] .testimonials-card { grid-column:span 2; }
+  .testimonials-static[data-count="5"] .testimonials-card:nth-child(4) { grid-column:2 / span 2; }
+  .testimonials-static[data-count="5"] .testimonials-card:nth-child(5) { grid-column:4 / span 2; }
+}
 .final-cta .hero-actions { margin-top:22px; }
 .final-cta-trust { margin-top:20px; color:rgba(255,255,255,.88); font-size:.88rem; line-height:1.65; }
 
@@ -326,7 +328,6 @@ a.utility-card { color:inherit; }
   .utility-grid { grid-template-columns:repeat(2,1fr); }
   .home-journeys-grid,.journeys-card-grid.home-journeys-grid,.testimonials-static { grid-template-columns:1fr; }
   .testimonials-static[data-count="5"] { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .testimonials-static[data-count="5"] .testimonials-card { grid-column:auto; }
   .header-cta-full { display:none; }
   .header-cta-short { display:inline; }
   .utility-card:nth-child(2n) { border-right:0; }
@@ -1366,7 +1367,7 @@ a.utility-card { color:inherit; }
   .yunnan-final-cta>div>div { align-items:flex-start; justify-content:flex-start; flex-direction:column; }
   .yunnan-final-cta .button { width:100%; }
 }
-.testimonials { padding:96px 0 80px; overflow:hidden; background:var(--cream); }
+.testimonials { padding:96px 0 80px; overflow:hidden; background:var(--cream); scroll-margin-top:72px; }
 .testimonials-heading { max-width:720px; margin:0 auto 52px; text-align:center; }
 .testimonials-heading h2 { margin-bottom:12px; font-size:clamp(1.85rem,2.6vw,2.45rem); }
 .testimonials-heading p { margin:0; color:#5d5d56; }
