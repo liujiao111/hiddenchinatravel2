@@ -20,7 +20,12 @@ export function newAnalyticsEventId() {
 export function trackEvent(eventName: string, params: AnalyticsParams = {}) {
   if (typeof window === "undefined") return;
 
-  if (window.gtag) window.gtag("event", eventName, params);
+  const payload =
+    eventName === "generate_lead"
+      ? { currency: "USD", value: 1, ...params }
+      : params;
+
+  if (window.gtag) window.gtag("event", eventName, payload);
 
   if (
     eventName === "generate_lead"
@@ -31,7 +36,7 @@ export function trackEvent(eventName: string, params: AnalyticsParams = {}) {
   ) {
     window.gtag("event", "conversion", {
       send_to: `${googleAdsId}/${googleAdsLabel}`,
-      event_id: params.event_id,
+      event_id: payload.event_id,
     });
   }
 }
