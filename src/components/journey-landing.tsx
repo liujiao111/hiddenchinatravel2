@@ -4,17 +4,19 @@ import { StarRating } from "@/components/star-rating";
 
 type Action = { href: string; label: string };
 
-export function JourneyHero({ title, image, imageAlt, eyebrow, description, primary, secondary, note, rating, price }: {
+export function JourneyHero({ title, image, imageAlt, eyebrow, description, primary, secondary, note, rating, price, includes, chat }: {
   title: string; image: string; imageAlt: string; eyebrow: string; description: string;
   primary: Action; secondary: Action; note: string;
   rating?: { href: string; label: string; value: number };
   price?: string;
+  includes?: string[];
+  chat?: Action;
 }) {
   return <header className="journey-hero">
     <Image src={encodeURI(image)} alt={imageAlt} fill priority unoptimized sizes="100vw" />
     <div className="journey-hero-shade" />
     <nav className="breadcrumbs journey-breadcrumbs shell" aria-label="Breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/journeys">Journeys</Link><span>›</span><span>{title}</span></nav>
-    <div className="journey-hero-copy shell"><div><p>{eyebrow}</p><h1>{title}</h1><span>{description}</span>{price ? <b className="journey-hero-price">{price}</b> : null}{rating ? <a className="journey-hero-rating" href={rating.href}><StarRating value={rating.value} label={`Overall rating: ${rating.value.toFixed(1)} out of 5 stars`} /><span>{rating.label}</span></a> : null}<div className="journey-hero-actions"><Link className="button journey-primary-action" href={primary.href}>{primary.label}</Link><Link className="journey-text-action" href={secondary.href}>{secondary.label} <b>↓</b></Link></div><small>{note}</small></div></div>
+    <div className="journey-hero-copy shell"><div><p>{eyebrow}</p><h1>{title}</h1><span>{description}</span>{price ? <b className="journey-hero-price">{price}</b> : null}{includes?.length ? <ul className="journey-hero-includes">{includes.map((item) => <li key={item}>{item}</li>)}</ul> : null}{rating ? <a className="journey-hero-rating" href={rating.href}><StarRating value={rating.value} label={`Overall rating: ${rating.value.toFixed(1)} out of 5 stars`} /><span>{rating.label}</span></a> : null}<div className="journey-hero-actions"><Link className="button journey-primary-action" href={primary.href}>{primary.label}</Link><Link className="journey-text-action" href={secondary.href}>{secondary.label} <b>↓</b></Link></div>{chat ? <Link className="journey-hero-whatsapp" href={chat.href}>{chat.label}</Link> : null}<small>{note}</small></div></div>
   </header>;
 }
 

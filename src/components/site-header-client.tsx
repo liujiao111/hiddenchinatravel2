@@ -84,14 +84,14 @@ const hrefFor = (label: string) => {
   return "/#guides";
 };
 
-export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
+export function SiteHeaderClient({ journeys, cta }: { journeys: HeaderJourney[]; cta?: { href: string; label: string; location?: string } }) {
   const [open, setOpen] = useState<MenuName | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return <header className="site-header" onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
       <Link href="/" className="brand" aria-label="Hidden China Travel home"><Image src="/brand/logo.webp" alt="Hidden China Travel" width={160} height={80} className="brand-logo" unoptimized /></Link>
-      <div className="header-contact"><span>Local insight, private journeys and personal support</span><EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">PLAN MY YUNNAN TRIP</span><span className="header-cta-short">PLAN MY TRIP</span></EnquireLink></div>
+      <div className="header-contact"><span>Local insight, private journeys and personal support</span>{cta ? <Link className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</Link> : <EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">PLAN MY YUNNAN TRIP</span><span className="header-cta-short">PLAN MY TRIP</span></EnquireLink>}</div>
       <button type="button" className="header-menu-toggle" aria-expanded={mobileOpen} aria-controls="mobile-nav" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? "CLOSE" : "MENU"}</button>
     </div>
     {mobileOpen ? <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">

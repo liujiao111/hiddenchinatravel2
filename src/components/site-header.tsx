@@ -14,7 +14,7 @@ function navPriceLabel(journey: Journey) {
   return "Tailored quote";
 }
 
-export function SiteHeader() {
+export function SiteHeader({ cta }: { cta?: { href: string; label: string; location?: string } } = {}) {
   const journeys: HeaderJourney[] = getAllJourneys()
     .filter((journey) => journey.frontmatter.navFeatured)
     .map((journey) => ({
@@ -26,5 +26,5 @@ export function SiteHeader() {
       priceLabel: navPriceLabel(journey),
     }));
 
-  return <SiteHeaderClient journeys={journeys} />;
+  return <SiteHeaderClient journeys={journeys} cta={cta} />;
 }

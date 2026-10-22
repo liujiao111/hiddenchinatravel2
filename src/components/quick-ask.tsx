@@ -90,11 +90,11 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
 
   const form = status === "success" && sent ? (
     <div className="contact-form-success quick-ask-success" role="status">
-      <h3>{isQuoteReady(sent) ? "Joy has what he needs to price a route." : "Joy has your note."}</h3>
+      <h3>{isQuoteReady(sent) ? "Joy has what she needs to price a route." : "Joy has your note."}</h3>
       <p>
         {isQuoteReady(sent)
           ? "Expect a short route sketch and a price range, with what is included. There is no need to book from that reply."
-          : "He will answer what you asked. If you want a price, reply with your dates, group size and a budget range."}{" "}
+          : "Joy will answer what you asked. If you want a price, reply with your dates, group size and a budget range."}{" "}
         {siteConfig.replyTime}
       </p>
       {sent.interest === "Yunnan Journey" ? <p><a href={siteConfig.sampleItineraryPdf} download>Download a 6-day sample itinerary (PDF)</a></p> : null}

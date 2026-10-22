@@ -37,6 +37,9 @@ export type JourneyFrontmatter = {
   overviewTitle?: string;
   overviewDescription?: string;
   overviewItems?: JourneyOverviewItem[];
+  whoFor?: string;
+  whenToGo?: string;
+  heroIncludes?: string[];
   manifestoKicker?: string;
   manifestoLead?: string;
   manifestoClose?: string;
