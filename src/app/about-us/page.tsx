@@ -8,7 +8,7 @@ import { Testimonials } from "@/components/testimonials";
 import { brandIdentity, cancellationCopy, contractCopy, paymentCopy } from "@/lib/booking-terms";
 import { licensedOperator } from "@/lib/journey-trust";
 import { siteConfig } from "@/lib/site-config";
-import { getFeaturedTestimonials } from "@/lib/testimonials";
+import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
 import styles from "./about.module.css";
 
 const title = "Meet Joy Liu | About Hidden China Travel";
@@ -48,7 +48,7 @@ const questions = [
 ];
 
 export default function AboutPage() {
-  const stories = getFeaturedTestimonials();
+  const stories = getSelectedTestimonials();
 
   return <><SiteHeader /><main className={styles.page}>
     <section className={styles.hero}>
@@ -98,7 +98,14 @@ export default function AboutPage() {
     </div><div className={styles.checklist}><h3>Before you commit, we work through:</h3><ul><li>Your route, pace and hotel arrangements</li><li>What the price includes—and excludes</li><li>The operator’s identity, payment and cancellation terms</li><li>Local contacts and arrangements for changes</li></ul><p>No pressure to decide before your questions are answered.</p></div>
     <div id="local-partners"><OperatorCredentials /></div></div></section>
 
-    <Testimonials items={stories} heading="What travelers remember" intro="Guests who followed this same path, from first conversation to arrival in Yunnan." />
+    <Testimonials
+      items={stories}
+      eyebrow={selectedTestimonialsCopy.eyebrow}
+      heading={selectedTestimonialsCopy.heading}
+      intro={selectedTestimonialsCopy.intro}
+      showRating={false}
+      note={selectedTestimonialsCopy.note}
+    />
 
     <section className={styles.faq}><div className={`shell ${styles.faqGrid}`}><div><h2>A few things you might be wondering</h2><p>Good journeys begin with clear answers.</p></div><div>{questions.map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>
     <section className={styles.cta}><div className="shell"><h2>Let’s start with your kind of journey.</h2><p>A few dates, a place you’ve been dreaming about, or simply how you want the trip to feel. Tell me what’s on your mind.</p><Link href={whatsapp} className="button button-light">CHAT WITH JOY ON WHATSAPP</Link><Link href="/contact">Prefer email? Get in touch →</Link><span>Speak directly with Joy Liu. No commitment to book.</span></div></section>

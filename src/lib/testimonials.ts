@@ -23,7 +23,7 @@ export const selectedTestimonialsCopy = {
 
 const allTestimonials = testimonials as Testimonial[];
 
-/** Representative reviews shown on the homepage and journey detail pages. */
+/** Representative reviews shown on every public traveler-stories module. */
 const selectedTestimonialIds = [
   "daniel-sarah-yunnan-family",
   "rachel-kevin-lisa",

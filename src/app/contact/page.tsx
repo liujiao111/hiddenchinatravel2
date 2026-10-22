@@ -6,7 +6,7 @@ import { ContentFooter } from "@/components/content-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { siteConfig } from "@/lib/site-config";
-import { getFeaturedTestimonials } from "@/lib/testimonials";
+import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
 
 const title = "Contact Hidden China Travel | Talk With Joy Liu";
 const description = "Have questions about Yunnan, China travel, visas, payments, or trip planning? Contact Joy Liu directly and start the conversation.";
@@ -51,7 +51,7 @@ const questions = [
 ];
 
 export default async function ContactPage() {
-  const stories = getFeaturedTestimonials();
+  const stories = getSelectedTestimonials();
 
   return (
     <main>
@@ -102,7 +102,14 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      <Testimonials items={stories} heading="Travelers who started with a conversation" intro="A few of the people who wrote to Joy first, then traveled with us through Yunnan." />
+      <Testimonials
+        items={stories}
+        eyebrow={selectedTestimonialsCopy.eyebrow}
+        heading={selectedTestimonialsCopy.heading}
+        intro={selectedTestimonialsCopy.intro}
+        showRating={false}
+        note={selectedTestimonialsCopy.note}
+      />
 
       <section className="contact-form-section section" id="enquire">
         <div className="shell contact-form-layout">
