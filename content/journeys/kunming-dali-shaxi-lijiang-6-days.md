@@ -79,9 +79,9 @@ tiers:
     accommodation: "Luxury 5-star hotels"
     idealFor: "Special occasions · Higher-end stays"
 inclusions:
-  - "A spacious, comfortable private vehicle for the whole journey. You choose gasoline or electric, with five or seven seats."
-  - "A Chinese- or English-speaking guide throughout"
-  - "24-hour private concierge support, from your first enquiry until the journey ends"
+  - "A private five- or seven-seat vehicle for the whole journey, confirmed in your proposal"
+  - "A Chinese- or English-speaking driver-guide throughout"
+  - "Travel insurance for the confirmed journey period. It does not replace your own international travel insurance."
   - "Hotels matched to your chosen style: Comfort, Premium or Luxury"
   - "Breakfast, which the hotel generally includes"
   - "Entrance tickets, mountain entry fees and similar charges for the places on your itinerary"
@@ -102,7 +102,11 @@ faqs:
   - question: "How many hotel nights are included?"
     answer: "Five hotel nights: two in Dali, two in Shaxi and one in Lijiang."
   - question: "Do I need to speak Chinese?"
-    answer: "No. A Chinese- or English-speaking guide is included throughout. Other languages need to be confirmed in advance."
+    answer: "No. A Chinese- or English-speaking driver-guide is included throughout. One local host drives, coordinates the route and offers context. This is not a separate attraction lecturer inside every site. A specialist site guide can be added in your proposal. Other languages need to be confirmed in advance."
+  - question: "How do payment and cancellation work?"
+    answer: "After you confirm the written itinerary and travel contract, pay a 20% deposit to Yunnan Meizhen International Travel Agency Co., Ltd. by Alipay or WeChat. The remaining 80% is due after airport pickup. Stripe is a backup if those apps are not set up; Stripe charges currently appear under a personal name until the agency’s business merchant account is approved. Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit."
+  - question: "Is travel insurance included?"
+    answer: "Travel insurance for the confirmed journey period is included. It does not replace your own international travel insurance."
   - question: "What kind of accommodation is included?"
     answer: "Choose Comfort, Premium or Luxury. Comfort uses local quality 4-star and highly rated boutique hotels. Premium, our recommended option, uses international 4-star+ and light luxury 5-star hotels. Luxury is the higher-end hotel selection. Specific properties are confirmed in your proposal."
   - question: "Is US$480 the price per day?"
@@ -112,7 +116,7 @@ faqs:
   - question: "Are there any shopping stops?"
     answer: "No. There are no mandatory shopping stops, tourist factories or commission-led detours in the itinerary."
   - question: "Who arranges and operates the journey?"
-    answer: "Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) quotes, contracts and operates the journey. Its travel agency permit number is L-YN-1017500. Hidden China Travel helps you shape the route and coordinate the proposal."
+    answer: "Hidden China Travel is the English-language site of Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司), a licensed travel agency in Kunming. Joy Liu is your travel consultant. The travel contract and all payments are with that agency, to its corporate account. Its travel agency permit number is L-YN-1017500."
 ---
 
 ## Why this journey

@@ -4,8 +4,8 @@ title: "Terms of Service"
 seoTitle: "Terms of Service"
 metaDescription: "Review the terms governing use of Hidden China Travel, its travel information, recommendations, and planning services."
 canonical: "/terms-of-service"
-dateModified: "2026-09-01"
-lastUpdated: "September 2026"
+dateModified: "2026-10-22"
+lastUpdated: "October 2026"
 ---
 
 Welcome to Hidden China Travel.
@@ -16,16 +16,18 @@ By accessing or using this website, you agree to the following Terms of Service.
 
 ## About Hidden China Travel
 
-Hidden China Travel provides:
+Hidden China Travel is the English-language site of Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司), a licensed travel agency in Kunming. Its travel agency permit number is L-YN-1017500.
+
+The site provides:
 
 - Travel guides and educational content
 - Travel planning resources
 - Destination information
 - Travel consultations
-- Custom travel planning services
+- Private and tailor-made journey planning
 - Travel-related recommendations
 
-Information provided on this website is intended for informational purposes only.
+Guides and destination articles are for information only. Booked private journeys are travel services under a written contract with the licensed agency.
 
 ---
 
@@ -70,20 +72,30 @@ Visa and entry information should always be confirmed directly with relevant gov
 
 ---
 
-## Travel Services
+## Private Journey Bookings
 
-Travel planning services offered through Hidden China Travel are based on the information provided by the traveler.
+A website enquiry is not a booking. A booking starts only after you confirm the written itinerary and sign the travel contract with Yunnan Meizhen International Travel Agency Co., Ltd.
 
-Recommendations are provided in good faith, but travel conditions may change.
+After that confirmation, a 20% deposit is paid to the agency’s corporate account by Alipay or WeChat. The remaining 80% is due after airport pickup, when the journey starts. Stripe is a backup if Alipay or WeChat are not set up. Stripe charges currently appear under a personal name until the agency’s business merchant account is approved.
+
+Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit.
+
+Travel insurance for the confirmed journey period is included. It does not replace your own international travel insurance.
+
+The confirmed proposal states the route, inclusions, exclusions, price and any optional extras. Weather, tickets and transport can still change after booking; alternatives are discussed before they are made.
+
+## Travel Information and Planning Advice
+
+Travel planning advice on this website is based on the information you provide. Recommendations are given in good faith, but travel conditions may change.
 
 We cannot guarantee:
 
-- Availability of hotels
+- Availability of hotels before they are booked in a confirmed proposal
 - Availability of transportation
 - Entry approval by immigration authorities
 - Visa approval
 - Weather conditions
-- Uninterrupted travel services provided by third parties
+- Uninterrupted services provided by hotels, airlines or attraction operators
 
 ---
 
