@@ -108,6 +108,7 @@ export function SiteHeaderClient({ journeys }: { journeys: HeaderJourney[] }) {
       <Link href="/journeys" className="mobile-nav-all" onClick={() => setMobileOpen(false)}>VIEW ALL JOURNEYS</Link>
       <Link href="/survival-kit" onClick={() => setMobileOpen(false)}>TRAVEL GUIDES</Link>
       <Link href="/about-us" onClick={() => setMobileOpen(false)}>ABOUT US</Link>
+      <Link href="/booking" onClick={() => setMobileOpen(false)}>BOOKING &amp; SERVICE</Link>
       <Link href="/contact" onClick={() => setMobileOpen(false)}>CONTACT US</Link>
     </nav> : null}
     <nav className="nav-row" aria-label="Main navigation">
