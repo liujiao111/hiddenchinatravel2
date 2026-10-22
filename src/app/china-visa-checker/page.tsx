@@ -10,10 +10,11 @@ import { getPhase1CountryEditorials } from "@/lib/visa-checker/country-pages";
 import "../travel-tools.css";
 
 export const metadata: Metadata = {
-  title: "China Visa Checker 2026: Visa-Free, Transit or Tourist Visa?",
+  title: "China Visa Checker 2026: Test Your Route",
   description: "Check your passport, stay and route against China visa-free, Hainan and 240-hour transit rules. See the conditions to confirm before you fly.",
   alternates: { canonical: "/china-visa-checker" },
-  openGraph: { title: "China Visa Checker | Hidden China Travel", description: "Check China entry options by passport and route.", url: "/china-visa-checker", type: "website" },
+  openGraph: { title: "China Visa Checker 2026", description: "Check China entry options by passport and route.", url: "/china-visa-checker", type: "website", images: [{ url: "/home/hero.webp" }] },
+  twitter: { card: "summary_large_image", title: "China Visa Checker 2026", description: "Check China entry options by passport and route.", images: ["/home/hero.webp"] },
 };
 
 const faq = [

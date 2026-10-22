@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!item) return {};
   const { frontmatter } = item;
   const description = frontmatter.metaDescription || frontmatter.excerpt || frontmatter.description;
-  const image = frontmatter.ogImage?.url || frontmatter.coverImage;
+  const image = frontmatter.ogImage?.url || frontmatter.coverImage || "/home/hero.webp";
   const seoTitle = frontmatter.absoluteSeoTitle || frontmatter.seoTitle || frontmatter.title;
   return {
     title: frontmatter.absoluteSeoTitle ? { absolute: seoTitle } : seoTitle,

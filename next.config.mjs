@@ -1,18 +1,10 @@
+import { legacyRedirects } from "./legacy-redirects.mjs";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  skipTrailingSlashRedirect: true,
   async redirects() {
-    return [
-      {
-        source: "/journeys/dali-lijiang-lugu-lake-private-tour",
-        destination: "/journeys",
-        permanent: true,
-      },
-      {
-        source: "/journeys/dali-lijiang-lugu-lake-6-days",
-        destination: "/journeys",
-        permanent: true,
-      },
-    ];
+    return legacyRedirects();
   },
   images: {
     remotePatterns: [

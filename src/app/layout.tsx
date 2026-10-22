@@ -33,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-      <Script id="microsoft-clarity" strategy="beforeInteractive">
+      <Script id="microsoft-clarity" strategy="afterInteractive">
         {`
           (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

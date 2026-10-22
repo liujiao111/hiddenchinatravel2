@@ -1,7 +1,7 @@
 ---
 type: hub
 title: "Internet in China for Foreigners"
-seoTitle: "Internet in China 2026: VPN, SIM & eSIM"
+seoTitle: "China Internet Hub: Choose eSIM, SIM or VPN"
 slug: internet-in-china
 metaDescription: "Internet in China for foreigners in 2026 — travel eSIM vs local SIM, when you still need a VPN after LetsVPN, and how to stay online on hotel Wi‑Fi."
 canonical: /internet-in-china

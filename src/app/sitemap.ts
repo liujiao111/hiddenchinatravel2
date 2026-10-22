@@ -3,17 +3,19 @@ import { absoluteUrl, getAllContent } from "@/lib/content";
 import { getAllJourneys } from "@/lib/journeys";
 import { getPhase1CountryEditorials } from "@/lib/visa-checker/country-pages";
 
+const coreUpdated = new Date("2026-10-22");
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: "https://hiddenchinatravel.com", changeFrequency: "weekly", priority: 1 },
-    { url: "https://hiddenchinatravel.com/about-us", changeFrequency: "monthly", priority: 0.6 },
-    { url: "https://hiddenchinatravel.com/contact", changeFrequency: "monthly", priority: 0.7 },
-    { url: "https://hiddenchinatravel.com/china-destinations/yunnan", changeFrequency: "weekly", priority: 0.9 },
-    { url: "https://hiddenchinatravel.com/journeys", changeFrequency: "weekly", priority: 0.9 },
-    { url: "https://hiddenchinatravel.com/survival-kit", changeFrequency: "monthly", priority: 0.8 },
-    { url: "https://hiddenchinatravel.com/china-visa-checker", changeFrequency: "monthly", priority: 0.8 },
-    { url: "https://hiddenchinatravel.com/china-currency-converter", changeFrequency: "monthly", priority: 0.8 },
-    { url: "https://hiddenchinatravel.com/custom-china-tour", changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://hiddenchinatravel.com/", lastModified: coreUpdated, changeFrequency: "weekly", priority: 1 },
+    { url: "https://hiddenchinatravel.com/about-us", lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.6 },
+    { url: "https://hiddenchinatravel.com/contact", lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.7 },
+    { url: "https://hiddenchinatravel.com/china-destinations/yunnan", lastModified: coreUpdated, changeFrequency: "weekly", priority: 0.9 },
+    { url: "https://hiddenchinatravel.com/journeys", lastModified: coreUpdated, changeFrequency: "weekly", priority: 0.9 },
+    { url: "https://hiddenchinatravel.com/survival-kit", lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://hiddenchinatravel.com/china-visa-checker", lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://hiddenchinatravel.com/china-currency-converter", lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://hiddenchinatravel.com/custom-china-tour", lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.9 },
     ...getPhase1CountryEditorials().map((country) => ({
       url: `https://hiddenchinatravel.com/china-visa-checker/${country.slug}`,
       lastModified: country.lastReviewed,
@@ -22,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...getAllJourneys().map((journey) => ({
       url: `https://hiddenchinatravel.com/journeys/${journey.slug}`,
+      lastModified: coreUpdated,
       changeFrequency: "monthly" as const,
       priority: 0.9,
     })),

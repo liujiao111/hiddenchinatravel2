@@ -13,13 +13,14 @@ import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { YunnanTravelNotes } from "@/components/yunnan-travel-notes";
 import { bookingSteps, brandIdentity } from "@/lib/booking-terms";
 import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
+import { breadcrumbList } from "@/components/json-ld";
 
 const sixDayPhotos: Record<string, readonly [string, string]> = {
   "Day 1": ["/assets/blog/dali-travel-guide/dali-ancient-town-rooftops.webp", "Rooftops in Dali Old Town, with Cangshan behind"],
   "Day 2": ["/assets/blog/dali-travel-guide/erhai-lake-cangshan.webp", "Erhai Lake, with Cangshan across the water"],
-  "Day 3": ["/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge-rod-waddington.jpg", "Yujin Bridge on the edge of Shaxi"],
-  "Day 5": ["/assets/resources/丽江-丽江古城-248.jpg", "A canal lane in Lijiang Old Town"],
-  "Day 6": ["/assets/resources/丽江-蓝月谷-316.jpg", "Blue Moon Valley below Jade Dragon Snow Mountain"],
+  "Day 3": ["/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge.webp", "Yujin Bridge on the edge of Shaxi"],
+  "Day 5": ["/assets/blog/yunnan-travel-from-uk/lijiang-old-town.webp", "A canal lane in Lijiang Old Town"],
+  "Day 6": ["/assets/destinations/yunnan/blue-moon.webp", "Blue Moon Valley below Jade Dragon Snow Mountain"],
 };
 
 const goodFit = ["Experiences over checklists", "Local culture and daily life", "A comfortable, unhurried pace", "Stories worth bringing home"];
@@ -30,6 +31,7 @@ const journeyGuides = [
     excerpt: "Understand Yunnan’s landscapes, seasons and travel distances before choosing your pace.",
     href: "/china-destinations/yunnan",
     image: "/home/hero.webp",
+    imageAlt: "Boardwalk beside a turquoise alpine lake under snow mountains in Yunnan",
     readTime: "START HERE",
   },
   {
@@ -37,6 +39,7 @@ const journeyGuides = [
     excerpt: "Plan your time around Erhai, the old town, Bai villages and the parts of Dali worth slowing down for.",
     href: "/dali-travel-guide",
     image: "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp",
+    imageAlt: "Cangshan mountains and Erhai Lake near Dali",
     readTime: "DESTINATION GUIDE",
   },
   {
@@ -44,6 +47,7 @@ const journeyGuides = [
     excerpt: "Learn why Shaxi deserves an overnight stay and what else lies beyond Dali's busiest streets.",
     href: "/dali-hidden-gems-off-the-beaten-path",
     image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-theater-courtyard.webp",
+    imageAlt: "Traditional theater courtyard in Shaxi Ancient Town",
     readTime: "LOCAL GUIDE",
   },
 ];
@@ -65,14 +69,23 @@ export function JourneyPage({ journey }: { journey: Journey }) {
   const relatedGuides = isClassicYunnanJourney ? journeyGuides.slice(0, 2) : journeyGuides;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "TouristTrip",
-    name: frontmatter.title,
-    description: frontmatter.metaDescription,
-    image: `https://hiddenchinatravel.com${frontmatter.coverImage}`,
-    touristType: frontmatter.travelStyles,
-    itinerary: frontmatter.route,
-    provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" },
-    ...(frontmatter.fromPrice > 0 ? { offers: { "@type": "Offer", priceCurrency: frontmatter.currency, price: frontmatter.fromPrice, url: `https://hiddenchinatravel.com/journeys/${journey.slug}` } } : {}),
+    "@graph": [
+      {
+        "@type": "TouristTrip",
+        name: frontmatter.title,
+        description: frontmatter.metaDescription,
+        image: `https://hiddenchinatravel.com${frontmatter.coverImage}`,
+        touristType: frontmatter.travelStyles,
+        itinerary: frontmatter.route,
+        provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" },
+        ...(frontmatter.fromPrice > 0 ? { offers: { "@type": "Offer", priceCurrency: frontmatter.currency, price: frontmatter.fromPrice, url: `https://hiddenchinatravel.com/journeys/${journey.slug}` } } : {}),
+      },
+      breadcrumbList([
+        { name: "Home", href: "/" },
+        { name: "Journeys", href: "/journeys" },
+        { name: frontmatter.title, href: `/journeys/${journey.slug}` },
+      ]),
+    ],
   };
 
   return <main>
@@ -87,7 +100,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
     <section className="journey-fit"><div className="shell"><header><span>{frontmatter.fitKicker || "IS THIS YOUR KIND OF JOURNEY?"}</span><h2>{frontmatter.fitHeading || "For travelers who would rather go deeper than go faster."}</h2></header><div className="journey-fit-columns"><div><h3>You’ll probably love it if you value…</h3>{selectedGoodFit.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><h3>It may not be for you if you want…</h3>{selectedPoorFit.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></div></section>
 
-    <section className="journey-experiences section section-sand" id="experiences"><div className="shell"><div className="journey-editorial-heading"><span>THE MOMENTS THAT STAY WITH YOU</span><h2>Signature experiences</h2><p>Not additions made to fill an itinerary—moments chosen to give you more time with a place.</p></div><div className="journey-experience-grid">{frontmatter.experiences.map((experience, index) => <article key={experience.title}><div><Image src={encodeURI(experience.image)} alt={experience.title} fill sizes={index === 0 || index === 3 ? "(max-width: 700px) 100vw, 58vw" : "(max-width: 700px) 100vw, 42vw"} unoptimized /></div><span>0{index + 1} · EXPERIENCE</span><h3>{experience.title}</h3><p>{experience.description}</p></article>)}</div></div></section>
+    <section className="journey-experiences section section-sand" id="experiences"><div className="shell"><div className="journey-editorial-heading"><span>THE MOMENTS THAT STAY WITH YOU</span><h2>Signature experiences</h2><p>Not additions made to fill an itinerary—moments chosen to give you more time with a place.</p></div><div className="journey-experience-grid">{frontmatter.experiences.map((experience, index) => <article key={experience.title}><div><Image src={encodeURI(experience.image)} alt={experience.imageAlt || experience.title} fill sizes={index === 0 || index === 3 ? "(max-width: 700px) 100vw, 58vw" : "(max-width: 700px) 100vw, 42vw"} unoptimized /></div><span>0{index + 1} · EXPERIENCE</span><h3>{experience.title}</h3><p>{experience.description}</p></article>)}</div></div></section>
 
     <section className="journey-itinerary section" id="itinerary"><div className="shell journey-section-layout"><header><p>{frontmatter.itineraryKicker || "YOUR 6 DAYS IN YUNNAN"}</p><h2>{frontmatter.itineraryHeading || (isSixDayYunnanJourney ? "Stay in Shaxi after the day trips have left." : "A rhythm of arrival, discovery and rest.")}</h2><span>{frontmatter.itineraryIntro || (isSixDayYunnanJourney ? "A morning on Erhai, indigo in Zhoucheng, the old square once the coaches have gone, then a day under Jade Dragon Snow Mountain. Hotel breakfast is generally included. Lunch and dinner are not. The days can still move around your dates." : "This is a starting point rather than a rigid package. We can adjust the route around your dates and preferred pace.")}</span></header><div className="journey-days">{frontmatter.itinerary.map((day, index) => {
       const dayPhoto = day.image ? [day.image, day.imageAlt || day.title] as const : isSixDayYunnanJourney ? sixDayPhotos[day.days] : undefined;

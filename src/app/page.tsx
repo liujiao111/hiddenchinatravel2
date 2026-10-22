@@ -9,6 +9,7 @@ import { Testimonials } from "@/components/testimonials";
 import { brandIdentity, cancellationCopy, insuranceCopy, paymentCopy } from "@/lib/booking-terms";
 import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
+import { organizationJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
 
@@ -17,7 +18,7 @@ const title = "Private Yunnan Tours & Tailor-Made Journeys";
 const description = "Plan a private Yunnan journey through Kunming, Dali, Lijiang and Shaxi, with tailor-made itineraries, private transport, local guides and personal support.";
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: `${title} | Hidden China Travel` },
   description,
   alternates: { canonical },
   openGraph: {
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     url: canonical,
     type: "website",
     siteName: "Hidden China Travel",
-    images: [{ url: "/home/hero.webp", alt: "Snow-capped mountains in Yunnan" }],
+    images: [{ url: "/home/hero.webp", alt: "Boardwalk beside a turquoise alpine lake under snow mountains in Yunnan" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -57,12 +58,12 @@ const supportItems = [
   { title: "Maps and Transportation", detail: "Prepare maps, trains and everyday transport before arrival.", href: "/survival-kit#maps" },
 ];
 const destinations = [
-  ["Kunming", "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.", "/assets/resources/昆明-石林-352.jpg", "/kunming-travel-guide", "EXPLORE KUNMING"],
-  ["Dali", "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.", "/assets/destinations/yunnan/dali.webp", "/dali-travel-guide", "EXPLORE DALI"],
-  ["Shaxi", "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.", "/assets/destinations/yunnan/shaxi.webp", "/dali-hidden-gems-off-the-beaten-path", "DISCOVER SHAXI"],
-  ["Lijiang", "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", "/assets/destinations/yunnan/lijiang.webp", "/china-destinations/yunnan", "EXPLORE LIJIANG"],
-  ["Lugu Lake", "Mountain roads, lakeside villages and a quieter side of northwest Yunnan.", "/assets/resources/丽江-泸沽湖-419.jpg", "/china-destinations/yunnan", "DISCOVER LUGU LAKE"],
-  ["Shangri-La", "High-altitude landscapes and a distinctly different side of Yunnan.", "/assets/destinations/yunnan/shangri-la.webp", "/china-destinations/yunnan", "EXPLORE SHANGRI-LA"],
+  { name: "Kunming", note: "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.", image: "/assets/blog/kunming-travel-guide/cover-stone-forest.webp", alt: "Limestone pinnacles of the Stone Forest near Kunming", href: "/kunming-travel-guide", cta: "EXPLORE KUNMING" },
+  { name: "Dali", note: "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.", image: "/assets/destinations/yunnan/dali.webp", alt: "Wuhua Tower in Dali Ancient Town beneath the Cangshan mountains", href: "/dali-travel-guide", cta: "EXPLORE DALI" },
+  { name: "Shaxi", note: "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.", image: "/assets/destinations/yunnan/shaxi.webp", alt: "Traditional tiled roofs and lanes in Shaxi Ancient Town", href: "/dali-hidden-gems-off-the-beaten-path", cta: "DISCOVER SHAXI" },
+  { name: "Lijiang", note: "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", image: "/assets/destinations/yunnan/lijiang.webp", alt: "Rooftops and canals in Lijiang Old Town with mountains beyond", href: "/lijiang-travel-guide", cta: "EXPLORE LIJIANG" },
+  { name: "Lugu Lake", note: "A quieter northwest road, only worth adding when you have extra days beyond a first Yunnan week.", image: "/assets/destinations/yunnan/lugu-lake.webp", alt: "Quiet shoreline and pavilion on Lugu Lake in northwest Yunnan", href: "/china-destinations/yunnan", cta: "SEE THE YUNNAN ROUTE" },
+  { name: "Shangri-La", note: "High-altitude landscapes and a distinctly different side of Yunnan.", image: "/assets/destinations/yunnan/shangri-la.webp", alt: "Highland lake and forest near Shangri-La", href: "/shangri-la-travel-guide", cta: "EXPLORE SHANGRI-LA" },
 ];
 const faqs = [
   ["How much does a private Yunnan journey cost?", "Pricing depends on the route, number of travelers, travel dates and hotel standard. After learning more about your plans, we will provide a tailored quotation with the inclusions and exclusions clearly explained."],
@@ -82,13 +83,7 @@ export default function Home() {
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Organization",
-        name: "Hidden China Travel",
-        legalName: "Yunnan Meizhen International Travel Agency Co., Ltd.",
-        url: "https://hiddenchinatravel.com",
-        logo: "https://hiddenchinatravel.com/brand/logo.webp",
-      },
+      organizationJsonLd,
       {
         "@type": "WebSite",
         name: "Hidden China Travel",
@@ -107,7 +102,7 @@ export default function Home() {
 
   return <main><SiteHeader />
     <section className="hero">
-      <Image src="/home/hero.webp" alt="Snow-capped mountains in Yunnan" fill preload unoptimized sizes="100vw" />
+      <Image src="/home/hero.webp" alt="Boardwalk beside a turquoise alpine lake under snow mountains in Yunnan" fill preload unoptimized sizes="100vw" />
       <div className="hero-shade" />
       <div className="hero-copy">
         <p className="hero-kicker">PRIVATE YUNNAN JOURNEYS</p>
@@ -247,7 +242,7 @@ export default function Home() {
           <p>Yunnan is more than one route. Begin with the places we know best, then combine them in a way that suits your time and interests.</p>
           <Link className="section-heading-link" href="/china-destinations/yunnan">Open the complete Yunnan travel guide →</Link>
         </div>
-        <div className="destination-grid home-destination-grid">{destinations.map(([name, note, image, href, cta]) => <article className="image-card" key={name}><Image src={image} alt={name} fill sizes="(max-width: 700px) 100vw, 33vw" /><div className="card-shade" /><div className="image-card-copy"><p>{note}</p><h3>{name}</h3><Link href={href} className="button button-light">{cta}</Link></div></article>)}</div>
+        <div className="destination-grid home-destination-grid">{destinations.map(({ name, note, image, alt, href, cta }) => <article className="image-card" key={name}><Image src={image} alt={alt} fill sizes="(max-width: 700px) 100vw, 33vw" /><div className="card-shade" /><div className="image-card-copy"><p>{note}</p><h3>{name}</h3><Link href={href} className="button button-light">{cta}</Link></div></article>)}</div>
       </div>
     </section>
 

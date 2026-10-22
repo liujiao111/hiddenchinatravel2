@@ -4,6 +4,7 @@ seoTitle: "Yunnan Travel from USA (2026): Visa, Flights & 10-Day Route"
 excerpt: "Most US travelers need a China visa for an ordinary Yunnan holiday. Compare 240-hour transit, Kunming flight routes and a slower Dali–Shaxi–Lijiang plan."
 metaDescription: "Plan Yunnan from the USA: China visa or 240-hour transit, flights to Kunming, permitted Yunnan routes and a 10–14 day itinerary."
 coverImage: "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp"
+coverAlt: "Cangshan mountains and Erhai Lake near Dali"
 date: "2026-09-17T10:00:00+08:00"
 dateModified: "2026-09-25T10:00:00+08:00"
 author:
@@ -187,7 +188,7 @@ This pace leaves time in each town without making every morning a transfer day. 
 
 > **Still deciding whether Dali deserves an extra night?** Request the free **Dali Local Guide PDF** for neighborhood and local planning ideas. [Ask Joy for the free guide →](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20planning%20a%20Yunnan%20trip%20from%20the%20USA%20and%20would%20like%20the%20free%20Dali%20Local%20Guide%20PDF)
 
-![Yujin Bridge over the river in Shaxi](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge-rod-waddington.jpg)
+![Yujin Bridge over the river in Shaxi](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge.webp)
 
 *Yujin Bridge. Photo: [Rod Waddington](https://commons.wikimedia.org/wiki/File:%E6%B2%99%E6%BA%AA%E7%8E%89%E6%B4%A5%E6%A1%A5.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). Resized from the original.*
 

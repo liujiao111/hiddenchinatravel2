@@ -4,6 +4,7 @@ seoTitle: "Yunnan Travel from Australia (2026): Visa, Flights & 8-Day Route"
 excerpt: "Australian passport holders can visit China visa-free for up to 30 days. Plan flights to Kunming and a slower Dali–Shaxi–Lijiang route."
 metaDescription: "Plan Yunnan from Australia: 30-day China visa-free entry, flights to Kunming, a 6–8 day route and practical travel tips."
 coverImage: "/assets/blog/yunnan-travel-from-australia/cover-lijiang-rooftops.webp"
+coverAlt: "Rooftops of Lijiang Old Town with mountains beyond"
 date: "2026-09-21T10:00:00+08:00"
 dateModified: "2026-09-25T10:00:00+08:00"
 author:
@@ -193,7 +194,7 @@ This is where the trip settles into a slower rhythm. Spend time in Dali Ancient 
 
 A smaller Tea Horse Road town. Reviewers commonly describe it as "lightyears away from the touristy scene" of Dali or Lijiang, and a quiet respite from the more commercialised ancient towns nearby — which matches what most first-time visitors notice as soon as they arrive. It suits travellers who want something away from the main tourist circuit. The road transfer from Dali needs planning in advance.
 
-![Yujin Bridge over the river in Shaxi](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge-rod-waddington.jpg)
+![Yujin Bridge over the river in Shaxi](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge.webp)
 
 *Yujin Bridge in Shaxi. Photo: [Rod Waddington](https://commons.wikimedia.org/wiki/File:%E6%B2%99%E6%BA%AA%E7%8E%89%E6%B4%A5%E6%A1%A5.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).*
 

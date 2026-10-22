@@ -3,6 +3,7 @@ title: "Dali Travel Guide for Independent Visitors"
 seoTitle: "Dali Travel Guide for Independent Visitors (2026)"
 excerpt: "A practical Dali travel guide for independent visitors: where to stay, how long to spend, what to skip, and the China travel systems to set up before you arrive."
 coverImage: "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp"
+coverAlt: "Cangshan mountains and Erhai Lake near Dali"
 date: "2026-09-02T08:00:00+08:00"
 dateModified: "2026-09-13T10:00:00+08:00"
 author:

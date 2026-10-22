@@ -4,6 +4,7 @@ seoTitle: "Yunnan Travel from the UK (2026): Visa, Flights & 10-Day Route"
 excerpt: "British citizens can currently visit China visa-free for eligible stays of up to 30 days. Compare flights to Kunming and plan a slower Dali–Shaxi–Lijiang route."
 metaDescription: "Plan Yunnan from the UK: 2026 China visa-free entry for eligible British citizens, flights to Kunming, a slower route and practical booking tips."
 coverImage: "/assets/blog/yunnan-travel-from-uk/lijiang-old-town.webp"
+coverAlt: "Canal lane and traditional houses in Lijiang Old Town"
 date: "2026-09-24T10:00:00+08:00"
 dateModified: "2026-09-24T10:00:00+08:00"
 author:

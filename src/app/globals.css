@@ -1290,7 +1290,7 @@ a.utility-card { color:inherit; }
 .yunnan-featured-layout>div:first-child p { color:#5c615a; }
 .yunnan-featured-layout>div:first-child>a { display:inline-block; margin-top:17px; padding-bottom:6px; border-bottom:1px solid; color:#345d58; font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
 .yunnan-featured .journey-card { min-height:610px; }
-.yunnan-guide-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.yunnan-guide-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
 .yunnan-from-abroad { background:#fbfaf5; }
 .yunnan-country-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
 .yunnan-country-grid>a { display:flex; flex-direction:column; align-items:flex-start; min-height:265px; padding:32px 36px; border:1px solid #d8d4c4; background:#f3f0e5; transition:background .2s,transform .2s; }
@@ -1337,7 +1337,6 @@ a.utility-card { color:inherit; }
   .yunnan-featured-layout>div:first-child { max-width:760px; }
   .yunnan-guide-grid { grid-template-columns:repeat(2,1fr); }
   .yunnan-country-grid { grid-template-columns:1fr 1fr; }
-  .yunnan-guide-grid .guide-card:last-child { grid-column:1/-1; width:calc(50% - 12px); }
   .yunnan-season-grid,.yunnan-practical-grid { grid-template-columns:1fr 1fr; }
 }
 
@@ -1363,7 +1362,6 @@ a.utility-card { color:inherit; }
   .yunnan-route-stops article,.yunnan-route-stops article:nth-child(2) { border-right:0; border-bottom:1px solid #b7b39d; }
   .yunnan-route-stops article:last-child { border-bottom:0; }
   .yunnan-place-grid>a { min-height:440px; }
-  .yunnan-guide-grid .guide-card:last-child { grid-column:auto; width:auto; }
   .yunnan-featured .journey-card { min-height:560px; }
   .yunnan-season-grid article { min-height:0; }
   .yunnan-practical-grid>a { min-height:260px; }

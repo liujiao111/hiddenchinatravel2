@@ -18,6 +18,8 @@ import { siteConfig } from "@/lib/site-config";
 import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
 
 const canonical = "https://hiddenchinatravel.com/custom-china-tour";
+const title = "Tailor-Made Private Yunnan Tours";
+const description = "Plan a custom private Yunnan itinerary around your dates, interests and pace with Joy Liu. No booking commitment until you review the written proposal.";
 const whatsapp = "https://wa.me/8618880441791?text=" + encodeURIComponent("Hi Joy, I'd like a tailor-made private journey, starting with Yunnan. Can we discuss my ideas?");
 const ideas = [
   { title: "A gentler family journey", route: "Dali · Shaxi · Lijiang", text: "Fewer hotel changes, time for crafts and markets, and shorter activity days. Share your children’s ages or the needs of older relatives so we can discuss a suitable pace." },
@@ -37,10 +39,11 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: "Tailor-Made Yunnan",
-  description: "Private Journey Designed Around You. Plan a custom Yunnan itinerary around your dates, interests and pace with Joy Liu.",
+  title,
+  description,
   alternates: { canonical },
-  openGraph: { title: "Tailor-Made Yunnan", description: "Private Journey Designed Around You.", url: canonical, images: [{ url: "https://hiddenchinatravel.com/home/hero.webp" }], type: "website" },
+  openGraph: { title, description, url: canonical, images: [{ url: "https://hiddenchinatravel.com/home/hero.webp", alt: "Mountains and countryside in Yunnan" }], type: "website" },
+  twitter: { card: "summary_large_image", title, description, images: ["https://hiddenchinatravel.com/home/hero.webp"] },
 };
 
 export default function CustomChinaTourPage() {

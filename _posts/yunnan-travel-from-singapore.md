@@ -4,6 +4,7 @@ seoTitle: "Yunnan Travel from Singapore (2026): Visa, Flights & 8-Day Route"
 excerpt: "Singapore passport holders can visit China visa-free for up to 30 days. Plan a Yunnan trip around flights to Kunming, realistic travel time, and a Dali–Shaxi–Lijiang route."
 metaDescription: "Plan Yunnan from Singapore: 30-day visa-free entry for Singapore passport holders, Kunming flights, an 8-day route and practical booking tips."
 coverImage: "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp"
+coverAlt: "Cangshan mountains and Erhai Lake near Dali"
 date: "2026-09-17T10:00:00+08:00"
 dateModified: "2026-09-25T10:00:00+08:00"
 author:
@@ -108,7 +109,7 @@ The trade-off is time in transit. Distances within Yunnan are larger than they l
 | **6–7** | Explore Lijiang and its surroundings without changing hotels again |
 | **8** | Fly home via a suitable connection, or return to Kunming earlier if your ticket requires it |
 
-![Yujin Bridge over the river in Shaxi, Yunnan](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge-rod-waddington.jpg)
+![Yujin Bridge over the river in Shaxi, Yunnan](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge.webp)
 
 *Yujin Bridge in Shaxi. Photo: [Rod Waddington](https://commons.wikimedia.org/wiki/File:%E6%B2%99%E6%BA%AA%E7%8E%89%E6%B4%A5%E6%A1%A5.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). Resized from the original.*
 

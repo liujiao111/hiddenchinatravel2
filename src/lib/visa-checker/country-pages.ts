@@ -225,7 +225,7 @@ function buildCopy(
 
   if (editorial.slug === "indonesia") {
     return {
-      title: "Do Indonesians Need a Visa for China? Passport & Transit Rules",
+      title: "China visa for Indonesia (2026)",
       description: "Indonesian passport holders usually need a China visa. Compare transit and regional exemptions, visa-on-arrival rules, route examples and application steps.",
       h1: "Do Indonesian Citizens Need a Visa for China?",
       conclusionHeadline: "Usually yes for a mainland holiday — exemptions have conditions",
@@ -235,7 +235,7 @@ function buildCopy(
 
   if (editorial.slug === "mexico") {
     return {
-      title: "Do Mexicans Need a Visa for China? Visa & Transit Rules",
+      title: "China visa for Mexico (2026)",
       description: "Mexican passport holders usually need a China tourist visa. Compare 240-hour transit and Hainan exemptions, route examples and application steps in Mexico.",
       h1: "Do Mexican Citizens Need a Visa for China?",
       conclusionHeadline: "Usually yes for a mainland holiday — with specific exemptions",
@@ -246,7 +246,7 @@ function buildCopy(
 
   if (bucket === "visa_free" && visaFree) {
     return {
-      title: `Do ${demonym} need a visa for China? (${year} Visa-Free Policy)`,
+      title: `China visa-free for ${displayName} (${year})`,
       description: `${demonym} may enter China visa-free for up to ${visaFree.maxStayDays} days in ${year}. See stay limits, passport rules, 240-hour transit notes, and when you still need a visa.`,
       h1: `Do ${demonym} need a visa for China?`,
       conclusionHeadline: primary.headline,
@@ -257,7 +257,7 @@ function buildCopy(
   if (bucket === "transit_240_only" && transit240) {
     if (hainan30) {
       return {
-        title: `Do ${demonym} need a visa for China? (${year} Transit & Hainan)`,
+        title: `China visa for ${displayName} (${year})`,
         description: `From 20 August 2026, ${demonym} may use 240-hour visa-free transit or stay up to ${hainan30.maxStayDays} days in Hainan. A mainland round-trip holiday still needs a visa.`,
         h1: `Do ${demonym} need a visa for China?`,
         conclusionHeadline:
@@ -266,7 +266,7 @@ function buildCopy(
       };
     }
     return {
-      title: `Do ${demonym} need a visa for China? (${year} Rules & 240-Hour Transit)`,
+      title: `China visa for ${displayName} (${year})`,
       description: `${demonym} are not on China’s 30-day visa-free list. 240-hour transit visa-free can apply with a third-country ticket; a standalone holiday still needs a visa.`,
       h1: `Do ${demonym} need a visa for China?`,
       conclusionHeadline:
@@ -276,7 +276,7 @@ function buildCopy(
   }
 
   return {
-    title: `Do ${demonym} need a visa for China? (${year} Application Guide)`,
+    title: `China visa for ${displayName} (${year})`,
     description: `${demonym} generally need a China visa before travel. See why ${displayName} is not on the visa-free lists, how to prepare, and what to do next.`,
     h1: `Do ${demonym} need a visa for China?`,
     conclusionHeadline: primary.headline,

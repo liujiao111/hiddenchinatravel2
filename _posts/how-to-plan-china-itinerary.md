@@ -33,7 +33,7 @@ Planning a China trip independently is less “pick 12 famous names” and more 
 
 This guide is the planning layer. For whether independent travel is even realistic, start with [independent travel in China](/independent-travel-china). For payments, data, and real-name bookings, keep the [essentials hub](/china-travel-essentials) open — those systems should be in motion **before** you polish café-level days.
 
-If you already know your dates and want a local to turn a skeleton into a ready-to-follow PDF, use the [itinerary planner](/china-itinerary-planner#plan-trip) or read what is included on the [custom itinerary page](/services/custom-itinerary).
+If you already know your dates and want a local to turn a skeleton into a ready-to-follow PDF, use the [itinerary planner](/custom-china-tour#plan) or read what is included on the [custom itinerary page](/custom-china-tour).
 
 ## Plan in this order (not the reverse)
 
@@ -69,7 +69,7 @@ Write the trip as **nights**, then hang trains on those nights.
 - Connect them with **one rail spine**. Side trips should return to the spine or replace a night on it — not stack new hubs.
 - Put **one buffer night** near the end. Sold-out trains and weather are normal.
 
-Example shape (not a promise, not a client trip): fly into Chongqing, overnight there, then a slower corridor, then one landscape stop, then back to the same airport city. That is how a [sample southwest loop](/services/custom-itinerary) is sketched — labeled as a sample on purpose.
+Example shape (not a promise, not a client trip): fly into Chongqing, overnight there, then a slower corridor, then one landscape stop, then back to the same airport city. That is how a [sample southwest loop](/custom-china-tour) is sketched — labeled as a sample on purpose.
 
 A first independent week often looks simpler than that: fly into Kunming, then fast trains to Dali and Lijiang. [Independent Yunnan travel](/china-destinations/yunnan) is the worked example — days, trains, and when not to bolt on Xishuangbanna. If Dali is the base and you want days outside the Old Town, [Dali hidden gems](/dali-hidden-gems-off-the-beaten-path) covers Shaxi, Weishan, Xizhou, and the rest.
 
@@ -104,7 +104,7 @@ You do not need a 6 a.m. museum slot on day one to prove the trip is “efficien
 - Photography, food, or family pace matters more than covering famous names
 - You want someone local to sanity-check trains and overnight placement
 
-What we sell is **planning**, not a tour: a route you follow on your own, with a service fee and no hotel markup. Details and a labeled sample are on [/services/custom-itinerary](/services/custom-itinerary). Pricing for the same product also lives on [Services](/services#custom-itinerary).
+What we sell is **planning**, not a tour: a route you follow on your own, with a service fee and no hotel markup. Details and a labeled sample are on [/custom-china-tour](/custom-china-tour). The live service page is [Tailor-Made Yunnan](/custom-china-tour).
 
 We do not publish invented traveler quotes. [Traveler notes](/reviews) stay empty until someone finishes a paid itinerary and agrees in writing.
 
@@ -120,4 +120,4 @@ We do not publish invented traveler quotes. [Traveler notes](/reviews) stay empt
 
 When that list is honest, the itinerary is already most of the way there. The rest is taste: old streets vs museums, one landscape vs another, how early you want to get up.
 
-**Next step:** sketch it in the [China itinerary planner](/china-itinerary-planner#plan-trip), or keep reading the [itinerary planning hub](/china-itinerary-planning) for the supporting guides.
+**Next step:** sketch it in the [China itinerary planner](/custom-china-tour#plan), or keep reading the [itinerary planning hub](/china-itinerary-planning) for the supporting guides.
