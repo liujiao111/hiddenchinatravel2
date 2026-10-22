@@ -19,7 +19,7 @@ const visibleAskTargets = new Set<string>();
 
 function syncMobileAskBars() {
   const hide = visibleAskTargets.size > 0;
-  document.querySelectorAll(".article-mobile-ask, .journey-mobile-cta").forEach((bar) => {
+  document.querySelectorAll(".article-mobile-ask").forEach((bar) => {
     bar.classList.toggle("ask-bar-hidden", hide);
   });
 }
@@ -33,7 +33,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
 
   useEffect(() => {
     const target = document.getElementById(id);
-    const bars = document.querySelectorAll(".article-mobile-ask, .journey-mobile-cta");
+    const bars = document.querySelectorAll(".article-mobile-ask");
     if (!target || bars.length === 0) return;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) visibleAskTargets.add(id);

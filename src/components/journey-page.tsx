@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Journey } from "@/lib/journeys";
 import { ContentFooter } from "@/components/content-footer";
 import { HashLink } from "@/components/hash-link";
+import { JourneyMobileCta } from "@/components/journey-mobile-cta";
 import { SiteHeader } from "@/components/site-header";
 import { QuickAsk } from "@/components/quick-ask";
 import { formatPriceLabel } from "@/lib/format-price";
@@ -147,7 +148,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     <section className="journey-faq section" id="questions"><div className="narrow"><div className="section-heading"><h2>Frequently asked questions</h2></div>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><p>{faq.answer}</p></details>)}</div></section>
 
     <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked.</span><HashLink href="#ask-joy" className="button button-light">GET A QUOTE</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>
-    <HashLink href="#ask-joy" className="journey-mobile-cta">GET A QUOTE <span>→</span></HashLink>
+    <JourneyMobileCta />
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;
