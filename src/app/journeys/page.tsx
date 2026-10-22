@@ -5,6 +5,7 @@ import { QuickAsk } from "@/components/quick-ask";
 import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { getAllJourneys } from "@/lib/journeys";
+import { JsonLd, breadcrumbList } from "@/components/json-ld";
 
 const title = "Private Yunnan Journeys";
 const description = "Explore private, slower-paced journeys through Yunnan with trusted local drivers, guides and personal planning support from Joy Liu.";
@@ -38,7 +39,7 @@ export default function JourneysPage() {
   const journeys = getAllJourneys();
   return <main>
     <SiteHeader />
-    <header className="journeys-hero"><div className="narrow"><p>PRIVATE JOURNEYS THROUGH YUNNAN</p><h1>See less. Feel more.</h1><span>Thoughtful routes for travelers who want local context, an unhurried pace and support without the feeling of a conventional group tour.</span></div></header>
+    <header className="journeys-hero"><div className="narrow"><p>PRIVATE JOURNEYS THROUGH YUNNAN</p><h1>Private Yunnan journeys</h1><span>Thoughtful routes for travelers who want local context, an unhurried pace and support without the feeling of a conventional group tour.</span></div></header>
     <section className="journeys-list section"><div className="shell"><div className="section-heading"><h2>Private Yunnan journeys</h2><p>Start with one of our signature journeys, then adjust the dates, pace and details around your party.</p></div><div className="journeys-card-grid">{journeys.map((journey) => <JourneyCard key={journey.slug} priority={journey.frontmatter.featured} journey={{
       title: journey.frontmatter.shortTitle,
       subtitle: journey.frontmatter.excerpt,
@@ -57,6 +58,13 @@ export default function JourneysPage() {
     <section className="journeys-philosophy section-sand"><div className="shell"><h2>Not a checklist. A journey shaped around you.</h2><div>{["Private travel with your own party", "A driver-guide throughout", "No mandatory shopping stops", "A licensed Kunming agency for the contract and payment"].map((item, index) => <p key={item}><span>0{index + 1}</span>{item}</p>)}</div></div></section>
     <QuickAsk source="/journeys" sourceTitle="Private Yunnan journeys" intent="trip" />
     <ContentFooter />
+    <JsonLd data={{
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "CollectionPage", name: title, description, url: "https://hiddenchinatravel.com/journeys" },
+        breadcrumbList([{ name: "Home", href: "/" }, { name: "Private Yunnan journeys", href: "/journeys" }]),
+      ],
+    }} />
   </main>;
 }
 

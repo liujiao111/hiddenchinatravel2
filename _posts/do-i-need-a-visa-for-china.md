@@ -1,5 +1,6 @@
 ---
 title: "Do I Need a Visa for China? The 2026 Answer for Every Passport"
+seoTitle: "Do I Need a China Visa? 2026 Passport Guide"
 excerpt: "Find out in 30 seconds if your passport needs a China visa in 2026. Most Europeans get 30 days visa-free. US passports, Indian passports — here's your exact answer."
 coverImage: "/assets/blog/do-i-need-a-visa-for-china/cover.webp"
 date: "2026-07-09T09:53:58+00:00"

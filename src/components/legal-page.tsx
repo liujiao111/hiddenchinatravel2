@@ -3,6 +3,7 @@ import type { ContentItem } from "@/lib/content";
 import { ContentFooter } from "@/components/content-footer";
 import { MarkdownContent } from "@/components/markdown-content";
 import { SiteHeader } from "@/components/site-header";
+import { JsonLd, breadcrumbList } from "@/components/json-ld";
 
 export function LegalPage({ item }: { item: ContentItem }) {
   const { frontmatter } = item;
@@ -26,6 +27,7 @@ export function LegalPage({ item }: { item: ContentItem }) {
         <MarkdownContent>{item.body}</MarkdownContent>
       </article>
       <ContentFooter />
+      <JsonLd data={{ "@context": "https://schema.org", "@graph": [breadcrumbList([{ name: "Home", href: "/" }, { name: frontmatter.title, href: `/${item.slug}` }])] }} />
     </main>
   );
 }

@@ -122,7 +122,7 @@ Around holidays or for popular routes, tickets can sell out fast — Chongqing t
 
 **Consider a ride-hailing option for shorter distances.** If the gap is not too large — for example, traveling within the same province — apps like Didi or Amap's carpool feature can be a practical fallback. This usually requires a phone number that can receive verification codes, so it's worth setting up in advance rather than scrambling for it at the last minute. For the broader DiDi workflow (and why English addresses often fail), see the [China Transport Guide](/digital-survival-china-transport-guide).
 
-If you’re stitching several cities together and inventory keeps shifting, sketch the route first — then book the legs that matter most. → [Plan my China trip](/china-itinerary-planner)
+If you’re stitching several cities together and inventory keeps shifting, sketch the route first — then book the legs that matter most. → [Plan my China trip](/custom-china-tour)
 
 ![Orange block wall spelling Dali in Chinese characters inside the railway station, with travelers and luggage in the foreground](/assets/blog/book-china-high-speed-rail-foreigners/dali-railway-station-arrival.webp "Arrival at Dali railway station")
 

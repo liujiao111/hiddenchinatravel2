@@ -1,7 +1,7 @@
 ---
 type: hub
 title: "China Itinerary Planning for Independent Travelers"
-seoTitle: "China Itinerary Planning Hub for Independent Travelers (2026)"
+seoTitle: "China Itinerary Planning Hub (2026)"
 slug: china-itinerary-planning
 metaDescription: "Plan an independent China itinerary without a tour: city pacing, high-speed rail as the backbone, when to DIY vs hire a local planner, and the prep to do before polishing day plans."
 canonical: /china-itinerary-planning
@@ -32,8 +32,8 @@ subtopics:
         badge: "Orientation"
         status: published
       - title: "Custom itinerary planning"
-        href: /services/custom-itinerary
-        excerpt: "What a local PDF route includes, USD fees, and a labeled sample route — not a package tour."
+        href: /custom-china-tour
+        excerpt: "A private Yunnan journey shaped around your dates, interests and pace — not a fixed package."
         badge: "Service"
         status: published
   - id: before-you-polish-days
@@ -103,6 +103,16 @@ subtopics:
         excerpt: "Plan a long-haul Yunnan route and check whether a visa or qualifying transit fits."
         badge: "From the USA"
         status: published
+      - title: "Lijiang Travel Guide"
+        href: /lijiang-travel-guide
+        excerpt: "Old Town, Shuhe and Jade Dragon — how many nights to keep at the mountain end."
+        badge: "Lijiang"
+        status: published
+      - title: "Shangri-La Travel Guide"
+        href: /shangri-la-travel-guide
+        excerpt: "When the highland loop is worth extra days, and when to stay on the first route."
+        badge: "Shangri-La"
+        status: published
       - title: "Tailor-made private Yunnan tours"
         href: /custom-china-tour
         excerpt: "A private tour with local arrangements, shaped around your dates, interests and pace."
@@ -115,9 +125,9 @@ subtopics:
         status: published
 toolCTA:
   - label: "Plan my China trip"
-    href: /china-itinerary-planner#plan-trip
+    href: /custom-china-tour#plan
   - label: "See custom itinerary details"
-    href: /services/custom-itinerary
+    href: /custom-china-tour
 faqHeading: "Quick answers about planning a China itinerary"
 toolsHeading: "Want a route that matches your pace?"
 toolsIntro: "Use the planner to share cities, days, and style. Or read the how-to guide first if you prefer to sketch the skeleton yourself."
@@ -129,7 +139,7 @@ faqs:
   - question: "Do I need a tour to travel China independently?"
     answer: "No. Many foreigners travel without a group. You do need practical prep (apps, real-name bookings, tickets). See [independent travel in China](/independent-travel-china)."
   - question: "When is a custom itinerary worth paying for?"
-    answer: "When you have a time window, mixed interests (cities plus countryside), or you want a local to sanity-check pacing and trains. We sell a PDF route, not a tour package — details on the [custom itinerary page](/services/custom-itinerary)."
+    answer: "When you have a time window, mixed interests (cities plus countryside), or you want a local to sanity-check pacing and trains. We plan a private route around your dates — details on the [tailor-made Yunnan page](/custom-china-tour)."
   - question: "What is the backbone of most independent China routes?"
     answer: "Overnight cities connected by high-speed rail, with one buffer day. Start with the [transport hub](/transport-in-china) and [rail booking guide](/book-china-high-speed-rail-foreigners)."
   - question: "How do I plan a Yunnan itinerary independently?"
@@ -144,7 +154,7 @@ decisionGuide:
     - "Ask for a custom PDF if pacing, countryside days, or train connections feel fuzzy."
     - "Do not buy a group tour just because planning feels hard — that is a different product."
     - "Never treat sample routes on this site as a guaranteed client trip."
-  recommendation: "Read the [how-to guide](/how-to-plan-china-itinerary), then either [plan the trip](/china-itinerary-planner#plan-trip) or keep building from the [essentials hub](/china-travel-essentials)."
+  recommendation: "Read the [how-to guide](/how-to-plan-china-itinerary), then either [plan the trip](/custom-china-tour#plan) or keep building from the [essentials hub](/china-travel-essentials)."
 mistakes:
   title: "Common itinerary mistakes first-time visitors make"
   items:
@@ -156,7 +166,7 @@ mistakes:
       href: /china-travel-essentials
     - title: "Treating a sample loop as your booked trip"
       body: "Samples show how we think about pace. Your dates and energy are different."
-      href: /services/custom-itinerary
+      href: /custom-china-tour
 relatedHubs:
   - title: "China Travel Essentials"
     href: /china-travel-essentials

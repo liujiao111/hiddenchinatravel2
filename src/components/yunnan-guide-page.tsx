@@ -1,4 +1,5 @@
 import { CustomJourneyLink } from "@/components/custom-journey-link";
+import { breadcrumbList } from "@/components/json-ld";
 import Image from "next/image";
 import Link from "next/link";
 import { ContentFooter } from "@/components/content-footer";
@@ -43,11 +44,18 @@ const placeCards = [
     name: "Lijiang",
     note: "Old-town life and the high mountain landscape of northwest Yunnan.",
     image: "/home/hero.webp",
-    href: "/journeys/kunming-dali-shaxi-lijiang-6-days#itinerary",
+    href: "/lijiang-travel-guide",
   },
 ];
 
 const guides = [
+  {
+    title: "Kunming Travel Guide",
+    excerpt: "How long to stay at the gateway, whether the Stone Forest is worth a day, and how the private journeys use the city.",
+    href: "/kunming-travel-guide",
+    image: "/assets/blog/kunming-travel-guide/cover-stone-forest.webp",
+    readTime: "DESTINATION GUIDE",
+  },
   {
     title: "Dali Travel Guide",
     excerpt: "How long to stay, what Dali is really good for and how it fits a wider Yunnan route.",
@@ -56,18 +64,18 @@ const guides = [
     readTime: "DESTINATION GUIDE",
   },
   {
-    title: "Where to Stay in Dali",
-    excerpt: "Choose between the Ancient Town, Erhai's west shore and a quieter village base.",
-    href: "/where-to-stay-in-dali",
-    image: "/assets/blog/where-to-stay-in-dali/cover-ancient-town-dusk.webp",
-    readTime: "ACCOMMODATION GUIDE",
+    title: "Lijiang Travel Guide",
+    excerpt: "Old Town vs Shuhe, Jade Dragon Snow Mountain, and how many nights to keep at the mountain end.",
+    href: "/lijiang-travel-guide",
+    image: "/assets/destinations/yunnan/lijiang.webp",
+    readTime: "DESTINATION GUIDE",
   },
   {
-    title: "Dali Hidden Gems & Shaxi",
-    excerpt: "Shaxi, Xizhou, Zhoucheng, Weishan and the places beyond Dali's busiest streets.",
-    href: "/dali-hidden-gems-off-the-beaten-path",
-    image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp",
-    readTime: "LOCAL GUIDE",
+    title: "Shangri-La Travel Guide",
+    excerpt: "When the highland loop is worth the extra days — and when to stay on the first route.",
+    href: "/shangri-la-travel-guide",
+    image: "/assets/destinations/yunnan/shangri-la.webp",
+    readTime: "DESTINATION GUIDE",
   },
 ];
 
@@ -102,12 +110,20 @@ export function YunnanGuidePage({ journey }: { journey: Journey }) {
   const price = `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} ${frontmatter.priceBasis}`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "TouristDestination",
-    name: "Yunnan",
-    description: "A practical guide to planning a first Yunnan journey through Kunming, Dali, Shaxi and Lijiang.",
-    url: "https://hiddenchinatravel.com/china-destinations/yunnan",
-    image: "https://hiddenchinatravel.com/home/hero.webp",
-    touristType: ["First-time visitors to China", "Culture travelers", "Slow travel"],
+    "@graph": [
+      {
+        "@type": "TouristDestination",
+        name: "Yunnan",
+        description: "A practical guide to planning a first Yunnan journey through Kunming, Dali, Shaxi and Lijiang.",
+        url: "https://hiddenchinatravel.com/china-destinations/yunnan",
+        image: "https://hiddenchinatravel.com/home/hero.webp",
+        touristType: ["First-time visitors to China", "Culture travelers", "Slow travel"],
+      },
+      breadcrumbList([
+        { name: "Home", href: "/" },
+        { name: "Yunnan Travel Guide", href: "/china-destinations/yunnan" },
+      ]),
+    ],
   };
 
   return <main>
@@ -117,14 +133,14 @@ export function YunnanGuidePage({ journey }: { journey: Journey }) {
     <header className="yunnan-hero">
       <Image src="/home/hero.webp" alt="Snow mountains and countryside in Yunnan" fill priority unoptimized sizes="100vw" />
       <div className="yunnan-hero-shade" />
-      <div className="shell yunnan-hero-copy"><p>YUNNAN TRAVEL GUIDE · 2026</p><h1>Yunnan, beyond the checklist.</h1><span>From Kunming and Dali to Shaxi and Lijiang, plan a first journey with realistic travel times, local insight and room to slow down.</span><div><Link className="button yunnan-primary-action" href={journeyHref}>EXPLORE FIRST ENCOUNTER YUNNAN</Link><Link className="yunnan-text-action" href="#plan">START WITH THE GUIDE <b>↓</b></Link></div></div>
+      <div className="shell yunnan-hero-copy"><p>YUNNAN TRAVEL GUIDE · 2026</p><h1>Yunnan travel guide for a first trip</h1><span>From Kunming and Dali to Shaxi and Lijiang, plan a first journey with realistic travel times, local insight and room to slow down.</span><div><Link className="button yunnan-primary-action" href={journeyHref}>EXPLORE FIRST ENCOUNTER YUNNAN</Link><Link className="yunnan-text-action" href="#plan">START WITH THE GUIDE <b>↓</b></Link></div></div>
     </header>
 
     <section className="yunnan-facts"><div className="shell">{facts.map(([label, value]) => <div key={label}><span>{label}</span><b>{value}</b></div>)}</div></section>
 
-    <nav className="yunnan-anchor-nav" aria-label="On this page"><div className="shell"><Link href="#plan">Plan</Link><Link href="#places">Places</Link><Link href="#route">Route</Link><Link href="#from-abroad">From abroad</Link><Link href="#guides">Dali guides</Link><Link href="#season">Season</Link><Link href="#prepare">Prepare</Link><Link href="#faq">FAQ</Link></div></nav>
+    <nav className="yunnan-anchor-nav" aria-label="On this page"><div className="shell"><Link href="#plan">Plan</Link><Link href="#places">Places</Link><Link href="#route">Route</Link><Link href="#from-abroad">From abroad</Link><Link href="#guides">Guides</Link><Link href="#season">Season</Link><Link href="#prepare">Prepare</Link><Link href="#faq">FAQ</Link></div></nav>
 
-    <section className="yunnan-intro" id="plan"><div className="narrow"><span>START WITH THE SHAPE OF THE TRIP</span><h2>Yunnan is a province, not one climate or one quick loop.</h2><p><Link href="/kunming-travel-guide">Kunming</Link> is the usual gateway. Dali brings the lake basin and Bai villages. Shaxi rewards an overnight stay on the old Tea Horse Road, while Lijiang leads into the high mountain landscape of northwest Yunnan.</p><p>For a first trip, these four places form a coherent route. Xishuangbanna and Shangri-La are both worthwhile, but they pull the journey in different directions. Add one only when your dates and interests justify the extra travel.</p></div></section>
+    <section className="yunnan-intro" id="plan"><div className="narrow"><span>START WITH THE SHAPE OF THE TRIP</span><h2>Yunnan is a province, not one climate or one quick loop.</h2><p><Link href="/kunming-travel-guide">Kunming</Link> is the usual gateway. Dali brings the lake basin and Bai villages. Shaxi rewards an overnight stay on the old Tea Horse Road, while <Link href="/lijiang-travel-guide">Lijiang</Link> leads into the high mountain landscape of northwest Yunnan.</p><p>For a first trip, these four places form a coherent route. Xishuangbanna and <Link href="/shangri-la-travel-guide">Shangri-La</Link> are both worthwhile, but they pull the journey in different directions. Add one only when your dates and interests justify the extra travel.</p></div></section>
 
     <section className="yunnan-places section section-sand" id="places"><div className="shell"><div className="yunnan-section-heading"><span>WHERE TO GO</span><h2>Four stops, one natural direction.</h2><p>Move west from Kunming rather than treating every famous place in Yunnan as a separate box to tick.</p></div><div className="yunnan-route-stops">{routeStops.map(([number, name, stay, copy]) => <article key={number}><span>{number}</span><div><small>{stay}</small><h3>{name}</h3><p>{copy}</p></div></article>)}</div><div className="yunnan-place-grid">{placeCards.map((place) => <Link href={place.href} key={place.name}><Image src={place.image} alt={place.name} fill unoptimized sizes="(max-width: 700px) 100vw, 33vw" /><i aria-hidden="true" /><div><p>{place.note}</p><h3>{place.name}</h3><span>EXPLORE →</span></div></Link>)}</div></div></section>
 
@@ -144,7 +160,7 @@ export function YunnanGuidePage({ journey }: { journey: Journey }) {
       </div>
     </section>
 
-    <section className="yunnan-guides section section-sand" id="guides"><div className="shell"><div className="yunnan-section-heading"><span>PLAN DALI IN MORE DETAIL</span><h2>Go from the province to the decisions that shape each day.</h2><p>Use the destination guide first, then choose where to stay and which places beyond the old town deserve your time.</p></div><div className="yunnan-guide-grid">{guides.map((guide) => <GuideCard key={guide.href} guide={guide} />)}</div></div></section>
+    <section className="yunnan-guides section section-sand" id="guides"><div className="shell"><div className="yunnan-section-heading"><span>DESTINATION GUIDES</span><h2>Go from the province to the decisions that shape each day.</h2><p>Use the city guide first, then decide whether the highland loop is worth extra days.</p></div><div className="yunnan-guide-grid">{guides.map((guide) => <GuideCard key={guide.href} guide={guide} />)}</div></div></section>
 
     <section className="yunnan-season section" id="season"><div className="shell"><div className="yunnan-section-heading"><span>WHEN TO GO</span><h2>“Spring all year” does not describe the whole province.</h2><p>Kunming may be mild while Lijiang mornings are cold and the mountains are dealing with entirely different weather.</p></div><div className="yunnan-season-grid">{seasons.map(([dates, name, copy]) => <article key={name}><span>{dates}</span><h3>{name}</h3><p>{copy}</p></article>)}</div></div></section>
 

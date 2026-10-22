@@ -270,7 +270,7 @@ Getting the visa question sorted is step one. Here’s everything else that actu
 
 For the complete pre-arrival checklist, use the [Survival Kit](/survival-kit).
 
-If you’re still figuring out cities and days: [How to plan a China itinerary](/how-to-plan-china-itinerary). Hire a [1-on-1 PDF](/china-itinerary-planner) only when the route itself isn’t clear.
+If you’re still figuring out cities and days: [How to plan a China itinerary](/how-to-plan-china-itinerary). Ask for a [tailor-made route](/custom-china-tour) only when the route itself isn’t clear.
 
 ## Browse by nationality
 

@@ -1,7 +1,7 @@
 ---
 type: hub
 title: "Payments in China for Foreigners"
-seoTitle: "Payments in China 2026: Alipay, WeChat & Fixes"
+seoTitle: "China Payments Hub: Alipay, WeChat and Cash"
 slug: payments-in-china
 metaDescription: "Pay in China as a foreigner in 2026 — Alipay and WeChat Pay setup, foreign cards, cash backup, verification failed fixes, and why checkout still declines."
 canonical: /payments-in-china

@@ -11,6 +11,7 @@ import { SiteHeader } from "@/components/site-header";
 import { TopicNavigation } from "@/components/topic-navigation";
 import { isTripPlanningSection } from "@/lib/enquiry";
 import { getAllJourneys } from "@/lib/journeys";
+import { breadcrumbList } from "@/components/json-ld";
 
 function formatDate(value?: string) {
   if (!value) return "Updated for 2026";
@@ -30,12 +31,18 @@ export function ArticlePage({ item }: { item: ContentItem }) {
     datePublished: frontmatter.date,
     dateModified: frontmatter.dateModified || frontmatter.date,
     author: { "@type": "Person", name: frontmatter.author?.name || "Joy Liu" },
-    publisher: { "@type": "Organization", name: "Hidden China Travel" },
+    publisher: { "@type": "Organization", name: "Hidden China Travel", logo: { "@type": "ImageObject", url: "https://hiddenchinatravel.com/brand/logo.webp" } },
+    mainEntityOfPage: `https://hiddenchinatravel.com/${item.slug}`,
   };
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       articleJsonLd,
+      breadcrumbList([
+        { name: "Home", href: "/" },
+        { name: "Travel guides", href: "/china-travel-essentials" },
+        { name: frontmatter.title, href: `/${item.slug}` },
+      ]),
       ...(frontmatter.faqs?.length ? [{
         "@type": "FAQPage",
         mainEntity: frontmatter.faqs.map((faq) => ({

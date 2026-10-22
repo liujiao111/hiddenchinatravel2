@@ -7,16 +7,17 @@ import { GuideCard } from "@/components/guide-card";
 import { JourneyCard } from "@/components/journey-card";
 import { PrepChecklist } from "@/components/survival-kit/prep-checklist";
 import { getAllJourneys } from "@/lib/journeys";
+import { breadcrumbList } from "@/components/json-ld";
 import { formatPriceLabel } from "@/lib/format-price";
 import "./survival-kit.css";
 
 export const metadata: Metadata = {
-  title: "China Trip Preparation Checklist (2026): Visa, eSIM, Payments & Bookings",
-  description: "Prepare for your China trip in order: check entry rules, book essentials, set up data and payments, then save an arrival checklist. Practical guides and optional booking links.",
+  title: { absolute: "China Trip Checklist 2026: Visa, eSIM, Payments" },
+  description: "Prepare for your China trip in order: check entry rules, book essentials, set up data and payments, then save an arrival checklist.",
   keywords: ["China travel checklist", "China trip preparation", "China travel essentials", "China eSIM", "paying in China"],
   alternates: { canonical: "/survival-kit" },
-  openGraph: { title: "China Trip Preparation Checklist | Hidden China Travel", description: "The practical steps to sort before you land in China.", url: "/survival-kit", type: "website", images: [{ url: "/assets/blog/independent-travel-china/cover.webp" }] },
-  twitter: { card: "summary_large_image", title: "China Trip Preparation Checklist", description: "Visa, bookings, eSIM, VPN, payments and arrival essentials in one practical checklist." },
+  openGraph: { title: "China Trip Checklist 2026: Visa, eSIM, Payments", description: "The practical steps to sort before you land in China.", url: "/survival-kit", type: "website", images: [{ url: "/assets/blog/independent-travel-china/cover.webp" }] },
+  twitter: { card: "summary_large_image", title: "China Trip Checklist 2026", description: "Visa, bookings, eSIM, VPN, payments and arrival essentials in one practical checklist." },
 };
 
 type Action = { label: string; href: string; affiliate?: boolean };
@@ -68,7 +69,7 @@ function ActionLink({ action, primary = false }: { action: Action; primary?: boo
 
 export default function SurvivalKitPage() {
   const featuredJourney = getAllJourneys().find(journey => journey.frontmatter.featured) ?? getAllJourneys()[0];
-  const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(faq => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) };
+  const faqSchema = { "@context": "https://schema.org", "@graph": [{ "@type": "FAQPage", mainEntity: faqs.map(faq => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }, breadcrumbList([{ name: "Home", href: "/" }, { name: "China Trip Checklist", href: "/survival-kit" }])] };
   return <main><SiteHeader />
     <header className="journey-hero kit-hero"><Image src="/assets/blog/independent-travel-china/cover.webp" alt="Travelers crossing a railway concourse in China" fill priority unoptimized sizes="100vw" /><div className="journey-hero-shade" /><nav className="breadcrumbs journey-breadcrumbs shell" aria-label="Breadcrumb"><Link href="/">Home</Link><span>›</span><span>China Trip Checklist</span></nav><div className="journey-hero-copy shell"><div><p>THE CHINA TRIP CHECKLIST</p><h1>Ready for China, from the first decision to the first day.</h1><span>Entry rules. The right bookings. A working phone and a way to pay. Make the practical parts easier before you leave.</span><div className="journey-hero-actions"><a href="#decide" className="button journey-primary-action">START PREPARING</a><a href="#setup" className="journey-text-action">SET UP MY PHONE <b>↓</b></a></div></div></div></header>
 
@@ -78,7 +79,7 @@ export default function SurvivalKitPage() {
 
     <section id="departure" className="kit-departure section"><div className="shell kit-departure-layout"><div><h2>Before you fly</h2><p>Tick off what applies to your trip. Review entry rules and bookings again close to departure.</p><div className="kit-offline"><h3>Keep these within reach</h3><p>Passport, visa or entry documents if required, first hotel address in Chinese, booking confirmations, insurance details, and your embassy or consulate contact.</p><p>For mainland China emergencies: police <b>110</b>, ambulance <b>120</b>, fire <b>119</b>. Language support may be limited.</p></div></div><PrepChecklist /></div></section>
 
-    <section className="kit-next section section-sand"><div className="shell"><div className="journey-editorial-heading"><span>AFTER THE PRACTICAL PREP</span><h2>Now think about the journey itself.</h2><p>Choose what you want to experience and how much time you want to give each place.</p></div><div className="kit-next-grid"><div className="kit-guides"><GuideCard guide={{ title: "Yunnan Travel Guide", excerpt: "See how Kunming, Dali, Shaxi and Lijiang fit together at an unhurried pace.", href: "/china-destinations/yunnan", image: "/home/hero.webp", readTime: "DESTINATION GUIDE" }} /><GuideCard guide={{ title: "Dali Travel Guide", excerpt: "Explore Erhai, the old town and Bai villages before you decide where to stay.", href: "/dali-travel-guide", image: "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp", readTime: "LOCAL GUIDE" }} /></div>{featuredJourney && <JourneyCard journey={{ title: featuredJourney.frontmatter.title, subtitle: featuredJourney.frontmatter.excerpt, href: `/journeys/${featuredJourney.slug}`, image: featuredJourney.frontmatter.coverImage, destination: "PRIVATE YUNNAN JOURNEY", duration: featuredJourney.frontmatter.duration, fromPrice: `From ${formatPriceLabel(featuredJourney.frontmatter.fromPrice, featuredJourney.frontmatter.currency)} ${featuredJourney.frontmatter.priceBasis}` }} />}</div></div></section>
+    <section className="kit-next section section-sand"><div className="shell"><div className="journey-editorial-heading"><span>AFTER THE PRACTICAL PREP</span><h2>Now think about the journey itself.</h2><p>Choose what you want to experience and how much time you want to give each place.</p></div><div className="kit-next-grid"><div className="kit-guides"><GuideCard guide={{ title: "Yunnan Travel Guide", excerpt: "See how Kunming, Dali, Shaxi and Lijiang fit together at an unhurried pace.", href: "/china-destinations/yunnan", image: "/home/hero.webp", readTime: "DESTINATION GUIDE" }} /><GuideCard guide={{ title: "Lijiang Travel Guide", excerpt: "Old Town, Shuhe and Jade Dragon — how many nights to keep at the mountain end.", href: "/lijiang-travel-guide", image: "/assets/destinations/yunnan/lijiang.webp", readTime: "DESTINATION GUIDE" }} /></div>{featuredJourney && <JourneyCard journey={{ title: featuredJourney.frontmatter.title, subtitle: featuredJourney.frontmatter.excerpt, href: `/journeys/${featuredJourney.slug}`, image: featuredJourney.frontmatter.coverImage, destination: "PRIVATE YUNNAN JOURNEY", duration: featuredJourney.frontmatter.duration, fromPrice: `From ${formatPriceLabel(featuredJourney.frontmatter.fromPrice, featuredJourney.frontmatter.currency)} ${featuredJourney.frontmatter.priceBasis}` }} />}</div></div></section>
 
     <section className="journey-faq section kit-faq"><div className="narrow"><div className="section-heading"><h2>China trip preparation FAQs</h2></div>{faqs.map(faq => <details key={faq.question}><summary>{faq.question}<span aria-hidden="true">+</span></summary><p>{faq.answer}</p></details>)}</div></section>
 

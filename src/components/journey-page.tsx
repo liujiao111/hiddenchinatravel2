@@ -13,6 +13,7 @@ import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { YunnanTravelNotes } from "@/components/yunnan-travel-notes";
 import { bookingSteps, brandIdentity } from "@/lib/booking-terms";
 import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
+import { breadcrumbList } from "@/components/json-ld";
 
 const sixDayPhotos: Record<string, readonly [string, string]> = {
   "Day 1": ["/assets/blog/dali-travel-guide/dali-ancient-town-rooftops.webp", "Rooftops in Dali Old Town, with Cangshan behind"],
@@ -65,14 +66,23 @@ export function JourneyPage({ journey }: { journey: Journey }) {
   const relatedGuides = isClassicYunnanJourney ? journeyGuides.slice(0, 2) : journeyGuides;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "TouristTrip",
-    name: frontmatter.title,
-    description: frontmatter.metaDescription,
-    image: `https://hiddenchinatravel.com${frontmatter.coverImage}`,
-    touristType: frontmatter.travelStyles,
-    itinerary: frontmatter.route,
-    provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" },
-    ...(frontmatter.fromPrice > 0 ? { offers: { "@type": "Offer", priceCurrency: frontmatter.currency, price: frontmatter.fromPrice, url: `https://hiddenchinatravel.com/journeys/${journey.slug}` } } : {}),
+    "@graph": [
+      {
+        "@type": "TouristTrip",
+        name: frontmatter.title,
+        description: frontmatter.metaDescription,
+        image: `https://hiddenchinatravel.com${frontmatter.coverImage}`,
+        touristType: frontmatter.travelStyles,
+        itinerary: frontmatter.route,
+        provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" },
+        ...(frontmatter.fromPrice > 0 ? { offers: { "@type": "Offer", priceCurrency: frontmatter.currency, price: frontmatter.fromPrice, url: `https://hiddenchinatravel.com/journeys/${journey.slug}` } } : {}),
+      },
+      breadcrumbList([
+        { name: "Home", href: "/" },
+        { name: "Journeys", href: "/journeys" },
+        { name: frontmatter.title, href: `/journeys/${journey.slug}` },
+      ]),
+    ],
   };
 
   return <main>

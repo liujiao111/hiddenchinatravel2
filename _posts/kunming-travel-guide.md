@@ -1,6 +1,6 @@
 ---
 title: "Kunming Travel Guide: Gateway to Yunnan"
-seoTitle: "Kunming Travel Guide (2026): Gateway, Stone Forest & How Long to Stay"
+seoTitle: "Kunming Travel Guide 2026: Gateway to Yunnan"
 excerpt: "Kunming is the practical start of a Yunnan journey, not the part to rush through. Here is how long to stay, where to sleep, whether the Stone Forest is worth a day, and how that changes on a 6-day versus 8-day route."
 metaDescription: "Plan Kunming as Yunnan’s gateway: where to stay, how many nights, whether the Stone Forest is worth a day, and how the 6-day and 8-day private journeys use the city."
 coverImage: "/assets/blog/kunming-travel-guide/cover-stone-forest.webp"

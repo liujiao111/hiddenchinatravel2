@@ -40,13 +40,13 @@ export function ContentFooter() {
           <h3>Resources</h3>
           <Link href="/survival-kit">China Survival Kit</Link>
           <div className="footer-guide-group">
-            <Link className="footer-guide-title" href="/search">Travel Guides</Link>
+            <Link className="footer-guide-title" href="/china-travel-essentials">Travel Guides</Link>
             <div className="footer-topic-links" aria-label="Travel guides by destination">
               <Link href="/china-destinations/yunnan">Yunnan</Link>
               <Link href="/dali-travel-guide">Dali</Link>
-              <Link href="/search?q=Lijiang">Lijiang</Link>
+              <Link href="/lijiang-travel-guide">Lijiang</Link>
               <Link href="/kunming-travel-guide">Kunming</Link>
-              <Link className="footer-explore-more" href="/search">Explore more →</Link>
+              <Link className="footer-explore-more" href="/china-destinations/yunnan">Explore more →</Link>
             </div>
           </div>
           <Link href="/payments-in-china">Payments</Link>

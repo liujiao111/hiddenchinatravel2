@@ -9,6 +9,7 @@ import { Testimonials } from "@/components/testimonials";
 import { brandIdentity, cancellationCopy, insuranceCopy, paymentCopy } from "@/lib/booking-terms";
 import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
+import { organizationJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
 
@@ -17,7 +18,7 @@ const title = "Private Yunnan Tours & Tailor-Made Journeys";
 const description = "Plan a private Yunnan journey through Kunming, Dali, Lijiang and Shaxi, with tailor-made itineraries, private transport, local guides and personal support.";
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: `${title} | Hidden China Travel` },
   description,
   alternates: { canonical },
   openGraph: {
@@ -60,9 +61,9 @@ const destinations = [
   ["Kunming", "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.", "/assets/resources/昆明-石林-352.jpg", "/kunming-travel-guide", "EXPLORE KUNMING"],
   ["Dali", "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.", "/assets/destinations/yunnan/dali.webp", "/dali-travel-guide", "EXPLORE DALI"],
   ["Shaxi", "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.", "/assets/destinations/yunnan/shaxi.webp", "/dali-hidden-gems-off-the-beaten-path", "DISCOVER SHAXI"],
-  ["Lijiang", "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", "/assets/destinations/yunnan/lijiang.webp", "/china-destinations/yunnan", "EXPLORE LIJIANG"],
-  ["Lugu Lake", "Mountain roads, lakeside villages and a quieter side of northwest Yunnan.", "/assets/resources/丽江-泸沽湖-419.jpg", "/china-destinations/yunnan", "DISCOVER LUGU LAKE"],
-  ["Shangri-La", "High-altitude landscapes and a distinctly different side of Yunnan.", "/assets/destinations/yunnan/shangri-la.webp", "/china-destinations/yunnan", "EXPLORE SHANGRI-LA"],
+  ["Lijiang", "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", "/assets/destinations/yunnan/lijiang.webp", "/lijiang-travel-guide", "EXPLORE LIJIANG"],
+  ["Lugu Lake", "A quieter northwest road, only worth adding when you have extra days beyond a first Yunnan week.", "/assets/resources/丽江-泸沽湖-419.jpg", "/china-destinations/yunnan", "SEE THE YUNNAN ROUTE"],
+  ["Shangri-La", "High-altitude landscapes and a distinctly different side of Yunnan.", "/assets/destinations/yunnan/shangri-la.webp", "/shangri-la-travel-guide", "EXPLORE SHANGRI-LA"],
 ];
 const faqs = [
   ["How much does a private Yunnan journey cost?", "Pricing depends on the route, number of travelers, travel dates and hotel standard. After learning more about your plans, we will provide a tailored quotation with the inclusions and exclusions clearly explained."],
@@ -82,13 +83,7 @@ export default function Home() {
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Organization",
-        name: "Hidden China Travel",
-        legalName: "Yunnan Meizhen International Travel Agency Co., Ltd.",
-        url: "https://hiddenchinatravel.com",
-        logo: "https://hiddenchinatravel.com/brand/logo.webp",
-      },
+      organizationJsonLd,
       {
         "@type": "WebSite",
         name: "Hidden China Travel",

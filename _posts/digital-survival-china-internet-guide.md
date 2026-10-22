@@ -1,5 +1,6 @@
 ---
 title: "Internet in China for Foreigners: What Actually Works in 2026"
+seoTitle: "Internet in China 2026: What Actually Works"
 excerpt: "Google, WhatsApp, and Instagram are blocked on many China connections. This guide explains what actually works for foreign travelers: eSIM, VPN, local SIM, and what to set up before you arrive."
 coverImage: "/assets/blog/digital-survival-china-internet-guide/cover.webp"
 date: "2026-02-20T07:44:57+00:00"

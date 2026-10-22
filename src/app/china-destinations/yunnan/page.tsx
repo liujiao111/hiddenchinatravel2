@@ -4,7 +4,7 @@ import { YunnanGuidePage } from "@/components/yunnan-guide-page";
 import { getAllJourneys } from "@/lib/journeys";
 
 export const metadata: Metadata = {
-  title: "Yunnan Travel Guide (2026): Dali, Shaxi & Lijiang",
+  title: "Yunnan Travel Guide 2026: First Trip Route",
   description: "Plan a first trip to Yunnan with realistic advice on Kunming, Dali, Shaxi and Lijiang, recommended timing, practical preparation and a private 6-day journey.",
   keywords: ["Yunnan travel guide", "Yunnan itinerary", "places to visit in Yunnan", "Dali Shaxi Lijiang", "Yunnan private tour"],
   alternates: { canonical: "https://hiddenchinatravel.com/china-destinations/yunnan" },

@@ -12,7 +12,8 @@ export const metadata: Metadata = {
   title: "China Currency Converter: USD to CNY & CNY to USD",
   description: "Convert USD, SGD, EUR, GBP and more to Chinese yuan with updated reference rates. Compare quick RMB amounts and plan your China travel budget.",
   alternates: { canonical: "/china-currency-converter" },
-  openGraph: { title: "China Currency Converter | Hidden China Travel", description: "Live reference rates for your China travel budget.", type: "website", url: "/china-currency-converter" },
+  openGraph: { title: "China Currency Converter | Hidden China Travel", description: "Live reference rates for your China travel budget.", type: "website", url: "/china-currency-converter", images: [{ url: "/home/hero.webp" }] },
+  twitter: { card: "summary_large_image", title: "China Currency Converter", description: "Live reference rates for your China travel budget.", images: ["/home/hero.webp"] },
 };
 
 export const revalidate = 3600;

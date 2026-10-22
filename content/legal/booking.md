@@ -6,6 +6,8 @@ seoTitle: "Booking, Payment and Service Standards"
 metaDescription: "The current Yunnan journeys, shared service standards, booking process, payment and cancellation terms for Hidden China Travel."
 canonical: "/booking"
 dateModified: "2026-10-22"
+ogImage:
+  url: "/home/hero.webp"
 lastUpdated: "October 2026"
 ---
 

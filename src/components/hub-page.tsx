@@ -6,6 +6,7 @@ import { isTripPlanningSection } from "@/lib/enquiry";
 import { MarkdownContent } from "@/components/markdown-content";
 import { SiteHeader } from "@/components/site-header";
 import { TopicNavigation } from "@/components/topic-navigation";
+import { JsonLd, breadcrumbList } from "@/components/json-ld";
 
 export function HubPage({ item }: { item: ContentItem }) {
   const { frontmatter } = item;
@@ -24,5 +25,12 @@ export function HubPage({ item }: { item: ContentItem }) {
     <QuickAsk source={`/${item.slug}`} sourceTitle={frontmatter.title} intent={isTripPlanningSection(frontmatter.title) ? "trip" : "advice"} />
     <ContentCta />
     <ContentFooter />
+    <JsonLd data={{
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "CollectionPage", name: frontmatter.title, description: frontmatter.metaDescription || frontmatter.description, url: `https://hiddenchinatravel.com/${item.slug}` },
+        breadcrumbList([{ name: "Home", href: "/" }, { name: frontmatter.title, href: `/${item.slug}` }]),
+      ],
+    }} />
   </main>;
 }

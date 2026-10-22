@@ -182,7 +182,7 @@ Independent travel here isn’t just possible—it offers a level of discovery t
 
 Yunnan is the usual first independent loop: Kunming, then fast trains west to Dali and Lijiang, without a tour bus. The [independent Yunnan travel guide](/china-destinations/yunnan) has a 7-day sketch, best time to go, and when Shangri-La or Xishuangbanna actually fits. For days outside Dali Old Town, see [Dali hidden gems](/dali-hidden-gems-off-the-beaten-path).
 
-If you have questions about traveling in China, [send a note](/contact) — we usually reply during business hours. For a custom route, [plan your China trip](/china-itinerary-planner).
+If you have questions about traveling in China, [send a note](/contact) — we usually reply during business hours. For a custom route, [plan your China trip](/custom-china-tour).
 
 ## Related Guides
 
