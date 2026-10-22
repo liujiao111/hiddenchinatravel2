@@ -29,12 +29,24 @@ export function metaClickIds() {
   return { fbp, fbc, sourceUrl: window.location.href };
 }
 
+const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+const googleAdsLabel = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL;
+
 export function trackEvent(eventName: string, params: AnalyticsParams = {}) {
   if (typeof window === "undefined") return;
 
   if (window.gtag) window.gtag("event", eventName, params);
 
-  if (eventName === "generate_lead" && window.fbq) {
+  if (eventName !== "generate_lead") return;
+
+  if (window.gtag && googleAdsId?.startsWith("AW-") && googleAdsLabel && /^[A-Za-z0-9_-]+$/.test(googleAdsLabel)) {
+    window.gtag("event", "conversion", {
+      send_to: `${googleAdsId}/${googleAdsLabel}`,
+      event_id: params.event_id,
+    });
+  }
+
+  if (window.fbq) {
     const eventID = typeof params.event_id === "string" ? params.event_id : undefined;
     window.fbq("track", "Lead", {
       content_name: params.form_name,

@@ -17,12 +17,12 @@ export const overallGuestRating = 4.8;
 export const guestReviewCount = allTestimonials.length;
 export const overallGuestRatingLabel = `${overallGuestRating} out of 5 · ${guestReviewCount} guest reviews`;
 export const overallGuestRatingHeading = `Rated ${overallGuestRating} out of 5 by ${guestReviewCount} guests`;
-export const overallGuestRatingIntro = `Based on ${guestReviewCount} guest notes from private Yunnan routes we planned. They are not written about this one itinerary.`;
+export const overallGuestRatingIntro = `${guestReviewCount} guest notes from our private Yunnan journeys, this route included.`;
 
 export const selectedTestimonialsCopy = {
   eyebrow: "TRAVELER STORIES",
   heading: "What Travelers Remember",
-  intro: "These stories come from previous guests who traveled different Yunnan routes with us. They are not written about one current itinerary.",
+  intro: "From guests on private Yunnan journeys we have planned, this route included.",
   note: "Guest names may be shortened. Some reviews were translated from another language and lightly edited for clarity, without changing their meaning.",
 };
 

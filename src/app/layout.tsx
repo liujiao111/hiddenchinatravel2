@@ -15,7 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID?.match(/^AW-\d+$/)?.[0];
 const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.match(/^\d+$/)?.[0];
+const gtagSrcId = gaMeasurementId || googleAdsId;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hiddenchinatravel.com"),
@@ -46,11 +48,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full flex flex-col">
         {children}
-        {gaMeasurementId || metaPixelId ? <AnalyticsTracker /> : null}
-      {gaMeasurementId ? (
+        {gaMeasurementId || googleAdsId || metaPixelId ? <AnalyticsTracker /> : null}
+      {gtagSrcId ? (
         <>
           <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${gtagSrcId}`}
             strategy="afterInteractive"
           />
           <Script id="google-analytics" strategy="afterInteractive">
@@ -58,7 +60,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${gaMeasurementId}', { send_page_view: false });
+              ${gaMeasurementId ? `gtag('config', '${gaMeasurementId}', { send_page_view: false });` : ""}
+              ${googleAdsId ? `gtag('config', '${googleAdsId}');` : ""}
               window.dispatchEvent(new Event('ga-ready'));
             `}
           </Script>
