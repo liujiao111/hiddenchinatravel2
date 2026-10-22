@@ -278,3 +278,5 @@ Do not expect it to solve everything. Most travel eSIMs are data-only. If your p
 Use a travel eSIM for mobile data. Prepare a VPN as backup for Wi-Fi. Consider a local Chinese SIM only if you genuinely need a Chinese phone number. Then [compare the exact 7-day and 15-day plans](#esim-plan-picker) rather than buying from a generic storefront.
 
 A travel eSIM solves mobile internet. It does not usually solve Chinese phone number verification.
+
+If Yunnan is the first week, the next decision after data is how the cities connect. Kunming → Dali → Shaxi → Lijiang is the usual loop; [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) is that loop with the road days already arranged.

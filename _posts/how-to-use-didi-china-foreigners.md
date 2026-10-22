@@ -208,4 +208,4 @@ Cross-topic prep that makes DiDi smoother (same-topic guides are under **Continu
 - [Payments in China](/digital-survival-china-payment-guide) — Alipay / WeChat for in-app rides
 - [Google Maps / Amap guide](/google-maps-china-not-working) — addresses and pickup pins that actually work
 
-Need help locking apps and payments before day one? [Get Free Survival Kit](/survival-kit) or [Plan my China trip](/custom-china-tour).
+Need help locking apps and payments before day one? Start with the [Survival Kit](/survival-kit). If Yunnan is already the region, the usual first loop is on [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days).
