@@ -28,11 +28,9 @@ function cardQuote(quote: string) {
 
 export function Testimonials({ items, heading, intro, eyebrow, note, showRating = true }: Props) {
   const count = items.length;
-  const useStatic = count <= 5;
-  const loop = !useStatic;
+  const loop = count > 3;
   const viewportRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(loop ? count : 0);
-  const [paused, setPaused] = useState(false);
   const [animate, setAnimate] = useState(true);
   const [metrics, setMetrics] = useState({ card: 320, peek: 72, gap: 18 });
 
@@ -54,15 +52,6 @@ export function Testimonials({ items, heading, intro, eyebrow, note, showRating 
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => {
-    if (count < 2 || count <= 3 || paused) return;
-    const timer = window.setInterval(() => {
-      setAnimate(true);
-      setIndex((value) => (loop ? value + 1 : (value + 1) % count));
-    }, 9000);
-    return () => window.clearInterval(timer);
-  }, [count, loop, paused]);
 
   useLayoutEffect(() => {
     if (animate) return;
@@ -99,11 +88,12 @@ export function Testimonials({ items, heading, intro, eyebrow, note, showRating 
     </header>;
   const noteText = note ?? "Guest names may be shortened. Some reviews were translated from Chinese for clarity.";
 
-  if (useStatic) {
+  if (count <= 3) {
     return <section className="testimonials" id="stories">
       {headingBlock}
-      <div className="testimonials-static shell" data-count={count}>{items.map((item) => (
+      <div className="testimonials-static shell">{items.map((item) => (
         <figure className="testimonials-card" key={item.id}>
+          <div className="testimonial-score"><StarRating value={item.rating} /><span>{item.rating.toFixed(1)}</span></div>
           <blockquote>“{cardQuote(item.quote)}”</blockquote>
           <figcaption>
             <b>— {item.name}</b>
@@ -115,7 +105,7 @@ export function Testimonials({ items, heading, intro, eyebrow, note, showRating 
     </section>;
   }
 
-  return <section className="testimonials" id="stories" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+  return <section className="testimonials" id="stories">
     {headingBlock}
     <div className="testimonials-viewport" ref={viewportRef}>
       <div
