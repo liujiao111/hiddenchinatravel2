@@ -214,6 +214,8 @@ I need the accommodation registration form.| 我需要住宿登记表。| Wǒ x�
 Can I check out late tomorrow?| 明天可以延迟退房吗？| Míngtiān kěyǐ yánchí tuìfáng ma?  
 Does your hotel offer a free airport shuttle?| 你们酒店有免费接送机吗？| Nǐmen jiǔdiàn yǒu miǎnfèi jiēsòngjī ma?  
   
+If Yunnan is the first region and you would rather not assemble foreigner-accepted nights city by city, [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) already sequences those stays on a Kunming–Dali–Shaxi–Lijiang week. [Trip.com](/go/trip-hotels) is still the tool for checking Guests Accepted when you book a stay yourself.
+
 ## Related Guides
 
 Planning your China trip? These practical guides may also help before and after you check in:

@@ -178,6 +178,8 @@ Meituan is genuinely one of the best tools you can have in China as a foreigner.
 
 Planning the rest of your China trip? [Trip.com](/go/trip-hotels) is the easiest platform for booking hotels in China… it has the deepest inventory and is built for the local market. If you’re also sorting out [domestic train tickets](/go/trip-tickets) between cities or flights into China, Trip.com is our first stop for both.
 
+If you are heading to Yunnan rather than one city, daily deals matter less than whether Dali and Lijiang land on the same week. Start with the [Yunnan travel guide](/china-destinations/yunnan), or see the [6-day First Encounter route](/journeys/kunming-dali-shaxi-lijiang-6-days).
+
 If you’re heading to China and sorting out your full toolkit, check out our [survive kit](/survival-kit) for preparing china travel guides to squeeze even more value out of your travels.
 
 ## FAQ
