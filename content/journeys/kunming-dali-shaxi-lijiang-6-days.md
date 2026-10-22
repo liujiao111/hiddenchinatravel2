@@ -1,8 +1,8 @@
 ---
 title: "First Encounter Yunnan"
 shortTitle: "First Encounter Yunnan"
-seoTitle: "First Encounter Yunnan: 6-Day Private Tour"
-metaDescription: "A private 6-day Yunnan journey: Dali Ancient Town, Erhai’s west shore, Xizhou and Zhoucheng, one night in Shaxi, two nights in Lijiang and a full day on Jade Dragon Snow Mountain."
+seoTitle: "6-Day Private Yunnan Tour: Dali, Shaxi, Lijiang"
+metaDescription: "A 6-day private Yunnan journey from Kunming to Lijiang: Dali, one night in Shaxi, and a full day on Jade Dragon Snow Mountain. From US$480 per person for the complete trip. Breakfast included; lunch and dinner are not."
 excerpt: "Kunming • Dali • Lijiang • Shaxi"
 duration: "6 days / 5 nights"
 route: "Kunming → Dali → Shaxi → Lijiang"
@@ -17,10 +17,12 @@ featured: true
 status: "published"
 displayOrder: 2
 navFeatured: true
-heroEyebrow: "6 DAYS / 5 NIGHTS · PRIVATE JOURNEY"
+heroEyebrow: "FIRST ENCOUNTER · 6 DAYS / 5 NIGHTS · PRIVATE"
+heroTitle: "6-Day Private Yunnan"
 heroSecondaryLabel: "EXPLORE THE 6-DAY ITINERARY"
 heroDescription: "Dali Ancient Town, a morning on Erhai’s west shore, a Bai tie-dye workshop, one night in Shaxi, then two nights in Lijiang with Jade Dragon Snow Mountain as a full day of its own."
-heroNote: "Two adults sharing one room. Not a daily rate. Breakfast included; lunch and dinner are not."
+heroNote: "Two adults sharing one room. Not a daily rate."
+heroBounds: "Starts in Kunming (high-speed train to Dali) · Ends in Lijiang · Breakfast included; lunch and dinner are not."
 heroIncludes:
   - "Private party · no shopping stops"
   - "Muslim-friendly as standard"
@@ -33,9 +35,11 @@ overviewTitle: "At a glance."
 overviewDescription: "A westbound private route with named days, not a list of slogans. Trains, road transfers and the mountain tickets are arranged around your dates."
 overviewItems:
   - label: "6 DAYS / 5 NIGHTS"
-    value: "Kunming → Dali (2 nights) → Shaxi (1 night) → Lijiang (2 nights)"
+    value: "Starts Kunming (HSR to Dali) · Dali 2 nights · Shaxi 1 night · Ends Lijiang 2 nights"
   - label: "YOUR JOURNEY"
     value: "Private party · Driver-guide · No shopping stops"
+  - label: "MEALS"
+    value: "Breakfast included · Lunch and dinner are not"
   - label: "GUIDE PRICE"
     value: "From US$480 per person for the complete 6-day journey, not a daily rate"
 manifestoKicker: "OUR WAY OF TRAVELLING"

@@ -11,10 +11,13 @@ export type Testimonial = {
   rating: number;
 };
 
+const allTestimonials = testimonials as Testimonial[];
+
 export const overallGuestRating = 4.8;
-export const overallGuestRatingLabel = "4.8 out of 5 · Guest reviews";
-export const overallGuestRatingHeading = "Rated 4.8 out of 5 by guests";
-export const overallGuestRatingIntro = "These notes are from guests on private Yunnan routes we planned. They are not written about this one itinerary.";
+export const guestReviewCount = allTestimonials.length;
+export const overallGuestRatingLabel = `${overallGuestRating} out of 5 · ${guestReviewCount} guest reviews`;
+export const overallGuestRatingHeading = `Rated ${overallGuestRating} out of 5 by ${guestReviewCount} guests`;
+export const overallGuestRatingIntro = `Based on ${guestReviewCount} guest notes from private Yunnan routes we planned. They are not written about this one itinerary.`;
 
 export const selectedTestimonialsCopy = {
   eyebrow: "TRAVELER STORIES",
@@ -22,8 +25,6 @@ export const selectedTestimonialsCopy = {
   intro: "These stories come from previous guests who traveled different Yunnan routes with us. They are not written about one current itinerary.",
   note: "Guest names may be shortened. Some reviews were translated from another language and lightly edited for clarity, without changing their meaning.",
 };
-
-const allTestimonials = testimonials as Testimonial[];
 
 /** Representative reviews shown on every public traveler-stories module. */
 const selectedTestimonialIds = [

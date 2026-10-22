@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { OperatorCredentials } from "@/components/operator-credentials";
+import { StarRating } from "@/components/star-rating";
 import { brandIdentity } from "@/lib/booking-terms";
 import { licensedOperator } from "@/lib/journey-trust";
-import { StarRating } from "@/components/star-rating";
 import { getSelectedTestimonials, overallGuestRating, overallGuestRatingHeading, overallGuestRatingIntro } from "@/lib/testimonials";
 
 function firstSentence(quote: string) {
@@ -38,7 +38,7 @@ export function JourneyWhy() {
         </article>
         <article>
           <span>GUEST REVIEWS</span>
-          <StarRating value={overallGuestRating} label="Overall guest rating: 4.8 out of 5 stars" />
+          <StarRating value={overallGuestRating} label={`Overall guest rating: ${overallGuestRating} out of 5 stars`} />
           <h3>{overallGuestRatingHeading}</h3>
           <p>{overallGuestRatingIntro}</p>
         </article>

@@ -31,9 +31,11 @@ export type JourneyFrontmatter = {
   displayOrder?: number;
   navFeatured?: boolean;
   heroEyebrow?: string;
+  heroTitle?: string;
   heroSecondaryLabel?: string;
   heroDescription?: string;
   heroNote?: string;
+  heroBounds?: string;
   overviewTitle?: string;
   overviewDescription?: string;
   overviewItems?: JourneyOverviewItem[];

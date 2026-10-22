@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { enquiryEmailText, enquirySubject, parseEnquiry } from "@/lib/enquiry";
+import { metaClickIdsFrom, requestClientContext, sendMetaLead } from "@/lib/meta-capi";
 import { siteConfig } from "@/lib/site-config";
 
 async function readEnquiryBody(request: Request) {
@@ -28,6 +29,8 @@ export async function POST(request: Request) {
   if (!key) {
     if (process.env.NODE_ENV !== "production") {
       console.info("[enquiry]\n", text);
+      const clickIds = metaClickIdsFrom(body);
+      void sendMetaLead({ ...clickIds, ...requestClientContext(request), email: parsed.email, contentName: clickIds.contentName || "quick_ask" });
       return Response.json({ ok: true });
     }
     return Response.json({ error: "Enquiry email is not configured yet. Please use WhatsApp instead." }, { status: 503 });
@@ -46,6 +49,15 @@ export async function POST(request: Request) {
     console.error("[enquiry]", error);
     return Response.json({ error: "We could not send this just now. Please try WhatsApp." }, { status: 502 });
   }
+
+  const clickIds = metaClickIdsFrom(body);
+  const client = requestClientContext(request);
+  void sendMetaLead({
+    ...clickIds,
+    ...client,
+    email: parsed.email,
+    contentName: clickIds.contentName || "quick_ask",
+  });
 
   return Response.json({ ok: true });
 }

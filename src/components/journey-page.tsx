@@ -54,7 +54,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     "@graph": [
       {
         "@type": "TouristTrip",
-        name: frontmatter.title,
+        name: frontmatter.heroTitle || frontmatter.title,
         description: frontmatter.metaDescription,
         image: `https://hiddenchinatravel.com${frontmatter.coverImage}`,
         touristType: frontmatter.travelStyles,
@@ -71,15 +71,17 @@ export function JourneyPage({ journey }: { journey: Journey }) {
   };
 
   return <main>
-    <SiteHeader cta={{ href: "#pricing", label: "REQUEST A PRICE", location: "header_journey_price" }} />
+    <SiteHeader conversion cta={{ href: "#pricing", label: "REQUEST A PRICE", location: "header_journey_price" }} />
     <JourneyHero
-      title={frontmatter.title}
+      title={frontmatter.heroTitle || frontmatter.title}
+      name={frontmatter.heroTitle ? frontmatter.title : undefined}
       image={frontmatter.coverImage}
       imageAlt={frontmatter.coverAlt || "Mountains and countryside along a Yunnan journey"}
       eyebrow={frontmatter.heroEyebrow || "A PRIVATE YUNNAN JOURNEY"}
       description={frontmatter.heroDescription || frontmatter.excerpt}
       price={frontmatter.fromPrice > 0 ? completePrice : undefined}
       includes={heroIncludes}
+      bounds={frontmatter.heroBounds}
       rating={{ href: "#why-us", label: overallGuestRatingLabel, value: overallGuestRating }}
       primary={{ href: "#pricing", label: "REQUEST A PRICE" }}
       secondary={{ href: "#itinerary", label: frontmatter.heroSecondaryLabel || "SEE THE DAYS" }}
@@ -102,8 +104,14 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     <JourneyWhy />
 
     <section className="journey-price-module" id="pricing">
-      <section className="journey-pricing section section-sand"><div className="shell"><div className="journey-editorial-heading"><span>PRICE</span><h2>{frontmatter.pricingHeading || (frontmatter.tiers.length ? "Choose a hotel style" : "A journey shaped around your dates")}</h2><p>{frontmatter.pricingIntro || "Starting prices are per person for the complete journey, based on two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Lunch and dinner are not."}</p></div>{frontmatter.tiers.length ? <div className="journey-price-grid">{frontmatter.tiers.map((tier) => <article key={tier.name} className={tier.featured ? "featured" : ""}>{tier.featured ? <span className="price-choice">RECOMMENDED</span> : null}<h3>{tier.name}</h3><div className="journey-tier-price">From <b>{formatPriceLabel(tier.price, frontmatter.currency)}</b> <span>per person</span></div><p>{tier.description}</p><ul><li>{tier.accommodation}</li>{sharedTierPoints.map((point) => <li key={point}>{point}</li>)}</ul><small>IDEAL FOR</small><strong>{tier.idealFor}</strong></article>)}</div> : <div className="journey-price-note">{frontmatter.priceExplanation ? <><b>{completePrice}.</b> {frontmatter.priceExplanation}</> : <><b>Request a tailored quote.</b> The final proposal confirms the hotel nights, guide language, vehicle, attraction tickets and meals before you decide.</>}</div>}{frontmatter.tiers.length ? <p className="journey-price-note">{frontmatter.priceExplanation || "Prices are a guide in USD. Final pricing depends on travel dates, group size, hotel availability and any route adjustments. Your licensed local travel partner confirms the quotation and contract before you decide."}</p> : frontmatter.priceExplanation ? null : <p className="journey-price-note">Final pricing depends on travel dates, group size, hotel availability and any route customizations. Your licensed local travel partner will provide the final proposal and contract.</p>}
-      <div className="journey-quote-ask"><h3>Ask Joy to price this route for your dates.</h3><p>A group size, a month and a budget are enough. You will get a route sketch and a range before anyone asks you to book.</p><QuickAsk layout="embedded" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.title} intent="trip" /><p className="journey-quote-contract">{contractCopy.full} Joy replies to this form.</p></div></div></section>
+      <section className="journey-pricing section section-sand"><div className="shell"><div className="journey-editorial-heading"><span>PRICE</span><h2>{frontmatter.pricingHeading || (frontmatter.tiers.length ? "Choose a hotel style" : "A journey shaped around your dates")}</h2><p>{frontmatter.pricingIntro || "Starting prices are per person for the complete journey, based on two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Lunch and dinner are not."}</p></div>
+      <div className="journey-price-convert">
+        <div className="journey-quote-ask"><h3>Ask Joy to price this route for your dates.</h3><p>A group size, a month and a budget are enough. You will get a route sketch and a range before anyone asks you to book.</p><QuickAsk layout="embedded" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" /><p className="journey-quote-contract">{contractCopy.full} Joy replies to this form.</p></div>
+        <div>
+          {frontmatter.tiers.length ? <div className="journey-price-grid">{frontmatter.tiers.map((tier) => <article key={tier.name} className={tier.featured ? "featured" : ""}>{tier.featured ? <span className="price-choice">RECOMMENDED</span> : null}<h3>{tier.name}</h3><div className="journey-tier-price">From <b>{formatPriceLabel(tier.price, frontmatter.currency)}</b> <span>per person</span></div><p>{tier.description}</p><ul><li>{tier.accommodation}</li>{sharedTierPoints.map((point) => <li key={point}>{point}</li>)}</ul><small>IDEAL FOR</small><strong>{tier.idealFor}</strong></article>)}</div> : <div className="journey-price-note">{frontmatter.priceExplanation ? <><b>{completePrice}.</b> {frontmatter.priceExplanation}</> : <><b>Request a tailored quote.</b> The final proposal confirms the hotel nights, guide language, vehicle, attraction tickets and meals before you decide.</>}</div>}
+          {frontmatter.tiers.length ? <p className="journey-price-note">{frontmatter.priceExplanation || "Prices are a guide in USD. Final pricing depends on travel dates, group size, hotel availability and any route adjustments. Your licensed local travel partner confirms the quotation and contract before you decide."}</p> : frontmatter.priceExplanation ? null : <p className="journey-price-note">Final pricing depends on travel dates, group size, hotel availability and any route customizations. Your licensed local travel partner will provide the final proposal and contract.</p>}
+        </div>
+      </div></div></section>
 
       <section className="journey-inclusions section journey-inclusions-compact" id="details"><div className="shell journey-inclusion-grid"><div><span className="journey-detail-label">THE DETAILS</span><h2>What’s included</h2>{frontmatter.inclusions.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><span className="journey-detail-label">GOOD TO KNOW</span><h2>What’s not included</h2>{frontmatter.exclusions.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></section>
 

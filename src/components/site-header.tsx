@@ -14,7 +14,7 @@ function navPriceLabel(journey: Journey) {
   return "Tailored quote";
 }
 
-export function SiteHeader({ cta }: { cta?: { href: string; label: string; location?: string } } = {}) {
+export function SiteHeader({ cta, conversion }: { cta?: { href: string; label: string; location?: string }; conversion?: boolean } = {}) {
   const journeys: HeaderJourney[] = getAllJourneys()
     .filter((journey) => journey.frontmatter.navFeatured)
     .map((journey) => ({
@@ -26,5 +26,5 @@ export function SiteHeader({ cta }: { cta?: { href: string; label: string; locat
       priceLabel: navPriceLabel(journey),
     }));
 
-  return <SiteHeaderClient journeys={journeys} cta={cta} />;
+  return <SiteHeaderClient journeys={journeys} cta={cta} conversion={conversion} />;
 }

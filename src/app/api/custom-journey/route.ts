@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { enquiryEmailText, parseCustomJourneyEnquiry } from "@/lib/custom-journey-enquiry";
+import { metaClickIdsFrom, requestClientContext, sendMetaLead } from "@/lib/meta-capi";
 
 export const runtime = "nodejs";
 
@@ -20,10 +21,12 @@ export async function POST(request: Request) {
   recentRequests.set(ip, { count: (limit?.count || 0) + 1, expires: limit?.expires || now + 600_000 });
   if (recentRequests.size > 2000) recentRequests.delete(recentRequests.keys().next().value!);
   let enquiry;
+  let payload: Record<string, unknown> = {};
   try {
     const text = await request.text();
     if (text.length > 12_000) return Response.json({ error: "Your message is too long." }, { status: 413 });
-    enquiry = parseCustomJourneyEnquiry(JSON.parse(text));
+    payload = JSON.parse(text) as Record<string, unknown>;
+    enquiry = parseCustomJourneyEnquiry(payload);
   } catch { return Response.json({ error: "Please check your details and try again." }, { status: 400 }); }
   if (!enquiry) return Response.json({ error: "Please check your name, email, traveler numbers and consent." }, { status: 400 });
   const apiKey = process.env.RESEND_API_KEY;
@@ -39,6 +42,14 @@ export async function POST(request: Request) {
     });
     const response = await result.json();
     if (!result.ok || typeof response.id !== "string") return Response.json({ error: "We could not send your enquiry. Please try again or contact Joy below." }, { status: 502 });
+    const clickIds = metaClickIdsFrom(payload);
+    void sendMetaLead({
+      ...clickIds,
+      ...requestClientContext(request),
+      eventId: enquiry.requestId,
+      email: enquiry.email,
+      contentName: "custom_journey_enquiry",
+    });
     return Response.json({ success: true });
   } catch { return Response.json({ error: "We could not send your enquiry. Your details are still here; please try again or contact Joy below." }, { status: 502 }); }
 }
