@@ -7,11 +7,10 @@ import { Testimonials } from "@/components/testimonials";
 import { QuickAsk } from "@/components/quick-ask";
 import { formatPriceLabel } from "@/lib/format-price";
 import { JourneyHero, JourneyOverview, JourneySectionNav } from "@/components/journey-landing";
-import { BookingTerms } from "@/components/booking-terms";
 import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { MuslimFriendly } from "@/components/muslim-friendly";
 import { YunnanTravelNotes } from "@/components/yunnan-travel-notes";
-import { brandIdentity } from "@/lib/booking-terms";
+import { bookingDocumentHref, bookingTermCards } from "@/lib/booking-terms";
 import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
 import { breadcrumbList } from "@/components/json-ld";
 
@@ -24,17 +23,12 @@ const sixDayPhotos: Record<string, readonly [string, string]> = {
   "Day 6": ["/assets/blog/yunnan-travel-from-uk/lijiang-old-town.webp", "A canal lane in Lijiang Old Town"],
 };
 
-const goodFit = ["Experiences over checklists", "Local culture and daily life", "A comfortable, unhurried pace", "Stories worth bringing home"];
-const poorFit = ["The maximum number of sights", "A fast-paced coach tour", "The lowest-cost package", "A rigid, minute-by-minute schedule"];
-
 export function JourneyPage({ journey }: { journey: Journey }) {
   const { frontmatter } = journey;
   const stories = getSelectedTestimonials();
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
   const whatsapp = `https://wa.me/8618880441791?text=${encodeURIComponent(`Hi Joy, I’m interested in the ${frontmatter.title} journey. My travel dates are ____ and there will be ____ travelers.`)}`;
   const guidePrice = frontmatter.fromPrice > 0 ? `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} ${frontmatter.priceBasis}` : "Tailored quote after we confirm your dates and group";
-  const selectedGoodFit = frontmatter.goodFit ?? goodFit;
-  const selectedPoorFit = frontmatter.poorFit ?? poorFit;
   const overviewItems = frontmatter.overviewItems ?? [
     { label: frontmatter.duration.toUpperCase(), value: frontmatter.route },
     { label: "YOUR JOURNEY", value: `${frontmatter.journeyType} · Driver-guide · Private transport` },
@@ -64,13 +58,11 @@ export function JourneyPage({ journey }: { journey: Journey }) {
   return <main>
     <SiteHeader />
     <JourneyHero title={frontmatter.title} image={frontmatter.coverImage} imageAlt={frontmatter.coverAlt || "Mountains and countryside along a Yunnan journey"} eyebrow={frontmatter.heroEyebrow || "A PRIVATE YUNNAN JOURNEY"} description={frontmatter.heroDescription || frontmatter.excerpt} price={frontmatter.fromPrice > 0 ? `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} ${frontmatter.priceBasis}` : undefined} primary={{ href: whatsapp, label: "PLAN THIS JOURNEY" }} secondary={{ href: "#itinerary", label: frontmatter.heroSecondaryLabel || "EXPLORE THE 6-DAY ITINERARY" }} note={frontmatter.heroNote || "Start with your dates and preferred pace. No pressure to book."} />
-    <JourneySectionNav links={[{ href: "#muslim-friendly", label: "Muslim-friendly" }, { href: "#itinerary", label: "Day-to-day itinerary" }, ...(stories.length > 0 ? [{ href: "#stories", label: "Stories" }] : []), { href: "#local-team", label: "Guide, vehicle & hotels" }, { href: "#pricing", label: frontmatter.tiers.length ? "Hotel styles" : "Pricing" }, { href: "#details", label: "What’s included" }, { href: "#booking-terms", label: "Booking & payment" }, { href: frontmatter.bookingNotes?.length ? "#travel-notes" : "#yunnan-notes", label: "Travel notes" }]} action={{ href: whatsapp, label: "Plan your journey" }} />
+    <JourneySectionNav links={[{ href: "#itinerary", label: "Day-to-day itinerary" }, ...(stories.length > 0 ? [{ href: "#stories", label: "Stories" }] : []), { href: "#local-team", label: "Guide, vehicle & hotels" }, { href: "#pricing", label: frontmatter.tiers.length ? "Hotel styles" : "Pricing" }, { href: "#details", label: "What’s included" }, { href: "#booking-terms", label: "Before you book" }]} action={{ href: whatsapp, label: "Plan your journey" }} />
     <JourneyOverview title={frontmatter.overviewTitle || "Your private Yunnan journey, at a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: whatsapp, label: "ASK JOY ABOUT THIS JOURNEY" }} />
     <MuslimFriendly />
 
-    <section className="journey-fit"><div className="shell"><header><span>{frontmatter.fitKicker || "IS THIS YOUR KIND OF JOURNEY?"}</span><h2>{frontmatter.fitHeading || "For travelers who would rather go deeper than go faster."}</h2></header><div className="journey-fit-columns"><div><h3>You’ll probably love it if you value…</h3>{selectedGoodFit.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><h3>It may not be for you if you want…</h3>{selectedPoorFit.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></div></section>
-
-    <section className="journey-itinerary section" id="itinerary"><div className="shell journey-section-layout"><header><p>{frontmatter.itineraryKicker || "YOUR 6 DAYS IN YUNNAN"}</p><h2>{frontmatter.itineraryHeading || (isSixDayYunnanJourney ? "Give Jade Dragon Snow Mountain a full day of its own." : "A rhythm of arrival, discovery and rest.")}</h2><span>{frontmatter.itineraryIntro || (isSixDayYunnanJourney ? "Day 1 is the train into Dali Ancient Town. Day 2 stays on Erhai’s west shore. One night in Shaxi follows the Three Pagodas, then two nights in Lijiang with Jade Dragon Snow Mountain as the core day. Hotel breakfast is generally included. Lunch and dinner are not." : "This is a starting point rather than a rigid package. We can adjust the route around your dates and preferred pace.")}</span></header><div className="journey-days">{frontmatter.itinerary.map((day, index) => {
+    <section className="journey-itinerary section" id="itinerary"><div className="shell journey-section-layout"><header><p>{frontmatter.itineraryKicker || "YOUR 6 DAYS IN YUNNAN"}</p><h2>{frontmatter.itineraryHeading || (isSixDayYunnanJourney ? "Give Jade Dragon Snow Mountain a full day of its own." : "A rhythm of arrival, discovery and rest.")}</h2><span>{frontmatter.itineraryIntro || (isSixDayYunnanJourney ? "Two nights in Dali, one night in Shaxi, two nights in Lijiang. Day 5 is the mountain. Hotel breakfast is generally included. Lunch and dinner are not." : "This is a starting point rather than a rigid package. We can adjust the route around your dates and preferred pace.")}</span></header><div className="journey-days">{frontmatter.itinerary.map((day, index) => {
       const dayPhoto = day.image ? [day.image, day.imageAlt || day.title] as const : isSixDayYunnanJourney ? sixDayPhotos[day.days] : undefined;
       const isShaxiStay = isSixDayYunnanJourney && day.days === "Day 3";
       const dayCopy = day.description.split(/\n\n+/);
@@ -81,24 +73,29 @@ export function JourneyPage({ journey }: { journey: Journey }) {
 
     <JourneyTrustSection />
 
-    <section className="journey-host"><div className="journey-host-image"><Image src="/brand/founder/portrait.webp" alt="Joy Liu, travel consultant at Hidden China Travel" fill sizes="(max-width: 800px) 100vw, 48vw" unoptimized /></div><div className="journey-host-copy"><span>YOUR LOCAL CONNECTION</span><h2>A Yunnan journey shaped by someone who calls it home.</h2><blockquote>“Living abroad taught me how different a place feels when you have someone local you can trust.”</blockquote><p>Joy Liu was born and raised in Yunnan. {brandIdentity.consultant}</p><Link href="/about-us">MEET JOY →</Link></div></section>
-
     <section className="journey-pricing section section-sand" id="pricing"><div className="shell"><div className="journey-editorial-heading"><span>{frontmatter.tiers.length ? "PRICING & HOTEL STYLES" : "PRICING"}</span><h2>{frontmatter.pricingHeading || (frontmatter.tiers.length ? "Choose a hotel style" : "A journey shaped around your dates")}</h2><p>{frontmatter.pricingIntro || (frontmatter.tiers.length ? "Premium is our recommended option. Starting prices on cards and listings use the Comfort rate." : "Five hotel nights and guiding are included. Vehicle, room types and exact inclusions are confirmed in a written proposal after we know your dates and group size.")}</p></div>{frontmatter.tiers.length ? <div className="journey-price-grid">{frontmatter.tiers.map((tier) => <article key={tier.name} className={tier.featured ? "featured" : ""}>{tier.featured ? <span className="price-choice">RECOMMENDED</span> : null}<h3>{tier.name}</h3><div className="journey-tier-price">From <b>{formatPriceLabel(tier.price, frontmatter.currency)}</b> <span>per person</span></div><p>{tier.description}</p><ul><li>{tier.accommodation}</li><li>Private transportation</li><li>Local experiences</li><li>Journey support</li></ul><small>IDEAL FOR</small><strong>{tier.idealFor}</strong></article>)}</div> : <div className="journey-price-note">{frontmatter.priceExplanation ? <><b>{guidePrice} for the complete journey.</b> {frontmatter.priceExplanation}</> : <><b>Request a tailored quote.</b> The final proposal confirms the five named hotel nights, guide language, vehicle, attraction tickets and meals before you decide.</>}</div>}{frontmatter.tiers.length ? <p className="journey-price-note">{frontmatter.priceExplanation || "Prices are shown in USD and are intended as a guide. Final pricing depends on travel dates, group size, hotel availability and any route customizations. Your licensed local travel partner will provide the final proposal and contract."}</p> : frontmatter.priceExplanation ? null : <p className="journey-price-note">Final pricing depends on travel dates, group size, hotel availability and any route customizations. Your licensed local travel partner will provide the final proposal and contract.</p>}
     <div className="journey-quote-ask"><h3>Ask Joy to price this route for your dates.</h3><p>A group size, a month and a budget are enough. You will get a route sketch and a range before anyone asks you to book. Prefer a chat? Use WhatsApp and send the same three facts.</p><QuickAsk layout="embedded" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.title} intent="trip" /></div></div></section>
 
     <section className="journey-inclusions section journey-inclusions-compact" id="details"><div className="shell journey-inclusion-grid"><div><span className="journey-detail-label">THE DETAILS</span><h2>What’s included</h2>{frontmatter.inclusions.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><span className="journey-detail-label">GOOD TO KNOW</span><h2>What’s not included</h2>{frontmatter.exclusions.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></section>
 
-    <BookingTerms />
+    <section className="journey-booking-notes section section-sand journey-booking-notes-compact" id="booking-terms">
+      <div className="shell">
+        <div className="journey-editorial-heading">
+          <span>BEFORE YOU BOOK</span>
+          <h2>Payment, the contract, and notes for this route.</h2>
+          <p>The same booking terms on every journey. Route-specific notes sit with them, collapsed until you need them.</p>
+        </div>
+        <div className="journey-booking-notes-grid">
+          {bookingTermCards.map(([title, detail]) => <details key={title}><summary>{title}<span aria-hidden="true">+</span></summary><p>{detail}</p></details>)}
+          {frontmatter.bookingNotes?.map((note) => <details key={note.title}><summary>{note.title}<span aria-hidden="true">+</span></summary><p>{note.detail}</p></details>)}
+        </div>
+        {frontmatter.bookingNotes?.length ? <p className="journey-booking-notes-source">For medical questions about high-elevation travel, consult your clinician and the <a href="https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/high-altitude-travel-and-altitude-illness.html" target="_blank" rel="noopener noreferrer">CDC high-altitude guidance ↗</a>. <Link href={bookingDocumentHref}>Read the full booking and service note →</Link></p> : <><YunnanTravelNotes /><p className="journey-booking-notes-source"><Link href={bookingDocumentHref}>Read the full booking and service note →</Link></p></>}
+      </div>
+    </section>
 
-    {frontmatter.bookingNotes?.length ? null : <YunnanTravelNotes />}
+    <section className="journey-faq section" id="questions"><div className="narrow"><div className="section-heading"><h2>Frequently asked questions</h2></div>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><p>{faq.answer}</p></details>)}</div></section>
 
-    {frontmatter.bookingNotes?.length ? <section className="journey-booking-notes section section-sand journey-booking-notes-compact" id="travel-notes"><div className="shell"><div className="journey-editorial-heading"><span>BEFORE YOU TRAVEL</span><h2>Good to know before you travel.</h2><p>Check these practical points as you choose your dates and pace.</p></div><div className="journey-booking-notes-grid">{frontmatter.bookingNotes.map((note) => <details key={note.title}><summary>{note.title}<span aria-hidden="true">+</span></summary><p>{note.detail}</p></details>)}</div><p className="journey-booking-notes-source">For medical questions about high-elevation travel, consult your clinician and the <a href="https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/high-altitude-travel-and-altitude-illness.html" target="_blank" rel="noopener noreferrer">CDC high-altitude guidance ↗</a>.</p></div></section> : null}
-
-    <section className="journey-faq section"><div className="narrow"><div className="section-heading"><h2>Frequently asked questions</h2></div>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><p>{faq.answer}</p></details>)}</div></section>
-
-    <section className="custom-route-bridge section section-sand"><div className="narrow"><h2>Looking for a different journey?</h2><p>Different dates, more time, or somewhere else in mind? Start with your own plans and we’ll discuss a route shaped around you.</p><Link href="/custom-china-tour" data-cta-location="journey_custom_alternative">EXPLORE TAILOR-MADE YUNNAN →</Link></div></section>
-
-    <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Planning starts with a conversation.</h2><span>Send Joy your dates, group size and preferred travel pace. We’ll help you decide whether this journey is the right fit.</span><Link href={whatsapp} className="button button-light">PLAN THIS JOURNEY</Link></div></section>
+    <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Planning starts with a conversation.</h2><span>Send Joy your dates, group size and preferred travel pace. We’ll help you decide whether this journey is the right fit.</span><Link href={whatsapp} className="button button-light">PLAN THIS JOURNEY</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>
     <Link href={whatsapp} className="journey-mobile-cta">PLAN THIS JOURNEY <span>→</span></Link>
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
