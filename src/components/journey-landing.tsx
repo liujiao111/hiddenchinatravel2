@@ -25,5 +25,5 @@ export function JourneySectionNav({ links, action }: { links: Action[]; action: 
 export function JourneyOverview({ title, description, items, action }: {
   title: string; description: string; items: { label: string; value: string }[]; action: Action;
 }) {
-  return <section className="journey-overview"><div className="shell"><div className="journey-overview-heading"><h2>{title}</h2><p>{description}</p></div><div className="journey-overview-items">{items.map(item => <div key={item.label}><span>{item.label}</span><b>{item.value}</b></div>)}</div><Link href={action.href}>{action.label} →</Link></div></section>;
+  return <section className="journey-overview" id="glance"><div className="shell"><div className="journey-overview-heading"><h2>{title}</h2><p>{description}</p></div><div className="journey-overview-items">{items.map(item => <div key={item.label}><span>{item.label}</span><b>{item.value}</b></div>)}</div><Link href={action.href}>{action.label} →</Link></div></section>;
 }

@@ -21,7 +21,7 @@ heroEyebrow: "6 DAYS / 5 NIGHTS · PRIVATE JOURNEY"
 heroSecondaryLabel: "EXPLORE THE 6-DAY ITINERARY"
 heroDescription: "Dali Ancient Town, a morning on Erhai’s west shore, a Bai tie-dye workshop, one night in Shaxi, then two nights in Lijiang with Jade Dragon Snow Mountain as a full day of its own."
 heroNote: "Start with your dates, group size and whether you need a Kunming night before Day 1. No pressure to book."
-overviewTitle: "Your private Yunnan journey, at a glance."
+overviewTitle: "At a glance."
 overviewDescription: "A westbound private route with named days, not a list of slogans. Trains, road transfers and the mountain tickets are arranged around your dates."
 overviewItems:
   - label: "6 DAYS / 5 NIGHTS"
