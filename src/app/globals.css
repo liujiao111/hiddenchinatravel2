@@ -691,9 +691,20 @@ a.utility-card { color:inherit; }
 .journey-private-points p { margin:0; color:#62665e; font-size:.88rem; line-height:1.6; }
 .journey-proof.section { padding-bottom:48px; }
 .journey-proof .journey-muslim { margin-top:8px; padding:28px 0 0; background:transparent; }
-.journey-why { background:#f3efe3; }
-.journey-why-intro { padding:64px 0 20px; }
-.journey-why .testimonials { background:#f3efe3; padding-top:36px; padding-bottom:8px; }
+.journey-why { padding:72px 0 64px; background:#f3efe3; }
+.journey-why-intro { padding:0 0 28px; max-width:none; }
+.journey-why-decision { display:grid; grid-template-columns:1.15fr 1fr 1fr; gap:1px; margin-bottom:22px; background:#d5d1c4; }
+.journey-why-decision article { padding:26px 24px; background:#faf9f2; }
+.journey-why-decision span { color:#8f7446; font-size:.65rem; font-weight:800; letter-spacing:.16em; }
+.journey-why-decision h3 { margin:10px 0 12px; color:#29463f; font-family:Georgia,serif; font-size:1.35rem; font-weight:400; line-height:1.2; }
+.journey-why-decision p { margin:0; color:#5f655d; font-size:.9rem; line-height:1.65; }
+.journey-why-decision a { display:inline-block; margin-top:14px; color:#345d58; font-size:.68rem; font-weight:800; letter-spacing:.1em; }
+.journey-why-joy-photo { position:relative; width:96px; height:96px; margin-bottom:16px; overflow:hidden; background:#d9d4c3; }
+.journey-why-joy-photo img { object-fit:cover; object-position:center 42%; }
+.journey-why-quotes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-bottom:8px; }
+.journey-why-quotes blockquote { margin:0; padding:22px 24px; background:#fff; }
+.journey-why-quotes p { margin:0 0 14px; color:#29463f; font-family:Georgia,serif; font-size:1.02rem; font-style:italic; line-height:1.55; }
+.journey-why-quotes cite { color:#6a6e66; font-size:.78rem; font-style:normal; letter-spacing:.04em; }
 .journey-why-licence { padding:0 0 64px; }
 .journey-why-licence-fold { border-top:1px solid #d5d1c4; }
 .journey-why-licence-fold summary { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 0; color:#29463f; font-family:Georgia,serif; font-size:1.15rem; cursor:pointer; list-style:none; }
@@ -795,6 +806,7 @@ a.utility-card { color:inherit; }
   .journey-host-copy { max-width:none; padding:70px max(24px,7vw); }
   .journey-host-compact .journey-host-image { min-height:280px; }
   .journey-fit-season > .shell { grid-template-columns:1fr; }
+  .journey-why-decision,.journey-why-quotes { grid-template-columns:1fr; }
 }
 @media (max-width:700px) {
   .journey-assurance-grid { margin-top:29px; }
@@ -922,6 +934,7 @@ a.utility-card { color:inherit; }
 .journey-quote-ask { max-width:820px; margin:42px auto 0; }
 .journey-quote-ask h3 { margin:0 0 8px; color:#294b44; font-size:2rem; }
 .journey-quote-ask>p { margin:0 0 18px; color:#5b5e57; }
+.journey-quote-contract { margin:14px 0 0; color:#6a6e66; font-size:.8rem; line-height:1.6; }
 .article-aside-ask { margin-top:18px; }
 .contact-form-success { display:grid; gap:18px; padding:44px; background:#f9f7f0; box-shadow:0 18px 48px rgba(40,50,44,.1); }
 .contact-form-success h3 { margin:0; font-size:1.7rem; }
