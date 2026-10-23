@@ -17,6 +17,18 @@ type Props = {
 
 const visibleAskTargets = new Set<string>();
 
+function travelMonthOptions() {
+  const options: string[] = [];
+  const now = new Date();
+  const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  for (let index = 0; index < 18; index += 1) {
+    const date = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + index, 1));
+    options.push(date.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" }));
+  }
+  options.push("Not sure yet");
+  return options;
+}
+
 function syncMobileAskBars() {
   const hide = visibleAskTargets.size > 0;
   document.querySelectorAll(".article-mobile-ask").forEach((bar) => {
@@ -121,31 +133,34 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
   ) : (
     <form className={`contact-form quick-ask-form${plain ? " quick-ask-plain-form" : ""}`} method="post" action="/api/enquiry" onSubmit={handleSubmit}>
       {plain ? (
-        <div className="quick-ask-plain-row">
-          <label>
-            <span>Name</span>
-            <input name="name" type="text" autoComplete="name" required maxLength={100} placeholder="Name" onInvalid={(event) => event.preventDefault()} />
-            <small className="plain-field-error">Please fill in this field</small>
-          </label>
-          <label>
-            <span>Email</span>
-            <input name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Email" onInvalid={(event) => event.preventDefault()} />
-            <small className="plain-field-error">Please fill in this field</small>
-          </label>
-          <label>
-            <span>When</span>
-            <select name="travelWindow" defaultValue="" aria-label="When">
-              <option value="">When</option>
-              {travelWindows.map((option) => <option key={option} value={option}>{option}</option>)}
-            </select>
-          </label>
-          <input type="hidden" name="travelers" value="2 travelers" />
-          <label className="contact-honeypot" aria-hidden="true">
-            <span>Company</span>
-            <input name="company" type="text" tabIndex={-1} autoComplete="off" />
-          </label>
-          <button className="button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Get a quote"}</button>
-        </div>
+        <>
+          <p className="journey-plan-switch">Prefer email?</p>
+          <div className="quick-ask-plain-row">
+            <label>
+              <span>Name</span>
+              <input name="name" type="text" autoComplete="name" required maxLength={100} placeholder="Your name" onInvalid={(event) => event.preventDefault()} />
+              <small className="plain-field-error">Please fill in this field</small>
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" autoComplete="email" required maxLength={254} placeholder="you@email.com" onInvalid={(event) => event.preventDefault()} />
+              <small className="plain-field-error">Please fill in this field</small>
+            </label>
+            <label>
+              <span>Travel Month</span>
+              <select name="travelWindow" defaultValue="" aria-label="Travel Month">
+                <option value="">Select a month</option>
+                {travelMonthOptions().map((option) => <option key={option} value={option}>{option}</option>)}
+              </select>
+            </label>
+            <input type="hidden" name="travelers" value="2 travelers" />
+            <label className="contact-honeypot" aria-hidden="true">
+              <span>Company</span>
+              <input name="company" type="text" tabIndex={-1} autoComplete="off" />
+            </label>
+            <button className="button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Get My Trip Plan"}</button>
+          </div>
+        </>
       ) : <div className="contact-field-row">
         <label>
           <span>Your name</span>
