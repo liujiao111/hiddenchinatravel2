@@ -739,9 +739,25 @@ a.utility-card { color:inherit; }
 .journey-private-points p { margin:0; color:#62665e; font-size:.88rem; line-height:1.6; }
 .journey-proof.section { padding-bottom:48px; }
 .journey-proof .journey-muslim { margin-top:8px; padding:28px 0 0; background:transparent; }
-.journey-why { padding:72px 0 64px; background:#f3efe3; }
-.journey-why.journey-fact-cards { padding:68px 0 56px; background:#e4e9e9; }
-.journey-why.journey-fact-cards h2 { max-width:760px; margin-right:auto; margin-left:auto; }
+.journey-why { padding:8px 0 64px; background:#e4e9e9; text-align:center; }
+.journey-why h2 { max-width:760px; margin:0 auto 28px; color:#243f39; font-family:Georgia,serif; font-size:clamp(1.7rem,2.6vw,2.25rem); font-style:italic; font-weight:400; line-height:1.2; }
+.journey-why-proof { display:grid; grid-template-columns:1fr 1fr; gap:16px; text-align:left; }
+.journey-why-proof article { display:grid; grid-template-columns:200px 1fr; gap:22px; align-items:center; padding:18px; background:#fff; }
+.journey-why-proof figure { position:relative; height:250px; margin:0; overflow:hidden; background:#d9d4c3; }
+.journey-why-proof figure img { object-fit:cover; object-position:center 18%; }
+.journey-why-proof h3 { margin:0 0 10px; color:#243f39; font-family:Georgia,serif; font-size:1.35rem; font-style:italic; font-weight:400; line-height:1.2; }
+.journey-why-proof p { margin:0; color:#4e5753; font-size:.92rem; line-height:1.55; }
+.journey-why-proof a { color:#345d58; font-weight:700; text-decoration:none; }
+.journey-why-proof article:first-child>div>a { display:inline-block; margin-top:14px; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; }
+.journey-why-docs { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.journey-why-docs a { display:flex; flex-direction:column; min-width:0; }
+.journey-why-docs img { width:100%; height:148px; object-fit:contain; background:#f6f4ec; }
+.journey-why-docs span { padding-top:8px; font-size:.75rem; line-height:1.35; }
+.journey-why-proof article:last-child { grid-template-columns:1fr; align-items:start; }
+@media (max-width:800px) {
+  .journey-why-proof,.journey-why-proof article { grid-template-columns:1fr; }
+  .journey-why-proof figure { height:320px; }
+}
 .journey-why-intro { padding:0 0 28px; max-width:none; }
 .journey-why-decision { display:grid; grid-template-columns:1.15fr .85fr; gap:64px; align-items:start; margin-bottom:8px; background:transparent; }
 .journey-why-decision article { padding:0; background:transparent; }

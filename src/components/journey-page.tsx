@@ -124,6 +124,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       { icon: "licence", title: "Licensed agency", lines: [licensedOperator.nameEn.replace(" Co., Ltd.", ""), `Permit ${licensedOperator.permitNumber}`, "The contract and payments are with this agency"] },
       { icon: "star", title: "Guest reviews", lines: [`${overallGuestRating} out of 5`, `${guestReviewCount} guest reviews`, "Private Yunnan journeys, this route included"] },
     ]} />
+    <JourneyWhy />
     <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: "#ask-joy", label: "GET A QUOTE" }} />
     {frontmatter.whoFor || frontmatter.whenToGo ? <section className="journey-fit-season"><div className="shell">{frontmatter.whoFor ? <article><span>WHO IT’S FOR</span><p>{frontmatter.whoFor}</p></article> : null}{frontmatter.whenToGo ? <article><span>WHEN TO GO</span><p>{frontmatter.whenToGo}</p></article> : null}</div></section> : null}
 
@@ -138,8 +139,6 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     })}</div></div></section>
 
     {stories.length > 0 ? <Testimonials items={stories} eyebrow={selectedTestimonialsCopy.eyebrow} heading={selectedTestimonialsCopy.heading} intro={selectedTestimonialsCopy.intro} showRating={false} note={selectedTestimonialsCopy.note} /> : null}
-
-    <JourneyWhy />
 
     <section className="journey-price-module" id="pricing">
       <section className="journey-pricing section section-sand"><div className="shell"><div className="journey-editorial-heading"><span>PRICE</span><h2>{frontmatter.pricingHeading || (frontmatter.tiers.length ? "Choose a hotel style" : "A journey shaped around your dates")}</h2><p>{frontmatter.pricingIntro || "Starting prices are per person for the complete journey, based on two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Lunch and dinner are not."}</p></div>
