@@ -136,7 +136,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
             <span>When</span>
             <select name="travelWindow" defaultValue="" aria-label="When">
               <option value="">When</option>
-              {travelWindows.map((option) => <option key={option}>{option}</option>)}
+              {travelWindows.map((option) => <option key={option} value={option}>{option}</option>)}
             </select>
           </label>
           <input type="hidden" name="travelers" value="2 travelers" />

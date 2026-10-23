@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { HashLink } from "@/components/hash-link";
 
-const hideWhenVisible = ["ask-joy", "ask-joy-price", "hero-quote"];
+const hideWhenVisible = ["ask-joy", "ask-joy-price", "ask-joy-final", "hero-quote"];
 
 export function JourneyMobileCta() {
   const [hidden, setHidden] = useState(false);

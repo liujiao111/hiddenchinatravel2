@@ -44,6 +44,21 @@ const sharedTierPoints = [
   "Hotel breakfast · lunch and dinner not included",
 ];
 
+function JourneyQuoteBand({ id, kicker, description, source, sourceTitle, whatsapp, showRouteLink }: { id: string; kicker?: string; description: string; source: string; sourceTitle: string; whatsapp?: string; showRouteLink?: boolean }) {
+  return <section className="journey-quote-band">
+    <div className="shell">
+      {kicker ? <p className="journey-quote-kicker">{kicker}</p> : null}
+      <h2>Get a quote for your dates.</h2>
+      <p className="journey-quote-copy">{description}</p>
+      <QuickAsk layout="plain" id={id} source={source} sourceTitle={sourceTitle} intent="trip" />
+      {whatsapp || showRouteLink ? <div className="journey-quote-links">
+        {whatsapp ? <Link href={whatsapp}>Prefer WhatsApp? Message Joy →</Link> : null}
+        {showRouteLink ? <Link href="/custom-china-tour" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link> : null}
+      </div> : null}
+    </div>
+  </section>;
+}
+
 export function JourneyPage({ journey }: { journey: Journey }) {
   const { frontmatter } = journey;
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
@@ -109,15 +124,15 @@ export function JourneyPage({ journey }: { journey: Journey }) {
             </figure>)}
           </div>
           <p>A private party on Day 5: the 4,506 m platform and Blue Moon Valley.</p>
-        </div> : null}
-        <div className={`journey-quote-ask${isSixDayYunnanJourney ? " journey-quote-plain" : ""}`}>
+        </div> : <div className="journey-quote-ask">
           <h3>Get a quote for your dates.</h3>
-          <p>{isSixDayYunnanJourney ? `${completePrice}. Two adults sharing one room, Premium hotels. A month is enough. Nothing is booked.` : `${completePrice}. A month, group size and hotel style are enough. Joy replies with a range for those dates — nothing is booked.`}</p>
-          <QuickAsk layout={isSixDayYunnanJourney ? "plain" : "embedded"} source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" />
+          <p>{completePrice}. A month, group size and hotel style are enough. Joy replies with a range for those dates — nothing is booked.</p>
+          <QuickAsk layout="embedded" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" />
           <p className="journey-quote-contract">Joy replies to this note.</p>
-        </div>
+        </div>}
       </div>
     </section>
+    {isSixDayYunnanJourney ? <JourneyQuoteBand id="ask-joy" description={`${completePrice}. Two adults sharing one room, Premium hotels. A month is enough. Nothing is booked.`} source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} /> : null}
     <JourneyFactCards id="why-travel" title="Why travel with us?" cards={[
       { icon: "party", title: "Private party", lines: ["Your own driver-guide and vehicle", "No shopping stops", "Arranged around your dates"] },
       { icon: "person", title: "Planned with Joy", lines: ["Joy Liu plans from Kunming", "You speak with him from the first enquiry through the trip", "He was born in Yunnan"] },
@@ -149,7 +164,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
           <p className="journey-price-note">{frontmatter.priceExplanation || "Prices are a guide in USD. Final pricing depends on travel dates, group size, hotel availability and any route adjustments. Your licensed local travel partner confirms the quotation and contract before you decide."}</p>
         </div>
         <div className="journey-quote-ask"><h3>Get a quote for the style you prefer.</h3><p>{completePrice}. Pick Comfort, Premium or Luxury, then send a month and group size. Joy replies with a range for those dates — nothing is booked.</p><QuickAsk layout="embedded" id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" /><p className="journey-quote-contract">Joy replies to this note.</p></div>
-      </div></div></section> : <section className="journey-quote-band"><div className="shell"><h2>Get a quote for your dates.</h2><p>{completePrice}. Two adults sharing one room, Premium hotels. A month is enough. Nothing is booked.</p><QuickAsk layout="plain" id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" /></div></section>}
+      </div></div></section> : <JourneyQuoteBand id="ask-joy-price" description={`${completePrice}. Two adults sharing one room, Premium hotels. A month is enough. Nothing is booked.`} source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} />}
 
       <section className="journey-inclusions section journey-inclusions-compact" id="details"><div className="shell journey-inclusion-grid"><div><span className="journey-detail-label">THE DETAILS</span><h2>What’s included</h2>{frontmatter.inclusions.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><span className="journey-detail-label">GOOD TO KNOW</span><h2>What’s not included</h2>{frontmatter.exclusions.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></section>
 
@@ -160,7 +175,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     <JourneyPractical notes={frontmatter.bookingNotes?.map((note) => ({ title: note.title, detail: note.detail }))} faqs={frontmatter.faqs.map((faq) => ({ title: faq.question, detail: faq.answer }))} />
     {frontmatter.bookingNotes?.length ? null : <YunnanTravelNotes />}
 
-    <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>{frontmatter.tiers.length ? "The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked." : `${completePrice}, for two adults sharing one room in a Premium hotel. Send a month, and Joy replies with a range — nothing is booked.`}</span><HashLink href="#ask-joy" className="button button-light">GET A QUOTE</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>
+    {isSixDayYunnanJourney ? <JourneyQuoteBand id="ask-joy-final" kicker="LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?" description={`${completePrice}. Two adults sharing one room, Premium hotels. A month is enough. Nothing is booked.`} source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} showRouteLink /> : <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked.</span><HashLink href="#ask-joy" className="button button-light">GET A QUOTE</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>}
     <JourneyMobileCta />
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
