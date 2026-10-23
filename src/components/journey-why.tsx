@@ -1,23 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { OperatorCredentials } from "@/components/operator-credentials";
-import { StarRating } from "@/components/star-rating";
 import { licensedOperator } from "@/lib/journey-trust";
-import { getSelectedTestimonials, overallGuestRating, overallGuestRatingHeading, overallGuestRatingIntro } from "@/lib/testimonials";
-
-function firstSentence(quote: string) {
-  const match = quote.match(/^[^.!?]+[.!?]/);
-  return (match ? match[0] : quote).trim();
-}
 
 export function JourneyWhy() {
-  const stories = getSelectedTestimonials().slice(0, 3);
-
   return <section className="journey-why" id="why-us" aria-labelledby="why-us-title">
     <div className="shell">
       <div className="journey-editorial-heading journey-why-intro">
         <span>WHY TRAVEL WITH US</span>
-        <h2 id="why-us-title">Rated {overallGuestRating} by guests. Planned from Kunming.</h2>
+        <h2 id="why-us-title">Planned with Joy. Contracted with a licensed Kunming agency.</h2>
       </div>
 
       <div className="journey-why-decision">
@@ -34,15 +25,7 @@ export function JourneyWhy() {
           <p>{licensedOperator.nameZh}. Permit {licensedOperator.permitNumber}. The travel contract and all payments are with this agency.</p>
           <a href="#why-us-licence">Inspect the documents ↓</a>
         </article>
-        <article>
-          <span>GUEST REVIEWS</span>
-          <StarRating value={overallGuestRating} label={`Overall guest rating: ${overallGuestRating} out of 5 stars`} />
-          <h3>{overallGuestRatingHeading}</h3>
-          <p>{overallGuestRatingIntro}</p>
-        </article>
       </div>
-
-      {stories.length ? <div className="journey-why-quotes">{stories.map((story) => <blockquote key={story.id}><p>“{firstSentence(story.quote)}”</p><cite>{story.name} · {story.country}</cite></blockquote>)}</div> : null}
 
       <details className="journey-why-licence-fold" id="why-us-licence">
         <summary>Inspect the licensed-agency documents<span aria-hidden="true">+</span></summary>
