@@ -693,8 +693,8 @@ a.utility-card { color:inherit; }
 .journey-assurance-next a { flex:none; display:inline-flex; align-items:center; gap:14px; border-bottom:1px solid #345d58; color:#345d58; font-size:.69rem; font-weight:800; letter-spacing:.08em; line-height:2; }
 .journey-assurance-next a:hover { color:#9a573f; border-color:#9a573f; }
 .journey-anchor-nav { position:sticky; z-index:14; top:0; border-bottom:1px solid #dedacc; background:rgba(250,249,244,.96); backdrop-filter:blur(12px); }
-.journey-anchor-nav>.shell { display:flex; min-height:58px; align-items:center; justify-content:space-between; gap:30px; }
-.journey-anchor-nav>div>div { display:flex; gap:31px; overflow-x:auto; scrollbar-width:none; }
+.journey-anchor-nav>.shell { display:flex; min-width:0; min-height:58px; align-items:center; justify-content:space-between; gap:30px; }
+.journey-anchor-nav>div>div { display:flex; flex:1 1 auto; min-width:0; gap:31px; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
 .journey-anchor-nav>div>div::-webkit-scrollbar { display:none; }
 .journey-anchor-nav a { flex:0 0 auto; color:#525750; font-size:.66rem; font-weight:750; letter-spacing:.08em; text-transform:uppercase; }
 .journey-anchor-nav>div>a { padding:10px 15px; border:1px solid #345d58; color:#345d58; }
@@ -1619,8 +1619,8 @@ a.utility-card { color:inherit; }
 .journey-support-flow .journey-support-grid h3 { max-width:220px; margin:0 auto 12px; font-family:Georgia,serif; font-size:1.45rem; font-weight:400; }
 .journey-support-flow .journey-support-grid p { max-width:250px; margin:auto; line-height:1.6; }
 @media (max-width:700px) {
-  .journey-anchor-nav-quiet>.shell { width:100%; padding:0 18px; gap:17px; }
-  .journey-anchor-nav-quiet>div>div { gap:18px; }
+  .journey-anchor-nav-quiet>.shell { width:100%; min-width:0; padding:0 18px; gap:17px; }
+  .journey-anchor-nav-quiet>div>div { gap:18px; padding-right:8px; }
   .journey-anchor-nav-quiet>div>a.journey-nav-contact { display:none; }
   .journey-overview { padding:48px 0; }
   .journey-overview-items { grid-template-columns:1fr; gap:8px; margin-top:27px; }
