@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ProofCarousel } from "@/components/proof-carousel";
 import { hotelProof } from "@/lib/journey-trust";
 
-export function HotelProof() {
+export function HotelProof({ copy }: { copy?: string }) {
   const [activeId, setActiveId] = useState(hotelProof.groups[0].id);
   const active = hotelProof.groups.find((group) => group.id === activeId) ?? hotelProof.groups[0];
 
@@ -12,7 +12,7 @@ export function HotelProof() {
     <div className="journey-proof-copy">
       <span>{hotelProof.kicker}</span>
       <h3>{hotelProof.title}</h3>
-      <p>{hotelProof.copy}</p>
+      <p>{copy || hotelProof.copy}</p>
       <div className="proof-group-switch" role="tablist" aria-label="Hotel city">
         {hotelProof.groups.map((group) => <button key={group.id} type="button" role="tab" aria-selected={group.id === active.id} onClick={() => setActiveId(group.id)}>{group.label}</button>)}
       </div>
