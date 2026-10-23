@@ -12,7 +12,7 @@ type Props = {
   sourceTitle: string;
   intent: Intent;
   id?: string;
-  layout?: "band" | "embedded";
+  layout?: "band" | "embedded" | "plain";
 };
 
 const visibleAskTargets = new Set<string>();
@@ -48,6 +48,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
     };
   }, [id]);
 
+  const plain = layout === "plain";
   const whatsappPrompt = `Hi Joy, I was looking at "${sourceTitle}". I'd like a private Yunnan route and a price range. My dates are ____, we are ____ travelers, and our budget is about ____ per person.`;
   const standbyWhatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(whatsappPrompt)}`;
 
@@ -118,8 +119,34 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
       <a className="button button-blue" href={whatsappHref}>Continue on WhatsApp</a>
     </div>
   ) : (
-    <form className="contact-form quick-ask-form" method="post" action="/api/enquiry" onSubmit={handleSubmit}>
-      <div className="contact-field-row">
+    <form className={`contact-form quick-ask-form${plain ? " quick-ask-plain-form" : ""}`} method="post" action="/api/enquiry" onSubmit={handleSubmit}>
+      {plain ? (
+        <div className="quick-ask-plain-row">
+          <label>
+            <span>Name</span>
+            <input name="name" type="text" autoComplete="name" required maxLength={100} placeholder="Name" onInvalid={(event) => event.preventDefault()} />
+            <small className="plain-field-error">Please fill in this field</small>
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Email" onInvalid={(event) => event.preventDefault()} />
+            <small className="plain-field-error">Please fill in this field</small>
+          </label>
+          <label>
+            <span>When</span>
+            <select name="travelWindow" defaultValue="" aria-label="When">
+              <option value="">When</option>
+              {travelWindows.map((option) => <option key={option}>{option}</option>)}
+            </select>
+          </label>
+          <input type="hidden" name="travelers" value="2 travelers" />
+          <label className="contact-honeypot" aria-hidden="true">
+            <span>Company</span>
+            <input name="company" type="text" tabIndex={-1} autoComplete="off" />
+          </label>
+          <button className="button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Get a quote"}</button>
+        </div>
+      ) : <div className="contact-field-row">
         <label>
           <span>Your name</span>
           <input name="name" type="text" autoComplete="name" required maxLength={100} />
@@ -128,7 +155,8 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
           <span>Email</span>
           <input name="email" type="email" autoComplete="email" required maxLength={254} />
         </label>
-      </div>
+      </div>}
+      {plain ? null : <>
       <label className="contact-honeypot" aria-hidden="true">
         <span>Company</span>
         <input name="company" type="text" tabIndex={-1} autoComplete="off" />
@@ -174,10 +202,12 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
       </div>
       {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}
       <p className="contact-form-note">Dates, group size and budget let Joy reply with a price range. {siteConfig.replyTime} No booking from this form.</p>
+      </>}
+      {plain && status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}
     </form>
   );
 
-  if (layout === "embedded") return <div id={id} className="quick-ask-embedded">{form}</div>;
+  if (layout === "embedded" || layout === "plain") return <div id={id} className="quick-ask-embedded">{form}</div>;
 
   const title = intent === "trip" ? "Get a route and a price range." : "Planning the trip, not just this guide?";
   const copy = intent === "trip"

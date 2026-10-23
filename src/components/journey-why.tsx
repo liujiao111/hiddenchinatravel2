@@ -1,36 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
-import { OperatorCredentials } from "@/components/operator-credentials";
-import { licensedOperator } from "@/lib/journey-trust";
+import { licensedOperator, operatorCredentials } from "@/lib/journey-trust";
 
 export function JourneyWhy() {
   return <section className="journey-why" id="why-us" aria-labelledby="why-us-title">
     <div className="shell">
-      <div className="journey-editorial-heading journey-why-intro">
-        <span>WHY TRAVEL WITH US</span>
-        <h2 id="why-us-title">Planned with Joy. Contracted with a licensed Kunming agency.</h2>
-      </div>
-
-      <div className="journey-why-decision">
+      <h2 id="why-us-title">Planned with Joy. Contracted with a licensed Kunming agency.</h2>
+      <div className="journey-why-proof">
         <article>
-          <div className="journey-why-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy Liu, travel consultant at Hidden China Travel" fill sizes="96px" unoptimized /></div>
-          <span>YOUR CONSULTANT</span>
-          <h3>You’ll be planning with Joy.</h3>
-          <p>Joy Liu was born in Yunnan and plans from Kunming. You speak with him from the first enquiry through the trip.</p>
-          <Link href="/about-us">MEET JOY →</Link>
+          <figure>
+            <Image src="/brand/founder/portrait.webp" alt="Joy Liu, travel consultant at Hidden China Travel" fill sizes="(max-width:700px) 86vw, 280px" unoptimized />
+          </figure>
+          <div>
+            <h3>You’ll be planning with Joy.</h3>
+            <p>Joy Liu was born in Yunnan and plans from Kunming. You speak with him from the first enquiry through the trip.</p>
+            <Link href="/about-us">Meet Joy →</Link>
+          </div>
         </article>
         <article>
-          <span>LICENSED AGENCY</span>
-          <h3>{licensedOperator.nameEn}</h3>
-          <p>{licensedOperator.nameZh}. Permit {licensedOperator.permitNumber}. The travel contract and all payments are with this agency.</p>
-          <a href="#why-us-licence">Inspect the documents ↓</a>
+          <div>
+            <h3>Licensed agency</h3>
+            <p>{licensedOperator.nameEn} ({licensedOperator.nameZh}). Permit {licensedOperator.permitNumber}. The travel contract and all payments are with this agency.</p>
+          </div>
+          <div className="journey-why-docs">
+            {operatorCredentials.documents.map((document) => <a key={document.href} href={document.href} target="_blank" rel="noopener noreferrer">
+              <Image src={document.src} alt={document.alt} width={document.width} height={document.height} unoptimized />
+              <span>{document.label}</span>
+            </a>)}
+          </div>
         </article>
       </div>
-
-      <details className="journey-why-licence-fold" id="why-us-licence">
-        <summary>Inspect the licensed-agency documents<span aria-hidden="true">+</span></summary>
-        <OperatorCredentials />
-      </details>
     </div>
   </section>;
 }
