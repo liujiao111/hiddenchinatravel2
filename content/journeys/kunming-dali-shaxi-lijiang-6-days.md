@@ -39,7 +39,7 @@ overviewItems:
   - label: "MEALS"
     value: "Hotel breakfast generally included · Lunch and dinner are not"
   - label: "GUIDE PRICE"
-    value: "From US$550 per person for the complete 6-day journey, not a daily rate"
+    value: "From US$550 per person · The complete 6-day journey · Not a daily rate"
 manifestoKicker: "OUR WAY OF TRAVELLING"
 manifestoLead: "A quiet evening on the Tea Horse Road in Shaxi. Indigo dye on your hands in Zhoucheng. Breakfast beside Erhai, then a full day under Jade Dragon Snow Mountain."
 manifestoClose: "The best memories are rarely made in a hurry."
