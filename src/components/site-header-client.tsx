@@ -85,20 +85,38 @@ const hrefFor = (label: string) => {
   return "/#guides";
 };
 
+function HeaderMailIcon() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="5.2" width="17.6" height="13.6" rx="1.4" fill="none" stroke="currentColor" strokeWidth="1.6" /><path d="M4.2 7.2 12 13.1l7.8-5.9" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" /></svg>;
+}
+
+function HeaderMenuIcon({ open }: { open: boolean }) {
+  return open
+    ? <svg viewBox="0 0 24 16" aria-hidden="true"><path d="M4 1.5 20 14.5M20 1.5 4 14.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>
+    : <svg viewBox="0 0 24 16" aria-hidden="true"><path d="M1 1.5h22M1 8h22M1 14.5h22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>;
+}
+
 export function SiteHeaderClient({ journeys, cta, conversion }: { journeys: HeaderJourney[]; cta?: { href: string; label: string; location?: string }; conversion?: boolean }) {
   const [open, setOpen] = useState<MenuName | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const quoteHash = cta?.href.startsWith("#") ? cta.href : null;
 
   return <header className={conversion ? "site-header site-header-conversion" : "site-header"} onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
-      <Link href="/" className="brand" aria-label="Hidden China Travel home"><Image src="/brand/logo.webp" alt="Hidden China Travel" width={160} height={80} className="brand-logo" unoptimized /></Link>
+      {quoteHash ? <HashLink className="header-mail" href={quoteHash} aria-label="Get a quote" data-cta-location={cta?.location || "header_mail"}><HeaderMailIcon /></HashLink> : <Link className="header-mail" href="/contact" aria-label="Contact us"><HeaderMailIcon /></Link>}
+      <Link href="/" className="brand" aria-label="Hidden China Travel home">
+        <Image src="/brand/logo.webp" alt="" width={160} height={80} className="brand-logo" unoptimized />
+        <Image src="/brand/logo-light.png" alt="" width={160} height={80} className="brand-logo-light" unoptimized />
+      </Link>
       <div className="header-contact">
         {conversion ? <Link href="/journeys" className="header-quiet-link">JOURNEYS</Link> : <span>Local insight, private journeys and personal support</span>}
         {cta ? (cta.href.startsWith("#") ? <HashLink className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</HashLink> : <Link className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</Link>) : <EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">PLAN MY YUNNAN TRIP</span><span className="header-cta-short">PLAN MY TRIP</span></EnquireLink>}
       </div>
-      {conversion ? null : <button type="button" className="header-menu-toggle" aria-expanded={mobileOpen} aria-controls="mobile-nav" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? "CLOSE" : "MENU"}</button>}
+      <button type="button" className="header-menu-toggle" aria-expanded={mobileOpen} aria-controls="mobile-nav" aria-label={mobileOpen ? "Close menu" : "Open menu"} onClick={() => setMobileOpen((value) => !value)}>
+        <HeaderMenuIcon open={mobileOpen} />
+        <span>{mobileOpen ? "CLOSE" : "MENU"}</span>
+      </button>
     </div>
-    {!conversion && mobileOpen ? <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
+    {mobileOpen ? <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
       <Link href="/china-destinations/yunnan" onClick={() => setMobileOpen(false)}>DESTINATIONS</Link>
       <p className="mobile-nav-kicker">JOURNEYS</p>
       {journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`} className="mobile-nav-journey" onClick={() => setMobileOpen(false)}>
