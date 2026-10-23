@@ -80,7 +80,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     ],
   };
 
-  return <main>
+  return <main className="journey-page">
     <SiteHeader conversion cta={{ href: "#ask-joy", label: "GET A QUOTE", location: "header_journey_price" }} />
     <JourneyHero
       title={frontmatter.heroTitle || frontmatter.title}
