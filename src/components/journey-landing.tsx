@@ -26,6 +26,21 @@ export function JourneySectionNav({ links, action }: { links: Action[]; action: 
   return <nav className="journey-anchor-nav journey-anchor-nav-quiet" aria-label="Jump to a section"><div className="shell"><span>Jump to:</span><div>{links.map(link => link.href.startsWith("#") ? <HashLink href={link.href} key={link.href}>{link.label}</HashLink> : <Link href={link.href} key={link.href}>{link.label}</Link>)}</div><HashLink className="journey-nav-contact" href={action.href}>{action.label} →</HashLink></div></nav>;
 }
 
+function WhyMark() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M8 12.2 10.6 15 16 9.2" /></svg>;
+}
+
+export function JourneyWhyBand({ points }: { points: string[] }) {
+  return <section className="journey-why-band" aria-labelledby="why-travel-band">
+    <div className="shell">
+      <h2 id="why-travel-band">Why travel with us?</h2>
+      <ul>
+        {points.map((point) => <li key={point}><WhyMark /><span>{point}</span></li>)}
+      </ul>
+    </div>
+  </section>;
+}
+
 export function JourneyOverview({ title, description, items, action }: {
   title: string; description: string; items: { label: string; value: string }[]; action: Action;
 }) {

@@ -7,12 +7,12 @@ import { JourneyMobileCta } from "@/components/journey-mobile-cta";
 import { SiteHeader } from "@/components/site-header";
 import { QuickAsk } from "@/components/quick-ask";
 import { formatPriceLabel } from "@/lib/format-price";
-import { JourneyHero, JourneyOverview, JourneySectionNav } from "@/components/journey-landing";
+import { JourneyHero, JourneyOverview, JourneyWhyBand } from "@/components/journey-landing";
 import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { JourneyPractical } from "@/components/journey-practical";
 import { JourneyWhy } from "@/components/journey-why";
 import { Testimonials } from "@/components/testimonials";
-import { getSelectedTestimonials, overallGuestRating, overallGuestRatingLabel, selectedTestimonialsCopy } from "@/lib/testimonials";
+import { getSelectedTestimonials, guestReviewCount, overallGuestRating, overallGuestRatingLabel, selectedTestimonialsCopy } from "@/lib/testimonials";
 import { YunnanTravelNotes } from "@/components/yunnan-travel-notes";
 import { breadcrumbList } from "@/components/json-ld";
 
@@ -117,7 +117,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
         </div>
       </div>
     </section>
-    <JourneySectionNav links={[{ href: "#glance", label: "At a glance" }, ...(frontmatter.experiences.length ? [{ href: "#experiences", label: "Experiences" }] : []), { href: "#itinerary", label: "Day by day" }, ...(stories.length ? [{ href: "#stories", label: "Stories" }] : []), { href: "#why-us", label: "Why us" }, { href: "#pricing", label: "Price" }, { href: "#private-journey", label: "Your journey" }]} action={{ href: "#ask-joy", label: "Get a quote" }} />
+    <JourneyWhyBand points={["Private party, no shopping stops", "Planned with Joy in Kunming", "Contract with a licensed agency", `${overallGuestRating} from ${guestReviewCount} guest reviews`]} />
     <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: "#ask-joy", label: "GET A QUOTE" }} />
     {frontmatter.whoFor || frontmatter.whenToGo ? <section className="journey-fit-season"><div className="shell">{frontmatter.whoFor ? <article><span>WHO IT’S FOR</span><p>{frontmatter.whoFor}</p></article> : null}{frontmatter.whenToGo ? <article><span>WHEN TO GO</span><p>{frontmatter.whenToGo}</p></article> : null}</div></section> : null}
 

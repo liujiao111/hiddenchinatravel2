@@ -692,6 +692,16 @@ a.utility-card { color:inherit; }
 .journey-assurance-next p b { color:#29463f; }
 .journey-assurance-next a { flex:none; display:inline-flex; align-items:center; gap:14px; border-bottom:1px solid #345d58; color:#345d58; font-size:.69rem; font-weight:800; letter-spacing:.08em; line-height:2; }
 .journey-assurance-next a:hover { color:#9a573f; border-color:#9a573f; }
+.journey-why-band { padding:28px 0; background:#f7f5ed; border-bottom:1px solid #dedacc; }
+.journey-why-band .shell { display:grid; grid-template-columns:1fr; gap:18px; }
+.journey-why-band h2 { margin:0; color:#29463f; font-family:Georgia,serif; font-size:clamp(1.7rem,2.4vw,2.15rem); font-weight:400; line-height:1.15; }
+.journey-why-band ul { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px 22px; margin:0; padding:0; list-style:none; }
+.journey-why-band li { display:flex; align-items:flex-start; gap:10px; color:#29463f; font-size:.98rem; line-height:1.35; }
+.journey-why-band svg { flex:none; width:22px; height:22px; margin-top:1px; fill:none; stroke:#345d58; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+@media (max-width:900px) {
+  .journey-why-band .shell { grid-template-columns:1fr; gap:16px; }
+  .journey-why-band ul { grid-template-columns:1fr 1fr; }
+}
 .journey-anchor-nav { position:sticky; z-index:14; top:0; border-bottom:1px solid #dedacc; background:rgba(250,249,244,.96); backdrop-filter:blur(12px); }
 .journey-anchor-nav>.shell { display:flex; min-width:0; min-height:58px; align-items:center; justify-content:space-between; gap:30px; }
 .journey-anchor-nav>div>div { display:flex; flex:1 1 auto; min-width:0; gap:31px; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
@@ -1619,6 +1629,10 @@ a.utility-card { color:inherit; }
 .journey-support-flow .journey-support-grid h3 { max-width:220px; margin:0 auto 12px; font-family:Georgia,serif; font-size:1.45rem; font-weight:400; }
 .journey-support-flow .journey-support-grid p { max-width:250px; margin:auto; line-height:1.6; }
 @media (max-width:700px) {
+  .journey-why-band { padding:22px 0 24px; }
+  .journey-why-band .shell { grid-template-columns:1fr; gap:14px; }
+  .journey-why-band ul { grid-template-columns:1fr 1fr; gap:14px 16px; }
+  .journey-why-band h2 { font-size:1.65rem; }
   .journey-anchor-nav-quiet>.shell { width:100%; min-width:0; padding:0 18px; gap:17px; }
   .journey-anchor-nav-quiet>div>div { gap:18px; padding-right:8px; }
   .journey-anchor-nav-quiet>div>a.journey-nav-contact { display:none; }
