@@ -48,6 +48,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
     };
   }, [id]);
 
+  const plain = layout === "plain";
   const whatsappPrompt = `Hi Joy, I was looking at "${sourceTitle}". I'd like a private Yunnan route and a price range. My dates are ____, we are ____ travelers, and our budget is about ____ per person.`;
   const standbyWhatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(whatsappPrompt)}`;
 
@@ -105,8 +106,6 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
     }
   }
 
-  const plain = layout === "plain";
-
   const form = status === "success" && sent ? (
     <div className="contact-form-success quick-ask-success" role="status">
       <h3>{isQuoteReady(sent) ? "Joy has what he needs to quote this route." : "Joy has your note."}</h3>
@@ -125,11 +124,13 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
         <div className="quick-ask-plain-row">
           <label>
             <span>Name</span>
-            <input name="name" type="text" autoComplete="name" required maxLength={100} placeholder="Name" />
+            <input name="name" type="text" autoComplete="name" required maxLength={100} placeholder="Name" onInvalid={(event) => event.preventDefault()} />
+            <small className="plain-field-error">Please fill in this field</small>
           </label>
           <label>
             <span>Email</span>
-            <input name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Email" />
+            <input name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Email" onInvalid={(event) => event.preventDefault()} />
+            <small className="plain-field-error">Please fill in this field</small>
           </label>
           <label>
             <span>When</span>
