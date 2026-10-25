@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState, type TransitionEvent } from "react";
-import { StarRating } from "@/components/star-rating";
-import { overallGuestRating, overallGuestRatingLabel, type Testimonial } from "@/lib/testimonials";
+import type { Testimonial } from "@/lib/testimonials";
 
 type Props = {
   items: Testimonial[];
@@ -10,7 +9,6 @@ type Props = {
   intro?: string;
   eyebrow?: string;
   note?: string;
-  showRating?: boolean;
 };
 
 function cardQuote(quote: string) {
@@ -26,7 +24,7 @@ function cardQuote(quote: string) {
   return first;
 }
 
-export function Testimonials({ items, heading, intro, eyebrow, note, showRating = true }: Props) {
+export function Testimonials({ items, heading, intro, eyebrow, note }: Props) {
   const count = items.length;
   const loop = count > 3;
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -84,16 +82,14 @@ export function Testimonials({ items, heading, intro, eyebrow, note, showRating 
       {eyebrow ? <p className="kicker">{eyebrow}</p> : null}
       <h2>{heading}</h2>
       {intro ? <p>{intro}</p> : null}
-      {showRating ? <div className="testimonials-rating"><StarRating value={overallGuestRating} label="Overall rating: 4.8 out of 5 stars" /><p>{overallGuestRatingLabel}</p></div> : null}
     </header>;
-  const noteText = note ?? "Guest names may be shortened. Some reviews were translated from Chinese for clarity.";
+  const noteText = note ?? "Names may be shortened. Some notes were translated and edited for clarity.";
 
   if (count <= 3) {
     return <section className="testimonials" id="stories">
       {headingBlock}
       <div className="testimonials-static shell">{items.map((item) => (
         <figure className="testimonials-card" key={item.id}>
-          <div className="testimonial-score"><StarRating value={item.rating} /><span>{item.rating.toFixed(1)}</span></div>
           <blockquote>“{cardQuote(item.quote)}”</blockquote>
           <figcaption>
             <b>— {item.name}</b>
@@ -118,7 +114,6 @@ export function Testimonials({ items, heading, intro, eyebrow, note, showRating 
       >
         {slides.map((item, slideIndex) => (
           <figure className="testimonials-card" key={`${item.id}-${slideIndex}`} style={{ width: metrics.card, flexBasis: metrics.card }}>
-            <div className="testimonial-score"><StarRating value={item.rating} /><span>{item.rating.toFixed(1)}</span></div>
             <blockquote>“{cardQuote(item.quote)}”</blockquote>
             <figcaption>
               <b>— {item.name}</b>

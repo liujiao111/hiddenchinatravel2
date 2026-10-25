@@ -24,7 +24,7 @@ export function BookingTerms({
             </article>
           ))}
         </div>
-        <p className="journey-booking-notes-source"><Link href={bookingDocumentHref}>Read the full booking and service note →</Link></p>
+        <p className="journey-booking-notes-source"><Link href={bookingDocumentHref}>Read the full booking and service note →</Link><Link href="/licensed-operator">Licence and liability insurance →</Link></p>
       </div>
     </section>
   );

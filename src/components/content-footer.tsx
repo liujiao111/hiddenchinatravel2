@@ -18,6 +18,8 @@ export function ContentFooter() {
           <p>Thoughtfully designed journeys, practical guidance, and local insight for travelers exploring China.</p>
           <p className="footer-origin">Born in Yunnan. Shaped by experiences abroad.</p>
           <p className="footer-origin">{brandIdentity.footer}</p>
+          <p className="footer-origin">{brandIdentity.address}</p>
+          <p className="footer-origin"><a href={brandIdentity.registryHref} target="_blank" rel="noopener noreferrer">Look up the company on gsxt.gov.cn</a></p>
           <nav className="footer-social" aria-label="Social media">
             <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5zm8 2H8a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3zm-4 3.2A4.8 4.8 0 1 1 7.2 13 4.8 4.8 0 0 1 12 8.2zm0 2A2.8 2.8 0 1 0 14.8 13 2.8 2.8 0 0 0 12 10.2zM17.35 6.4a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>
@@ -60,6 +62,7 @@ export function ContentFooter() {
         <nav className="footer-nav" aria-label="Company">
           <h3>Company</h3>
           <Link href="/about-us">About Joy Liu</Link>
+          <Link href="/licensed-operator">Licensed operator</Link>
           <Link href="/booking">Booking &amp; service</Link>
           <Link href="/contact">Contact</Link>
           <Link href={whatsapp}>WhatsApp</Link>

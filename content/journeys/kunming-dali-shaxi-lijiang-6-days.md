@@ -22,22 +22,23 @@ heroTitle: "6-Day Private Yunnan Tour"
 heroSecondaryLabel: "SEE THE DAYS"
 heroDescription: "A private Kunming-to-Lijiang route, with Jade Dragon as a day of its own."
 heroNote: "Two adults sharing one room, Premium hotels. Not a daily rate."
-heroBounds: "Starts in Kunming (high-speed train to Dali) · Ends in Lijiang · Hotel breakfast is generally included; lunch and dinner are not."
+heroBounds: "Starts in Kunming (high-speed train to Dali) · Ends in Lijiang · Breakfast from Day 2 · Lunch and dinner are not included"
 heroIncludes:
   - "Private party · no shopping stops"
   - "Muslim-friendly as standard"
-  - "Jade Dragon as a full day, not on a departure"
+  - "A full day on Jade Dragon, not on the day you leave"
+  - "20% after the contract · 80% after pickup"
 whoFor: "Couples, friends and small private groups on a first Yunnan trip who would rather give Jade Dragon a full day than pack the glacier onto a departure."
 whenToGo: "March–May and September–November are the most comfortable. Summer is lush and busier; winter is quieter, with a colder mountain day."
 overviewTitle: "At a glance."
-overviewDescription: "A westbound private route with named days, not a list of slogans. Trains, road transfers and the mountain tickets are arranged around your dates."
+overviewDescription: "A westbound private route, with a plan for each day. Trains, road transfers and the mountain tickets are arranged around your dates."
 overviewItems:
   - label: "6 DAYS / 5 NIGHTS"
     value: "Starts Kunming (HSR to Dali) · Dali 2 nights · Shaxi 1 night · Ends Lijiang 2 nights"
   - label: "YOUR JOURNEY"
     value: "Private party · Driver-guide · No shopping stops"
   - label: "MEALS"
-    value: "Hotel breakfast generally included · Lunch and dinner are not"
+    value: "Hotel breakfast from Day 2 · No meals on the Day 1 train · Lunch and dinner are not included"
   - label: "GUIDE PRICE"
     value: "From US$680 per person · Two adults, Premium hotels · The complete 6-day journey"
 manifestoKicker: "OUR WAY OF TRAVELLING"
@@ -57,10 +58,10 @@ poorFit:
   - "A rigid, minute-by-minute schedule"
 itineraryKicker: "YOUR 6 DAYS IN YUNNAN"
 itineraryHeading: "Give Jade Dragon Snow Mountain a full day of its own."
-itineraryIntro: "Two nights in Dali, one night in Shaxi, two nights in Lijiang. Day 5 is the mountain, with a Lijiang night before it and after it. Hotel breakfast is generally included. Lunch and dinner are not."
+itineraryIntro: "Two nights in Dali, one night in Shaxi, two nights in Lijiang. Day 5 is the mountain, with a night in Lijiang before it and after it. Hotel breakfast is included from Day 2. Lunch and dinner are not."
 midCtaHeading: "Get a quote for your dates."
 pricingHeading: "From US$680 per person."
-pricingIntro: "Two adults sharing one room, in Premium hotels. This is the complete 6-day journey, not a daily rate. Hotel breakfast is generally included. Lunch and dinner are not. The hotel in each place is named in your proposal."
+pricingIntro: "Two adults sharing one room, in Premium hotels. This is the complete 6-day journey, not a daily rate. Hotel breakfast is included from Day 2. There is no meal on the Day 1 train. Lunch and dinner are not included. The hotel in each place is named in your proposal."
 priceExplanation: "The starting figure is for two adults sharing one room in Premium hotels. Final pricing depends on your dates. The hotel in each place is named in your written proposal."
 travelStyles:
   - "First trip to China"
@@ -82,19 +83,19 @@ experiences:
   - title: "Stand beneath Jade Dragon Snow Mountain"
     image: "/assets/destinations/yunnan/jade-dragon.webp"
     imageAlt: "Jade Dragon Snow Mountain above a turquoise lake"
-    description: "The core of the six days: a full mountain day for the sightseeing train, a cable car and Blue Moon Valley, with a Lijiang night before it and after it—not squeezed onto a departure."
+    description: "The core of the six days: a full mountain day for the sightseeing train, a cable car and Blue Moon Valley, with a night in Lijiang before it and after it. It is not squeezed onto the day you leave."
 itinerary:
   - days: "Day 1"
     title: "High-speed train to Dali Ancient Town"
     meta: "About 2 hours by rail · First night in Dali"
-    description: "Leave Kunming on a second-class high-speed train and reach Dali in about two hours. Your driver-guide meets you at the station and drives you to the hotel, usually 30–40 minutes. The evening is an easy walk in the old town, past Wenxian Tower, Foreigner Street and Renmin Road. No lake circuit today. If your flight lands late, add a Kunming night before this day."
+    description: "Leave Kunming on a second-class high-speed train and reach Dali in about two hours. Your driver-guide meets you at Dali station and drives you to the hotel, usually 30–40 minutes. The evening is an easy walk in the old town, past Wenxian Tower, Foreigner Street and Renmin Road. There is no drive around the lake today. If your flight lands late, add a Kunming night before this day."
     meals: "No meals on the train day. You sleep in Dali."
     image: "/assets/blog/dali-travel-guide/dali-ancient-town-rooftops.webp"
     imageAlt: "Rooftops in Dali Old Town, with Cangshan behind"
   - days: "Day 2"
     title: "Erhai’s west shore, Xizhou and Zhoucheng indigo"
     meta: "Panxi S-bend · Bai courtyards · Tie-dye workshop"
-    description: "After breakfast, drive about 20 minutes up Erhai’s west shore to the Panxi S-bend. Spend about an hour there on foot or by bike, Cangshan on one side and the water on the other. You do not circle the lake. Then Xizhou, for Bai courtyards and the old Tea Horse Road streets. A three-course tea can be added with lunch if you want it. In the afternoon, try indigo tie-dye at a working workshop in Zhoucheng."
+    description: "After breakfast, drive about 20 minutes up Erhai’s west shore to the Panxi S-bend. Spend about an hour there on foot or by bike, Cangshan on one side and the water on the other. You do not circle the lake. Then Xizhou, for Bai courtyards and the old Tea Horse Road streets. The Bai three-course tea can be added at lunch if you want it. It is not included. In the afternoon, try indigo tie-dye at a working workshop in Zhoucheng."
     meals: "Breakfast included. Lunch and dinner on your own. You sleep in Dali."
     image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/xizhou-bai-courtyard.webp"
     imageAlt: "Traditional Bai courtyard architecture in Xizhou"
@@ -108,41 +109,41 @@ itinerary:
   - days: "Day 4"
     title: "Shibaoshan in the morning, then the road into Lijiang"
     meta: "Grottoes in the hills · About 2 hours by road · First night in Lijiang"
-    description: "A morning at the Shibaoshan grottoes, about 30 minutes up from Shaxi, then a two-hour drive to Lijiang. In the afternoon, Black Dragon Pool: the view toward Jade Dragon when the sky is clear, and a first look at tomorrow’s mountain. A short walk in the old town after that, not a full sightseeing round. Lijiang sits at about 2,400 meters."
+    description: "A morning at the Shibaoshan grottoes, about 30 minutes up from Shaxi, then a two-hour drive to Lijiang. In the afternoon, Black Dragon Pool: the view toward Jade Dragon when the sky is clear, and a first look at tomorrow’s mountain. A short walk in the old town after that, not a full circuit. Lijiang sits at about 2,400 meters."
     meals: "Breakfast included. Lunch and dinner on your own. You sleep in Lijiang."
     image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shibaoshan-grotto-temple.webp"
     imageAlt: "Stone grotto temple at Shibaoshan in the hills above Shaxi"
   - days: "Day 5"
     title: "Jade Dragon Snow Mountain: the core of the journey"
     meta: "Sightseeing train · Cable car · Blue Moon Valley · Second night in Lijiang"
-    description: "The day this route is built around. After breakfast, drive to Baisha and take the sightseeing train, about 35 minutes, toward Ganhaizi. Then the park bus and the Glacier Park cable car, with time at the 4,506–4,680 m platforms when tickets, weather and your health allow. If that car cannot run, the replacement is Yunshanping, not a walk in town. Blue Moon Valley comes after the mountain. Oxygen and a cold-weather jacket are arranged when the glacier car is in the plan. Do not book a high-speed train back to Kunming after the cable car."
+    description: "The day this route is built around. After breakfast, drive to Baisha and take the sightseeing train, about 35 minutes, toward Ganhaizi. Then the park bus and the Glacier Park cable car, with time at the 4,506–4,680 m platforms when tickets, weather and your health allow. If that car cannot run, the replacement is Yunshanping, not a walk in town. Blue Moon Valley comes after the mountain. Oxygen and a cold-weather jacket are arranged when the glacier car is in the plan. This route does not put a high-speed train back to Kunming on the same day as the cable car."
     meals: "Breakfast included. Lunch near the mountain, dinner back in town, both on your own. You sleep in Lijiang."
     image: "/assets/destinations/yunnan/blue-moon.webp"
     imageAlt: "Blue Moon Valley below Jade Dragon Snow Mountain"
   - days: "Day 6"
     title: "Shuhe, Lijiang Old Town, then departure"
     meta: "Canals and night-before lanes · Leave from Lijiang"
-    description: "A slower morning, then the drive to Lijiang airport or the railway station. Start in Shuhe for about an hour among the canals and Qinglong Bridge, then Lijiang Old Town: Sifang Street and the water lanes. A late departure leaves time for a wild-mushroom hotpot. It is not in the price. A morning flight shortens this walk. The mountain stays on Day 5."
+    description: "A slower morning in town, then the drive to Lijiang airport or the railway station. Shuhe comes first, about an hour among the canals and Qinglong Bridge, then Lijiang Old Town: Sifang Street and the water lanes. A later departure leaves time for a wild-mushroom hotpot. That meal is not included. A morning flight shortens this walk. The mountain day stays on Day 5."
     meals: "Breakfast included. Lunch and dinner on your own."
     image: "/assets/blog/yunnan-travel-from-uk/lijiang-old-town.webp"
     imageAlt: "A canal lane in Lijiang Old Town"
 tiers: []
 inclusions:
-  - "A private five- or seven-seat vehicle for the whole journey, confirmed in your proposal"
-  - "A Chinese- or English-speaking driver-guide throughout"
-  - "Travel insurance for the confirmed journey period. It does not replace your own international travel insurance."
+  - "A private five- or seven-seat vehicle from Dali station until you leave Lijiang, confirmed in your proposal"
+  - "A Chinese- or English-speaking driver-guide from Dali station until you leave Lijiang"
   - "Premium hotels, with the property in each place named in your proposal"
-  - "Breakfast, which the hotel generally includes"
+  - "Hotel breakfast each morning from Day 2 through Day 6"
   - "Muslim-friendly arrangements: breakfast choice, help finding halal meals along the route, and prayer-time reminders. Confirmed in your proposal."
   - "Second-class high-speed train from Kunming to Dali, unless you request another seat"
   - "Attraction tickets named in your quotation, including Chongsheng Three Pagodas, Shibaoshan, Black Dragon Pool, Jade Dragon mountain entry, the park bus, the sightseeing train and the cable car named in that quotation"
   - "Oxygen and a cold-weather jacket when the Glacier Park cable car is in the confirmed plan"
 exclusions:
-  - "Lunch and dinner. They are not part of the journey, so you arrange them yourself. Your guide can suggest restaurants if you want, including Xizhou courtyard lunches and Lijiang mushroom hotpot."
+  - "Lunch and dinner. They are not included. You choose where to eat. Your driver-guide can suggest places, including a courtyard lunch in Xizhou and mushroom hotpot in Lijiang."
   - "The extra electric cart inside Blue Moon Valley, unless it is added in the quotation"
   - "Kunming hotel night, airport pickup and Kunming city visits before Day 1, unless written into the proposal"
+  - "Your own international travel insurance. Buy medical and evacuation cover before you travel."
   - "Flights to and from Yunnan"
-  - "Personal spending during the journey, including voluntary tips"
+  - "Personal expenses, including tips"
   - "Extra costs caused by traffic delays, strikes, weather, aircraft or mechanical failure, or flights that are cancelled or rescheduled — and anything not listed as included"
 bookingNotes:
   - title: "Start in Kunming, finish in Lijiang"
@@ -159,9 +160,9 @@ bookingNotes:
     detail: "Trains, road conditions, attraction opening hours and cable cars can move the visiting order. Reasonable changes will be discussed before they are made. Extra transport, tickets or overtime from added or cancelled visits will be explained first."
 faqs:
   - question: "Is this a private tour or a group tour?"
-    answer: "This is a private journey for couples, friends, families and small groups traveling together. You will not join a coach tour with strangers."
+    answer: "This is a private journey for your own party: a couple, friends, a family or a small group traveling together. You will not be combined with travelers from another booking."
   - question: "Can the itinerary be customized?"
-    answer: "Yes. This route is a starting point, not a rigid package. You can add a Kunming night before Day 1, spend a second night in Shaxi, keep more of Day 6 in Lijiang, swap Yunshanping for the glacier cable car, or continue to Shangri-La on extra days."
+    answer: "Yes. This route is a starting point, not a rigid package. You can add a Kunming night before Day 1, spend a second night in Shaxi, keep more of Day 6 in Lijiang, choose Yunshanping instead of the glacier cable car, or continue to Shangri-La on extra days."
   - question: "Where does the journey start and finish?"
     answer: "Day 1 is the high-speed train from Kunming to Dali. The first hotel night is in Dali, not Kunming. The journey ends in Lijiang on Day 6 after Shuhe and the old town. Kunming airport pickup and a Kunming hotel night before Day 1 can be added in your proposal if you need them."
   - question: "Is the Glacier Park cable car guaranteed?"
@@ -169,29 +170,27 @@ faqs:
   - question: "Can I take a morning flight from Lijiang on Day 6?"
     answer: "Yes. The mountain day is Day 5, with a second night in Lijiang after it. A morning departure on Day 6 shortens Shuhe and the old town rather than moving the mountain. Share your flight or train time before booking so the last morning is timed around it."
   - question: "Is US$680 the price per day?"
-    answer: "No. US$680 is the starting price per person for the complete 6-day journey, for two adults sharing one room in a Premium hotel."
+    answer: "No. US$680 is the starting price per person for the complete 6-day journey, for two adults sharing one room in a Premium hotel. It is not a price per day."
   - question: "Are meals included?"
-    answer: "The hotel generally includes breakfast. Lunch and dinner are not part of the journey, so you arrange those yourself. Your guide can suggest restaurants if you want, including Xizhou courtyard food and Lijiang mushroom hotpot."
+    answer: "Hotel breakfast is included each morning from Day 2 through Day 6. Day 1, the train from Kunming to Dali, has no meal included. Lunch and dinner are not included. Your driver-guide can suggest places to eat, including a courtyard lunch in Xizhou and mushroom hotpot in Lijiang."
   - question: "Can you arrange a Muslim-friendly journey?"
-    answer: "Yes. It is a standard feature on every private journey, not a special package. Tell Joy at enquiry. Hotel breakfast is generally included and you can choose suitable items or skip it. Lunch and dinner are not in this quote, so the driver-guide helps you find a halal restaurant or takeaway along the day’s route. If a meal is later added to the quotation and a suitable option cannot be confirmed, that meal is refunded. Prayer-time reminders and a quiet place or mosque can be arranged when the route allows. We do not claim certified-halal hotel kitchens."
+    answer: "Yes. It is a standard part of every private journey, not a separate package. Tell Joy when you enquire. Hotel breakfast is included from Day 2, and you can choose suitable items or skip it. Lunch and dinner are not in this price, so the driver-guide helps you find a halal restaurant or takeaway along the day’s route. If a meal is later added to the quotation and a suitable option cannot be confirmed, that meal is refunded. Prayer-time reminders, and a quiet place or a mosque, can be arranged when the route allows. We do not claim that hotel kitchens are certified halal."
   - question: "Who arranges and operates the journey?"
     answer: "Hidden China Travel is the English-language site of Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司), a licensed travel agency in Kunming. Joy Liu is your travel consultant. The travel contract and all payments are with that agency, to its corporate account. Its travel agency permit number is L-YN-1017500."
 ---
 
 ## Why this journey
 
-Most travelers remember the places they visited. We want you to remember how those places felt: indigo on your hands in Zhoucheng, a quiet evening in Shaxi after the coaches have gone, and a full day under Jade Dragon Snow Mountain that is not also a departure.
+Most travelers remember the places they visited. We want you to remember how those places felt: indigo on your hands in Zhoucheng, a quiet evening in Shaxi after the coaches have gone, and a full day under Jade Dragon Snow Mountain that is not also the day you leave.
 
-This six-day outline is built around that mountain day, with a Lijiang night before it and after it, and the transfers already arranged.
+This six-day outline is built around that mountain day, with a night in Lijiang before it and after it, and the transfers already arranged.
 
 ## Is this your kind of journey?
 
-You will probably enjoy this journey if you prefer named days over a slogan itinerary, enjoy learning about local culture and daily life, and want to travel at a comfortable pace.
+You will probably enjoy this journey if you want a plan for each day, time for local life, and an unhurried pace.
 
-It may not be the right fit if your priority is visiting as many destinations as possible, joining a fast-paced coach tour or finding the lowest-cost package available.
+It may not be the right fit if you want as many sights as possible, a fast coach tour, or the lowest price.
 
-## Independent freedom, local support
+## Your own party, with the driving arranged
 
-You can visit Dali, Shaxi and Lijiang independently. The difference is how you want the journey to feel. Planning transfers, reserving mountain tickets and navigating unfamiliar systems can take more effort than expected.
-
-This route keeps the freedom and personal rhythm of independent travel while trusted local partners remove the logistical friction.
+You can visit Dali, Shaxi and Lijiang on your own. The difference is who arranges the train, the mountain tickets and the driving. On this journey that work sits with Yunnan Meizhen, the licensed agency in Kunming. You still travel only with your own party.

@@ -95,7 +95,7 @@ export default function AboutPage() {
 
     <section className={styles.booking} id="booking"><div className="shell"><div className={styles.heading}><h2>Personal service.<br />Clear responsibilities.</h2><p>Trust means knowing who you are speaking to, what you are paying for and who will welcome you on the ground.</p></div><div className={styles.roles}>
       <article><h3>Your travel consultant: Joy</h3><p>I listen to what matters to you and help shape the route. You speak with me from the first enquiry through the journey, not a booking queue.</p></article>
-      <article><h3>Your licensed agency: {licensedOperator.nameEn}</h3><p>Hidden China Travel is the English-language site of {licensedOperator.nameEn} ({licensedOperator.nameZh}). The travel contract and all payments go to that agency’s corporate account. Its travel agency permit number is {licensedOperator.permitNumber}.</p></article>
+      <article><h3>Your licensed agency: {licensedOperator.nameEn}</h3><p>Hidden China Travel is the English-language site of {licensedOperator.nameEn} ({licensedOperator.nameZh}). The office is {licensedOperator.addressEn}. The travel contract and all payments go to that agency’s corporate account, in the company’s name. Its travel agency permit number is {licensedOperator.permitNumber}.</p><p><Link href="/licensed-operator">Company documents and 2026 liability insurance →</Link></p></article>
     </div><div className={styles.checklist}><h3>Before you commit, we work through:</h3><ul><li>Your route, pace and hotel arrangements</li><li>What the price includes—and excludes</li><li>The operator’s identity, payment and cancellation terms</li><li>Local contacts and arrangements for changes</li></ul><p>No pressure to decide before your questions are answered.</p></div>
     <div id="local-partners"><OperatorCredentials /></div></div></section>
 
@@ -104,7 +104,6 @@ export default function AboutPage() {
       eyebrow={selectedTestimonialsCopy.eyebrow}
       heading={selectedTestimonialsCopy.heading}
       intro={selectedTestimonialsCopy.intro}
-      showRating={false}
       note={selectedTestimonialsCopy.note}
     />
 

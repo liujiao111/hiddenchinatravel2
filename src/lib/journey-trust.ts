@@ -20,6 +20,9 @@ export const licensedOperator = {
   nameZh: "云南美珍国际旅行社有限公司",
   permitNumber: "L-YN-1017500",
   unifiedSocialCreditCode: "91530111MACHXW95XT",
+  addressEn: "Room 1915, Floor 19, Building 4, Dadu Motian Shopping Center, Xiaobanqiao Subdistrict, Guandu District, Kunming, Yunnan",
+  addressZh: "云南省昆明市官渡区小板桥街道大都摩天购物中心四栋19楼1915室",
+  creditRegistryUrl: "https://www.gsxt.gov.cn/",
 } as const;
 
 const teamRoot = "/assets/partners/meizhen";
@@ -142,7 +145,7 @@ export const muslimFriendly = {
 export const operatorCredentials: TrustCopy & { documents: CredentialDocument[] } = {
   kicker: "THE LICENSED AGENCY",
   title: "Company documents you can inspect",
-  copy: `${licensedOperator.nameEn} (${licensedOperator.nameZh}) is the licensed travel agency behind Hidden China Travel. It issues the travel contract, receives payment to its corporate account and operates the journey. Its travel agency permit number is ${licensedOperator.permitNumber}. Its unified social credit code is ${licensedOperator.unifiedSocialCreditCode}.`,
+  copy: `${licensedOperator.nameEn} (${licensedOperator.nameZh}) is the licensed travel agency behind Hidden China Travel. The office is ${licensedOperator.addressEn} (${licensedOperator.addressZh}). It issues the travel contract, receives payment to its corporate account and operates the journey. Its travel agency permit number is ${licensedOperator.permitNumber}. Its unified social credit code is ${licensedOperator.unifiedSocialCreditCode}.`,
   documents: [
     { href: `${credentialsRoot}/credentials/business-license.jpg`, src: `${credentialsRoot}/credentials/business-license.jpg`, alt: `Business license of ${licensedOperator.nameEn}`, label: "View business license ↗", width: 2000, height: 1454 },
     { href: `${credentialsRoot}/credentials/travel-agency-permit.jpg`, src: `${credentialsRoot}/credentials/travel-agency-permit.jpg`, alt: `Travel agency business permit ${licensedOperator.permitNumber} for ${licensedOperator.nameEn}`, label: "View travel agency permit ↗", width: 2000, height: 1434 },

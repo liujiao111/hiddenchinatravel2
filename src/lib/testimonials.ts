@@ -13,17 +13,11 @@ export type Testimonial = {
 
 const allTestimonials = testimonials as Testimonial[];
 
-export const overallGuestRating = 4.8;
-export const guestReviewCount = allTestimonials.length;
-export const overallGuestRatingLabel = `${overallGuestRating} out of 5 · ${guestReviewCount} guest reviews`;
-export const overallGuestRatingHeading = `Rated ${overallGuestRating} out of 5 by ${guestReviewCount} guests`;
-export const overallGuestRatingIntro = `${guestReviewCount} guest notes from our private Yunnan journeys, this route included.`;
-
 export const selectedTestimonialsCopy = {
   eyebrow: "TRAVELER STORIES",
   heading: "What Travelers Remember",
-  intro: "From guests on private Yunnan journeys we have planned, this route included.",
-  note: "Guest names may be shortened. Some reviews were translated from another language and lightly edited for clarity, without changing their meaning.",
+  intro: "Notes from guests on private Yunnan journeys. The driver-guide for your dates is the person named in the proposal.",
+  note: "Names may be shortened. Some notes were translated and edited for clarity.",
 };
 
 /** Representative reviews shown on every public traveler-stories module. */

@@ -20,9 +20,11 @@ This note covers the three live products on Hidden China Travel: First Encounter
 Hidden China Travel is the English-language site of **Yunnan Meizhen International Travel Agency Co., Ltd.** (云南美珍国际旅行社有限公司), a licensed travel agency in Kunming.
 
 - Travel agency permit: **L-YN-1017500**
-- Unified social credit code: **91530111MACHXW95XT**
+- Unified social credit code: **91530111MACHXW95XT**. Look it up on the [National Enterprise Credit Information Publicity System](https://www.gsxt.gov.cn/).
+- Office: Room 1915, Floor 19, Building 4, Dadu Motian Shopping Center, Xiaobanqiao Subdistrict, Guandu District, Kunming, Yunnan (云南省昆明市官渡区小板桥街道大都摩天购物中心四栋19楼1915室)
+- Licence scans and the 2026 liability policy: [Licensed operator](/licensed-operator)
 - Travel consultant: **Joy Liu**. You speak with Joy from the first enquiry through the journey.
-- The travel contract and all payments are with the licensed agency, to its corporate account.
+- The travel contract and all payments are with the licensed agency. The account name matches **Yunnan Meizhen International Travel Agency Co., Ltd.**
 
 Reply time: weekdays 9:00–18:00 Beijing time, usually within 2 hours. Other times, within 24 hours.
 
@@ -47,7 +49,8 @@ These apply to every confirmed private journey:
 - **Private party only.** You travel with the people in your booking, not a mixed coach group.
 - **Driver-guide throughout.** A Chinese- or English-speaking driver-guide drives, coordinates the route and offers context. This is not a separate attraction lecturer inside every site. A specialist site guide can be added in the proposal.
 - **Private vehicle.** Five or seven seats, matched to the party. The final vehicle is confirmed in writing.
-- **Travel insurance** for the confirmed journey period is included. It does not replace your own international travel insurance.
+- **Agency liability insurance** is held for 2026 with China Pacific Property Insurance, policy AKUM0AC10625QAAA1R9T. It covers the agency’s legal liability, up to RMB 1.8 million per person, and applies to a guest only after that guest is registered. It is not the guest’s travel insurance. [Policy record](/licensed-operator).
+- **Your own international medical and evacuation insurance** is not included. Buy it before you travel.
 - **Written itinerary and travel contract** before any booking or payment.
 - Hotels, tickets and the vehicle are arranged only after the deposit.
 
@@ -66,8 +69,7 @@ These apply to every confirmed private journey:
 
 - **20% deposit** after you confirm the written itinerary and travel contract.
 - **80% balance** after your first pickup, when the journey starts. The meeting point is the one named in your proposal (airport or railway station).
-- **Alipay or WeChat** to the licensed agency’s corporate account.
-- **Stripe** is a backup if Alipay or WeChat are not set up. Stripe charges currently appear under a personal name until the agency’s business merchant account is approved.
+- **Alipay, WeChat, or bank transfer** to the licensed agency’s corporate account. The account name matches Yunnan Meizhen International Travel Agency Co., Ltd.
 
 ---
 

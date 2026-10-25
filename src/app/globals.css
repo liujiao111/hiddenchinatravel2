@@ -236,6 +236,7 @@ a.utility-card { color:inherit; }
 .footer-brand p { max-width:380px; margin:0; color:rgba(243,241,233,.72); font-size:.91rem; }
 .footer-brand .footer-tagline { margin-bottom:20px; color:#fff; font-family:Georgia,"Times New Roman",serif; font-size:1.18rem; line-height:1.35; }
 .footer-brand .footer-origin { margin-top:22px; color:#d9c99f; font-size:.77rem; font-weight:700; letter-spacing:.035em; }
+.footer-brand .footer-origin a { color:inherit; text-decoration:underline; text-underline-offset:2px; }
 .footer h3 { margin:5px 0 20px; color:#fff; font-family:var(--font-geist-sans),Arial,sans-serif; font-size:.68rem; font-weight:800; letter-spacing:.15em; text-transform:uppercase; }
 .footer-nav { display:flex; min-width:0; flex-direction:column; align-items:flex-start; gap:13px; }
 .footer-nav>a,.footer-guide-title { color:rgba(243,241,233,.8); font-size:.86rem; line-height:1.45; transition:color .2s,transform .2s; }
@@ -493,6 +494,12 @@ a.utility-card { color:inherit; }
 .journey-final-cta>div { max-width:760px; }
 .journey-final-cta h2 { font-size:clamp(2.4rem,5vw,4.2rem); }
 .journey-final-cta>div>span { display:block; margin:0 auto 28px; font-size:1rem; line-height:1.7; }
+.journey-final-cta-ask { min-height:0; padding:72px 20px 56px; }
+.journey-final-cta-ask>div { width:min(980px,100%); max-width:none; }
+.journey-final-cta-ask h2 { max-width:14em; margin-left:auto; margin-right:auto; }
+.journey-final-cta-ask .journey-primary-action { min-height:46px; margin:0 0 22px; }
+.journey-final-cta-ask .journey-close-email { max-width:36em; margin:0 auto 14px; color:rgba(255,255,255,.82); font-size:.95rem; font-weight:400; letter-spacing:0; line-height:1.5; text-transform:none; }
+.journey-final-cta-ask .quick-ask-plain-form { margin-top:0; }
 .journey-final-cta .journey-final-alt { display:block; margin-top:22px; color:#dccca8; font-size:.82rem; font-weight:650; text-decoration:underline; text-underline-offset:5px; }
 .journeys-hero { padding:105px 20px; background:#294f49; color:white; text-align:center; }
 .journeys-hero .narrow>p { color:#d2c39f; font-size:.68rem; font-weight:800; letter-spacing:.16em; }
@@ -1039,38 +1046,52 @@ a.utility-card { color:inherit; }
 .journey-quote-plain .journey-quote-contract { color:rgba(255,255,255,.5); }
 .journey-page .journey-quote-band { width:100vw; max-width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); }
 .journey-fold-ask:has(+ .journey-quote-band) { padding-bottom:36px; }
-.journey-quote-band { padding:56px 0 48px; background:#2c2c2c; color:#f4f4f2; text-align:center; }
-.journey-plan { width:min(440px,calc(100% - 40px)); }
-.journey-quote-band h2 { margin:0 0 18px; color:#f7f7f5; font-family:Georgia,serif; font-size:clamp(1.85rem,3.4vw,2.45rem); font-weight:400; line-height:1.15; }
-.journey-plan-points { display:grid; gap:8px; margin:0 0 22px; padding:0; list-style:none; color:rgba(255,255,255,.88); font-size:.98rem; }
-.journey-plan-points li { display:flex; justify-content:center; gap:8px; }
+.journey-quote-band { padding:22px 0 20px; background:#2c2c2c; color:#f4f4f2; text-align:center; }
+.journey-plan { width:min(1040px,calc(100% - 48px)); }
+.journey-plan-head { display:flex; align-items:center; justify-content:space-between; gap:24px; margin-bottom:14px; text-align:left; }
+.journey-plan-head p { margin:0; color:rgba(255,255,255,.72); font-size:.9rem; line-height:1.4; }
+.journey-quote-band h2 { margin:0 0 4px; color:#f7f7f5; font-family:Georgia,serif; font-size:1.65rem; font-weight:400; line-height:1.15; }
+.journey-plan-points { display:flex; flex-wrap:wrap; gap:6px 22px; margin:0 0 14px; padding:0; list-style:none; color:rgba(255,255,255,.88); font-size:.9rem; }
+.journey-plan-points li { display:flex; gap:7px; }
 .journey-plan-points span { color:#d7c39a; }
-.journey-plan-whatsapp { width:100%; min-height:52px; margin-bottom:18px; background:#fff; color:#24312e; font-size:.95rem; letter-spacing:.01em; }
-.journey-plan-whatsapp:hover { background:#f4f1ea; color:#24312e; }
-.journey-plan-switch { margin:0 0 14px; color:rgba(255,255,255,.72); font-size:.95rem; }
+.journey-page .site-header .button-blue { background:#4e7671; }
+.journey-page .site-header .button-blue:hover { background:#345d58; }
+.journey-plan-whatsapp { width:auto; min-height:46px; margin:0; padding:0 24px; flex:none; background:#4e7671; color:#fff; }
+.journey-plan-whatsapp:hover { background:#345d58; color:#fff; }
+.journey-plan-switch { margin:0 0 12px; color:rgba(255,255,255,.72); font-size:.9rem; }
+.journey-quote-band-compact { padding:18px 0; }
+.journey-quote-band-compact .journey-plan-head { margin-bottom:0; }
 .journey-quote-links { display:flex; flex-wrap:wrap; justify-content:center; gap:10px 22px; margin:18px 0 0; }
 .journey-quote-links a { color:rgba(255,255,255,.82); font-size:.84rem; text-decoration:underline; text-underline-offset:4px; }
 .journey-quote-band .quick-ask-embedded { margin:0; }
 .quick-ask-plain-form.contact-form { display:block; padding:0; background:transparent; box-shadow:none; }
-.quick-ask-plain-row { display:flex; flex-direction:column; width:100%; align-items:stretch; gap:12px; }
+.quick-ask-plain-row { display:grid; grid-template-columns:1fr 1.25fr 1fr .85fr auto; align-items:end; width:100%; gap:10px; }
 .quick-ask-plain-row>label { position:relative; display:block; min-width:0; text-align:left; }
 .quick-ask-plain-row>.contact-honeypot { position:absolute; flex:none; width:0; height:0; }
 .plain-field-error { display:none; margin-top:6px; color:#ffb4ae; font-size:.75rem; line-height:1.3; text-align:left; }
 .quick-ask-plain-form input:user-invalid { border-color:#e15b5b; }
 .quick-ask-plain-form input:user-invalid + .plain-field-error { display:block; }
 .quick-ask-plain-form label>span { display:block; margin:0 0 6px; color:rgba(255,255,255,.82); font-size:.78rem; font-weight:650; }
-.quick-ask-plain-form input[type="text"],.quick-ask-plain-form input[type="email"],.quick-ask-plain-form select { height:48px; border:0; border-radius:2px; background-color:#5c5c5c; color:#fff; }
-.quick-ask-plain-form input::placeholder { color:rgba(255,255,255,.55); }
-.quick-ask-plain-form select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23ffffff' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; background-size:12px 8px; padding-right:32px; }
+.quick-ask-plain-form input[type="text"],.quick-ask-plain-form input[type="email"],.quick-ask-plain-form select { height:48px; border:0; border-radius:2px; background-color:#fff; color:#24312e; }
+.quick-ask-plain-form input::placeholder { color:#8a8f88; }
+.quick-ask-plain-form input:focus,.quick-ask-plain-form select:focus { outline:2px solid #d7c39a; outline-offset:1px; }
+.quick-ask-plain-form select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%2324312e' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; background-size:12px 8px; padding-right:32px; }
 .quick-ask-plain-form select option { color:#1c1c1c; background:#fff; }
 .quick-ask-plain-form input:user-invalid,.quick-ask-plain-form select:user-invalid { border:1px solid #e15b5b; }
-.quick-ask-plain-row .button { width:100%; height:48px; min-height:48px; padding:0 22px; background:#4d726d; color:#fff; font-size:.95rem; letter-spacing:.01em; text-transform:none; }
-.quick-ask-plain-row .button:hover { background:#3f615c; transform:none; }
+.quick-ask-plain-row .button { width:auto; min-width:148px; height:48px; min-height:48px; padding:0 18px; border:1px solid rgba(255,255,255,.72); background:transparent; color:#fff; font-size:.95rem; letter-spacing:.01em; text-transform:none; box-shadow:none; }
+.quick-ask-plain-row .button:hover { background:rgba(255,255,255,.1); color:#fff; transform:none; }
 .quick-ask-plain-form .contact-form-error { margin-top:12px; color:#ffb4ae; }
 .quick-ask-plain-form .contact-form-error a { color:#fff; }
-@media (max-width:700px) {
-  .journey-quote-band { padding:42px 0 36px; background:#343434; }
-  .journey-quote-band h2 { font-size:clamp(1.7rem,7vw,2rem); }
+@media (max-width:800px) {
+  .journey-quote-band { padding:28px 0 24px; background:#343434; }
+  .journey-plan { width:min(440px,calc(100% - 32px)); }
+  .journey-plan-head { flex-direction:column; align-items:stretch; gap:12px; text-align:center; }
+  .journey-quote-band h2 { font-size:1.45rem; }
+  .journey-plan-whatsapp { width:100%; }
+  .journey-plan-points { display:grid; grid-template-columns:1fr 1fr; gap:8px 14px; text-align:left; }
+  .quick-ask-plain-row { grid-template-columns:1fr 1fr; }
+  .quick-ask-plain-row .button { grid-column:1 / -1; width:100%; }
+  .journey-final-cta-ask .journey-primary-action { width:100%; }
 }
 .article-aside-ask { margin-top:18px; }
 .contact-form-success { display:grid; gap:18px; padding:44px; background:#f9f7f0; box-shadow:0 18px 48px rgba(40,50,44,.1); }
@@ -1203,6 +1224,8 @@ a.utility-card { color:inherit; }
 .markdown-content blockquote { padding:24px 28px; border-left:3px solid #b4965d; background:#f3efe2; color:#494b45; }
 .markdown-content blockquote p:last-child { margin-bottom:0; }
 .article-image { position:relative; display:block; width:100%; aspect-ratio:16/9; margin:38px 0; overflow:hidden; background:#ece9dd; }
+.article-image:has(img[src*="/credentials/"]) { aspect-ratio:2000/1454; }
+.article-image img[src*="/credentials/"] { object-fit:contain; background:#fff; }
 .article-image img { object-fit:cover; }
 .article-image:has(img[src*="/wechat-pay-for-foreigners-china/"]),
 .article-image:has(img[src*="why-your-payment-fails-in-china/image-3.webp"]),
@@ -1616,6 +1639,7 @@ a.utility-card { color:inherit; }
 .journey-proof-copy>span,.journey-proof-license>div:first-child>span { color:#957b50; font-size:.68rem; font-weight:800; letter-spacing:.16em; }
 .journey-proof-copy h3,.journey-proof-license h3 { margin:13px 0 16px; color:#29463f; font-family:Georgia,serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:400; line-height:1.12; }
 .journey-proof-copy p,.journey-proof-license p { color:#62665e; line-height:1.7; }
+.journey-proof-license > div:first-child a { color:#29463f; font-weight:700; text-decoration:underline; text-underline-offset:3px; }
 .proof-carousel { min-width:0; background:#fff; box-shadow:0 12px 38px rgba(28,48,40,.07); }
 .proof-carousel figure { margin:0; }
 .proof-carousel-image { position:relative; height:clamp(270px,31vw,390px); overflow:hidden; background:#e8e5de; }
@@ -1668,7 +1692,7 @@ a.utility-card { color:inherit; }
 .journey-booking-notes-grid article { padding:28px 32px; background:#fff; border-top:2px solid #a58c5b; }
 .journey-booking-notes-grid h3 { margin:0 0 12px; color:#29463f; font-family:Georgia,serif; font-size:1.3rem; font-weight:400; }
 .journey-booking-notes-grid p { margin:0; color:#5f655d; font-size:.9rem; line-height:1.7; }
-.journey-booking-notes-source { margin:24px 0 0; color:#62655f; font-size:.82rem; }
+.journey-booking-notes-source { display:flex; flex-wrap:wrap; gap:8px 28px; margin:24px 0 0; color:#62655f; font-size:.82rem; }
 .journey-booking-notes-source a { color:#345d58; text-decoration:underline; text-underline-offset:3px; }
 @media (max-width:700px) {
   .journey-days details>p.journey-day-meals { margin:0 18px 22px; }

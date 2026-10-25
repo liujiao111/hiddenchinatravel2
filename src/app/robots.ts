@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/tools/"],
     },
     sitemap: "https://hiddenchinatravel.com/sitemap.xml",
     host: "https://hiddenchinatravel.com",

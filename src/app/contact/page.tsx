@@ -107,7 +107,6 @@ export default async function ContactPage() {
         eyebrow={selectedTestimonialsCopy.eyebrow}
         heading={selectedTestimonialsCopy.heading}
         intro={selectedTestimonialsCopy.intro}
-        showRating={false}
         note={selectedTestimonialsCopy.note}
       />
 

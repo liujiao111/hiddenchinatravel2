@@ -13,6 +13,7 @@ export const organizationJsonLd = {
   telephone: `+${siteConfig.whatsappNumber}`,
   address: {
     "@type": "PostalAddress",
+    streetAddress: licensedOperator.addressEn,
     addressLocality: "Kunming",
     addressRegion: "Yunnan",
     addressCountry: "CN",

@@ -5,7 +5,7 @@ import { HashLink } from "@/components/hash-link";
 
 const hideWhenVisible = ["ask-joy", "ask-joy-price", "ask-joy-final", "hero-quote"];
 
-export function JourneyMobileCta({ label = "GET A QUOTE" }: { label?: string }) {
+export function JourneyMobileCta({ href = "#ask-joy", label = "GET A QUOTE" }: { href?: string; label?: string }) {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export function JourneyMobileCta({ label = "GET A QUOTE" }: { label?: string }) 
 
   return (
     <HashLink
-      href="#ask-joy"
+      href={href}
       className={hidden ? "journey-mobile-cta ask-bar-hidden" : "journey-mobile-cta"}
       onJump={() => setHidden(true)}
     >

@@ -7,6 +7,7 @@ import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { brandIdentity, cancellationCopy, insuranceCopy, paymentCopy } from "@/lib/booking-terms";
+import { licensedOperator } from "@/lib/journey-trust";
 import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
 import { organizationJsonLd } from "@/lib/seo";
@@ -46,7 +47,7 @@ const howItWorks = [
 const reasons = [
   ["01", "Private by design", "Travel with your own party, private vehicle and agreed itinerary. There are no large coach groups or fixed sightseeing schedules."],
   ["02", "No shopping stops", "Your journey is designed around places, people and experiences, without mandatory shopping stops or commission-led detours."],
-  ["03", "Licensed local operation", "Hidden China Travel is the English-language site of a licensed Kunming travel agency. The travel contract and payments go to that agency’s corporate account."],
+  ["03", "Licensed local operation", `Hidden China Travel is the English-language site of ${licensedOperator.nameEn} in Kunming. The contract and payments go to that company’s account: 20% after you sign, 80% after your driver meets you.`],
   ["04", "Clear details before payment", "Review the proposed route, services, inclusions, exclusions and quoted price before deciding whether to confirm."],
   ["05", "First-time China friendly", "Receive practical guidance about payments, mobile data, transportation, maps and arrival preparation."],
   ["06", "Personal support", "Joy remains available before and during your journey, so questions and unexpected changes do not have to become travel-day stress."],
@@ -71,7 +72,7 @@ const faqs = [
   ["Do I need to pay before receiving a proposed route?", "No. You can begin by sharing your dates, approximate trip length, group size and interests. Payment is only discussed after you have reviewed the proposed arrangements and quotation."],
   ["Who operates the journey in Yunnan?", `${brandIdentity.short} ${brandIdentity.consultant} The travel contract and payments are with that agency, to its corporate account.`],
   ["How do payment and cancellation work?", `${paymentCopy.product} ${cancellationCopy.full}`],
-  ["What is normally included?", `Inclusions vary by journey but include private transport, a driver-guide throughout, accommodation, selected attraction tickets and ${insuranceCopy.inclusion.toLowerCase()}. Your proposal states what is included and what you pay for separately. ${insuranceCopy.full}`],
+  ["What is normally included?", `Inclusions vary by journey but include private transport, a driver-guide throughout, accommodation and selected attraction tickets. Your proposal states what is included and what you pay for separately. ${insuranceCopy.full}`],
   ["How soon will I receive a reply?", "Joy normally replies within 2 hours on weekdays, 9:00–18:00 Beijing time, and within 24 hours at other times. More detailed proposals may take longer for complex routes or busy dates."],
 ];
 
@@ -114,8 +115,8 @@ export default function Home() {
           <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">PLAN MY YUNNAN TRIP</EnquireLink>
           <Link href="/journeys" className="button button-light hero-desktop-only">EXPLORE JOURNEYS</Link>
         </div>
-        <p className="hero-trust-line hero-desktop-only">Private journeys · No shopping stops · Licensed local operator · Personal support</p>
-        <p className="hero-trust-line hero-mobile-only">Private transport · Local support · No shopping stops</p>
+        <p className="hero-trust-line hero-desktop-only">No shopping stops · 20% after the signed contract · 80% after your driver meets you</p>
+        <p className="hero-trust-line hero-mobile-only">20% after the contract · 80% when your driver meets you</p>
         <small>{siteConfig.replyTime}</small>
         <Link href="/journeys" className="hero-text-link hero-mobile-only">Explore journeys →</Link>
       </div>
@@ -152,7 +153,7 @@ export default function Home() {
             imageAlt: firstEncounter.frontmatter.coverAlt || firstEncounter.frontmatter.title,
             duration: "6 Days / 5 Nights Private Journey",
             fromPrice: `From ${formatPriceLabel(firstEncounter.frontmatter.fromPrice, firstEncounter.frontmatter.currency)} ${firstEncounter.frontmatter.priceBasis}`,
-            features: ["Private vehicle", "Driver-guide throughout", "Travel insurance included", "No shopping stops"],
+            features: ["Private vehicle", "Driver-guide throughout", "20% deposit, 80% after pickup", "No shopping stops"],
             ctaLabel: "View this journey →",
             trackingLocation: "home_featured_first_encounter",
           }} /> : null}
@@ -164,7 +165,7 @@ export default function Home() {
             imageAlt: classic.frontmatter.coverAlt || classic.frontmatter.title,
             duration: "8 Days / 7 Nights Private Journey",
             fromPrice: `From ${formatPriceLabel(classic.frontmatter.fromPrice, classic.frontmatter.currency)} ${classic.frontmatter.priceBasis}`,
-            features: ["Driver-guide throughout", "Handpicked hotels", "Travel insurance included", "No shopping stops"],
+            features: ["Driver-guide throughout", "Handpicked hotels", "20% deposit, 80% after pickup", "No shopping stops"],
             ctaLabel: "View this journey →",
             trackingLocation: "home_featured_classic",
           }} /> : null}
@@ -200,7 +201,6 @@ export default function Home() {
       eyebrow={selectedTestimonialsCopy.eyebrow}
       heading={selectedTestimonialsCopy.heading}
       intro={selectedTestimonialsCopy.intro}
-      showRating={false}
       note={selectedTestimonialsCopy.note}
     />
 
@@ -266,7 +266,7 @@ export default function Home() {
           <EnquireLink data-cta-location="home_final_custom" className="button button-blue">PLAN MY YUNNAN TRIP</EnquireLink>
           <Link href={whatsapp} data-cta-location="home_final_whatsapp" className="button button-light">CHAT WITH JOY ON WHATSAPP</Link>
         </div>
-        <p className="final-cta-trust">Personal reply from Joy · No payment required to start planning · Your journey can be adjusted before confirmation</p>
+        <p className="final-cta-trust">No payment to start planning · 20% after the signed contract · 80% after your driver meets you</p>
       </div>
     </section>
     <ContentFooter />

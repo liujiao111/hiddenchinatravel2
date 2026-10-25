@@ -77,7 +77,8 @@ const hrefFor = (label: string) => {
   if (label === "About us") return "/about-us";
   if (label === "How we plan your journey" || label === "Booking & service") return "/booking";
   if (label === "Why travel with us") return "/about-us#why-us";
-  if (label === "Our licensed agency" || label === "Our local partners") return "/about-us#local-partners";
+  if (label === "Our licensed agency") return "/licensed-operator";
+  if (label === "Our local partners") return "/about-us#local-partners";
   if (["Travel at your pace", "Experiences, not checklists", "Responsible local travel"].includes(label)) return "/about-us#our-approach";
   if (label === "Practical preparation") return "/china-travel-essentials";
   if (label === "Get the Dali local guide") return "/dali-travel-guide";
@@ -95,10 +96,10 @@ function HeaderMenuIcon({ open }: { open: boolean }) {
     : <svg viewBox="0 0 24 16" aria-hidden="true"><path d="M1 1.5h22M1 8h22M1 14.5h22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>;
 }
 
-export function SiteHeaderClient({ journeys, cta, conversion }: { journeys: HeaderJourney[]; cta?: { href: string; label: string; location?: string }; conversion?: boolean }) {
+export function SiteHeaderClient({ journeys, cta, conversion }: { journeys: HeaderJourney[]; cta?: { href: string; label: string; location?: string; mailHref?: string }; conversion?: boolean }) {
   const [open, setOpen] = useState<MenuName | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const quoteHash = cta?.href.startsWith("#") ? cta.href : null;
+  const quoteHash = cta?.mailHref?.startsWith("#") ? cta.mailHref : cta?.href.startsWith("#") ? cta.href : null;
 
   return <header className={conversion ? "site-header site-header-conversion" : "site-header"} onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
@@ -109,7 +110,7 @@ export function SiteHeaderClient({ journeys, cta, conversion }: { journeys: Head
       </Link>
       <div className="header-contact">
         {conversion ? <Link href="/journeys" className="header-quiet-link">JOURNEYS</Link> : <span>Local insight, private journeys and personal support</span>}
-        {cta ? (cta.href.startsWith("#") ? <HashLink className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</HashLink> : <Link className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</Link>) : <EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">PLAN MY YUNNAN TRIP</span><span className="header-cta-short">PLAN MY TRIP</span></EnquireLink>}
+        {cta ? (cta.href.startsWith("#") ? <HashLink className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</HashLink> : <a className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</a>) : <EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">PLAN MY YUNNAN TRIP</span><span className="header-cta-short">PLAN MY TRIP</span></EnquireLink>}
       </div>
       <button type="button" className="header-menu-toggle" aria-expanded={mobileOpen} aria-controls="mobile-nav" aria-label={mobileOpen ? "Close menu" : "Open menu"} onClick={() => setMobileOpen((value) => !value)}>
         <HeaderMenuIcon open={mobileOpen} />

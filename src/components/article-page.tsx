@@ -75,7 +75,7 @@ export function ArticlePage({ item }: { item: ContentItem }) {
       </div>
     </article>
     {frontmatter.faqs?.length ? <section className="article-faq"><div className="narrow"><p className="article-section">COMMON QUESTIONS</p><h2>Frequently asked questions</h2>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><MarkdownContent compact>{faq.answer}</MarkdownContent></details>)}</div></section> : null}
-    <ArticleDiscoveryFlow related={related} journey={featuredJourney} sourceTitle={frontmatter.title} sourceSection={frontmatter.section} />
+    <ArticleDiscoveryFlow related={related} journey={featuredJourney} sourceTitle={frontmatter.title} sourceSection={frontmatter.section} sourcePath={`/${item.slug}`} />
     <a className="article-mobile-ask" href="#ask-joy">ASK JOY FOR A ROUTE AND PRICE <span>→</span></a>
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />

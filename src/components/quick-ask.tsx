@@ -134,7 +134,6 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
     <form className={`contact-form quick-ask-form${plain ? " quick-ask-plain-form" : ""}`} method="post" action="/api/enquiry" onSubmit={handleSubmit}>
       {plain ? (
         <>
-          <p className="journey-plan-switch">Prefer email?</p>
           <div className="quick-ask-plain-row">
             <label>
               <span>Name</span>
@@ -153,12 +152,17 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
                 {travelMonthOptions().map((option) => <option key={option} value={option}>{option}</option>)}
               </select>
             </label>
-            <input type="hidden" name="travelers" value="2 travelers" />
+            <label>
+              <span>Travelers</span>
+              <select name="travelers" defaultValue="2 travelers" aria-label="Travelers">
+                {partySizes.map((option) => <option key={option} value={option}>{option}</option>)}
+              </select>
+            </label>
             <label className="contact-honeypot" aria-hidden="true">
               <span>Company</span>
               <input name="company" type="text" tabIndex={-1} autoComplete="off" />
             </label>
-            <button className="button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Get My Trip Plan"}</button>
+            <button className="button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send by email"}</button>
           </div>
         </>
       ) : <div className="contact-field-row">

@@ -1,6 +1,6 @@
 import { CustomJourneyLink } from "@/components/custom-journey-link";
-import Image from "next/image";
 import Link from "next/link";
+import { PlanJourneyClose } from "@/components/plan-journey-close";
 import type { ContentItem } from "@/lib/content";
 import type { Journey } from "@/lib/journeys";
 import { GuideCard } from "@/components/guide-card";
@@ -25,11 +25,13 @@ export function ArticleDiscoveryFlow({
   journey,
   sourceTitle,
   sourceSection,
+  sourcePath,
 }: {
   related: ContentItem[];
   journey?: Journey;
   sourceTitle: string;
   sourceSection?: string;
+  sourcePath: string;
 }) {
   const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(`Hi Joy, I was reading "${sourceTitle}" and would like some help planning my first trip to China.`)}`;
 
@@ -84,17 +86,6 @@ export function ArticleDiscoveryFlow({
       </div>
     </section> : null}
 
-    <section className="talk-with-joy">
-      <Image src="/home/local-support.webp" alt="Local support for a journey through Yunnan" fill unoptimized sizes="100vw" />
-      <div className="talk-with-joy-shade" />
-      <div className="shell talk-with-joy-copy">
-        <h2>Want this turned into a trip?</h2>
-        <p>Send your dates and group size for a private Yunnan route and a price range, or ask the question this guide left open.</p>
-        <p>You&apos;ll be speaking directly with Joy Liu.</p>
-        <strong>Born in Yunnan. Shaped by experiences abroad.</strong>
-        <Link className="button" href={whatsapp}>Chat with Joy on WhatsApp</Link>
-        <small>{siteConfig.replyTime}<br />No obligation. No pressure.</small>
-      </div>
-    </section>
+    <PlanJourneyClose id="ask-joy-close" source={sourcePath} sourceTitle={sourceTitle} whatsapp={whatsapp} />
   </>;
 }

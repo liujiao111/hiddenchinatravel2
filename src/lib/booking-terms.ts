@@ -4,6 +4,8 @@ export const brandIdentity = {
   short: `Hidden China Travel is the English-language site of ${licensedOperator.nameEn} (${licensedOperator.nameZh}), a licensed travel agency in Kunming.`,
   consultant: "Joy Liu is your travel consultant. You speak with Joy from the first enquiry through the journey.",
   footer: `${licensedOperator.nameEn} · Permit ${licensedOperator.permitNumber} · ${licensedOperator.unifiedSocialCreditCode}`,
+  address: `${licensedOperator.addressEn} · ${licensedOperator.addressZh}`,
+  registryHref: licensedOperator.creditRegistryUrl,
 } as const;
 
 export const driverGuideCopy = {
@@ -13,16 +15,16 @@ export const driverGuideCopy = {
 } as const;
 
 export const insuranceCopy = {
-  inclusion: "Travel insurance for the confirmed journey period",
-  full: "Travel insurance for the confirmed journey period is included. It does not replace your own international travel insurance.",
+  inclusion: "Your own international travel insurance, bought before you travel",
+  full: "The agency holds 2026 travel-agency liability insurance with China Pacific Property Insurance, policy AKUM0AC10625QAAA1R9T, up to RMB 1.8 million per person for injury it is legally responsible for. It applies to you only after your name and passport number are registered. Buy your own international medical and evacuation insurance. It is not included.",
 } as const;
 
 export const paymentCopy = {
   deposit: "20% deposit to the licensed agency’s corporate account after you confirm the written itinerary and travel contract",
   balance: "The remaining 80% is due after your first pickup, when the journey starts",
-  methods: "Pay by Alipay or WeChat to the agency’s corporate account. Card payment can be arranged if those are not set up.",
-  product: `After you confirm the written itinerary and travel contract, pay a 20% deposit to ${licensedOperator.nameEn}’s corporate account by Alipay or WeChat. We then book hotels, tickets and the vehicle. The remaining 80% is due after your first pickup, when the journey starts. Card payment can be arranged if Alipay or WeChat are not set up.`,
-  full: `After you confirm the written itinerary and travel contract, pay a 20% deposit to ${licensedOperator.nameEn}’s corporate account by Alipay or WeChat. We then book hotels, tickets and the vehicle. The remaining 80% is due after your first pickup, when the journey starts. Stripe is a backup if Alipay or WeChat are not set up. Stripe charges currently appear under a personal name until the agency’s business merchant account is approved.`,
+  methods: `Pay by Alipay, WeChat, or bank transfer to ${licensedOperator.nameEn}. The account name matches the company on the contract.`,
+  product: `After you confirm the written itinerary and travel contract, pay a 20% deposit to ${licensedOperator.nameEn}’s corporate account by Alipay, WeChat, or bank transfer. The account name matches the company on the contract. We then book hotels, tickets and the vehicle. The remaining 80% is due after your first pickup, when the journey starts.`,
+  full: `After you confirm the written itinerary and travel contract, pay a 20% deposit to ${licensedOperator.nameEn}’s corporate account by Alipay, WeChat, or bank transfer. The account name matches the company on the contract. We then book hotels, tickets and the vehicle. The remaining 80% is due after your first pickup, when the journey starts.`,
 } as const;
 
 export const cancellationCopy = {

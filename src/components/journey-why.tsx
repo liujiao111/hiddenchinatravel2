@@ -20,7 +20,8 @@ export function JourneyWhy() {
         <article>
           <div>
             <h3>Licensed agency</h3>
-            <p>{licensedOperator.nameEn} ({licensedOperator.nameZh}). Permit {licensedOperator.permitNumber}. The travel contract and all payments are with this agency.</p>
+            <p>{licensedOperator.nameEn} ({licensedOperator.nameZh}). Permit {licensedOperator.permitNumber}. Office: {licensedOperator.addressEn}. The contract and payments are with this agency: 20% after you sign, 80% after your first pickup.</p>
+            <Link href="/licensed-operator">Liability insurance →</Link>
           </div>
           <div className="journey-why-docs">
             {operatorCredentials.documents.map((document) => <a key={document.href} href={document.href} target="_blank" rel="noopener noreferrer">
