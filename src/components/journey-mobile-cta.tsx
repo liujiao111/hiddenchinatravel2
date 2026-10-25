@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { HashLink } from "@/components/hash-link";
 
-const hideWhenVisible = ["ask-joy", "ask-joy-price", "hero-quote"];
+const hideWhenVisible = ["ask-joy", "ask-joy-price", "ask-joy-final", "hero-quote"];
 
-export function JourneyMobileCta() {
+export function JourneyMobileCta({ label = "GET A QUOTE" }: { label?: string }) {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export function JourneyMobileCta() {
       className={hidden ? "journey-mobile-cta ask-bar-hidden" : "journey-mobile-cta"}
       onJump={() => setHidden(true)}
     >
-      GET A QUOTE <span>→</span>
+      {label} <span>→</span>
     </HashLink>
   );
 }
