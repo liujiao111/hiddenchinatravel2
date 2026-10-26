@@ -8,6 +8,7 @@ export function getSearchIndex(): SearchItem[] {
   const pages: SearchItem[] = [
     { id: "home", title: "Hidden China Travel", href: "/", description: "Private journeys, local knowledge and practical travel guides for China.", type: "page", keywords: ["home", "China", "Yunnan", "journeys"] },
     { id: "about", title: "About Hidden China Travel", href: "/about-us", description: "Meet Joy Liu and learn about our personal approach to travel in China.", type: "page", keywords: ["Joy Liu", "about", "local travel"] },
+    { id: "traveler-stories", title: "Traveler Stories", href: "/traveler-stories", description: "Notes from families, couples and first-time visitors on private Yunnan journeys.", type: "page", keywords: ["traveler stories", "reviews", "testimonials", "private Yunnan", "Joy Liu"] },
     { id: "contact", title: "Contact Hidden China Travel", href: "/contact", description: "Talk directly with Joy Liu about Yunnan, China travel and trip planning.", type: "page", keywords: ["contact", "Joy Liu", "WhatsApp", "China travel planning"] },
     { id: "yunnan-guide", title: "Yunnan Travel Guide", href: "/china-destinations/yunnan", description: "Plan a first Yunnan journey through Kunming, Dali, Shaxi and Lijiang.", type: "hub", keywords: ["Yunnan travel guide", "Yunnan itinerary", "Kunming", "Dali", "Shaxi", "Lijiang"] },
     { id: "custom-tour", title: "Tailor-Made Yunnan", href: "/custom-china-tour", description: "Private Journey Designed Around You", type: "page", keywords: ["Tailor-Made Yunnan", "custom Yunnan", "private itinerary"] },

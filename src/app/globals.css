@@ -1617,6 +1617,8 @@ a.utility-card { color:inherit; }
 .testimonials-progress button.active { flex:2.4; }
 .testimonials-progress button.active:after { background:#2f2f2a; }
 .testimonials-note { max-width:720px; margin:22px auto 0; color:#7a776c; font-size:.72rem; text-align:center; line-height:1.6; }
+.testimonials-archive { margin:16px 0 0; text-align:center; }
+.testimonials-archive a { border-bottom:1px solid currentColor; padding-bottom:2px; color:#355e58; font-size:.82rem; font-weight:650; }
 
 @media (max-width:980px) {
   .testimonials-card { min-height:260px; padding:34px 26px 30px; }

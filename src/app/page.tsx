@@ -202,6 +202,8 @@ export default function Home() {
       heading={selectedTestimonialsCopy.heading}
       intro={selectedTestimonialsCopy.intro}
       note={selectedTestimonialsCopy.note}
+      archiveHref="/traveler-stories"
+      archiveLabel="Read the traveler stories"
     />
 
     <section className="about-feature reverse home-founder" id="joy">

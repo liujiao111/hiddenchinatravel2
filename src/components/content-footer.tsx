@@ -62,6 +62,7 @@ export function ContentFooter() {
         <nav className="footer-nav" aria-label="Company">
           <h3>Company</h3>
           <Link href="/about-us">About Joy Liu</Link>
+          <Link href="/traveler-stories">Traveler stories</Link>
           <Link href="/licensed-operator">Licensed operator</Link>
           <Link href="/booking">Booking &amp; service</Link>
           <Link href="/contact">Contact</Link>
