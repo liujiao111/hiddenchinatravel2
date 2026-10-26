@@ -7,6 +7,7 @@ import { JsonLd, breadcrumbList } from "@/components/json-ld";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site-config";
 import { openingLine, routeGallery, travelerStoryReasons, getTravelerStoryPage, type TravelerStory } from "@/lib/traveler-stories";
+import { getFeaturedJournals } from "@/lib/travel-journals";
 import styles from "./stories.module.css";
 
 const path = "/traveler-stories";
@@ -84,6 +85,7 @@ export default function TravelerStoriesPage() {
       </section>
 
       <nav className={styles.subnav} aria-label="On this page">
+        <Link href="#journal">Journal</Link>
         <Link href="#stories">Stories</Link>
         <Link href="#notes">Every note</Link>
         <Link href="#journeys">In detail</Link>
@@ -98,6 +100,20 @@ export default function TravelerStoriesPage() {
         <p className={styles.metric}><strong>Private</strong><span>Your own party, vehicle and pace</span></p>
         <p className={styles.metric}><strong>Joy</strong><span>One consultant, from the first note to the road</span></p>
       </section>
+
+      {getFeaturedJournals().map((journal) => (
+        <Link className={styles.journalBand} href={`/traveler-stories/${journal.slug}`} id="journal" key={journal.slug}>
+          <figure>
+            <Image src={journal.heroImage} alt={journal.heroAlt} fill sizes="(max-width: 800px) 100vw, 58vw" />
+          </figure>
+          <div>
+            <p>{journal.category} · {journal.country} · {journal.readingTime}</p>
+            <h2>{journal.title}</h2>
+            <span>{journal.subtitle}</span>
+            <b>READ THE JOURNAL</b>
+          </div>
+        </Link>
+      ))}
 
       <section id="stories" aria-labelledby="stories-title">
         <div className={`shell ${styles.section} ${styles.storiesIntro}`}>

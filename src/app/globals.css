@@ -20,6 +20,16 @@ p { line-height:1.7; }
 .button-light { background:white; color:#292924; }
 .center { margin-top:38px; text-align:center; }
 .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.journal-progress { position:fixed; z-index:40; top:0; left:0; right:0; height:3px; pointer-events:none; }
+.journal-progress span { display:block; width:100%; height:100%; background:#6e624c; transform-origin:left center; }
+.journal-share { position:fixed; z-index:25; top:46%; left:22px; display:flex; flex-direction:column; gap:8px; }
+.journal-share button,.journal-share a { display:grid; min-width:64px; min-height:46px; place-items:center; padding:0 12px; border:1px solid #d9d3c4; background:rgba(245,245,239,.94); color:#282821; font:inherit; font-size:.68rem; font-weight:750; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; }
+.journal-share button:hover,.journal-share a:hover { border-color:#6e624c; }
+@media (max-width:1280px) {
+  .journal-share { top:auto; right:0; bottom:0; left:0; transform:none; flex-direction:row; justify-content:center; gap:12px; padding:12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); border-top:1px solid #e3dfd2; background:rgba(245,245,239,.97); opacity:0; pointer-events:none; }
+  .journal-share.is-docked { opacity:1; pointer-events:auto; }
+  .journal-page { padding-bottom:92px; }
+}
 
 .site-header { position:relative; z-index:20; background:white; }
 .header-quiet-link { font-size:.68rem; font-weight:800; letter-spacing:.13em; color:#5a5a55; }
