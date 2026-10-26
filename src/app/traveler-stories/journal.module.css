@@ -15,12 +15,21 @@
 .meta { width: min(760px, calc(100% - 48px)); margin: 0 auto; padding: 28px 0 8px; display: flex; flex-wrap: wrap; gap: 10px 22px; color: #6d6558; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
 .meta span + span { position: relative; }
 .meta span + span:before { content: ""; position: absolute; left: -13px; top: 0.35em; width: 4px; height: 4px; border-radius: 50%; background: #c3b79a; }
+.route { width: min(760px, calc(100% - 48px)); margin: 4px auto 0; color: #3c463f; font-family: Georgia, "Times New Roman", serif; font-size: 1.2rem; line-height: 1.45; }
+.route span { display: block; margin-bottom: 6px; color: #7a6a48; font-family: var(--font-geist-sans), Arial, sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
 
 .article { width: min(760px, calc(100% - 48px)); margin: 0 auto; padding: 28px 0 20px; }
 .section { padding: 18px 0 8px; }
 .rule { display: block; width: 56px; height: 1px; margin: 42px 0 28px; background: #c9c1ab; border: 0; }
 .section h2 { margin: 0 0 22px; font-size: clamp(2rem, 3.4vw, 2.7rem); line-height: 1.12; }
 .section p { margin: 0 0 22px; font-size: 1.125rem; line-height: 1.8; color: #2f2e29; }
+.section ul { margin: 0 0 22px; padding: 0; list-style: none; }
+.section li { position: relative; margin: 0 0 10px; padding-left: 18px; font-size: 1.125rem; line-height: 1.7; }
+.section li:before { content: ""; position: absolute; left: 0; top: 0.78em; width: 7px; height: 1px; background: #8d7350; }
+.figure { position: relative; margin: 4px 0 28px; aspect-ratio: 3 / 2; overflow: hidden; background: #d9d3c4; }
+.figure img { object-fit: cover; }
+.section .pull { width: auto; margin: 8px 0 28px; }
+.section .emphasis { margin: 4px 0 22px; font-family: Georgia, "Times New Roman", serif; font-size: 1.45rem; line-height: 1.4; color: #243f3a; }
 
 .pull { width: min(760px, calc(100% - 48px)); margin: 28px auto 12px; padding: 8px 0 8px 28px; border-left: 1px solid #b7ad94; }
 .pull p { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.7rem, 3vw, 2.25rem); line-height: 1.35; color: #243f3a; }

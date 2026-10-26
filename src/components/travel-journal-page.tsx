@@ -24,7 +24,7 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
       {
         "@type": "Article",
         headline: journal.title,
-        description: journal.subtitle,
+        description: journal.description,
         image: `${siteConfig.url}${journal.heroImage}`,
         articleSection: journal.category,
         author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
@@ -57,22 +57,36 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
       </header>
 
       <p className={styles.meta}>
-        <span>{journal.country}</span>
+        <span>{journal.traveler}, {journal.country}</span>
         <span>{journal.travelStyle}</span>
         <span>{journal.theme}</span>
         <span>{journal.readingTime} read</span>
       </p>
+      <p className={styles.route}><span>Yunnan journey designed by Hidden China</span>{journal.route}</p>
 
       <article id="journal-article">
         {journal.sections.map((section, index) => (
-          <div key={section.id}>
-            <section className={`${styles.article} ${styles.section}`} id={section.id} aria-labelledby={`${section.id}-title`}>
-              {index > 0 ? <hr className={styles.rule} /> : null}
-              <h2 id={`${section.id}-title`}>{section.title}</h2>
-              {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            </section>
-            {journal.pullQuoteAfter === section.id ? <blockquote className={styles.pull}><p>{journal.pullQuote}</p></blockquote> : null}
-          </div>
+          <section className={`${styles.article} ${styles.section}`} id={section.id} aria-labelledby={`${section.id}-title`} key={section.id}>
+            {index > 0 ? <hr className={styles.rule} /> : null}
+            <h2 id={`${section.id}-title`}>{section.title}</h2>
+            {section.image ? (
+              <figure className={styles.figure}>
+                <Image src={section.image.src} alt={section.image.alt} fill sizes="(max-width: 800px) 100vw, 760px" style={{ objectPosition: section.image.position ?? "center 50%" }} />
+              </figure>
+            ) : null}
+            {section.blocks.map((block) => {
+              if (block.type === "paragraph") return <p key={block.text}>{block.text}</p>;
+              if (block.type === "emphasis") return <p className={styles.emphasis} key={block.text}>{block.text}</p>;
+              if (block.type === "list") {
+                return <ul key={block.items.join("|")}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>;
+              }
+              return (
+                <blockquote className={styles.pull} key={block.text}>
+                  {block.text.split("\n").map((line) => <p key={line}>{line}</p>)}
+                </blockquote>
+              );
+            })}
+          </section>
         ))}
       </article>
 
@@ -95,8 +109,8 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
         <Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="A herder and goats on the river path in Shaxi, Yunnan" fill sizes="100vw" />
         <div className={styles.ctaShade} />
         <div className={styles.ctaCopy}>
-          <h2 id="journal-cta-title">Ready to Discover Your Own Side of Yunnan?</h2>
-          <p>Tell us your travel dates and interests. We’ll create a journey designed around how you like to travel.</p>
+          <h2 id="journal-cta-title">Begin with how you like to travel.</h2>
+          <p>Tell Joy the China you have already seen, and the pace you want. The route is designed from there.</p>
           <div className={styles.actions}>
             <EnquireLink className="button button-light" data-cta-location="journal_plan" interest="Private Travel">Start Planning</EnquireLink>
             <a className={styles.ghost} href={whatsapp}>WhatsApp Us</a>

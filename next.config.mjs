@@ -4,7 +4,19 @@ import { legacyRedirects } from "./legacy-redirects.mjs";
 const nextConfig = {
   skipTrailingSlashRedirect: true,
   async redirects() {
-    return legacyRedirects();
+    return [
+      {
+        source: "/traveler-stories/finding-another-side-of-china-in-yunnan",
+        destination: "/traveler-stories/from-chinas-cities-to-yunnans-landscapes",
+        permanent: true,
+      },
+      {
+        source: "/traveler-stories/finding-another-side-of-china-in-yunnan/",
+        destination: "/traveler-stories/from-chinas-cities-to-yunnans-landscapes",
+        permanent: true,
+      },
+      ...legacyRedirects(),
+    ];
   },
   images: {
     remotePatterns: [

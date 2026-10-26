@@ -3,13 +3,22 @@ import "server-only";
 import { getAllContent } from "@/lib/content";
 import { getAllJourneys } from "@/lib/journeys";
 import type { SearchItem } from "@/lib/search-types";
+import { getTravelJournals } from "@/lib/travel-journals";
 
 export function getSearchIndex(): SearchItem[] {
   const pages: SearchItem[] = [
     { id: "home", title: "Hidden China Travel", href: "/", description: "Private journeys, local knowledge and practical travel guides for China.", type: "page", keywords: ["home", "China", "Yunnan", "journeys"] },
     { id: "about", title: "About Hidden China Travel", href: "/about-us", description: "Meet Joy Liu and learn about our personal approach to travel in China.", type: "page", keywords: ["Joy Liu", "about", "local travel"] },
     { id: "traveler-stories", title: "Traveler Stories", href: "/traveler-stories", description: "Notes from families, couples and first-time visitors on private Yunnan journeys.", type: "page", keywords: ["traveler stories", "reviews", "testimonials", "private Yunnan", "Joy Liu"] },
-    { id: "journal-yunnan-another-side", title: "Finding Another Side of China in Yunnan", href: "/traveler-stories/finding-another-side-of-china-in-yunnan", description: "A travel journal on first impressions of Yunnan, from the Stone Forest outward.", type: "article", keywords: ["travel journal", "Yunnan", "Stone Forest", "Kunming", "Canada", "first impressions"] },
+    ...getTravelJournals().map<SearchItem>((journal) => ({
+      id: `journal-${journal.slug}`,
+      title: journal.title,
+      href: `/traveler-stories/${journal.slug}`,
+      description: journal.description,
+      type: "article",
+      keywords: [journal.traveler, journal.country, journal.travelStyle, journal.route, "travel journal", "Yunnan", "Stone Forest", "Dali", "Lijiang"],
+      image: journal.heroImage,
+    })),
     { id: "contact", title: "Contact Hidden China Travel", href: "/contact", description: "Talk directly with Joy Liu about Yunnan, China travel and trip planning.", type: "page", keywords: ["contact", "Joy Liu", "WhatsApp", "China travel planning"] },
     { id: "yunnan-guide", title: "Yunnan Travel Guide", href: "/china-destinations/yunnan", description: "Plan a first Yunnan journey through Kunming, Dali, Shaxi and Lijiang.", type: "hub", keywords: ["Yunnan travel guide", "Yunnan itinerary", "Kunming", "Dali", "Shaxi", "Lijiang"] },
     { id: "custom-tour", title: "Tailor-Made Yunnan", href: "/custom-china-tour", description: "Private Journey Designed Around You", type: "page", keywords: ["Tailor-Made Yunnan", "custom Yunnan", "private itinerary"] },

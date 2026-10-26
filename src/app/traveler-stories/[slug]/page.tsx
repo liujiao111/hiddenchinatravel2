@@ -18,11 +18,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = journal.title;
   return {
     title,
-    description: journal.subtitle,
+    description: journal.description,
     alternates: { canonical: path },
     openGraph: {
       title: `${title} | Hidden China Travel`,
-      description: journal.subtitle,
+      description: journal.description,
       url: path,
       type: "article",
       images: [{ url: journal.heroImage, alt: journal.heroAlt }],
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: `${title} | Hidden China Travel`,
-      description: journal.subtitle,
+      description: journal.description,
       images: [journal.heroImage],
     },
   };

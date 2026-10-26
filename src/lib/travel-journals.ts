@@ -1,7 +1,14 @@
+export type JournalBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "emphasis"; text: string }
+  | { type: "list"; items: string[] };
+
 export type JournalSection = {
   id: string;
   title: string;
-  paragraphs: string[];
+  blocks: JournalBlock[];
+  image?: { src: string; alt: string; position?: string };
 };
 
 export type JournalPlace = {
@@ -17,16 +24,17 @@ export type TravelJournal = {
   slug: string;
   category: "Travel Journal";
   featured: boolean;
+  traveler: string;
   country: string;
   travelStyle: string;
   theme: string;
   readingTime: string;
   title: string;
   subtitle: string;
+  description: string;
+  route: string;
   heroImage: string;
   heroAlt: string;
-  pullQuote: string;
-  pullQuoteAfter: string;
   sections: JournalSection[];
   related: JournalPlace[];
 };
@@ -35,104 +43,243 @@ const stoneForest = "/assets/blog/kunming-travel-guide/cover-stone-forest.webp";
 
 export const travelJournals: TravelJournal[] = [
   {
-    slug: "finding-another-side-of-china-in-yunnan",
+    slug: "from-chinas-cities-to-yunnans-landscapes",
     category: "Travel Journal",
     featured: true,
+    traveler: "Matthew",
     country: "Canada",
     travelStyle: "Independent Explorer",
-    theme: "First Impressions of Yunnan",
-    readingTime: "5 min",
-    title: "Finding Another Side of China in Yunnan",
-    subtitle: "After exploring some of China's most iconic cities, a Canadian traveler arrived in Kunming expecting one final stop. Instead, Yunnan became the beginning of an entirely new journey.",
+    theme: "First Visit to China",
+    readingTime: "7 min",
+    title: "From China's Cities to Yunnan's Landscapes",
+    subtitle: "How We Designed a Journey That Changed One Traveler's View of China",
+    description: "Matthew had already traveled through Shanghai, Suzhou, Nanjing and Wuhan. Hidden China designed his first Yunnan journey from Kunming and the Stone Forest to Dali and Lijiang.",
+    route: "Kunming → Stone Forest → Dali → Lijiang",
     heroImage: stoneForest,
     heroAlt: "Karst pinnacles of the Stone Forest reflected in a still pool near Kunming",
-    pullQuote: "Yunnan wasn't the final destination of my China journey. In many ways, it was the beginning of my next one.",
-    pullQuoteAfter: "slower-rhythm",
     sections: [
       {
-        id: "final-destination",
-        title: "Sometimes the final destination changes the entire story",
-        paragraphs: [
-          "I had already walked the cities people name first. Beijing in a cold morning, large enough to make a person feel newly arrived all over again. Shanghai along the river, bright and sure of itself. Xi’an, where the past is set out for you to move through. By the time the journey turned south, Kunming was meant to be a gentle last page: one more night, then the flight home to Canada.",
-          "Yunnan was not in my mind as a place to understand. Among travelers who have only changed planes there, Kunming has a practical reputation. A gateway. A city between other cities. I gave it a single evening in my plans and was already thinking about the return.",
-          "The city did not argue. The air was milder than I had prepared for. People were out. Supper was happening on ordinary streets, without any interest in being a sight. I went to sleep believing I had reached the end of a trip. The next morning, the province began to undo that idea.",
+        id: "before-the-flight",
+        title: "Sometimes the Best Journeys Begin Before the Flight",
+        blocks: [
+          { type: "paragraph", text: "When Matthew first contacted Hidden China, he was already halfway through a three-week journey across China." },
+          { type: "paragraph", text: "Over the previous weeks, he had explored Shanghai, Suzhou, Nanjing and Wuhan independently. He had experienced China's modern cities, historic neighbourhoods and iconic landmarks." },
+          { type: "paragraph", text: "His request sounded simple:" },
+          { type: "quote", text: "I've seen China's cities. Before flying home, I'd like to experience a different side of China." },
+          { type: "paragraph", text: "That single sentence became the foundation of everything that followed." },
+          { type: "paragraph", text: "Rather than immediately discussing hotels and attractions, we started by understanding how he likes to travel." },
+          { type: "paragraph", text: "Through several conversations, we learned that he wasn't interested in checking off famous sights as quickly as possible." },
+          { type: "paragraph", text: "He enjoyed photography, unusual landscapes, local culture and slower travel experiences." },
+          { type: "paragraph", text: "Most importantly, he wanted places that felt genuinely different from the China he had already seen." },
+          { type: "paragraph", text: "For us, that pointed naturally towards Yunnan." },
         ],
       },
       {
-        id: "stone-landscape",
-        title: "Where Stone Becomes Landscape",
-        paragraphs: [
-          "The Stone Forest is easy to file away before you see it. The name sounds like a poem until the ground rises into blades and towers, close enough to touch, tall enough to lose the path between them. Grey karst, weathered into points. A pool so still that the same stones continue downward, root and reflection.",
-          "I had spent days looking up at what people had built: walls, halls, a skyline arranged to be remembered. Here nothing had been arranged. The pleasure was a narrow passage, then a sudden opening, then a tree that had decided a crack in the rock was soil enough. I stopped collecting viewpoints. The landscape was doing the speaking.",
-          "Standing at the water, I understood why a last stop can refuse to stay last. The famous cities had given me a China I could describe at a dinner table. The stones offered a China that would not fit the description.",
+        id: "before-arrival",
+        title: "Planning Begins Long Before Arrival",
+        blocks: [
+          { type: "paragraph", text: "One thing many travelers don't realise is that a great journey often starts before boarding the plane." },
+          { type: "paragraph", text: "Because Matthew was visiting China for the first time, we prepared a personalised pre-departure guide and sent it a week before his flight." },
+          { type: "paragraph", text: "The guide included:" },
+          {
+            type: "list",
+            items: [
+              "Recommended travel apps",
+              "eSIM setup instructions",
+              "VPN recommendations",
+              "Mobile payment preparation",
+              "Transportation tips",
+              "Practical advice for navigating China smoothly",
+            ],
+          },
+          { type: "paragraph", text: "These details may seem small, but they remove much of the uncertainty first-time visitors often experience." },
+          { type: "paragraph", text: "Our goal was simple:" },
+          { type: "quote", text: "Spend less time solving logistical problems.\nSpend more time enjoying the journey." },
         ],
       },
       {
-        id: "slower-rhythm",
-        title: "A Slower Rhythm",
-        paragraphs: [
-          "What changed was the speed. In the big cities I had been efficient, and efficiency had felt like the point. In Yunnan the day loosened. A walk took the time it took. Tea was no longer a pause between two tickets. Late light stayed on the water, and nobody seemed to require an apology for remaining in it.",
-          "I began to leave the afternoons partly empty. It is a small decision. It altered the journey more than another famous gate would have. The province asked for a different kind of attention: how long I was willing to stay with one place, one weather, one street after the errand was finished.",
-          "Kunming’s lakeside hour, the road east toward the stone, the sense that a province this large cannot be crossed in the spirit of a checklist. I had come to complete a route. I was being invited to inhabit one.",
+        id: "the-map",
+        title: "A Map Designed Around the Journey",
+        blocks: [
+          { type: "paragraph", text: "Before arriving in Yunnan, Matthew also received a custom-designed travel map." },
+          { type: "paragraph", text: "Rather than simply sending an itinerary document, we wanted him to visualize how the journey would unfold." },
+          { type: "paragraph", text: "The map connected every destination, travel day and major experience." },
+          { type: "paragraph", text: "What looks like four destinations on paper becomes a travel story when viewed on a map." },
+          { type: "paragraph", text: "Kunming introduced Yunnan." },
+          { type: "paragraph", text: "Stone Forest revealed its geology." },
+          { type: "paragraph", text: "Dali slowed the pace." },
+          { type: "paragraph", text: "Lijiang opened the door to the mountains of northwestern Yunnan." },
+          { type: "paragraph", text: "The map helped transform individual places into a meaningful journey." },
+          { type: "paragraph", text: "Months later, Matthew told us it became one of the resources he referred back to most often during the trip." },
         ],
       },
       {
-        id: "unplanned-memories",
-        title: "The Memories Nobody Plans For",
-        paragraphs: [
-          "The minutes I still describe are the ones I would never have written into an itinerary. Rain on warm stone. The particular green of the trees against grey pinnacles. A clumsy attempt to pay for fruit, slowed down by a stranger until the exchange worked, and then a laugh that belonged to both of us. None of it was a scene I had come to collect.",
-          "From a window on the way back, red earth and long rows of trees. A conversation that never became an anecdote with a moral. It simply occurred, and I was glad to be inside it. I had prepared myself for monuments. I left holding ordinary minutes, which have proved harder to forget.",
-          "That is the private luxury of a place that is not performing for you. The memory is allowed to be small. A pool. A path. The decision to sit a little longer than the schedule suggested.",
+        id: "beyond-kunming",
+        title: "Why We Didn't Recommend Staying Only in Kunming",
+        image: {
+          src: "/assets/blog/kunming-travel-guide/kunming-city.webp",
+          alt: "Autumn trees reflected in a Kunming lake",
+          position: "center 50%",
+        },
+        blocks: [
+          { type: "paragraph", text: "Many first-time visitors assume Kunming and Yunnan are essentially the same thing." },
+          { type: "paragraph", text: "They aren't." },
+          { type: "paragraph", text: "Kunming is a wonderful city, but it's also a gateway." },
+          { type: "paragraph", text: "The real magic of Yunnan lies in how dramatically the landscapes, cultures and atmosphere change as you move across the province." },
+          { type: "paragraph", text: "Based on Matthew's interests, we recommended a route that gradually revealed those contrasts:" },
+          { type: "emphasis", text: "Kunming → Stone Forest → Dali → Lijiang" },
+          { type: "paragraph", text: "Rather than overwhelming him with too much too quickly, every destination was chosen to build upon the previous one." },
+          { type: "paragraph", text: "Our objective wasn't simply to show him more places." },
+          { type: "paragraph", text: "It was to create a growing sense of discovery." },
         ],
       },
       {
-        id: "how-little",
-        title: "Realising How Little I Had Seen",
-        paragraphs: [
-          "On the return toward the city I tried to name what I had done in China. The great cities were still intact, and they still mattered. They were not diminished. They were no longer the whole country. A week is not a province, and a handful of famous days is not a civilisation.",
-          "Yunnan had set those days beside something older and less interested in being summarised. A landscape of stone. A lake basin with its own weather. Towns that keep their own hour. Languages and tables I had not known to ask about before I arrived. I had crossed a great deal of ground and understood a narrow strip of it.",
-          "The realisation was uncomfortable for a moment. Then it became the most generous feeling of the trip. There was more. The map I had been so proud to finish was only an entrance.",
+        id: "stone-forest",
+        title: "The Moment Yunnan Became Real",
+        image: {
+          src: stoneForest,
+          alt: "Karst pinnacles of the Stone Forest reflected in a still pool near Kunming",
+          position: "center 46%",
+        },
+        blocks: [
+          { type: "paragraph", text: "The first major turning point came at Stone Forest." },
+          { type: "paragraph", text: "Before arriving, Matthew had seen photographs online." },
+          { type: "paragraph", text: "What he didn't expect was the scale." },
+          { type: "paragraph", text: "Walking among towering limestone formations felt less like visiting a scenic attraction and more like stepping into another landscape entirely." },
+          { type: "paragraph", text: "The pathways twisted between massive stone pillars." },
+          { type: "paragraph", text: "Every turn revealed new shapes and perspectives." },
+          { type: "paragraph", text: "Hours passed without him noticing." },
+          { type: "paragraph", text: "Later he would tell us:" },
+          { type: "quote", text: "It felt like walking through another world." },
+          { type: "paragraph", text: "As travel designers, these are the moments we look for." },
+          { type: "paragraph", text: "Not simply beautiful places." },
+          { type: "paragraph", text: "But places capable of changing expectations." },
         ],
       },
       {
-        id: "reason-to-return",
-        title: "A Reason To Return",
-        paragraphs: [
-          "I still have not given the gorge a proper day, or Shangri-La the patience the altitude requires. Dali and the lake I have only begun to imagine from other travelers’ quiet descriptions. Lijiang, and the mountain weather behind it, remain ahead of me. That is not a failure of the journey I took. It is the shape Yunnan left in its place.",
-          "If I return, I will not pin the province to the end of another city itinerary and hope for a soft landing. I will start here. Fewer places. Longer days. Room for the hour that does not announce itself.",
-          "The last name on my list became the first place I want to know. That is the other side of China I had not been shown: a landscape that does not hurry you toward a conclusion, and a reason to come back that has nothing to do with finishing.",
+        id: "dali",
+        title: "Slowing Down in Dali",
+        image: {
+          src: "/assets/blog/yunnan-travel-from-uk/dali-erhai.webp",
+          alt: "Sunset over Erhai Lake near Dali, Yunnan",
+          position: "center 60%",
+        },
+        blocks: [
+          { type: "paragraph", text: "By the time Matthew arrived in Dali, the journey had already begun to shift." },
+          { type: "paragraph", text: "For weeks he had moved between major cities, airports, train stations and urban environments." },
+          { type: "paragraph", text: "Dali provided a pause." },
+          { type: "paragraph", text: "Instead of filling every hour with sightseeing, we intentionally built space into the itinerary." },
+          { type: "paragraph", text: "Time to cycle near Erhai Lake." },
+          { type: "paragraph", text: "Time to wander through villages." },
+          { type: "paragraph", text: "Time to sit in a lakeside café and watch life pass by." },
+          { type: "paragraph", text: "Many travelers initially underestimate these slower moments." },
+          { type: "paragraph", text: "Yet they often become the memories people treasure most when they return home." },
+          { type: "paragraph", text: "Dali wasn't designed as another stop." },
+          { type: "paragraph", text: "It was designed as a change of rhythm." },
+        ],
+      },
+      {
+        id: "lijiang",
+        title: "“This Doesn't Feel Like the China I Expected.”",
+        image: {
+          src: "/assets/blog/yunnan-travel-from-uk/lijiang-old-town.webp",
+          alt: "A canal lane in Lijiang Old Town",
+          position: "center 55%",
+        },
+        blocks: [
+          { type: "paragraph", text: "When Matthew reached Lijiang, he sent us a message:" },
+          { type: "quote", text: "Honestly, this doesn't feel like the China I expected." },
+          { type: "paragraph", text: "We've heard similar words many times." },
+          { type: "paragraph", text: "For many international travelers, China is associated with megacities, skyscrapers and rapid development." },
+          { type: "paragraph", text: "Yunnan offers a different perspective." },
+          {
+            type: "list",
+            items: [
+              "Snow-capped mountains.",
+              "Ancient towns.",
+              "Minority cultures.",
+              "Open landscapes.",
+              "A slower relationship with time.",
+            ],
+          },
+          { type: "paragraph", text: "That contrast is often what makes Yunnan the most memorable part of a wider China journey." },
+        ],
+      },
+      {
+        id: "unplanned",
+        title: "The Best Travel Memories Are Rarely Planned",
+        blocks: [
+          { type: "paragraph", text: "Ironically, one of Matthew's favourite stories had nothing to do with the itinerary." },
+          { type: "paragraph", text: "While visiting Kunming Zoo, a curious monkey suddenly jumped onto him." },
+          { type: "paragraph", text: "The encounter lasted only a few seconds." },
+          { type: "paragraph", text: "But months later, it remained one of the stories he told most often." },
+          { type: "paragraph", text: "It's a reminder of something we strongly believe." },
+          { type: "paragraph", text: "The purpose of a well-designed itinerary is not to control every moment." },
+          { type: "paragraph", text: "It's to create space for moments that cannot be planned." },
+          { type: "paragraph", text: "Because the most memorable parts of a journey are often the ones nobody expected." },
+        ],
+      },
+      {
+        id: "looking-back",
+        title: "Looking Back",
+        blocks: [
+          { type: "paragraph", text: "After returning home, Matthew shared photos from Yunnan online." },
+          { type: "paragraph", text: "What followed was revealing." },
+          { type: "paragraph", text: "Instead of commenting on where he had been, people focused on where he hadn't gone." },
+          {
+            type: "list",
+            items: ["Shangri-La.", "Tiger Leaping Gorge.", "Yubeng.", "Meili Snow Mountain."],
+          },
+          { type: "paragraph", text: "Again and again, the same message appeared:" },
+          { type: "quote", text: "You've only just started discovering Yunnan." },
+          { type: "paragraph", text: "Perhaps that's exactly why so many travelers fall in love with this region." },
+          { type: "paragraph", text: "The first visit rarely feels complete." },
+          { type: "paragraph", text: "It feels like an introduction." },
+        ],
+      },
+      {
+        id: "reflection",
+        title: "Our Reflection",
+        blocks: [
+          { type: "paragraph", text: "When we designed Matthew's journey, the objective wasn't to show him more attractions." },
+          { type: "paragraph", text: "It was to reveal a different side of China." },
+          { type: "paragraph", text: "A side defined by landscapes, slower travel, personal discovery and a deeper connection to place." },
+          { type: "paragraph", text: "Looking back, that's exactly what happened." },
+          { type: "paragraph", text: "And that's why we believe custom travel matters." },
+          { type: "paragraph", text: "Not because every itinerary should be unique." },
+          { type: "paragraph", text: "But because every traveler already is." },
         ],
       },
     ],
     related: [
       {
-        title: "Shangri-La",
-        href: "/shangri-la-travel-guide",
-        image: "/assets/destinations/yunnan/shangri-la.webp",
-        alt: "A highland lake and forested hills near Shangri-La",
-        note: "High country, and the days the altitude asks for",
-        position: "center 78%",
-      },
-      {
-        title: "Tiger Leaping Gorge",
-        href: "/journeys/kunming-dali-lijiang-shangri-la-private-tour",
-        image: "/assets/destinations/yunnan/tiger-leaping.webp",
-        alt: "The Jinsha River cutting through Tiger Leaping Gorge",
-        note: "A gorge day on the Essence of Yunnan route",
+        title: "Kunming",
+        href: "/kunming-travel-guide",
+        image: "/assets/blog/kunming-travel-guide/kunming-city.webp",
+        alt: "Autumn trees reflected in a Kunming lake",
+        note: "The gateway, not the whole of Yunnan",
       },
       {
         title: "Dali",
         href: "/dali-travel-guide",
         image: "/assets/destinations/yunnan/dali.webp",
         alt: "Dali Ancient Town beneath the Cangshan mountains",
-        note: "The lake basin, and a gentler pace",
+        note: "A pause beside Erhai Lake",
       },
       {
         title: "Lijiang",
         href: "/lijiang-travel-guide",
         image: "/assets/destinations/yunnan/lijiang.webp",
         alt: "Grey tiled roofs of Lijiang Old Town with mountains beyond",
-        note: "Old streets, with Jade Dragon close by",
+        note: "The door to northwestern Yunnan",
+      },
+      {
+        title: "Shangri-La",
+        href: "/shangri-la-travel-guide",
+        image: "/assets/destinations/yunnan/shangri-la.webp",
+        alt: "A highland lake and forested hills near Shangri-La",
+        note: "One of the places still ahead",
+        position: "center 78%",
       },
     ],
   },
