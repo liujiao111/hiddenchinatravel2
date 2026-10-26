@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState, type TransitionEvent } from "react";
 import type { Testimonial } from "@/lib/testimonials";
 
@@ -9,6 +10,8 @@ type Props = {
   intro?: string;
   eyebrow?: string;
   note?: string;
+  archiveHref?: string;
+  archiveLabel?: string;
 };
 
 function cardQuote(quote: string) {
@@ -24,7 +27,7 @@ function cardQuote(quote: string) {
   return first;
 }
 
-export function Testimonials({ items, heading, intro, eyebrow, note }: Props) {
+export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref, archiveLabel }: Props) {
   const count = items.length;
   const loop = count > 3;
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -84,6 +87,7 @@ export function Testimonials({ items, heading, intro, eyebrow, note }: Props) {
       {intro ? <p>{intro}</p> : null}
     </header>;
   const noteText = note ?? "Names may be shortened. Some notes were translated and edited for clarity.";
+  const archive = archiveHref ? <p className="testimonials-archive"><Link href={archiveHref}>{archiveLabel ?? "Read the traveler stories"}</Link></p> : null;
 
   if (count <= 3) {
     return <section className="testimonials" id="stories">
@@ -98,6 +102,7 @@ export function Testimonials({ items, heading, intro, eyebrow, note }: Props) {
         </figure>
       ))}</div>
       <p className="testimonials-note">{noteText}</p>
+      {archive}
     </section>;
   }
 
@@ -144,5 +149,6 @@ export function Testimonials({ items, heading, intro, eyebrow, note }: Props) {
       <button type="button" className="testimonials-arrow" aria-label="Next traveler story" onClick={() => go(1)}>›</button>
     </div>
     <p className="testimonials-note">{noteText}</p>
+    {archive}
   </section>;
 }

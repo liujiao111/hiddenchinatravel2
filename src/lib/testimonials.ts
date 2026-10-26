@@ -29,6 +29,10 @@ const selectedTestimonialIds = [
   "michelle-lily-lijiang",
 ] as const;
 
+export function getAllTestimonials() {
+  return allTestimonials;
+}
+
 export function getFeaturedTestimonials() {
   return allTestimonials.filter((item) => item.featured);
 }

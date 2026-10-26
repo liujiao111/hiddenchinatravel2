@@ -105,6 +105,8 @@ export default function AboutPage() {
       heading={selectedTestimonialsCopy.heading}
       intro={selectedTestimonialsCopy.intro}
       note={selectedTestimonialsCopy.note}
+      archiveHref="/traveler-stories"
+      archiveLabel="Read the traveler stories"
     />
 
     <section className={styles.faq}><div className={`shell ${styles.faqGrid}`}><div><h2>A few things you might be wondering</h2><p>Good journeys begin with clear answers.</p></div><div>{questions.map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>

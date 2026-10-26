@@ -9,6 +9,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: "https://hiddenchinatravel.com/", lastModified: coreUpdated, changeFrequency: "weekly", priority: 1 },
     { url: "https://hiddenchinatravel.com/about-us", lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.6 },
+    { url: "https://hiddenchinatravel.com/traveler-stories", lastModified: new Date("2026-10-26"), changeFrequency: "monthly", priority: 0.7 },
+    { url: "https://hiddenchinatravel.com/traveler-stories/finding-another-side-of-china-in-yunnan", lastModified: new Date("2026-10-26"), changeFrequency: "monthly", priority: 0.7 },
     { url: "https://hiddenchinatravel.com/contact", lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.7 },
     { url: "https://hiddenchinatravel.com/china-destinations/yunnan", lastModified: coreUpdated, changeFrequency: "weekly", priority: 0.9 },
     { url: "https://hiddenchinatravel.com/journeys", lastModified: coreUpdated, changeFrequency: "weekly", priority: 0.9 },

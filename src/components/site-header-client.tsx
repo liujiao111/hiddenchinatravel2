@@ -48,7 +48,7 @@ const menuGroups: Record<"guides" | "about", { title: string; links: string[] }[
     { title: "Destination guides", links: ["Yunnan travel guide", "Kunming travel guide", "Dali travel guide", "Where to stay in Dali", "Dali hidden gems"] },
   ],
   about: [
-    { title: "Hidden China Travel", links: ["About us", "Booking & service", "Why travel with us", "Our licensed agency"] },
+    { title: "Hidden China Travel", links: ["About us", "Traveler stories", "Booking & service", "Why travel with us", "Our licensed agency"] },
     { title: "Our approach", links: ["Travel at your pace", "Experiences, not checklists", "Practical preparation", "Responsible local travel"] },
     { title: "Talk to us", links: ["Start a conversation", "Request a route check", "Get the Dali local guide", "WhatsApp support"] },
   ],
@@ -75,6 +75,7 @@ const guideHrefs: Record<string, string> = {
 const hrefFor = (label: string) => {
   if (guideHrefs[label]) return guideHrefs[label];
   if (label === "About us") return "/about-us";
+  if (label === "Traveler stories") return "/traveler-stories";
   if (label === "How we plan your journey" || label === "Booking & service") return "/booking";
   if (label === "Why travel with us") return "/about-us#why-us";
   if (label === "Our licensed agency") return "/licensed-operator";
@@ -131,6 +132,7 @@ export function SiteHeaderClient({ journeys, cta, conversion }: { journeys: Head
       <Link href="/journeys" className="mobile-nav-all" onClick={() => setMobileOpen(false)}>VIEW ALL JOURNEYS</Link>
       <Link href="/survival-kit" onClick={() => setMobileOpen(false)}>TRAVEL GUIDES</Link>
       <Link href="/about-us" onClick={() => setMobileOpen(false)}>ABOUT US</Link>
+      <Link href="/traveler-stories" onClick={() => setMobileOpen(false)}>TRAVELER STORIES</Link>
       <Link href="/booking" onClick={() => setMobileOpen(false)}>BOOKING &amp; SERVICE</Link>
       <Link href="/contact" onClick={() => setMobileOpen(false)}>CONTACT US</Link>
     </nav> : null}
