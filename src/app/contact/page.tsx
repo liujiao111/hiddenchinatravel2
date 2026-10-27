@@ -63,7 +63,7 @@ export default async function ContactPage() {
           <h1>Let&apos;s Talk About Your China Journey</h1>
           <p>Whether you&apos;re planning your first trip to China, exploring Yunnan, or simply looking for practical advice, we&apos;d love to hear from you.</p>
           <div className="contact-hero-emphasis"><span>No pressure.</span><span>No obligation.</span><strong>Just a conversation.</strong></div>
-          <Link className="button button-blue" href={whatsapp}>Chat with Joy on WhatsApp</Link>
+          <Link className="button button-blue" href={whatsapp}>Start Planning Your Journey</Link>
           <small>{siteConfig.replyTime}</small>
         </div>
       </section>
@@ -153,7 +153,7 @@ export default async function ContactPage() {
           <p>That&apos;s completely normal.</p>
           <p>Many travelers contact us before they&apos;ve decided on dates, destinations, or even whether China is the right fit.</p>
           <p>Tell us where you&apos;re at.<br />We&apos;ll help from there.</p>
-          <Link className="button button-light" href={whatsapp}>Chat with Joy on WhatsApp</Link>
+          <Link className="button button-light" href={whatsapp}>Start Planning Your Journey</Link>
         </div>
       </section>
 

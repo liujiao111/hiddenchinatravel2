@@ -79,7 +79,7 @@ export default function TravelerStoriesPage() {
           <p className={styles.heroLead}>Notes from private parties who traveled with Joy Liu. Families returning, a honeymoon, a first trip with a child. The planning is personal. The contract is with a licensed agency in Kunming.</p>
           <div className={styles.heroActions}>
             <Link href="#stories" className="button button-light">READ THE STORIES</Link>
-            <EnquireLink data-cta-location="stories_hero" interest="Private Travel">Plan a private journey</EnquireLink>
+            <EnquireLink data-cta-location="stories_hero" interest="Private Travel">Start Planning Your Journey</EnquireLink>
           </div>
         </div>
       </section>
@@ -269,7 +269,7 @@ export default function TravelerStoriesPage() {
           <h2 id="cta-title">Tell Joy who is traveling.</h2>
           <p>A month, who is coming, and how you want the days to feel. You will see a written route before any payment. Nothing is confirmed until you have read it.</p>
           <div className={styles.ctaActions}>
-            <EnquireLink className="button button-light" data-cta-location="stories_close" interest="Private Travel">PLAN MY YUNNAN TRIP</EnquireLink>
+            <EnquireLink className="button button-light" data-cta-location="stories_close" interest="Private Travel">Start Planning Your Journey</EnquireLink>
             <a href={whatsapp}>Or write to Joy on WhatsApp</a>
           </div>
           <small>{siteConfig.replyTime}</small>

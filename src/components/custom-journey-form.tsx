@@ -53,7 +53,7 @@ export function CustomJourneyForm() {
     <div className="custom-form-trap" aria-hidden="true"><label>Leave this field empty<input name="website" type="text" tabIndex={-1} autoComplete="off" /></label></div>
     <label className="custom-consent"><input name="consent" type="checkbox" required /><span>I agree that my details may be used to respond to this enquiry. <Link href="/privacy-policy">Privacy policy</Link>.</span></label>
     {status === "error" ? <p className="custom-form-error" role="alert">{message}</p> : null}
-    <button className="button journey-primary-action" type="submit" disabled={status === "sending"}>{status === "sending" ? "SENDING YOUR ENQUIRY…" : "GET MY YUNNAN ROUTE ADVICE"}</button>
+    <button className="button journey-primary-action" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Get My Trip Plan"}</button>
     <p className="contact-form-note">No payment is required. Your information will only be used to respond to your travel inquiry.</p>
     <p className="contact-form-privacy">We respect your privacy. No spam, ever. Your details are only used to plan your trip.</p>
   </form>;

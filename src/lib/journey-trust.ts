@@ -76,15 +76,16 @@ const hotelRoot = "/assets/partners/hotels";
 export const hotelProof: TrustCopy & { groups: { id: string; label: string; carouselLabel: string; slides: ProofSlide[] }[] } = {
   kicker: "03 / YOUR HOTELS",
   title: "Stays named in your proposal.",
-  copy: "Comfort, Premium or Luxury sets the style. These are examples from the hotel catalog we use on Yunnan journeys, not a promise of one exact property. The hotel in each city is named in your written proposal.",
+  copy: "Comfort, Premium or Luxury sets the style. These photographs show real hotels in each place. They are examples of the style, not a promise of one property. The hotel in each city is named in your written proposal.",
   groups: [
     {
       id: "dali",
       label: "DALI",
       carouselLabel: "Dali hotel examples",
       slides: [
-        { src: `${hotelRoot}/dali-liuheyunyan.webp`, alt: "Example of a Dali hotel stay: LiuHeYunYan Hotel or equivalent", title: "LiuHeYunYan Hotel", detail: "Example · Dali", copy: "LiuHeYunYan Hotel, or an equivalent, is named in your proposal." },
-        { src: `${hotelRoot}/dali-courtyard.webp`, alt: "Example of a Dali courtyard hotel stay: Courtyard Hotel or equivalent", title: "Courtyard Hotel", detail: "Example · Dali courtyard", copy: "A courtyard stay near the old town, or an equivalent in the same style." },
+        { src: `${hotelRoot}/dali-linden-courtyard.webp`, alt: "Courtyard of the Linden Centre, a Bai hotel in Xizhou, Dali", title: "Linden Centre", detail: "Example · Dali · Xizhou", copy: "A Bai courtyard hotel in Xizhou. An example of the style. The stay on your route is named in the proposal. Photo: Chris DeLacy, CC BY-SA 4.0." },
+        { src: `${hotelRoot}/dali-linden-entrance.webp`, alt: "Stone gateway into the Linden Centre in Xizhou, Dali", title: "Linden Centre", detail: "Example · Dali · entrance", copy: "The gateway of the same Xizhou courtyard hotel. Photo: Chris DeLacy, CC BY-SA 4.0." },
+        { src: `${hotelRoot}/dali-linden-detail.webp`, alt: "Painted woodwork under the eaves at the Linden Centre in Xizhou", title: "Linden Centre", detail: "Example · Dali · courtyard detail", copy: "Carved eaves in the courtyard. Photo: Chris DeLacy, CC BY-SA 4.0." },
       ],
     },
     {
@@ -92,8 +93,8 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
       label: "LIJIANG",
       carouselLabel: "Lijiang hotel examples",
       slides: [
-        { src: `${hotelRoot}/lijiang-gelle-freres.webp`, alt: "Example of a Lijiang hotel stay: Gellé Frères Garden Hotel or equivalent", title: "Gellé Frères Garden Hotel", detail: "Example · Lijiang · Shuhe", copy: "Gellé Frères Garden Hotel, or an equivalent, is named in your proposal." },
-        { src: `${hotelRoot}/lijiang-international.webp`, alt: "Example of a Lijiang hotel stay: Lijiang International Hotel or equivalent", title: "Lijiang International Hotel", detail: "Example · Lijiang old town", copy: "A stay near the old town, or an equivalent in the same class." },
+        { src: `${hotelRoot}/lijiang-heheyuan.webp`, alt: "Wooden courtyard entrance of Heheyuan in Lijiang old town, with magnolia blossoms", title: "Heheyuan courtyard", detail: "Example · Lijiang old town", copy: "A courtyard in Lijiang old town. An example of the style. The hotel on your route is named in the proposal. Photo: 江上清风1961, CC BY 3.0." },
+        { src: `${hotelRoot}/lijiang-courtyard.webp`, alt: "A woven basket and plants in a Lijiang courtyard", title: "Lijiang courtyard", detail: "Example · Lijiang", copy: "A courtyard of the kind used by old-town stays. The hotel is named in your proposal. Photo: Rod Waddington, CC BY-SA 2.0." },
       ],
     },
     {
@@ -101,8 +102,8 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
       label: "KUNMING",
       carouselLabel: "Kunming hotel examples",
       slides: [
-        { src: `${hotelRoot}/kunming-linyin-mixc.webp`, alt: "Example of a Kunming hotel stay: Linyin Hotel at MixC or equivalent", title: "Linyin Hotel, MixC", detail: "Example · Kunming", copy: "Used when a Kunming night is in the route. Linyin Hotel at MixC, or an equivalent, is named in your proposal." },
-        { src: `${hotelRoot}/kunming-mehood-lestie.webp`, alt: "Example of a Kunming hotel stay: Mehood Lestie Hotel or equivalent", title: "Mehood Lestie Hotel", detail: "Example · Kunming", copy: "Another Kunming example from the catalog. The named property is confirmed in writing." },
+        { src: `${hotelRoot}/kunming-green-lake.webp`, alt: "Entrance of Green Lake Hotel in Kunming, with the hotel name on the stone wall", title: "Green Lake Hotel", detail: "Example · Kunming", copy: "Green Lake Hotel, beside Green Lake. An example when a Kunming night is on the route. The named property is confirmed in writing. Photo: Kcx36, CC BY-SA 4.0." },
+        { src: `${hotelRoot}/kunming-intercontinental.webp`, alt: "Lawn and entrance of the InterContinental Kunming at dusk", title: "InterContinental Kunming", detail: "Example · Kunming · Dianchi", copy: "InterContinental Kunming, near Dianchi Lake. Another example of the style. Photo: N509FZ, CC BY-SA 4.0." },
       ],
     },
     {
@@ -110,8 +111,8 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
       label: "SHAXI",
       carouselLabel: "Shaxi hotel examples",
       slides: [
-        { src: `${hotelRoot}/shaxi-boutique-courtyard.webp`, alt: "Example of a Shaxi boutique courtyard hotel stay", title: "Shaxi boutique courtyard", detail: "Example · Shaxi", copy: "One night on the 6-day route is in Shaxi. The property is a boutique courtyard stay, named in your proposal." },
-        { src: `${hotelRoot}/shaxi-boutique-lanes.webp`, alt: "Example of a Shaxi town hotel stay", title: "Shaxi town stay", detail: "Example · Shaxi lanes", copy: "Cars stop at the edge of town. The hotel is reached on foot." },
+        { src: `${hotelRoot}/shaxi-old-theatre-inn.webp`, alt: "Old Theatre Inn in Shaxi at night, with the wooden theatre lit above the courtyard", title: "Old Theatre Inn", detail: "Example · Shaxi", copy: "Old Theatre Inn, a courtyard stay in Shaxi. One night on the 6-day route is here in town. The property is named in your proposal. Photo: Rod Waddington, CC BY-SA 2.0." },
+        { src: `${hotelRoot}/shaxi-old-town-lane.webp`, alt: "A stone lane of wooden shopfronts in Shaxi old town", title: "Shaxi old town", detail: "Example · Shaxi lanes", copy: "Cars stop at the edge of town. Courtyard inns are reached on foot along lanes like this. Photo: Yangpeifu, CC BY-SA 4.0." },
       ],
     },
     {
@@ -119,8 +120,9 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
       label: "SHANGRI-LA",
       carouselLabel: "Shangri-La hotel examples",
       slides: [
-        { src: `${hotelRoot}/shangri-la-highland.webp`, alt: "Example of a Shangri-La highland hotel stay", title: "Shangri-La highland hotel", detail: "Example · Shangri-La", copy: "Used on the 8-day route. The named highland hotel is confirmed in your proposal." },
-        { src: `${hotelRoot}/shangri-la-lakeside.webp`, alt: "Example of a Shangri-La lakeside hotel stay", title: "Shangri-La lakeside stay", detail: "Example · Shangri-La", copy: "A further plateau example. The final property depends on dates and hotel style." },
+        { src: `${hotelRoot}/shangri-la-songtsam-field.webp`, alt: "Songtsam Linka Retreat in Shangri-La, stone lodges above a field of yellow flowers", title: "Songtsam Linka", detail: "Example · Shangri-La", copy: "Songtsam Linka, a highland lodge. Used as an example on routes with a Shangri-La night. The named hotel is confirmed in your proposal. Photo: 活着不动, CC BY-SA 3.0." },
+        { src: `${hotelRoot}/shangri-la-songtsam-hill.webp`, alt: "Stone lodges of Songtsam Linka stepped up a green hillside in Shangri-La", title: "Songtsam Linka", detail: "Example · Shangri-La · hillside", copy: "The same lodge from the hillside. Photo: Black necked Crane, CC BY-SA 4.0." },
+        { src: `${hotelRoot}/shangri-la-paradise.webp`, alt: "Entrance of Paradise Hotel, Tianjie Shenchuan, in Shangri-La", title: "Paradise Hotel", detail: "Example · Shangri-La", copy: "Paradise Hotel in Shangri-La. A further example. The final property depends on dates and hotel style. Photo: 瑞丽江的河水, CC BY-SA 4.0." },
       ],
     },
   ],

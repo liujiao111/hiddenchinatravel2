@@ -5,7 +5,7 @@ import { HashLink } from "@/components/hash-link";
 
 const hideWhenVisible = ["ask-joy", "ask-joy-price", "ask-joy-final", "hero-quote"];
 
-export function JourneyMobileCta({ href = "#ask-joy", label = "GET A QUOTE" }: { href?: string; label?: string }) {
+export function JourneyMobileCta({ href = "#ask-joy", label = "Start Planning Your Journey" }: { href?: string; label?: string }) {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
