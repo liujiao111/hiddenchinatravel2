@@ -107,7 +107,7 @@ export default function TravelerStoriesPage() {
             <Image src={journal.heroImage} alt={journal.heroAlt} fill sizes="(max-width: 800px) 100vw, 58vw" />
           </figure>
           <div>
-            <p>{journal.category} · {journal.country} · {journal.readingTime}</p>
+            <p>{journal.category} · {journal.traveler}, {journal.country} · {journal.readingTime}</p>
             <h2>{journal.title}</h2>
             <span>{journal.subtitle}</span>
             <b>READ THE JOURNAL</b>

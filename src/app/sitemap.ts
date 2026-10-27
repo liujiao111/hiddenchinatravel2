@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl, getAllContent } from "@/lib/content";
 import { getAllJourneys } from "@/lib/journeys";
+import { getTravelJournals } from "@/lib/travel-journals";
 import { getPhase1CountryEditorials } from "@/lib/visa-checker/country-pages";
 
 const coreUpdated = new Date("2026-10-22");
@@ -10,7 +11,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://hiddenchinatravel.com/", lastModified: coreUpdated, changeFrequency: "weekly", priority: 1 },
     { url: "https://hiddenchinatravel.com/about-us", lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.6 },
     { url: "https://hiddenchinatravel.com/traveler-stories", lastModified: new Date("2026-10-26"), changeFrequency: "monthly", priority: 0.7 },
-    { url: "https://hiddenchinatravel.com/traveler-stories/finding-another-side-of-china-in-yunnan", lastModified: new Date("2026-10-26"), changeFrequency: "monthly", priority: 0.7 },
+    ...getTravelJournals().map((journal) => ({
+      url: `https://hiddenchinatravel.com/traveler-stories/${journal.slug}`,
+      lastModified: new Date("2026-10-26"),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     { url: "https://hiddenchinatravel.com/contact", lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.7 },
     { url: "https://hiddenchinatravel.com/china-destinations/yunnan", lastModified: coreUpdated, changeFrequency: "weekly", priority: 0.9 },
     { url: "https://hiddenchinatravel.com/journeys", lastModified: coreUpdated, changeFrequency: "weekly", priority: 0.9 },
