@@ -911,6 +911,7 @@ a.utility-card { color:inherit; }
   .journey-hero-includes { max-width:100%; gap:6px 16px; justify-content:flex-start; }
   .journey-hero-includes li { font-size:.74rem; }
   .journey-hero-copy { padding:96px 20px 108px; }
+  .journey-page-offer .journey-hero-copy { padding-top:64px; }
   .journey-hero h1 { font-size:clamp(2.4rem,11.5vw,3.2rem); }
   .journey-hero-copy>div>span { font-size:1rem; }
   .journey-hero-price { margin-top:12px; }
@@ -1037,12 +1038,16 @@ a.utility-card { color:inherit; }
 .journey-guest-proof-row figure { position:relative; height:210px; margin:0; overflow:hidden; background:#e9e6dc; }
 .journey-guest-proof-row img { object-fit:cover; object-position:center 40%; }
 .journey-guest-proof-row figcaption { position:absolute; left:10px; bottom:10px; padding:6px 9px; background:rgba(20,43,38,.8); color:#fff; font-size:.68rem; }
-.journey-guest-proof>p:last-child { margin:12px 0 0; color:#294b44; font-family:Georgia,serif; font-size:1.05rem; line-height:1.45; }
+.journey-guest-caption { margin:12px 0 0; color:#294b44; font-family:Georgia,serif; font-size:1.05rem; line-height:1.45; }
+.journey-guest-notes { display:grid; grid-template-columns:1fr 1fr; gap:18px 28px; margin:22px 0 0; padding:18px 0 0; border-top:1px solid #e3dfd2; list-style:none; }
+.journey-guest-notes q { display:block; color:#294b44; font-family:Georgia,serif; font-size:1.02rem; line-height:1.45; quotes:none; }
+.journey-guest-notes span { display:block; margin-top:8px; color:#8b734d; font-size:.72rem; font-weight:750; letter-spacing:.04em; }
 .journey-day-guest img { object-position:center 42%; }
 @media (max-width:700px) {
   .journey-guest-proof { margin-bottom:28px; }
   .journey-guest-proof-row { grid-template-columns:1fr 1fr; }
   .journey-guest-proof-row figure { height:148px; }
+  .journey-guest-notes { grid-template-columns:1fr; gap:16px; }
 }
 .journey-price-convert { display:flex; flex-direction:column; gap:42px; margin-top:36px; }
 .journey-quote-ask { max-width:820px; width:100%; margin:0 auto; }
