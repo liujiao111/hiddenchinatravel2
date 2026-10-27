@@ -14,7 +14,7 @@ import { JourneyPractical } from "@/components/journey-practical";
 import { JourneyWhy } from "@/components/journey-why";
 import { Testimonials } from "@/components/testimonials";
 import { licensedOperator } from "@/lib/journey-trust";
-import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
+import { getTestimonialsForJourney, selectedTestimonialsCopy } from "@/lib/testimonials";
 import { YunnanTravelNotes } from "@/components/yunnan-travel-notes";
 import { breadcrumbList } from "@/components/json-ld";
 
@@ -70,7 +70,7 @@ function JourneyQuoteBand({ id, source, sourceTitle, whatsapp, showRouteLink, co
 export function JourneyPage({ journey }: { journey: Journey }) {
   const { frontmatter } = journey;
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
-  const stories = getSelectedTestimonials();
+  const stories = getTestimonialsForJourney(journey.slug);
   const whatsapp = `https://wa.me/8618880441791?text=${encodeURIComponent(`Hi Joy, I’m interested in the ${frontmatter.title} journey. My travel dates are ____ and there will be ____ travelers.`)}`;
   const completePrice = frontmatter.fromPrice > 0
     ? `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} per person for the complete ${frontmatter.duration.split("/")[0].trim().toLowerCase()}`
@@ -123,14 +123,14 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     <section className="journey-fold-ask" id="quote">
       <div className="shell">
         {isSixDayYunnanJourney ? <div className="journey-guest-proof">
-          <p>GUESTS ON THIS ROUTE</p>
+          <p>A PRIVATE PARTY</p>
           <div className="journey-guest-proof-row">
             {sixDayGuestProof.map(([src, alt, caption]) => <figure key={src}>
               <Image src={encodeURI(src)} alt={alt} fill sizes="(max-width:700px) 46vw, 420px" unoptimized />
               <figcaption>{caption}</figcaption>
             </figure>)}
           </div>
-          <p className="journey-guest-caption">A private party on Day 5: the 4,506 m platform and Blue Moon Valley.</p>
+          <p className="journey-guest-caption">At the 4,506 m platform and Blue Moon Valley. These photographs are not tied to a named review.</p>
         </div> : <div className="journey-quote-ask">
           <h3>Get a quote for your dates.</h3>
           <p>{completePrice}. A month, group size and hotel style are enough. Joy replies with a range for those dates — nothing is booked. After you sign, the deposit is 20%. The other 80% is due after your first pickup.</p>
@@ -143,7 +143,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       { icon: "party", title: "Private party", lines: ["Your own driver-guide and vehicle", "No shopping stops", "Arranged around your dates"] },
       { icon: "person", title: "Planned with Joy", lines: ["Joy Liu plans from Kunming", "You speak with him from the first enquiry through the trip", "He was born in Yunnan"] },
       { icon: "licence", title: "Licensed agency", lines: [licensedOperator.nameEn.replace(" Co., Ltd.", ""), `Permit ${licensedOperator.permitNumber}`, "The contract and payments are with this agency"] },
-      { icon: "star", title: "Guest notes", lines: ["From private Yunnan journeys", "Your driver-guide is named in writing", "Read them further down this page"] },
+      { icon: "star", title: "Guest notes", lines: stories.length ? ["From guests on this journey", "Your driver-guide is named in writing", "Read them further down this page"] : ["Your driver-guide is named in writing", "The person for your dates is confirmed in the proposal"] },
     ]} />
     <JourneyWhy />
     <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", label: "Start Planning My Journey" }} />
@@ -154,12 +154,11 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     <section className="journey-itinerary section" id="itinerary"><div className="shell journey-section-layout"><header><p>{frontmatter.itineraryKicker || "DAY BY DAY"}</p><h2>{frontmatter.itineraryHeading || (isSixDayYunnanJourney ? "Give Jade Dragon Snow Mountain a full day of its own." : "A rhythm of arrival, discovery and rest.")}</h2><span>{frontmatter.itineraryIntro || (isSixDayYunnanJourney ? "Two nights in Dali, one night in Shaxi, two nights in Lijiang. Day 5 is the mountain. Hotel breakfast is generally included. Lunch and dinner are not." : "This is a starting point rather than a rigid package. We can adjust the route around your dates and preferred pace.")}</span></header><div className="journey-days">{frontmatter.itinerary.map((day) => {
       const dayPhoto = day.image ? [day.image, day.imageAlt || day.title] as const : isSixDayYunnanJourney ? sixDayPhotos[day.days] : undefined;
       const isShaxiStay = isSixDayYunnanJourney && day.days === "Day 3";
-      const isJadeDragonDay = isSixDayYunnanJourney && day.days === "Day 5";
       const dayCopy = day.description.split(/\n\n+/);
-      return <details key={day.days}><summary><span>{day.days}</span><div><h3>{day.title}</h3><p>{day.meta}</p></div><b aria-hidden="true">+</b></summary>{dayCopy.map((paragraph, paragraphIndex) => <p key={`${day.days}-${paragraphIndex}`}>{paragraph}</p>)}{day.meals ? <p className="journey-day-meals"><strong>{/Overnight|Pace:/.test(day.meals) ? "THE DAY" : "MEALS"}</strong> {day.meals}</p> : null}{dayPhoto ? <figure className="journey-day-photo"><Image src={encodeURI(dayPhoto[0])} alt={dayPhoto[1]} fill sizes="(max-width:700px) 100vw, 640px" unoptimized /><figcaption>{dayPhoto[1]}</figcaption></figure> : null}{isJadeDragonDay ? <figure className="journey-day-photo journey-day-guest"><Image src={encodeURI(sixDayGuestProof[0][0])} alt={sixDayGuestProof[0][1]} fill sizes="(max-width:700px) 100vw, 640px" unoptimized /><figcaption>Guests on this day, at the 4,506 m platform</figcaption></figure> : null}{isShaxiStay ? <div className="journey-day-pair"><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp" alt="Stone-paved lane between traditional buildings in Shaxi" fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="A shepherd and goats beside the river outside Shaxi" fill sizes="(max-width: 700px) 45vw, 20vw" unoptimized /></figure></div> : null}</details>;
+      return <details key={day.days}><summary><span>{day.days}</span><div><h3>{day.title}</h3><p>{day.meta}</p></div><b aria-hidden="true">+</b></summary>{dayCopy.map((paragraph, paragraphIndex) => <p key={`${day.days}-${paragraphIndex}`}>{paragraph}</p>)}{day.meals ? <p className="journey-day-meals"><strong>{/Overnight|Pace:/.test(day.meals) ? "THE DAY" : "MEALS"}</strong> {day.meals}</p> : null}{dayPhoto ? <figure className="journey-day-photo"><Image src={encodeURI(dayPhoto[0])} alt={dayPhoto[1]} fill sizes="(max-width:700px) 100vw, 640px" unoptimized /><figcaption>{dayPhoto[1]}</figcaption></figure> : null}{isShaxiStay ? <div className="journey-day-pair"><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp" alt="Stone-paved lane between traditional buildings in Shaxi" fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="A shepherd and goats beside the river outside Shaxi" fill sizes="(max-width: 700px) 45vw, 20vw" unoptimized /></figure></div> : null}</details>;
     })}</div></div></section>
 
-    {stories.length > 0 ? <Testimonials items={stories} eyebrow={selectedTestimonialsCopy.eyebrow} heading={selectedTestimonialsCopy.heading} intro={selectedTestimonialsCopy.intro} note={selectedTestimonialsCopy.note} /> : null}
+    {stories.length > 0 ? <Testimonials items={stories} eyebrow={selectedTestimonialsCopy.eyebrow} heading={selectedTestimonialsCopy.heading} intro="Notes from guests on this journey. The driver-guide for your dates is the person named in the proposal." note={selectedTestimonialsCopy.note} /> : null}
 
     <section className="journey-price-module" id="pricing">
       {frontmatter.tiers.length ? <section className="journey-pricing section section-sand"><div className="shell"><div className="journey-editorial-heading"><span>PRICE</span><h2>{frontmatter.pricingHeading || "Choose a hotel style"}</h2><p>{frontmatter.pricingIntro || "Starting prices are per person for the complete journey, based on two adults sharing one room. Not a daily rate. Hotel breakfast is generally included. Lunch and dinner are not."}</p></div>

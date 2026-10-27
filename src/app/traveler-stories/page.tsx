@@ -105,6 +105,7 @@ export default function TravelerStoriesPage() {
         <Link className={styles.journalBand} href={`/traveler-stories/${journal.slug}`} id="journal" key={journal.slug}>
           <figure>
             <Image src={journal.heroImage} alt={journal.heroAlt} fill sizes="(max-width: 800px) 100vw, 58vw" />
+            <figcaption>A photograph of the place. Not of {journal.traveler}.</figcaption>
           </figure>
           <div>
             <p>{journal.category} · {journal.traveler}, {journal.country} · {journal.readingTime}</p>
@@ -126,6 +127,7 @@ export default function TravelerStoriesPage() {
           <article className={index % 2 === 1 ? `${styles.feature} ${styles.featureReverse}` : styles.feature} id={`story-${story.id}`} key={story.id}>
             <figure className={styles.featureMedia}>
               <Image className={styles.cover} src={story.image} alt={story.imageAlt} fill sizes="(max-width: 980px) 100vw, 58vw" style={{ objectPosition: story.objectPosition }} />
+              <figcaption>A photograph of the place. Not of {story.name}.</figcaption>
             </figure>
             <div className={styles.featureCopy}>
               <p className={styles.meta}>{story.country} · {story.party}</p>
@@ -174,6 +176,7 @@ export default function TravelerStoriesPage() {
             <article className={styles.detail} id={`story-${story.id}`} key={story.id}>
               <figure className={styles.detailMedia}>
                 <Image className={styles.cover} src={story.image} alt={story.imageAlt} fill sizes="(max-width: 980px) 100vw, 40vw" style={{ objectPosition: story.objectPosition }} />
+                <figcaption>A photograph of the place. Not of {story.name}.</figcaption>
               </figure>
               <div>
                 <p className={styles.meta}>{story.country}</p>
