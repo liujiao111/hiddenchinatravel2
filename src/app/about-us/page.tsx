@@ -110,7 +110,7 @@ export default function AboutPage() {
     />
 
     <section className={styles.faq}><div className={`shell ${styles.faqGrid}`}><div><h2>A few things you might be wondering</h2><p>Good journeys begin with clear answers.</p></div><div>{questions.map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>
-    <section className={styles.cta}><div className="shell"><h2>Let’s start with your kind of journey.</h2><p>A few dates, a place you’ve been dreaming about, or simply how you want the trip to feel. Tell me what’s on your mind.</p><Link href={whatsapp} className="button button-light">CHAT WITH JOY ON WHATSAPP</Link><Link href="/contact">Prefer email? Get in touch →</Link><span>Speak directly with Joy Liu. No commitment to book.</span></div></section>
+    <section className={styles.cta}><div className="shell"><h2>Let’s start with your kind of journey.</h2><p>A few dates, a place you’ve been dreaming about, or simply how you want the trip to feel. Tell me what’s on your mind.</p><Link href={whatsapp} className="button button-light">Start Planning Your Journey</Link><Link href="/contact">Prefer email? Get in touch →</Link><span>Speak directly with Joy Liu. No commitment to book.</span></div></section>
   </main><ContentFooter />
   <JsonLd data={{ "@context": "https://schema.org", "@graph": [breadcrumbList([{ name: "Home", href: "/" }, { name: "About us", href: "/about-us" }])] }} />
   </>;

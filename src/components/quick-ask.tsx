@@ -162,7 +162,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
               <span>Company</span>
               <input name="company" type="text" tabIndex={-1} autoComplete="off" />
             </label>
-            <button className="button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send by email"}</button>
+            <button className="button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Get My Trip Plan"}</button>
           </div>
         </>
       ) : <div className="contact-field-row">
@@ -216,7 +216,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
         <textarea name="plans" rows={intent === "trip" ? 3 : 4} required={intent === "advice" && !quoteRequested} placeholder={intent === "trip" || quoteRequested ? "Comfort, Premium or Luxury, more time in Dali, or leave this blank for a first suggestion." : "Ask about this guide, or say where you would like to go."} />
       </label>
       <div className="quick-ask-actions">
-        <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : intent === "trip" || quoteRequested ? "Get a quote" : "Ask Joy"}</button>
+        <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : intent === "trip" || quoteRequested ? "Get My Trip Plan" : "Ask Joy"}</button>
         <a href={standbyWhatsapp}>Or WhatsApp Joy →</a>
       </div>
       {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}

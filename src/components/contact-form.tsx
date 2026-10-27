@@ -132,7 +132,7 @@ export function ContactForm() {
       </label>
 
       <button className="button button-blue" type="submit" disabled={status === "sending"}>
-        {status === "sending" ? "Sending…" : "PLAN MY YUNNAN TRIP"}
+        {status === "sending" ? "Sending…" : "Get My Trip Plan"}
       </button>
       {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}
       <p className="contact-form-note">{siteConfig.replyTime}</p>

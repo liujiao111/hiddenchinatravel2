@@ -34,7 +34,7 @@ export function JourneyTrustSection({
       <div className="journey-editorial-heading">
         {compact ? null : <span>YOUR PRIVATE JOURNEY</span>}
         <h2 id="private-journey-title">{compact ? "The local team, hotels and licensed agency." : "A driver-guide, a private vehicle, and hotels named in writing."}</h2>
-        <p>{compact ? `${brandIdentity.short} ${brandIdentity.consultant} A driver-guide, vehicle and hotel examples are confirmed in writing.` : "You travel as your own party. No shopping stops. The person, the car and the hotels below are examples from the team we use; the assignment for your dates is confirmed in the proposal."}</p>
+        <p>{compact ? `${brandIdentity.short} ${brandIdentity.consultant} A driver-guide, vehicle and hotel examples are confirmed in writing.` : "You travel as your own party. No shopping stops. The person and the car below are examples from the team we use. The hotels are examples of the style in each place. The assignment for your dates is confirmed in the proposal."}</p>
       </div>
       <div className="proof-group-switch journey-proof-tabs" role="tablist" aria-label="Guide, vehicle or hotels">
         {proofTabs.map((tab) => <button key={tab.id} type="button" role="tab" aria-selected={tab.id === activeId} onClick={() => setActiveId(tab.id)}>{tab.label}</button>)}
