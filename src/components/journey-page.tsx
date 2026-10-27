@@ -103,7 +103,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     ],
   };
 
-  return <main className="journey-page">
+  return <main className={isSixDayYunnanJourney ? "journey-page journey-page-offer" : "journey-page"}>
     <SiteHeader conversion cta={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", mailHref: "#ask-joy", label: "Start Planning My Journey", location: "header_journey_price" }} />
     <JourneyHero
       title={frontmatter.heroTitle || frontmatter.title}
@@ -120,7 +120,6 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       chat={{ href: isSixDayYunnanJourney ? "#ask-joy" : whatsapp, label: isSixDayYunnanJourney ? "Prefer email? Get My Trip Plan →" : "Prefer WhatsApp? Message Joy →" }}
       note={frontmatter.heroNote || "Two adults sharing one room. Not a daily rate. Hotel breakfast is generally included; lunch and dinner are not."}
     />
-    {isSixDayYunnanJourney ? <JourneyQuoteBand id="ask-joy" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} /> : null}
     <section className="journey-fold-ask" id="quote">
       <div className="shell">
         {isSixDayYunnanJourney ? <div className="journey-guest-proof">
@@ -131,7 +130,17 @@ export function JourneyPage({ journey }: { journey: Journey }) {
               <figcaption>{caption}</figcaption>
             </figure>)}
           </div>
-          <p>A private party on Day 5: the 4,506 m platform and Blue Moon Valley.</p>
+          <p className="journey-guest-caption">A private party on Day 5: the 4,506 m platform and Blue Moon Valley.</p>
+          <ul className="journey-guest-notes">
+            <li>
+              <q>This was our second time choosing Joy at Hidden China Travel, and he exceeded our expectations again.</q>
+              <span>Daniel &amp; Sarah L. · Singapore</span>
+            </li>
+            <li>
+              <q>Our driver-guide was professional, patient, and funny. The hotels were either charming guesthouses or very comfortable.</q>
+              <span>Claire &amp; Thomas · France</span>
+            </li>
+          </ul>
         </div> : <div className="journey-quote-ask">
           <h3>Get a quote for your dates.</h3>
           <p>{completePrice}. A month, group size and hotel style are enough. Joy replies with a range for those dates — nothing is booked. After you sign, the deposit is 20%. The other 80% is due after your first pickup.</p>
@@ -171,7 +180,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
           <p className="journey-price-note">{frontmatter.priceExplanation || "Prices are a guide in USD. Final pricing depends on travel dates, group size, hotel availability and any route adjustments. Your licensed local travel partner confirms the quotation and contract before you decide."}</p>
         </div>
         <div className="journey-quote-ask"><h3>Get a quote for the style you prefer.</h3><p>{completePrice}. Pick Comfort, Premium or Luxury, then send a month and group size. Joy replies with a range for those dates — nothing is booked. After you sign, the deposit is 20%. The other 80% is due after your first pickup.</p><QuickAsk layout="embedded" id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" /><p className="journey-quote-contract">Joy replies to this note.</p></div>
-      </div></div></section> : <JourneyQuoteBand id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} compact />}
+      </div></div></section> : isSixDayYunnanJourney ? <JourneyQuoteBand id="ask-joy" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} /> : <JourneyQuoteBand id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} compact />}
 
       <section className="journey-inclusions section journey-inclusions-compact" id="details"><div className="shell journey-inclusion-grid"><div><span className="journey-detail-label">THE DETAILS</span><h2>What’s included</h2>{frontmatter.inclusions.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><span className="journey-detail-label">GOOD TO KNOW</span><h2>What’s not included</h2>{frontmatter.exclusions.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></section>
 
@@ -182,7 +191,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     <JourneyPractical notes={frontmatter.bookingNotes?.map((note) => ({ title: note.title, detail: note.detail }))} faqs={frontmatter.faqs.map((faq) => ({ title: faq.question, detail: faq.answer }))} />
     {frontmatter.bookingNotes?.length ? null : <YunnanTravelNotes />}
 
-    {isSixDayYunnanJourney ? <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/custom-china-tour" /> : <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked.</span><HashLink href="#ask-joy" className="button button-light">Start Planning My Journey</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>}
+    {isSixDayYunnanJourney ? <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/custom-china-tour" showForm={false} /> : <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked.</span><HashLink href="#ask-joy" className="button button-light">Start Planning My Journey</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>}
     <JourneyMobileCta href={isSixDayYunnanJourney ? whatsapp : "#ask-joy"} />
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
