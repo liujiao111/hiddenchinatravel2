@@ -55,7 +55,7 @@ function JourneyQuoteBand({ id, source, sourceTitle, whatsapp, showRouteLink, co
           <h2>Get a quote for your dates.</h2>
           <p>After you sign, the deposit is 20%. The other 80% is due after your first pickup.</p>
         </div>
-        <a className="button journey-plan-whatsapp" href={whatsapp} data-cta-location={`journey_plan_whatsapp_${id}`}>Start Planning Your Journey</a>
+        <a className="button journey-plan-whatsapp" href={whatsapp} data-cta-location={`journey_plan_whatsapp_${id}`}>Start Planning My Journey</a>
       </div>
       {compact ? null : <>
         <ul className="journey-plan-points">{planPoints.map((point) => <li key={point}><span>✓</span>{point}</li>)}</ul>
@@ -104,7 +104,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
   };
 
   return <main className="journey-page">
-    <SiteHeader conversion cta={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", mailHref: "#ask-joy", label: "Start Planning Your Journey", location: "header_journey_price" }} />
+    <SiteHeader conversion cta={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", mailHref: "#ask-joy", label: "Start Planning My Journey", location: "header_journey_price" }} />
     <JourneyHero
       title={frontmatter.heroTitle || frontmatter.title}
       name={frontmatter.heroTitle ? frontmatter.title : undefined}
@@ -115,7 +115,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       price={frontmatter.fromPrice > 0 ? completePrice : undefined}
       includes={heroIncludes}
       bounds={frontmatter.heroBounds}
-      primary={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", label: "Start Planning Your Journey" }}
+      primary={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", label: "Start Planning My Journey" }}
       secondary={{ href: "#itinerary", label: frontmatter.heroSecondaryLabel || "SEE THE DAYS" }}
       chat={{ href: isSixDayYunnanJourney ? "#ask-joy" : whatsapp, label: isSixDayYunnanJourney ? "Prefer email? Get My Trip Plan →" : "Prefer WhatsApp? Message Joy →" }}
       note={frontmatter.heroNote || "Two adults sharing one room. Not a daily rate. Hotel breakfast is generally included; lunch and dinner are not."}
@@ -147,7 +147,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       { icon: "star", title: "Guest notes", lines: ["From private Yunnan journeys", "Your driver-guide is named in writing", "Read them further down this page"] },
     ]} />
     <JourneyWhy />
-    <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", label: "Start Planning Your Journey" }} />
+    <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", label: "Start Planning My Journey" }} />
     {frontmatter.whoFor || frontmatter.whenToGo ? <section className="journey-fit-season"><div className="shell">{frontmatter.whoFor ? <article><span>WHO IT’S FOR</span><p>{frontmatter.whoFor}</p></article> : null}{frontmatter.whenToGo ? <article><span>WHEN TO GO</span><p>{frontmatter.whenToGo}</p></article> : null}</div></section> : null}
 
     {frontmatter.experiences.length ? <section className="journey-experiences section section-sand" id="experiences"><div className="shell"><div className="section-heading"><h2>Signature experiences</h2><p>{isSixDayYunnanJourney ? "The moments this route is built around: Erhai’s west shore, indigo in Zhoucheng, one night in Shaxi, and a full day on Jade Dragon Snow Mountain." : "A journey built around moments, local people and enough time to take them in."}</p></div><div className="journey-experience-grid">{frontmatter.experiences.map((experience, index) => <article key={experience.title}><div><Image src={experience.image} alt={experience.imageAlt || experience.title} fill sizes="(max-width: 700px) 100vw, 50vw" unoptimized /></div><span>0{index + 1}</span><h3>{experience.title}</h3><p>{experience.description}</p></article>)}</div></div></section> : null}
@@ -182,7 +182,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
     <JourneyPractical notes={frontmatter.bookingNotes?.map((note) => ({ title: note.title, detail: note.detail }))} faqs={frontmatter.faqs.map((faq) => ({ title: faq.question, detail: faq.answer }))} />
     {frontmatter.bookingNotes?.length ? null : <YunnanTravelNotes />}
 
-    {isSixDayYunnanJourney ? <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/custom-china-tour" /> : <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked.</span><HashLink href="#ask-joy" className="button button-light">Start Planning Your Journey</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>}
+    {isSixDayYunnanJourney ? <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/custom-china-tour" /> : <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked.</span><HashLink href="#ask-joy" className="button button-light">Start Planning My Journey</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>}
     <JourneyMobileCta href={isSixDayYunnanJourney ? whatsapp : "#ask-joy"} />
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />

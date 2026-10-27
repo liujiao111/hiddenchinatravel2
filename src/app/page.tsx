@@ -112,7 +112,7 @@ export default function Home() {
         <p className="hero-lead hero-mobile-only">Private journeys through Dali, Lijiang and beyond, shaped around your dates, interests and pace.</p>
         <p className="hero-brand hero-desktop-only">Born in Yunnan. Shaped by experiences abroad.</p>
         <div className="hero-actions">
-          <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">Start Planning Your Journey</EnquireLink>
+          <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">Start Planning My Journey</EnquireLink>
           <Link href="/journeys" className="button button-light hero-desktop-only">EXPLORE JOURNEYS</Link>
         </div>
         <p className="hero-trust-line hero-desktop-only">No shopping stops · 20% after the signed contract · 80% after your driver meets you</p>
@@ -131,7 +131,7 @@ export default function Home() {
       <div className="shell">
         <div className="process-grid">{howItWorks.map(([number, title, text]) => <div key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></div>)}</div>
         <div className="center">
-          <EnquireLink data-cta-location="home_how_it_works" className="button button-blue">Start Planning Your Journey</EnquireLink>
+          <EnquireLink data-cta-location="home_how_it_works" className="button button-blue">Start Planning My Journey</EnquireLink>
           <p className="home-helper">No payment is required to start planning.</p>
         </div>
       </div>
@@ -265,7 +265,7 @@ export default function Home() {
         <h2>Ready to Start Planning Yunnan?</h2>
         <p>You do not need a finished itinerary. Tell us your travel dates or approximate month, number of travelers and the places or experiences that interest you. Joy will help turn those ideas into a practical private journey.</p>
         <div className="hero-actions">
-          <EnquireLink data-cta-location="home_final_custom" className="button button-blue">Start Planning Your Journey</EnquireLink>
+          <EnquireLink data-cta-location="home_final_custom" className="button button-blue">Start Planning My Journey</EnquireLink>
           <Link href={whatsapp} data-cta-location="home_final_whatsapp" className="button button-light">CHAT WITH JOY ON WHATSAPP</Link>
         </div>
         <p className="final-cta-trust">No payment to start planning · 20% after the signed contract · 80% after your driver meets you</p>
