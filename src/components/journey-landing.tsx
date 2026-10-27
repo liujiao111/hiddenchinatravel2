@@ -5,7 +5,7 @@ import { StarRating } from "@/components/star-rating";
 
 type Action = { href: string; label: string };
 
-export function JourneyHero({ title, name, image, imageAlt, eyebrow, description, primary, secondary, note, bounds, rating, price, includes, chat }: {
+export function JourneyHero({ title, name, image, imageAlt, eyebrow, description, primary, secondary, note, bounds, rating, price, includes, chat, tailoring, reassure }: {
   title: string; name?: string; image: string; imageAlt: string; eyebrow: string; description: string;
   primary: Action; secondary: Action; note: string;
   bounds?: string;
@@ -13,12 +13,14 @@ export function JourneyHero({ title, name, image, imageAlt, eyebrow, description
   price?: string;
   includes?: string[];
   chat?: Action;
+  tailoring?: readonly string[];
+  reassure?: readonly string[];
 }) {
   return <header className="journey-hero">
     <Image src={encodeURI(image)} alt={imageAlt} fill priority unoptimized sizes="100vw" />
     <div className="journey-hero-shade" />
     <nav className="breadcrumbs journey-breadcrumbs shell" aria-label="Breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/journeys">Journeys</Link><span>›</span><span>{name || title}</span></nav>
-    <div className="journey-hero-copy shell"><div><p>{eyebrow}</p><h1>{title}</h1><span>{description}</span>{price ? <b className="journey-hero-price">{price}</b> : null}{includes?.length ? <ul className="journey-hero-includes">{includes.map((item) => <li key={item}>{item}</li>)}</ul> : null}{bounds ? <ul className="journey-hero-bounds">{bounds.split(" · ").map((item) => <li key={item}>{item}</li>)}</ul> : null}{rating ? <a className="journey-hero-rating" href={rating.href}><StarRating value={rating.value} label={`Overall guest rating: ${rating.value.toFixed(1)} out of 5 stars`} /><span>{rating.label}</span></a> : null}<div className="journey-hero-actions"><HashLink id="hero-quote" className="button journey-primary-action" href={primary.href}>{primary.label}</HashLink><HashLink className="journey-text-action" href={secondary.href}>{secondary.label} <b>↓</b></HashLink></div>{chat ? <Link className="journey-hero-whatsapp" href={chat.href}>{chat.label}</Link> : null}<small>{note}</small></div></div>
+    <div className="journey-hero-copy shell"><div><p>{eyebrow}</p><h1>{title}</h1><span>{description}</span>{tailoring?.length ? <div className="journey-hero-tailor">{tailoring.map((line) => <p key={line}>{line}</p>)}</div> : null}{price ? <b className="journey-hero-price">{price}</b> : null}{includes?.length ? <ul className="journey-hero-includes">{includes.map((item) => <li key={item}>{item}</li>)}</ul> : null}{bounds ? <ul className="journey-hero-bounds">{bounds.split(" · ").map((item) => <li key={item}>{item}</li>)}</ul> : null}{rating ? <a className="journey-hero-rating" href={rating.href}><StarRating value={rating.value} label={`Overall guest rating: ${rating.value.toFixed(1)} out of 5 stars`} /><span>{rating.label}</span></a> : null}<div className="journey-hero-actions"><HashLink id="hero-quote" className="button journey-primary-action" href={primary.href}>{primary.label}</HashLink><HashLink className="journey-text-action" href={secondary.href}>{secondary.label} <b>↓</b></HashLink></div>{reassure?.length ? <div className="journey-hero-reassure">{reassure.map((line) => <p key={line}>{line}</p>)}</div> : null}{chat ? <Link className="journey-hero-whatsapp" href={chat.href}>{chat.label}</Link> : null}<small>{note}</small></div></div>
   </header>;
 }
 

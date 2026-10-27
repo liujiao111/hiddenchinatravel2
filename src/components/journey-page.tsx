@@ -8,7 +8,9 @@ import { JourneyMobileCta } from "@/components/journey-mobile-cta";
 import { SiteHeader } from "@/components/site-header";
 import { QuickAsk } from "@/components/quick-ask";
 import { formatPriceLabel } from "@/lib/format-price";
+import { JourneyFloatCta } from "@/components/journey-float-cta";
 import { JourneyFactCards, JourneyHero, JourneyOverview } from "@/components/journey-landing";
+import { JourneyCustomizeCallout, JourneyPlanningSteps } from "@/components/journey-planning";
 import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { JourneyPractical } from "@/components/journey-practical";
 import { JourneyWhy } from "@/components/journey-why";
@@ -47,6 +49,18 @@ const sharedTierPoints = [
 
 const planPoints = ["Personalized itinerary", "Handpicked hotels", "Private driver-guide", "Flexible travel dates"];
 
+const sixDayTailoring = [
+  "This itinerary is only a starting point.",
+  "Every journey is tailored to your travel dates, interests, pace, and accommodation preferences.",
+  "Whether you want more time in Dali, a visit to Shangri-La, or a completely different hotel style, we'll adapt the trip around you.",
+] as const;
+
+const sixDayReassure = [
+  "No commitment required.",
+  "Tell us your travel dates and ideas.",
+  "We'll suggest a personalized version of this journey before you decide.",
+] as const;
+
 function JourneyQuoteBand({ id, source, sourceTitle, whatsapp, showRouteLink, compact }: { id: string; source: string; sourceTitle: string; whatsapp: string; showRouteLink?: boolean; compact?: boolean }) {
   return <section className={compact ? "journey-quote-band journey-quote-band-compact" : "journey-quote-band"}>
     <div className="shell journey-plan">
@@ -72,6 +86,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
   const stories = getSelectedTestimonials();
   const whatsapp = `https://wa.me/8618880441791?text=${encodeURIComponent(`Hi Joy, I’m interested in the ${frontmatter.title} journey. My travel dates are ____ and there will be ____ travelers.`)}`;
+  const customizeWhatsapp = `https://wa.me/8618880441791?text=${encodeURIComponent(`Hi Joy, I like the overall route of the ${frontmatter.title} journey and would like to adjust it. My travel dates are ____.`)}`;
   const completePrice = frontmatter.fromPrice > 0
     ? `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} per person for the complete ${frontmatter.duration.split("/")[0].trim().toLowerCase()}`
     : "Tailored quote after we confirm your dates and group";
@@ -119,7 +134,10 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       secondary={{ href: "#itinerary", label: frontmatter.heroSecondaryLabel || "SEE THE DAYS" }}
       chat={{ href: isSixDayYunnanJourney ? "#ask-joy" : whatsapp, label: isSixDayYunnanJourney ? "Prefer email? Get my trip plan →" : "Prefer WhatsApp? Message Joy →" }}
       note={frontmatter.heroNote || "Two adults sharing one room. Not a daily rate. Hotel breakfast is generally included; lunch and dinner are not."}
+      tailoring={isSixDayYunnanJourney ? sixDayTailoring : undefined}
+      reassure={isSixDayYunnanJourney ? sixDayReassure : undefined}
     />
+    {isSixDayYunnanJourney ? <JourneyPlanningSteps /> : null}
     {isSixDayYunnanJourney ? <JourneyQuoteBand id="ask-joy" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} /> : null}
     <section className="journey-fold-ask" id="quote">
       <div className="shell">
@@ -158,7 +176,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       const isJadeDragonDay = isSixDayYunnanJourney && day.days === "Day 5";
       const dayCopy = day.description.split(/\n\n+/);
       return <details key={day.days} open={index === 0}><summary><span>{day.days}</span><div><h3>{day.title}</h3><p>{day.meta}</p></div><b aria-hidden="true">+</b></summary>{dayCopy.map((paragraph, paragraphIndex) => <p key={`${day.days}-${paragraphIndex}`}>{paragraph}</p>)}{day.meals ? <p className="journey-day-meals"><strong>{/Overnight|Pace:/.test(day.meals) ? "THE DAY" : "MEALS"}</strong> {day.meals}</p> : null}{dayPhoto ? <figure className="journey-day-photo"><Image src={encodeURI(dayPhoto[0])} alt={dayPhoto[1]} fill sizes="(max-width:700px) 100vw, 640px" unoptimized /><figcaption>{dayPhoto[1]}</figcaption></figure> : null}{isJadeDragonDay ? <figure className="journey-day-photo journey-day-guest"><Image src={encodeURI(sixDayGuestProof[0][0])} alt={sixDayGuestProof[0][1]} fill sizes="(max-width:700px) 100vw, 640px" unoptimized /><figcaption>Guests on this day, at the 4,506 m platform</figcaption></figure> : null}{isShaxiStay ? <div className="journey-day-pair"><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp" alt="Stone-paved lane between traditional buildings in Shaxi" fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="A shepherd and goats beside the river outside Shaxi" fill sizes="(max-width: 700px) 45vw, 20vw" unoptimized /></figure></div> : null}</details>;
-    })}</div></div></section>
+    })}</div>{isSixDayYunnanJourney ? <JourneyCustomizeCallout href={customizeWhatsapp} location="journey_customize_itinerary" /> : null}</div></section>
 
     {stories.length > 0 ? <Testimonials items={stories} eyebrow={selectedTestimonialsCopy.eyebrow} heading={selectedTestimonialsCopy.heading} intro={selectedTestimonialsCopy.intro} note={selectedTestimonialsCopy.note} /> : null}
 
@@ -172,18 +190,20 @@ export function JourneyPage({ journey }: { journey: Journey }) {
         </div>
         <div className="journey-quote-ask"><h3>Get a quote for the style you prefer.</h3><p>{completePrice}. Pick Comfort, Premium or Luxury, then send a month and group size. Joy replies with a range for those dates — nothing is booked. After you sign, the deposit is 20%. The other 80% is due after your first pickup.</p><QuickAsk layout="embedded" id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" /><p className="journey-quote-contract">Joy replies to this note.</p></div>
       </div></div></section> : <JourneyQuoteBand id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} compact />}
+      {isSixDayYunnanJourney ? <JourneyCustomizeCallout href={customizeWhatsapp} location="journey_customize_pricing" /> : null}
 
       <section className="journey-inclusions section journey-inclusions-compact" id="details"><div className="shell journey-inclusion-grid"><div><span className="journey-detail-label">THE DETAILS</span><h2>What’s included</h2>{frontmatter.inclusions.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><span className="journey-detail-label">GOOD TO KNOW</span><h2>What’s not included</h2>{frontmatter.exclusions.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></section>
 
       <JourneyTrustSection showCredentials={false} showMuslimFriendly={false} hotelCopy={isSixDayYunnanJourney ? "Premium hotels are the standard on this price. These are examples. The hotel in each place is named in your written proposal." : undefined} />
+      {isSixDayYunnanJourney ? <JourneyCustomizeCallout href={customizeWhatsapp} location="journey_customize_hotels" /> : null}
 
     </section>
 
     <JourneyPractical notes={frontmatter.bookingNotes?.map((note) => ({ title: note.title, detail: note.detail }))} faqs={frontmatter.faqs.map((faq) => ({ title: faq.question, detail: faq.answer }))} />
     {frontmatter.bookingNotes?.length ? null : <YunnanTravelNotes />}
 
-    {isSixDayYunnanJourney ? <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/custom-china-tour" /> : <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked.</span><HashLink href="#ask-joy" className="button button-light">GET A QUOTE</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>}
-    <JourneyMobileCta href={isSixDayYunnanJourney ? whatsapp : "#ask-joy"} label={isSixDayYunnanJourney ? "CHAT ON WHATSAPP" : undefined} />
+    {isSixDayYunnanJourney ? <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} heading="Ready to Start Planning Your Yunnan Journey?" body="Tell us your dates, interests, and travel style. We'll help shape the journey around what matters most to you." ctaLabel="Chat on WhatsApp" emailHref="#ask-joy-final" emailLabel="Prefer email? Get my trip plan →" /> : <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked.</span><HashLink href="#ask-joy" className="button button-light">GET A QUOTE</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>}
+    {isSixDayYunnanJourney ? <JourneyFloatCta href={whatsapp} /> : <JourneyMobileCta href="#ask-joy" />}
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;
