@@ -1,3 +1,5 @@
+import type { TravelerCaseStudy } from "@/lib/traveler-case-study";
+
 export type JournalBlock =
   | { type: "paragraph"; text: string }
   | { type: "quote"; text: string }
@@ -37,6 +39,7 @@ export type TravelJournal = {
   heroAlt: string;
   sections: JournalSection[];
   related: JournalPlace[];
+  caseStudy: TravelerCaseStudy;
 };
 
 const stoneForest = "/assets/blog/kunming-travel-guide/cover-stone-forest.webp";
@@ -57,82 +60,99 @@ export const travelJournals: TravelJournal[] = [
     route: "Kunming → Stone Forest → Dali → Lijiang",
     heroImage: stoneForest,
     heroAlt: "Karst pinnacles of the Stone Forest reflected in a still pool near Kunming",
-    sections: [
-      {
-        id: "before-the-flight",
-        title: "Sometimes the Best Journeys Begin Before the Flight",
-        blocks: [
-          { type: "paragraph", text: "When Matthew first contacted Hidden China, he was already halfway through a three-week journey across China." },
-          { type: "paragraph", text: "Over the previous weeks, he had explored Shanghai, Suzhou, Nanjing and Wuhan independently. He had experienced China's modern cities, historic neighbourhoods and iconic landmarks." },
-          { type: "paragraph", text: "His request sounded simple:" },
-          { type: "quote", text: "I've seen China's cities. Before flying home, I'd like to experience a different side of China." },
-          { type: "paragraph", text: "That single sentence became the foundation of everything that followed." },
-          { type: "paragraph", text: "Rather than immediately discussing hotels and attractions, we started by understanding how he likes to travel." },
-          { type: "paragraph", text: "Through several conversations, we learned that he wasn't interested in checking off famous sights as quickly as possible." },
-          { type: "paragraph", text: "He enjoyed photography, unusual landscapes, local culture and slower travel experiences." },
-          { type: "paragraph", text: "Most importantly, he wanted places that felt genuinely different from the China he had already seen." },
-          { type: "paragraph", text: "For us, that pointed naturally towards Yunnan." },
+    caseStudy: {
+      snapshot: {
+        traveler: "Matthew",
+        country: "Canada",
+        travelStyle: "Independent explorer",
+        duration: "Yunnan chapter of a three-week China trip",
+        travelMonth: "Not published",
+        route: ["Kunming", "Stone Forest", "Dali", "Lijiang"],
+        support: [
+          "Route design",
+          "China preparation pack",
+          "eSIM guidance",
+          "VPN recommendations",
+          "Mobile payment preparation",
+          "Transportation advice",
+          "Custom travel map",
         ],
       },
-      {
-        id: "before-arrival",
-        title: "Planning Begins Long Before Arrival",
-        blocks: [
-          { type: "paragraph", text: "One thing many travelers don't realise is that a great journey often starts before boarding the plane." },
-          { type: "paragraph", text: "Because Matthew was visiting China for the first time, we prepared a personalised pre-departure guide and sent it a week before his flight." },
-          { type: "paragraph", text: "The guide included:" },
-          {
-            type: "list",
-            items: [
-              "Recommended travel apps",
-              "eSIM setup instructions",
-              "VPN recommendations",
-              "Mobile payment preparation",
-              "Transportation tips",
-              "Practical advice for navigating China smoothly",
-            ],
-          },
-          { type: "paragraph", text: "These details may seem small, but they remove much of the uncertainty first-time visitors often experience." },
-          { type: "paragraph", text: "Our goal was simple:" },
-          { type: "quote", text: "Spend less time solving logistical problems.\nSpend more time enjoying the journey." },
+      beforeTrip: {
+        paragraphs: [
+          "Matthew wrote halfway through three weeks he had arranged himself. Shanghai, Suzhou, Nanjing and Wuhan were already behind him. The cities had been his own project. What he asked for next was a China that did not resemble them.",
+          "A first visit still carried the practical questions under that request. Payments, mobile data, trains and the apps of an ordinary day are a different system from the one he had left at home. He contacted Joy because another list of sights would have repeated the trip he had already taken.",
         ],
+        quote: "I've seen China's cities. Before flying home, I'd like to experience a different side of China.",
       },
-      {
-        id: "the-map",
-        title: "A Map Designed Around the Journey",
-        blocks: [
-          { type: "paragraph", text: "Before arriving in Yunnan, Matthew also received a custom-designed travel map." },
-          { type: "paragraph", text: "Rather than simply sending an itinerary document, we wanted him to visualize how the journey would unfold." },
-          { type: "paragraph", text: "The map connected every destination, travel day and major experience." },
-          { type: "paragraph", text: "What looks like four destinations on paper becomes a travel story when viewed on a map." },
-          { type: "paragraph", text: "Kunming introduced Yunnan." },
-          { type: "paragraph", text: "Stone Forest revealed its geology." },
-          { type: "paragraph", text: "Dali slowed the pace." },
-          { type: "paragraph", text: "Lijiang opened the door to the mountains of northwestern Yunnan." },
-          { type: "paragraph", text: "The map helped transform individual places into a meaningful journey." },
-          { type: "paragraph", text: "Months later, Matthew told us it became one of the resources he referred back to most often during the trip." },
-        ],
-      },
-      {
-        id: "beyond-kunming",
-        title: "Why We Didn't Recommend Staying Only in Kunming",
+      planning: {
+        intro: "The route was talked through, then shaped around how he actually travels: photography, local culture, and days that were allowed to slow down. Each place had a job. None of them was added because it was famous.",
         image: {
           src: "/assets/blog/kunming-travel-guide/kunming-city.webp",
           alt: "Autumn trees reflected in a Kunming lake",
           position: "center 50%",
         },
-        blocks: [
-          { type: "paragraph", text: "Many first-time visitors assume Kunming and Yunnan are essentially the same thing." },
-          { type: "paragraph", text: "They aren't." },
-          { type: "paragraph", text: "Kunming is a wonderful city, but it's also a gateway." },
-          { type: "paragraph", text: "The real magic of Yunnan lies in how dramatically the landscapes, cultures and atmosphere change as you move across the province." },
-          { type: "paragraph", text: "Based on Matthew's interests, we recommended a route that gradually revealed those contrasts:" },
-          { type: "emphasis", text: "Kunming → Stone Forest → Dali → Lijiang" },
-          { type: "paragraph", text: "Rather than overwhelming him with too much too quickly, every destination was chosen to build upon the previous one." },
-          { type: "paragraph", text: "Our objective wasn't simply to show him more places." },
-          { type: "paragraph", text: "It was to create a growing sense of discovery." },
+        steps: [
+          {
+            title: "The route, revised in conversation",
+            text: "Kunming opens the province. It is the gateway, and it is not the whole of Yunnan. The Stone Forest follows while the contrast with the cities is still sharp. Dali is held open on purpose: time at Erhai, villages, an hour without a ticket. Lijiang comes after that change of pace, and opens the mountains of the northwest.",
+          },
+          {
+            title: "Hotels, after the pace was clear",
+            text: "Hotels were not the first question. They were chosen once the rhythm of the days was settled, so the nights followed the route instead of leading it.",
+          },
+          {
+            title: "A China preparation pack",
+            text: "A personal guide went out a week before his flight. It covered the apps he would actually open, transport, and the practical points that usually take the first day.",
+          },
+          {
+            title: "Payments, data and access",
+            text: "The same guide included eSIM setup, VPN recommendations and mobile payment preparation, so those tasks were handled before he needed them.",
+          },
+          {
+            title: "A map of this journey",
+            text: "He also received a map drawn around these places, the travel days, and the experience that justified each one. Months later he said it was one of the things he kept returning to.",
+          },
         ],
       },
+      evidence: [
+        {
+          kind: "map",
+          title: "Custom travel map",
+          detail: "The map made for this route, linking Kunming, the Stone Forest, Dali and Lijiang. The original is added here when it can be published. This frame is not a redraw of it.",
+        },
+        {
+          kind: "whatsapp",
+          title: "WhatsApp conversation",
+          detail: "His note from Lijiang is quoted in the story. The screenshot of that exchange is added only with permission. Nothing in this frame is a reconstructed chat.",
+        },
+        {
+          kind: "itinerary",
+          title: "Personalised itinerary",
+          detail: "The written route he received. A page from that document belongs here. The day-by-day file is not recreated for the website.",
+        },
+        {
+          kind: "driver-guide",
+          title: "Driver-guide introduction",
+          detail: "This card is used when a named driver-guide was part of the journey. Matthew's published story does not name one, so the portrait stays empty.",
+        },
+      ],
+      journeyIntro: "The route was already decided. What follows is how the days felt once he was in them.",
+      whatChanged: {
+        before: [
+          "China, for him, was the cities he had already managed alone.",
+          "Payments, data, trains and everyday apps were still an open question.",
+          "Another sequence of famous stops would have repeated the trip he had taken.",
+        ],
+        after: [
+          "At the Stone Forest he said it felt like walking through another world.",
+          "From Lijiang he wrote that this was not the China he had expected.",
+          "The map was still the thing he returned to, months later.",
+          "Afterwards the journey read as an introduction, not a finished list.",
+        ],
+      },
+    },
+    sections: [
       {
         id: "stone-forest",
         title: "The Moment Yunnan Became Real",
