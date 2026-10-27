@@ -112,7 +112,7 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
           <h2 id="journal-cta-title">Begin with how you like to travel.</h2>
           <p>Tell Joy the China you have already seen, and the pace you want. The route is designed from there.</p>
           <div className={styles.actions}>
-            <EnquireLink className="button button-light" data-cta-location="journal_plan" interest="Private Travel">Start Planning Your Journey</EnquireLink>
+            <EnquireLink className="button button-light" data-cta-location="journal_plan" interest="Private Travel">Start Planning My Journey</EnquireLink>
             <a className={styles.ghost} href={whatsapp}>WhatsApp Us</a>
           </div>
         </div>

@@ -18,7 +18,7 @@ export function PlanJourneyClose({
     <div>
       <h2>Your plans don’t have to fit a set itinerary.</h2>
       <span>A family trip, a slower pace, or more time in a place you love. Let’s shape your Yunnan journey around it.</span>
-      <a className="button journey-primary-action" href={whatsapp} data-cta-location={`${id}_whatsapp`}>Start Planning Your Journey</a>
+      <a className="button journey-primary-action" href={whatsapp} data-cta-location={`${id}_whatsapp`}>Start Planning My Journey</a>
       <p className="journey-close-email">Or send the same details by email. Joy replies to the note. Nothing is booked from it.</p>
       <QuickAsk layout="plain" id={id} source={source} sourceTitle={sourceTitle} intent="trip" />
       {routeHref ? <Link className="journey-final-alt" href={routeHref} data-cta-location={`${id}_custom`}>A different date or route? Explore tailor-made Yunnan →</Link> : null}
