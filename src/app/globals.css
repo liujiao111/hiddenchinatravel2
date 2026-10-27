@@ -1039,7 +1039,6 @@ a.utility-card { color:inherit; }
 .journey-guest-proof-row img { object-fit:cover; object-position:center 40%; }
 .journey-guest-proof-row figcaption { position:absolute; left:10px; bottom:10px; padding:6px 9px; background:rgba(20,43,38,.8); color:#fff; font-size:.68rem; }
 .journey-guest-caption { margin:12px 0 0; color:#294b44; font-family:Georgia,serif; font-size:1.05rem; line-height:1.45; }
-.journey-day-guest img { object-position:center 42%; }
 @media (max-width:700px) {
   .journey-guest-proof { margin-bottom:28px; }
   .journey-guest-proof-row { grid-template-columns:1fr 1fr; }

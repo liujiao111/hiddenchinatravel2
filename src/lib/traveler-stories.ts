@@ -51,9 +51,9 @@ const editorial: Record<string, StoryEditorial> = {
     setting: "Yunnan, inside a longer honeymoon",
     noticed: "Patient help with the Yunnan days, and advice for preparations and for the other places on their route.",
     context: "They did not need Yunnan to be the whole honeymoon. They needed someone patient with that chapter, and with the questions that come before a first trip to China.",
-    image: "/assets/destinations/yunnan/lugu-lake.webp",
-    imageAlt: "A quiet shoreline, pavilion and willows on Lugu Lake in northwest Yunnan",
-    objectPosition: "center 86%",
+    image: "/assets/blog/dali-travel-guide/dali-ancient-town-rooftops.webp",
+    imageAlt: "Rooftops in Dali Old Town, with Cangshan behind",
+    objectPosition: "center 45%",
   },
   "mark-susan-tiger-leaping": {
     party: "A couple on a private journey",

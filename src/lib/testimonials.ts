@@ -45,6 +45,11 @@ export function getSelectedTestimonials() {
   });
 }
 
+/** Reviews filed with one published journey. An empty list means this page should not borrow notes from another route. */
+export function getTestimonialsForJourney(slug: string) {
+  return allTestimonials.filter((item) => item.journeySlugs.includes(slug));
+}
+
 export function getHomeTestimonials() {
   return getSelectedTestimonials();
 }
