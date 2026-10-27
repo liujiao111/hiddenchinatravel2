@@ -131,16 +131,6 @@ export function JourneyPage({ journey }: { journey: Journey }) {
             </figure>)}
           </div>
           <p className="journey-guest-caption">A private party on Day 5: the 4,506 m platform and Blue Moon Valley.</p>
-          <ul className="journey-guest-notes">
-            <li>
-              <q>This was our second time choosing Joy at Hidden China Travel, and he exceeded our expectations again.</q>
-              <span>Daniel &amp; Sarah L. · Singapore</span>
-            </li>
-            <li>
-              <q>Our driver-guide was professional, patient, and funny. The hotels were either charming guesthouses or very comfortable.</q>
-              <span>Claire &amp; Thomas · France</span>
-            </li>
-          </ul>
         </div> : <div className="journey-quote-ask">
           <h3>Get a quote for your dates.</h3>
           <p>{completePrice}. A month, group size and hotel style are enough. Joy replies with a range for those dates — nothing is booked. After you sign, the deposit is 20%. The other 80% is due after your first pickup.</p>
