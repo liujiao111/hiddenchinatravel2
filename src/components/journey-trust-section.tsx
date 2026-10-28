@@ -10,9 +10,9 @@ import { brandIdentity } from "@/lib/booking-terms";
 import { driverGuideProof } from "@/lib/journey-trust";
 
 const proofTabs = [
-  { id: "guide", label: "DRIVER-GUIDE" },
-  { id: "vehicle", label: "VEHICLE" },
   { id: "hotels", label: "HOTELS" },
+  { id: "vehicle", label: "VEHICLE" },
+  { id: "guide", label: "DRIVER-GUIDE" },
 ] as const;
 
 export function JourneyTrustSection({
@@ -43,7 +43,7 @@ export function JourneyTrustSection({
   hotelCopy?: string;
 } = {}) {
   const compact = variant === "compact";
-  const [activeId, setActiveId] = useState<(typeof proofTabs)[number]["id"]>("guide");
+  const [activeId, setActiveId] = useState<(typeof proofTabs)[number]["id"]>("hotels");
 
   return <section className="journey-proof section section-sand" id={compact ? "local-team" : "private-journey"} aria-labelledby="private-journey-title">
     <div className="shell">
