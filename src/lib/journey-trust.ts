@@ -90,7 +90,7 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
         { src: `${hotelRoot}/IMG_5950.jpeg`, alt: "Breakfast selection at Linyin Hotel, MixC branch, in Kunming", title: "Linyin Hotel · MixC Branch", detail: "Example · Kunming · breakfast", copy: "A sample breakfast display at Linyin Hotel. Your confirmed hotel and inclusions are specified in the proposal." },
         { src: `${hotelRoot}/IMG_5951.jpeg`, alt: "Additional view of a Kunming hotel option", title: "Kunming hotel option", detail: "Example · Kunming", copy: "A further hotel photo from the Kunming options. The named property is confirmed in writing." },
       ],
-    },,
+    },
 {
       id: "dali",
       label: "DALI",
@@ -103,7 +103,7 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
         { src: `${hotelRoot}/IMG_5956.jpeg`, alt: "Interior of Liuhe Yunyan Hotel in Dali", title: "Liuhe Yunyan Hotel", detail: "Example · Dali", copy: "An example of the Dali accommodation option. Availability and final room category are confirmed in writing." },
         { src: `${hotelRoot}/IMG_5957.jpeg`, alt: "Another view of Liuhe Yunyan Hotel in Dali", title: "Liuhe Yunyan Hotel", detail: "Example · Dali", copy: "A further view of the Dali hotel option. Your final hotel is named in your proposal." },
       ],
-    },,
+    },
 {
       id: "lijiang",
       label: "LIJIANG",
