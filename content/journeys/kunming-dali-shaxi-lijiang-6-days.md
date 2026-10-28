@@ -163,7 +163,7 @@ goodToKnow:
         answer: "No. We do not include factory visits, commission-based stores, or mandatory shopping stops."
   - label: "Hotels & Transport"
     items:
-      - question: "What kind of hotels are included?"
+      - question: "What type of hotels are included?"
         answer: "The journey uses carefully selected premium hotels that reflect the character of each destination, from Bai courtyard stays in Dali to boutique properties in Shaxi and Lijiang."
       - question: "What vehicle will we use?"
         answer: "Private transportation is arranged throughout the journey. Vehicle size is matched to your group size and luggage requirements."
@@ -171,11 +171,11 @@ goodToKnow:
         answer: "You travel with a local driver-guide who manages transportation, logistics, and practical support throughout the route."
   - label: "Planning for Yunnan"
     items:
-      - question: "What should I pack?"
+      - question: "What should I pack for Yunnan?"
         answer: "Comfortable walking shoes, a light jacket, sun protection, and layers for mountain areas. Even in summer, mornings and evenings can be cool at higher elevations."
       - question: "Do I need to worry about altitude?"
         answer: "Most of the journey takes place at moderate elevations. Some travelers may notice thinner air during mountain visits, but serious issues are uncommon on this route."
-      - question: "Is Yunnan suitable for first-time visitors to China?"
+      - question: "Is this journey suitable for first-time visitors to China?"
         answer: "Yes. Many of our travelers are visiting China for the first time. Before departure, we provide guidance on payments, eSIMs, useful apps, transportation, and other practical preparations."
   - label: "Booking & Pricing"
     items:
