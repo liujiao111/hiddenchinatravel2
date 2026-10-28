@@ -9,7 +9,7 @@ import { trackEvent } from "@/lib/analytics";
 function enquirySource() {
   try {
     const referrer = new URL(document.referrer);
-    if (referrer.origin === window.location.origin && referrer.pathname.startsWith("/") && !/[\s<>]/.test(referrer.pathname)) return referrer.pathname;
+    if (referrer.origin === window.location.origin && referrer.pathname.startsWith("/") && !/[\\s<>]/.test(referrer.pathname)) return referrer.pathname;
   } catch {
     // Direct visits have no usable referrer.
   }
@@ -43,12 +43,13 @@ export function ContactForm() {
     setError("");
     setWhatsappHref(whatsappUrl);
 
-    trackEvent("contact_form_submit", {
+    const analyticsParams = {
       form_name: "trip_planning_contact",
       travel_window: parsed.travelWindow,
       interest: parsed.interest,
       page_path: window.location.pathname,
-    });
+    };
+    trackEvent("form_submit_attempt", analyticsParams);
 
     try {
       const response = await fetch("/api/enquiry", {
@@ -64,6 +65,8 @@ export function ContactForm() {
         return;
       }
 
+      // Count a lead only after the enquiry API confirms successful submission.
+      trackEvent("generate_lead", analyticsParams);
       setSent(parsed);
       setStatus("success");
     } catch {
@@ -125,7 +128,7 @@ export function ContactForm() {
         <textarea
           name="plans"
           rows={7}
-          placeholder={"Which places interest you?\nHow many days are you considering?\nIs there anything you would like us to know, including a rough budget if you have one?"}
+          placeholder={"Which places interest you?\\nHow many days are you considering?\\nIs there anything you would like us to know, including a rough budget if you have one?"}
           maxLength={4000}
         />
       </label>
