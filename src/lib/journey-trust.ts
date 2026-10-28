@@ -76,25 +76,19 @@ const hotelRoot = "/assets/partners/hotels";
 export const hotelProof: TrustCopy & { groups: { id: string; label: string; carouselLabel: string; slides: ProofSlide[] }[] } = {
   kicker: "03 / YOUR HOTELS",
   title: "Stays named in your proposal.",
-  copy: "Comfort, Premium or Luxury sets the style. These photographs show real hotels in each place. They are examples of the style, not a promise of one property. The hotel in each city is named in your written proposal.",
+  copy: "These photographs show hotel options for each destination. They are examples, not a promise of one property. Your confirmed hotel is named in the written proposal; alternatives of a similar standard may be offered depending on dates and availability.",
   groups: [
     {
       id: "dali",
       label: "DALI",
       carouselLabel: "Dali hotel examples",
       slides: [
-        { src: `${hotelRoot}/dali-linden-courtyard.webp`, alt: "Courtyard of the Linden Centre, a Bai hotel in Xizhou, Dali", title: "Linden Centre", detail: "Example · Dali · Xizhou", copy: "A Bai courtyard hotel in Xizhou. An example of the style. The stay on your route is named in the proposal. Photo: Chris DeLacy, CC BY-SA 4.0." },
-        { src: `${hotelRoot}/dali-linden-entrance.webp`, alt: "Stone gateway into the Linden Centre in Xizhou, Dali", title: "Linden Centre", detail: "Example · Dali · entrance", copy: "The gateway of the same Xizhou courtyard hotel. Photo: Chris DeLacy, CC BY-SA 4.0." },
-        { src: `${hotelRoot}/dali-linden-detail.webp`, alt: "Painted woodwork under the eaves at the Linden Centre in Xizhou", title: "Linden Centre", detail: "Example · Dali · courtyard detail", copy: "Carved eaves in the courtyard. Photo: Chris DeLacy, CC BY-SA 4.0." },
-      ],
-    },
-    {
-      id: "lijiang",
-      label: "LIJIANG",
-      carouselLabel: "Lijiang hotel examples",
-      slides: [
-        { src: `${hotelRoot}/lijiang-heheyuan.webp`, alt: "Wooden courtyard entrance of Heheyuan in Lijiang old town, with magnolia blossoms", title: "Heheyuan courtyard", detail: "Example · Lijiang old town", copy: "A courtyard in Lijiang old town. An example of the style. The hotel on your route is named in the proposal. Photo: 江上清风1961, CC BY 3.0." },
-        { src: `${hotelRoot}/lijiang-courtyard.webp`, alt: "A woven basket and plants in a Lijiang courtyard", title: "Lijiang courtyard", detail: "Example · Lijiang", copy: "A courtyard of the kind used by old-town stays. The hotel is named in your proposal. Photo: Rod Waddington, CC BY-SA 2.0." },
+        { src: `${hotelRoot}/IMG_5952.jpeg`, alt: "Liuheyun Hotel in Dali, an example accommodation option", title: "Liuheyun Hotel", detail: "Example · Dali", copy: "Liuheyun Hotel is one accommodation option for Dali. The confirmed property depends on your dates and is named in your written proposal." },
+        { src: `${hotelRoot}/IMG_5953.jpeg`, alt: "Guest room at Liuheyun Hotel in Dali", title: "Liuheyun Hotel", detail: "Example · Dali · guest room", copy: "A guest-room view of the Dali hotel option. The final hotel is confirmed in your proposal." },
+        { src: `${hotelRoot}/IMG_5954.jpeg`, alt: "Interior detail at Liuheyun Hotel in Dali", title: "Liuheyun Hotel", detail: "Example · Dali · interior", copy: "An additional view of the Dali hotel option. Similar-standard alternatives may be offered if needed." },
+        { src: `${hotelRoot}/IMG_5955.jpeg`, alt: "Facilities at Liuheyun Hotel in Dali", title: "Liuheyun Hotel", detail: "Example · Dali · facilities", copy: "Hotel facilities shown as a reference; the confirmed stay is listed in the written proposal." },
+        { src: `${hotelRoot}/IMG_5956.jpeg`, alt: "Interior of Liuheyun Hotel in Dali", title: "Liuheyun Hotel", detail: "Example · Dali", copy: "An example of the Dali accommodation option. Availability and final room category are confirmed in writing." },
+        { src: `${hotelRoot}/IMG_5957.jpeg`, alt: "Another view of Liuheyun Hotel in Dali", title: "Liuheyun Hotel", detail: "Example · Dali", copy: "A further view of the Dali hotel option. Your final hotel is named in your proposal." },
       ],
     },
     {
@@ -102,17 +96,27 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
       label: "KUNMING",
       carouselLabel: "Kunming hotel examples",
       slides: [
-        { src: `${hotelRoot}/kunming-green-lake.webp`, alt: "Entrance of Green Lake Hotel in Kunming, with the hotel name on the stone wall", title: "Green Lake Hotel", detail: "Example · Kunming", copy: "Green Lake Hotel, beside Green Lake. An example when a Kunming night is on the route. The named property is confirmed in writing. Photo: Kcx36, CC BY-SA 4.0." },
-        { src: `${hotelRoot}/kunming-intercontinental.webp`, alt: "Lawn and entrance of the InterContinental Kunming at dusk", title: "InterContinental Kunming", detail: "Example · Kunming · Dianchi", copy: "InterContinental Kunming, near Dianchi Lake. Another example of the style. Photo: N509FZ, CC BY-SA 4.0." },
+        { src: `${hotelRoot}/IMG_5946.jpeg`, alt: "Exterior of Linyin Hotel, MixC branch, in Kunming", title: "Linyin Hotel · MixC Branch", detail: "Example · Kunming", copy: "Linyin Hotel at the MixC branch is one possible Kunming stay. Mehao Lizhi Hotel (Haile World branch) or another hotel of a similar standard may be offered depending on dates and availability." },
+        { src: `${hotelRoot}/IMG_5947.jpeg`, alt: "Guest room at Linyin Hotel, MixC branch, in Kunming", title: "Linyin Hotel · MixC Branch", detail: "Example · Kunming · guest room", copy: "A guest-room view of Linyin Hotel. The confirmed hotel is named in your written proposal." },
+        { src: `${hotelRoot}/IMG_5948.jpeg`, alt: "Bathroom at Linyin Hotel, MixC branch, in Kunming", title: "Linyin Hotel · MixC Branch", detail: "Example · Kunming · bathroom", copy: "An interior detail from the Linyin Hotel option in Kunming." },
+        { src: `${hotelRoot}/IMG_5949.jpeg`, alt: "Breakfast area at Linyin Hotel, MixC branch, in Kunming", title: "Linyin Hotel · MixC Branch", detail: "Example · Kunming · breakfast area", copy: "A view of the hotel's breakfast area. Breakfast inclusions depend on the confirmed package." },
+        { src: `${hotelRoot}/IMG_5950.jpeg`, alt: "Breakfast selection at Linyin Hotel, MixC branch, in Kunming", title: "Linyin Hotel · MixC Branch", detail: "Example · Kunming · breakfast", copy: "A sample breakfast display at Linyin Hotel. Your confirmed hotel and inclusions are specified in the proposal." },
+        { src: `${hotelRoot}/IMG_5951.jpeg`, alt: "Additional view of a Kunming hotel option", title: "Kunming hotel option", detail: "Example · Kunming", copy: "A further hotel photo from the Kunming options. The named property is confirmed in writing." },
       ],
     },
     {
-      id: "shaxi",
-      label: "SHAXI",
-      carouselLabel: "Shaxi hotel examples",
+      id: "lijiang",
+      label: "LIJIANG",
+      carouselLabel: "Lijiang hotel examples",
       slides: [
-        { src: `${hotelRoot}/shaxi-old-theatre-inn.webp`, alt: "Old Theatre Inn in Shaxi at night, with the wooden theatre lit above the courtyard", title: "Old Theatre Inn", detail: "Example · Shaxi", copy: "Old Theatre Inn, a courtyard stay in Shaxi. One night on the 6-day route is here in town. The property is named in your proposal. Photo: Rod Waddington, CC BY-SA 2.0." },
-        { src: `${hotelRoot}/shaxi-old-town-lane.webp`, alt: "A stone lane of wooden shopfronts in Shaxi old town", title: "Shaxi old town", detail: "Example · Shaxi lanes", copy: "Cars stop at the edge of town. Courtyard inns are reached on foot along lanes like this. Photo: Yangpeifu, CC BY-SA 4.0." },
+        { src: `${hotelRoot}/IMG_5959.jpeg`, alt: "Exterior of Jieluofu Garden Hotel in Lijiang", title: "Jieluofu Garden Hotel", detail: "Example · Lijiang", copy: "Jieluofu Garden Hotel is the preferred example for Lijiang. Lijiang International Hotel or another property of a similar standard may be offered depending on dates and availability." },
+        { src: `${hotelRoot}/IMG_5960.jpeg`, alt: "Guest room at Jieluofu Garden Hotel in Lijiang", title: "Jieluofu Garden Hotel", detail: "Example · Lijiang · guest room", copy: "A guest-room view of Jieluofu Garden Hotel. The confirmed hotel is named in your written proposal." },
+        { src: `${hotelRoot}/IMG_5961.jpeg`, alt: "Interior at Jieluofu Garden Hotel in Lijiang", title: "Jieluofu Garden Hotel", detail: "Example · Lijiang · interior", copy: "An additional view of the preferred Lijiang hotel option." },
+        { src: `${hotelRoot}/IMG_5962.jpeg`, alt: "Hotel facilities at Jieluofu Garden Hotel in Lijiang", title: "Jieluofu Garden Hotel", detail: "Example · Lijiang · facilities", copy: "A view of the hotel's facilities. Final availability and room category are confirmed in writing." },
+        { src: `${hotelRoot}/IMG_5963.jpeg`, alt: "Another view of Jieluofu Garden Hotel in Lijiang", title: "Jieluofu Garden Hotel", detail: "Example · Lijiang", copy: "A further view of Jieluofu Garden Hotel. Lijiang International Hotel or a similar-standard alternative may be used if needed." },
+        { src: `${hotelRoot}/IMG_5964.jpeg`, alt: "Guest facilities at Jieluofu Garden Hotel in Lijiang", title: "Jieluofu Garden Hotel", detail: "Example · Lijiang · facilities", copy: "Hotel facilities shown for reference; the final property is listed in the proposal." },
+        { src: `${hotelRoot}/IMG_5965.jpeg`, alt: "Interior view at Jieluofu Garden Hotel in Lijiang", title: "Jieluofu Garden Hotel", detail: "Example · Lijiang · interior", copy: "An additional hotel view from the Lijiang option." },
+        { src: `${hotelRoot}/IMG_5966.jpeg`, alt: "Further view of Jieluofu Garden Hotel in Lijiang", title: "Jieluofu Garden Hotel", detail: "Example · Lijiang", copy: "A further reference photo. The hotel actually arranged for your dates will be confirmed in writing." },
       ],
     },
     {
