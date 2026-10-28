@@ -19,9 +19,21 @@ export function JourneyPractical({
   const items = curated?.length
     ? curated.flatMap((group) => group.items)
     : [...notes, ...faqs];
-  const uniqueItems = items.filter((item, index, all) =>
-    all.findIndex((candidate) => candidate.title === item.title) === index
-  );
+  const priority = [
+    "Is this journey suitable for first-time visitors to China?",
+    "Can this itinerary be customized?",
+    "What should I pack for Yunnan?",
+    "Do I need to worry about altitude?",
+    "What type of hotels are included?",
+    "What's included in the price?",
+  ];
+  const uniqueItems = items
+    .filter((item, index, all) => all.findIndex((candidate) => candidate.title === item.title) === index)
+    .sort((a, b) => {
+      const aIndex = priority.indexOf(a.title);
+      const bIndex = priority.indexOf(b.title);
+      return (aIndex < 0 ? priority.length : aIndex) - (bIndex < 0 ? priority.length : bIndex);
+    });
 
   return <section className="journey-practical section" id="questions" aria-labelledby="practical-title">
     <div className="shell">
@@ -35,7 +47,7 @@ export function JourneyPractical({
         </details>)}
       </div>
       <p className="journey-practical-source">
-        <Link href={bookingDocumentHref}>Read the full booking and service note →</Link>
+        <a href="https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/high-altitude-travel-and-altitude-illness.html" target="_blank" rel="noopener noreferrer">CDC high-altitude travel guidance ↗</a><span aria-hidden="true"> · </span><Link href={bookingDocumentHref}>Read the full booking and service note →</Link>
       </p>
     </div>
   </section>;
