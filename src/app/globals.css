@@ -1022,7 +1022,7 @@ a.utility-card { color:inherit; }
 .contact-form-privacy { margin:10px 0 0; color:#8a867c; font-size:.68rem; line-height:1.5; }
 .contact-form-error { margin:-8px 0 0; color:#8a3a32; font-size:.82rem; }
 .contact-form-error a { margin-left:6px; border-bottom:1px solid currentColor; font-weight:700; }
-.contact-honeypot { position:absolute; left:-9999px; height:0; overflow:hidden; }
+.contact-honeypot { display:none !important; }
 .quick-ask { scroll-margin-top:24px; padding:64px 0; background:#e7efe8; }
 .quick-ask-layout { display:grid; grid-template-columns:.85fr 1.15fr; gap:48px; align-items:start; }
 .quick-ask-layout>div>p { margin:0 0 12px; color:#8b734d; font-size:.68rem; font-weight:800; letter-spacing:.14em; }
