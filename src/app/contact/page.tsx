@@ -113,11 +113,17 @@ export default async function ContactPage() {
       <section className="contact-form-section section" id="enquire">
         <div className="shell contact-form-layout">
           <header>
-            <p className="contact-kicker">START THE CONVERSATION</p>
-            <h2>Tell Us About Your Yunnan Trip</h2>
-            <p>You do not need a finished itinerary. Share what you already know, and Joy will help turn your ideas into a practical journey.</p>
-            <p>Joy personally reviews every enquiry. {siteConfig.replyTime}</p>
-            <p><strong>No payment or booking commitment is required.</strong></p>
+            <p className="contact-kicker">START PLANNING YOUR JOURNEY</p>
+            <h2>START PLANNING YOUR JOURNEY</h2>
+            <p>You don't need a finished itinerary.</p>
+            <p>Tell us your dates, interests and travel style.<br />
+            We'll suggest a personalized direction for your trip.</p>
+            <ul className="contact-planning-points">
+              <li>✓ Personal response from Joy</li>
+              <li>✓ Custom itinerary suggestions</li>
+              <li>✓ No obligation to book</li>
+              <li>✓ Usually reply within 12 hours</li>
+            </ul>
           </header>
           <ContactForm />
         </div>
