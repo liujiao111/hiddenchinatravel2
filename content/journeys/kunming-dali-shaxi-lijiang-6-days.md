@@ -1,8 +1,8 @@
 ---
 title: "First Encounter Yunnan"
 shortTitle: "First Encounter Yunnan"
-seoTitle: "6-Day Private Yunnan Tour: Dali, Shaxi, Lijiang"
-metaDescription: "A 6-day private Yunnan journey from Kunming to Lijiang: Dali, one night in Shaxi, and a full day on Jade Dragon Snow Mountain. From US$680 per person for two adults in Premium hotels. Hotel breakfast is generally included; lunch and dinner are not."
+seoTitle: "6-Day Private Yunnan Tour: Dali, Shaxi & Lijiang"
+metaDescription: "Explore Dali, Shaxi and Lijiang on a private 6-day Yunnan journey. No groups, no shopping stops, and fully customizable."
 excerpt: "Kunming • Dali • Lijiang • Shaxi"
 duration: "6 days / 5 nights"
 route: "Kunming → Dali → Shaxi → Lijiang"
