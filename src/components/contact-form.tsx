@@ -98,8 +98,8 @@ export function ContactForm() {
       </div>
 
       <label className="contact-honeypot" aria-hidden="true">
-        <span>Company</span>
-        <input name="company" type="text" tabIndex={-1} autoComplete="off" />
+        <span>Website</span>
+        <input name="website" type="text" tabIndex={-1} autoComplete="new-password" />
       </label>
 
       <label>
