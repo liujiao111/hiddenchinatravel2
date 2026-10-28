@@ -998,6 +998,8 @@ a.utility-card { color:inherit; }
 .contact-form-layout>header>p:last-child { color:#5d615a; font-size:1.02rem; }
 .contact-form-section .contact-form-layout>header>p { max-width:420px; color:#5d615a; font-size:1.02rem; }
 .contact-form-section .contact-form-layout>header strong { color:#294b45; font-weight:700; }
+.contact-planning-points { display:grid; gap:12px; margin:28px 0 0; padding:0; list-style:none; color:#294b45; font-size:.9rem; font-weight:650; }
+.contact-planning-points li { line-height:1.5; }
 .contact-form.contact-enquiry-form>.button { width:100%; }
 .contact-enquiry-form .contact-trip-row { grid-template-columns:1.6fr .7fr; }
 .contact-form { display:grid; gap:28px; padding:44px; background:#f9f7f0; box-shadow:0 18px 48px rgba(40,50,44,.1); }
@@ -1016,7 +1018,7 @@ a.utility-card { color:inherit; }
 .contact-options input:checked+span { border-color:#345d58; background:#345d58; color:#fff!important; }
 .contact-form .button { width:max-content; min-height:52px; cursor:pointer; }
 .contact-form .button:disabled { opacity:.7; cursor:wait; }
-.contact-form-note { margin:-13px 0 0; color:#72756e; font-size:.72rem; }
+.contact-form-note { max-width:100%; margin:-8px 0 0; color:#72756e; font-size:.78rem; line-height:1.6; }
 .contact-form-privacy { margin:10px 0 0; color:#8a867c; font-size:.68rem; line-height:1.5; }
 .contact-form-error { margin:-8px 0 0; color:#8a3a32; font-size:.82rem; }
 .contact-form-error a { margin-left:6px; border-bottom:1px solid currentColor; font-weight:700; }
