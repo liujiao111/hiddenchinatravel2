@@ -174,7 +174,7 @@ goodToKnow:
       - question: "What should I pack for Yunnan?"
         answer: "Comfortable walking shoes, a light jacket, sun protection, and layers for mountain areas. Even in summer, mornings and evenings can be cool at higher elevations."
       - question: "Do I need to worry about altitude?"
-        answer: "Most of the journey takes place at moderate elevations. Some travelers may notice thinner air during mountain visits, but serious issues are uncommon on this route."
+        answer: "Altitude deserves real attention on this route. Lijiang is about 2,400 m (7,900 ft), while Jade Dragon Snow Mountain Glacier Park reaches roughly 4,506–4,680 m (14,780–15,350 ft). At that height, some people can develop altitude-related symptoms even if they are generally healthy. We recommend discussing the glacier cable car with Joy in advance, especially if you have heart, blood-pressure or breathing conditions, are unwell, or have concerns about high altitude. Yunshanping is the usual lower-altitude alternative if the glacier route is unsuitable or unavailable. The mountain plan depends on weather, tickets and local operation; please do not treat oxygen as a substitute for a suitable itinerary or medical advice."
       - question: "Is this journey suitable for first-time visitors to China?"
         answer: "Yes. Many of our travelers are visiting China for the first time. Before departure, we provide guidance on payments, eSIMs, useful apps, transportation, and other practical preparations."
   - label: "Booking & Pricing"
