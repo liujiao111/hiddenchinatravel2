@@ -42,10 +42,15 @@ function covered(title: string, notes: Note[]) {
 export function JourneyPractical({
   notes = [],
   faqs = [],
+  title = "Questions, grouped.",
+  groups: curated,
 }: {
   notes?: Note[];
   faqs?: Note[];
+  title?: string;
+  groups?: { id: string; label: string; items: Note[] }[];
 }) {
+  const grouped = Boolean(curated?.length);
   const groups: Record<TabId, Note[]> = {
     route: [],
     mountain: [],
@@ -63,22 +68,25 @@ export function JourneyPractical({
     groups[category(faq.title)].push({ title: faq.title, detail: faq.detail });
   }
 
-  const visible = tabs.filter((tab) => groups[tab.id].length > 0);
-  const [activeId, setActiveId] = useState<TabId>(visible[0]?.id ?? "route");
-  const showAltitude = [...groups.mountain, ...groups.route].some((item) => /altitude|4,506|glacier|jade dragon/i.test(`${item.title} ${item.detail}`));
+  const visible = grouped
+    ? curated!.map((group) => ({ id: group.id, label: group.label, items: group.items }))
+    : tabs.filter((tab) => groups[tab.id].length > 0).map((tab) => ({ ...tab, items: groups[tab.id] }));
+  const [activeId, setActiveId] = useState(visible[0]?.id ?? "route");
+  const activeItems = visible.find((tab) => tab.id === activeId)?.items ?? [];
+  const showAltitude = activeItems.some((item) => /altitude|4,506|glacier|jade dragon/i.test(`${item.title} ${item.detail}`));
 
   return <section className="journey-practical section" id="questions" aria-labelledby="practical-title">
     <div className="shell">
       <header className="journey-practical-heading">
         <p>BEFORE YOU GO</p>
-        <h2 id="practical-title">Questions, grouped.</h2>
+        <h2 id="practical-title">{title}</h2>
       </header>
       <div className="journey-practical-tabs" role="tablist" aria-label="Questions before you book">
-        {visible.map((tab) => <button key={tab.id} type="button" role="tab" aria-selected={tab.id === activeId} onClick={() => setActiveId(tab.id)}>{tab.label}</button>)}
+        {visible.map((tab) => <button key={tab.id} type="button" role="tab" id={`practical-tab-${tab.id}`} aria-controls={`practical-panel-${tab.id}`} aria-selected={tab.id === activeId} onClick={() => setActiveId(tab.id)}>{tab.label}</button>)}
       </div>
-      {visible.map((tab) => <div key={tab.id} role="tabpanel" hidden={tab.id !== activeId} className="journey-practical-panel">
+      {visible.map((tab) => <div key={tab.id} id={`practical-panel-${tab.id}`} role="tabpanel" aria-labelledby={`practical-tab-${tab.id}`} hidden={tab.id !== activeId} className="journey-practical-panel">
         {tab.id === "muslim" ? <p className="journey-practical-intro">{muslimFriendly.copy}</p> : null}
-        {groups[tab.id].map((item) => <article key={item.title}>
+        {tab.items.map((item) => <article key={item.title}>
           <h3>{item.title}</h3>
           <p>{item.detail}</p>
         </article>)}

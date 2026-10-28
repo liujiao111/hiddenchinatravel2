@@ -9,6 +9,7 @@ export type JourneyDay = { days: string; title: string; meta: string; descriptio
 export type JourneyTier = { name: string; price: number; description: string; accommodation: string; idealFor: string; featured?: boolean };
 export type JourneyFaq = { question: string; answer: string };
 export type JourneyNote = { title: string; detail: string };
+export type JourneyPracticalGroup = { label: string; items: JourneyFaq[] };
 export type JourneyOverviewItem = { label: string; value: string };
 
 export type JourneyFrontmatter = {
@@ -63,6 +64,7 @@ export type JourneyFrontmatter = {
   inclusions: string[];
   exclusions: string[];
   bookingNotes?: JourneyNote[];
+  goodToKnow?: JourneyPracticalGroup[];
   faqs: JourneyFaq[];
 };
 

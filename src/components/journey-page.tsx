@@ -171,13 +171,51 @@ export function JourneyPage({ journey }: { journey: Journey }) {
         <div className="journey-quote-ask"><h3>Get a quote for the style you prefer.</h3><p>{completePrice}. Pick Comfort, Premium or Luxury, then send a month and group size. Joy replies with a range for those dates — nothing is booked. After you sign, the deposit is 20%. The other 80% is due after your first pickup.</p><QuickAsk layout="embedded" id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" /><p className="journey-quote-contract">Joy replies to this note.</p></div>
       </div></div></section> : isSixDayYunnanJourney ? <JourneyQuoteBand id="ask-joy" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} /> : <JourneyQuoteBand id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} compact />}
 
-      <section className="journey-inclusions section journey-inclusions-compact" id="details"><div className="shell journey-inclusion-grid"><div><span className="journey-detail-label">THE DETAILS</span><h2>What’s included</h2>{frontmatter.inclusions.map((item) => <p key={item}><span>✓</span>{item}</p>)}</div><div><span className="journey-detail-label">GOOD TO KNOW</span><h2>What’s not included</h2>{frontmatter.exclusions.map((item) => <p key={item}><span>—</span>{item}</p>)}</div></div></section>
+      <section className="journey-inclusions section journey-inclusions-compact" id="details">
+        <div className="shell journey-inclusion-grid">
+          <div>
+            <span className="journey-detail-label">INCLUDED</span>
+            <h2>What’s included</h2>
+            <ul>
+              {frontmatter.inclusions.map((item) => <li key={item}><span className="inclusion-mark" aria-hidden="true">✓</span><p>{item}</p></li>)}
+            </ul>
+          </div>
+          <div>
+            <span className="journey-detail-label">NOT INCLUDED</span>
+            <h2>What’s not included</h2>
+            <ul>
+              {frontmatter.exclusions.map((item) => <li key={item}><span className="inclusion-mark inclusion-mark-out" aria-hidden="true">–</span><p>{item}</p></li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <JourneyTrustSection showCredentials={false} showMuslimFriendly={false} hotelCopy={isSixDayYunnanJourney ? "Premium hotels are the standard on this price. These are examples. The hotel in each place is named in your written proposal." : undefined} />
+      <JourneyTrustSection
+        showCredentials={false}
+        showMuslimFriendly={false}
+        kicker={isSixDayYunnanJourney ? "" : undefined}
+        heading={isSixDayYunnanJourney ? "The People and Places Behind Your Journey" : undefined}
+        description={isSixDayYunnanJourney ? "Every journey is private. Your driver-guide, vehicle, and hotels are selected to match your dates, group size, and travel style." : undefined}
+        guideTitle={isSixDayYunnanJourney ? "Your Local Driver-Guide" : undefined}
+        guideCopy={isSixDayYunnanJourney ? "One local host accompanies your journey, handling the logistics while sharing local knowledge, culture and practical support along the way." : undefined}
+        vehicleTitle={isSixDayYunnanJourney ? "Comfortable Private Transport" : undefined}
+        vehicleCopy={isSixDayYunnanJourney ? "Private transportation is arranged throughout the journey, with vehicle size selected to match your group and luggage needs." : undefined}
+        hotelTitle={isSixDayYunnanJourney ? "Your Hotels Along The Journey" : undefined}
+        hotelCopy={isSixDayYunnanJourney ? "Premium hotels are included throughout the journey. The examples shown here reflect the style and standard you can expect." : undefined}
+      />
 
     </section>
 
-    <JourneyPractical notes={frontmatter.bookingNotes?.map((note) => ({ title: note.title, detail: note.detail }))} faqs={frontmatter.faqs.map((faq) => ({ title: faq.question, detail: faq.answer }))} />
+    <JourneyPractical
+      title={frontmatter.goodToKnow?.length ? "Good To Know" : undefined}
+      groups={frontmatter.goodToKnow?.map((group, index) => ({
+        id: group.label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || `group-${index}`,
+        label: group.label,
+        items: group.items.map((item) => ({ title: item.question, detail: item.answer })),
+      }))}
+      notes={frontmatter.goodToKnow?.length ? undefined : frontmatter.bookingNotes?.map((note) => ({ title: note.title, detail: note.detail }))}
+      faqs={frontmatter.goodToKnow?.length ? undefined : frontmatter.faqs.map((faq) => ({ title: faq.question, detail: faq.answer }))}
+    />
     {frontmatter.bookingNotes?.length ? null : <YunnanTravelNotes />}
 
     {isSixDayYunnanJourney ? <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/custom-china-tour" showForm={false} /> : <section className="journey-final-cta"><div><p>LIKE THIS ROUTE, BUT WANT TO MAKE IT YOURS?</p><h2>Get this starting price quoted for your dates.</h2><span>The figure on the page is a Comfort starting point. Send a month, group size and hotel style, and Joy replies with a range — nothing is booked.</span><HashLink href="#ask-joy" className="button button-light">Start Planning My Journey</HashLink><Link href={whatsapp} className="journey-final-alt">Prefer WhatsApp? Message Joy →</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">A different date or route? Explore tailor-made Yunnan →</Link></div></section>}
