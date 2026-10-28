@@ -113,10 +113,10 @@ export default async function ContactPage() {
       <section className="contact-form-section section" id="enquire">
         <div className="shell contact-form-layout">
           <header>
-            <p className="contact-kicker">START PLANNING</p>
+            <p className="contact-kicker">START PLANNING YOUR JOURNEY</p>
             <h2>START PLANNING YOUR JOURNEY</h2>
-            <p>You don’t need a finished itinerary.</p>
-            <p>Tell us your dates, interests and travel style.<br />We’ll suggest a personalized direction for your trip.</p>
+            <p>You don't need a finished itinerary.</p>
+            <p>Tell us your dates, interests and travel style.<br />We'll suggest a personalized direction for your trip.</p>
             <ul className="contact-planning-points">
               <li>✓ Personal response from Joy</li>
               <li>✓ Custom itinerary suggestions</li>
