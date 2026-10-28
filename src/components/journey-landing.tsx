@@ -109,13 +109,14 @@ function glanceIcon(label: string): FactIconName {
   const text = label.toLowerCase();
   if (text.includes("day") || text.includes("night")) return "calendar";
   if (text.includes("meal")) return "meal";
-  if (text.includes("price") || text.includes("quote")) return "price";
+  if (text.includes("price") || text.includes("quote") || text.includes("us$") || text.includes("$")) return "price";
   if (text.includes("where")) return "pin";
   if (text.includes("journey") || text.includes("how")) return "route";
   return "note";
 }
 
 function cardTitle(label: string) {
+  if (label !== label.toUpperCase()) return label;
   const lower = label.toLowerCase();
   return lower.charAt(0).toUpperCase() + lower.slice(1);
 }

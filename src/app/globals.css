@@ -472,20 +472,24 @@ a.utility-card { color:inherit; }
 .journey-price-grid small { color:#8c774d; font-size:.58rem; font-weight:800; letter-spacing:.13em; }
 .journey-price-grid strong { display:block; margin-top:8px; font-size:.76rem; font-weight:600; line-height:1.5; }
 .journey-price-note { max-width:870px; margin:38px auto 0; padding:24px 28px; border-left:3px solid #a58c5b; background:rgba(255,255,255,.45); color:#5b5e57; font-size:.82rem; }
-.journey-inclusion-grid { display:grid; grid-template-columns:1fr 1fr; gap:90px; }
-.journey-inclusion-grid>div { padding:38px; border-top:3px solid #345d58; background:#f0ede1; }
-.journey-inclusion-grid>div:last-child { border-color:#a58c5b; }
-.journey-inclusion-grid h2 { font-size:2rem; }
-.journey-inclusion-grid p { display:flex; gap:13px; margin:0; padding:13px 0; border-top:1px solid #d3d0c4; color:#555a53; font-size:.9rem; }
-.journey-inclusion-grid p span { color:#477169; font-weight:800; }
+.journey-inclusion-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
+.journey-inclusion-grid>div { display:flex; flex-direction:column; padding:28px 28px 12px; border:1px solid #e4e1d4; border-top:3px solid #345d58; background:#fbfbf8; box-shadow:0 18px 40px rgba(36,63,57,.05); }
+.journey-inclusion-grid>div:last-child { border-top-color:#c4b48a; }
+.journey-inclusion-grid h2 { margin:0 0 6px; font-size:clamp(1.7rem,2.4vw,2.15rem); }
+.journey-inclusion-grid ul { margin:16px 0 0; padding:0; list-style:none; }
+.journey-inclusion-grid li { display:flex; gap:14px; align-items:flex-start; margin:0; padding:15px 0; border-top:1px solid #ece8dc; }
+.journey-inclusion-grid li p { margin:0; color:#3e4440; font-size:.98rem; line-height:1.55; }
+.inclusion-mark { display:grid; width:22px; height:22px; flex:0 0 22px; margin-top:1px; place-items:center; border-radius:50%; background:#e5f0ed; color:#2f5c56; font-size:.72rem; font-weight:800; line-height:1; }
+.inclusion-mark-out { background:#f4efe4; color:#8d7348; }
 .journey-reading-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:58px; }
 .journey-practical { padding:72px 0 64px; background:#fff; scroll-margin-top:72px; }
 .journey-practical-heading { max-width:720px; margin-bottom:8px; }
 .journey-practical-heading p { margin:0 0 10px; color:#8f7446; font-size:.68rem; font-weight:800; letter-spacing:.16em; }
 .journey-practical-heading h2 { margin:0; color:#243f39; font-family:Georgia,serif; font-size:clamp(2rem,3vw,2.8rem); font-weight:400; }
-.journey-practical-tabs { display:flex; flex-wrap:wrap; gap:8px 28px; margin:28px 0 0; border-bottom:1px solid #cfcab8; }
-.journey-practical-tabs button { min-height:46px; padding:0 0 12px; border:0; border-bottom:2px solid transparent; background:transparent; color:#5c615a; font:inherit; font-size:.92rem; cursor:pointer; }
-.journey-practical-tabs button[aria-selected="true"] { color:#243f39; border-bottom-color:#243f39; }
+.journey-practical-tabs { display:flex; flex-wrap:wrap; gap:8px; margin:28px 0 0; padding:4px; border:1px solid #e3dfd2; background:#f6f5ef; }
+.journey-practical-tabs button { min-height:42px; padding:0 16px; border:0; border-radius:2px; background:transparent; color:#5c615a; font:inherit; font-size:.9rem; cursor:pointer; }
+.journey-practical-tabs button[aria-selected="true"] { background:#fff; color:#243f39; box-shadow:0 1px 2px rgba(36,63,57,.08); }
+.journey-practical-tabs button:focus-visible { outline:2px solid #345d58; outline-offset:2px; }
 .journey-practical-panel { max-width:760px; padding-top:8px; }
 .journey-practical-intro { margin:22px 0 0; color:#5f655d; line-height:1.65; }
 .journey-practical-panel article { padding:22px 0; border-bottom:1px solid #e3dfd2; }
@@ -592,7 +596,7 @@ a.utility-card { color:inherit; }
   .journey-support-grid,.journeys-card-grid { grid-template-columns:1fr; }
   .journey-partner-grid { grid-template-columns:1fr; }
   .journey-partner-grid figure>div { height:310px; }
-  .journey-inclusion-grid>div { padding:28px 24px; }
+  .journey-inclusion-grid>div { padding:22px 18px 8px; }
   .journey-reading-grid { grid-template-columns:1fr; }
   .journey-reading-grid .guide-card:last-child { grid-column:auto; width:auto; }
   .journeys-card-copy>div { align-items:flex-start; flex-direction:column; }
@@ -1751,11 +1755,10 @@ a.utility-card { color:inherit; }
   .journey-support-flow .journey-support-grid article>span { grid-row:span 2; margin:0; }
   .journey-support-flow .journey-support-grid h3,.journey-support-flow .journey-support-grid p { max-width:none; margin:0; }
 }
-.journey-inclusions-compact { padding-top:80px; padding-bottom:80px; }
-.journey-inclusions-compact .journey-inclusion-grid { gap:clamp(35px,6vw,90px); }
-.journey-inclusions-compact .journey-inclusion-grid>div { padding:0; background:transparent; }
-.journey-inclusions-compact .journey-inclusion-grid h2 { margin-bottom:22px; }
-.journey-inclusions-compact .journey-inclusion-grid p { padding:11px 0; }
+.journey-inclusions-compact { padding-top:72px; padding-bottom:64px; }
+.journey-inclusions-compact .journey-inclusion-grid { gap:20px; }
+.journey-inclusions-compact .journey-inclusion-grid>div { padding:28px 28px 12px; background:#fbfbf8; }
+.journey-inclusions-compact .journey-inclusion-grid h2 { margin-bottom:6px; }
 .journey-booking-notes-compact { padding-top:76px; padding-bottom:76px; background:var(--journey-mist,#e6eef1); }
 .journey-booking-notes-compact .journey-booking-notes-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
 .journey-booking-notes-compact .journey-booking-notes-grid details { align-self:start; background:#fff; }
