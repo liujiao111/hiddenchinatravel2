@@ -50,6 +50,7 @@ export function parseEnquiry(input: Record<string, unknown>): Enquiry | { error:
   const travelWindow = cleanTravelDates(String(input.travelWindow ?? ""));
   const interestValue = String(input.interest ?? "").trim() || "Yunnan Journey";
   const plans = String(input.plans ?? "").trim();
+  const allowEmptyPlans = input.allowEmptyPlans === true;
   const travelers = optionalChoice(String(input.travelers ?? "").trim(), partySizes);
   const budget = optionalChoice(String(input.budget ?? "").trim(), budgetBands);
   const honeypot = String(input.company ?? "").trim();
@@ -61,7 +62,7 @@ export function parseEnquiry(input: Record<string, unknown>): Enquiry | { error:
   if (!interests.includes(interestValue as (typeof interests)[number])) return { error: "Please choose what you are hoping to plan." };
   if (travelers === null) return { error: "Please choose a group size." };
   if (budget === null) return { error: "Please choose a budget range." };
-  if (plans.length < 10) return { error: "Please tell us a little about your plans." };
+  if (!allowEmptyPlans && plans.length < 10) return { error: "Please tell us a little about your plans." };
   if (plans.length > 4000) return { error: "Please keep your note under 4,000 characters." };
   if (whatsapp.length > 40) return { error: "Please check the WhatsApp number." };
 
