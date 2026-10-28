@@ -20,7 +20,7 @@ navFeatured: true
 heroEyebrow: "FIRST ENCOUNTER"
 heroTitle: "6-Day Private Yunnan Tour"
 heroSecondaryLabel: "SEE THE DAYS"
-heroDescription: "A private Kunming, Dali and Lijiang route."
+heroDescription: "A private journey from Kunming through Dali and Shaxi to Lijiang."
 heroNote: "Two adults sharing one room. Not a daily rate."
 heroIncludes:
   - "Private driver-guide · no shopping stops"
@@ -60,8 +60,8 @@ itineraryHeading: "Your Journey Through Yunnan"
 itineraryIntro: "Six days between lakeside towns, mountain landscapes and some of Yunnan's most rewarding cultural experiences."
 midCtaHeading: "Get a quote for your dates."
 pricingHeading: "From US$680 per person."
-pricingIntro: "Two adults sharing one room, in Premium hotels. This is the complete 6-day journey, not a daily rate. Hotel breakfast is included from Day 2. There is no meal on the Day 1 train. Lunch and dinner are not included. The hotel in each place is named in your proposal."
-priceExplanation: "The starting figure is for two adults sharing one room in Premium hotels. Final pricing depends on your dates. The hotel in each place is named in your written proposal."
+pricingIntro: "Two adults sharing one room, in Premium hotels throughout, including the overnight in Shaxi. This is the complete 6-day journey, not a daily rate. Hotel breakfast is included from Day 2. There is no meal on the Day 1 train. Lunch and dinner are not included. Each confirmed hotel, including Shaxi, is named in your proposal."
+priceExplanation: "The starting figure is per person, based on two adults sharing one room in Premium hotels throughout. Final pricing depends on your dates. Each confirmed hotel, including Shaxi, is named in your written proposal."
 travelStyles:
   - "First trip to China"
   - "Slow-paced travel"
@@ -136,6 +136,7 @@ inclusions:
 exclusions:
   - "Lunch and dinner"
   - "International flights"
+  - "Travel insurance"
   - "Personal expenses"
 bookingNotes:
   - title: "Start in Kunming, finish in Lijiang"
@@ -157,8 +158,8 @@ goodToKnow:
         answer: "Yes. This itinerary is designed as a starting point. We can adjust the pace, add extra nights, include Shangri-La, upgrade hotels, or create a completely different route around your interests."
       - question: "Is this a private journey?"
         answer: "Yes. You travel only with your own party. There are no group departures and no shared vehicles."
-      - question: "Why start in Dali instead of Kunming?"
-        answer: "Most travelers arrive through Kunming, but the experience begins in Dali. This keeps the journey focused on Yunnan’s most rewarding landscapes and cultural regions rather than city sightseeing."
+      - question: "How does the journey start?"
+        answer: "The journey starts in Kunming, then takes the high-speed train to Dali on Day 1. Your first hotel night is in Dali; a Kunming hotel night and airport pickup can be added if your flight timing requires it."
       - question: "Are there any shopping stops?"
         answer: "No. We do not include factory visits, commission-based stores, or mandatory shopping stops."
   - label: "Hotels & Transport"
@@ -190,8 +191,8 @@ faqs:
     answer: "Yes. This itinerary is designed as a starting point. We can adjust the pace, add extra nights, include Shangri-La, upgrade hotels, or create a completely different route around your interests."
   - question: "Is this a private journey?"
     answer: "Yes. You travel only with your own party. There are no group departures and no shared vehicles."
-  - question: "Why start in Dali instead of Kunming?"
-    answer: "Most travelers arrive through Kunming, but the experience begins in Dali. This keeps the journey focused on Yunnan’s most rewarding landscapes and cultural regions rather than city sightseeing."
+  - question: "How does the journey start?"
+    answer: "The journey starts in Kunming, then takes the high-speed train to Dali on Day 1. Your first hotel night is in Dali; a Kunming hotel night and airport pickup can be added if your flight timing requires it."
   - question: "Are there any shopping stops?"
     answer: "No. We do not include factory visits, commission-based stores, or mandatory shopping stops."
   - question: "What kind of hotels are included?"
@@ -203,7 +204,7 @@ faqs:
   - question: "What should I pack?"
     answer: "Comfortable walking shoes, a light jacket, sun protection, and layers for mountain areas. Even in summer, mornings and evenings can be cool at higher elevations."
   - question: "Do I need to worry about altitude?"
-    answer: "Most of the journey takes place at moderate elevations. Some travelers may notice thinner air during mountain visits, but serious issues are uncommon on this route."
+    answer: "Yes, the mountain day needs planning. Lijiang is about 2,400 m (7,900 ft), while Jade Dragon Snow Mountain Glacier Park reaches roughly 4,506–4,680 m (14,780–15,350 ft). Some people can develop altitude-related symptoms at this height, even if generally healthy. Discuss the glacier cable car with Joy in advance if you have health concerns, are unwell, or are unsure about high altitude. Yunshanping is the usual lower-altitude alternative if the glacier route is unsuitable or unavailable. Weather, tickets and local operation affect the mountain plan."
   - question: "Is Yunnan suitable for first-time visitors to China?"
     answer: "Yes. Many of our travelers are visiting China for the first time. Before departure, we provide guidance on payments, eSIMs, useful apps, transportation, and other practical preparations."
   - question: "What's included in the price?"
@@ -218,7 +219,7 @@ faqs:
 
 Most travelers remember the places they visited. We want you to remember how those places felt: indigo on your hands in Zhoucheng, a quiet evening in Shaxi after the coaches have gone, and a full day under Jade Dragon Snow Mountain that is not also the day you leave.
 
-This six-day outline is built around that mountain day, with a night in Lijiang before it and after it, and the transfers already arranged.
+This six-day outline is built around that mountain day, with a night in Lijiang before it and after it, and the transfers already arranged. Premium hotels are included throughout, including the night in Shaxi; each confirmed property is named in your written proposal.
 
 ## Is this your kind of journey?
 
