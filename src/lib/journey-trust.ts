@@ -78,20 +78,7 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
   title: "Stays named in your proposal.",
   copy: "These photographs show hotel options for each destination. They are examples, not a promise of one property. Your confirmed hotel is named in the written proposal; alternatives of a similar standard may be offered depending on dates and availability.",
   groups: [
-    {
-      id: "dali",
-      label: "DALI",
-      carouselLabel: "Dali hotel examples",
-      slides: [
-        { src: `${hotelRoot}/IMG_5952.jpeg`, alt: "Liuheyun Hotel in Dali, an example accommodation option", title: "Liuheyun Hotel", detail: "Example · Dali", copy: "Liuheyun Hotel is one accommodation option for Dali. The confirmed property depends on your dates and is named in your written proposal." },
-        { src: `${hotelRoot}/IMG_5953.jpeg`, alt: "Guest room at Liuheyun Hotel in Dali", title: "Liuheyun Hotel", detail: "Example · Dali · guest room", copy: "A guest-room view of the Dali hotel option. The final hotel is confirmed in your proposal." },
-        { src: `${hotelRoot}/IMG_5954.jpeg`, alt: "Interior detail at Liuheyun Hotel in Dali", title: "Liuheyun Hotel", detail: "Example · Dali · interior", copy: "An additional view of the Dali hotel option. Similar-standard alternatives may be offered if needed." },
-        { src: `${hotelRoot}/IMG_5955.jpeg`, alt: "Facilities at Liuheyun Hotel in Dali", title: "Liuheyun Hotel", detail: "Example · Dali · facilities", copy: "Hotel facilities shown as a reference; the confirmed stay is listed in the written proposal." },
-        { src: `${hotelRoot}/IMG_5956.jpeg`, alt: "Interior of Liuheyun Hotel in Dali", title: "Liuheyun Hotel", detail: "Example · Dali", copy: "An example of the Dali accommodation option. Availability and final room category are confirmed in writing." },
-        { src: `${hotelRoot}/IMG_5957.jpeg`, alt: "Another view of Liuheyun Hotel in Dali", title: "Liuheyun Hotel", detail: "Example · Dali", copy: "A further view of the Dali hotel option. Your final hotel is named in your proposal." },
-      ],
-    },
-    {
+{
       id: "kunming",
       label: "KUNMING",
       carouselLabel: "Kunming hotel examples",
@@ -103,8 +90,21 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
         { src: `${hotelRoot}/IMG_5950.jpeg`, alt: "Breakfast selection at Linyin Hotel, MixC branch, in Kunming", title: "Linyin Hotel · MixC Branch", detail: "Example · Kunming · breakfast", copy: "A sample breakfast display at Linyin Hotel. Your confirmed hotel and inclusions are specified in the proposal." },
         { src: `${hotelRoot}/IMG_5951.jpeg`, alt: "Additional view of a Kunming hotel option", title: "Kunming hotel option", detail: "Example · Kunming", copy: "A further hotel photo from the Kunming options. The named property is confirmed in writing." },
       ],
-    },
-    {
+    },,
+{
+      id: "dali",
+      label: "DALI",
+      carouselLabel: "Dali hotel examples",
+      slides: [
+        { src: `${hotelRoot}/IMG_5952.jpeg`, alt: "Liuhe Yunyan Hotel in Dali, an example accommodation option", title: "Liuhe Yunyan Hotel", detail: "Example · Dali", copy: "Liuhe Yunyan Hotel is one accommodation option for Dali. The confirmed property depends on your dates and is named in your written proposal." },
+        { src: `${hotelRoot}/IMG_5953.jpeg`, alt: "Guest room at Liuhe Yunyan Hotel in Dali", title: "Liuhe Yunyan Hotel", detail: "Example · Dali · guest room", copy: "A guest-room view of the Dali hotel option. The final hotel is confirmed in your proposal." },
+        { src: `${hotelRoot}/IMG_5954.jpeg`, alt: "Interior detail at Liuhe Yunyan Hotel in Dali", title: "Liuhe Yunyan Hotel", detail: "Example · Dali · interior", copy: "An additional view of the Dali hotel option. Similar-standard alternatives may be offered if needed." },
+        { src: `${hotelRoot}/IMG_5955.jpeg`, alt: "Facilities at Liuhe Yunyan Hotel in Dali", title: "Liuhe Yunyan Hotel", detail: "Example · Dali · facilities", copy: "Hotel facilities shown as a reference; the confirmed stay is listed in the written proposal." },
+        { src: `${hotelRoot}/IMG_5956.jpeg`, alt: "Interior of Liuhe Yunyan Hotel in Dali", title: "Liuhe Yunyan Hotel", detail: "Example · Dali", copy: "An example of the Dali accommodation option. Availability and final room category are confirmed in writing." },
+        { src: `${hotelRoot}/IMG_5957.jpeg`, alt: "Another view of Liuhe Yunyan Hotel in Dali", title: "Liuhe Yunyan Hotel", detail: "Example · Dali", copy: "A further view of the Dali hotel option. Your final hotel is named in your proposal." },
+      ],
+    },,
+{
       id: "lijiang",
       label: "LIJIANG",
       carouselLabel: "Lijiang hotel examples",
@@ -119,17 +119,7 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
         { src: `${hotelRoot}/IMG_5966.jpeg`, alt: "Further view of Jieluofu Garden Hotel in Lijiang", title: "Jieluofu Garden Hotel", detail: "Example · Lijiang", copy: "A further reference photo. The hotel actually arranged for your dates will be confirmed in writing." },
       ],
     },
-    {
-      id: "shangri-la",
-      label: "SHANGRI-LA",
-      carouselLabel: "Shangri-La hotel examples",
-      slides: [
-        { src: `${hotelRoot}/shangri-la-songtsam-field.webp`, alt: "Songtsam Linka Retreat in Shangri-La, stone lodges above a field of yellow flowers", title: "Songtsam Linka", detail: "Example · Shangri-La", copy: "Songtsam Linka, a highland lodge. Used as an example on routes with a Shangri-La night. The named hotel is confirmed in your proposal. Photo: 活着不动, CC BY-SA 3.0." },
-        { src: `${hotelRoot}/shangri-la-songtsam-hill.webp`, alt: "Stone lodges of Songtsam Linka stepped up a green hillside in Shangri-La", title: "Songtsam Linka", detail: "Example · Shangri-La · hillside", copy: "The same lodge from the hillside. Photo: Black necked Crane, CC BY-SA 4.0." },
-        { src: `${hotelRoot}/shangri-la-paradise.webp`, alt: "Entrance of Paradise Hotel, Tianjie Shenchuan, in Shangri-La", title: "Paradise Hotel", detail: "Example · Shangri-La", copy: "Paradise Hotel in Shangri-La. A further example. The final property depends on dates and hotel style. Photo: 瑞丽江的河水, CC BY-SA 4.0." },
-      ],
-    },
-  ],
+    ],
 };
 
 export const muslimFriendly = {
