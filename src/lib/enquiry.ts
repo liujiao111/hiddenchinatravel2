@@ -61,7 +61,6 @@ export function parseEnquiry(input: Record<string, unknown>): Enquiry | { error:
   if (!interests.includes(interestValue as (typeof interests)[number])) return { error: "Please choose what you are hoping to plan." };
   if (travelers === null) return { error: "Please choose a group size." };
   if (budget === null) return { error: "Please choose a budget range." };
-  if (plans.length < 10) return { error: "Please tell us a little about your plans." };
   if (plans.length > 4000) return { error: "Please keep your note under 4,000 characters." };
   if (whatsapp.length > 40) return { error: "Please check the WhatsApp number." };
 
