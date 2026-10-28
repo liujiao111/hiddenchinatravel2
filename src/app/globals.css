@@ -1901,3 +1901,79 @@ a.utility-card { color:inherit; }
 .yunnan-inspiration .journey-editorial-heading, .custom-travel-preferences .journey-editorial-heading { display:block; max-width:850px; margin:0 auto 36px; text-align:center; }
 .yunnan-inspiration .journey-editorial-heading h2, .custom-travel-preferences .journey-editorial-heading h2 { font-size:clamp(2rem,3.2vw,3rem); line-height:1.15; margin:0 0 20px; }
 .custom-travel-preferences .journey-editorial-heading { margin-bottom:0; }
+
+
+/* Six-day Yunnan journey: quiet section navigation and editorial FAQ. */
+.journey-anchor-nav-quiet { border-bottom:1px solid #e7e4da; background:rgba(255,255,255,.97); }
+.journey-anchor-nav-quiet>.shell { gap:18px; }
+.journey-anchor-nav-quiet>div>div { gap:clamp(14px,2vw,28px); }
+.journey-anchor-nav-quiet>div>div>a { white-space:nowrap; font-size:.78rem; }
+.journey-anchor-nav-quiet>div>a.journey-nav-contact { white-space:nowrap; font-size:.76rem; }
+
+.journey-inclusions-compact .journey-inclusion-grid { gap:clamp(28px,5vw,72px); }
+.journey-inclusions-compact .journey-inclusion-grid>div {
+  padding:0;
+  border:0;
+  border-top:0;
+  background:transparent;
+  box-shadow:none;
+}
+.journey-inclusions-compact .journey-inclusion-grid>div:last-child { border-top:0; }
+.journey-inclusions-compact .journey-inclusion-grid ul { margin-top:14px; }
+.journey-inclusions-compact .journey-inclusion-grid li {
+  gap:11px;
+  padding:12px 0;
+  border-top:0;
+}
+.journey-inclusions-compact .inclusion-mark {
+  width:18px;
+  height:18px;
+  flex-basis:18px;
+  margin-top:3px;
+  border-radius:0;
+  background:transparent;
+  font-size:.85rem;
+}
+.journey-inclusions-compact .inclusion-mark-out { color:#8d7348; }
+
+.journey-practical-accordion { max-width:900px; margin-top:24px; border-top:1px solid #e3dfd2; }
+.journey-practical-accordion details { border-bottom:1px solid #e3dfd2; }
+.journey-practical-accordion summary {
+  display:flex;
+  min-height:66px;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:18px 0;
+  color:#243f39;
+  font-family:Georgia,serif;
+  font-size:clamp(1.05rem,1.7vw,1.25rem);
+  cursor:pointer;
+  list-style:none;
+}
+.journey-practical-accordion summary::-webkit-details-marker { display:none; }
+.journey-practical-accordion summary b {
+  flex:0 0 auto;
+  color:#8f7446;
+  font-family:Arial,sans-serif;
+  font-size:1.45rem;
+  font-weight:300;
+  line-height:1;
+  transition:transform .18s ease;
+}
+.journey-practical-accordion details[open] summary b { transform:rotate(45deg); }
+.journey-practical-answer { max-width:760px; padding:0 38px 22px 0; }
+.journey-practical-answer p { margin:0; color:#5c615a; line-height:1.75; }
+.journey-practical-source { margin-top:24px; }
+
+@media (max-width:900px) {
+  .journey-anchor-nav-quiet>.shell { align-items:flex-start; }
+  .journey-anchor-nav-quiet>div>div { overflow-x:auto; padding:4px 0 10px; }
+  .journey-anchor-nav-quiet>div>div>a { flex:0 0 auto; }
+}
+@media (max-width:700px) {
+  .journey-inclusions-compact .journey-inclusion-grid { grid-template-columns:1fr; gap:34px; }
+  .journey-inclusions-compact { padding-top:52px; padding-bottom:48px; }
+  .journey-practical-accordion summary { min-height:60px; padding:16px 0; }
+  .journey-practical-answer { padding-right:8px; }
+}
