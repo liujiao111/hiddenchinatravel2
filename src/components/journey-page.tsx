@@ -120,6 +120,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       chat={{ href: isSixDayYunnanJourney ? "#ask-joy" : whatsapp, label: isSixDayYunnanJourney ? "Prefer email? Get My Trip Plan →" : "Prefer WhatsApp? Message Joy →" }}
       note={frontmatter.heroNote || "Two adults sharing one room. Not a daily rate. Hotel breakfast is generally included; lunch and dinner are not."}
     />
+    {isSixDayYunnanJourney ? <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: whatsapp, label: "Start Planning My Journey" }} /> : null}
     <section className="journey-fold-ask" id="quote">
       <div className="shell">
         {isSixDayYunnanJourney ? <div className="journey-guest-proof">
@@ -146,7 +147,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       { icon: "star", title: "Guest notes", lines: stories.length ? ["From guests on this journey", "Your driver-guide is named in writing", "Read them further down this page"] : ["Your driver-guide is named in writing", "The person for your dates is confirmed in the proposal"] },
     ]} />
     <JourneyWhy />
-    <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", label: "Start Planning My Journey" }} />
+    {isSixDayYunnanJourney ? null : <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: "#ask-joy", label: "Start Planning My Journey" }} />}
     {frontmatter.whoFor || frontmatter.whenToGo ? <section className="journey-fit-season"><div className="shell">{frontmatter.whoFor ? <article><span>WHO IT’S FOR</span><p>{frontmatter.whoFor}</p></article> : null}{frontmatter.whenToGo ? <article><span>WHEN TO GO</span><p>{frontmatter.whenToGo}</p></article> : null}</div></section> : null}
 
     {frontmatter.experiences.length ? <section className="journey-experiences section section-sand" id="experiences"><div className="shell"><div className="section-heading"><h2>Signature experiences</h2><p>{isSixDayYunnanJourney ? "The moments this route is built around: Erhai’s west shore, indigo in Zhoucheng, one night in Shaxi, and a full day on Jade Dragon Snow Mountain." : "A journey built around moments, local people and enough time to take them in."}</p></div><div className="journey-experience-grid">{frontmatter.experiences.map((experience, index) => <article key={experience.title}><div><Image src={experience.image} alt={experience.imageAlt || experience.title} fill sizes="(max-width: 700px) 100vw, 50vw" unoptimized /></div><span>0{index + 1}</span><h3>{experience.title}</h3><p>{experience.description}</p></article>)}</div></div></section> : null}
