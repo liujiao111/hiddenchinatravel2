@@ -53,7 +53,7 @@ export function parseEnquiry(input: Record<string, unknown>): Enquiry | { error:
   const allowEmptyPlans = input.allowEmptyPlans === true;
   const travelers = optionalChoice(String(input.travelers ?? "").trim(), partySizes);
   const budget = optionalChoice(String(input.budget ?? "").trim(), budgetBands);
-  const honeypot = String(input.company ?? "").trim();
+  const honeypot = String(input.website ?? input.company ?? "").trim();
 
   if (honeypot) return { error: "Unable to send this enquiry." };
   if (name.length < 2 || /[\r\n]/.test(name)) return { error: "Please add your name." };
