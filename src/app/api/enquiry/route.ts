@@ -30,20 +30,38 @@ export async function POST(request: Request) {
       console.info("[enquiry]\n", text);
       return Response.json({ ok: true });
     }
-    return Response.json({ error: "Enquiry email is not configured yet. Please use WhatsApp instead." }, { status: 503 });
+    console.error("[enquiry] RESEND_API_KEY is not configured.");
+    return Response.json({ error: "Enquiry email is temporarily unavailable. Please use WhatsApp instead." }, { status: 503 });
   }
 
-  const resend = new Resend(key);
-  const { error } = await resend.emails.send({
-    from: process.env.ENQUIRY_FROM_EMAIL || "Hidden China Travel <beth.t@example.com>",
-    to: process.env.ENQUIRY_TO_EMAIL || siteConfig.enquiryEmail,
-    replyTo: parsed.email,
-    subject: enquirySubject(parsed),
-    text,
-  });
+  // Reuse the sender configured for the custom journey form if no enquiry-specific
+  // sender is set. Never fall back to Resend's example address (beth.t@example.com).
+  const from = process.env.ENQUIRY_FROM_EMAIL || process.env.CUSTOM_JOURNEY_FROM_EMAIL;
+  if (!from) {
+    console.error("[enquiry] No verified sender configured (ENQUIRY_FROM_EMAIL or CUSTOM_JOURNEY_FROM_EMAIL).");
+    return Response.json({ error: "Enquiry email is temporarily unavailable. Please use WhatsApp instead." }, { status: 503 });
+  }
 
-  if (error) {
-    console.error("[enquiry]", error);
+  try {
+    const resend = new Resend(key);
+    const { error } = await resend.emails.send({
+      from,
+      to: process.env.ENQUIRY_TO_EMAIL || siteConfig.enquiryEmail,
+      replyTo: parsed.email,
+      subject: enquirySubject(parsed),
+      text,
+    });
+
+    if (error) {
+      console.error("[enquiry] Resend rejected the email:", {
+        name: error.name,
+        message: error.message,
+        statusCode: error.statusCode,
+      });
+      return Response.json({ error: "We could not send this just now. Please try WhatsApp." }, { status: 502 });
+    }
+  } catch (error) {
+    console.error("[enquiry] Resend request failed:", error instanceof Error ? error.message : "Unknown error");
     return Response.json({ error: "We could not send this just now. Please try WhatsApp." }, { status: 502 });
   }
 
