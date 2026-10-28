@@ -31,7 +31,7 @@ export function ContactForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(event.currentTarget).entries());
-    const parsed = parseEnquiry({ ...data, source: enquirySource() });
+    const parsed = parseEnquiry({ ...data, source: enquirySource(), allowEmptyPlans: true });
     if ("error" in parsed) {
       setStatus("error");
       setError(parsed.error);
@@ -54,7 +54,7 @@ export function ContactForm() {
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed),
+        body: JSON.stringify({ ...parsed, allowEmptyPlans: true }),
       });
       const result = await response.json().catch(() => ({ error: "We could not send this just now." }));
 
@@ -114,8 +114,7 @@ export function ContactForm() {
         </label>
         <label>
           <span>Number of travelers</span>
-          <select name="travelers" defaultValue="" required>
-            <option value="" disabled>Select</option>
+          <select name="travelers" defaultValue="2 travelers" required>
             {partySizes.map((option) => <option key={option}>{option}</option>)}
           </select>
         </label>
@@ -127,16 +126,15 @@ export function ContactForm() {
           name="plans"
           rows={7}
           placeholder={"Which places interest you?\nHow many days are you considering?\nIs there anything you would like us to know, including a rough budget if you have one?"}
-          required
+          maxLength={4000}
         />
       </label>
 
       <button className="button button-blue" type="submit" disabled={status === "sending"}>
-        {status === "sending" ? "Sending…" : "Get My Trip Plan"}
+        {status === "sending" ? "Sending…" : "Start Planning My Journey"}
       </button>
       {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}
-      <p className="contact-form-note">{siteConfig.replyTime}</p>
-      <p className="contact-form-privacy">We respect your privacy. No spam, ever. Your details are only used to plan your trip.</p>
+      <p className="contact-form-note">Tell us a little about your trip and we’ll prepare a personalized route suggestion based on your dates and interests.</p>
     </form>
   );
 }
