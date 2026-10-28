@@ -1649,6 +1649,7 @@ a.utility-card { color:inherit; }
 .journey-day-photo { position:relative; height:clamp(190px,28vw,300px); margin:0 36px 30px 94px; overflow:hidden; background:#e9e6dc; }
 .journey-day-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:0 36px 32px 94px; }
 .journey-day-pair figure { position:relative; aspect-ratio:3/4; margin:0; overflow:hidden; background:#e9e6dc; }
+.journey-day-pair-landscape figure { aspect-ratio:4/3; }
 .journey-day-pair img { object-fit:cover; }
 .journey-day-photo img { object-fit:cover; }
 .journey-day-photo figcaption { position:absolute; right:12px; bottom:12px; padding:7px 10px; background:rgba(20,43,38,.8); color:#fff; font-size:.7rem; }
