@@ -8,7 +8,7 @@ import { JourneyMobileCta } from "@/components/journey-mobile-cta";
 import { SiteHeader } from "@/components/site-header";
 import { QuickAsk } from "@/components/quick-ask";
 import { formatPriceLabel } from "@/lib/format-price";
-import { JourneyFactCards, JourneyHero, JourneyOverview } from "@/components/journey-landing";
+import { JourneyFactCards, JourneyHero, JourneyOverview, JourneySectionNav } from "@/components/journey-landing";
 import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { JourneyPractical } from "@/components/journey-practical";
 import { JourneyWhy } from "@/components/journey-why";
@@ -121,6 +121,14 @@ export function JourneyPage({ journey }: { journey: Journey }) {
       note={frontmatter.heroNote || "Two adults sharing one room. Not a daily rate. Hotel breakfast is generally included; lunch and dinner are not."}
     />
     {isSixDayYunnanJourney ? <JourneyOverview title={frontmatter.overviewTitle || "At a glance."} description={frontmatter.overviewDescription || "A clear starting point for the route, with the details confirmed around your dates and group."} items={overviewItems} action={{ href: whatsapp, label: "Start Planning My Journey" }} /> : null}
+    {isSixDayYunnanJourney ? <JourneySectionNav links={[
+      { href: "#glance", label: "At a glance" },
+      { href: "#why-travel", label: "Why travel with us" },
+      { href: "#itinerary", label: "YOUR 6 DAYS IN YUNNAN" },
+      { href: "#experiences", label: "What Travelers Remember" },
+      { href: "#private-journey", label: "Your Journey details" },
+      { href: "#questions", label: "Good To Know" },
+    ]} action={{ href: "#ask-joy", label: "Plan your trip" }} /> : null}
     <section className="journey-fold-ask" id="quote">
       <div className="shell">
         {isSixDayYunnanJourney ? <div className="journey-guest-proof">
