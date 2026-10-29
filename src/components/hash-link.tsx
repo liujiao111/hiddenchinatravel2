@@ -26,6 +26,9 @@ export function HashLink({ href, className, children, onJump, ...rest }: Props) 
     html.style.scrollBehavior = previous;
     if (window.location.hash !== href) window.history.replaceState(null, "", href);
     onJump?.();
+    if (target.matches(".quick-ask-embedded")) {
+      window.dispatchEvent(new CustomEvent("quick-ask:reset", { detail: { id: target.id } }));
+    }
     target.querySelector<HTMLElement>("input, select, textarea")?.focus({ preventScroll: true });
   }
 
