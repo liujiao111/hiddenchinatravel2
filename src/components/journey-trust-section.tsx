@@ -28,6 +28,7 @@ export function JourneyTrustSection({
   vehicleCopy,
   hotelTitle,
   hotelCopy,
+  hotelCities,
 }: {
   variant?: "full" | "compact";
   showCredentials?: boolean;
@@ -41,6 +42,7 @@ export function JourneyTrustSection({
   vehicleCopy?: string;
   hotelTitle?: string;
   hotelCopy?: string;
+  hotelCities?: string[];
 } = {}) {
   const compact = variant === "compact";
   const [activeId, setActiveId] = useState<(typeof proofTabs)[number]["id"]>("hotels");
@@ -57,7 +59,7 @@ export function JourneyTrustSection({
       </div>
       {activeId === "guide" ? <LocalTeamProof group={{ ...driverGuideProof, title: guideTitle || driverGuideProof.title, copy: guideCopy || driverGuideProof.copy }} /> : null}
       {activeId === "vehicle" ? <VehicleProof title={vehicleTitle} copy={vehicleCopy} /> : null}
-      {activeId === "hotels" ? <HotelProof title={hotelTitle} copy={hotelCopy} /> : null}
+      {activeId === "hotels" ? <HotelProof title={hotelTitle} copy={hotelCopy} cities={hotelCities} /> : null}
       {showCredentials ? <OperatorCredentials /> : null}
     </div>
     {compact || !showMuslimFriendly ? null : <MuslimFriendly />}

@@ -119,6 +119,19 @@ export const hotelProof: TrustCopy & { groups: { id: string; label: string; caro
         { src: `${hotelRoot}/IMG_5966.jpeg`, alt: "Further view of Jieluofu Garden Hotel in Lijiang", title: "Jieluofu Garden Hotel", detail: "Example · Lijiang", copy: "A further reference photo. The hotel actually arranged for your dates will be confirmed in writing." },
       ],
     },
+    {
+      id: "shangri-la",
+      label: "SHANGRI-LA",
+      carouselLabel: "Shangri-La hotel examples",
+      slides: [
+        { src: `${hotelRoot}/yiting-exterior.webp`, alt: "Exterior of Yiting Hotel in Shangri-La at night", title: "Yiting Hotel", detail: "Example · Shangri-La", copy: "Yiting Hotel is the preferred example for Shangri-La. Lanou Hotel or another property of a similar standard may be offered depending on dates and availability." },
+        { src: `${hotelRoot}/yiting-twin-room-view.webp`, alt: "Twin room at Yiting Hotel in Shangri-La, looking toward the mountains", title: "Yiting Hotel", detail: "Example · Shangri-La · guest room", copy: "A twin room at Yiting Hotel with a view toward the town and mountains. The confirmed hotel is named in your written proposal." },
+        { src: `${hotelRoot}/yiting-twin-room.webp`, alt: "Twin room at Yiting Hotel in Shangri-La", title: "Yiting Hotel", detail: "Example · Shangri-La · guest room", copy: "Another view of a Yiting Hotel guest room. Lanou Hotel or a similar-standard alternative may be used if needed." },
+        { src: `${hotelRoot}/yiting-bathroom.webp`, alt: "Bathroom and shower at Yiting Hotel in Shangri-La", title: "Yiting Hotel", detail: "Example · Shangri-La · bathroom", copy: "The bathroom in a Yiting Hotel guest room. The final property is listed in the proposal." },
+        { src: `${hotelRoot}/yiting-vanity.webp`, alt: "Vanity, wardrobe and minibar at Yiting Hotel in Shangri-La", title: "Yiting Hotel", detail: "Example · Shangri-La · bathroom", copy: "Vanity, wardrobe and minibar in a Yiting Hotel room." },
+        { src: `${hotelRoot}/yiting-breakfast.webp`, alt: "Breakfast at Yiting Hotel in Shangri-La, with mountains outside the window", title: "Yiting Hotel", detail: "Example · Shangri-La · breakfast", copy: "A breakfast setting at Yiting Hotel. Breakfast inclusions depend on the confirmed package." },
+      ],
+    },
     ],
 };
 

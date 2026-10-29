@@ -70,6 +70,7 @@ function JourneyQuoteBand({ id, source, sourceTitle, whatsapp, showRouteLink, co
 export function JourneyPage({ journey }: { journey: Journey }) {
   const { frontmatter } = journey;
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
+  const isEightDayYunnanJourney = journey.slug === "kunming-dali-lijiang-shangri-la-private-tour";
   const stories = getTestimonialsForJourney(journey.slug);
   const whatsapp = `https://wa.me/8618880441791?text=${encodeURIComponent(`Hi Joy, I’m interested in the ${frontmatter.title} journey. My travel dates are ____ and there will be ____ travelers.`)}`;
   const completePrice = frontmatter.fromPrice > 0
@@ -212,6 +213,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
         vehicleCopy={isSixDayYunnanJourney ? "Private transportation is arranged throughout the journey, with vehicle size selected to match your group and luggage needs." : undefined}
         hotelTitle={isSixDayYunnanJourney ? "Your Hotels Along The Journey" : undefined}
         hotelCopy={isSixDayYunnanJourney ? "Premium hotels are included throughout the journey. The examples shown here reflect the style and standard you can expect." : undefined}
+        hotelCities={isEightDayYunnanJourney ? ["kunming", "dali", "lijiang", "shangri-la"] : undefined}
       />
 
     </section>
