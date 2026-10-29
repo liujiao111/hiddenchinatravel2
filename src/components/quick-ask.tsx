@@ -60,6 +60,20 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
     };
   }, [id]);
 
+  useEffect(() => {
+    function resetAskForm(event: Event) {
+      const detail = (event as CustomEvent<{ id?: string }>).detail;
+      if (detail?.id !== id) return;
+      setStatus("idle");
+      setError("");
+      setSent(null);
+      setWhatsappHref("");
+    }
+
+    window.addEventListener("quick-ask:reset", resetAskForm);
+    return () => window.removeEventListener("quick-ask:reset", resetAskForm);
+  }, [id]);
+
   const plain = layout === "plain";
   const whatsappPrompt = `Hi Joy, I was looking at "${sourceTitle}". I'd like a private Yunnan route and a price range. My dates are ____, we are ____ travelers, and our budget is about ____ per person.`;
   const standbyWhatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(whatsappPrompt)}`;
