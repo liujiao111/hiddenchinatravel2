@@ -7,6 +7,7 @@ import { JsonLd, breadcrumbList } from "@/components/json-ld";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site-config";
 import type { TravelJournal } from "@/lib/travel-journals";
+import { TravelerCaseStudy } from "@/components/traveler-case-study";
 import styles from "@/app/traveler-stories/journal.module.css";
 
 export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
@@ -56,38 +57,33 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
         </div>
       </header>
 
-      <p className={styles.meta}>
-        <span>{journal.traveler}, {journal.country}</span>
-        <span>{journal.travelStyle}</span>
-        <span>{journal.theme}</span>
-        <span>{journal.readingTime} read</span>
-      </p>
-      <p className={styles.route}><span>Yunnan journey designed by Hidden China</span>{journal.route}</p>
-
       <article id="journal-article">
-        {journal.sections.map((section, index) => (
-          <section className={`${styles.article} ${styles.section}`} id={section.id} aria-labelledby={`${section.id}-title`} key={section.id}>
-            {index > 0 ? <hr className={styles.rule} /> : null}
-            <h2 id={`${section.id}-title`}>{section.title}</h2>
-            {section.image ? (
-              <figure className={styles.figure}>
-                <Image src={section.image.src} alt={section.image.alt} fill sizes="(max-width: 800px) 100vw, 760px" style={{ objectPosition: section.image.position ?? "center 50%" }} />
-              </figure>
-            ) : null}
-            {section.blocks.map((block) => {
-              if (block.type === "paragraph") return <p key={block.text}>{block.text}</p>;
-              if (block.type === "emphasis") return <p className={styles.emphasis} key={block.text}>{block.text}</p>;
-              if (block.type === "list") {
-                return <ul key={block.items.join("|")}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>;
-              }
-              return (
-                <blockquote className={styles.pull} key={block.text}>
-                  {block.text.split("\n").map((line) => <p key={line}>{line}</p>)}
-                </blockquote>
-              );
-            })}
-          </section>
-        ))}
+        <TravelerCaseStudy
+          study={journal.caseStudy}
+          narrative={journal.sections.map((section, index) => (
+            <section className={`${styles.article} ${styles.section}`} id={section.id} aria-labelledby={`${section.id}-title`} key={section.id}>
+              {index > 0 ? <hr className={styles.rule} /> : null}
+              <h2 id={`${section.id}-title`}>{section.title}</h2>
+              {section.image ? (
+                <figure className={styles.figure}>
+                  <Image src={section.image.src} alt={section.image.alt} fill sizes="(max-width: 800px) 100vw, 760px" style={{ objectPosition: section.image.position ?? "center 50%" }} />
+                </figure>
+              ) : null}
+              {section.blocks.map((block) => {
+                if (block.type === "paragraph") return <p key={block.text}>{block.text}</p>;
+                if (block.type === "emphasis") return <p className={styles.emphasis} key={block.text}>{block.text}</p>;
+                if (block.type === "list") {
+                  return <ul key={block.items.join("|")}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>;
+                }
+                return (
+                  <blockquote className={styles.pull} key={block.text}>
+                    {block.text.split("\n").map((line) => <p key={line}>{line}</p>)}
+                  </blockquote>
+                );
+              })}
+            </section>
+          ))}
+        />
       </article>
 
       <section className={styles.related} aria-labelledby="related-title">

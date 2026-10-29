@@ -1,0 +1,367 @@
+.snapshot,
+.before,
+.evidence,
+.journeyLead,
+.received {
+  width: min(860px, calc(100% - 48px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.snapshot {
+  margin-top: 48px;
+  padding: 36px 40px 32px;
+  background: #fff;
+  border: 1px solid #e3dfd2;
+}
+
+.snapshot h2,
+.before h2,
+.planning h2,
+.evidence h2,
+.journeyLead h2,
+.changed h2,
+.received h2 {
+  margin: 0 0 22px;
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  line-height: 1.12;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 36px;
+  margin: 0;
+}
+
+.facts dt {
+  margin: 0 0 6px;
+  color: #7a6a48;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.facts dd {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.route,
+.support {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid #e7e3d6;
+}
+
+.route p,
+.support p,
+.sheet small {
+  margin: 0;
+  color: #7a6a48;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.stops {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 0;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stops li {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.stops li + li:before {
+  content: "→";
+  margin: 0 10px;
+  color: #8d7350;
+}
+
+.checks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 28px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checks li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.checks li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4e7671;
+  font-weight: 700;
+}
+
+.before {
+  padding-top: 64px;
+}
+
+.before p,
+.planningIntro,
+.journeyLead p,
+.received > p {
+  margin: 0 0 18px;
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.quote {
+  margin: 28px 0 0;
+  padding: 4px 0 4px 22px;
+  border-left: 1px solid #b7ad94;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+  line-height: 1.4;
+  color: #243f3a;
+}
+
+.planning {
+  margin-top: 64px;
+  padding: 72px 0;
+  background: #d8d4bb;
+}
+
+.planningInner {
+  width: min(980px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.planningIntro {
+  max-width: 720px;
+}
+
+.planningFigure {
+  position: relative;
+  margin: 28px 0 8px;
+  aspect-ratio: 16 / 8;
+  overflow: hidden;
+  background: #cfcab4;
+}
+
+.planningFigure img {
+  object-fit: cover;
+}
+
+.steps {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 8px 12px;
+  padding: 22px 0;
+  border-top: 1px solid rgba(40, 40, 33, 0.16);
+}
+
+.step span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  color: #355e58;
+}
+
+.step h3 {
+  margin: 0 0 8px;
+  font-size: 1.45rem;
+}
+
+.step p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.evidence {
+  padding-top: 72px;
+}
+
+.evidenceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.evidenceGrid figure {
+  margin: 0;
+  background: #fff;
+  border: 1px solid #e3dfd2;
+}
+
+.sheet {
+  display: flex;
+  min-height: 210px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 28px 20px 20px;
+  background:
+    linear-gradient(#f7f4ec, #f7f4ec) padding-box,
+    repeating-linear-gradient(-12deg, transparent, transparent 10px, rgba(78, 118, 113, 0.08) 10px, rgba(78, 118, 113, 0.08) 11px);
+  border-bottom: 1px solid #e7e3d6;
+}
+
+.sheet svg {
+  width: 64px;
+  height: 64px;
+  stroke: #4e7671;
+  fill: none;
+  stroke-width: 1.4;
+}
+
+
+.evidenceGrid figcaption {
+  padding: 18px 18px 20px;
+}
+
+.evidenceGrid h3 {
+  margin: 0 0 8px;
+  font-size: 1.28rem;
+}
+
+.evidenceGrid p {
+  margin: 0;
+  color: #4e4940;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.journeyLead {
+  padding-top: 72px;
+}
+
+.changed {
+  margin-top: 28px;
+  background: #fff;
+}
+
+.changed h2,
+.changedGrid {
+  width: min(980px, calc(100% - 48px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.changed h2 {
+  padding-top: 64px;
+}
+
+.changedGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 0;
+}
+
+.changedGrid article {
+  padding: 8px 0 56px;
+}
+
+.changedGrid article + article {
+  padding-left: 40px;
+  border-left: 1px solid #e3dfd2;
+}
+
+.changedGrid h3 {
+  margin: 0 0 16px;
+  color: #7a6a48;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.changedGrid ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.changedGrid li {
+  margin: 0 0 14px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.after li {
+  color: #243f3a;
+}
+
+.received {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  padding: 36px 40px 32px;
+  background: #4e7671;
+  color: #fff;
+}
+
+.received h2 {
+  color: #fff;
+}
+
+.received > p {
+  max-width: 640px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.received .checks li:before {
+  color: #eadcc6;
+}
+
+.received .support {
+  border-top-color: rgba(255, 255, 255, 0.22);
+}
+
+.received .support p {
+  color: #eadcc6;
+}
+
+@media (max-width: 800px) {
+  .snapshot,
+  .received {
+    padding: 28px 22px 24px;
+  }
+
+  .facts,
+  .checks,
+  .evidenceGrid,
+  .changedGrid,
+  .step {
+    grid-template-columns: 1fr;
+  }
+
+  .changedGrid article + article {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid #e3dfd2;
+    padding-top: 28px;
+  }
+
+  .planningFigure {
+    aspect-ratio: 4 / 3;
+  }
+}

@@ -108,10 +108,16 @@ export default function TravelerStoriesPage() {
             <figcaption>A photograph of the place. Not of {journal.traveler}.</figcaption>
           </figure>
           <div>
-            <p>{journal.category} · {journal.traveler}, {journal.country} · {journal.readingTime}</p>
+            <p>Case study · {journal.caseStudy.snapshot.traveler}, {journal.caseStudy.snapshot.country}</p>
             <h2>{journal.title}</h2>
             <span>{journal.subtitle}</span>
-            <b>READ THE JOURNAL</b>
+            <ol className={styles.snapshotRoute}>
+              {journal.caseStudy.snapshot.route.map((stop) => <li key={stop}>{stop}</li>)}
+            </ol>
+            <ul className={styles.snapshotSupport}>
+              {journal.caseStudy.snapshot.support.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+            <b>READ HOW IT WAS PLANNED</b>
           </div>
         </Link>
       ))}

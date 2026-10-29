@@ -636,3 +636,18 @@ Hidden China Travel is the trusted guide behind the journey.
 At the end, the reader should think:
 
 "This is the kind of travel company I would trust to plan my journey through China."
+
+====================================================
+PUBLISHED PAGE TEMPLATE
+====================================================
+
+When a story is prepared for the site, also supply these fields. Every published traveler story uses the same case-study template in `src/lib/traveler-case-study.ts`.
+
+- Trip snapshot: traveler, country, travel style, duration, route stops, travel month (or "Not published"), and only the planning support the record actually includes
+- Before the trip: the concerns, why China felt complicated, and why they contacted Joy
+- How the journey was planned: the reason for each stop, hotels, the preparation guide, payment setup, eSIM and VPN guidance, and the personal map
+- Evidence notes for four placeholders: custom travel map, WhatsApp conversation, personalised itinerary, driver-guide introduction. Do not invent screenshots, chat transcripts, or a driver-guide the source does not name
+- What changed: a before list and an after list, in the traveler's terms
+- Planning support received: the same checklist as the snapshot
+
+Do not add a service, a date, or a person the source material does not support.

@@ -35,9 +35,16 @@
 .journalBand h2 { margin: 0 0 16px; font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1.08; }
 .journalBand span { color: #4e4940; font-size: 1.02rem; line-height: 1.6; }
 .journalBand b { margin-top: 22px; color: #355e58; font-family: var(--font-geist-sans), Arial, sans-serif; font-size: 0.78rem; font-weight: 750; letter-spacing: 0.06em; }
+.snapshotRoute { display: flex; flex-wrap: wrap; gap: 4px 0; margin: 18px 0 0; padding: 0; list-style: none; }
+.snapshotRoute li { font-family: Georgia, "Times New Roman", serif; font-size: 1.05rem; }
+.snapshotRoute li + li:before { content: "→"; margin: 0 8px; color: #8d7350; }
+.snapshotSupport { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; margin: 16px 0 0; padding: 0; list-style: none; text-transform: none; letter-spacing: 0; }
+.snapshotSupport li { position: relative; padding-left: 18px; color: #3c463f; font-size: 0.86rem; font-weight: 500; line-height: 1.4; }
+.snapshotSupport li:before { content: "✓"; position: absolute; left: 0; color: #4e7671; font-weight: 700; }
 @media (max-width: 800px) {
   .journalBand { grid-template-columns: 1fr; }
   .journalBand figure { aspect-ratio: 4 / 3; min-height: 0; }
+  .snapshotSupport { grid-template-columns: 1fr; }
 }
 .heading { max-width: 740px; margin: 0 auto 64px; }
 .heading.center { text-align: center; }
