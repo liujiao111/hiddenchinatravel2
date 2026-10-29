@@ -132,7 +132,7 @@ const editorial: Record<string, StoryEditorial> = {
 export const travelerStoryReasons = [
   {
     title: "One person holds the plan",
-    text: "Daniel and Sarah had already traveled with Joy once. Claire and Thomas could reach the team before the journey and during it. Faisal and Aisha describe the planning as patient. You speak with Joy Liu from the first note through the days on the road. The travel contract is then issued by the licensed agency in Kunming.",
+    text: "Daniel and Sarah had already traveled with Joy once. Claire and Thomas could reach the team before the journey and during it. Faisal and Aisha describe the planning as patient. You speak with Joy Liu from the first note through the days on the road.",
   },
   {
     title: "The driver-guide is part of the day",
