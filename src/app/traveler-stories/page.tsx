@@ -12,7 +12,7 @@ import styles from "./stories.module.css";
 
 const path = "/traveler-stories";
 const title = "Traveler Stories";
-const description = "Notes from families, couples and first-time visitors on private Yunnan journeys planned with Joy Liu. Read the stories, then the licensed company behind the contract.";
+const description = "Personal accounts from families, couples and first-time visitors on private Yunnan journeys planned with Joy Liu."
 
 export const metadata: Metadata = {
   title,
@@ -76,7 +76,7 @@ export default function TravelerStoriesPage() {
           <nav className={styles.crumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span>Traveler stories</span></nav>
           <p className={styles.kicker}>PRIVATE YUNNAN JOURNEYS</p>
           <h1>How Yunnan felt, in their words.</h1>
-          <p className={styles.heroLead}>Notes from private parties who traveled with Joy Liu. Families returning, a honeymoon, a first trip with a child. The planning is personal. The contract is with a licensed agency in Kunming.</p>
+          <p className={styles.heroLead}>Notes from private parties who traveled with Joy Liu. Families returning, a honeymoon, a first trip with a child. The planning is personal.</p>
           <div className={styles.heroActions}>
             <Link href="#stories" className="button button-light">READ THE STORIES</Link>
             <EnquireLink data-cta-location="stories_hero" interest="Private Travel">Start Planning My Journey</EnquireLink>
@@ -84,14 +84,13 @@ export default function TravelerStoriesPage() {
         </div>
       </section>
 
+      <p className={styles.privacyNote}>For privacy, we use photographs of the places rather than the travelers themselves.</p>
+
       <nav className={styles.subnav} aria-label="On this page">
-        <Link href="#journal">Journal</Link>
-        <Link href="#stories">Stories</Link>
-        <Link href="#notes">Every note</Link>
-        <Link href="#journeys">In detail</Link>
-        <Link href="#why">Why they travel this way</Link>
-        <Link href="#places">The route</Link>
-        <Link href="#trust">The record</Link>
+        <Link href="#featured">Featured Stories</Link>
+        <Link href="#notes">Traveler Notes</Link>
+        <Link href="#why">Why Travelers Choose This Way</Link>
+        <Link href="#trust">Trust &amp; Credentials</Link>
       </nav>
 
       <section className={styles.metrics} aria-label="About these notes">
@@ -101,33 +100,31 @@ export default function TravelerStoriesPage() {
         <p className={styles.metric}><strong>Joy</strong><span>One consultant, from the first note to the road</span></p>
       </section>
 
-      {getFeaturedJournals().map((journal) => (
-        <Link className={styles.journalBand} href={`/traveler-stories/${journal.slug}`} id="journal" key={journal.slug}>
-          <figure>
-            <Image src={journal.heroImage} alt={journal.heroAlt} fill sizes="(max-width: 800px) 100vw, 58vw" />
-            <figcaption>A photograph of the place. Not of {journal.traveler}.</figcaption>
-          </figure>
-          <div>
-            <p>{journal.category} · {journal.traveler}, {journal.country} · {journal.readingTime}</p>
-            <h2>{journal.title}</h2>
-            <span>{journal.subtitle}</span>
-            <b>READ THE JOURNAL</b>
-          </div>
-        </Link>
-      ))}
-
-      <section id="stories" aria-labelledby="stories-title">
-        <div className={`shell ${styles.section} ${styles.storiesIntro}`}>
+      <section className={`${styles.featured} ${styles.section}`} id="featured" aria-labelledby="featured-title">
+        <div className="shell">
           <header className={styles.heading}>
-            <h2 id="stories-title">Three journeys, told at length</h2>
-            <p>Each account is a note shared after a private journey. The lines around the quotation only restate what that traveler wrote.</p>
+            <h2 id="featured-title">Featured Stories</h2>
+            <p>Personal accounts of the people, planning and moments that shaped each journey.</p>
           </header>
         </div>
+        {getFeaturedJournals().map((journal) => (
+          <Link className={styles.journalBand} href={`/traveler-stories/${journal.slug}`} key={journal.slug}>
+            <figure>
+              <Image src={journal.heroImage} alt={journal.heroAlt} fill sizes="(max-width: 800px) 100vw, 58vw" />
+            </figure>
+            <div>
+              <p>{journal.category} · {journal.traveler}, {journal.country} · {journal.readingTime}</p>
+              <h3>{journal.title}</h3>
+              <span>{journal.subtitle}</span>
+              <b>READ THE JOURNAL</b>
+            </div>
+          </Link>
+        ))}
         {featured.map((story, index) => (
           <article className={index % 2 === 1 ? `${styles.feature} ${styles.featureReverse}` : styles.feature} id={`story-${story.id}`} key={story.id}>
             <figure className={styles.featureMedia}>
               <Image className={styles.cover} src={story.image} alt={story.imageAlt} fill sizes="(max-width: 980px) 100vw, 58vw" style={{ objectPosition: story.objectPosition }} />
-              <figcaption>A photograph of the place. Not of {story.name}.</figcaption>
+
             </figure>
             <div className={styles.featureCopy}>
               <p className={styles.meta}>{story.country} · {story.party}</p>
@@ -146,7 +143,7 @@ export default function TravelerStoriesPage() {
       <section className={`${styles.notes} ${styles.section}`} id="notes" aria-labelledby="notes-title">
         <div className="shell">
           <header className={`${styles.heading} ${styles.center}`}>
-            <h2 id="notes-title">Every note, briefly</h2>
+            <h2 id="notes-title">Traveler Notes</h2>
             <p>A first line from each traveler. Where a longer account appears on this page, you can continue into it. The others are printed here in full.</p>
           </header>
           <div className={styles.noteGrid}>
@@ -164,19 +161,14 @@ export default function TravelerStoriesPage() {
           </div>
           <p className={styles.colophon}>Names may be shortened. Some notes were translated and edited for clarity.</p>
         </div>
-      </section>
 
-      <section className={`${styles.details} ${styles.section}`} id="journeys" aria-labelledby="detail-title">
-        <div className="shell">
-          <header className={styles.heading}>
-            <h2 id="detail-title">Four more, a little more closely</h2>
-            <p>Who was traveling, what they noticed, and the words they left. The route link appears only when the note is filed with a published journey.</p>
-          </header>
+        <div className={`${styles.details} ${styles.detailGroup}`} id="journeys">
+          <div className="shell">
           {detailed.map((story) => (
             <article className={styles.detail} id={`story-${story.id}`} key={story.id}>
               <figure className={styles.detailMedia}>
                 <Image className={styles.cover} src={story.image} alt={story.imageAlt} fill sizes="(max-width: 980px) 100vw, 40vw" style={{ objectPosition: story.objectPosition }} />
-                <figcaption>A photograph of the place. Not of {story.name}.</figcaption>
+
               </figure>
               <div>
                 <p className={styles.meta}>{story.country}</p>
@@ -195,13 +187,29 @@ export default function TravelerStoriesPage() {
               </div>
             </article>
           ))}
+          </div>
+        </div>
+
+        <div className={`${styles.places} ${styles.routeGallerySection}`} id="places">
+          <div className="shell">
+            <p className={styles.galleryIntro}>Dali, Shaxi, the gorge, Lijiang and Shangri-La — the places that appear in these journeys.</p>
+            <div className={styles.gallery}>
+              {routeGallery.map((frame) => (
+                <figure className={`${styles.frame} ${frame.span === "tall" ? styles.frameTall : ""} ${frame.span === "wide" ? styles.frameWide : ""}`} key={frame.src}>
+                  <Image className={styles.cover} src={frame.src} alt={frame.alt} fill sizes="(max-width: 700px) 100vw, 40vw" style={{ objectPosition: frame.position }} />
+                  <figcaption><b>{frame.caption}</b><span>{frame.place}</span></figcaption>
+                </figure>
+              ))}
+            </div>
+            <p className={styles.galleryNote}>These photographs were made on the route. They were not supplied by the travelers, and a journey does not promise every frame.</p>
+          </div>
         </div>
       </section>
 
       <section className={`${styles.why} ${styles.section}`} id="why" aria-labelledby="why-title">
         <div className="shell">
           <header className={`${styles.heading} ${styles.center}`}>
-            <h2 id="why-title">Why travelers choose this way of going</h2>
+            <h2 id="why-title">Why Travelers Choose This Way</h2>
             <p>The same practical things recur across the notes. They are also how a private Yunnan journey is arranged.</p>
           </header>
           <div className={styles.reasons}>
@@ -216,35 +224,17 @@ export default function TravelerStoriesPage() {
         </div>
       </section>
 
-      <section className={`${styles.places} ${styles.section}`} id="places" aria-labelledby="places-title">
-        <div className="shell">
-          <header className={`${styles.heading} ${styles.center}`}>
-            <h2 id="places-title">The Yunnan in their notes</h2>
-            <p>Dali, Shaxi, the gorge, Lijiang, Shangri-La. These are photographs of the route, kept beside the stories that mention those places.</p>
-          </header>
-          <div className={styles.gallery}>
-            {routeGallery.map((frame) => (
-              <figure className={`${styles.frame} ${frame.span === "tall" ? styles.frameTall : ""} ${frame.span === "wide" ? styles.frameWide : ""}`} key={frame.src}>
-                <Image className={styles.cover} src={frame.src} alt={frame.alt} fill sizes="(max-width: 700px) 100vw, 40vw" style={{ objectPosition: frame.position }} />
-                <figcaption><b>{frame.caption}</b><span>{frame.place}</span></figcaption>
-              </figure>
-            ))}
-          </div>
-          <p className={styles.galleryNote}>These photographs were made on the route. They were not supplied by the travelers, and a journey does not promise every frame.</p>
-        </div>
-      </section>
-
       <section className={`${styles.trust} ${styles.section}`} id="trust" aria-labelledby="trust-title">
         <div className="shell">
           <header className={styles.heading}>
-            <h2 id="trust-title">The company on the contract</h2>
-            <p>The notes are the travelers. This is the agency that signs for the journey. Tripadvisor and Google are where many people look first; a public profile is linked here when the original reviews can be opened beside it.</p>
+            <h2 id="trust-title">Trust &amp; Credentials</h2>
+            <p>Joy Liu plans each journey. The licensed Kunming agency named below handles the travel contract and receives payment.</p>
           </header>
           <div className={styles.record}>
             <div>
               <p className={styles.permit}>{permit}</p>
               <h3>{operatorName}</h3>
-              <p>{operatorNameZh}. Joy Liu is your consultant. The agency issues the travel contract and receives payment to its corporate account.</p>
+              <p>{operatorNameZh}.</p>
             </div>
             <div className={styles.recordLinks}>
               <Link href="/licensed-operator">Read the company documents</Link>
