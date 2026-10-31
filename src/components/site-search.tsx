@@ -1,7 +1,7 @@
 "use client";
 
 import { Link, useRouter } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { FormEvent, KeyboardEvent, useEffect, useId, useRef, useState } from "react";
 import { matchSearchItems, type SearchItem } from "@/lib/search-types";
 
@@ -13,6 +13,7 @@ type SiteSearchProps = {
 
 export function SiteSearch({ initialQuery = "", items: suppliedItems, variant = "header" }: SiteSearchProps) {
   const router = useRouter();
+  const locale = useLocale();
   const t = useTranslations("search");
   const listId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
@@ -27,7 +28,7 @@ export function SiteSearch({ initialQuery = "", items: suppliedItems, variant = 
     if (items.length || loading) return;
     setLoading(true);
     try {
-      const response = await fetch("/api/search-index");
+      const response = await fetch(`/api/search-index?locale=${encodeURIComponent(locale)}`);
       if (response.ok) setItems(await response.json() as SearchItem[]);
     } finally {
       setLoading(false);
@@ -77,7 +78,7 @@ export function SiteSearch({ initialQuery = "", items: suppliedItems, variant = 
     </form>
     {variant === "header" && open && query.trim() && <div className="search-suggestions" id={listId} role="listbox">
       {loading ? <p>{t("searching")}</p> : results.length ? <>
-        {results.map((item, index) => <Link key={item.id} href={item.href} role="option" aria-selected={activeIndex === index} className={activeIndex === index ? "active" : ""} onMouseEnter={() => setActiveIndex(index)} onClick={() => setOpen(false)}><span>{item.type === "article" ? t("guide") : item.type}</span><b>{item.title}</b></Link>)}
+        {results.map((item, index) => <Link key={item.id} href={item.href} role="option" aria-selected={activeIndex === index} className={activeIndex === index ? "active" : ""} onMouseEnter={() => setActiveIndex(index)} onClick={() => setOpen(false)}><span>{t(`types.${item.type}`)}</span><b>{item.title}</b></Link>)}
         <Link className="search-all" href={`/search?q=${encodeURIComponent(query.trim())}`} onClick={() => setOpen(false)}>{t("seeAll")}</Link>
       </> : <p>{t("none")}</p>}
     </div>}

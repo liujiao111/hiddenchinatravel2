@@ -1,4 +1,5 @@
 import testimonials from "../../content/testimonials.json";
+import testimonialsZh from "../../content/testimonials.zh.json";
 
 export type Testimonial = {
   id: string;
@@ -11,7 +12,12 @@ export type Testimonial = {
   rating: number;
 };
 
-const allTestimonials = testimonials as Testimonial[];
+type TestimonialLocale = "en" | "zh";
+
+const localizedTestimonials: Record<TestimonialLocale, Testimonial[]> = {
+  en: testimonials as Testimonial[],
+  zh: testimonialsZh as Testimonial[],
+};
 
 export const selectedTestimonialsCopy = {
   eyebrow: "TRAVELER STORIES",
@@ -29,16 +35,16 @@ const selectedTestimonialIds = [
   "michelle-lily-lijiang",
 ] as const;
 
-export function getAllTestimonials() {
-  return allTestimonials;
+export function getAllTestimonials(locale: TestimonialLocale = "en") {
+  return localizedTestimonials[locale];
 }
 
-export function getFeaturedTestimonials() {
-  return allTestimonials.filter((item) => item.featured);
+export function getFeaturedTestimonials(locale: TestimonialLocale = "en") {
+  return getAllTestimonials(locale).filter((item) => item.featured);
 }
 
-export function getSelectedTestimonials() {
-  const byId = new Map(allTestimonials.map((item) => [item.id, item]));
+export function getSelectedTestimonials(locale: TestimonialLocale = "en") {
+  const byId = new Map(getAllTestimonials(locale).map((item) => [item.id, item]));
   return selectedTestimonialIds.flatMap((id) => {
     const item = byId.get(id);
     return item ? [item] : [];
@@ -46,10 +52,10 @@ export function getSelectedTestimonials() {
 }
 
 /** Reviews filed with one published journey. An empty list means this page should not borrow notes from another route. */
-export function getTestimonialsForJourney(slug: string) {
-  return allTestimonials.filter((item) => item.journeySlugs.includes(slug));
+export function getTestimonialsForJourney(slug: string, locale: TestimonialLocale = "en") {
+  return getAllTestimonials(locale).filter((item) => item.journeySlugs.includes(slug));
 }
 
-export function getHomeTestimonials() {
-  return getSelectedTestimonials();
+export function getHomeTestimonials(locale: TestimonialLocale = "en") {
+  return getSelectedTestimonials(locale);
 }

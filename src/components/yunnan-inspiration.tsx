@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { yunnanPlaces } from "@/lib/yunnan-inspiration";
 import { trackEvent } from "@/lib/analytics";
 import { useJourneyInspiration } from "@/components/journey-inspiration-context";

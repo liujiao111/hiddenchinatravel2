@@ -1,0 +1,102 @@
+[
+  {
+    "id": "daniel-sarah-yunnan-family",
+    "title": "一趟完全不用操心的家庭旅行",
+    "quote": "这是我们第二次选择 Hidden China Travel 的 Joy，他又一次超出了我们的期待。云南的风景和美食都很棒，我们自己几乎不用操心安排。临时升级火车票时，Joy 还帮我们买到了商务座；一路上的司机兼向导也很好沟通。",
+    "name": "Daniel & Sarah L.",
+    "country": "新加坡",
+    "rating": 5.0,
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "tan-family-nine-day",
+    "title": "专业、可靠，也很灵活",
+    "quote": "Joy 为我们安排了云南私家之旅，他推荐的地方都很美，包括香格里拉、玉龙雪山和玉湖村。坐火车时一度有些忙乱，他很快帮我们处理好了。全家人都很感谢他的帮助。",
+    "name": "The Tan Family",
+    "country": "马来西亚",
+    "rating": 4.8,
+    "journeySlugs": [],
+    "featured": true
+  },
+  {
+    "id": "rachel-kevin-lisa",
+    "title": "司机兼向导让旅途充满乐趣",
+    "quote": "这是我们第一次带年幼的儿子来中国，整个经历非常美好。司机兼向导幽默、友善，也很了解当地。他讲的云南和少数民族故事，正是我们一家人想听的。用餐安排也很舒心，我们带着许多美好回忆回家。",
+    "name": "Rachel & Kevin M.",
+    "country": "美国",
+    "rating": 4.9,
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "faisal-aisha-honeymoon",
+    "title": "在云南度过美好的蜜月时光",
+    "quote": "我们是一对中国蜜月旅行的新婚夫妇，云南是其中一站。Joy 帮我们规划云南行程时非常耐心、负责，也给了很多行前准备和其他目的地的游览建议。最后我们玩得非常开心！",
+    "name": "Faisal & Aisha R.",
+    "country": "印度尼西亚",
+    "rating": 4.7,
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "emily-vegetarian",
+    "title": "素食需求被妥善照顾",
+    "quote": "尽管在不列颠哥伦比亚看了多年风景，我还是想通过这趟私家旅行体验云南的生活。Joy 安排好了每天的行程，不用我自己操心。他还为有需要的人单独安排了一桌和很不错的素食。",
+    "name": "Emily C.",
+    "country": "加拿大",
+    "rating": 4.8,
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "claire-thomas-sebastien",
+    "title": "专业、耐心又幽默的司机兼向导",
+    "quote": "出发前和旅途中，Hidden China Travel 团队都很容易联系。我们的司机兼向导专业、耐心又幽默，开车稳妥，接送也很准时。酒店不是别有特色的民宿，就是住得很舒服，我们愿意推荐。",
+    "name": "Claire & Thomas",
+    "country": "法国",
+    "rating": 5.0,
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "mark-susan-tiger-leaping",
+    "title": "虎跳峡私家之旅",
+    "quote": "这趟私家旅行非常棒。我们看到了美丽的风景，也接触了少数民族文化。司机兼向导开车平稳，友善又耐心，把我们照顾得很好。云南真的很美。",
+    "name": "Mark & Susan T.",
+    "country": "澳大利亚",
+    "rating": 4.8,
+    "journeySlugs": ["kunming-dali-lijiang-shangri-la-private-tour"],
+    "featured": true
+  },
+  {
+    "id": "michelle-lily-lijiang",
+    "title": "我遇到过最好的司机兼向导",
+    "quote": "丽江的司机兼向导是我旅行中遇到过最好的一位：专业、友善、灵活，也很沉稳。我和家人同行，她的英语很好，待人的方式让我们感到自在。我愿意推荐 Hidden China Travel 团队。",
+    "name": "Michelle H.",
+    "country": "新西兰",
+    "rating": 4.9,
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "david-emma-jon",
+    "title": "带孩子旅行时，向导始终耐心",
+    "quote": "我们非常感谢司机兼向导的耐心，尤其是带孩子旅行、偶尔会有些忙乱的时候。他的服务自始至终都很用心。我们愿意给五星。",
+    "name": "David & Emma R.",
+    "country": "英国",
+    "rating": 5.0,
+    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "featured": true
+  },
+  {
+    "id": "peter-jenny-eight-day",
+    "title": "一趟超出期待的云南之旅",
+    "quote": "我结束了 Hidden China Travel 的 8 天私家之旅，从昆明一路到大理、丽江和香格里拉。每天都开心又放松，云南本身也非常迷人。我彻底爱上了这里。",
+    "name": "Peter & Jenny K.",
+    "country": "德国",
+    "rating": 4.8,
+    "journeySlugs": [],
+    "featured": true
+  }
+]

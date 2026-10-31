@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { useRef, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { journeyBudgets, journeyComfort, journeyInterests } from "@/lib/custom-journey-enquiry";

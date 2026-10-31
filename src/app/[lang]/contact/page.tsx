@@ -40,7 +40,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
   const t = await getTranslations({ locale: lang, namespace: "contact" });
   const tj = await getTranslations({ locale: lang, namespace: "journey" });
   const tq = await getTranslations({ locale: lang, namespace: "quickAsk" });
-  const stories = getSelectedTestimonials();
+  const stories = getSelectedTestimonials(lang);
   const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(t("whatsappMessage"))}`;
   const steps = t.raw("steps") as [string, string, string][];
   const emphasis = t.raw("heroEmphasis") as string[];

@@ -1,11 +1,36 @@
 import "server-only";
 
 import { getAllContent } from "@/lib/content";
+import type { AppLocale } from "@/lib/i18n-seo";
 import { getAllJourneys } from "@/lib/journeys";
 import type { SearchItem } from "@/lib/search-types";
 import { getTravelJournals } from "@/lib/travel-journals";
 
-export function getSearchIndex(): SearchItem[] {
+function getZhSearchIndex(): SearchItem[] {
+  const pages: SearchItem[] = [
+    { id: "home", title: "Hidden China Travel 中文首页", href: "/", description: "云南私家团、定制旅行，以及面向海外华语游客的实用行前建议。", type: "page", keywords: ["首页", "中国", "云南", "私家团", "定制旅行"] },
+    { id: "journeys", title: "云南私家行程", href: "/journeys", description: "从昆明、大理、丽江到香格里拉，选择一条可按你的日期和节奏调整的私家路线。", type: "page", keywords: ["云南行程", "私家团", "昆明", "大理", "丽江", "香格里拉"] },
+    { id: "about", title: "认识 Joy 与 Hidden China Travel", href: "/about-us", description: "认识在云南长大的旅行顾问 Joy，了解我们的规划方式与持牌旅行社履约安排。", type: "page", keywords: ["Joy Liu", "关于我们", "云南本地", "旅行社"] },
+    { id: "contact", title: "联系 Hidden China Travel", href: "/contact", description: "直接与 Joy 沟通云南旅行、首次来华准备和私家行程规划。", type: "page", keywords: ["联系我们", "Joy Liu", "WhatsApp", "行程咨询"] },
+    { id: "custom-tour", title: "云南定制旅行", href: "/custom-china-tour", description: "围绕你的日期、兴趣和节奏，设计一趟云南私家之旅。", type: "page", keywords: ["云南定制", "私人定制", "私家行程", "路线规划"] },
+  ];
+
+  const journeys = getAllJourneys("zh").map<SearchItem>((journey) => ({
+    id: `journey-${journey.slug}`,
+    title: journey.frontmatter.title,
+    href: `/journeys/${journey.slug}`,
+    description: journey.frontmatter.excerpt,
+    type: "journey",
+    keywords: [journey.frontmatter.route, ...journey.frontmatter.travelStyles],
+    image: journey.frontmatter.coverImage,
+  }));
+
+  return [...pages, ...journeys];
+}
+
+export function getSearchIndex(locale: AppLocale = "en"): SearchItem[] {
+  if (locale === "zh") return getZhSearchIndex();
+
   const pages: SearchItem[] = [
     { id: "home", title: "Hidden China Travel", href: "/", description: "Private journeys, local knowledge and practical travel guides for China.", type: "page", keywords: ["home", "China", "Yunnan", "journeys"] },
     { id: "about", title: "About Hidden China Travel", href: "/about-us", description: "Meet Joy Liu and learn about our personal approach to travel in China.", type: "page", keywords: ["Joy Liu", "about", "local travel"] },

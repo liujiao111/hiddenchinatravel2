@@ -41,7 +41,7 @@ export default async function CustomChinaTourPage({ params }: { params: Promise<
   const tj = await getTranslations({ locale: lang, namespace: "journey" });
   const tq = await getTranslations({ locale: lang, namespace: "quickAsk" });
   const journeys = getAllJourneys(lang);
-  const stories = getSelectedTestimonials();
+  const stories = getSelectedTestimonials(lang);
   const brand = getBrandIdentity(lang);
   const whatsapp = "https://wa.me/8618880441791?text=" + encodeURIComponent(t("whatsappMessage"));
   const ideas = t.raw("ideas") as { title: string; route: string; text: string }[];

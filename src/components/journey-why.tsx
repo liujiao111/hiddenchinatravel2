@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { licensedOperator, operatorCredentials } from "@/lib/journey-trust";
 
 export function JourneyWhy() {

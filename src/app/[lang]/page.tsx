@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { EnquireLink } from "@/components/enquire-link";
@@ -142,7 +142,7 @@ export default async function Home({ params }: Props) {
             subtitle: t("card1Subtitle"),
             href: `/journeys/${firstEncounter.slug}`,
             image: firstEncounter.frontmatter.coverImage,
-            imageAlt: firstEncounter.frontmatter.coverAlt || firstEncounter.frontmatter.title,
+            imageAlt: t("card1ImageAlt"),
             duration: t("card1Duration"),
             fromPrice: fromPrice(firstEncounter.frontmatter.fromPrice, firstEncounter.frontmatter.currency, firstEncounter.frontmatter.priceBasis),
             features: t.raw("card1Features") as string[],
@@ -154,7 +154,7 @@ export default async function Home({ params }: Props) {
             subtitle: t("card2Subtitle"),
             href: `/journeys/${classic.slug}`,
             image: classic.frontmatter.coverImage,
-            imageAlt: classic.frontmatter.coverAlt || classic.frontmatter.title,
+            imageAlt: t("card2ImageAlt"),
             duration: t("card2Duration"),
             fromPrice: fromPrice(classic.frontmatter.fromPrice, classic.frontmatter.currency, classic.frontmatter.priceBasis),
             features: t.raw("card2Features") as string[],
@@ -189,7 +189,7 @@ export default async function Home({ params }: Props) {
     </section>
 
     <Testimonials
-      items={getSelectedTestimonials()}
+      items={getSelectedTestimonials(lang)}
       eyebrow={t("storiesEyebrow")}
       heading={t("storiesHeading")}
       intro={t("storiesIntro")}

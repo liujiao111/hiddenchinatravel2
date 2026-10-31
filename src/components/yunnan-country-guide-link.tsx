@@ -1,11 +1,14 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { defaultYunnanCountryGuide, yunnanCountryGuides } from "@/lib/yunnan-country-guides";
 
 export function YunnanCountryGuideLink({ onSelect }: { onSelect: () => void }) {
   const [guide, setGuide] = useState(defaultYunnanCountryGuide);
+  const t = useTranslations("header.countryGuide");
+  const countries = t.raw("countries") as Record<string, string>;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -38,8 +41,8 @@ export function YunnanCountryGuideLink({ onSelect }: { onSelect: () => void }) {
   }, []);
 
   return <div className="mega-country-guides">
-    <h3>Plan from your country</h3>
-    <Link href={`/${guide.slug}`} prefetch={false} onClick={onSelect}>Yunnan from {guide.country}</Link>
-    <Link href="/china-destinations/yunnan#from-abroad" onClick={onSelect}>All departure guides →</Link>
+    <h3>{t("title")}</h3>
+    <Link href={`/${guide.slug}`} prefetch={false} onClick={onSelect}>{t("from", { country: countries[guide.countryCode] ?? guide.country })}</Link>
+    <Link href="/china-destinations/yunnan#from-abroad" onClick={onSelect}>{t("all")}</Link>
   </div>;
 }

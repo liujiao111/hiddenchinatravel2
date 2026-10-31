@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { EnquireLink } from "@/components/enquire-link";
@@ -20,11 +20,8 @@ export type HeaderJourney = {
   priceLabel: string;
 };
 
-const tailorMade = {
+const tailorMadeBase = {
   href: "/custom-china-tour",
-  title: "Tailor-Made Yunnan",
-  duration: "Custom · Private",
-  sellingPoint: "Private Journey Designed Around You",
   image: "/home/local-support.webp",
 };
 
@@ -35,13 +32,13 @@ const whatsapp = "https://wa.me/8618880441791?text=Hi%2C%20I%27d%20like%20help%2
 const popular = ["Yunnan", "Dali", "Lijiang", "Shangri-La", "Xishuangbanna", "Kunming", "Shaxi", "Yuanyang"];
 const regions = ["Yunnan", "Sichuan & Chongqing", "Beijing & North China", "Shanghai & the Lower Yangtze", "Xi’an & the Silk Road", "Guangxi & Guizhou", "Tibet & the Himalayas", "Southern China"];
 
-const destinationHref = (label: string) => {
+const destinationHref = (label: string, localizedLabel = label) => {
   if (label === "Yunnan") return "/china-destinations/yunnan";
   if (label === "Dali") return "/dali-travel-guide";
   if (label === "Shaxi") return "/dali-hidden-gems-off-the-beaten-path#shaxi-ancient-town-what-dali-looked-like-before-the-crowds-arrived";
   if (label === "Kunming") return "/kunming-travel-guide";
   if (label === "Lijiang") return "/china-destinations/yunnan#route";
-  return `/search?q=${encodeURIComponent(label)}`;
+  return `/search?q=${encodeURIComponent(localizedLabel)}`;
 };
 
 const menuGroups: Record<"guides" | "about", { title: string; links: string[] }[]> = {
@@ -104,12 +101,20 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { jou
   const [open, setOpen] = useState<MenuName | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = useTranslations("header");
+  const labels = t.raw("labels") as Record<string, string>;
+  const label = (key: string) => labels[key] ?? key;
+  const tailorMade = {
+    ...tailorMadeBase,
+    title: t("tailorMade.title"),
+    duration: t("tailorMade.duration"),
+    sellingPoint: t("tailorMade.sellingPoint"),
+  };
   const quoteHash = cta?.mailHref?.startsWith("#") ? cta.mailHref : cta?.href.startsWith("#") ? cta.href : null;
 
   return <header className={conversion ? "site-header site-header-conversion" : "site-header"} onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
-      {quoteHash ? <HashLink className="header-mail" href={quoteHash} aria-label="Get My Trip Plan" data-cta-location={cta?.location || "header_mail"}><HeaderMailIcon /></HashLink> : <Link className="header-mail" href="/contact" aria-label="Contact us"><HeaderMailIcon /></Link>}
-      <Link href="/" className="brand" aria-label="Hidden China Travel home">
+      {quoteHash ? <HashLink className="header-mail" href={quoteHash} aria-label={t("tripPlanAria")} data-cta-location={cta?.location || "header_mail"}><HeaderMailIcon /></HashLink> : <Link className="header-mail" href="/contact" aria-label={t("contactAria")}><HeaderMailIcon /></Link>}
+      <Link href="/" className="brand" aria-label={t("homeAria")}>
         <Image src="/brand/logo.webp" alt="" width={160} height={80} className="brand-logo" unoptimized />
         <Image src="/brand/logo-light.png" alt="" width={160} height={80} className="brand-logo-light" unoptimized />
       </Link>
@@ -123,7 +128,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { jou
         <span>{mobileOpen ? t("close") : t("menu")}</span>
       </button>
     </div>
-    {mobileOpen ? <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
+    {mobileOpen ? <nav id="mobile-nav" className="mobile-nav" aria-label={t("mobileAria")}>
       <Link href="/china-destinations/yunnan" onClick={() => setMobileOpen(false)}>{t("destinations")}</Link>
       <p className="mobile-nav-kicker">{t("journeys")}</p>
       {journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`} className="mobile-nav-journey" onClick={() => setMobileOpen(false)}>
@@ -142,7 +147,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { jou
       <Link href="/contact" onClick={() => setMobileOpen(false)}>{t("contactUs")}</Link>
       <LocaleSwitcher alternate={alternate} />
     </nav> : null}
-    {conversion ? null : <nav className="nav-row" aria-label="Main navigation">
+    {conversion ? null : <nav className="nav-row" aria-label={t("mainAria")}>
       <div className="shell nav-inner">
         <div className="nav-links">
           <button className={open === "destinations" ? "active" : ""} onClick={() => setOpen("destinations")} onMouseEnter={() => setOpen("destinations")} aria-expanded={open === "destinations"}>{t("destinations")}<span className="nav-chevron" aria-hidden="true" /></button>
@@ -157,22 +162,22 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { jou
 
     {!conversion && open && <div className="mega-menu">
       {open === "destinations" ? <div className="shell mega-destinations">
-        <section><h2>Most popular</h2><div className="mega-columns">{popular.map((item) => <Link key={item} href={destinationHref(item)}>{item}</Link>)}</div><Link className="mega-outline" href="/china-destinations/yunnan">EXPLORE YUNNAN</Link></section>
-        <section><h2>Explore by region</h2><div className="mega-list">{regions.map((item) => <Link key={item} href={destinationHref(item)}>{item}</Link>)}</div></section>
-        <section className="mega-featured"><h2>Begin with Yunnan</h2>{journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`}><Image src={encodeURI(journey.image)} alt={journey.title} width={150} height={88} unoptimized /><span><b>{journey.title}</b><small>{journey.sellingPoint}</small><em className="mega-journey-price">{journey.priceLabel}</em></span></Link>)}</section>
+        <section><h2>{t("mega.mostPopular")}</h2><div className="mega-columns">{popular.map((item) => <Link key={item} href={destinationHref(item, label(item))}>{label(item)}</Link>)}</div><Link className="mega-outline" href="/china-destinations/yunnan">{t("mega.exploreYunnan")}</Link></section>
+        <section><h2>{t("mega.exploreByRegion")}</h2><div className="mega-list">{regions.map((item) => <Link key={item} href={destinationHref(item, label(item))}>{label(item)}</Link>)}</div></section>
+        <section className="mega-featured"><h2>{t("mega.beginWithYunnan")}</h2>{journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`}><Image src={encodeURI(journey.image)} alt={journey.title} width={150} height={88} unoptimized /><span><b>{journey.title}</b><small>{journey.sellingPoint}</small><em className="mega-journey-price">{journey.priceLabel}</em></span></Link>)}</section>
       </div> : open === "journeys" ? <div className="shell mega-journeys mega-journeys-current">
         <section className="mega-current-journeys">
-          <p className="kicker">PRIVATE YUNNAN JOURNEYS</p>
-          <h2>Start with one of our signature journeys.</h2>
+          <p className="kicker">{t("mega.privateJourneys")}</p>
+          <h2>{t("mega.journeysHeading")}</h2>
           <div className="mega-current-journey-grid">
             {journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`}>
               <Image src={encodeURI(journey.image)} alt={journey.title} width={300} height={178} unoptimized />
               <span>
-                <small>{journey.duration} · PRIVATE</small>
+                <small>{journey.duration} · {t("mega.private")}</small>
                 <b>{journey.title}</b>
                 <em>{journey.sellingPoint}</em>
                 {journey.priceLabel ? <span className="mega-journey-price">{journey.priceLabel}</span> : null}
-                <strong>VIEW JOURNEY →</strong>
+                <strong>{t("mega.viewJourney")}</strong>
               </span>
             </Link>)}
             <Link href={tailorMade.href} data-cta-location="header_journeys_custom">
@@ -181,17 +186,17 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { jou
                 <small>{tailorMade.duration}</small>
                 <b>{tailorMade.title}</b>
                 <em>{tailorMade.sellingPoint}</em>
-                <strong>DESIGN YOUR JOURNEY →</strong>
+                <strong>{t("mega.designJourney")}</strong>
               </span>
             </Link>
           </div>
-          <Link href="/journeys" className="mega-text-link">VIEW ALL JOURNEYS →</Link>
+          <Link href="/journeys" className="mega-text-link">{t("mega.viewAllJourneys")}</Link>
         </section>
       </div> : open === "guides" ? <div className="shell mega-groups mega-guides">
-        <section className="mega-survival-feature"><Image src="/assets/blog/independent-travel-china/cover.webp" alt="Travelers preparing for a journey through China" fill sizes="(max-width: 700px) 100vw, 30vw" unoptimized /><div><p>START HERE · FREE CHECKLIST</p><h2>Your China trip, prepared in one place.</h2><span>Entry, bookings, eSIM, VPN, payments and what to save before you fly.</span><Link className="button button-light" href="/survival-kit">OPEN THE SURVIVAL KIT →</Link></div></section>
-        {menuGroups.guides.map(group => <section key={group.title}><h2>{group.title}</h2>{group.links.map(item => <Link key={item} href={hrefFor(item)}>{item}</Link>)}{group.title === "Destination guides" && <YunnanCountryGuideLink onSelect={() => setOpen(null)} />}</section>)}
-      </div> : <div className="shell mega-groups">{menuGroups.about.map((group) => <section key={group.title}><h2>{group.title}</h2>{group.links.map((item) => <Link key={item} href={hrefFor(item)}>{item}</Link>)}</section>)}<section className="mega-callout"><p className="kicker">NOT SURE WHERE TO START?</p><h2>Tell us what kind of China trip you have in mind.</h2><Link href={whatsapp} className="button button-light">Start Planning My Journey</Link></section></div>}
-      <button className="mega-close" onClick={() => setOpen(null)} aria-label="Close menu">×</button>
+        <section className="mega-survival-feature"><Image src="/assets/blog/independent-travel-china/cover.webp" alt={t("mega.survivalAlt")} fill sizes="(max-width: 700px) 100vw, 30vw" unoptimized /><div><p>{t("mega.startHere")}</p><h2>{t("mega.survivalTitle")}</h2><span>{t("mega.survivalText")}</span><Link className="button button-light" href="/survival-kit">{t("mega.openSurvival")}</Link></div></section>
+        {menuGroups.guides.map(group => <section key={group.title}><h2>{label(group.title)}</h2>{group.links.map(item => <Link key={item} href={hrefFor(item)}>{label(item)}</Link>)}{group.title === "Destination guides" && <YunnanCountryGuideLink onSelect={() => setOpen(null)} />}</section>)}
+      </div> : <div className="shell mega-groups">{menuGroups.about.map((group) => <section key={group.title}><h2>{label(group.title)}</h2>{group.links.map((item) => <Link key={item} href={hrefFor(item)}>{label(item)}</Link>)}</section>)}<section className="mega-callout"><p className="kicker">{t("mega.notSure")}</p><h2>{t("mega.notSureText")}</h2><Link href={whatsapp} className="button button-light">{t("mega.startPlanning")}</Link></section></div>}
+      <button className="mega-close" onClick={() => setOpen(null)} aria-label={t("closeMenu")}>×</button>
     </div>}
   </header>;
 }

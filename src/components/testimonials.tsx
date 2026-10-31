@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { useEffect, useLayoutEffect, useRef, useState, type TransitionEvent } from "react";
 import type { Testimonial } from "@/lib/testimonials";
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { OperatorCredentials } from "@/components/operator-credentials";
@@ -43,7 +43,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: Ap
   setRequestLocale(lang);
   const t = await getTranslations({ locale: lang, namespace: "about" });
   const tj = await getTranslations({ locale: lang, namespace: "journey" });
-  const stories = getSelectedTestimonials();
+  const stories = getSelectedTestimonials(lang);
   const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(t("whatsappMessage"))}`;
   const subnav = t.raw("subnav") as string[];
   const subnavHrefs = ["#joy", "#philosophy", "#why-us", "#booking", "#local-partners", "#stories"];
