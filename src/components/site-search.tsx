@@ -1,7 +1,7 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
-import { useRouter } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { FormEvent, KeyboardEvent, useEffect, useId, useRef, useState } from "react";
 import { matchSearchItems, type SearchItem } from "@/lib/search-types";
 
@@ -13,6 +13,7 @@ type SiteSearchProps = {
 
 export function SiteSearch({ initialQuery = "", items: suppliedItems, variant = "header" }: SiteSearchProps) {
   const router = useRouter();
+  const t = useTranslations("search");
   const listId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState(initialQuery);
@@ -58,27 +59,27 @@ export function SiteSearch({ initialQuery = "", items: suppliedItems, variant = 
 
   return <div className={`site-search site-search-${variant}`} ref={rootRef}>
     <form role="search" onSubmit={submit}>
-      <label className="sr-only" htmlFor={`${listId}-input`}>Search travel guides</label>
+      <label className="sr-only" htmlFor={`${listId}-input`}>{t("label")}</label>
       <input
         id={`${listId}-input`}
         value={query}
         onChange={(event) => { setQuery(event.target.value); setActiveIndex(-1); setOpen(true); }}
         onFocus={() => { void ensureIndex(); setOpen(true); }}
         onKeyDown={handleKeyDown}
-        placeholder="Search places and guides..."
+        placeholder={t("placeholder")}
         autoComplete="off"
         role={variant === "header" ? "combobox" : undefined}
         aria-autocomplete={variant === "header" ? "list" : undefined}
         aria-controls={listId}
         aria-expanded={variant === "header" && open}
       />
-      <button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></button>
+      <button type="submit" aria-label={t("submit")}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></button>
     </form>
     {variant === "header" && open && query.trim() && <div className="search-suggestions" id={listId} role="listbox">
-      {loading ? <p>Searching…</p> : results.length ? <>
-        {results.map((item, index) => <Link key={item.id} href={item.href} role="option" aria-selected={activeIndex === index} className={activeIndex === index ? "active" : ""} onMouseEnter={() => setActiveIndex(index)} onClick={() => setOpen(false)}><span>{item.type === "article" ? "Guide" : item.type}</span><b>{item.title}</b></Link>)}
-        <Link className="search-all" href={`/search?q=${encodeURIComponent(query.trim())}`} onClick={() => setOpen(false)}>See all search results →</Link>
-      </> : <p>No guides found. Try another phrase.</p>}
+      {loading ? <p>{t("searching")}</p> : results.length ? <>
+        {results.map((item, index) => <Link key={item.id} href={item.href} role="option" aria-selected={activeIndex === index} className={activeIndex === index ? "active" : ""} onMouseEnter={() => setActiveIndex(index)} onClick={() => setOpen(false)}><span>{item.type === "article" ? t("guide") : item.type}</span><b>{item.title}</b></Link>)}
+        <Link className="search-all" href={`/search?q=${encodeURIComponent(query.trim())}`} onClick={() => setOpen(false)}>{t("seeAll")}</Link>
+      </> : <p>{t("none")}</p>}
     </div>}
   </div>;
 }

@@ -18,6 +18,15 @@
     "en": "EN",
     "zh": "中文"
   },
+  "search": {
+    "label": "Search travel guides",
+    "placeholder": "Search places and guides...",
+    "submit": "Search",
+    "searching": "Searching…",
+    "guide": "Guide",
+    "seeAll": "See all search results →",
+    "none": "No guides found. Try another phrase."
+  },
   "footer": {
     "tagline": "China, at Your Pace.",
     "intro": "Thoughtfully designed journeys, practical guidance, and local insight for travelers exploring China.",
