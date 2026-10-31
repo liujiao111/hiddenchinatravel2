@@ -32,6 +32,7 @@ export const zhLivePaths = new Set<string>([
   "/journeys/kunming-dali-lijiang-shangri-la-private-tour",
   "/custom-china-tour",
   "/contact",
+  "/about-us",
 ]);
 
 export function isZhLive(path: string): boolean {

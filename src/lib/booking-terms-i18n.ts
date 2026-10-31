@@ -1,4 +1,4 @@
-import { brandIdentity, bookingSteps, bookingFaq, operatorFaq, bookingTermCards } from "./booking-terms";
+import { brandIdentity, bookingSteps, bookingFaq, operatorFaq, bookingTermCards, contractCopy, paymentCopy, cancellationCopy } from "./booking-terms";
 import { licensedOperator } from "./journey-trust";
 
 type Lang = "en" | "zh";
@@ -43,6 +43,11 @@ export function getBookingFaq(lang: Lang) {
 
 export function getOperatorFaq(lang: Lang) {
   return lang === "zh" ? { question: "和谁签约预订？", answer: `${zhBrand.short}${zhBrand.consultant}${zhContract}` } : operatorFaq;
+}
+
+export function getOperatorPaymentCopy(lang: Lang) {
+  if (lang !== "zh") return `${brandIdentity.short} ${contractCopy.full} ${paymentCopy.product} ${cancellationCopy.full}`;
+  return `${zhBrand.short}${zhContract}${zhPaymentProduct}${zhCancellation}`;
 }
 
 export function getBookingTermCards(lang: Lang): readonly (readonly [string, string])[] {

@@ -1,4 +1,4 @@
-import { driverGuideProof, hotelProof, muslimFriendly, vehicleProof } from "./journey-trust";
+import { driverGuideProof, hotelProof, licensedOperator, muslimFriendly, operatorCredentials, vehicleProof } from "./journey-trust";
 
 type Lang = "en" | "zh";
 
@@ -119,6 +119,21 @@ const zhMuslimFriendly = {
 
 export function getMuslimFriendly(lang: Lang) {
   return lang === "zh" ? { ...muslimFriendly, ...zhMuslimFriendly } : muslimFriendly;
+}
+
+export function getOperatorCredentials(lang: Lang) {
+  if (lang !== "zh") return operatorCredentials;
+  return {
+    ...operatorCredentials,
+    kicker: "持牌旅行社",
+    title: "可供查验的公司资质",
+    copy: `${licensedOperator.nameZh}（${licensedOperator.nameEn}）是 Hidden China Travel 背后的持牌旅行社。办公地址：${licensedOperator.addressZh}。该旅行社出具旅游合同、以对公账户收款并执行行程。旅行社业务经营许可证号：${licensedOperator.permitNumber}，统一社会信用代码：${licensedOperator.unifiedSocialCreditCode}。`,
+    documents: operatorCredentials.documents.map((document) => ({
+      ...document,
+      alt: document.href.includes("business-license") ? `${licensedOperator.nameZh}营业执照` : `${licensedOperator.nameZh}旅行社业务经营许可证 ${licensedOperator.permitNumber}`,
+      label: document.href.includes("business-license") ? "查看营业执照 ↗" : "查看旅行社业务经营许可证 ↗",
+    })),
+  };
 }
 
 export function getDriverGuideProof(lang: Lang) {
