@@ -1,5 +1,8 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { brandIdentity } from "@/lib/booking-terms";
+import { licensedOperator } from "@/lib/journey-trust";
 import { siteConfig } from "@/lib/site-config";
 
 const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=Hi%2C%20I%27d%20like%20help%20planning%20my%20China%20trip`;
@@ -9,17 +12,26 @@ export function ContentCta() {
 }
 
 export function ContentFooter() {
+  const t = useTranslations("footer");
+  const fill = (s: string) =>
+    s.replaceAll("{agencyEn}", licensedOperator.nameEn)
+      .replaceAll("{agencyZh}", licensedOperator.nameZh)
+      .replaceAll("{permit}", licensedOperator.permitNumber)
+      .replaceAll("{credit}", licensedOperator.unifiedSocialCreditCode)
+      .replaceAll("{addressEn}", licensedOperator.addressEn)
+      .replaceAll("{addressZh}", licensedOperator.addressZh);
+
   return (
     <footer className="footer">
       <div className="shell footer-grid">
         <section className="footer-brand" aria-labelledby="footer-brand-title">
           <h2 id="footer-brand-title">Hidden China Travel</h2>
-          <p className="footer-tagline">China, at Your Pace.</p>
-          <p>Thoughtfully designed journeys, practical guidance, and local insight for travelers exploring China.</p>
-          <p className="footer-origin">Born in Yunnan. Shaped by experiences abroad.</p>
-          <p className="footer-origin">{brandIdentity.footer}</p>
-          <p className="footer-origin">{brandIdentity.address}</p>
-          <p className="footer-origin"><a href={brandIdentity.registryHref} target="_blank" rel="noopener noreferrer">Look up the company on gsxt.gov.cn</a></p>
+          <p className="footer-tagline">{t("tagline")}</p>
+          <p>{t("intro")}</p>
+          <p className="footer-origin">{t("origin")}</p>
+          <p className="footer-origin">{fill(t("companyLine"))}</p>
+          <p className="footer-origin">{fill(t("address"))}</p>
+          <p className="footer-origin"><a href={licensedOperator.creditRegistryUrl} target="_blank" rel="noopener noreferrer">{t("registry")}</a></p>
           <nav className="footer-social" aria-label="Social media">
             <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5zm8 2H8a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3zm-4 3.2A4.8 4.8 0 1 1 7.2 13 4.8 4.8 0 0 1 12 8.2zm0 2A2.8 2.8 0 1 0 14.8 13 2.8 2.8 0 0 0 12 10.2zM17.35 6.4a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>
@@ -30,63 +42,62 @@ export function ContentFooter() {
           </nav>
         </section>
 
-        <nav className="footer-nav" aria-label="Journeys">
-          <h3>Journeys</h3>
-          <Link href="/journeys/kunming-dali-shaxi-lijiang-6-days">First Encounter Yunnan</Link>
-          <Link href="/journeys/kunming-dali-lijiang-shangri-la-private-tour">The Essence of Yunnan</Link>
-          <Link href="/journeys">Yunnan Journeys</Link>
-          <Link href="/custom-china-tour">Tailor-Made Yunnan</Link>
+        <nav className="footer-nav" aria-label={t("journeysHeading")}>
+          <h3>{t("journeysHeading")}</h3>
+          <Link href="/journeys/kunming-dali-shaxi-lijiang-6-days">{t("journeyFirst")}</Link>
+          <Link href="/journeys/kunming-dali-lijiang-shangri-la-private-tour">{t("journeyEssence")}</Link>
+          <Link href="/journeys">{t("journeyAll")}</Link>
+          <Link href="/custom-china-tour">{t("journeyCustom")}</Link>
         </nav>
 
-        <nav className="footer-nav footer-resources" aria-label="Resources">
-          <h3>Resources</h3>
-          <Link href="/survival-kit">China Survival Kit</Link>
+        <nav className="footer-nav footer-resources" aria-label={t("resourcesHeading")}>
+          <h3>{t("resourcesHeading")}</h3>
+          <Link href="/survival-kit">{t("survivalKit")}</Link>
           <div className="footer-guide-group">
-            <Link className="footer-guide-title" href="/china-travel-essentials">Travel Guides</Link>
+            <Link className="footer-guide-title" href="/china-travel-essentials">{t("travelGuides")}</Link>
             <div className="footer-topic-links" aria-label="Travel guides by destination">
-              <Link href="/china-destinations/yunnan">Yunnan</Link>
-              <Link href="/dali-travel-guide">Dali</Link>
-              <Link href="/lijiang-travel-guide">Lijiang</Link>
-              <Link href="/kunming-travel-guide">Kunming</Link>
-              <Link className="footer-explore-more" href="/china-destinations/yunnan">Explore more →</Link>
+              <Link href="/china-destinations/yunnan">{t("destYunnan")}</Link>
+              <Link href="/dali-travel-guide">{t("destDali")}</Link>
+              <Link href="/lijiang-travel-guide">{t("destLijiang")}</Link>
+              <Link href="/kunming-travel-guide">{t("destKunming")}</Link>
+              <Link className="footer-explore-more" href="/china-destinations/yunnan">{t("exploreMore")}</Link>
             </div>
           </div>
-          <Link href="/payments-in-china">Payments</Link>
-          <Link href="/china-currency-converter">Currency Converter</Link>
-          <Link href="/china-visa-checker">Visa Checker</Link>
-          <Link href="/internet-in-china">Internet &amp; eSIM</Link>
-          <Link href="/transport-in-china">Transportation</Link>
-          <Link href="/attraction-tickets-in-china">Booking</Link>
+          <Link href="/payments-in-china">{t("payments")}</Link>
+          <Link href="/china-currency-converter">{t("currencyConverter")}</Link>
+          <Link href="/china-visa-checker">{t("visaChecker")}</Link>
+          <Link href="/internet-in-china">{t("internet")}</Link>
+          <Link href="/transport-in-china">{t("transport")}</Link>
+          <Link href="/attraction-tickets-in-china">{t("booking")}</Link>
         </nav>
 
-        <nav className="footer-nav" aria-label="Company">
-          <h3>Company</h3>
-          <Link href="/about-us">About Joy Liu</Link>
-          <Link href="/traveler-stories">Traveler stories</Link>
-          <Link href="/licensed-operator">Licensed operator</Link>
-          <Link href="/booking">Booking &amp; service</Link>
-          <Link href="/contact">Contact</Link>
+        <nav className="footer-nav" aria-label={t("companyHeading")}>
+          <h3>{t("companyHeading")}</h3>
+          <Link href="/about-us">{t("about")}</Link>
+          <Link href="/traveler-stories">{t("stories")}</Link>
+          <Link href="/licensed-operator">{t("licensed")}</Link>
+          <Link href="/booking">{t("bookingService")}</Link>
+          <Link href="/contact">{t("contact")}</Link>
           <Link href={whatsapp}>WhatsApp</Link>
         </nav>
       </div>
 
       <div className="shell footer-cta">
-        <p>Planning a trip to China?</p>
-        <Link href={whatsapp}>Chat with Joy on WhatsApp <span aria-hidden="true">→</span></Link>
+        <p>{t("ctaText")}</p>
+        <Link href={whatsapp}>{t("ctaLink")} <span aria-hidden="true">→</span></Link>
       </div>
 
       <div className="shell footer-bottom">
-        <span>© 2026 Hidden China Travel</span>
+        <span>{t("copyright")}</span>
         <nav className="footer-legal" aria-label="Legal and company links">
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/booking">Booking &amp; service</Link>
-          <Link href="/terms-of-service">Terms of Use</Link>
-          <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
-          <Link href="/contact">Contact</Link>
-          <Link href="/about-us">About</Link>
+          <Link href="/privacy-policy">{t("privacy")}</Link>
+          <Link href="/booking">{t("bookingService")}</Link>
+          <Link href="/terms-of-service">{t("terms")}</Link>
+          <Link href="/affiliate-disclosure">{t("affiliate")}</Link>
+          <Link href="/contact">{t("contact")}</Link>
+          <Link href="/about-us">{t("aboutShort")}</Link>
         </nav>
       </div>
     </footer>
   );
 }
-

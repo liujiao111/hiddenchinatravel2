@@ -25,7 +25,9 @@ export const htmlLang: Record<AppLocale, string> = {
  * with noindex and stays out of the sitemap until its translation lands
  * (see docs/i18n-plan.md §6 — 渐进发布).
  */
-export const zhLivePaths = new Set<string>([]);
+export const zhLivePaths = new Set<string>([
+  "/", // 中文首页已翻译上线
+]);
 
 export function isZhLive(path: string): boolean {
   return zhLivePaths.has(path);

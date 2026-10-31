@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
@@ -7,83 +8,70 @@ import { EnquireLink } from "@/components/enquire-link";
 import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
-import { brandIdentity, cancellationCopy, insuranceCopy, paymentCopy } from "@/lib/booking-terms";
 import { licensedOperator } from "@/lib/journey-trust";
 import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
 import { organizationJsonLd } from "@/lib/seo";
-import { siteConfig } from "@/lib/site-config";
-import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
+import { getSelectedTestimonials } from "@/lib/testimonials";
 
 const canonical = "https://hiddenchinatravel.com/";
-const title = "Private Yunnan Tours & Tailor-Made Journeys";
-const description = "Plan a private Yunnan journey through Kunming, Dali, Lijiang and Shaxi, with tailor-made itineraries, private transport, local guides and personal support.";
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
+type Props = { params: Promise<{ lang: AppLocale }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
+  const t = await getTranslations({ locale: lang, namespace: "home" });
   return localizedStaticMetadata(lang, "/", {
-    title: { absolute: `${title} | Hidden China Travel` },
-    description,
+    title: { absolute: t("meta.title") },
+    description: t("meta.description"),
     openGraph: {
-      title,
-      description,
+      title: t("meta.ogTitle"),
+      description: t("meta.description"),
       url: canonical,
       type: "website",
       siteName: "Hidden China Travel",
-      images: [{ url: "/home/hero.webp", alt: "Boardwalk beside a turquoise alpine lake under snow mountains in Yunnan" }],
+      images: [{ url: "/home/hero.webp", alt: t("heroAlt") }],
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      title: t("meta.ogTitle"),
+      description: t("meta.description"),
       images: ["/home/hero.webp"],
     },
   });
 }
 
 const whatsapp = "https://wa.me/8618880441791?text=" + encodeURIComponent("Hi Joy, I'd like help planning a private Yunnan journey.");
-const howItWorks = [
-  ["01", "Share Your Ideas", "Tell us when you plan to travel, how many people are joining and what you would most like to experience."],
-  ["02", "Receive a Proposed Route", "Joy will suggest a practical route based on travel times, seasonal conditions and your preferred pace."],
-  ["03", "Refine and Confirm", "Adjust the itinerary, hotels and services before reviewing the final quotation and deciding whether to book."],
-];
-const reasons = [
-  ["01", "Private by design", "Travel with your own party, private vehicle and agreed itinerary. There are no large coach groups or fixed sightseeing schedules."],
-  ["02", "No shopping stops", "Your journey is designed around places, people and experiences, without mandatory shopping stops or commission-led detours."],
-  ["03", "Licensed local operation", `Hidden China Travel is the English-language site of ${licensedOperator.nameEn} in Kunming. The contract and payments go to that company’s account: 20% after you sign, 80% after your driver meets you.`],
-  ["04", "Clear details before payment", "Review the proposed route, services, inclusions, exclusions and quoted price before deciding whether to confirm."],
-  ["05", "First-time China friendly", "Receive practical guidance about payments, mobile data, transportation, maps and arrival preparation."],
-  ["06", "Personal support", "Joy remains available before and during your journey, so questions and unexpected changes do not have to become travel-day stress."],
-];
-const supportItems = [
-  { title: "Entry Requirements", detail: "Check visa, visa-free or transit rules for your passport and route.", href: "/survival-kit#entry" },
-  { title: "Payments", detail: "Set up Alipay and a backup way to pay before you leave.", href: "/survival-kit#payment" },
-  { title: "Mobile Data and Internet", detail: "Choose roaming or a travel eSIM and save the setup instructions.", href: "/survival-kit#esim" },
-  { title: "Maps and Transportation", detail: "Prepare maps, trains and everyday transport before arrival.", href: "/survival-kit#maps" },
-];
-const destinations = [
-  { name: "Kunming", note: "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.", image: "/assets/blog/kunming-travel-guide/cover-stone-forest.webp", alt: "Limestone pinnacles of the Stone Forest near Kunming", href: "/kunming-travel-guide", cta: "EXPLORE KUNMING" },
-  { name: "Dali", note: "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.", image: "/assets/destinations/yunnan/dali.webp", alt: "Wuhua Tower in Dali Ancient Town beneath the Cangshan mountains", href: "/dali-travel-guide", cta: "EXPLORE DALI" },
-  { name: "Shaxi", note: "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.", image: "/assets/destinations/yunnan/shaxi.webp", alt: "Traditional tiled roofs and lanes in Shaxi Ancient Town", href: "/dali-hidden-gems-off-the-beaten-path", cta: "DISCOVER SHAXI" },
-  { name: "Lijiang", note: "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", image: "/assets/destinations/yunnan/lijiang.webp", alt: "Rooftops and canals in Lijiang Old Town with mountains beyond", href: "/lijiang-travel-guide", cta: "EXPLORE LIJIANG" },
-  { name: "Lugu Lake", note: "A quieter northwest road, only worth adding when you have extra days beyond a first Yunnan week.", image: "/assets/destinations/yunnan/lugu-lake.webp", alt: "Quiet shoreline and pavilion on Lugu Lake in northwest Yunnan", href: "/china-destinations/yunnan", cta: "SEE THE YUNNAN ROUTE" },
-  { name: "Shangri-La", note: "High-altitude landscapes and a distinctly different side of Yunnan.", image: "/assets/destinations/yunnan/shangri-la.webp", alt: "Highland lake and forest near Shangri-La", href: "/shangri-la-travel-guide", cta: "EXPLORE SHANGRI-LA" },
-];
-const faqs = [
-  ["How much does a private Yunnan journey cost?", "Pricing depends on the route, number of travelers, travel dates and hotel standard. After learning more about your plans, we will provide a tailored quotation with the inclusions and exclusions clearly explained."],
-  ["Can the itinerary be customized?", "Yes. Suggested journeys are starting points rather than fixed packages. We can adjust the number of days, pace, hotels, destinations, activities and level of guiding according to your group’s interests and requirements."],
-  ["Do I need to pay before receiving a proposed route?", "No. You can begin by sharing your dates, approximate trip length, group size and interests. Payment is only discussed after you have reviewed the proposed arrangements and quotation."],
-  ["Who operates the journey in Yunnan?", `${brandIdentity.short} ${brandIdentity.consultant} The travel contract and payments are with that agency, to its corporate account.`],
-  ["How do payment and cancellation work?", `${paymentCopy.product} ${cancellationCopy.full}`],
-  ["What is normally included?", `Inclusions vary by journey but include private transport, a driver-guide throughout, accommodation and selected attraction tickets. Your proposal states what is included and what you pay for separately. ${insuranceCopy.full}`],
-  ["How soon will I receive a reply?", "Joy normally replies within 2 hours on weekdays, 9:00–18:00 Beijing time, and within 24 hours at other times. More detailed proposals may take longer for complex routes or busy dates."],
-];
 
-export default function Home() {
+type Step = [string, string, string];
+type SupportItem = { title: string; detail: string; href: string };
+type Destination = { name: string; note: string; image: string; alt: string; href: string; cta: string };
+type Faq = [string, string];
+
+export default async function Home({ params }: Props) {
+  const { lang } = await params;
+  setRequestLocale(lang);
+  const t = await getTranslations({ locale: lang, namespace: "home" });
+
+  const agencyName = lang === "zh" ? licensedOperator.nameZh : licensedOperator.nameEn;
+  const fill = (s: string) =>
+    s.replaceAll("{agencyEn}", licensedOperator.nameEn)
+      .replaceAll("{agencyZh}", licensedOperator.nameZh)
+      .replaceAll("{agency}", agencyName);
+
   const journeys = getAllJourneys();
-  const stories = getSelectedTestimonials();
   const firstEncounter = journeys.find((journey) => journey.slug === "kunming-dali-shaxi-lijiang-6-days");
   const classic = journeys.find((journey) => journey.slug === "kunming-dali-lijiang-shangri-la-private-tour");
+
+  const howItWorks = (t.raw("howItWorks") as Step[]).map(([n, title, text]) => [n, title, fill(text)] as Step);
+  const reasons = (t.raw("reasons") as Step[]).map(([n, title, text]) => [n, title, fill(text)] as Step);
+  const supportItems = t.raw("supportItems") as SupportItem[];
+  const destinations = t.raw("destinations") as Destination[];
+  const faqs = (t.raw("faqs") as Faq[]).map(([q, a]) => [q, fill(a)] as Faq);
+
+  const fromPrice = (price: number, currency: string, basis: string) =>
+    t("fromPrice", { price: formatPriceLabel(price, currency), basis });
+
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -92,6 +80,7 @@ export default function Home() {
         "@type": "WebSite",
         name: "Hidden China Travel",
         url: "https://hiddenchinatravel.com",
+        inLanguage: lang === "zh" ? "zh-Hans" : "en",
       },
       {
         "@type": "FAQPage",
@@ -106,36 +95,36 @@ export default function Home() {
 
   return <main><SiteHeader />
     <section className="hero">
-      <Image src="/home/hero.webp" alt="Boardwalk beside a turquoise alpine lake under snow mountains in Yunnan" fill preload unoptimized sizes="100vw" />
+      <Image src="/home/hero.webp" alt={t("heroAlt")} fill preload unoptimized sizes="100vw" />
       <div className="hero-shade" />
       <div className="hero-copy">
-        <p className="hero-kicker">PRIVATE YUNNAN JOURNEYS</p>
-        <h1>Discover Yunnan<br />at Your Own Pace</h1>
-        <p className="hero-lead hero-desktop-only">Explore Dali, Lijiang and beyond through a private journey shaped around your dates, interests and preferred pace.</p>
-        <p className="hero-lead hero-mobile-only">Private journeys through Dali, Lijiang and beyond, shaped around your dates, interests and pace.</p>
-        <p className="hero-brand hero-desktop-only">Born in Yunnan. Shaped by experiences abroad.</p>
+        <p className="hero-kicker">{t("heroKicker")}</p>
+        <h1>{t("heroTitleLine1")}<br />{t("heroTitleLine2")}</h1>
+        <p className="hero-lead hero-desktop-only">{t("heroLeadDesktop")}</p>
+        <p className="hero-lead hero-mobile-only">{t("heroLeadMobile")}</p>
+        <p className="hero-brand hero-desktop-only">{t("heroBrand")}</p>
         <div className="hero-actions">
-          <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">Start Planning My Journey</EnquireLink>
-          <Link href="/journeys" className="button button-light hero-desktop-only">EXPLORE JOURNEYS</Link>
+          <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">{t("cta")}</EnquireLink>
+          <Link href="/journeys" className="button button-light hero-desktop-only">{t("exploreJourneys")}</Link>
         </div>
-        <p className="hero-trust-line hero-desktop-only">No shopping stops · 20% after the signed contract · 80% after your driver meets you</p>
-        <p className="hero-trust-line hero-mobile-only">20% after the contract · 80% when your driver meets you</p>
-        <small>{siteConfig.replyTime}</small>
-        <Link href="/journeys" className="hero-text-link hero-mobile-only">Explore journeys →</Link>
+        <p className="hero-trust-line hero-desktop-only">{t("heroTrustDesktop")}</p>
+        <p className="hero-trust-line hero-mobile-only">{t("heroTrustMobile")}</p>
+        <small>{t("replyTime")}</small>
+        <Link href="/journeys" className="hero-text-link hero-mobile-only">{t("exploreJourneysMobile")}</Link>
       </div>
     </section>
 
     <section className="section process" id="how-it-works">
       <div className="narrow">
-        <p className="kicker">HOW IT WORKS</p>
-        <h2>Planning Your Yunnan Journey Is Simple</h2>
-        <p>You do not need a finished itinerary. Share your dates, group size and travel interests, and Joy will help turn your ideas into a practical private journey.</p>
+        <p className="kicker">{t("howKicker")}</p>
+        <h2>{t("howHeading")}</h2>
+        <p>{t("howIntro")}</p>
       </div>
       <div className="shell">
         <div className="process-grid">{howItWorks.map(([number, title, text]) => <div key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></div>)}</div>
         <div className="center">
-          <EnquireLink data-cta-location="home_how_it_works" className="button button-blue">Start Planning My Journey</EnquireLink>
-          <p className="home-helper">No payment is required to start planning.</p>
+          <EnquireLink data-cta-location="home_how_it_works" className="button button-blue">{t("cta")}</EnquireLink>
+          <p className="home-helper">{t("howHelper")}</p>
         </div>
       </div>
     </section>
@@ -143,109 +132,109 @@ export default function Home() {
     <section className="section section-sand home-journeys" id="journeys">
       <div className="shell">
         <div className="section-heading">
-          <p className="kicker">FEATURED PRIVATE JOURNEYS</p>
-          <h2>A Thoughtful Starting Point for Your Yunnan Trip</h2>
-          <p>Choose one of our suggested journeys or use it as inspiration for a route designed around you. Every private journey can be adjusted to suit your dates, group and preferred pace.</p>
+          <p className="kicker">{t("journeysKicker")}</p>
+          <h2>{t("journeysHeading")}</h2>
+          <p>{t("journeysIntro")}</p>
         </div>
         <div className="journeys-card-grid home-journeys-grid">
           {firstEncounter ? <JourneyCard priority journey={{
-            title: "First Encounter Yunnan",
-            subtitle: "Kunming • Dali • Lijiang • Shaxi",
+            title: t("card1Title"),
+            subtitle: t("card1Subtitle"),
             href: `/journeys/${firstEncounter.slug}`,
             image: firstEncounter.frontmatter.coverImage,
             imageAlt: firstEncounter.frontmatter.coverAlt || firstEncounter.frontmatter.title,
-            duration: "6 Days / 5 Nights Private Journey",
-            fromPrice: `From ${formatPriceLabel(firstEncounter.frontmatter.fromPrice, firstEncounter.frontmatter.currency)} ${firstEncounter.frontmatter.priceBasis}`,
-            features: ["Private vehicle", "Driver-guide throughout", "20% deposit, 80% after pickup", "No shopping stops"],
-            ctaLabel: "View this journey →",
+            duration: t("card1Duration"),
+            fromPrice: fromPrice(firstEncounter.frontmatter.fromPrice, firstEncounter.frontmatter.currency, firstEncounter.frontmatter.priceBasis),
+            features: t.raw("card1Features") as string[],
+            ctaLabel: t("cardCta"),
             trackingLocation: "home_featured_first_encounter",
           }} /> : null}
           {classic ? <JourneyCard journey={{
-            title: "The Essence of Yunnan",
-            subtitle: "Erhai Lake • Jade Dragon Snow Mountain • Tiger Leaping Gorge",
+            title: t("card2Title"),
+            subtitle: t("card2Subtitle"),
             href: `/journeys/${classic.slug}`,
             image: classic.frontmatter.coverImage,
             imageAlt: classic.frontmatter.coverAlt || classic.frontmatter.title,
-            duration: "8 Days / 7 Nights Private Journey",
-            fromPrice: `From ${formatPriceLabel(classic.frontmatter.fromPrice, classic.frontmatter.currency)} ${classic.frontmatter.priceBasis}`,
-            features: ["Driver-guide throughout", "Handpicked hotels", "20% deposit, 80% after pickup", "No shopping stops"],
-            ctaLabel: "View this journey →",
+            duration: t("card2Duration"),
+            fromPrice: fromPrice(classic.frontmatter.fromPrice, classic.frontmatter.currency, classic.frontmatter.priceBasis),
+            features: t.raw("card2Features") as string[],
+            ctaLabel: t("cardCta"),
             trackingLocation: "home_featured_classic",
           }} /> : null}
           <JourneyCard journey={{
-            title: "Tailor-Made Yunnan",
-            subtitle: "Private Journey Designed Around You",
+            title: t("card3Title"),
+            subtitle: t("card3Subtitle"),
             href: "/custom-china-tour",
             image: "/home/local-support.webp",
-            imageAlt: "A wooden boat on a highland lake in Yunnan",
-            destination: "Designed around your dates, interests and pace",
-            features: ["Couples, families and friends", "Driver-guide throughout", "Slower routes with fewer hotel changes", "First-time China travel support"],
-            ctaLabel: "Design my Yunnan journey →",
+            imageAlt: t("card3ImageAlt"),
+            destination: t("card3Destination"),
+            features: t.raw("card3Features") as string[],
+            ctaLabel: t("card3Cta"),
             trackingLocation: "home_featured_custom",
           }} />
         </div>
-        <p className="home-helper">A travel month, number of days and approximate group size are enough to begin.</p>
+        <p className="home-helper">{t("journeysHelper")}</p>
       </div>
     </section>
 
     <section className="section why" id="why-us">
       <div className="shell">
         <div className="section-heading light">
-          <p className="kicker">WHY HIDDEN CHINA TRAVEL</p>
-          <h2>Local Knowledge, Seen From Both Sides</h2>
-          <p>Hidden China Travel combines firsthand knowledge of Yunnan with an understanding of the questions international travelers often have before visiting China.</p>
+          <p className="kicker">{t("whyKicker")}</p>
+          <h2>{t("whyHeading")}</h2>
+          <p>{t("whyIntro")}</p>
         </div>
         <div className="reason-grid reason-grid-six">{reasons.map(([number, title, text]) => <article key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></article>)}</div>
       </div>
     </section>
 
     <Testimonials
-      items={stories}
-      eyebrow={selectedTestimonialsCopy.eyebrow}
-      heading={selectedTestimonialsCopy.heading}
-      intro={selectedTestimonialsCopy.intro}
-      note={selectedTestimonialsCopy.note}
+      items={getSelectedTestimonials()}
+      eyebrow={t("storiesEyebrow")}
+      heading={t("storiesHeading")}
+      intro={t("storiesIntro")}
+      note={t("storiesNote")}
       archiveHref="/traveler-stories"
-      archiveLabel="Read the traveler stories"
+      archiveLabel={t("storiesArchive")}
     />
 
     <section className="about-feature reverse home-founder" id="joy">
       <div className="about-feature-image">
-        <Image src="/brand/founder/portrait.webp" alt="Joy Liu, founder of Hidden China Travel" fill sizes="(max-width: 800px) 100vw, 50vw" />
+        <Image src="/brand/founder/portrait.webp" alt={t("founderAlt")} fill sizes="(max-width: 800px) 100vw, 50vw" />
       </div>
       <div className="about-feature-copy">
-        <p className="kicker">MEET YOUR TRAVEL PLANNER</p>
-        <h2>Born in Yunnan. Shaped by Experiences Abroad.</h2>
-        <p>I grew up in Yunnan and later lived in Japan and the Philippines.</p>
-        <p>Living abroad meant becoming the foreign visitor myself. Everyday tasks that local people take for granted, such as making payments, using transportation or understanding unfamiliar systems, suddenly required more preparation and trusted local context.</p>
-        <p>That experience changed the way I think about travel.</p>
-        <p>I created Hidden China Travel to help international visitors experience Yunnan with fewer uncertainties, more personal support and enough time to appreciate the places between the famous landmarks.</p>
-        <p>I am your travel consultant at Yunnan Meizhen International Travel Agency. I help shape the route, then the agency confirms the contract, receives payment and operates the journey.</p>
-        <p className="home-signature"><b>Joy Liu</b><span>Founder and Yunnan Travel Planner</span></p>
-        <Link href="/about-us">Read Joy’s story →</Link>
-        <Link href="/contact">Ask Joy a question →</Link>
+        <p className="kicker">{t("founderKicker")}</p>
+        <h2>{t("founderHeading")}</h2>
+        <p>{t("founderP1")}</p>
+        <p>{t("founderP2")}</p>
+        <p>{t("founderP3")}</p>
+        <p>{t("founderP4")}</p>
+        <p>{t("founderP5")}</p>
+        <p className="home-signature"><b>Joy Liu</b><span>{t("founderRole")}</span></p>
+        <Link href="/about-us">{t("founderStoryLink")}</Link>
+        <Link href="/contact">{t("founderAskLink")}</Link>
       </div>
     </section>
 
     <section className="yunnan-prepare section" id="guides">
       <div className="shell">
         <div className="yunnan-section-heading light">
-          <span>FIRST-TIME CHINA SUPPORT</span>
-          <h2>We Help With More Than the Itinerary</h2>
-          <p>Payments, mobile data, maps, transportation and attraction bookings can work differently in China. Our practical travel guides help you prepare before departure, while guests booking a private journey receive relevant preparation advice for their route.</p>
+          <span>{t("prepareKicker")}</span>
+          <h2>{t("prepareHeading")}</h2>
+          <p>{t("prepareIntro")}</p>
         </div>
-        <div className="yunnan-practical-grid">{supportItems.map((item, index) => <Link href={item.href} key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p><b>GET READY →</b></Link>)}</div>
-        <div className="center"><Link href="/survival-kit" className="button button-light">OPEN THE CHINA PRE-DEPARTURE CHECKLIST →</Link></div>
+        <div className="yunnan-practical-grid">{supportItems.map((item, index) => <Link href={item.href} key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p><b>{t("supportItemCta")}</b></Link>)}</div>
+        <div className="center"><Link href="/survival-kit" className="button button-light">{t("checklistCta")}</Link></div>
       </div>
     </section>
 
     <section className="section destinations-section" id="destinations">
       <div className="shell">
         <div className="section-heading">
-          <p className="kicker">EXPLORE YUNNAN</p>
-          <h2>Find the Places That Fit Your Journey</h2>
-          <p>Yunnan is more than one route. Begin with the places we know best, then combine them in a way that suits your time and interests.</p>
-          <Link className="section-heading-link" href="/china-destinations/yunnan">Open the complete Yunnan travel guide →</Link>
+          <p className="kicker">{t("destKicker")}</p>
+          <h2>{t("destHeading")}</h2>
+          <p>{t("destIntro")}</p>
+          <Link className="section-heading-link" href="/china-destinations/yunnan">{t("destGuideLink")}</Link>
         </div>
         <div className="destination-grid home-destination-grid">{destinations.map(({ name, note, image, alt, href, cta }) => <article className="image-card" key={name}><Image src={image} alt={alt} fill sizes="(max-width: 700px) 100vw, 33vw" /><div className="card-shade" /><div className="image-card-copy"><p>{note}</p><h3>{name}</h3><Link href={href} className="button button-light">{cta}</Link></div></article>)}</div>
       </div>
@@ -254,24 +243,24 @@ export default function Home() {
     <section className="journey-faq section" id="questions">
       <div className="narrow">
         <div className="section-heading">
-          <p className="kicker">BEFORE YOU START</p>
-          <h2>Frequently Asked Questions</h2>
+          <p className="kicker">{t("faqKicker")}</p>
+          <h2>{t("faqHeading")}</h2>
         </div>
         {faqs.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}
       </div>
     </section>
 
     <section className="cta-band final-cta" id="plan">
-      <Image src="/home/plan-journey.webp" alt="Turquoise lake and snow mountains in Yunnan" fill unoptimized sizes="100vw" />
+      <Image src="/home/plan-journey.webp" alt={t("finalAlt")} fill unoptimized sizes="100vw" />
       <div className="hero-shade" />
       <div>
-        <h2>Ready to Start Planning Yunnan?</h2>
-        <p>You do not need a finished itinerary. Tell us your travel dates or approximate month, number of travelers and the places or experiences that interest you. Joy will help turn those ideas into a practical private journey.</p>
+        <h2>{t("finalHeading")}</h2>
+        <p>{t("finalText")}</p>
         <div className="hero-actions">
-          <EnquireLink data-cta-location="home_final_custom" className="button button-blue">Start Planning My Journey</EnquireLink>
-          <Link href={whatsapp} data-cta-location="home_final_whatsapp" className="button button-light">CHAT WITH JOY ON WHATSAPP</Link>
+          <EnquireLink data-cta-location="home_final_custom" className="button button-blue">{t("cta")}</EnquireLink>
+          <Link href={whatsapp} data-cta-location="home_final_whatsapp" className="button button-light">{t("finalWhatsapp")}</Link>
         </div>
-        <p className="final-cta-trust">No payment to start planning · 20% after the signed contract · 80% after your driver meets you</p>
+        <p className="final-cta-trust">{t("finalTrust")}</p>
       </div>
     </section>
     <ContentFooter />
