@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllContent, getContentBySlug, translationSlug } from "@/lib/content";
 import { isZhLive, localeUrl } from "@/lib/i18n-seo";
 import { getAllJourneys, getJourneyBySlug } from "@/lib/journeys";
-import { getTravelJournals } from "@/lib/travel-journals";
+import { getTravelJournal, getTravelJournals } from "@/lib/travel-journals";
 import { getPhase1CountryEditorials } from "@/lib/visa-checker/country-pages";
 
 const coreUpdated = new Date("2026-10-22");
@@ -30,9 +30,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     localizedEntry("/", isZhLive("/"), { lastModified: coreUpdated, changeFrequency: "weekly", priority: 1 }),
     localizedEntry("/about-us", isZhLive("/about-us"), { lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.6 }),
     localizedEntry("/traveler-stories", isZhLive("/traveler-stories"), { lastModified: new Date("2026-10-26"), changeFrequency: "monthly", priority: 0.7 }),
-    // Traveler stories are English-only (plan phase P4).
     ...getTravelJournals().map((journal) =>
-      localizedEntry(`/traveler-stories/${journal.slug}`, false, {
+      localizedEntry(`/traveler-stories/${journal.slug}`, Boolean(getTravelJournal(journal.slug, "zh")), {
         lastModified: new Date("2026-10-26"),
         changeFrequency: "monthly" as const,
         priority: 0.7,

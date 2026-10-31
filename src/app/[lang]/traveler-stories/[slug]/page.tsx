@@ -1,32 +1,34 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { TravelJournalPage } from "@/components/travel-journal-page";
-import { alternatesFor } from "@/lib/i18n-seo";
+import { alternatesFor, type AppLocale } from "@/lib/i18n-seo";
 import { getTravelJournal, getTravelJournals } from "@/lib/travel-journals";
 
-type Props = { params: Promise<{ lang: string; slug: string }> };
+type Props = { params: Promise<{ lang: AppLocale; slug: string }> };
 
 export const dynamicParams = false;
 
-// Traveler stories are English-only for now (i18n plan phase P4) — no /zh URLs.
 export function generateStaticParams() {
-  return getTravelJournals().map((journal) => ({ lang: "en", slug: journal.slug }));
+  return (["en", "zh"] as const).flatMap((lang) =>
+    getTravelJournals(lang).map((journal) => ({ lang, slug: journal.slug })),
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const journal = getTravelJournal(slug);
+  const { lang, slug } = await params;
+  const journal = getTravelJournal(slug, lang);
   if (!journal) return {};
   const path = `/traveler-stories/${journal.slug}`;
   const title = journal.title;
+  const alternates = alternatesFor(lang, path, ["en", "zh"]);
   return {
     title,
     description: journal.description,
-    alternates: alternatesFor("en", path, ["en"]),
+    alternates,
     openGraph: {
       title: `${title} | Hidden China Travel`,
       description: journal.description,
-      url: alternatesFor("en", path, ["en"]).canonical,
+      url: alternates.canonical,
       type: "article",
       images: [{ url: journal.heroImage, alt: journal.heroAlt }],
     },
@@ -40,8 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function JournalRoute({ params }: Props) {
-  const { slug } = await params;
-  const journal = getTravelJournal(slug);
+  const { lang, slug } = await params;
+  const journal = getTravelJournal(slug, lang);
   if (!journal) notFound();
   return <TravelJournalPage journal={journal} />;
 }

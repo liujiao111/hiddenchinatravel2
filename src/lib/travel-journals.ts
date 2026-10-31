@@ -1,3 +1,5 @@
+import { travelJournalsZh } from "@/lib/travel-journals-zh";
+
 export type JournalBlock =
   | { type: "paragraph"; text: string }
   | { type: "quote"; text: string }
@@ -22,7 +24,7 @@ export type JournalPlace = {
 
 export type TravelJournal = {
   slug: string;
-  category: "Travel Journal";
+  category: string;
   featured: boolean;
   traveler: string;
   country: string;
@@ -285,14 +287,14 @@ export const travelJournals: TravelJournal[] = [
   },
 ];
 
-export function getTravelJournals() {
-  return travelJournals;
+export function getTravelJournals(lang: "en" | "zh" = "en") {
+  return lang === "zh" ? travelJournalsZh : travelJournals;
 }
 
-export function getFeaturedJournals() {
-  return travelJournals.filter((journal) => journal.featured);
+export function getFeaturedJournals(lang: "en" | "zh" = "en") {
+  return getTravelJournals(lang).filter((journal) => journal.featured);
 }
 
-export function getTravelJournal(slug: string) {
-  return travelJournals.find((journal) => journal.slug === slug);
+export function getTravelJournal(slug: string, lang: "en" | "zh" = "en") {
+  return getTravelJournals(lang).find((journal) => journal.slug === slug);
 }

@@ -1,23 +1,25 @@
+import { useLocale, useTranslations } from "next-intl";
 import { CustomJourneyLink } from "@/components/custom-journey-link";
-import { Link } from "@/i18n/navigation";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { PlanJourneyClose } from "@/components/plan-journey-close";
 import type { ContentItem } from "@/lib/content";
 import type { Journey } from "@/lib/journeys";
 import { GuideCard } from "@/components/guide-card";
 import { JourneyCard } from "@/components/journey-card";
 import { siteConfig } from "@/lib/site-config";
+import type { AppLocale } from "@/lib/i18n-seo";
 
-const journeyFeatures = ["Private journey", "No shopping stops", "Local experiences", "Flexible pace"];
-
-function readingTime(body: string) {
-  const words = body.trim().split(/\s+/).filter(Boolean).length;
-  return `${Math.max(1, Math.ceil(words / 220))} MIN READ`;
+function readingTime(body: string, locale: AppLocale, label: (count: number) => string) {
+  const count = locale === "zh"
+    ? Math.max(1, Math.ceil(body.replace(/\s/g, "").length / 400))
+    : Math.max(1, Math.ceil(body.trim().split(/\s+/).filter(Boolean).length / 220));
+  return label(count);
 }
 
-function journeyPrice(journey: Journey) {
-  const value = new Intl.NumberFormat("en-US").format(journey.frontmatter.fromPrice);
+function journeyPrice(journey: Journey, locale: AppLocale) {
+  const value = new Intl.NumberFormat(locale === "zh" ? "zh-CN" : "en-US").format(journey.frontmatter.fromPrice);
   const currency = journey.frontmatter.currency === "USD" ? "US$" : journey.frontmatter.currency === "CNY" ? "¥" : `${journey.frontmatter.currency} `;
-  return `From ${currency}${value} ${journey.frontmatter.priceBasis}`;
+  return locale === "zh" ? `${currency}${value} 起 / 每人` : `From ${currency}${value} ${journey.frontmatter.priceBasis}`;
 }
 
 export function ArticleDiscoveryFlow({
@@ -33,14 +35,17 @@ export function ArticleDiscoveryFlow({
   sourceSection?: string;
   sourcePath: string;
 }) {
-  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(`Hi Joy, I was reading "${sourceTitle}" and would like some help planning my first trip to China.`)}`;
+  const locale = useLocale() as AppLocale;
+  const t = useTranslations("contentUi");
+  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(locale === "zh" ? `你好 Joy，我正在阅读《${sourceTitle}》，想请你帮我规划第一次中国之行。` : `Hi Joy, I was reading "${sourceTitle}" and would like some help planning my first trip to China.`)}`;
+  const journeyFeatures = [t("privateJourney"), t("noShopping"), t("localExperiences"), t("flexiblePace")];
 
   return <>
     <section className="article-discovery article-explore">
       <div className="shell">
         <header className="article-flow-heading">
-          <h2>Continue Exploring China</h2>
-          <p>Practical guides to help you prepare for your first trip to China.</p>
+          <h2>{t("continueExploring")}</h2>
+          <p>{t("continueIntro")}</p>
         </header>
         <div className="article-guide-grid">
           {related.map((item) => <GuideCard key={item.slug} guide={{
@@ -49,12 +54,12 @@ export function ArticleDiscoveryFlow({
             href: `/${item.slug}`,
             image: item.frontmatter.coverImage || "/home/hero.webp",
             imageAlt: item.frontmatter.title,
-            readTime: readingTime(item.body),
+            readTime: readingTime(item.body, locale, (count) => t("minRead", { count })),
           }} />)}
         </div>
         <div className="article-secondary-link">
-          <span>Preparing for your first trip?</span>
-          <Link href="/china-travel-essentials">View the complete China Survival Kit →</Link>
+          <span>{t("preparingFirst")}</span>
+          <Link href="/china-travel-essentials">{t("viewSurvival")}</Link>
         </div>
       </div>
     </section>
@@ -62,24 +67,24 @@ export function ArticleDiscoveryFlow({
     {journey ? <section className="article-discovery article-yunnan">
       <div className="shell article-yunnan-layout">
         <div className="article-yunnan-copy">
-          <span>SEE YUNNAN AS A JOURNEY</span>
-          <h2>{sourceSection === "China Itinerary Planning" ? "See how a Yunnan route comes together." : "With the practical questions answered, what could your journey look like?"}</h2>
-          <p>Follow a private route through {journey.frontmatter.route.replaceAll(" → ", ", ")}. See the day-by-day plan, travel pace and what’s arranged before deciding whether it fits you.</p>
-          <Link className="button" data-cta-location="article_yunnan" href={`/journeys/${journey.slug}`}>SEE THE DAY-BY-DAY JOURNEY →</Link>
-          <CustomJourneyLink prompt="A different route or pace in mind?" location="article_custom_alternative" />
-          <Link className="article-yunnan-guide-link" href="/china-destinations/yunnan">Explore Yunnan travel guides →</Link>
+          <span>{t("seeYunnan")}</span>
+          <h2>{sourceSection === "China Itinerary Planning" ? t("routeTogether") : t("practicalAnswered")}</h2>
+          <p>{t("followRoute", { route: journey.frontmatter.route.replaceAll(" → ", locale === "zh" ? "、" : ", ") })}</p>
+          <Link className="button" data-cta-location="article_yunnan" href={`/journeys/${journey.slug}`}>{t("dayByDay")}</Link>
+          <CustomJourneyLink prompt={t("differentRoute")} location="article_custom_alternative" />
+          <Link className="article-yunnan-guide-link" href="/china-destinations/yunnan">{t("exploreYunnan")}</Link>
         </div>
         <div className="article-featured-journey">
           <JourneyCard journey={{
             title: journey.frontmatter.title,
-            subtitle: "An unhurried Yunnan route shaped around your dates and group.",
+            subtitle: t("unhurriedJourney"),
             href: `/journeys/${journey.slug}`,
             image: journey.frontmatter.coverImage,
             imageAlt: journey.frontmatter.title,
             duration: journey.frontmatter.duration,
-            fromPrice: journey.frontmatter.fromPrice > 0 ? journeyPrice(journey) : "Tailored quote for your dates",
+            fromPrice: journey.frontmatter.fromPrice > 0 ? journeyPrice(journey, locale) : t("tailoredQuote"),
             features: journeyFeatures,
-            ctaLabel: "See the day-by-day journey →",
+            ctaLabel: t("dayByDay"),
             trackingLocation: "article_yunnan",
           }} />
         </div>

@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import { LocaleLink as Link } from "@/components/locale-link";
 
 export type GuideCardData = {
   title: string;
@@ -11,6 +12,7 @@ export type GuideCardData = {
 };
 
 export function GuideCard({ guide }: { guide: GuideCardData }) {
+  const t = useTranslations("contentUi");
   return <Link href={guide.href} className="guide-card">
     <div className="guide-card-image">
       <Image
@@ -26,7 +28,7 @@ export function GuideCard({ guide }: { guide: GuideCardData }) {
     <div className="guide-card-copy">
       {guide.excerpt ? <p>{guide.excerpt}</p> : null}
       {guide.readTime ? <span>{guide.readTime}</span> : null}
-      <div><b>READ THIS GUIDE</b><span aria-hidden="true">↗</span></div>
+      <div><b>{t("readThisGuide")}</b><span aria-hidden="true">↗</span></div>
     </div>
   </Link>;
 }

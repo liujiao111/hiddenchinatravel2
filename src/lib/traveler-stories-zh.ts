@@ -1,0 +1,125 @@
+import type { StoryEditorial } from "@/lib/traveler-stories";
+
+export const travelerStoryEditorialZh: Record<string, StoryEditorial> = {
+  "daniel-sarah-yunnan-family": {
+    party: "一家人，再次跟 Joy 游云南",
+    setting: "云南",
+    noticed: "临时升级火车票时顺利坐上商务座，一路上的司机兼向导也很好沟通。",
+    context: "这是他们第二次跟 Joy 游云南。最让他们省心的，是不用亲自操心各种安排：风景、美食，以及临时决定升级车票时也能灵活调整的一天。",
+    image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp",
+    imageAlt: "云南沙溪河边，一位牧羊人带着白色羊群走过",
+    objectPosition: "center 62%",
+  },
+  "faisal-aisha-honeymoon": {
+    party: "新婚夫妇，把云南放进蜜月行程",
+    setting: "云南，长途蜜月旅程中的一站",
+    noticed: "云南几天的安排得到耐心协助，行前准备和其他目的地的游览也获得了实用建议。",
+    context: "他们的蜜月不只有云南，但同样需要有人耐心打理这一段，并解答第一次来中国前的各种问题。",
+    image: "/assets/blog/dali-travel-guide/dali-ancient-town-rooftops.webp",
+    imageAlt: "大理古城的传统屋顶，远处是苍山",
+    objectPosition: "center 45%",
+  },
+  "mark-susan-tiger-leaping": {
+    party: "两个人的私家旅行",
+    setting: "虎跳峡",
+    noticed: "平稳的驾驶、少数民族文化体验，以及他们口中非常美丽的风景。",
+    context: "留言不长，却很具体：一趟私家旅行、一段峡谷、少数民族文化，还有一位友善、耐心、把他们照顾得很好的司机兼向导。",
+    image: "/assets/destinations/yunnan/tiger-leaping.webp",
+    imageAlt: "虎跳峡金沙江上方的山壁栈道",
+    objectPosition: "center 40%",
+  },
+  "rachel-kevin-lisa": {
+    party: "带着年幼儿子的父母",
+    setting: "一家人的第一次中国之旅",
+    noticed: "司机兼向导幽默又熟悉当地，讲云南和少数民族的故事，用餐安排也很舒心。",
+    context: "这是他们第一次带儿子来中国。留在记忆里的，是车里的那个人，以及一家人真正感兴趣的故事。",
+    image: "/assets/destinations/yunnan/erhai.webp",
+    imageAlt: "洱海上的一艘小船，远处是苍山",
+    objectPosition: "center 55%",
+  },
+  "emily-vegetarian": {
+    party: "见过许多大风景的旅行者",
+    setting: "云南，一桌妥善安排的素食",
+    noticed: "不用自己安排每天的生活，以及单独一桌、品质很好的素食。",
+    context: "她来自加拿大不列颠哥伦比亚，对大风景并不陌生。她写下的是餐桌上的照顾，以及不用亲自管理行程的轻松。",
+    image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/xizhou-bai-courtyard.webp",
+    imageAlt: "大理喜洲一座白族院落的彩绘木作与瓦檐",
+    objectPosition: "center 30%",
+  },
+  "claire-thomas-sebastien": {
+    party: "结伴同行",
+    setting: "出发前，以及旅途之中",
+    noticed: "团队始终容易联系，驾驶稳妥准时；酒店不是有特色的民宿，就是住得很舒服。",
+    context: "他们写到了出发前的沟通，也写到了云南的每一天。司机兼向导专业、耐心又幽默，酒店也值得推荐。",
+    image: "/assets/destinations/yunnan/shuhe.webp",
+    imageAlt: "丽江束河一条有人生活的街巷，瓦檐与旗帜沿街展开",
+    objectPosition: "center 40%",
+  },
+  "peter-jenny-eight-day": {
+    party: "八天私家行程",
+    setting: "昆明、大理、丽江与香格里拉",
+    noticed: "每天开心又放松，也彻底爱上了云南。",
+    context: "他们自己说出了这条路线的形状。最难忘的并不是一张景点清单，而是那些天的感受。",
+    image: "/assets/destinations/yunnan/shangri-la.webp",
+    imageAlt: "香格里拉附近平静的高原湖泊与山林",
+    objectPosition: "center 50%",
+  },
+  "tan-family-nine-day": {
+    party: "一家人",
+    setting: "香格里拉、玉龙雪山与玉湖村",
+    noticed: "沿途风景令人惊艳，火车票遇到忙乱时，Joy 也很快处理好了。",
+    context: "他们先提到喜欢的地方，随后说到一件实际的小事：坐火车时一度忙乱，但行程规划并没有因此失控。",
+    image: "/assets/destinations/yunnan/blue-moon.webp",
+    imageAlt: "蓝月谷与云雾中的玉龙雪山",
+    objectPosition: "center 40%",
+  },
+  "michelle-lily-lijiang": {
+    party: "一家人在丽江",
+    setting: "丽江",
+    noticed: "她称这位司机兼向导是自己旅行中遇到过最好的一位：专业、友善、灵活、沉稳，英语也很好。",
+    context: "这段留言始终围绕一个人。Michelle 写道，她待人的方式让一家人感到自在。",
+    image: "/assets/blog/yunnan-travel-from-malaysia/cover-lijiang-old-town.webp",
+    imageAlt: "丽江古城入口的木水车与鲜花摊位",
+    objectPosition: "center 50%",
+  },
+  "david-emma-jon": {
+    party: "带着孩子旅行的父母",
+    setting: "云南私家之旅",
+    noticed: "偶尔忙乱的日子里，司机兼向导始终耐心，服务也一直很用心。",
+    context: "他们具体写到了孩子如何改变一天的节奏，也写到了那个从不催促他们的人。",
+    image: "/assets/blog/where-to-stay-in-dali/caicun-ecological-corridor.webp",
+    imageAlt: "洱海生态廊道边，一位音乐人在停靠的小船上弹吉他",
+    objectPosition: "center 60%",
+  },
+};
+
+export const travelerStoryReasonsZh = [
+  {
+    title: "同一个人，始终打理你的行程",
+    text: "Daniel 和 Sarah 已经跟 Joy 走过一次；Claire 和 Thomas 在出发前和旅途中都能顺利联系团队；Faisal 和 Aisha 则感受到了规划时的耐心。从第一条留言到旅途中的日子，你都直接与 Joy Liu 沟通。",
+  },
+  {
+    title: "司机兼向导，也是一天的重要部分",
+    text: "Rachel 一家听到了云南少数民族的故事；Michelle 笔下的丽江司机兼向导沉稳、灵活，英语沟通也很自在；Mark 和 Susan 提到平稳的驾驶；David 和 Emma 则记得带孩子时需要的耐心。你出行日期的具体人选会在书面方案中确认。",
+  },
+  {
+    title: "一天的安排，可以随需要调整",
+    text: "Daniel 和 Sarah 临时升级到火车商务座；Tan 一家遇到火车票忙乱时，问题得到了处理；Emily 的素食单独设桌，也同样融入整趟旅程。私家团不需要跟着大巴团的节奏走。",
+  },
+  {
+    title: "最后记住的，是旅行的感觉",
+    text: "Peter 和 Jenny 说，从昆明到香格里拉的八天里，他们开心又放松，也爱上了云南。Claire 和 Thomas 记得酒店和车里的笑声。规划的意义，是让每一天有足够的余地，留下这些感受。",
+  },
+] as const;
+
+export const routeGalleryZh = [
+  { src: "/assets/blog/where-to-stay-in-dali/cover-ancient-town-dusk.webp", alt: "傍晚的大理古城，瓦屋顶与亮起灯笼的街巷", place: "大理", caption: "古城暮色", span: "tall", position: "center 42%" },
+  { src: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp", alt: "沙溪河边小路上的羊群与牧羊人", place: "沙溪", caption: "河边小路", span: "cell", position: "center 62%" },
+  { src: "/assets/destinations/yunnan/erhai.webp", alt: "洱海与苍山，近处有一艘小船", place: "大理", caption: "洱海", span: "cell", position: "center 58%" },
+  { src: "/assets/destinations/yunnan/tiger-leaping.webp", alt: "虎跳峡中的金沙江", place: "虎跳峡", caption: "峡谷", span: "wide", position: "center 42%" },
+  { src: "/assets/blog/yunnan-travel-from-australia/cover-lijiang-rooftops.webp", alt: "云下的丽江古城灰瓦屋顶", place: "丽江", caption: "古城屋顶", span: "cell", position: "center 55%" },
+  { src: "/assets/destinations/yunnan/shangri-la.webp", alt: "香格里拉附近被森林环绕的高原湖泊", place: "香格里拉", caption: "高原湖泊", span: "wide", position: "center 70%" },
+  { src: "/assets/destinations/yunnan/shuhe.webp", alt: "束河古镇的瓦檐街巷", place: "束河", caption: "古镇街巷", span: "cell", position: "center 45%" },
+  { src: "/assets/destinations/yunnan/lugu-lake.webp", alt: "泸沽湖岸边的柳树与凉亭", place: "泸沽湖", caption: "安静湖岸", span: "cell", position: "center 86%" },
+  { src: "/assets/destinations/yunnan/blue-moon.webp", alt: "玉龙雪山下蓝月谷的碧蓝池水", place: "玉龙雪山", caption: "蓝月谷", span: "cell", position: "center 48%" },
+] as const;

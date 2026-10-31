@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
+import { LocaleLink as Link } from "@/components/locale-link";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm";
 function headingId(children: ReactNode) {
   return String(children)
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/[^\p{Letter}\p{Number}\s-]/gu, "")
     .trim()
     .replace(/\s+/g, "-");
 }

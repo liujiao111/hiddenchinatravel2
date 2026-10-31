@@ -1,30 +1,35 @@
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { ContentFooter } from "@/components/content-footer";
 import { EnquireLink } from "@/components/enquire-link";
 import { JournalChrome } from "@/components/journal-chrome";
 import { JsonLd, breadcrumbList } from "@/components/json-ld";
 import { SiteHeader } from "@/components/site-header";
+import { localeUrl, type AppLocale } from "@/lib/i18n-seo";
 import { siteConfig } from "@/lib/site-config";
 import type { TravelJournal } from "@/lib/travel-journals";
 import styles from "@/app/[lang]/traveler-stories/journal.module.css";
 
 export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
+  const locale = useLocale() as AppLocale;
+  const zh = locale === "zh";
   const path = `/traveler-stories/${journal.slug}`;
-  const url = `${siteConfig.url}${path}`;
-  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(`Hi Joy, I read “${journal.title}” and would like to plan a Yunnan journey.`)}`;
+  const url = localeUrl(locale, path);
+  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(zh ? `你好 Joy，我读了《${journal.title}》，想规划一趟云南之旅。` : `Hi Joy, I read “${journal.title}” and would like to plan a Yunnan journey.`)}`;
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
       breadcrumbList([
-        { name: "Home", href: "/" },
-        { name: "Traveler stories", href: "/traveler-stories" },
-        { name: journal.title, href: path },
+        { name: zh ? "首页" : "Home", href: localeUrl(locale, "/") },
+        { name: zh ? "游客故事" : "Traveler stories", href: localeUrl(locale, "/traveler-stories") },
+        { name: journal.title, href: url },
       ]),
       {
         "@type": "Article",
         headline: journal.title,
         description: journal.description,
+        inLanguage: zh ? "zh-Hans" : "en",
         image: `${siteConfig.url}${journal.heroImage}`,
         articleSection: journal.category,
         author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
@@ -36,7 +41,7 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
   };
 
   return <>
-    <SiteHeader alternate={{ zh: null }} />
+    <SiteHeader alternate={{ en: path, zh: path }} />
     <JournalChrome title={journal.title} url={url} />
     <main className={`${styles.page} journal-page`}>
       <header className={styles.hero}>
@@ -44,9 +49,9 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
         <div className={styles.shade} />
         <div className={styles.heroCopy}>
           <nav className={styles.crumbs} aria-label="Breadcrumb">
-            <Link href="/">Home</Link>
+            <Link href="/">{zh ? "首页" : "Home"}</Link>
             <span aria-hidden="true">/</span>
-            <Link href="/traveler-stories">Traveler stories</Link>
+            <Link href="/traveler-stories">{zh ? "游客故事" : "Traveler stories"}</Link>
             <span aria-hidden="true">/</span>
             <span>{journal.category}</span>
           </nav>
@@ -60,9 +65,9 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
         <span>{journal.traveler}, {journal.country}</span>
         <span>{journal.travelStyle}</span>
         <span>{journal.theme}</span>
-        <span>{journal.readingTime} read</span>
+        <span>{zh ? `约 ${journal.readingTime}读完` : `${journal.readingTime} read`}</span>
       </p>
-      <p className={styles.route}><span>Yunnan journey designed by Hidden China</span>{journal.route}</p>
+      <p className={styles.route}><span>{zh ? "Hidden China 设计的云南之旅" : "Yunnan journey designed by Hidden China"}</span>{journal.route}</p>
 
       <article id="journal-article">
         {journal.sections.map((section, index) => (
@@ -91,7 +96,7 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
       </article>
 
       <section className={styles.related} aria-labelledby="related-title">
-        <h2 id="related-title">Related journeys</h2>
+        <h2 id="related-title">{zh ? "相关目的地" : "Related journeys"}</h2>
         <div className={styles.places}>
           {journal.related.map((place) => (
             <Link className={styles.place} href={place.href} key={place.title}>
@@ -106,14 +111,14 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
       </section>
 
       <section className={styles.cta} aria-labelledby="journal-cta-title">
-        <Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt="A herder and goats on the river path in Shaxi, Yunnan" fill sizes="100vw" />
+        <Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt={zh ? "云南沙溪河边小路上的牧羊人与羊群" : "A herder and goats on the river path in Shaxi, Yunnan"} fill sizes="100vw" />
         <div className={styles.ctaShade} />
         <div className={styles.ctaCopy}>
-          <h2 id="journal-cta-title">Begin with how you like to travel.</h2>
-          <p>Tell Joy the China you have already seen, and the pace you want. The route is designed from there.</p>
+          <h2 id="journal-cta-title">{zh ? "从你喜欢怎样旅行开始。" : "Begin with how you like to travel."}</h2>
+          <p>{zh ? "告诉 Joy 你已经看过怎样的中国，以及接下来想用什么节奏走。路线会从这里开始设计。" : "Tell Joy the China you have already seen, and the pace you want. The route is designed from there."}</p>
           <div className={styles.actions}>
-            <EnquireLink className="button button-light" data-cta-location="journal_plan" interest="Private Travel">Start Planning My Journey</EnquireLink>
-            <a className={styles.ghost} href={whatsapp}>WhatsApp Us</a>
+            <EnquireLink className="button button-light" data-cta-location="journal_plan" interest="Private Travel">{zh ? "开始规划我的行程" : "Start Planning My Journey"}</EnquireLink>
+            <a className={styles.ghost} href={whatsapp}>{zh ? "通过 WhatsApp 联系" : "WhatsApp Us"}</a>
           </div>
         </div>
       </section>

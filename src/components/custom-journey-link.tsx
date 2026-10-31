@@ -1,5 +1,7 @@
-import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import { LocaleLink as Link } from "@/components/locale-link";
 
-export function CustomJourneyLink({ prompt, label = "Explore Tailor-Made Yunnan →", location }: { prompt: string; label?: string; location: string }) {
-  return <p className="custom-journey-link"><span>{prompt}</span><Link href="/custom-china-tour" data-cta-location={location}>{label}</Link></p>;
+export function CustomJourneyLink({ prompt, label, location }: { prompt: string; label?: string; location: string }) {
+  const t = useTranslations("contentUi");
+  return <p className="custom-journey-link"><span>{prompt}</span><Link href="/custom-china-tour" data-cta-location={location}>{label || t("customYunnan")}</Link></p>;
 }

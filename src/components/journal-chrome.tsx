@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale } from "next-intl";
 
 type Props = {
   title: string;
@@ -8,6 +9,7 @@ type Props = {
 };
 
 export function JournalChrome({ title, url }: Props) {
+  const zh = useLocale() === "zh";
   const [progress, setProgress] = useState(0);
   const [copied, setCopied] = useState(false);
   const [docked, setDocked] = useState(false);
@@ -50,12 +52,12 @@ export function JournalChrome({ title, url }: Props) {
   const whatsapp = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
 
   return <>
-    <div className="journal-progress" role="progressbar" aria-label="Reading progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)}>
+    <div className="journal-progress" role="progressbar" aria-label={zh ? "阅读进度" : "Reading progress"} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)}>
       <span style={{ transform: `scaleX(${progress})` }} />
     </div>
     <div className={`journal-share${docked ? " is-docked" : ""}`}>
-      <button type="button" onClick={copyLink} aria-label={copied ? "Link copied" : "Copy link to this journal"}>{copied ? "Copied" : "Copy"}</button>
-      <a href={whatsapp} target="_blank" rel="noopener noreferrer">Share</a>
+      <button type="button" onClick={copyLink} aria-label={copied ? (zh ? "链接已复制" : "Link copied") : (zh ? "复制这篇旅行手记的链接" : "Copy link to this journal")}>{copied ? (zh ? "已复制" : "Copied") : (zh ? "复制" : "Copy")}</button>
+      <a href={whatsapp} target="_blank" rel="noopener noreferrer">{zh ? "分享" : "Share"}</a>
     </div>
   </>;
 }

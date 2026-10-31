@@ -33,6 +33,12 @@ export const zhLivePaths = new Set<string>([
   "/custom-china-tour",
   "/contact",
   "/about-us",
+  "/traveler-stories",
+  "/booking",
+  "/licensed-operator",
+  "/privacy-policy",
+  "/terms-of-service",
+  "/affiliate-disclosure",
 ]);
 
 export function isZhLive(path: string): boolean {

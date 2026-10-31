@@ -138,3 +138,21 @@ next-intl 的 config 插件在加载时会静态 import `@swc/core`（仅消息�
 处理：`package.json` 的 `overrides` 把 `@swc/core` 指向本地桩 `stubs/swc-core/`（导出的方法被调用时才报错；提取功能未启用，永不会触发）。
 
 注意：Vercel（Linux）和新版 macOS 上真实二进制可用；若将来启用 `experimental.extract` 消息提取，需先移除此桩并恢复真实依赖。
+
+## 8. 全量中文化执行清单（2026-10-31 晚更新）
+
+本节是当前执行计划，覆盖上文中“法律页不翻译”“长尾按数据选翻”等早期范围限制。目标调整为：**所有已发布英文内容都有自然、可索引的简体中文版本**；英文 URL、文案、价格和转化路径保持不变。
+
+已修复的语言规则：`/` 永远为英文，`/zh` 永远为中文；不再根据 Cookie 或 `Accept-Language` 自动跳转。未翻译链接只在翻译未完成期间回退到英文原页。页面 HTML 自己输出 canonical/hreflang，关闭 next-intl 重复的 HTTP `Link` 响应头。
+
+| 优先级 | 范围 | 验收重点 |
+|---|---|---|
+| P0 语言稳定性 | 根路径、语言 Cookie、英文回退链接 | 中文 Cookie 下 `/` 仍英文；英文链接不跳 `/zh`；无 404 |
+| P1 转化与信任 | `booking`、`licensed-operator`、`traveler-stories`、旅行日志、文章/枢纽公共咨询组件 | 预订条款、付款比例、公司资质、评价原意不变；中文 CTA 和表单完整 |
+| P2 云南承接 | 云南目的地页；大理、丽江、昆明、沙溪、香格里拉、大理住宿与小众路线 | 中文目的地关键词、自然文案、中文相关推荐与路线链接 |
+| P3 高频行前需求 | `survival-kit`、9 个专题枢纽、签证检查器、汇率工具、支付/上网/交通/门票核心文章 | 工具逻辑不改；政策日期与官方来源保留；中文标题/meta 独立撰写 |
+| P4 全量收尾 | 其余国家出发指南、实名/外卖等长尾文章、隐私/条款/联盟声明 | 不留已发布英文孤岛；双向 hreflang、中文搜索与 sitemap 完整 |
+
+不纳入本次发布：`content/journeys/dali-lijiang-lugu-lake-private-tour.md` 仍是 `draft`，没有公开英文页面，保持草稿状态；签证国家子页面属于规则数据库，只有在对应中文编辑审校完成后才开放 `/zh` URL。
+
+每批验收：中英文 frontmatter 配对；中文 `status: published` 后才生成 URL；`zhLivePaths`、搜索索引、hreflang 和 sitemap 同步；`npm run lint`、`npm run build`、内部链接与默认语言回归全部通过。

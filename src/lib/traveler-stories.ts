@@ -1,6 +1,7 @@
 import { getAllJourneys } from "@/lib/journeys";
 import { licensedOperator } from "@/lib/journey-trust";
 import { getAllTestimonials, type Testimonial } from "@/lib/testimonials";
+import { routeGalleryZh, travelerStoryEditorialZh, travelerStoryReasonsZh } from "@/lib/traveler-stories-zh";
 
 export type StoryRole = "featured" | "detail" | "note";
 
@@ -161,17 +162,18 @@ export const routeGallery = [
 ] as const;
 
 export function openingLine(quote: string) {
-  const match = quote.match(/^[^.!?]+[.!?]/);
+  const match = quote.match(/^[^.!?。！？]+[.!?。！？]/);
   return match ? match[0].trim() : quote;
 }
 
-export function getTravelerStoryPage() {
-  const journeys = new Map(getAllJourneys().map((journey) => [journey.slug, journey]));
+export function getTravelerStoryPage(lang: "en" | "zh" = "en") {
+  const journeys = new Map(getAllJourneys(lang).map((journey) => [journey.slug, journey]));
   const featured = new Set<string>(featuredOrder);
   const detail = new Set<string>(detailOrder);
+  const localizedEditorial = lang === "zh" ? travelerStoryEditorialZh : editorial;
 
-  const stories: TravelerStory[] = getAllTestimonials().map((item) => {
-    const extra = editorial[item.id];
+  const stories: TravelerStory[] = getAllTestimonials(lang).map((item) => {
+    const extra = localizedEditorial[item.id];
     if (!extra) throw new Error(`Missing traveler-story editorial for ${item.id}`);
     const slug = item.journeySlugs[0];
     const journey = slug ? journeys.get(slug) : undefined;
@@ -201,6 +203,8 @@ export function getTravelerStoryPage() {
     stories,
     featured: pick(featuredOrder),
     detailed: pick(detailOrder),
+    reasons: lang === "zh" ? travelerStoryReasonsZh : travelerStoryReasons,
+    gallery: lang === "zh" ? routeGalleryZh : routeGallery,
     metrics: {
       notes: stories.length,
       countries: new Set(stories.map((story) => story.country)).size,
