@@ -13,13 +13,14 @@ export function ContentCta() {
 
 export function ContentFooter() {
   const t = useTranslations("footer");
-  const fill = (s: string) =>
-    s.replaceAll("{agencyEn}", licensedOperator.nameEn)
-      .replaceAll("{agencyZh}", licensedOperator.nameZh)
-      .replaceAll("{permit}", licensedOperator.permitNumber)
-      .replaceAll("{credit}", licensedOperator.unifiedSocialCreditCode)
-      .replaceAll("{addressEn}", licensedOperator.addressEn)
-      .replaceAll("{addressZh}", licensedOperator.addressZh);
+  const agencyValues = {
+    agencyEn: licensedOperator.nameEn,
+    agencyZh: licensedOperator.nameZh,
+    permit: licensedOperator.permitNumber,
+    credit: licensedOperator.unifiedSocialCreditCode,
+    addressEn: licensedOperator.addressEn,
+    addressZh: licensedOperator.addressZh,
+  };
 
   return (
     <footer className="footer">
@@ -29,8 +30,8 @@ export function ContentFooter() {
           <p className="footer-tagline">{t("tagline")}</p>
           <p>{t("intro")}</p>
           <p className="footer-origin">{t("origin")}</p>
-          <p className="footer-origin">{fill(t("companyLine"))}</p>
-          <p className="footer-origin">{fill(t("address"))}</p>
+          <p className="footer-origin">{t("companyLine", agencyValues)}</p>
+          <p className="footer-origin">{t("address", agencyValues)}</p>
           <p className="footer-origin"><a href={licensedOperator.creditRegistryUrl} target="_blank" rel="noopener noreferrer">{t("registry")}</a></p>
           <nav className="footer-social" aria-label="Social media">
             <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
