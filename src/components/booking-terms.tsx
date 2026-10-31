@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { bookingDocumentHref, bookingTermCards } from "@/lib/booking-terms";
 
 export function BookingTerms({

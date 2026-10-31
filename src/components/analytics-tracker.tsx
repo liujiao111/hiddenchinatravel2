@@ -21,7 +21,10 @@ export function AnalyticsTracker() {
       if (sent || !window.gtag) return;
       sent = true;
       window.gtag("event", "page_view", {
-        page_path: pathname,
+        // Read the browser URL directly: with i18n proxy rewrites the router
+        // pathname may carry the internal locale segment, while GA continuity
+        // needs the public URL (/journeys for en, /zh/journeys for zh).
+        page_path: window.location.pathname,
         page_location: window.location.href,
         page_title: document.title,
       });
@@ -41,6 +44,8 @@ export function AnalyticsTracker() {
       if (!link) return;
 
       const url = new URL(link.href, window.location.href);
+      // Strip the locale prefix so click matching below stays locale-agnostic.
+      const linkPath = url.pathname.replace(/^\/zh(?=\/|$)/, "") || "/";
       const common = {
         link_text: cleanText(link.textContent),
         // Never send pre-filled WhatsApp messages (which may contain personal data) to GA4.
@@ -62,17 +67,17 @@ export function AnalyticsTracker() {
 
       if (url.origin !== window.location.origin) return;
 
-      if (url.pathname === "/custom-china-tour") {
+      if (linkPath === "/custom-china-tour") {
         trackEvent(url.hash === "#plan" ? "custom_journey_plan_click" : "custom_journey_click", {
           ...common,
           cta_location: link.dataset.ctaLocation || "page_content",
         });
-      } else if (url.pathname === "/journeys" || url.pathname === "/journeys/") {
+      } else if (linkPath === "/journeys" || linkPath === "/journeys/") {
         trackEvent("explore_journeys_click", common);
-      } else if (url.pathname.startsWith("/journeys/")) {
+      } else if (linkPath.startsWith("/journeys/")) {
         trackEvent("journey_detail_click", {
           ...common,
-          journey_slug: url.pathname.split("/").filter(Boolean)[1] || "unknown",
+          journey_slug: linkPath.split("/").filter(Boolean)[1] || "unknown",
           cta_location: link.dataset.ctaLocation || link.closest<HTMLElement>("[data-cta-location]")?.dataset.ctaLocation || "unknown",
         });
       }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { QuickAsk } from "@/components/quick-ask";
 import { JourneyCard } from "@/components/journey-card";
@@ -10,24 +11,26 @@ import { JsonLd, breadcrumbList } from "@/components/json-ld";
 const title = "Private Yunnan Journeys";
 const description = "Explore private, slower-paced journeys through Yunnan with trusted local drivers, guides and personal planning support from Joy Liu.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "https://hiddenchinatravel.com/journeys" },
-  openGraph: {
+export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return localizedStaticMetadata(lang, "/journeys", {
     title,
     description,
-    url: "https://hiddenchinatravel.com/journeys",
-    type: "website",
-    images: [{ url: "/home/hero.webp", alt: "Snow-capped mountains in Yunnan" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/home/hero.webp"],
-  },
-};
+    openGraph: {
+      title,
+      description,
+      url: "https://hiddenchinatravel.com/journeys",
+      type: "website",
+      images: [{ url: "/home/hero.webp", alt: "Snow-capped mountains in Yunnan" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/home/hero.webp"],
+    },
+  });
+}
 
 function priceLabel(value: number, currency: string, basis: string) {
   if (!Number.isFinite(value) || value <= 0) return "Request a tailored quote";

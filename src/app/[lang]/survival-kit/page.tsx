@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
+import { Link } from "@/i18n/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
 import { GuideCard } from "@/components/guide-card";
@@ -11,14 +12,16 @@ import { breadcrumbList } from "@/components/json-ld";
 import { formatPriceLabel } from "@/lib/format-price";
 import "./survival-kit.css";
 
-export const metadata: Metadata = {
-  title: { absolute: "China Trip Checklist 2026: Visa, eSIM, Payments" },
-  description: "Prepare for your China trip in order: check entry rules, book essentials, set up data and payments, then save an arrival checklist.",
-  keywords: ["China travel checklist", "China trip preparation", "China travel essentials", "China eSIM", "paying in China"],
-  alternates: { canonical: "/survival-kit" },
-  openGraph: { title: "China Trip Checklist 2026: Visa, eSIM, Payments", description: "The practical steps to sort before you land in China.", url: "/survival-kit", type: "website", images: [{ url: "/assets/blog/independent-travel-china/cover.webp" }] },
-  twitter: { card: "summary_large_image", title: "China Trip Checklist 2026", description: "Visa, bookings, eSIM, VPN, payments and arrival essentials in one practical checklist." },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return localizedStaticMetadata(lang, "/survival-kit", {
+    title: { absolute: "China Trip Checklist 2026: Visa, eSIM, Payments" },
+    description: "Prepare for your China trip in order: check entry rules, book essentials, set up data and payments, then save an arrival checklist.",
+    keywords: ["China travel checklist", "China trip preparation", "China travel essentials", "China eSIM", "paying in China"],
+    openGraph: { title: "China Trip Checklist 2026: Visa, eSIM, Payments", description: "The practical steps to sort before you land in China.", url: "/survival-kit", type: "website", images: [{ url: "/assets/blog/independent-travel-china/cover.webp" }] },
+    twitter: { card: "summary_large_image", title: "China Trip Checklist 2026", description: "Visa, bookings, eSIM, VPN, payments and arrival essentials in one practical checklist." },
+  });
+}
 
 type Action = { label: string; href: string; affiliate?: boolean };
 type Step = { number: string; id: string; title: string; why: string; task: string; guide: Action; options?: { name: string; detail: string; action: Action }[] };

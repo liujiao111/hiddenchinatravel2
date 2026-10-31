@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import Image from "next/image";
 import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
@@ -9,13 +10,15 @@ import { getCountrySelectOptions, getPortSelectOptions } from "@/lib/visa-checke
 import { getPhase1CountryEditorials } from "@/lib/visa-checker/country-pages";
 import "../travel-tools.css";
 
-export const metadata: Metadata = {
-  title: "China Visa Checker 2026: Test Your Route",
-  description: "Check your passport, stay and route against China visa-free, Hainan and 240-hour transit rules. See the conditions to confirm before you fly.",
-  alternates: { canonical: "/china-visa-checker" },
-  openGraph: { title: "China Visa Checker 2026", description: "Check China entry options by passport and route.", url: "/china-visa-checker", type: "website", images: [{ url: "/home/hero.webp" }] },
-  twitter: { card: "summary_large_image", title: "China Visa Checker 2026", description: "Check China entry options by passport and route.", images: ["/home/hero.webp"] },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return localizedStaticMetadata(lang, "/china-visa-checker", {
+    title: "China Visa Checker 2026: Test Your Route",
+    description: "Check your passport, stay and route against China visa-free, Hainan and 240-hour transit rules. See the conditions to confirm before you fly.",
+    openGraph: { title: "China Visa Checker 2026", description: "Check China entry options by passport and route.", url: "/china-visa-checker", type: "website", images: [{ url: "/home/hero.webp" }] },
+    twitter: { card: "summary_large_image", title: "China Visa Checker 2026", description: "Check China entry options by passport and route.", images: ["/home/hero.webp"] },
+  });
+}
 
 const faq = [
   ["Does visa-free entry cover all passport types?", "The published exemptions generally concern ordinary passports. If you have an emergency or temporary document, confirm with a Chinese consulate and your airline."],

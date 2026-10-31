@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContactForm } from "@/components/contact-form";
 import { ContentFooter } from "@/components/content-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -11,24 +12,26 @@ import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimo
 const title = "Contact Hidden China Travel | Talk With Joy Liu";
 const description = "Have questions about Yunnan, China travel, visas, payments, or trip planning? Contact Joy Liu directly and start the conversation.";
 
-export const metadata: Metadata = {
-  title: { absolute: title },
-  description,
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    title,
+export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return localizedStaticMetadata(lang, "/contact", {
+    title: { absolute: title },
     description,
-    url: "/contact",
-    type: "website",
-    images: [{ url: "/brand/founder/portrait.webp", alt: "Joy Liu, founder of Hidden China Travel" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/brand/founder/portrait.webp"],
-  },
-};
+    openGraph: {
+      title,
+      description,
+      url: "/contact",
+      type: "website",
+      images: [{ url: "/brand/founder/portrait.webp", alt: "Joy Liu, founder of Hidden China Travel" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/brand/founder/portrait.webp"],
+    },
+  });
+}
 
 const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=Hi%20Joy%2C%20I%27d%20like%20to%20talk%20about%20my%20China%20journey.`;
 
@@ -115,8 +118,8 @@ export default async function ContactPage() {
           <header>
             <p className="contact-kicker">START PLANNING YOUR JOURNEY</p>
             <h2>START PLANNING YOUR JOURNEY</h2>
-            <p>You don't need a finished itinerary.</p>
-            <p>Tell us your dates, interests and travel style.<br />We'll suggest a personalized direction for your trip.</p>
+            <p>You don&rsquo;t need a finished itinerary.</p>
+            <p>Tell us your dates, interests and travel style.<br />We&rsquo;ll suggest a personalized direction for your trip.</p>
             <ul className="contact-planning-points">
               <li>✓ Personal response from Joy</li>
               <li>✓ Custom itinerary suggestions</li>

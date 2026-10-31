@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useLayoutEffect, useRef, useState, type TransitionEvent } from "react";
 import type { Testimonial } from "@/lib/testimonials";
 

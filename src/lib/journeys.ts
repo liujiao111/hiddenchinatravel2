@@ -29,6 +29,8 @@ export type JourneyFrontmatter = {
   coverAlt?: string;
   featured?: boolean;
   status?: "draft" | "planned" | "published";
+  /** Slug of the paired translation in the other language. */
+  translationKey?: string;
   displayOrder?: number;
   navFeatured?: boolean;
   heroEyebrow?: string;
@@ -70,13 +72,19 @@ export type JourneyFrontmatter = {
 
 export type Journey = { slug: string; frontmatter: JourneyFrontmatter; body: string };
 
-let journeyCache: Journey[] | undefined;
+export type JourneyLang = "en" | "zh";
 
-export function getAllJourneys(): Journey[] {
-  if (journeyCache && process.env.NODE_ENV !== "development") return journeyCache;
-  const directory = path.join(process.cwd(), "content", "journeys");
+const journeyCache: Partial<Record<JourneyLang, Journey[]>> = {};
+
+export function getAllJourneys(lang: JourneyLang = "en"): Journey[] {
+  if (journeyCache[lang] && process.env.NODE_ENV !== "development") return journeyCache[lang];
+  // Chinese journeys live in content-zh/journeys (docs/i18n-plan.md). A
+  // missing directory means "not translated yet" — no /zh journey URLs.
+  const directory = lang === "zh"
+    ? path.join(process.cwd(), "content-zh", "journeys")
+    : path.join(process.cwd(), "content", "journeys");
   if (!fs.existsSync(directory)) return [];
-  journeyCache = fs.readdirSync(directory).filter((file) => file.endsWith(".md")).map((file) => {
+  journeyCache[lang] = fs.readdirSync(directory).filter((file) => file.endsWith(".md")).map((file) => {
     const parsed = matter(fs.readFileSync(path.join(directory, file), "utf8"));
     return { slug: file.replace(/\.md$/, ""), frontmatter: parsed.data as JourneyFrontmatter, body: parsed.content.trim() };
   })
@@ -86,9 +94,9 @@ export function getAllJourneys(): Journey[] {
       const orderB = b.frontmatter.displayOrder ?? Number.MAX_SAFE_INTEGER;
       return orderA - orderB || a.frontmatter.title.localeCompare(b.frontmatter.title);
     });
-  return journeyCache;
+  return journeyCache[lang];
 }
 
-export function getJourneyBySlug(slug: string) {
-  return getAllJourneys().find((journey) => journey.slug === slug);
+export function getJourneyBySlug(slug: string, lang: JourneyLang = "en") {
+  return getAllJourneys(lang).find((journey) => journey.slug === slug);
 }

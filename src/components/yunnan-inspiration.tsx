@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { yunnanPlaces } from "@/lib/yunnan-inspiration";
 import { trackEvent } from "@/lib/analytics";
 import { useJourneyInspiration } from "@/components/journey-inspiration-context";

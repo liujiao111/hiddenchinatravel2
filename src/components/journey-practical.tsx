@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { bookingDocumentHref } from "@/lib/booking-terms";
 
 type Note = { title: string; detail: string };

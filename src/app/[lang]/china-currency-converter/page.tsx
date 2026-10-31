@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import Image from "next/image";
 import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
@@ -8,13 +9,15 @@ import { CurrencyConverter } from "@/components/travel-tools/currency-converter"
 import { getExchangeRates } from "@/lib/currency-converter/get-rates";
 import "../travel-tools.css";
 
-export const metadata: Metadata = {
-  title: "China Currency Converter: USD to CNY & CNY to USD",
-  description: "Convert USD, SGD, EUR, GBP and more to Chinese yuan with updated reference rates. Compare quick RMB amounts and plan your China travel budget.",
-  alternates: { canonical: "/china-currency-converter" },
-  openGraph: { title: "China Currency Converter | Hidden China Travel", description: "Live reference rates for your China travel budget.", type: "website", url: "/china-currency-converter", images: [{ url: "/home/hero.webp" }] },
-  twitter: { card: "summary_large_image", title: "China Currency Converter", description: "Live reference rates for your China travel budget.", images: ["/home/hero.webp"] },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return localizedStaticMetadata(lang, "/china-currency-converter", {
+    title: "China Currency Converter: USD to CNY & CNY to USD",
+    description: "Convert USD, SGD, EUR, GBP and more to Chinese yuan with updated reference rates. Compare quick RMB amounts and plan your China travel budget.",
+    openGraph: { title: "China Currency Converter | Hidden China Travel", description: "Live reference rates for your China travel budget.", type: "website", url: "/china-currency-converter", images: [{ url: "/home/hero.webp" }] },
+    twitter: { card: "summary_large_image", title: "China Currency Converter", description: "Live reference rates for your China travel budget.", images: ["/home/hero.webp"] },
+  });
+}
 
 export const revalidate = 3600;
 

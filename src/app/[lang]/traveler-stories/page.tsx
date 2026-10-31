@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
+import { Link } from "@/i18n/navigation";
 import { ContentFooter } from "@/components/content-footer";
 import { EnquireLink } from "@/components/enquire-link";
 import { JsonLd, breadcrumbList } from "@/components/json-ld";
@@ -14,24 +15,26 @@ const path = "/traveler-stories";
 const title = "Traveler Stories";
 const description = "Personal accounts from families, couples and first-time visitors on private Yunnan journeys planned with Joy Liu."
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: path },
-  openGraph: {
-    title: `${title} | Hidden China Travel`,
+export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return localizedStaticMetadata(lang, path, {
+    title,
     description,
-    url: path,
-    type: "website",
-    images: [{ url: "/assets/blog/where-to-stay-in-dali/cover-ancient-town-dusk.webp", alt: "Dali Ancient Town at dusk, with tiled roofs and lantern-lit streets" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${title} | Hidden China Travel`,
-    description,
-    images: ["/assets/blog/where-to-stay-in-dali/cover-ancient-town-dusk.webp"],
-  },
-};
+    openGraph: {
+      title: `${title} | Hidden China Travel`,
+      description,
+      url: path,
+      type: "website",
+      images: [{ url: "/assets/blog/where-to-stay-in-dali/cover-ancient-town-dusk.webp", alt: "Dali Ancient Town at dusk, with tiled roofs and lantern-lit streets" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | Hidden China Travel`,
+      description,
+      images: ["/assets/blog/where-to-stay-in-dali/cover-ancient-town-dusk.webp"],
+    },
+  });
+}
 
 const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent("Hi Joy, I read the traveler stories and would like to talk about a private Yunnan journey.")}`;
 

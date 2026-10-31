@@ -1,5 +1,5 @@
 import { CustomJourneyLink } from "@/components/custom-journey-link";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { PlanJourneyClose } from "@/components/plan-journey-close";
 import type { ContentItem } from "@/lib/content";
 import type { Journey } from "@/lib/journeys";

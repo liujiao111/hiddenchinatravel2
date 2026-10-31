@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { EnquireLink } from "@/components/enquire-link";
 import { HashLink } from "@/components/hash-link";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 import { SiteSearch } from "@/components/site-search";
 import { YunnanCountryGuideLink } from "@/components/yunnan-country-guide-link";
+import type { LocaleAlternate } from "@/lib/i18n-seo";
 
 export type HeaderJourney = {
   slug: string;
@@ -97,9 +100,10 @@ function HeaderMenuIcon({ open }: { open: boolean }) {
     : <svg viewBox="0 0 24 16" aria-hidden="true"><path d="M1 1.5h22M1 8h22M1 14.5h22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>;
 }
 
-export function SiteHeaderClient({ journeys, cta, conversion }: { journeys: HeaderJourney[]; cta?: { href: string; label: string; location?: string; mailHref?: string }; conversion?: boolean }) {
+export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { journeys: HeaderJourney[]; cta?: { href: string; label: string; location?: string; mailHref?: string }; conversion?: boolean; alternate?: LocaleAlternate }) {
   const [open, setOpen] = useState<MenuName | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const t = useTranslations("header");
   const quoteHash = cta?.mailHref?.startsWith("#") ? cta.mailHref : cta?.href.startsWith("#") ? cta.href : null;
 
   return <header className={conversion ? "site-header site-header-conversion" : "site-header"} onMouseLeave={() => setOpen(null)}>
@@ -110,17 +114,18 @@ export function SiteHeaderClient({ journeys, cta, conversion }: { journeys: Head
         <Image src="/brand/logo-light.png" alt="" width={160} height={80} className="brand-logo-light" unoptimized />
       </Link>
       <div className="header-contact">
-        {conversion ? <Link href="/journeys" className="header-quiet-link">JOURNEYS</Link> : <span>Local insight, private journeys and personal support</span>}
-        {cta ? (cta.href.startsWith("#") ? <HashLink className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</HashLink> : <a className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</a>) : <EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">Start Planning My Journey</span><span className="header-cta-short">Start Planning My Journey</span></EnquireLink>}
+        {conversion ? <Link href="/journeys" className="header-quiet-link">{t("journeys")}</Link> : <span>{t("tagline")}</span>}
+        {cta ? (cta.href.startsWith("#") ? <HashLink className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</HashLink> : <a className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</a>) : <EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">{t("cta")}</span><span className="header-cta-short">{t("cta")}</span></EnquireLink>}
       </div>
-      <button type="button" className="header-menu-toggle" aria-expanded={mobileOpen} aria-controls="mobile-nav" aria-label={mobileOpen ? "Close menu" : "Open menu"} onClick={() => setMobileOpen((value) => !value)}>
+      <LocaleSwitcher alternate={alternate} />
+      <button type="button" className="header-menu-toggle" aria-expanded={mobileOpen} aria-controls="mobile-nav" aria-label={mobileOpen ? t("close") : t("menu")} onClick={() => setMobileOpen((value) => !value)}>
         <HeaderMenuIcon open={mobileOpen} />
-        <span>{mobileOpen ? "CLOSE" : "MENU"}</span>
+        <span>{mobileOpen ? t("close") : t("menu")}</span>
       </button>
     </div>
     {mobileOpen ? <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
-      <Link href="/china-destinations/yunnan" onClick={() => setMobileOpen(false)}>DESTINATIONS</Link>
-      <p className="mobile-nav-kicker">JOURNEYS</p>
+      <Link href="/china-destinations/yunnan" onClick={() => setMobileOpen(false)}>{t("destinations")}</Link>
+      <p className="mobile-nav-kicker">{t("journeys")}</p>
       {journeys.map((journey) => <Link key={journey.slug} href={`/journeys/${journey.slug}`} className="mobile-nav-journey" onClick={() => setMobileOpen(false)}>
         <b>{journey.title}</b>
         <small>{[journey.priceLabel, journey.sellingPoint].filter(Boolean).join(" · ")}</small>
@@ -129,21 +134,22 @@ export function SiteHeaderClient({ journeys, cta, conversion }: { journeys: Head
         <b>{tailorMade.title}</b>
         <small>{tailorMade.sellingPoint}</small>
       </Link>
-      <Link href="/journeys" className="mobile-nav-all" onClick={() => setMobileOpen(false)}>VIEW ALL JOURNEYS</Link>
-      <Link href="/survival-kit" onClick={() => setMobileOpen(false)}>TRAVEL GUIDES</Link>
-      <Link href="/about-us" onClick={() => setMobileOpen(false)}>ABOUT US</Link>
-      <Link href="/traveler-stories" onClick={() => setMobileOpen(false)}>TRAVELER STORIES</Link>
-      <Link href="/booking" onClick={() => setMobileOpen(false)}>BOOKING &amp; SERVICE</Link>
-      <Link href="/contact" onClick={() => setMobileOpen(false)}>CONTACT US</Link>
+      <Link href="/journeys" className="mobile-nav-all" onClick={() => setMobileOpen(false)}>{t("viewAllJourneys")}</Link>
+      <Link href="/survival-kit" onClick={() => setMobileOpen(false)}>{t("travelGuides")}</Link>
+      <Link href="/about-us" onClick={() => setMobileOpen(false)}>{t("aboutUs")}</Link>
+      <Link href="/traveler-stories" onClick={() => setMobileOpen(false)}>{t("travelerStories")}</Link>
+      <Link href="/booking" onClick={() => setMobileOpen(false)}>{t("bookingService")}</Link>
+      <Link href="/contact" onClick={() => setMobileOpen(false)}>{t("contactUs")}</Link>
+      <LocaleSwitcher alternate={alternate} />
     </nav> : null}
     {conversion ? null : <nav className="nav-row" aria-label="Main navigation">
       <div className="shell nav-inner">
         <div className="nav-links">
-          <button className={open === "destinations" ? "active" : ""} onClick={() => setOpen("destinations")} onMouseEnter={() => setOpen("destinations")} aria-expanded={open === "destinations"}>DESTINATIONS<span className="nav-chevron" aria-hidden="true" /></button>
-          <button className={open === "journeys" ? "active" : ""} onClick={() => setOpen("journeys")} onMouseEnter={() => setOpen("journeys")} aria-expanded={open === "journeys"}>JOURNEYS<span className="nav-chevron" aria-hidden="true" /></button>
-          <button className={open === "guides" ? "active" : ""} onClick={() => setOpen("guides")} onMouseEnter={() => setOpen("guides")} aria-expanded={open === "guides"}>TRAVEL GUIDES<span className="nav-chevron" aria-hidden="true" /></button>
-          <button className={open === "about" ? "active" : ""} onClick={() => setOpen("about")} onMouseEnter={() => setOpen("about")} aria-expanded={open === "about"}>ABOUT US<span className="nav-chevron" aria-hidden="true" /></button>
-          <Link href="/contact" onMouseEnter={() => setOpen(null)} onClick={() => setOpen(null)}>CONTACT US</Link>
+          <button className={open === "destinations" ? "active" : ""} onClick={() => setOpen("destinations")} onMouseEnter={() => setOpen("destinations")} aria-expanded={open === "destinations"}>{t("destinations")}<span className="nav-chevron" aria-hidden="true" /></button>
+          <button className={open === "journeys" ? "active" : ""} onClick={() => setOpen("journeys")} onMouseEnter={() => setOpen("journeys")} aria-expanded={open === "journeys"}>{t("journeys")}<span className="nav-chevron" aria-hidden="true" /></button>
+          <button className={open === "guides" ? "active" : ""} onClick={() => setOpen("guides")} onMouseEnter={() => setOpen("guides")} aria-expanded={open === "guides"}>{t("travelGuides")}<span className="nav-chevron" aria-hidden="true" /></button>
+          <button className={open === "about" ? "active" : ""} onClick={() => setOpen("about")} onMouseEnter={() => setOpen("about")} aria-expanded={open === "about"}>{t("aboutUs")}<span className="nav-chevron" aria-hidden="true" /></button>
+          <Link href="/contact" onMouseEnter={() => setOpen(null)} onClick={() => setOpen(null)}>{t("contactUs")}</Link>
         </div>
         <SiteSearch />
       </div>

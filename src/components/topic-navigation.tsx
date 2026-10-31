@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 const topics = [
   { label: "Essentials", href: "/china-travel-essentials", matches: ["essentials", "visa", "planning", "food"] },

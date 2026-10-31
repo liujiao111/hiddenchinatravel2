@@ -1,7 +1,7 @@
 import { CustomJourneyLink } from "@/components/custom-journey-link";
 import { breadcrumbList } from "@/components/json-ld";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ContentFooter } from "@/components/content-footer";
 import { QuickAsk } from "@/components/quick-ask";
 import { GuideCard } from "@/components/guide-card";

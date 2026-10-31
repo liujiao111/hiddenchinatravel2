@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ContentFooter } from "@/components/content-footer";
 import { EnquireLink } from "@/components/enquire-link";
 import { JournalChrome } from "@/components/journal-chrome";
@@ -7,7 +7,7 @@ import { JsonLd, breadcrumbList } from "@/components/json-ld";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site-config";
 import type { TravelJournal } from "@/lib/travel-journals";
-import styles from "@/app/traveler-stories/journal.module.css";
+import styles from "@/app/[lang]/traveler-stories/journal.module.css";
 
 export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
   const path = `/traveler-stories/${journal.slug}`;
@@ -36,7 +36,7 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
   };
 
   return <>
-    <SiteHeader />
+    <SiteHeader alternate={{ zh: null }} />
     <JournalChrome title={journal.title} url={url} />
     <main className={`${styles.page} journal-page`}>
       <header className={styles.hero}>

@@ -11,6 +11,8 @@ export type HubSubtopic = { id: string; name: string; description?: string; arti
 export type ContentFrontmatter = {
   type?: "hub" | "legal";
   status?: "draft" | "review" | "published";
+  /** Slug of the paired translation in the other language. */
+  translationKey?: string;
   title: string;
   seoTitle?: string;
   absoluteSeoTitle?: string;
@@ -49,13 +51,25 @@ export type ContentItem = {
   body: string;
 };
 
-const contentSources = [
-  { directory: path.join(process.cwd(), "_posts"), kind: "article" as const },
-  { directory: path.join(process.cwd(), "content", "hubs"), kind: "hub" as const },
-  { directory: path.join(process.cwd(), "content", "legal"), kind: "legal" as const },
-];
+export type ContentLang = "en" | "zh";
 
-let contentCache: ContentItem[] | undefined;
+const contentSources: Record<ContentLang, { directory: string; kind: ContentItem["kind"] }[]> = {
+  en: [
+    { directory: path.join(process.cwd(), "_posts"), kind: "article" as const },
+    { directory: path.join(process.cwd(), "content", "hubs"), kind: "hub" as const },
+    { directory: path.join(process.cwd(), "content", "legal"), kind: "legal" as const },
+  ],
+  // Chinese translations live in parallel directories (see docs/i18n-plan.md).
+  // Missing directories are skipped, so untranslated content simply has no
+  // /zh URL instead of falling back to English (avoids soft duplicates).
+  zh: [
+    { directory: path.join(process.cwd(), "_posts-zh"), kind: "article" as const },
+    { directory: path.join(process.cwd(), "content-zh", "hubs"), kind: "hub" as const },
+    { directory: path.join(process.cwd(), "content-zh", "legal"), kind: "legal" as const },
+  ],
+};
+
+const contentCache: Partial<Record<ContentLang, ContentItem[]>> = {};
 
 function readDirectory(absoluteDirectory: string, kind: ContentItem["kind"]): ContentItem[] {
   if (!fs.existsSync(absoluteDirectory)) return [];
@@ -78,20 +92,28 @@ function readDirectory(absoluteDirectory: string, kind: ContentItem["kind"]): Co
     .filter((item) => !item.frontmatter.status || item.frontmatter.status === "published");
 }
 
-export function getAllContent(): ContentItem[] {
-  contentCache ??= contentSources.flatMap(({ directory, kind }) => readDirectory(directory, kind));
-  return contentCache;
+export function getAllContent(lang: ContentLang = "en"): ContentItem[] {
+  contentCache[lang] ??= contentSources[lang].flatMap(({ directory, kind }) => readDirectory(directory, kind));
+  return contentCache[lang];
 }
 
-export function getContentBySlug(slug: string): ContentItem | undefined {
-  return getAllContent().find((item) => item.slug === slug);
+export function getContentBySlug(slug: string, lang: ContentLang = "en"): ContentItem | undefined {
+  return getAllContent(lang).find((item) => item.slug === slug);
 }
 
-export function getRelatedArticles(item: ContentItem, limit = 4): ContentItem[] {
-  return getAllContent()
+export function getRelatedArticles(item: ContentItem, limit = 4, lang: ContentLang = "en"): ContentItem[] {
+  return getAllContent(lang)
     .filter((candidate) => candidate.kind === "article" && candidate.slug !== item.slug)
     .sort((a, b) => Number(b.frontmatter.section === item.frontmatter.section) - Number(a.frontmatter.section === item.frontmatter.section))
     .slice(0, limit);
+}
+
+/**
+ * Slug of this item's translation in the other language. Defaults to the
+ * same slug; a translated file may point elsewhere via `translationKey`.
+ */
+export function translationSlug(item: ContentItem): string {
+  return item.frontmatter.translationKey ?? item.slug;
 }
 
 export function absoluteUrl(value?: string, fallbackSlug?: string): string {

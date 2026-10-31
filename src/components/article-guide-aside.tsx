@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 const hubs = [
   { terms: ["payment"], label: "Payments in China", href: "/payments-in-china" },

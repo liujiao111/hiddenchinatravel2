@@ -1980,3 +1980,23 @@ a.utility-card { color:inherit; }
   .journey-practical-accordion summary { min-height:60px; padding:16px 0; }
   .journey-practical-answer { padding-right:8px; }
 }
+
+/* Locale switcher (i18n, docs/i18n-plan.md) */
+.locale-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.locale-switcher .locale-current {
+  font-weight: 600;
+}
+.locale-switcher .locale-divider {
+  opacity: 0.4;
+}
+.locale-switcher .locale-link {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

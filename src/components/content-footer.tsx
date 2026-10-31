@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { brandIdentity } from "@/lib/booking-terms";
 import { siteConfig } from "@/lib/site-config";
 

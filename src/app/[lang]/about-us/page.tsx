@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { OperatorCredentials } from "@/components/operator-credentials";
 import { SiteHeader } from "@/components/site-header";
@@ -15,24 +16,26 @@ import styles from "./about.module.css";
 const title = "Meet Joy Liu | About Hidden China Travel";
 const description = "Meet Joy Liu, Yunnan-born founder of Hidden China Travel, and discover the local insight and thoughtful planning behind our private Yunnan journeys.";
 
-export const metadata: Metadata = {
-  title: { absolute: title },
-  description,
-  alternates: { canonical: "/about-us" },
-  openGraph: {
-    title,
+export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return localizedStaticMetadata(lang, "/about-us", {
+    title: { absolute: title },
     description,
-    url: "/about-us",
-    type: "website",
-    images: [{ url: "/brand/founder/portrait.webp", alt: "Joy Liu, founder of Hidden China Travel" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/brand/founder/portrait.webp"],
-  },
-};
+    openGraph: {
+      title,
+      description,
+      url: "/about-us",
+      type: "website",
+      images: [{ url: "/brand/founder/portrait.webp", alt: "Joy Liu, founder of Hidden China Travel" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/brand/founder/portrait.webp"],
+    },
+  });
+}
 
 const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent("Hi Joy, I read your story on the About page and would love to discuss a Yunnan trip.")}`;
 const reasons = [

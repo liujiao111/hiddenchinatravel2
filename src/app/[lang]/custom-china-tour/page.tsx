@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { BookingTerms } from "@/components/booking-terms";
 import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { MuslimFriendly } from "@/components/muslim-friendly";
@@ -40,19 +41,21 @@ const faqs = [
   { question: "Does submitting this form commit me to a booking?", answer: "No. It starts a conversation about your plans. You can review the proposal and terms before deciding whether to proceed." },
 ];
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical },
-  openGraph: { title, description, url: canonical, images: [{ url: "https://hiddenchinatravel.com/home/hero.webp", alt: "Mountains and countryside in Yunnan" }], type: "website" },
-  twitter: { card: "summary_large_image", title, description, images: ["https://hiddenchinatravel.com/home/hero.webp"] },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return localizedStaticMetadata(lang, "/custom-china-tour", {
+    title,
+    description,
+    openGraph: { title, description, url: canonical, images: [{ url: "https://hiddenchinatravel.com/home/hero.webp", alt: "Mountains and countryside in Yunnan" }], type: "website" },
+    twitter: { card: "summary_large_image", title, description, images: ["https://hiddenchinatravel.com/home/hero.webp"] },
+  });
+}
 
 export default function CustomChinaTourPage() {
   const journeys = getAllJourneys();
   const stories = getSelectedTestimonials();
   const jsonLd = { "@context": "https://schema.org", "@graph": [
-    { "@type": "Service", name: "Tailor-Made Yunnan", url: canonical, description: metadata.description, areaServed: { "@type": "Place", name: "Yunnan, China" }, provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" } },
+    { "@type": "Service", name: "Tailor-Made Yunnan", url: canonical, description, areaServed: { "@type": "Place", name: "Yunnan, China" }, provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" } },
     { "@type": "FAQPage", mainEntity: faqs.map(faq => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) },
   ] };
   return <JourneyInspirationProvider><main className="custom-journey-page">

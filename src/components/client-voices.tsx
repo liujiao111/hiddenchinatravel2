@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { clientVoices, type ClientVoice } from "@/data/client-voices";
 
 type ClientVoicesProps = {

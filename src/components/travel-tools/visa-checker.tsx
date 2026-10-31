@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useState, useTransition } from "react";
-import { checkVisaEligibility } from "@/app/china-visa-checker/actions";
+import { checkVisaEligibility } from "@/app/[lang]/china-visa-checker/actions";
 import type { VisaEvaluationResult, VisaCheckInput } from "@/lib/visa-checker/evaluate";
 import type { SelectOption } from "@/lib/visa-checker/load-rules";
 

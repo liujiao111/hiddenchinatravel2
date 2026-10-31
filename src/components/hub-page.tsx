@@ -1,5 +1,6 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { ContentItem } from "@/lib/content";
+import type { LocaleAlternate } from "@/lib/i18n-seo";
 import { ContentCta, ContentFooter } from "@/components/content-footer";
 import { QuickAsk } from "@/components/quick-ask";
 import { isTripPlanningSection } from "@/lib/enquiry";
@@ -8,10 +9,10 @@ import { SiteHeader } from "@/components/site-header";
 import { TopicNavigation } from "@/components/topic-navigation";
 import { JsonLd, breadcrumbList } from "@/components/json-ld";
 
-export function HubPage({ item }: { item: ContentItem }) {
+export function HubPage({ item, alternate }: { item: ContentItem; alternate?: LocaleAlternate }) {
   const { frontmatter } = item;
   return <main>
-    <SiteHeader />
+    <SiteHeader alternate={alternate} />
     <TopicNavigation active={frontmatter.title} />
     <header className="hub-hero"><div className="narrow"><p>{frontmatter.eyebrow || "PRACTICAL CHINA TRAVEL GUIDES"}</p><h1>{frontmatter.title}</h1><span>{frontmatter.description || frontmatter.metaDescription}</span></div></header>
     {frontmatter.heroAnswer && <section className="hub-answer"><div className="narrow"><p>THE SHORT ANSWER</p><h2>{frontmatter.heroAnswer}</h2></div></section>}

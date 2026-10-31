@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { EnquireLink } from "@/components/enquire-link";
 import { JourneyCard } from "@/components/journey-card";
@@ -18,25 +19,27 @@ const canonical = "https://hiddenchinatravel.com/";
 const title = "Private Yunnan Tours & Tailor-Made Journeys";
 const description = "Plan a private Yunnan journey through Kunming, Dali, Lijiang and Shaxi, with tailor-made itineraries, private transport, local guides and personal support.";
 
-export const metadata: Metadata = {
-  title: { absolute: `${title} | Hidden China Travel` },
-  description,
-  alternates: { canonical },
-  openGraph: {
-    title,
+export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return localizedStaticMetadata(lang, "/", {
+    title: { absolute: `${title} | Hidden China Travel` },
     description,
-    url: canonical,
-    type: "website",
-    siteName: "Hidden China Travel",
-    images: [{ url: "/home/hero.webp", alt: "Boardwalk beside a turquoise alpine lake under snow mountains in Yunnan" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/home/hero.webp"],
-  },
-};
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      type: "website",
+      siteName: "Hidden China Travel",
+      images: [{ url: "/home/hero.webp", alt: "Boardwalk beside a turquoise alpine lake under snow mountains in Yunnan" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/home/hero.webp"],
+    },
+  });
+}
 
 const whatsapp = "https://wa.me/8618880441791?text=" + encodeURIComponent("Hi Joy, I'd like help planning a private Yunnan journey.");
 const howItWorks = [

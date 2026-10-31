@@ -1,16 +1,17 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { ContentItem } from "@/lib/content";
+import type { LocaleAlternate } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { MarkdownContent } from "@/components/markdown-content";
 import { SiteHeader } from "@/components/site-header";
 import { JsonLd, breadcrumbList } from "@/components/json-ld";
 
-export function LegalPage({ item }: { item: ContentItem }) {
+export function LegalPage({ item, alternate }: { item: ContentItem; alternate?: LocaleAlternate }) {
   const { frontmatter } = item;
 
   return (
     <main>
-      <SiteHeader />
+      <SiteHeader alternate={alternate} />
       <header className="legal-hero">
         <div className="shell legal-hero-inner">
           <nav className="breadcrumbs legal-breadcrumbs" aria-label="Breadcrumb">

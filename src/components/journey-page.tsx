@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { Journey } from "@/lib/journeys";
+import type { LocaleAlternate } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { HashLink } from "@/components/hash-link";
 import { PlanJourneyClose } from "@/components/plan-journey-close";
@@ -67,7 +68,7 @@ function JourneyQuoteBand({ id, source, sourceTitle, whatsapp, showRouteLink, co
   </section>;
 }
 
-export function JourneyPage({ journey }: { journey: Journey }) {
+export function JourneyPage({ journey, alternate }: { journey: Journey; alternate?: LocaleAlternate }) {
   const { frontmatter } = journey;
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
   const isEightDayYunnanJourney = journey.slug === "kunming-dali-lijiang-shangri-la-private-tour";
@@ -105,7 +106,7 @@ export function JourneyPage({ journey }: { journey: Journey }) {
   };
 
   return <main className={isSixDayYunnanJourney ? "journey-page journey-page-offer" : "journey-page"}>
-    <SiteHeader conversion cta={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", mailHref: "#ask-joy", label: "Start Planning My Journey", location: "header_journey_price" }} />
+    <SiteHeader conversion alternate={alternate} cta={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", mailHref: "#ask-joy", label: "Start Planning My Journey", location: "header_journey_price" }} />
     <JourneyHero
       title={frontmatter.heroTitle || frontmatter.title}
       name={frontmatter.heroTitle ? frontmatter.title : undefined}

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useRouter } from "next/navigation";
 import { FormEvent, KeyboardEvent, useEffect, useId, useRef, useState } from "react";
 import { matchSearchItems, type SearchItem } from "@/lib/search-types";

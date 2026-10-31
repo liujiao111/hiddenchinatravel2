@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 import Script from "next/script";
 import { AnalyticsTracker } from "@/components/analytics-tracker";
-import "./globals.css";
+import { routing } from "@/i18n/routing";
+import { htmlLang } from "@/lib/i18n-seo";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,10 +33,18 @@ export const metadata: Metadata = {
     "Practical China travel guides, local insight, and personalized journeys across Yunnan and beyond.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export function generateStaticParams() {
+  return routing.locales.map((lang) => ({ lang }));
+}
+
+export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {
+  const { lang } = await params;
+  if (!hasLocale(routing.locales, lang)) notFound();
+  setRequestLocale(lang);
+
   return (
     <html
-      lang="en"
+      lang={htmlLang[lang]}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
@@ -46,7 +59,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </Script>
       </head>
       <body className="min-h-full flex flex-col">
-        {children}
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
         {gtagSrcId ? <AnalyticsTracker /> : null}
       {gtagSrcId ? (
         <>

@@ -1,7 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { ContentItem } from "@/lib/content";
 import { getRelatedArticles } from "@/lib/content";
+import type { LocaleAlternate } from "@/lib/i18n-seo";
 import { ArticleDiscoveryFlow } from "@/components/article-discovery-flow";
 import { ArticleGuideAside } from "@/components/article-guide-aside";
 import { ContentFooter } from "@/components/content-footer";
@@ -18,7 +19,7 @@ function formatDate(value?: string) {
   return new Intl.DateTimeFormat("en", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(value));
 }
 
-export function ArticlePage({ item }: { item: ContentItem }) {
+export function ArticlePage({ item, alternate }: { item: ContentItem; alternate?: LocaleAlternate }) {
   const { frontmatter } = item;
   const related = getRelatedArticles(item, 6);
   const journeys = getAllJourneys();
@@ -55,7 +56,7 @@ export function ArticlePage({ item }: { item: ContentItem }) {
   };
 
   return <main>
-    <SiteHeader />
+    <SiteHeader alternate={alternate} />
     <TopicNavigation active={frontmatter.section} />
     <article>
       <header className={frontmatter.coverImage ? "article-hero has-image" : "article-hero"}>

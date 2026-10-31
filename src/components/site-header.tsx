@@ -1,5 +1,6 @@
 import { SiteHeaderClient, type HeaderJourney } from "@/components/site-header-client";
 import { formatPriceLabel } from "@/lib/format-price";
+import type { LocaleAlternate } from "@/lib/i18n-seo";
 import { getAllJourneys, type Journey } from "@/lib/journeys";
 
 function navSellingPoint(journey: Journey) {
@@ -14,7 +15,7 @@ function navPriceLabel(journey: Journey) {
   return "Tailored quote";
 }
 
-export function SiteHeader({ cta, conversion }: { cta?: { href: string; label: string; location?: string; mailHref?: string }; conversion?: boolean } = {}) {
+export function SiteHeader({ cta, conversion, alternate }: { cta?: { href: string; label: string; location?: string; mailHref?: string }; conversion?: boolean; alternate?: LocaleAlternate } = {}) {
   const journeys: HeaderJourney[] = getAllJourneys()
     .filter((journey) => journey.frontmatter.navFeatured)
     .map((journey) => ({
@@ -26,5 +27,5 @@ export function SiteHeader({ cta, conversion }: { cta?: { href: string; label: s
       priceLabel: navPriceLabel(journey),
     }));
 
-  return <SiteHeaderClient journeys={journeys} cta={cta} conversion={conversion} />;
+  return <SiteHeaderClient journeys={journeys} cta={cta} conversion={conversion} alternate={alternate} />;
 }
