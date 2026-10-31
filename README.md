@@ -32,6 +32,10 @@ content/destinations/    Destination and itinerary content
 public/                  Static assets
 ```
 
+## Docs
+
+- [i18n plan (Simplified Chinese first)](docs/i18n-plan.md) — multilingual architecture, SEO rules, and rollout phases
+
 ## Product direction
 
 1. Practical China travel guidance that builds trust.
