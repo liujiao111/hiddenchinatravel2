@@ -1,0 +1,6 @@
+{
+  "name": "@swc/core",
+  "version": "1.16.21",
+  "description": "Local stub: next-intl imports @swc/core at config-load time, but only calls it for message extraction, which this project does not use. The real binary does not run on macOS 13. See docs/i18n-plan.md.",
+  "main": "index.js"
+}

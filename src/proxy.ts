@@ -1,13 +1,16 @@
-import { NextResponse, type NextRequest } from "next/server";
+import createMiddleware from "next-intl/middleware";
+import { routing } from "@/i18n/routing";
 
-export function proxy(request: NextRequest) {
-  const path = request.nextUrl.pathname;
-  if (path === "/&" || path === "/$" || /["“”]/.test(path)) {
-    return NextResponse.redirect(new URL("/", request.url), 308);
-  }
-  return NextResponse.next();
-}
+/**
+ * Next.js 16 request-interception file (formerly `middleware.ts`).
+ * Rewrites prefix-less English URLs to the internal `en` locale and serves
+ * Chinese URLs under /zh. Runs after next.config redirects, so all legacy
+ * WordPress redirects keep working untouched.
+ */
+export default createMiddleware(routing);
 
 export const config = {
-  matcher: ["/&", "/$", "/((?!_next/static|_next/image|favicon.ico|assets/|brand/|home/).*)"],
+  // Skip API routes, affiliate redirect routes (/go/*), Next internals and
+  // any file with an extension (images, fonts, sitemap.xml, robots.txt ...).
+  matcher: ["/((?!api|go|_next|_vercel|.*\\..*).*)"],
 };

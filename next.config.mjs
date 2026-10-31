@@ -1,4 +1,7 @@
+import createNextIntlPlugin from "next-intl/plugin";
 import { legacyRedirects } from "./legacy-redirects.mjs";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -29,4 +32,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

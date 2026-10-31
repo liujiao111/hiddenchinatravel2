@@ -1,0 +1,21 @@
+{
+  "header": {
+    "tagline": "本地视角 · 私家小团 · 全程贴心支持",
+    "destinations": "目的地",
+    "journeys": "精选行程",
+    "travelGuides": "旅行指南",
+    "aboutUs": "关于我们",
+    "contactUs": "联系我们",
+    "travelerStories": "游客故事",
+    "bookingService": "预订与服务",
+    "menu": "菜单",
+    "close": "关闭",
+    "cta": "开始规划我的行程",
+    "viewAllJourneys": "查看全部行程"
+  },
+  "localeSwitcher": {
+    "label": "语言",
+    "en": "EN",
+    "zh": "中文"
+  }
+}

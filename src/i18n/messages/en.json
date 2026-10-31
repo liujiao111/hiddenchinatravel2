@@ -1,0 +1,21 @@
+{
+  "header": {
+    "tagline": "Local insight, private journeys and personal support",
+    "destinations": "DESTINATIONS",
+    "journeys": "JOURNEYS",
+    "travelGuides": "TRAVEL GUIDES",
+    "aboutUs": "ABOUT US",
+    "contactUs": "CONTACT US",
+    "travelerStories": "TRAVELER STORIES",
+    "bookingService": "BOOKING & SERVICE",
+    "menu": "MENU",
+    "close": "CLOSE",
+    "cta": "Start Planning My Journey",
+    "viewAllJourneys": "VIEW ALL JOURNEYS"
+  },
+  "localeSwitcher": {
+    "label": "Language",
+    "en": "EN",
+    "zh": "中文"
+  }
+}
