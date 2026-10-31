@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, type ReactNode } from "react";
+import { useTranslations } from "next-intl";
 import { trackEvent } from "@/lib/analytics";
 
 const InspirationContext = createContext<{ selected: string[]; toggle: (name: string) => void }>({ selected: [], toggle: () => {} });
@@ -19,6 +20,7 @@ export function useJourneyInspiration() { return useContext(InspirationContext);
 
 export function JourneyPlaceSelection() {
   const { selected, toggle } = useJourneyInspiration();
+  const t = useTranslations("customForm");
   if (!selected.length) return null;
-  return <fieldset className="journey-selected-places"><legend>Places that interest you</legend><p>Included with your enquiry. These are ideas, not a confirmed route.</p><div>{selected.map(name => <button type="button" key={name} onClick={() => toggle(name)} aria-label={`Remove ${name}`}>{name}<span aria-hidden="true"> ×</span></button>)}</div></fieldset>;
+  return <fieldset className="journey-selected-places"><legend>{t("placeSelectionLegend")}</legend><p>{t("placeSelectionNote")}</p><div>{selected.map(name => <button type="button" key={name} onClick={() => toggle(name)} aria-label={t("removeAria", { name })}>{name}<span aria-hidden="true"> ×</span></button>)}</div></fieldset>;
 }

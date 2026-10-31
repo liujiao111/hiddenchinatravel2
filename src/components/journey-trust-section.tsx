@@ -7,7 +7,7 @@ import { LocalTeamProof } from "@/components/local-team-proof";
 import { MuslimFriendly } from "@/components/muslim-friendly";
 import { OperatorCredentials } from "@/components/operator-credentials";
 import { VehicleProof } from "@/components/vehicle-proof";
-import { brandIdentity } from "@/lib/booking-terms";
+import { getBrandIdentity } from "@/lib/booking-terms-i18n";
 import { getDriverGuideProof } from "@/lib/journey-trust-i18n";
 
 export function JourneyTrustSection({
@@ -55,7 +55,7 @@ export function JourneyTrustSection({
       <div className="journey-editorial-heading">
         {compact || !(kicker ?? t("trustKicker")) ? null : <span>{kicker ?? t("trustKicker")}</span>}
         <h2 id="private-journey-title">{compact ? t("trustHeadingCompact") : (heading || t("trustHeadingDefault"))}</h2>
-        <p>{compact ? t("trustDescriptionCompact", { brand: brandIdentity.short, consultant: brandIdentity.consultant }) : (description || t("trustDescriptionDefault"))}</p>
+        <p>{compact ? t("trustDescriptionCompact", { brand: getBrandIdentity(lang).short, consultant: getBrandIdentity(lang).consultant }) : (description || t("trustDescriptionDefault"))}</p>
       </div>
       <div className="proof-group-switch journey-proof-tabs" role="tablist" aria-label={t("trustTabsAria")}>
         {proofTabs.map((tab) => <button key={tab.id} type="button" role="tab" aria-selected={tab.id === activeId} onClick={() => setActiveId(tab.id)}>{tab.label}</button>)}

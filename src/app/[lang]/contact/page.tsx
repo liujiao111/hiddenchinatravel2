@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContactForm } from "@/components/contact-form";
@@ -7,13 +8,13 @@ import { ContentFooter } from "@/components/content-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { siteConfig } from "@/lib/site-config";
-import { getSelectedTestimonials, selectedTestimonialsCopy } from "@/lib/testimonials";
-
-const title = "Contact Hidden China Travel | Talk With Joy Liu";
-const description = "Have questions about Yunnan, China travel, visas, payments, or trip planning? Contact Joy Liu directly and start the conversation.";
+import { getSelectedTestimonials } from "@/lib/testimonials";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
   const { lang } = await params;
+  const t = await getTranslations({ locale: lang, namespace: "contact" });
+  const title = t("metaTitle");
+  const description = t("metaDescription");
   return localizedStaticMetadata(lang, "/contact", {
     title: { absolute: title },
     description,
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: App
       description,
       url: "/contact",
       type: "website",
-      images: [{ url: "/brand/founder/portrait.webp", alt: "Joy Liu, founder of Hidden China Travel" }],
+      images: [{ url: "/brand/founder/portrait.webp", alt: t("ogImageAlt") }],
     },
     twitter: {
       card: "summary_large_image",
@@ -33,28 +34,19 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: App
   });
 }
 
-const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=Hi%20Joy%2C%20I%27d%20like%20to%20talk%20about%20my%20China%20journey.`;
-
-const steps = [
-  ["01", "Tell us about your plans", "Share your dates, destinations, and questions."],
-  ["02", "We'll review everything personally", "Every inquiry is reviewed by Joy Liu.\n\nNo automated travel templates.\n\nNo outsourced sales teams."],
-  ["03", "We'll explore the possibilities", "If one of our journeys is a good fit, you'll receive initial suggestions and next steps."],
-  ["04", "You decide", "No sales pressure.\n\nNo obligation to book."],
-];
-
-const questions = [
-  "Is Yunnan a good first destination in China?",
-  "How many days should I spend in Dali, Shaxi, or Lijiang?",
-  "Do I need a visa?",
-  "Can I customize a journey?",
-  "Is China easy to travel independently?",
-  "What should I prepare before arriving?",
-  "Which hotels do you recommend?",
-  "Do I need Alipay, WeChat Pay, or an eSIM?",
-];
-
-export default async function ContactPage() {
+export default async function ContactPage({ params }: { params: Promise<{ lang: AppLocale }> }) {
+  const { lang } = await params;
+  setRequestLocale(lang);
+  const t = await getTranslations({ locale: lang, namespace: "contact" });
+  const tj = await getTranslations({ locale: lang, namespace: "journey" });
+  const tq = await getTranslations({ locale: lang, namespace: "quickAsk" });
   const stories = getSelectedTestimonials();
+  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(t("whatsappMessage"))}`;
+  const steps = t.raw("steps") as [string, string, string][];
+  const emphasis = t.raw("heroEmphasis") as string[];
+  const founderParagraphs = t.raw("founderParagraphs") as string[];
+  const planningPoints = t.raw("planningPoints") as string[];
+  const questions = t.raw("questions") as string[];
 
   return (
     <main>
@@ -62,20 +54,20 @@ export default async function ContactPage() {
 
       <section className="contact-hero">
         <div className="shell contact-hero-copy">
-          <p className="contact-kicker">A PERSONAL CONVERSATION</p>
-          <h1>Let&apos;s Talk About Your China Journey</h1>
-          <p>Whether you&apos;re planning your first trip to China, exploring Yunnan, or simply looking for practical advice, we&apos;d love to hear from you.</p>
-          <div className="contact-hero-emphasis"><span>No pressure.</span><span>No obligation.</span><strong>Just a conversation.</strong></div>
-          <Link className="button button-blue" href={whatsapp}>Start Planning My Journey</Link>
-          <small>{siteConfig.replyTime}</small>
+          <p className="contact-kicker">{t("heroKicker")}</p>
+          <h1>{t("heroTitle")}</h1>
+          <p>{t("heroText")}</p>
+          <div className="contact-hero-emphasis"><span>{emphasis[0]}</span><span>{emphasis[1]}</span><strong>{emphasis[2]}</strong></div>
+          <Link className="button button-blue" href={whatsapp}>{tj("startPlanning")}</Link>
+          <small>{tq("replyTime")}</small>
         </div>
       </section>
 
       <section className="contact-process section">
         <div className="shell">
           <header className="contact-section-heading">
-            <p className="contact-kicker">WHAT HAPPENS NEXT?</p>
-            <h2>Here&apos;s how it works</h2>
+            <p className="contact-kicker">{t("processKicker")}</p>
+            <h2>{t("processHeading")}</h2>
           </header>
           <div className="contact-step-grid">
             {steps.map(([number, title, body]) => (
@@ -91,40 +83,34 @@ export default async function ContactPage() {
 
       <section className="contact-founder">
         <div className="contact-founder-image">
-          <Image src="/brand/founder/portrait.webp" alt="Joy Liu, founder of Hidden China Travel" fill sizes="(max-width: 800px) 100vw, 50vw" />
+          <Image src="/brand/founder/portrait.webp" alt={t("founderAlt")} fill sizes="(max-width: 800px) 100vw, 50vw" />
         </div>
         <div className="contact-founder-copy">
-          <p className="contact-kicker">YOUR LOCAL CONTACT</p>
-          <h2>You&apos;ll Be Speaking Directly With Joy Liu</h2>
-          <p>Born and raised in Yunnan.</p>
-          <p>Years spent living abroad helped me understand how unfamiliar a new country can feel.</p>
-          <p>That&apos;s why Hidden China Travel exists: to make exploring China feel more comfortable, more personal, and more approachable.</p>
-          <p>Whether you have questions about Yunnan, visas, payments, transportation, or trip planning, I&apos;m always happy to help where I can.</p>
-          <strong>— Joy Liu</strong>
-          <span>Founder, Hidden China Travel</span>
+          <p className="contact-kicker">{t("founderKicker")}</p>
+          <h2>{t("founderTitle")}</h2>
+          {founderParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          <strong>{t("founderName")}</strong>
+          <span>{t("founderRole")}</span>
         </div>
       </section>
 
       <Testimonials
         items={stories}
-        eyebrow={selectedTestimonialsCopy.eyebrow}
-        heading={selectedTestimonialsCopy.heading}
-        intro={selectedTestimonialsCopy.intro}
-        note={selectedTestimonialsCopy.note}
+        eyebrow={tj("testimonialsEyebrow")}
+        heading={tj("testimonialsHeading")}
+        intro={tj("testimonialsIntroGeneric")}
+        note={tj("testimonialsNote")}
       />
 
       <section className="contact-form-section section" id="enquire">
         <div className="shell contact-form-layout">
           <header>
-            <p className="contact-kicker">START PLANNING YOUR JOURNEY</p>
-            <h2>START PLANNING YOUR JOURNEY</h2>
-            <p>You don&rsquo;t need a finished itinerary.</p>
-            <p>Tell us your dates, interests and travel style.<br />We&rsquo;ll suggest a personalized direction for your trip.</p>
+            <p className="contact-kicker">{t("formKicker")}</p>
+            <h2>{t("formHeading")}</h2>
+            <p>{t("formText1")}</p>
+            <p>{t("formText2a")}<br />{t("formText2b")}</p>
             <ul className="contact-planning-points">
-              <li>✓ Personal response from Joy</li>
-              <li>✓ Custom itinerary suggestions</li>
-              <li>✓ No obligation to book</li>
-              <li>✓ Usually reply within 12 hours</li>
+              {planningPoints.map((point) => <li key={point}>{point}</li>)}
             </ul>
           </header>
           <ContactForm />
@@ -134,8 +120,8 @@ export default async function ContactPage() {
       <section className="contact-questions section">
         <div className="shell contact-questions-layout">
           <header>
-            <p className="contact-kicker">WHY TRAVELERS CONTACT US</p>
-            <h2>Common Questions</h2>
+            <p className="contact-kicker">{t("questionsKicker")}</p>
+            <h2>{t("questionsHeading")}</h2>
           </header>
           <ul>{questions.map((question) => <li key={question}><span>✓</span>{question}</li>)}</ul>
         </div>
@@ -144,24 +130,24 @@ export default async function ContactPage() {
       <section className="contact-alternatives section">
         <div className="shell">
           <header className="contact-section-heading">
-            <p className="contact-kicker">ALTERNATIVE CONTACT METHODS</p>
-            <h2>Other Ways to Reach Us</h2>
+            <p className="contact-kicker">{t("methodsKicker")}</p>
+            <h2>{t("methodsHeading")}</h2>
           </header>
           <div className="contact-method-grid">
-            <article><span>01</span><h3>WhatsApp</h3><p>The fastest way to reach us.</p><Link href={whatsapp}>Chat on WhatsApp →</Link></article>
-            <article><span>02</span><h3>Email</h3><p>For detailed questions or attachments.</p><a href="mailto:joy.liu@hiddenchinatravel.com">joy.liu@hiddenchinatravel.com</a></article>
-            <article><span>03</span><h3>Response Time</h3><p>{siteConfig.replyTime}</p></article>
+            <article><span>01</span><h3>WhatsApp</h3><p>{t("methodWhatsappText")}</p><Link href={whatsapp}>{t("methodWhatsappLink")}</Link></article>
+            <article><span>02</span><h3>Email</h3><p>{t("methodEmailText")}</p><a href="mailto:joy.liu@hiddenchinatravel.com">joy.liu@hiddenchinatravel.com</a></article>
+            <article><span>03</span><h3>{t("methodResponseTitle")}</h3><p>{tq("replyTime")}</p></article>
           </div>
         </div>
       </section>
 
       <section className="contact-final">
         <div className="narrow">
-          <h2>Not Sure Where to Start?</h2>
-          <p>That&apos;s completely normal.</p>
-          <p>Many travelers contact us before they&apos;ve decided on dates, destinations, or even whether China is the right fit.</p>
-          <p>Tell us where you&apos;re at.<br />We&apos;ll help from there.</p>
-          <Link className="button button-light" href={whatsapp}>Start Planning My Journey</Link>
+          <h2>{t("finalHeading")}</h2>
+          <p>{t("finalP1")}</p>
+          <p>{t("finalP2")}</p>
+          <p>{t("finalP3a")}<br />{t("finalP3b")}</p>
+          <Link className="button button-light" href={whatsapp}>{tj("startPlanning")}</Link>
         </div>
       </section>
 

@@ -1,6 +1,8 @@
-import { muslimFriendly } from "@/lib/journey-trust";
+import { useLocale } from "next-intl";
+import { getMuslimFriendly } from "@/lib/journey-trust-i18n";
 
 export function MuslimFriendly() {
+  const muslimFriendly = getMuslimFriendly(useLocale() as "en" | "zh");
   return <section className="journey-muslim" id="muslim-friendly">
     <div className="shell">
       <header>

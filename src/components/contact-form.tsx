@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { scheduleScrollToEnquire, scrollToEnquire } from "@/components/enquire-link";
 import { enquiryMessage, parseEnquiry, partySizes, type Enquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
@@ -17,10 +18,14 @@ function enquirySource() {
 }
 
 export function ContactForm() {
+  const t = useTranslations("contactForm");
+  const tq = useTranslations("quickAsk");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const [whatsappHref, setWhatsappHref] = useState("");
   const [sent, setSent] = useState<Enquiry | null>(null);
+
+  const partySizeLabels = tq.raw("partySizeLabels") as Record<string, string>;
 
   useEffect(() => {
     scheduleScrollToEnquire();
@@ -57,11 +62,11 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...parsed, allowEmptyPlans: true }),
       });
-      const result = await response.json().catch(() => ({ error: "We could not send this just now." }));
+      const result = await response.json().catch(() => ({ error: t("sendError") }));
 
       if (!response.ok) {
         setStatus("error");
-        setError(typeof result.error === "string" ? result.error : "We could not send this just now.");
+        setError(typeof result.error === "string" ? result.error : t("sendError"));
         return;
       }
 
@@ -71,18 +76,18 @@ export function ContactForm() {
       setStatus("success");
     } catch {
       setStatus("error");
-      setError("We could not send this just now.");
+      setError(t("sendError"));
     }
   }
 
   if (status === "success") {
     return (
       <div className="contact-form-success">
-        <h3>Thank you. Joy has your note.</h3>
-        <p>Joy will personally review your enquiry. {siteConfig.replyTime} There is no obligation to book.</p>
-        {sent ? <p><a href={siteConfig.sampleItineraryPdf} download>Download the 6-day sample itinerary (PDF)</a></p> : null}
-        <p>If you would rather continue on WhatsApp, you can send the same note now.</p>
-        <a className="button button-blue" href={whatsappHref}>Send on WhatsApp</a>
+        <h3>{t("successTitle")}</h3>
+        <p>{t("successText", { replyTime: tq("replyTime") })}</p>
+        {sent ? <p><a href={siteConfig.sampleItineraryPdf} download>{t("successSample")}</a></p> : null}
+        <p>{t("successWhatsappNote")}</p>
+        <a className="button button-blue" href={whatsappHref}>{t("successWhatsapp")}</a>
       </div>
     );
   }
@@ -91,11 +96,11 @@ export function ContactForm() {
     <form className="contact-form contact-enquiry-form" method="post" action="/api/enquiry" onSubmit={handleSubmit}>
       <div className="contact-field-row">
         <label>
-          <span>Your name</span>
-          <input name="name" type="text" autoComplete="name" placeholder="Your name" required />
+          <span>{t("name")}</span>
+          <input name="name" type="text" autoComplete="name" placeholder={t("namePlaceholder")} required />
         </label>
         <label>
-          <span>Email</span>
+          <span>{t("email")}</span>
           <input name="email" type="email" autoComplete="email" placeholder="you@example.com" required />
         </label>
       </div>
@@ -106,38 +111,38 @@ export function ContactForm() {
       </label>
 
       <label>
-        <span>WhatsApp <small>Optional, including country code</small></span>
+        <span>{t("whatsappLabel")} <small>{t("whatsappHint")}</small></span>
         <input name="whatsapp" type="tel" autoComplete="tel" maxLength={40} placeholder="+65 1234 5678" />
       </label>
 
       <div className="contact-field-row contact-trip-row">
         <label>
-          <span>When would you like to travel?</span>
-          <input name="travelWindow" type="text" maxLength={180} placeholder={'Exact dates, approximate month, or “not decided yet”'} required />
+          <span>{t("when")}</span>
+          <input name="travelWindow" type="text" maxLength={180} placeholder={t("whenPlaceholder")} required />
         </label>
         <label>
-          <span>Number of travelers</span>
+          <span>{t("travelers")}</span>
           <select name="travelers" defaultValue="2 travelers" required>
-            {partySizes.map((option) => <option key={option}>{option}</option>)}
+            {partySizes.map((option) => <option key={option} value={option}>{partySizeLabels[option] ?? option}</option>)}
           </select>
         </label>
       </div>
 
       <label>
-        <span>Tell us about your trip</span>
+        <span>{t("plansLabel")}</span>
         <textarea
           name="plans"
           rows={7}
-          placeholder={"Which places interest you?\\nHow many days are you considering?\\nIs there anything you would like us to know, including a rough budget if you have one?"}
+          placeholder={t("plansPlaceholder")}
           maxLength={4000}
         />
       </label>
 
       <button className="button button-blue" type="submit" disabled={status === "sending"}>
-        {status === "sending" ? "Sending…" : "Start Planning My Journey"}
+        {status === "sending" ? t("sending") : t("submit")}
       </button>
-      {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>Send on WhatsApp instead</a> : null}</p> : null}
-      <p className="contact-form-note">Tell us a little about your trip and we’ll prepare a personalized route suggestion based on your dates and interests.</p>
+      {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>{t("sendOnWhatsapp")}</a> : null}</p> : null}
+      <p className="contact-form-note">{t("note")}</p>
     </form>
   );
 }

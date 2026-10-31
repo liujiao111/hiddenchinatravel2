@@ -1,4 +1,4 @@
-import { driverGuideProof, hotelProof, vehicleProof } from "./journey-trust";
+import { driverGuideProof, hotelProof, muslimFriendly, vehicleProof } from "./journey-trust";
 
 type Lang = "en" | "zh";
 
@@ -105,6 +105,21 @@ const zhHotelCommon = {
     },
   },
 };
+
+const zhMuslimFriendly = {
+  kicker: "每条路线的标配",
+  title: "清真友好，是标配而非加项。",
+  copy: "咨询时告诉 Joy 即可，我们会把能安排的内容写进方案。我们不承诺每家酒店都有清真认证厨房。",
+  points: [
+    { title: "早餐可以自己选", detail: "一般含酒店早餐。我们会注明你的饮食需求，方便你挑选合适的餐品；也可以放弃早餐，我们帮你在附近找合适的选择。" },
+    { title: "沿途的清真餐", detail: "报价中包含午餐或晚餐时，我们会安排清真餐厅或打包餐；无法确认合适选项时退还该餐费用。报价不含餐时，司机兼向导会沿当天路线帮你找餐厅或外卖。" },
+    { title: "礼拜时间提醒", detail: "当天路线允许时，司机兼向导可以提醒礼拜时间，并协助寻找安静场所或清真寺。" },
+  ],
+};
+
+export function getMuslimFriendly(lang: Lang) {
+  return lang === "zh" ? { ...muslimFriendly, ...zhMuslimFriendly } : muslimFriendly;
+}
 
 export function getDriverGuideProof(lang: Lang) {
   if (lang !== "zh") return driverGuideProof;
