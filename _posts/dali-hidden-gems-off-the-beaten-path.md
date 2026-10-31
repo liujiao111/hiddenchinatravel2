@@ -5,7 +5,7 @@ excerpt: "Skip the crowds in Dali Old Town. A fact-checked 2026 guide to Shaxi, 
 coverImage: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
 coverAlt: "River and tiled roofs in Shaxi Ancient Town"
 date: "2026-09-08T12:00:00+08:00"
-dateModified: "2026-09-16T19:00:00+08:00"
+dateModified: "2026-10-31T11:00:00+08:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -14,7 +14,7 @@ ogImage:
 canonical: "https://hiddenchinatravel.com/dali-hidden-gems-off-the-beaten-path"
 keywords:
   - dali hidden gems
-  - shaxi ancient town
+  - shaxi from dali
   - xizhou ancient town
   - shibaoshan
   - zhoucheng tie-dye village
@@ -26,7 +26,7 @@ section: "China Itinerary Planning"
 sourceUrl: "https://hiddenchinatravel.com/dali-hidden-gems-off-the-beaten-path"
 faqs:
   - question: "Is Shaxi worth a day trip from Dali?"
-    answer: "Not really — it's about 2 to 2.5 hours each way, which makes a same-day round trip exhausting for not much time on the ground. Most people who make the trip stay at least one night."
+    answer: "Possible, but road transfers commonly take around 2–3 hours each way depending on the pickup point. If your schedule allows, staying overnight is more rewarding."
   - question: "How far is Xizhou from Dali Old Town?"
     answer: "About 20 km, roughly 30–50 minutes by minibus or taxi depending on traffic. It's an easy half-day or full-day trip without staying overnight."
   - question: "Do you need to buy a ticket for Shibaoshan?"
@@ -47,24 +47,15 @@ This sits beside our [Yunnan travel guide](/china-destinations/yunnan) — Kunmi
 
 We'll start with the one that takes the most effort to reach — the payoff is worth explaining first — then work down toward the easy half-day options.
 
-## Shaxi Ancient Town — What Dali Looked Like Before the Crowds Arrived
+## Shaxi Ancient Town — A Tea Horse Road Stop Worth Staying For
 
-Shaxi (沙溪) is the one that takes real effort to reach, and that's exactly why it still feels the way Dali Old Town probably did twenty years ago. It was a trading post on the old Tea-Horse Road, and Sifang Street — its 1,000-year-old market square — still runs a genuine Friday market where villagers from the surrounding hills come to trade.
+Shaxi (沙溪) sits in Jianchuan County between Dali and Lijiang. Its historic Sideng Square, old theatre stage and traditional courtyards make it a rewarding overnight stop rather than a rushed day trip. It has cafés and guesthouses today, but the valley, river and quieter mornings still give it a different rhythm from Dali Old Town.
 
 ![Traditional theater courtyard framed by an old doorway in Shaxi Ancient Town](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-theater-courtyard.webp)
 
-![Shepherd and goats on the riverbank outside Shaxi Ancient Town, Yunnan](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp)
+A road transfer from Dali generally takes around two to three hours, depending on your starting point and conditions. **For transport options, where to stay, Friday market details and how many nights to allow, read our [complete Shaxi Ancient Town travel guide](/shaxi-ancient-town-guide).**
 
-_A courtyard in the old town, and the river just outside._
-
-Multiple TripAdvisor reviewers make the same observation about timing: come for just an afternoon and it can feel like a movie set, but stay past the day-trip crowds — most head back to Dali by early evening — and Sifang Street quietly turns back into a real market town, with locals outnumbering tourists again.
-
-Sifang Street itself is free to walk. Cars aren't allowed inside the old town core, so however you arrive, you'll be dropped at the edge and walk in.
-
-Shaxi is about 140 km from Dali Old Town — figure on 2 to 2.5 hours by direct tourist coach (around ¥42, departing from Dali's long-distance bus station) or private car. Given the distance, this is realistically an overnight trip rather than a day trip. A handful of small guesthouses in Sifang Street's old buildings are worth booking ahead — [browse options here](/go/trip-hotels).
-
-> **Want to include Shaxi without turning it into a rushed day trip?**
-> Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) private journey includes one night in Shaxi between Dali and Lijiang, with the road transport arranged around the route.
+Shaxi also fits naturally into our [6-day Kunming–Dali–Shaxi–Lijiang private journey](/journeys/kunming-dali-shaxi-lijiang-6-days), which currently includes **one night in Shaxi**, with Shibaoshan on the way to Lijiang.
 
 ## Weishan Ancient Town — Yunnan's Emptiest "Forgotten Capital"
 

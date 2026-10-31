@@ -40,7 +40,7 @@ const placeCards = [
     note: "A living Tea Horse Road town worth staying overnight for.",
     image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp",
     alt: "River and tiled roofs in Shaxi Ancient Town",
-    href: "/dali-hidden-gems-off-the-beaten-path#shaxi-ancient-town-what-dali-looked-like-before-the-crowds-arrived",
+    href: "/shaxi-ancient-town-guide",
   },
   {
     name: "Lijiang",
@@ -66,6 +66,14 @@ const guides = [
     href: "/dali-travel-guide",
     image: "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp",
     imageAlt: "Cangshan mountains and Erhai Lake near Dali",
+    readTime: "DESTINATION GUIDE",
+  },
+  {
+    title: "Shaxi Ancient Town Guide",
+    excerpt: "What to see, how to get there from Dali or Lijiang, where to stay and why one night can make the difference.",
+    href: "/shaxi-ancient-town-guide",
+    image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp",
+    imageAlt: "River and tiled rooftops at Shaxi Ancient Town",
     readTime: "DESTINATION GUIDE",
   },
   {
