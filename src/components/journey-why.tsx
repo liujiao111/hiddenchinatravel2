@@ -1,32 +1,35 @@
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { licensedOperator, operatorCredentials } from "@/lib/journey-trust";
 
 export function JourneyWhy() {
+  const t = useTranslations("journey");
+  const lang = useLocale() as "en" | "zh";
   return <section className="journey-why" id="why-us" aria-labelledby="why-us-title">
     <div className="shell">
-      <h2 id="why-us-title">Planned with Joy. Contracted with a licensed Kunming agency.</h2>
+      <h2 id="why-us-title">{t("whyHeading")}</h2>
       <div className="journey-why-proof">
         <article>
           <figure>
-            <Image src="/brand/founder/portrait.webp" alt="Joy Liu, travel consultant at Hidden China Travel" fill sizes="(max-width:700px) 86vw, 280px" unoptimized />
+            <Image src="/brand/founder/portrait.webp" alt={t("whyJoyAlt")} fill sizes="(max-width:700px) 86vw, 280px" unoptimized />
           </figure>
           <div>
-            <h3>You’ll be planning with Joy.</h3>
-            <p>Joy Liu was born in Yunnan and plans from Kunming. You speak with him from the first enquiry through the trip.</p>
-            <Link href="/about-us">Meet Joy →</Link>
+            <h3>{t("whyJoyTitle")}</h3>
+            <p>{t("whyJoyCopy")}</p>
+            <Link href="/about-us">{t("whyMeetJoy")}</Link>
           </div>
         </article>
         <article>
           <div>
-            <h3>Licensed agency</h3>
-            <p>{licensedOperator.nameEn} ({licensedOperator.nameZh}). Permit {licensedOperator.permitNumber}. Office: {licensedOperator.addressEn}. The contract and payments are with this agency: 20% after you sign, 80% after your first pickup.</p>
-            <Link href="/licensed-operator">Liability insurance →</Link>
+            <h3>{t("whyAgencyTitle")}</h3>
+            <p>{t("whyAgencyCopy", { agencyEn: licensedOperator.nameEn, agencyZh: licensedOperator.nameZh, permit: licensedOperator.permitNumber, address: lang === "zh" ? licensedOperator.addressZh : licensedOperator.addressEn })}</p>
+            <Link href="/licensed-operator">{t("whyInsurance")}</Link>
           </div>
           <div className="journey-why-docs">
             {operatorCredentials.documents.map((document) => <a key={document.href} href={document.href} target="_blank" rel="noopener noreferrer">
               <Image src={document.src} alt={document.alt} width={document.width} height={document.height} unoptimized />
-              <span>{document.label}</span>
+              <span>{lang === "zh" ? (document.href.includes("business-license") ? "查看营业执照 ↗" : "查看旅行社业务经营许可证 ↗") : document.label}</span>
             </a>)}
           </div>
         </article>

@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { HashLink } from "@/components/hash-link";
 import { QuickAsk } from "@/components/quick-ask";
@@ -17,16 +18,17 @@ export function PlanJourneyClose({
   routeHref?: string;
   showForm?: boolean;
 }) {
+  const t = useTranslations("journey");
   return <section className="journey-final-cta journey-final-cta-ask" id={showForm ? undefined : id}>
     <div>
-      <h2>Your plans don’t have to fit a set itinerary.</h2>
-      <span>A family trip, a slower pace, or more time in a place you love. Let’s shape your Yunnan journey around it.</span>
-      <a className="button journey-primary-action" href={whatsapp} data-cta-location={`${id}_whatsapp`}>Start Planning My Journey</a>
+      <h2>{t("closeHeading")}</h2>
+      <span>{t("closeText")}</span>
+      <a className="button journey-primary-action" href={whatsapp} data-cta-location={`${id}_whatsapp`}>{t("startPlanning")}</a>
       {showForm ? <>
-        <p className="journey-close-email">Or send the same details by email. Joy replies to the note. Nothing is booked from it.</p>
+        <p className="journey-close-email">{t("closeEmailNote")}</p>
         <QuickAsk layout="plain" id={id} source={source} sourceTitle={sourceTitle} intent="trip" />
-      </> : <HashLink className="journey-final-alt" href="#ask-joy" data-cta-location={`${id}_email`}>Prefer email? Get My Trip Plan →</HashLink>}
-      {routeHref ? <Link className="journey-final-alt" href={routeHref} data-cta-location={`${id}_custom`}>A different date or route? Explore tailor-made Yunnan →</Link> : null}
+      </> : <HashLink className="journey-final-alt" href="#ask-joy" data-cta-location={`${id}_email`}>{t("chatEmail")}</HashLink>}
+      {routeHref ? <Link className="journey-final-alt" href={routeHref} data-cta-location={`${id}_custom`}>{t("customRouteLink")}</Link> : null}
     </div>
   </section>;
 }

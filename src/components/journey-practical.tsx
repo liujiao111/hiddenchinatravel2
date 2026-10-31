@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { bookingDocumentHref } from "@/lib/booking-terms";
 
@@ -8,7 +9,7 @@ type Note = { title: string; detail: string };
 export function JourneyPractical({
   notes = [],
   faqs = [],
-  title = "Good To Know",
+  title,
   groups: curated,
 }: {
   notes?: Note[];
@@ -16,6 +17,7 @@ export function JourneyPractical({
   title?: string;
   groups?: { id: string; label: string; items: Note[] }[];
 }) {
+  const t = useTranslations("journey");
   const items = curated?.length
     ? curated.flatMap((group) => group.items)
     : [...notes, ...faqs];
@@ -38,7 +40,7 @@ export function JourneyPractical({
   return <section className="journey-practical section" id="questions" aria-labelledby="practical-title">
     <div className="shell">
       <header className="journey-practical-heading">
-        <h2 id="practical-title">{title}</h2>
+        <h2 id="practical-title">{title ?? t("goodToKnow")}</h2>
       </header>
       <div className="journey-practical-accordion">
         {uniqueItems.map((item) => <details key={item.title}>
@@ -47,7 +49,7 @@ export function JourneyPractical({
         </details>)}
       </div>
       <p className="journey-practical-source">
-        <a href="https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/high-altitude-travel-and-altitude-illness.html" target="_blank" rel="noopener noreferrer">CDC high-altitude travel guidance ↗</a><span aria-hidden="true"> · </span><Link href={bookingDocumentHref}>Read the full booking and service note →</Link>
+        <a href="https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/high-altitude-travel-and-altitude-illness.html" target="_blank" rel="noopener noreferrer">{t("cdcLink")}</a><span aria-hidden="true"> · </span><Link href={bookingDocumentHref}>{t("bookingNoteLink")}</Link>
       </p>
     </div>
   </section>;
