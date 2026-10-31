@@ -11,6 +11,13 @@ export const routing = defineRouting({
   locales: ["en", "zh"],
   defaultLocale: "en",
   localePrefix: "as-needed",
+  // URLs are the single source of truth: / is always English and /zh is
+  // always Chinese. Automatic cookie/browser detection otherwise redirects
+  // English fallback links back into untranslated /zh paths.
+  localeDetection: false,
+  // Each page emits complete HTML alternates via localizedStaticMetadata.
+  // Disable next-intl's duplicate HTTP Link header (incorrect on /zh root).
+  alternateLinks: false,
 });
 
 export type AppLocale = (typeof routing.locales)[number];
