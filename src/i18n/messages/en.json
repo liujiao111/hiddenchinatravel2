@@ -209,9 +209,21 @@
     "howHeading": "Planning Your Yunnan Journey Is Simple",
     "howIntro": "You do not need a finished itinerary. Share your dates, group size and travel interests, and Joy will help turn your ideas into a practical private journey.",
     "howItWorks": [
-      ["01", "Share Your Ideas", "Tell us when you plan to travel, how many people are joining and what you would most like to experience."],
-      ["02", "Receive a Proposed Route", "Joy will suggest a practical route based on travel times, seasonal conditions and your preferred pace."],
-      ["03", "Refine and Confirm", "Adjust the itinerary, hotels and services before reviewing the final quotation and deciding whether to book."]
+      [
+        "01",
+        "Share Your Ideas",
+        "Tell us when you plan to travel, how many people are joining and what you would most like to experience."
+      ],
+      [
+        "02",
+        "Receive a Proposed Route",
+        "Joy will suggest a practical route based on travel times, seasonal conditions and your preferred pace."
+      ],
+      [
+        "03",
+        "Refine and Confirm",
+        "Adjust the itinerary, hotels and services before reviewing the final quotation and deciding whether to book."
+      ]
     ],
     "howHelper": "No payment is required to start planning.",
     "journeysKicker": "FEATURED PRIVATE JOURNEYS",
@@ -220,15 +232,30 @@
     "card1Title": "First Encounter Yunnan",
     "card1Subtitle": "Kunming • Dali • Lijiang • Shaxi",
     "card1Duration": "6 Days / 5 Nights Private Journey",
-    "card1Features": ["Private vehicle", "Driver-guide throughout", "20% deposit, 80% after pickup", "No shopping stops"],
+    "card1Features": [
+      "Private vehicle",
+      "Driver-guide throughout",
+      "20% deposit, 80% after pickup",
+      "No shopping stops"
+    ],
     "card2Title": "The Essence of Yunnan",
     "card2Subtitle": "Erhai Lake • Jade Dragon Snow Mountain • Tiger Leaping Gorge",
     "card2Duration": "8 Days / 7 Nights Private Journey",
-    "card2Features": ["Driver-guide throughout", "Handpicked hotels", "20% deposit, 80% after pickup", "No shopping stops"],
+    "card2Features": [
+      "Driver-guide throughout",
+      "Handpicked hotels",
+      "20% deposit, 80% after pickup",
+      "No shopping stops"
+    ],
     "card3Title": "Tailor-Made Yunnan",
     "card3Subtitle": "Private Journey Designed Around You",
     "card3Destination": "Designed around your dates, interests and pace",
-    "card3Features": ["Couples, families and friends", "Driver-guide throughout", "Slower routes with fewer hotel changes", "First-time China travel support"],
+    "card3Features": [
+      "Couples, families and friends",
+      "Driver-guide throughout",
+      "Slower routes with fewer hotel changes",
+      "First-time China travel support"
+    ],
     "card1ImageAlt": "Traditional rooftops and mountain scenery along the First Encounter Yunnan route",
     "card2ImageAlt": "Mountain and lake scenery along the Essence of Yunnan route",
     "card3ImageAlt": "A wooden boat on a highland lake in Yunnan",
@@ -240,12 +267,36 @@
     "whyHeading": "Local Knowledge, Seen From Both Sides",
     "whyIntro": "Hidden China Travel combines firsthand knowledge of Yunnan with an understanding of the questions international travelers often have before visiting China.",
     "reasons": [
-      ["01", "Private by design", "Travel with your own party, private vehicle and agreed itinerary. There are no large coach groups or fixed sightseeing schedules."],
-      ["02", "No shopping stops", "Your journey is designed around places, people and experiences, without mandatory shopping stops or commission-led detours."],
-      ["03", "Licensed local operation", "Hidden China Travel is the English-language site of {agency} in Kunming. The contract and payments go to that company’s account: 20% after you sign, 80% after your driver meets you."],
-      ["04", "Clear details before payment", "Review the proposed route, services, inclusions, exclusions and quoted price before deciding whether to confirm."],
-      ["05", "First-time China friendly", "Receive practical guidance about payments, mobile data, transportation, maps and arrival preparation."],
-      ["06", "Personal support", "Joy remains available before and during your journey, so questions and unexpected changes do not have to become travel-day stress."]
+      [
+        "01",
+        "Private by design",
+        "Travel with your own party, private vehicle and agreed itinerary. There are no large coach groups or fixed sightseeing schedules."
+      ],
+      [
+        "02",
+        "No shopping stops",
+        "Your journey is designed around places, people and experiences, without mandatory shopping stops or commission-led detours."
+      ],
+      [
+        "03",
+        "Licensed local operation",
+        "Hidden China Travel is the English-language site of {agency} in Kunming. The contract and payments go to that company’s account: 20% after you sign, 80% after your driver meets you."
+      ],
+      [
+        "04",
+        "Clear details before payment",
+        "Review the proposed route, services, inclusions, exclusions and quoted price before deciding whether to confirm."
+      ],
+      [
+        "05",
+        "First-time China friendly",
+        "Receive practical guidance about payments, mobile data, transportation, maps and arrival preparation."
+      ],
+      [
+        "06",
+        "Personal support",
+        "Joy remains available before and during your journey, so questions and unexpected changes do not have to become travel-day stress."
+      ]
     ],
     "storiesEyebrow": "TRAVELER STORIES",
     "storiesHeading": "What Travelers Remember",
@@ -267,10 +318,26 @@
     "prepareHeading": "We Help With More Than the Itinerary",
     "prepareIntro": "Payments, mobile data, maps, transportation and attraction bookings can work differently in China. Our practical travel guides help you prepare before departure, while guests booking a private journey receive relevant preparation advice for their route.",
     "supportItems": [
-      { "title": "Entry Requirements", "detail": "Check visa, visa-free or transit rules for your passport and route.", "href": "/survival-kit#entry" },
-      { "title": "Payments", "detail": "Set up Alipay and a backup way to pay before you leave.", "href": "/survival-kit#payment" },
-      { "title": "Mobile Data and Internet", "detail": "Choose roaming or a travel eSIM and save the setup instructions.", "href": "/survival-kit#esim" },
-      { "title": "Maps and Transportation", "detail": "Prepare maps, trains and everyday transport before arrival.", "href": "/survival-kit#maps" }
+      {
+        "title": "Entry Requirements",
+        "detail": "Check visa, visa-free or transit rules for your passport and route.",
+        "href": "/survival-kit#entry"
+      },
+      {
+        "title": "Payments",
+        "detail": "Set up Alipay and a backup way to pay before you leave.",
+        "href": "/survival-kit#payment"
+      },
+      {
+        "title": "Mobile Data and Internet",
+        "detail": "Choose roaming or a travel eSIM and save the setup instructions.",
+        "href": "/survival-kit#esim"
+      },
+      {
+        "title": "Maps and Transportation",
+        "detail": "Prepare maps, trains and everyday transport before arrival.",
+        "href": "/survival-kit#maps"
+      }
     ],
     "supportItemCta": "GET READY →",
     "checklistCta": "OPEN THE CHINA PRE-DEPARTURE CHECKLIST →",
@@ -279,23 +346,86 @@
     "destIntro": "Yunnan is more than one route. Begin with the places we know best, then combine them in a way that suits your time and interests.",
     "destGuideLink": "Open the complete Yunnan travel guide →",
     "destinations": [
-      { "name": "Kunming", "note": "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.", "image": "/assets/blog/kunming-travel-guide/cover-stone-forest.webp", "alt": "Limestone pinnacles of the Stone Forest near Kunming", "href": "/kunming-travel-guide", "cta": "EXPLORE KUNMING" },
-      { "name": "Dali", "note": "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.", "image": "/assets/destinations/yunnan/dali.webp", "alt": "Wuhua Tower in Dali Ancient Town beneath the Cangshan mountains", "href": "/dali-travel-guide", "cta": "EXPLORE DALI" },
-      { "name": "Shaxi", "note": "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.", "image": "/assets/destinations/yunnan/shaxi.webp", "alt": "Traditional tiled roofs and lanes in Shaxi Ancient Town", "href": "/dali-hidden-gems-off-the-beaten-path", "cta": "DISCOVER SHAXI" },
-      { "name": "Lijiang", "note": "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.", "image": "/assets/destinations/yunnan/lijiang.webp", "alt": "Rooftops and canals in Lijiang Old Town with mountains beyond", "href": "/lijiang-travel-guide", "cta": "EXPLORE LIJIANG" },
-      { "name": "Lugu Lake", "note": "A quieter northwest road, only worth adding when you have extra days beyond a first Yunnan week.", "image": "/assets/destinations/yunnan/lugu-lake.webp", "alt": "Quiet shoreline and pavilion on Lugu Lake in northwest Yunnan", "href": "/china-destinations/yunnan", "cta": "SEE THE YUNNAN ROUTE" },
-      { "name": "Shangri-La", "note": "High-altitude landscapes and a distinctly different side of Yunnan.", "image": "/assets/destinations/yunnan/shangri-la.webp", "alt": "Highland lake and forest near Shangri-La", "href": "/shangri-la-travel-guide", "cta": "EXPLORE SHANGRI-LA" }
+      {
+        "name": "Kunming",
+        "note": "Yunnan’s gateway city, with the Stone Forest landscapes and time to reset after a long-haul arrival.",
+        "image": "/assets/blog/kunming-travel-guide/cover-stone-forest.webp",
+        "alt": "Limestone pinnacles of the Stone Forest near Kunming",
+        "href": "/kunming-travel-guide",
+        "cta": "EXPLORE KUNMING"
+      },
+      {
+        "name": "Dali",
+        "note": "Lakeside villages, Bai culture and a gentler pace beside the Cangshan Mountains and Erhai Lake.",
+        "image": "/assets/destinations/yunnan/dali.webp",
+        "alt": "Wuhua Tower in Dali Ancient Town beneath the Cangshan mountains",
+        "href": "/dali-travel-guide",
+        "cta": "EXPLORE DALI"
+      },
+      {
+        "name": "Shaxi",
+        "note": "A quieter Tea Horse Road town that becomes more rewarding after the daytime visitors leave.",
+        "image": "/assets/destinations/yunnan/shaxi.webp",
+        "alt": "Traditional tiled roofs and lanes in Shaxi Ancient Town",
+        "href": "/shaxi-ancient-town-guide",
+        "cta": "DISCOVER SHAXI"
+      },
+      {
+        "name": "Lijiang",
+        "note": "Historic streets, local culture and access to the landscapes around Jade Dragon Snow Mountain.",
+        "image": "/assets/destinations/yunnan/lijiang.webp",
+        "alt": "Rooftops and canals in Lijiang Old Town with mountains beyond",
+        "href": "/lijiang-travel-guide",
+        "cta": "EXPLORE LIJIANG"
+      },
+      {
+        "name": "Lugu Lake",
+        "note": "A quieter northwest road, only worth adding when you have extra days beyond a first Yunnan week.",
+        "image": "/assets/destinations/yunnan/lugu-lake.webp",
+        "alt": "Quiet shoreline and pavilion on Lugu Lake in northwest Yunnan",
+        "href": "/china-destinations/yunnan",
+        "cta": "SEE THE YUNNAN ROUTE"
+      },
+      {
+        "name": "Shangri-La",
+        "note": "High-altitude landscapes and a distinctly different side of Yunnan.",
+        "image": "/assets/destinations/yunnan/shangri-la.webp",
+        "alt": "Highland lake and forest near Shangri-La",
+        "href": "/shangri-la-travel-guide",
+        "cta": "EXPLORE SHANGRI-LA"
+      }
     ],
     "faqKicker": "BEFORE YOU START",
     "faqHeading": "Frequently Asked Questions",
     "faqs": [
-      ["How much does a private Yunnan journey cost?", "Pricing depends on the route, number of travelers, travel dates and hotel standard. After learning more about your plans, we will provide a tailored quotation with the inclusions and exclusions clearly explained."],
-      ["Can the itinerary be customized?", "Yes. Suggested journeys are starting points rather than fixed packages. We can adjust the number of days, pace, hotels, destinations, activities and level of guiding according to your group’s interests and requirements."],
-      ["Do I need to pay before receiving a proposed route?", "No. You can begin by sharing your dates, approximate trip length, group size and interests. Payment is only discussed after you have reviewed the proposed arrangements and quotation."],
-      ["Who operates the journey in Yunnan?", "Hidden China Travel is the English-language site of {agencyEn} ({agencyZh}), a licensed travel agency in Kunming. Joy Liu is your travel consultant. You speak with Joy from the first enquiry through the journey."],
-      ["How do payment and cancellation work?", "After you confirm the written itinerary and travel contract, pay a 20% deposit to {agencyEn}’s corporate account by Alipay, WeChat, or bank transfer. The account name matches the company on the contract. We then book hotels, tickets and the vehicle. The remaining 80% is due after your first pickup, when the journey starts. Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit."],
-      ["What is normally included?", "Inclusions vary by journey but include private transport, a driver-guide throughout, accommodation and selected attraction tickets. Your proposal states what is included and what you pay for separately. The agency holds 2026 travel-agency liability insurance with China Pacific Property Insurance, policy AKUM0AC10625QAAA1R9T, up to RMB 1.8 million per person for injury it is legally responsible for. It applies to you only after your name and passport number are registered. Buy your own international medical and evacuation insurance. It is not included."],
-      ["How soon will I receive a reply?", "Joy normally replies within 2 hours on weekdays, 9:00–18:00 Beijing time, and within 24 hours at other times. More detailed proposals may take longer for complex routes or busy dates."]
+      [
+        "How much does a private Yunnan journey cost?",
+        "Pricing depends on the route, number of travelers, travel dates and hotel standard. After learning more about your plans, we will provide a tailored quotation with the inclusions and exclusions clearly explained."
+      ],
+      [
+        "Can the itinerary be customized?",
+        "Yes. Suggested journeys are starting points rather than fixed packages. We can adjust the number of days, pace, hotels, destinations, activities and level of guiding according to your group’s interests and requirements."
+      ],
+      [
+        "Do I need to pay before receiving a proposed route?",
+        "No. You can begin by sharing your dates, approximate trip length, group size and interests. Payment is only discussed after you have reviewed the proposed arrangements and quotation."
+      ],
+      [
+        "Who operates the journey in Yunnan?",
+        "Hidden China Travel is the English-language site of {agencyEn} ({agencyZh}), a licensed travel agency in Kunming. Joy Liu is your travel consultant. You speak with Joy from the first enquiry through the journey."
+      ],
+      [
+        "How do payment and cancellation work?",
+        "After you confirm the written itinerary and travel contract, pay a 20% deposit to {agencyEn}’s corporate account by Alipay, WeChat, or bank transfer. The account name matches the company on the contract. We then book hotels, tickets and the vehicle. The remaining 80% is due after your first pickup, when the journey starts. Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit."
+      ],
+      [
+        "What is normally included?",
+        "Inclusions vary by journey but include private transport, a driver-guide throughout, accommodation and selected attraction tickets. Your proposal states what is included and what you pay for separately. The agency holds 2026 travel-agency liability insurance with China Pacific Property Insurance, policy AKUM0AC10625QAAA1R9T, up to RMB 1.8 million per person for injury it is legally responsible for. It applies to you only after your name and passport number are registered. Buy your own international medical and evacuation insurance. It is not included."
+      ],
+      [
+        "How soon will I receive a reply?",
+        "Joy normally replies within 2 hours on weekdays, 9:00–18:00 Beijing time, and within 24 hours at other times. More detailed proposals may take longer for complex routes or busy dates."
+      ]
     ],
     "finalHeading": "Ready to Start Planning Yunnan?",
     "finalText": "You do not need a finished itinerary. Tell us your travel dates or approximate month, number of travelers and the places or experiences that interest you. Joy will help turn those ideas into a practical private journey.",
@@ -317,10 +447,20 @@
     "customKicker": "PERSONAL PLANNING SERVICE",
     "customTitle": "Tailor-Made Yunnan",
     "customText": "Private Journey Designed Around You. None of these routes quite fit? Start with your own dates, interests, preferred pace and comfort level. Joy will discuss the possibilities with you. The travel contract and payments are with the licensed agency behind Hidden China Travel.",
-    "customPoints": ["Your preferred duration and route", "Private transport, guiding and accommodation", "A written itinerary and tailored quote"],
+    "customPoints": [
+      "Your preferred duration and route",
+      "Private transport, guiding and accommodation",
+      "A written itinerary and tailored quote"
+    ],
     "customCta": "Start Planning My Journey",
     "philosophyHeading": "Not a checklist. A journey shaped around you.",
-    "philosophyPoints": ["Private travel with your own party", "A driver-guide throughout", "Muslim-friendly arrangements on every journey", "No mandatory shopping stops", "A licensed Kunming agency for the contract and payment"],
+    "philosophyPoints": [
+      "Private travel with your own party",
+      "A driver-guide throughout",
+      "Muslim-friendly arrangements on every journey",
+      "No mandatory shopping stops",
+      "A licensed Kunming agency for the contract and payment"
+    ],
     "quickAskSourceTitle": "Private Yunnan journeys",
     "breadcrumbHome": "Home",
     "breadcrumbCurrent": "Private Yunnan journeys"
@@ -333,7 +473,12 @@
     "seeDays": "SEE THE DAYS",
     "quoteHeading": "Get a quote for your dates.",
     "quotePayment": "After you sign, the deposit is 20%. The other 80% is due after your first pickup.",
-    "planPoints": ["Personalized itinerary", "Handpicked hotels", "Private driver-guide", "Flexible travel dates"],
+    "planPoints": [
+      "Personalized itinerary",
+      "Handpicked hotels",
+      "Private driver-guide",
+      "Flexible travel dates"
+    ],
     "emailSwitch": "Or send the same details by email.",
     "customRouteLink": "A different date or route? Explore tailor-made Yunnan →",
     "completePrice": "From {price} per person for the complete {duration}",
@@ -351,8 +496,17 @@
     "navAction": "Plan your trip",
     "navJumpTo": "Jump to:",
     "navAria": "Jump to a section",
-    "defaultIncludes": ["Private party · no shopping stops", "Muslim-friendly as standard", "Private driver-guide throughout", "Hotels in your chosen style, with breakfast", "Licensed Kunming agency for the contract"],
-    "sharedTierPoints": ["Private driver-guide and vehicle", "Hotel breakfast · lunch and dinner not included"],
+    "defaultIncludes": [
+      "Private party · no shopping stops",
+      "Muslim-friendly as standard",
+      "Private driver-guide throughout",
+      "Hotels in your chosen style, with breakfast",
+      "Licensed Kunming agency for the contract"
+    ],
+    "sharedTierPoints": [
+      "Private driver-guide and vehicle",
+      "Hotel breakfast · lunch and dinner not included"
+    ],
     "heroEyebrowDefault": "A PRIVATE YUNNAN JOURNEY",
     "heroNoteDefault": "Two adults sharing one room. Not a daily rate. Hotel breakfast is generally included; lunch and dinner are not.",
     "chatEmail": "Prefer email? Get My Trip Plan →",
@@ -361,8 +515,14 @@
     "guestProofKicker": "A PRIVATE PARTY",
     "guestProofCaption": "At the 4,506 m platform and Blue Moon Valley. These photographs are not tied to a named review.",
     "guestProofSlides": [
-      { "alt": "A private party at the 4,506 m Glacier Park platform on Jade Dragon Snow Mountain", "caption": "4,506 m platform" },
-      { "alt": "The same private party at Blue Moon Valley, below Jade Dragon Snow Mountain", "caption": "Blue Moon Valley" }
+      {
+        "alt": "A private party at the 4,506 m Glacier Park platform on Jade Dragon Snow Mountain",
+        "caption": "4,506 m platform"
+      },
+      {
+        "alt": "The same private party at Blue Moon Valley, below Jade Dragon Snow Mountain",
+        "caption": "Blue Moon Valley"
+      }
     ],
     "dayPhotos": {
       "Day 1": "Rooftops in Dali Old Town, with Cangshan behind",
@@ -376,14 +536,33 @@
     "joyReplies": "Joy replies to this note.",
     "whyTitle": "Why travel with us?",
     "factPartyTitle": "Private party",
-    "factPartyLines": ["Your own driver-guide and vehicle", "No shopping stops", "Arranged around your dates"],
+    "factPartyLines": [
+      "Your own driver-guide and vehicle",
+      "No shopping stops",
+      "Arranged around your dates"
+    ],
     "factJoyTitle": "Planned with Joy",
-    "factJoyLines": ["Joy Liu plans from Kunming", "You speak with him from the first enquiry through the trip", "He was born in Yunnan"],
+    "factJoyLines": [
+      "Joy Liu plans from Kunming",
+      "You speak with him from the first enquiry through the trip",
+      "He was born in Yunnan"
+    ],
     "factAgencyTitle": "Licensed agency",
-    "factAgencyLines": ["{agency}", "Permit {permit}", "The contract and payments are with this agency"],
+    "factAgencyLines": [
+      "{agency}",
+      "Permit {permit}",
+      "The contract and payments are with this agency"
+    ],
     "factGuestTitle": "Guest notes",
-    "factGuestWithStories": ["From guests on this journey", "Your driver-guide is named in writing", "Read them further down this page"],
-    "factGuestNoStories": ["Your driver-guide is named in writing", "The person for your dates is confirmed in the proposal"],
+    "factGuestWithStories": [
+      "From guests on this journey",
+      "Your driver-guide is named in writing",
+      "Read them further down this page"
+    ],
+    "factGuestNoStories": [
+      "Your driver-guide is named in writing",
+      "The person for your dates is confirmed in the proposal"
+    ],
     "whyHeading": "Planned with Joy. Contracted with a licensed Kunming agency.",
     "whyJoyTitle": "You’ll be planning with Joy.",
     "whyJoyCopy": "Joy Liu was born in Yunnan and plans from Kunming. You speak with him from the first enquiry through the trip.",
@@ -459,11 +638,26 @@
     "yunnanNotesHeading": "A few things to know about Yunnan.",
     "yunnanNotesSub": "Elevation, sun, clothing, custom, and food.",
     "yunnanNotes": [
-      { "title": "Altitude", "copy": "Yunnan is a mountain plateau. Most places sit at a moderate elevation, and some are high. Lijiang is about 2,400 meters (7,900 feet), and Shangri-La about 3,400 meters (11,200 feet). If your route includes either, prepare for the altitude." },
-      { "title": "Sun", "copy": "The elevation makes the ultraviolet light strong in every season. Bring a hat, sunglasses, and sunscreen." },
-      { "title": "Clothing", "copy": "The temperature can swing sharply, sometimes through several seasons in a single day. Dress in layers so you can add or remove a piece as it changes." },
-      { "title": "Local custom", "copy": "Yunnan is home to more ethnic groups than any other province in China, and customs differ from place to place. During visits, follow local practice and treat people’s homes, temples, and ceremonies with respect." },
-      { "title": "Food", "copy": "The cooking changes with the region. Dishes worth seeking out include crossing-the-bridge rice noodles, Xuanwei ham, flower cakes, Dai-style rice eaten by hand, and steam-pot chicken." }
+      {
+        "title": "Altitude",
+        "copy": "Yunnan is a mountain plateau. Most places sit at a moderate elevation, and some are high. Lijiang is about 2,400 meters (7,900 feet), and Shangri-La about 3,400 meters (11,200 feet). If your route includes either, prepare for the altitude."
+      },
+      {
+        "title": "Sun",
+        "copy": "The elevation makes the ultraviolet light strong in every season. Bring a hat, sunglasses, and sunscreen."
+      },
+      {
+        "title": "Clothing",
+        "copy": "The temperature can swing sharply, sometimes through several seasons in a single day. Dress in layers so you can add or remove a piece as it changes."
+      },
+      {
+        "title": "Local custom",
+        "copy": "Yunnan is home to more ethnic groups than any other province in China, and customs differ from place to place. During visits, follow local practice and treat people’s homes, temples, and ceremonies with respect."
+      },
+      {
+        "title": "Food",
+        "copy": "The cooking changes with the region. Dishes worth seeking out include crossing-the-bridge rice noodles, Xuanwei ham, flower cakes, Dai-style rice eaten by hand, and steam-pot chicken."
+      }
     ]
   },
   "quickAsk": {
@@ -552,9 +746,18 @@
     "overviewTitle": "Start with your plans, not a package.",
     "overviewDescription": "Our existing routes are a starting point. If they don’t fit your trip, we can discuss a journey designed from the ground up.",
     "overviewItems": [
-      { "label": "WHERE", "value": "Yunnan first · Other China destinations by request" },
-      { "label": "HOW YOU TRAVEL", "value": "A private party · Dates and duration shaped around you" },
-      { "label": "YOUR QUOTE", "value": "Prepared around your route, dates and preferences" }
+      {
+        "label": "WHERE",
+        "value": "Yunnan first · Other China destinations by request"
+      },
+      {
+        "label": "HOW YOU TRAVEL",
+        "value": "A private party · Dates and duration shaped around you"
+      },
+      {
+        "label": "YOUR QUOTE",
+        "value": "Prepared around your route, dates and preferences"
+      }
     ],
     "overviewAction": "TELL US WHAT YOU HAVE IN MIND",
     "manifestoLeadA": "A journey that feels",
@@ -566,9 +769,21 @@
     "ideasHeading": "A few ways your journey could take shape.",
     "ideasIntro": "A little inspiration to get you started. We’ll adapt these route ideas and experiences around your plans.",
     "ideas": [
-      { "title": "A gentler family journey", "route": "Dali · Shaxi · Lijiang", "text": "Fewer hotel changes, time for crafts and markets, and shorter activity days. Share your children’s ages or the needs of older relatives so we can discuss a suitable pace." },
-      { "title": "Landscapes through your lens", "route": "Dali · Lijiang · Shangri-La", "text": "More time for photography and scenery, with room to adjust around light and weather. We’ll discuss driving distances, mountain access and altitude before suggesting the route." },
-      { "title": "Tea, food and everyday Yunnan", "route": "Kunming · Pu’er · Xishuangbanna", "text": "An idea for travelers drawn to tea culture, local food and a warmer side of Yunnan. The visits and guiding arrangements depend on season and availability." }
+      {
+        "title": "A gentler family journey",
+        "route": "Dali · Shaxi · Lijiang",
+        "text": "Fewer hotel changes, time for crafts and markets, and shorter activity days. Share your children’s ages or the needs of older relatives so we can discuss a suitable pace."
+      },
+      {
+        "title": "Landscapes through your lens",
+        "route": "Dali · Lijiang · Shangri-La",
+        "text": "More time for photography and scenery, with room to adjust around light and weather. We’ll discuss driving distances, mountain access and altitude before suggesting the route."
+      },
+      {
+        "title": "Tea, food and everyday Yunnan",
+        "route": "Kunming · Pu’er · Xishuangbanna",
+        "text": "An idea for travelers drawn to tea culture, local food and a warmer side of Yunnan. The visits and guiding arrangements depend on season and availability."
+      }
     ],
     "midHeading": "Already have an itinerary in mind?",
     "midText": "Tell us what you would keep, add or change.",
@@ -583,10 +798,22 @@
     "quoteHeading": "A clear proposal before you decide.",
     "quoteText": "Your dates, route and party shape the price. We’ll discuss your budget and priorities before putting the details in writing.",
     "proposalCards": [
-      { "title": "Your route", "text": "Stops, travel times, daily pace and activities." },
-      { "title": "Your arrangements", "text": "Hotel and room choices, private transport and a driver-guide throughout." },
-      { "title": "Your quote", "text": "The total, currency, inclusions, exclusions and optional extras." },
-      { "title": "Your booking terms", "text": "Contract with the licensed agency, 20% deposit, then the balance after your first pickup." }
+      {
+        "title": "Your route",
+        "text": "Stops, travel times, daily pace and activities."
+      },
+      {
+        "title": "Your arrangements",
+        "text": "Hotel and room choices, private transport and a driver-guide throughout."
+      },
+      {
+        "title": "Your quote",
+        "text": "The total, currency, inclusions, exclusions and optional extras."
+      },
+      {
+        "title": "Your booking terms",
+        "text": "Contract with the licensed agency, 20% deposit, then the balance after your first pickup."
+      }
     ],
     "termsHeading": "The same booking terms as our other journeys.",
     "termsIntro": "Confirm the written itinerary and travel contract, pay a 20% deposit, then settle the balance after your first pickup.",
@@ -603,15 +830,39 @@
     "readyCta": "Explore this starting point →",
     "faqHeading": "Useful details, before you start.",
     "faqs": [
-      ["Can I start from one of your existing itineraries?", "Yes. Tell us which journey caught your eye and what you would change. We can discuss a different duration, extra stops, hotel preferences or a gentler pace rather than starting from a blank page."],
-      ["Do I need to know my dates and budget already?", "No. A month, a rough trip length or a few places you like is enough to start. We will clarify dates, party size and priorities before preparing a meaningful quote."],
-      ["Do you plan trips beyond Yunnan?", "Yunnan is our starting point and the region we know best. If your plans include other parts of China, tell us where you would like to go. We will discuss what we can arrange before promising it."],
-      ["How is a custom private journey priced?", "The quote depends on your dates, route, party size, accommodation, transport, guide language and chosen activities. It will state the currency, inclusions, exclusions and payment terms before you decide. Budget ranges in the form are planning preferences, not advertised tour prices."],
-      ["Is this a group tour?", "The journey is planned for your own party, rather than joining a scheduled coach group. Public attractions, restaurants or activities may still be shared with other visitors; your proposal will clarify any shared arrangements."],
-      ["Can you accommodate family, dietary or accessibility needs?", "Please describe what matters to you in the form. We will check the relevant hotel, vehicle, food and activity arrangements before confirming whether they can be met."],
-      ["Can you arrange a Muslim-friendly journey?", "Yes. Muslim-friendly arrangements are a standard feature on every private journey, including tailor-made routes. Tell Joy at enquiry. Hotel breakfast is generally included and you can choose suitable items or skip it. When lunch or dinner is in the quote, we arrange a halal restaurant or packed meal, or refund that meal if we cannot confirm a suitable option. When those meals are not in the quote, the driver-guide helps you find a restaurant or takeaway. Prayer-time reminders and a quiet place or mosque can be arranged when the route allows. We do not claim certified-halal hotel kitchens."]
+      [
+        "Can I start from one of your existing itineraries?",
+        "Yes. Tell us which journey caught your eye and what you would change. We can discuss a different duration, extra stops, hotel preferences or a gentler pace rather than starting from a blank page."
+      ],
+      [
+        "Do I need to know my dates and budget already?",
+        "No. A month, a rough trip length or a few places you like is enough to start. We will clarify dates, party size and priorities before preparing a meaningful quote."
+      ],
+      [
+        "Do you plan trips beyond Yunnan?",
+        "Yunnan is our starting point and the region we know best. If your plans include other parts of China, tell us where you would like to go. We will discuss what we can arrange before promising it."
+      ],
+      [
+        "How is a custom private journey priced?",
+        "The quote depends on your dates, route, party size, accommodation, transport, guide language and chosen activities. It will state the currency, inclusions, exclusions and payment terms before you decide. Budget ranges in the form are planning preferences, not advertised tour prices."
+      ],
+      [
+        "Is this a group tour?",
+        "The journey is planned for your own party, rather than joining a scheduled coach group. Public attractions, restaurants or activities may still be shared with other visitors; your proposal will clarify any shared arrangements."
+      ],
+      [
+        "Can you accommodate family, dietary or accessibility needs?",
+        "Please describe what matters to you in the form. We will check the relevant hotel, vehicle, food and activity arrangements before confirming whether they can be met."
+      ],
+      [
+        "Can you arrange a Muslim-friendly journey?",
+        "Yes. Muslim-friendly arrangements are a standard feature on every private journey, including tailor-made routes. Tell Joy at enquiry. Hotel breakfast is generally included and you can choose suitable items or skip it. When lunch or dinner is in the quote, we arrange a halal restaurant or packed meal, or refund that meal if we cannot confirm a suitable option. When those meals are not in the quote, the driver-guide helps you find a restaurant or takeaway. Prayer-time reminders and a quiet place or mosque can be arranged when the route allows. We do not claim certified-halal hotel kitchens."
+      ]
     ],
-    "faqFinal": ["Does submitting this form commit me to a booking?", "No. It starts a conversation about your plans. You can review the proposal and terms before deciding whether to proceed."]
+    "faqFinal": [
+      "Does submitting this form commit me to a booking?",
+      "No. It starts a conversation about your plans. You can review the proposal and terms before deciding whether to proceed."
+    ]
   },
   "contact": {
     "metaTitle": "Contact Hidden China Travel | Talk With Joy Liu",
@@ -621,14 +872,34 @@
     "heroKicker": "A PERSONAL CONVERSATION",
     "heroTitle": "Let’s Talk About Your China Journey",
     "heroText": "Whether you’re planning your first trip to China, exploring Yunnan, or simply looking for practical advice, we’d love to hear from you.",
-    "heroEmphasis": ["No pressure.", "No obligation.", "Just a conversation."],
+    "heroEmphasis": [
+      "No pressure.",
+      "No obligation.",
+      "Just a conversation."
+    ],
     "processKicker": "WHAT HAPPENS NEXT?",
     "processHeading": "Here’s how it works",
     "steps": [
-      ["01", "Tell us about your plans", "Share your dates, destinations, and questions."],
-      ["02", "We’ll review everything personally", "Every inquiry is reviewed by Joy Liu.\n\nNo automated travel templates.\n\nNo outsourced sales teams."],
-      ["03", "We’ll explore the possibilities", "If one of our journeys is a good fit, you’ll receive initial suggestions and next steps."],
-      ["04", "You decide", "No sales pressure.\n\nNo obligation to book."]
+      [
+        "01",
+        "Tell us about your plans",
+        "Share your dates, destinations, and questions."
+      ],
+      [
+        "02",
+        "We’ll review everything personally",
+        "Every inquiry is reviewed by Joy Liu.\n\nNo automated travel templates.\n\nNo outsourced sales teams."
+      ],
+      [
+        "03",
+        "We’ll explore the possibilities",
+        "If one of our journeys is a good fit, you’ll receive initial suggestions and next steps."
+      ],
+      [
+        "04",
+        "You decide",
+        "No sales pressure.\n\nNo obligation to book."
+      ]
     ],
     "founderKicker": "YOUR LOCAL CONTACT",
     "founderTitle": "You’ll Be Speaking Directly With Joy Liu",
@@ -646,7 +917,12 @@
     "formText1": "You don’t need a finished itinerary.",
     "formText2a": "Tell us your dates, interests and travel style.",
     "formText2b": "We’ll suggest a personalized direction for your trip.",
-    "planningPoints": ["✓ Personal response from Joy", "✓ Custom itinerary suggestions", "✓ No obligation to book", "✓ Usually reply within 12 hours"],
+    "planningPoints": [
+      "✓ Personal response from Joy",
+      "✓ Custom itinerary suggestions",
+      "✓ No obligation to book",
+      "✓ Usually reply within 12 hours"
+    ],
     "questionsKicker": "WHY TRAVELERS CONTACT US",
     "questionsHeading": "Common Questions",
     "questions": [
@@ -780,14 +1056,46 @@
     "planEmpty": "HELP ME CHOOSE A ROUTE →",
     "nextNote": "You don’t need to fit every place into one trip. We’ll discuss travel time, season and a comfortable pace.",
     "places": {
-      "dali": { "name": "Dali Ancient Town", "alt": "Wuhua Tower in Dali Ancient Town", "description": "Old-town lanes, markets and time for everyday life." },
-      "erhai": { "name": "Erhai Lake", "alt": "Erhai Lake with the Cangshan mountains beyond", "description": "Lakeside walks, village stops and open mountain views." },
-      "shaxi": { "name": "Shaxi Ancient Town", "alt": "Traditional buildings in Shaxi Ancient Town", "description": "Tea Horse Road courtyards and a quieter overnight stay." },
-      "lijiang": { "name": "Lijiang Old Town", "alt": "Traditional rooftops in Lijiang Old Town", "description": "Old-town streets with the mountain landscape close by." },
-      "jade-dragon": { "name": "Jade Dragon Snow Mountain", "alt": "Jade Dragon Snow Mountain above a turquoise lake", "description": "Mountain scenery, with visits planned around altitude and comfort." },
-      "blue-moon": { "name": "Blue Moon Valley", "alt": "Turquoise pools in Blue Moon Valley beneath Jade Dragon Snow Mountain", "description": "Turquoise water and a snow-mountain backdrop." },
-      "tiger-leaping": { "name": "Tiger Leaping Gorge", "alt": "The river and steep mountain sides at Tiger Leaping Gorge", "description": "Dramatic canyon views or a hike matched to your energy." },
-      "shangri-la": { "name": "Shangri-La", "alt": "Highland lake and forest in Pudacuo near Shangri-La", "description": "Highland landscapes and Tibetan culture, with time to adjust to altitude." }
+      "dali": {
+        "name": "Dali Ancient Town",
+        "alt": "Wuhua Tower in Dali Ancient Town",
+        "description": "Old-town lanes, markets and time for everyday life."
+      },
+      "erhai": {
+        "name": "Erhai Lake",
+        "alt": "Erhai Lake with the Cangshan mountains beyond",
+        "description": "Lakeside walks, village stops and open mountain views."
+      },
+      "shaxi": {
+        "name": "Shaxi Ancient Town",
+        "alt": "Traditional buildings in Shaxi Ancient Town",
+        "description": "Tea Horse Road courtyards and a quieter overnight stay."
+      },
+      "lijiang": {
+        "name": "Lijiang Old Town",
+        "alt": "Traditional rooftops in Lijiang Old Town",
+        "description": "Old-town streets with the mountain landscape close by."
+      },
+      "jade-dragon": {
+        "name": "Jade Dragon Snow Mountain",
+        "alt": "Jade Dragon Snow Mountain above a turquoise lake",
+        "description": "Mountain scenery, with visits planned around altitude and comfort."
+      },
+      "blue-moon": {
+        "name": "Blue Moon Valley",
+        "alt": "Turquoise pools in Blue Moon Valley beneath Jade Dragon Snow Mountain",
+        "description": "Turquoise water and a snow-mountain backdrop."
+      },
+      "tiger-leaping": {
+        "name": "Tiger Leaping Gorge",
+        "alt": "The river and steep mountain sides at Tiger Leaping Gorge",
+        "description": "Dramatic canyon views or a hike matched to your energy."
+      },
+      "shangri-la": {
+        "name": "Shangri-La",
+        "alt": "Highland lake and forest in Pudacuo near Shangri-La",
+        "description": "Highland landscapes and Tibetan culture, with time to adjust to altitude."
+      }
     }
   },
   "about": {
@@ -802,7 +1110,14 @@
     "heroTitleB": "A more personal China.",
     "heroText": "I’m Joy Liu. Born in Yunnan, shaped by journeys across China and beyond. I created Hidden China Travel to help you feel confident here—and discover a China that stays with you.",
     "heroCta": "MEET JOY",
-    "subnav": ["Meet Joy", "Our philosophy", "Why travel with us", "Booking with confidence", "Local operator", "Stories"],
+    "subnav": [
+      "Meet Joy",
+      "Our philosophy",
+      "Why travel with us",
+      "Booking with confidence",
+      "Local operator",
+      "Stories"
+    ],
     "founderAlt": "Joy Liu, founder of Hidden China Travel",
     "founderRole": "Founder, Hidden China Travel",
     "founderBased": "Based in Kunming, Yunnan, China",
@@ -838,10 +1153,22 @@
     "whyHeading": "Why plan your journey with us?",
     "whySub": "Personal attention, practical thinking and local insight—so you spend less time figuring things out and more time enjoying where you are.",
     "reasons": [
-      ["A local perspective. A traveller’s understanding.", "Yunnan is home, and travelling across China and abroad has shaped how I see it. I understand both the places you want to explore and the questions you may not know to ask."],
-      ["A real person, not a booking queue.", "You speak directly with me about your trip. Your interests, questions and preferences guide the conversation instead of getting lost between sales messages and standard packages."],
-      ["The details behind a good day.", "A beautiful route is only the beginning. We work through driving time, hotel location, walking demands, ticket arrangements and seasonal conditions before anything is confirmed."],
-      ["A journey built around you.", "Private travel gives us room to shape the pace, choose meaningful experiences and leave space to enjoy them. Famous sights and quieter discoveries both belong—when they are right for you."]
+      [
+        "A local perspective. A traveller’s understanding.",
+        "Yunnan is home, and travelling across China and abroad has shaped how I see it. I understand both the places you want to explore and the questions you may not know to ask."
+      ],
+      [
+        "A real person, not a booking queue.",
+        "You speak directly with me about your trip. Your interests, questions and preferences guide the conversation instead of getting lost between sales messages and standard packages."
+      ],
+      [
+        "The details behind a good day.",
+        "A beautiful route is only the beginning. We work through driving time, hotel location, walking demands, ticket arrangements and seasonal conditions before anything is confirmed."
+      ],
+      [
+        "A journey built around you.",
+        "Private travel gives us room to shape the pace, choose meaningful experiences and leave space to enjoy them. Famous sights and quieter discoveries both belong—when they are right for you."
+      ]
     ],
     "bookingHeadingA": "Personal service.",
     "bookingHeadingB": "Clear responsibilities.",
@@ -852,7 +1179,12 @@
     "bookingAgencyText": "Hidden China Travel is the English-language site of {agencyEn} ({agencyZh}). The office is {address}. The travel contract and all payments go to that agency’s corporate account, in the company’s name. Its travel agency permit number is {permit}.",
     "bookingAgencyLink": "Company documents and 2026 liability insurance →",
     "checklistHeading": "Before you commit, we work through:",
-    "checklist": ["Your route, pace and hotel arrangements", "What the price includes—and excludes", "The operator’s identity, payment and cancellation terms", "Local contacts and arrangements for changes"],
+    "checklist": [
+      "Your route, pace and hotel arrangements",
+      "What the price includes—and excludes",
+      "The operator’s identity, payment and cancellation terms",
+      "Local contacts and arrangements for changes"
+    ],
     "checklistNote": "No pressure to decide before your questions are answered.",
     "archiveLabel": "Read the traveler stories",
     "faqHeading": "A few things you might be wondering",
