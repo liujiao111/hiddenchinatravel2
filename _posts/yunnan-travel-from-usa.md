@@ -192,7 +192,7 @@ This pace leaves time in each town without making every morning a transfer day. 
 
 *Yujin Bridge. Photo: [Rod Waddington](https://commons.wikimedia.org/wiki/File:%E6%B2%99%E6%BA%AA%E7%8E%89%E6%B4%A5%E6%A1%A5.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). Resized from the original.*
 
-For more on individual stops, see the [Dali travel guide](/dali-travel-guide), [where to stay in Dali](/where-to-stay-in-dali) and [Shaxi and Dali side trips](/dali-hidden-gems-off-the-beaten-path).
+For more on individual stops, see the [Dali travel guide](/dali-travel-guide), [where to stay in Dali](/where-to-stay-in-dali), and the [Shaxi Ancient Town guide](/shaxi-ancient-town-guide) for road access, accommodation and how long to stay.
 
 ### What about 12–14 days?
 
