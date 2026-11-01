@@ -5,15 +5,15 @@ title: "沙溪古镇旅行指南：看什么、住哪里、怎么去"
 seoTitle: "沙溪古镇旅游攻略：玩法、交通与住宿建议"
 metaDescription: "探索云南沙溪古镇：寺登街、玉津桥、周五赶集、石宝山，大理或丽江出发交通、住宿区域，以及住一两晚怎么选。"
 excerpt: "大理与丽江之间的沙溪，曾是茶马古道上的集市，最值得的是不赶时间。这里说清楚怎么玩、怎么看，以及为什么值得住一晚。"
-coverImage: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
-coverAlt: "云南沙溪古镇的瓦屋顶与河流风光"
+coverImage: "/assets/destinations/yunnan/shaxi/shaxi-ancient-town-hero.webp"
+coverAlt: "云南沙溪古镇寺登街上的古戏台与传统建筑"
 date: "2026-10-31T11:00:00+08:00"
 dateModified: "2026-10-31T11:00:00+08:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
 ogImage:
-  url: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
+  url: "/assets/destinations/yunnan/shaxi/shaxi-ancient-town-hero.webp"
 canonical: "https://hiddenchinatravel.com/shaxi-ancient-town-guide"
 keywords:
   - 沙溪古镇
@@ -89,7 +89,7 @@ faqs:
 
 不赶时间地逛广场、附近巷子和寺庙区域，约需 **1—2 小时**。
 
-![云南沙溪古镇传统木构戏台庭院](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-theater-courtyard.webp)
+![沙溪古镇寺登街附近的石板巷与传统木质铺面](/assets/partners/hotels/shaxi-old-town-lane.webp)
 
 ### 2. 参观兴教寺
 
@@ -105,7 +105,7 @@ faqs:
 
 预留 **30—60 分钟**，喜欢摄影可更久。
 
-![沙溪古镇附近河边的山羊与牧羊人](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp)
+![沙溪古镇玉津桥的石拱与黑潓江水面](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge.webp)
 
 ### 4. 日期合适，就去赶周五的集
 
@@ -120,6 +120,8 @@ faqs:
 不要把全部时间耗在历史广场。周边谷地的农田、传统民居和小小村路，构成沙溪很大部分吸引力。
 
 短途散步或当地安排的一次外出通常就够。注意私人住宅和正在耕作的农田，近距离拍人前先征得同意。
+
+![沙溪古镇附近河岸，一位牧羊人带着羊群沿草地行走](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp)
 
 ### 6. 时间允许，加石宝山
 

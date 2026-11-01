@@ -4,15 +4,15 @@ seoTitle: "Shaxi Ancient Town Guide: Things to Do & How to Visit"
 metaDescription: "Explore Shaxi Ancient Town in Yunnan: what to see, how to get there from Dali or Lijiang, where to stay, and whether to spend one or two nights."
 excerpt: "Between Dali and Lijiang, Shaxi is a former Tea Horse Road market town best enjoyed without rushing. Here is how to visit, what to see and where an overnight stay fits."
 status: "published"
-coverImage: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
-coverAlt: "Tiled roofs and river landscape at Shaxi Ancient Town in Yunnan"
+coverImage: "/assets/destinations/yunnan/shaxi/shaxi-ancient-town-hero.webp"
+coverAlt: "The old theatre stage on Sideng Square in Shaxi Ancient Town, Yunnan"
 date: "2026-10-31T11:00:00+08:00"
 dateModified: "2026-10-31T11:00:00+08:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
 ogImage:
-  url: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
+  url: "/assets/destinations/yunnan/shaxi/shaxi-ancient-town-hero.webp"
 canonical: "https://hiddenchinatravel.com/shaxi-ancient-town-guide"
 keywords:
   - shaxi ancient town
@@ -88,7 +88,7 @@ The old theatre stage is one of the town's most recognisable buildings. Across t
 
 Allow about **one to two hours** to explore the square, nearby lanes and temple area without hurrying.
 
-![Traditional wooden theatre courtyard in Shaxi Ancient Town, Yunnan](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-theater-courtyard.webp)
+![Traditional wooden shopfronts and a stone lane near Sideng Square in Shaxi](/assets/partners/hotels/shaxi-old-town-lane.webp)
 
 ### 2. Visit Xingjiao Temple
 
@@ -104,7 +104,7 @@ It is a lovely walk in the softer light of morning or late afternoon. Mist somet
 
 Allow **30–60 minutes**, or longer if you enjoy photography.
 
-![Goats and a shepherd beside the river near Shaxi Ancient Town](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp)
+![The stone arch of Yujin Bridge across the Heihui River in Shaxi](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge.webp)
 
 ### 4. See the Friday market, if your dates line up
 
@@ -119,6 +119,8 @@ For market-focused travellers, arriving Thursday and spending Friday morning in 
 Do not spend all your time inside the historic square. The surrounding valley has farmland, traditional homes and small village roads that give Shaxi much of its appeal.
 
 A short walk or a locally arranged outing is often enough. Take care around private homes and working farmland, and ask before photographing people closely.
+
+![A shepherd walking with goats beside the river near Shaxi Ancient Town](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp)
 
 ### 6. Add Shibaoshan if you have time
 
