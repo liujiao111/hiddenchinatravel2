@@ -122,7 +122,7 @@ Here is a **12-day example with ten hotel nights in Yunnan**, conditional on sui
 | 12 | Depart China | 0 | UK arrival may be the same or following calendar day |
 | **Total** | | **10 Yunnan nights** | Adjust to confirmed flights |
 
-This leaves room to choose activities according to energy and weather. In Dali, you can base yourself near the Old Town for convenience or choose a quieter village near Erhai; our [Dali guide](/dali-travel-guide) and [where-to-stay comparison](/where-to-stay-in-dali) explain the trade-offs. Shaxi involves road travel because there is no rail station in the town. Its value is the overnight, not an extra tick on a long list. See our [guide to Shaxi and the places beyond Dali](/dali-hidden-gems-off-the-beaten-path) before deciding whether one or two nights suit you.
+This leaves room to choose activities according to energy and weather. In Dali, you can base yourself near the Old Town for convenience or choose a quieter village near Erhai; our [Dali guide](/dali-travel-guide) and [where-to-stay comparison](/where-to-stay-in-dali) explain the trade-offs. Shaxi involves road travel because there is no rail station in the town. Its value is the overnight, not an extra tick on a long list. Read our [Shaxi Ancient Town guide](/shaxi-ancient-town-guide) before deciding whether one or two nights suit you.
 
 ### Can you add Tiger Leaping Gorge and Shangri-La?
 
