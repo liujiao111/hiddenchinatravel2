@@ -121,7 +121,7 @@ Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) privat
 
 [**Ask about the 6-day Yunnan journey on WhatsApp →**](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20travelling%20from%20Singapore%20and%20interested%20in%20the%206-day%20Kunming-Dali-Shaxi-Lijiang%20private%20journey.%20My%20travel%20dates%20are%3A)
 
-Still deciding where to spend extra nights? Read the [Dali travel guide](/dali-travel-guide), [where to stay in Dali](/where-to-stay-in-dali) and the [Shaxi and Dali side-trip guide](/dali-hidden-gems-off-the-beaten-path).
+Still deciding where to spend extra nights? Read the [Dali travel guide](/dali-travel-guide), [where to stay in Dali](/where-to-stay-in-dali), and our [Shaxi Ancient Town guide](/shaxi-ancient-town-guide) for transport, accommodation and whether to stay one or two nights.
 
 ## What to book before leaving Singapore
 
