@@ -1,0 +1,129 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { siteConfig } from "@/lib/site-config";
+import { trackEvent } from "@/lib/analytics";
+
+// One-switch rollback. Never modifies an existing journey CTA.
+const EXPERIMENT_ENABLED = true;
+const EXPERIMENT_ID = "floating_whatsapp_desktop_v1";
+const STORAGE_KEY = "hct_floating_whatsapp_desktop_v1";
+const DESKTOP_QUERY = "(min-width: 1025px)";
+const SHOW_AFTER_SCROLL = 360;
+const PAID_SIX_DAY_PAGE = "/journeys/kunming-dali-shaxi-lijiang-6-days";
+
+type Variant = "control" | "floating";
+
+function eligiblePath(path: string) {
+  // The first test deliberately excludes Chinese, informational articles,
+  // and the six-day Google Ads landing page.
+  if (path === "/" || path === "/custom-china-tour" || path === "/journeys") return true;
+  return /^\/journeys\/[^/]+$/.test(path) && path !== PAID_SIX_DAY_PAGE;
+}
+
+function assignedVariant(): Variant {
+  try {
+    const previous = window.localStorage.getItem(STORAGE_KEY);
+    if (previous === "control" || previous === "floating") return previous;
+    const selected: Variant = Math.random() < 0.5 ? "control" : "floating";
+    window.localStorage.setItem(STORAGE_KEY, selected);
+    return selected;
+  } catch {
+    // If storage is blocked, avoid showing an unmeasurable experiment variant.
+    return "control";
+  }
+}
+
+const whatsappHref =
+  "https://wa.me/" +
+  siteConfig.whatsappNumber +
+  "?text=" +
+  encodeURIComponent("Hi Joy, I'd like help planning a private Yunnan journey.");
+
+export function FloatingWhatsAppExperiment() {
+  const pathname = usePathname();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const path = window.location.pathname.replace(/\/+$/, "") || "/";
+    setVisible(false);
+    if (!EXPERIMENT_ENABLED || !eligiblePath(path)) return;
+
+    const desktop = window.matchMedia(DESKTOP_QUERY);
+    let variant: Variant | null = null;
+    let exposed = false;
+    const intersecting = new Set<Element>();
+
+    function updateVisibility() {
+      setVisible(
+        desktop.matches &&
+        variant === "floating" &&
+        window.scrollY >= SHOW_AFTER_SCROLL &&
+        intersecting.size === 0
+      );
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) intersecting.add(entry.target);
+        else intersecting.delete(entry.target);
+      }
+      updateVisibility();
+    }, { threshold: 0.08 });
+
+    // Do not overlay the original hero CTA, existing WhatsApp links,
+    // enquiry forms, final CTA, or footer.
+    const targets = document.querySelectorAll(
+      "main .hero-actions, main .journey-hero-actions, " +
+      "main a[href*='wa.me/'], main #plan, main #ask-joy, " +
+      "main #ask-joy-price, main #ask-joy-final, main #enquire, " +
+      "main form, footer"
+    );
+    targets.forEach((target) => observer.observe(target));
+
+    function updateDesktop() {
+      if (desktop.matches && !exposed) {
+        variant = assignedVariant();
+        exposed = true;
+        trackEvent("floating_whatsapp_experiment", {
+          experiment_id: EXPERIMENT_ID,
+          variant,
+          page_path: path,
+        });
+      }
+      updateVisibility();
+    }
+
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    desktop.addEventListener("change", updateDesktop);
+    updateDesktop();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", updateVisibility);
+      desktop.removeEventListener("change", updateDesktop);
+    };
+  }, [pathname]);
+
+  if (!visible) return null;
+
+  return (
+    <a
+      className="floating-whatsapp"
+      href={whatsappHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with Joy on WhatsApp"
+      data-cta-location="floating_whatsapp"
+      data-experiment-id={EXPERIMENT_ID}
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none">
+        <path d="M20.5 11.6a8.5 8.5 0 0 1-12.4 7.5L3 20.5l1.5-4.8A8.5 8.5 0 1 1 20.5 11.6Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/>
+        <path d="M8.2 8.6c.4 3.1 2.1 4.8 5.3 5.7l1.1-1.2 2 1c-.3 1.6-1.5 2.4-2.8 2.1-4.2-1-6.8-3.6-7.6-7.6-.2-1.1.6-2.4 1.9-2.8l1.1 2-1.1 1Z" fill="currentColor"/>
+      </svg>
+      <span>Chat with Joy</span>
+      <span className="floating-whatsapp-channel">WhatsApp</span>
+    </a>
+  );
+}

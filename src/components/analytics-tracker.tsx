@@ -56,11 +56,13 @@ export function AnalyticsTracker() {
       if (url.hostname === "wa.me" || url.hostname.endsWith("whatsapp.com")) {
         trackEvent("whatsapp_click", {
           ...common,
-          cta_location: link.closest("header")
-            ? "header"
-            : link.closest("footer")
-              ? "footer"
-              : "page_content",
+          cta_location: link.dataset.ctaLocation === "floating_whatsapp"
+            ? "floating_whatsapp"
+            : link.closest("header")
+              ? "header"
+              : link.closest("footer")
+                ? "footer"
+                : "page_content",
         });
         return;
       }

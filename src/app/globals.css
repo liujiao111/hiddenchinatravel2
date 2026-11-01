@@ -2000,3 +2000,44 @@ a.utility-card { color:inherit; }
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
+
+/* Desktop-only, 50/50 experiment; mobile keeps existing journey/article sticky CTA. */
+.floating-whatsapp {
+  display: none;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 55;
+  min-height: 50px;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 17px 9px 13px;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 999px;
+  background: #345d58;
+  box-shadow: 0 9px 28px rgba(22,43,37,.23);
+  color: #fff;
+  font-size: .83rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.floating-whatsapp svg { width: 23px; height: 23px; flex: none; }
+.floating-whatsapp-channel {
+  padding-left: 9px;
+  border-left: 1px solid rgba(255,255,255,.33);
+  color: rgba(255,255,255,.84);
+  font-size: .71rem;
+  font-weight: 500;
+}
+.floating-whatsapp:hover, .floating-whatsapp:focus-visible {
+  background: #254842;
+  color: #fff;
+  box-shadow: 0 12px 32px rgba(22,43,37,.29);
+}
+.floating-whatsapp:focus-visible { outline: 3px solid #e1cda1; outline-offset: 3px; }
+@media (min-width: 1025px) {
+  .floating-whatsapp { display: inline-flex; }
+}
