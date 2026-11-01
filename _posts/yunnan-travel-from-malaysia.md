@@ -150,7 +150,7 @@ Shaxi is the quieter stop on this route. Stay overnight if that is why you chose
 
 ![A quiet riverside landscape near Shaxi with mountains in the distance](/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp)
 
-See [Dali's hidden gems](/dali-hidden-gems-off-the-beaten-path) for Shaxi and other detours, and [where to stay in Dali](/where-to-stay-in-dali) for the difference between the old town, Xiaguan and lakeside villages.
+For the Shaxi stop itself, see our [Shaxi Ancient Town guide](/shaxi-ancient-town-guide) for road transfers, where to stay, the Friday market and how many nights to allow. For other Dali detours, continue with [Dali's hidden gems](/dali-hidden-gems-off-the-beaten-path), and use [where to stay in Dali](/where-to-stay-in-dali) for the old town, Xiaguan and lakeside villages.
 
 ### What If You Fly Into Dali Instead?
 
