@@ -9,6 +9,7 @@ import { ArticleGuideAside } from "@/components/article-guide-aside";
 import { ContentFooter } from "@/components/content-footer";
 import { MarkdownContent } from "@/components/markdown-content";
 import { QuickAsk } from "@/components/quick-ask";
+import { JourneyQuoteBand } from "@/components/journey-quote-band";
 import { SiteHeader } from "@/components/site-header";
 import { TopicNavigation } from "@/components/topic-navigation";
 import { isTripPlanningSection } from "@/lib/enquiry";
@@ -73,7 +74,9 @@ export function ArticlePage({ item, alternate }: { item: ContentItem; alternate?
         </div>
       </header>
       {frontmatter.excerpt && <div className="article-intro shell"><p>{frontmatter.excerpt}</p></div>}
-      <QuickAsk source={`/${item.slug}`} sourceTitle={frontmatter.title} intent={isTripPlanningSection(frontmatter.section) ? "trip" : "advice"} />
+      {isTripPlanningSection(frontmatter.section)
+        ? <JourneyQuoteBand id="ask-joy" source={`/${item.slug}`} sourceTitle={frontmatter.title} />
+        : <QuickAsk source={`/${item.slug}`} sourceTitle={frontmatter.title} intent="advice" />}
       <div className="article-layout shell">
         <div className="article-body"><MarkdownContent>{item.body}</MarkdownContent></div>
         <ArticleGuideAside section={frontmatter.section} />
