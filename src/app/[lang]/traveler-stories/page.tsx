@@ -88,7 +88,7 @@ export default function TravelerStoriesPage() {
           <h1>{t("heroTitle")}</h1>
           <p className={styles.heroLead}>{t("heroLead")}</p>
           <div className={styles.heroActions}>
-            <Link href="#stories" className="button button-light">{t("readStories")}</Link>
+            <Link href="#featured" className="button button-light">{t("readStories")}</Link>
             <EnquireLink data-cta-location="stories_hero" interest="Private Travel">{t("startPlanning")}</EnquireLink>
           </div>
         </div>

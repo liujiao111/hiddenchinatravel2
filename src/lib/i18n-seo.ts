@@ -34,11 +34,20 @@ export const zhLivePaths = new Set<string>([
   "/contact",
   "/about-us",
   "/traveler-stories",
+  "/traveler-stories/from-chinas-cities-to-yunnans-landscapes",
   "/booking",
   "/licensed-operator",
   "/privacy-policy",
   "/terms-of-service",
   "/affiliate-disclosure",
+  "/china-destinations/yunnan",
+  "/kunming-travel-guide",
+  "/dali-travel-guide",
+  "/where-to-stay-in-dali",
+  "/shaxi-ancient-town-guide",
+  "/dali-hidden-gems-off-the-beaten-path",
+  "/lijiang-travel-guide",
+  "/shangri-la-travel-guide",
 ]);
 
 export function isZhLive(path: string): boolean {

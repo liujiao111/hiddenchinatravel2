@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { yunnanPlaces } from "@/lib/yunnan-inspiration";
 import { trackEvent } from "@/lib/analytics";
@@ -9,6 +9,7 @@ import { useJourneyInspiration } from "@/components/journey-inspiration-context"
 
 export function YunnanInspiration({ selectable = false }: { selectable?: boolean }) {
   const { selected, toggle } = useJourneyInspiration();
+  const locale = useLocale();
   const t = useTranslations("inspiration");
   const placeCopy = t.raw("places") as Record<string, { name: string; alt: string; description: string }>;
   return <section className="section yunnan-inspiration" id="places"><div className="shell">
@@ -16,7 +17,7 @@ export function YunnanInspiration({ selectable = false }: { selectable?: boolean
     <div className="yunnan-inspiration-grid">{yunnanPlaces.map(place => {
       const name = placeCopy[place.id]?.name ?? place.name;
       const chosen = selected.includes(name);
-      const guide = "guide" in place ? place.guide : "/china-destinations/yunnan#places";
+      const guide = "guide" in place ? (locale === "zh" ? place.guideZh : place.guide) : "/china-destinations/yunnan#places";
       return <article key={place.id} className={chosen ? "is-selected" : ""}>
         <div className="yunnan-inspiration-image"><Image src={place.image} alt={placeCopy[place.id]?.alt ?? place.alt} fill unoptimized sizes="(max-width:700px) 50vw, (max-width:1000px) 50vw, 25vw" /></div>
         <div className="yunnan-inspiration-copy"><h3>{name}</h3><p>{placeCopy[place.id]?.description ?? place.description}</p><div className="yunnan-inspiration-actions">

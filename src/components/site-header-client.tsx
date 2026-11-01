@@ -35,7 +35,7 @@ const regions = ["Yunnan", "Sichuan & Chongqing", "Beijing & North China", "Shan
 const destinationHref = (label: string, localizedLabel = label) => {
   if (label === "Yunnan") return "/china-destinations/yunnan";
   if (label === "Dali") return "/dali-travel-guide";
-  if (label === "Shaxi") return "/dali-hidden-gems-off-the-beaten-path#shaxi-ancient-town-what-dali-looked-like-before-the-crowds-arrived";
+  if (label === "Shaxi") return "/shaxi-ancient-town-guide";
   if (label === "Kunming") return "/kunming-travel-guide";
   if (label === "Lijiang") return "/china-destinations/yunnan#route";
   return `/search?q=${encodeURIComponent(localizedLabel)}`;

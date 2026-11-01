@@ -1,6 +1,6 @@
 ---
-title: "初见云南"
-shortTitle: "初见云南"
+title: "初遇云南"
+shortTitle: "初遇云南"
 seoTitle: "云南 6 天 5 晚私家团：大理、沙溪与丽江"
 metaDescription: "6 天 5 晚云南私家之旅，走遍大理、沙溪与丽江。不拼团、无购物点，行程完全可按需定制。"
 excerpt: "昆明 • 大理 • 丽江 • 沙溪"
@@ -17,11 +17,11 @@ featured: true
 status: "published"
 displayOrder: 2
 navFeatured: true
-heroEyebrow: "初见云南"
+heroEyebrow: "初遇云南"
 heroTitle: "云南 6 天私家之旅"
 heroSecondaryLabel: "查看每日行程"
 heroDescription: "从昆明出发，经大理、沙溪，一路到丽江的私家之旅。"
-heroNote: "按两位成人合住一间房计算，非每天价格。"
+heroNote: "按两位成人合住一间房计算，不是按天计价。"
 heroIncludes:
   - "私家司机兼向导 · 全程无购物点"
   - "沙溪住一晚 · 在大理与丽江之间慢下来"
@@ -29,7 +29,7 @@ heroIncludes:
   - "签约后付 20% · 接站后付 80%"
 whoFor: "适合第一次来云南的情侣、朋友和小型私家团——与其把冰川塞进离开那天，不如完整留一天给玉龙雪山。"
 whenToGo: "3–5 月和 9–11 月最舒适。夏天草木更绿、人也更多；冬天更清净，雪山那天会更冷。"
-overviewTitle: "一览。"
+overviewTitle: "行程一览。"
 overviewDescription: "一路向西的私家路线，每天都有清晰安排。火车、车程与雪山门票，都围绕你的日期来订。"
 overviewItems:
   - label: "6 天 / 5 晚"

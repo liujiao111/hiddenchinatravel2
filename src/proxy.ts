@@ -12,5 +12,5 @@ export default createMiddleware(routing);
 export const config = {
   // Skip API routes, affiliate redirect routes (/go/*), Next internals and
   // any file with an extension (images, fonts, sitemap.xml, robots.txt ...).
-  matcher: ["/((?!api|go|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!api(?:/|$)|go(?:/|$)|_next(?:/|$)|_vercel(?:/|$)|.*\\..*).*)"],
 };
