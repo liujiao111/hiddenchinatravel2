@@ -9,6 +9,7 @@ import { PlanJourneyClose } from "@/components/plan-journey-close";
 import { JourneyMobileCta } from "@/components/journey-mobile-cta";
 import { SiteHeader } from "@/components/site-header";
 import { QuickAsk } from "@/components/quick-ask";
+import { JourneyQuoteBand } from "@/components/journey-quote-band";
 import { formatPriceLabel } from "@/lib/format-price";
 import { JourneyFactCards, JourneyHero, JourneyOverview, JourneySectionNav } from "@/components/journey-landing";
 import { JourneyTrustSection } from "@/components/journey-trust-section";
@@ -30,28 +31,6 @@ const sixDayPhotoSrc: Record<string, string> = {
   "Day 5": "/assets/destinations/yunnan/blue-moon.webp",
   "Day 6": "/assets/blog/yunnan-travel-from-uk/lijiang-old-town.webp",
 };
-
-function JourneyQuoteBand({ id, source, sourceTitle, whatsapp, showRouteLink, compact }: { id: string; source: string; sourceTitle: string; whatsapp: string; showRouteLink?: boolean; compact?: boolean }) {
-  const t = useTranslations("journey");
-  const planPoints = t.raw("planPoints") as string[];
-  return <section className={compact ? "journey-quote-band journey-quote-band-compact" : "journey-quote-band"}>
-    <div className="shell journey-plan">
-      <div className="journey-plan-head">
-        <div>
-          <h2>{t("quoteHeading")}</h2>
-          <p>{t("quotePayment")}</p>
-        </div>
-        <a className="button journey-plan-whatsapp" href={whatsapp} data-cta-location={`journey_plan_whatsapp_${id}`}>{t("startPlanning")}</a>
-      </div>
-      {compact ? null : <>
-        <ul className="journey-plan-points">{planPoints.map((point) => <li key={point}><span>✓</span>{point}</li>)}</ul>
-        <p className="journey-plan-switch">{t("emailSwitch")}</p>
-        <QuickAsk layout="plain" id={id} source={source} sourceTitle={sourceTitle} intent="trip" />
-      </>}
-      {showRouteLink ? <div className="journey-quote-links"><Link href="/custom-china-tour" data-cta-location="journey_custom_alternative">{t("customRouteLink")}</Link></div> : null}
-    </div>
-  </section>;
-}
 
 export function JourneyPage({ journey, alternate }: { journey: Journey; alternate?: LocaleAlternate }) {
   const { frontmatter } = journey;
