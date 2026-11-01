@@ -192,7 +192,7 @@ This is where the trip settles into a slower rhythm. Spend time in Dali Ancient 
 
 ### Shaxi
 
-A smaller Tea Horse Road town. Reviewers commonly describe it as "lightyears away from the touristy scene" of Dali or Lijiang, and a quiet respite from the more commercialised ancient towns nearby — which matches what most first-time visitors notice as soon as they arrive. It suits travellers who want something away from the main tourist circuit. The road transfer from Dali needs planning in advance.
+A smaller Tea Horse Road town. Reviewers commonly describe it as "lightyears away from the touristy scene" of Dali or Lijiang, and a quiet respite from the more commercialised ancient towns nearby — which matches what most first-time visitors notice as soon as they arrive. It suits travellers who want something away from the main tourist circuit. The road transfer from Dali needs planning in advance. Our [Shaxi Ancient Town guide](/shaxi-ancient-town-guide) covers how to get there, where to stay and whether one or two nights fit your route.
 
 ![Yujin Bridge over the river in Shaxi](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge.webp)
 
