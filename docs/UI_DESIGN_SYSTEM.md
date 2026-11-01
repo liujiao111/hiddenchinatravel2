@@ -263,6 +263,18 @@ Article detail pages use one fixed post-body sequence:
 
 `Continue Exploring China → Start with Yunnan → Talk With Joy`
 
+### Article enquiry-module rule
+
+Article enquiry modules are intent-based and must reuse shared components rather than duplicating markup.
+
+- Trip-planning and destination articles (sections matched by `isTripPlanningSection()`, currently itinerary or destination content) use the shared `JourneyQuoteBand`.
+- `JourneyQuoteBand` is the same enquiry band used by journey landing pages: WhatsApp CTA, four planning points, and the compact Name / Email / Travel Month / Travelers form powered by `QuickAsk layout="plain"`.
+- Keep the article's own URL in the `source` prop so GA4 and enquiry emails can attribute the lead to the originating guide.
+- Practical/advice articles such as payments, eSIM/VPN, visas, maps, transport, and other survival content keep the standard `QuickAsk` advice module; do not force a journey quote CTA into low-intent informational content.
+- The canonical implementation lives in `src/components/journey-quote-band.tsx`. Do not copy the band's HTML/CSS into article templates or create page-specific variants unless a documented conversion test requires it.
+- Any future changes to the shared journey enquiry band should be made in the shared component so journey pages and high-intent articles stay visually and analytically consistent.
+
+
 - `GuideCard` is the single reusable article-card component for article recommendations and guide explorers. It uses a 4:3 real cover image, editorial title overlay, excerpt, optional reading time, and the text action `READ THIS GUIDE`.
 - `JourneyCard` is the single reusable product-card component for article recommendations and the Journeys index. It uses a photography-led 4:5 treatment, a dark readability gradient, optional journey facts, and the text action `Explore the journey →`.
 - Article pages show 4–6 related guides, exclude the current article, then link to the complete China Survival Kit.
