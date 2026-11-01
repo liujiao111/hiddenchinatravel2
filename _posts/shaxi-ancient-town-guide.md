@@ -7,7 +7,7 @@ status: "published"
 coverImage: "/assets/destinations/yunnan/shaxi/shaxi-ancient-town-hero.webp"
 coverAlt: "The old theatre stage on Sideng Square in Shaxi Ancient Town, Yunnan"
 date: "2026-10-31T11:00:00+08:00"
-dateModified: "2026-10-31T11:00:00+08:00"
+dateModified: "2026-11-01T16:55:00+08:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -88,13 +88,14 @@ The old theatre stage is one of the town's most recognisable buildings. Across t
 
 Allow about **one to two hours** to explore the square, nearby lanes and temple area without hurrying.
 
-![Traditional wooden shopfronts and a stone lane near Sideng Square in Shaxi](/assets/partners/hotels/shaxi-old-town-lane.webp)
 
 ### 2. Visit Xingjiao Temple
 
 **Xingjiao Temple (兴教寺)** dates to the Ming dynasty and is closely connected to the historic market area. It offers another layer to Shaxi's story beyond the cafés and photo spots.
 
 If you enjoy architecture and local history, make time for the temple. Check its current admission arrangements and opening hours locally; the public square and individual historic buildings do not necessarily have the same access rules.
+
+![Xingjiao Temple beside Sideng Square in Shaxi Ancient Town, Yunnan](/assets/destinations/yunnan/shaxi/shaxi-xingjiao-temple.webp)
 
 ### 3. Walk to Yujin Bridge
 
@@ -104,7 +105,7 @@ It is a lovely walk in the softer light of morning or late afternoon. Mist somet
 
 Allow **30–60 minutes**, or longer if you enjoy photography.
 
-![The stone arch of Yujin Bridge across the Heihui River in Shaxi](/assets/journeys/kunming-dali-shaxi-lijiang-6-days/shaxi-yujin-bridge.webp)
+![Yujin Bridge crossing the Heihui River outside Shaxi Ancient Town, Yunnan](/assets/destinations/yunnan/shaxi/shaxi-yujin-bridge.webp)
 
 ### 4. See the Friday market, if your dates line up
 
@@ -114,19 +115,23 @@ The market should not be confused with a permanent tourist market in Sideng Squa
 
 For market-focused travellers, arriving Thursday and spending Friday morning in town can work well.
 
+![Friday market stalls and local shoppers in Shaxi, Yunnan](/assets/destinations/yunnan/shaxi/shaxi-friday-market.webp)
+
 ### 5. Explore the fields and nearby villages
 
 Do not spend all your time inside the historic square. The surrounding valley has farmland, traditional homes and small village roads that give Shaxi much of its appeal.
 
 A short walk or a locally arranged outing is often enough. Take care around private homes and working farmland, and ask before photographing people closely.
 
-![A shepherd walking with goats beside the river near Shaxi Ancient Town](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp)
+![Fields and the river valley outside Shaxi Ancient Town in western Yunnan](/assets/destinations/yunnan/shaxi/shaxi-riverside-valley.webp)
 
 ### 6. Add Shibaoshan if you have time
 
 **Shibaoshan (石宝山)** lies outside the town and is known for Buddhist grottoes, temples and mountain scenery. It is not a casual walk from Sideng Square: you need additional transport, and some routes include steps or steep terrain.
 
 A visit is best for travellers interested in history or hiking, rather than something to squeeze into the last hour of a short stop.
+
+![Cliffside temple at Shibaoshan near Shaxi, Yunnan](/assets/destinations/yunnan/shaxi/shaxi-shibaoshan-cliffside-temple.webp)
 
 Our [six-day private Yunnan journey](/journeys/kunming-dali-shaxi-lijiang-6-days) includes Shibaoshan on the morning after the overnight stop in Shaxi, before continuing to Lijiang.
 
@@ -186,6 +191,8 @@ Your location matters more than how photogenic the property looks in its listing
 ### Inside the historic centre
 
 Choose a traditional courtyard or guesthouse close to Sideng Square if you want to walk out for dinner and return easily after dark. Older buildings can have steps, smaller rooms or limited vehicle access, so ask about luggage and stairs.
+
+![Traditional courtyard guesthouse in Shaxi Ancient Town, Yunnan](/assets/destinations/yunnan/shaxi/shaxi-traditional-courtyard.webp)
 
 ### Near the edge of town
 
