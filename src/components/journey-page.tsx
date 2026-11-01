@@ -102,7 +102,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
     <JourneyHero
       title={frontmatter.heroTitle || frontmatter.title}
       name={frontmatter.heroTitle ? frontmatter.title : undefined}
-      image={isSixDayYunnanJourney ? "/home/hero.webp" : frontmatter.coverImage}
+      image={isSixDayYunnanJourney ? "/home/hero.webp" : isEightDayYunnanJourney ? "/assets/blog/yunnan-travel-from-uk/shangri-la-pudacuo.webp" : frontmatter.coverImage}
       imageAlt={frontmatter.coverAlt || "Mountains and countryside along a Yunnan journey"}
       eyebrow={frontmatter.heroEyebrow || t("heroEyebrowDefault")}
       description={frontmatter.heroDescription || frontmatter.excerpt}
