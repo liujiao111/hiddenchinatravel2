@@ -7,7 +7,7 @@ coverImage: /assets/blog/how-many-days-in-yunnan/cover-erhai-lake.webp
 coverAlt: Evening clouds reflected in Erhai Lake near Dali, Yunnan
 status: published
 date: '2026-11-02T05:00:00Z'
-dateModified: "2026-11-02T06:33:44.831151+00:00"
+dateModified: "2026-11-02T07:12:45.212671+00:00"
 author:
   name: Joy Liu
   picture: /brand/founder/avatar-joy.webp
@@ -47,7 +47,7 @@ The difference becomes clearer when you count nights rather than attractions. A 
 
 Our [Yunnan Travel Guide](/china-destinations/yunnan) introduces the destinations. Here, the focus is on how long to spend in Yunnan and what each extra day lets you do.
 
-**Jump to:** [Route comparison](#the-short-answer) · [6 days](#is-six-days-enough-for-yunnan) · [8 days](#what-changes-with-eight-days) · [10 days](#is-ten-days-the-ideal-length) · [14 days](#what-can-you-do-with-two-weeks) · [Season and budget](#how-season-and-budget-affect-trip-length)
+**Jump to:** [Route comparison](#the-short-answer) · [6 days](#is-six-days-enough-for-yunnan) · [8 days](#what-changes-with-eight-days) · [10 days](#is-ten-days-the-ideal-length) · [14 days](#what-can-you-do-with-two-weeks) · [Transport time](#how-much-time-do-transfers-really-take) · [Season and budget](#how-season-and-budget-affect-trip-length)
 
 ## The Short Answer
 
@@ -66,6 +66,8 @@ Our [Yunnan Travel Guide](/china-destinations/yunnan) introduces the destination
 *Yunnan itinerary: 6 days / 5 nights*
 
 Six days works well for Dali, Shaxi and Lijiang because the route gives you a change of setting without trying to cross the whole province. In Dali, you have time for Erhai’s western shore and Bai villages; an overnight stop in Shaxi breaks the journey north; Lijiang provides a base for the old town, nearby Naxi villages and Jade Dragon Snow Mountain.
+
+This is a relatively full six-day route, best suited to travelers with transport and visits arranged in advance. If you are booking each leg as you go, travelling with young children or prefer shorter outings, use seven or eight days for the same places.
 
 The arrival schedule is important. This example starts with a transfer from Kunming to Dali on the first day, so it needs an arrival early enough to make that connection comfortably. If you land late, stay in Kunming and either add a night or simplify the sightseeing.
 
@@ -154,9 +156,11 @@ Trying to add both cities as well as distant corners of Yunnan would spend much 
 
 ### Dali or Lijiang
 
-Two nights in each is a reasonable starting point, but it does not give both places the same amount of free time. A full mountain day takes up much of a short Lijiang stay, so add a night there if you also want Baisha, Yuhu Village or time in the old town. Lijiang is also the practical base to consider when the next part of the route heads towards Tiger Leaping Gorge and Shangri-La.
+Two nights in each is a reasonable starting point, but a full mountain day takes up much of a short Lijiang stay. Add a third night if you want time for the surrounding towns as well: Dayan is the main old town for canal-side lanes, shops and evening walks; Shuhe offers another base for courtyard stays and shorter strolls; Baisha is worth choosing when you are interested in its historic murals and a smaller town beneath the mountain. You do not need to visit all three in one afternoon. Pick the one that adds something different to your mountain day, using our [Lijiang Travel Guide](/lijiang-travel-guide) to compare the options.
 
-Dali benefits from extra time if you enjoy lakeside walks, cycling, Bai villages and traditional crafts. Rather than combining Erhai’s western shore, Xizhou and every other stop into one outing, another night lets you spread them over shorter days. Choose according to what you want to do between transfers, not simply which town has the longer list of sights.
+In Dali, an extra night lets you separate a lakeside day from a village-and-craft day. Spend one morning walking or cycling along a section of Erhai’s western shore, leaving time for Dali Old Town later. On another day, combine Xizhou’s Bai courtyards with Zhoucheng, where tie-dye is still an important local craft. If you want to make a piece yourself, reserve a workshop and confirm its duration; watching the process and completing your own cloth need different amounts of time. The [Puzhen Tie-Dye Museum in Zhoucheng](https://www.yndali.gov.cn/dlsrmzf/c106716/pc/content/1983786363227574272/content_1983786363227574272.html) has both exhibitions and hands-on activities.
+
+This is more useful than adding another circuit of the lake simply to fill the day. Our [Dali Travel Guide](/dali-travel-guide) explains how the old town, lake and village visits fit together.
 
 ### An overnight stay in Shaxi
 
@@ -169,6 +173,31 @@ On a short trip, weigh that overnight stay against Shangri-La. If you have only 
 Shangri-La deserves more than an arrival evening followed by departure the next morning. Allow time for Songzanlin Monastery and the surrounding highlands, and avoid filling the arrival day with demanding outings. Travelling north through Dali and Lijiang gives the route a gradual progression, although it does not guarantee that you will feel comfortable at altitude.
 
 If Shangri-La is your main reason for visiting and you have only six days, a focused Lijiang–Tiger Leaping Gorge–Shangri-La trip is more useful than compressing the entire classic circuit. You can then spend the limited time on the part of Yunnan you came to see.
+
+## How Much Time Do Transfers Really Take?
+
+Train times are only one part of a travel day. Before you leave, there is packing, checkout and the ride to the station; afterwards, there is the transfer to your next hotel and somewhere to leave your bags. For planning, reserve roughly half a day for a hotel-to-hotel rail move rather than booking an excursion immediately after the train arrives. That is a planning allowance, not a fixed transfer time: your accommodation, departure station and chosen service all affect it.
+
+| Journey | Time on the train or road | How to fit it into the day |
+|---|---|---|
+| Kunming–Dali by train | Faster services take around 2 hours; check the exact train | Check whether you depart from Kunming or Kunming South, and allow separately for the journey to your Dali hotel |
+| Dali–Lijiang by train | Around 1½–2½ hours on many services; some take longer | Keep a morning or afternoon for the whole move, including station transfers and luggage |
+| Dali–Shaxi–Lijiang by road | Two separate road legs with an overnight stop in the six-day example | Choose this when Shaxi is part of the experience; a direct train between Dali and Lijiang does not include the town |
+| Lijiang–Shangri-La via Tiger Leaping Gorge | A sightseeing and road-transfer day, rather than a direct rail journey | Allow time for the gorge visit, lunch and onward travel; a short train journey cannot replace these stops |
+
+The rail ranges are based on the [Kunming–Dali](https://www.trip.com/trains/china/route/kunming-to-dali/) and [Dali–Lijiang](https://www.trip.com/trains/china/route/dali-to-lijiang/) timetable listings checked in November 2026. Confirm the service for your date before arranging pickups. A private transfer can simplify luggage and intermediate stops, but the journey still occupies part of your day.
+
+### When a side trip needs its own nights
+
+For Tiger Leaping Gorge, decide whether you want a viewpoint visit or a trek before counting days. The eight-day example includes a scenic stop while travelling north. For an overnight high-trail walk, reserve two dedicated days and arrange the trailhead transfer, overnight accommodation and onward pickup around the walk; the final plan should follow current trail conditions and your walking pace.
+
+Lugu Lake is a different extension. Published road estimates from Lijiang vary, broadly around four hours or more each way depending on the route, stops and conditions. For this guide, we recommend three days and two nights: travel out on the first day, keep a full day for the lake and return on the third. That gives you time for villages, viewpoints or a boat outing without spending the whole visit between two long drives. It also means removing something from a short northwest circuit rather than adding the lake as a spare afternoon. See this [Lugu Lake transport overview](https://www.chinahighlights.com/lijiang/attraction/lugu-lake.htm) for the road approach.
+
+### Choose accommodation with the next morning in mind
+
+An old-town guesthouse can be a lovely base for walking to dinner, but check the practical details before booking: the nearest vehicle access point, the walk from drop-off to reception, whether staff help with luggage, and whether the room faces a busy evening street. A courtyard address alone does not tell you how quiet or accessible the room will be.
+
+For an early train or a family carrying several cases, easy vehicle access may matter more than staying in the centre of the lanes. For a longer stay with free evenings, being able to walk out from your hotel may be worth the extra arrival effort. There is no need to rule out all old-town hotels; choose the property around how you will actually use it.
 
 ## How Season and Budget Affect Trip Length
 
