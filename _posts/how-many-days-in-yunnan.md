@@ -246,7 +246,7 @@ On a six-day trip, Shangri-La usually requires giving up Dali or Shaxi. If Shang
 
 ## How Season and Budget Affect Trip Length
 
-Your dates can change what fits. Rain or mountain weather may interrupt an outdoor day, while peak holidays can make a tight sequence of trains, hotels and attraction bookings harder to arrange. Read the [best time to visit Yunnan overview](/china-destinations/yunnan#season) alongside the route, then leave some flexibility around the outing that matters most.
+Your dates can change what fits. Rain or mountain weather may interrupt an outdoor day, while peak holidays can make a tight sequence of trains, hotels and attraction bookings harder to arrange. Read the [best time to visit Yunnan](/best-time-to-visit-yunnan) alongside the route, then leave some flexibility around the outing that matters most.
 
 For **how much a Yunnan trip costs**, compare the complete journey rather than a daily headline price. More nights add accommodation and meals, while private transport, guide arrangements, ticket choices and the return to Kunming change the total. The [6-day private journey](/journeys/kunming-dali-shaxi-lijiang-6-days) and [8-day private journey](/journeys/kunming-dali-lijiang-shangri-la-private-tour) show their current pricing and inclusions. They are different routes, so their prices do not isolate the cost of two extra days.
 

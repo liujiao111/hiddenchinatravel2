@@ -88,6 +88,11 @@ subtopics:
     name: "Regional journeys"
     description: "Once the China skeleton is set, one province can be enough for a rewarding first week."
     articles:
+      - title: "Best Time to Visit Yunnan"
+        href: /best-time-to-visit-yunnan
+        excerpt: "Choose your travel month around the route, altitude and experiences you want."
+        badge: "Seasons"
+        status: published
       - title: "How Many Days Do You Need in Yunnan?"
         href: /how-many-days-in-yunnan
         excerpt: "Compare 6, 8, 10 and 14-day routes before choosing your stops and hotel nights."
