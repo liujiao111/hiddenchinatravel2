@@ -86,6 +86,8 @@ For a wider route, do not rebuild the regional itinerary from scratch. The [Yunn
 
 <!-- yunnan-route-check -->
 
+For the wider route, compare [how many days to spend in Yunnan](/how-many-days-in-yunnan) before dividing your nights between Dali, Shaxi, Lijiang and Shangri-La.
+
 ## Where to stay in Dali
 
 There is no single “best area.” Choose a base based on how you want your days to feel.
