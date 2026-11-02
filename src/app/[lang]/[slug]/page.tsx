@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArticlePage } from "@/components/article-page";
 import { HubPage } from "@/components/hub-page";
 import { LegalPage } from "@/components/legal-page";
+import { BookingPage } from "@/components/booking-page";
 import { routing } from "@/i18n/routing";
 import { absoluteUrl, getAllContent, getContentBySlug, translationSlug } from "@/lib/content";
 import { alternatesFor, robotsFor, type AppLocale } from "@/lib/i18n-seo";
@@ -79,6 +80,7 @@ export default async function ContentPage({ params }: Props) {
   } as const;
 
   if (item.kind === "hub") return <HubPage item={item} alternate={alternate} />;
+  if (item.kind === "legal" && item.slug === "booking") return <BookingPage item={item} alternate={alternate} />;
   if (item.kind === "legal") return <LegalPage item={item} alternate={alternate} />;
   return <ArticlePage item={item} alternate={alternate} />;
 }
