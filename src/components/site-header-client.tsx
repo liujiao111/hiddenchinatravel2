@@ -113,7 +113,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { jou
 
   return <header className={conversion ? "site-header site-header-conversion" : "site-header"} onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
-      {quoteHash ? <HashLink className="header-mail" href={quoteHash} aria-label={t("tripPlanAria")} data-cta-location={cta?.location || "header_mail"}><HeaderMailIcon /></HashLink> : <Link className="header-mail" href="/contact" aria-label={t("contactAria")}><HeaderMailIcon /></Link>}
+      {quoteHash ? <HashLink className="header-mail" href={quoteHash} aria-label={t("tripPlanAria")} data-cta-location={cta?.location || "header_mail"}><HeaderMailIcon /></HashLink> : <Link className="header-mail" href="/contact#enquire" scroll={false} aria-label={t("contactAria")}><HeaderMailIcon /></Link>}
       <Link href="/" className="brand" aria-label={t("homeAria")}>
         <Image src="/brand/logo.webp" alt="" width={160} height={80} className="brand-logo" unoptimized />
         <Image src="/brand/logo-light.png" alt="" width={160} height={80} className="brand-logo-light" unoptimized />
