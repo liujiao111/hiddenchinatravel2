@@ -4,25 +4,40 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
 
-// Full rollout for the existing eligible desktop pages. Never modifies journey CTAs.
+// Desktop rollout across travel content; preserve existing journey CTAs.
 const FLOATING_WHATSAPP_ENABLED = true;
 const DESKTOP_QUERY = "(min-width: 1025px)";
 const SHOW_AFTER_SCROLL = 360;
 const PAID_SIX_DAY_PAGE = "/journeys/kunming-dali-shaxi-lijiang-6-days";
 
+// Normalize the public URL (including locale) before matching.
+function basePath(path: string) {
+  return (path.replace(/^\\/zh(?=\\/|$)/, "") || "/").replace(/\\/+$/, "") || "/";
+}
+
 function eligiblePath(path: string) {
-  // The first test deliberately excludes Chinese, informational articles,
-  // and the six-day Google Ads landing page.
-  if (path === "/" || path === "/custom-china-tour" || path === "/journeys") return true;
-  return /^\/journeys\/[^/]+$/.test(path) && path !== PAID_SIX_DAY_PAGE;
+  const pathname = basePath(path);
+  // Preserve the paid six-day landing page and exclude transaction/legal pages
+  // and tools; public travel content (including future guides) is eligible.
+  if (pathname === PAID_SIX_DAY_PAGE) return false;
+  if (/^\\/(?:go|api)(?:\\/|$)/.test(pathname)) return false;
+  if (/^\\/(?:china-currency-converter|china-visa-checker|search)(?:\\/|$)/.test(pathname)) return false;
+  if (["/booking", "/privacy-policy", "/terms-of-service", "/affiliate-disclosure", "/licensed-operator"].includes(pathname)) return false;
+  return true;
 }
 
 function buildWhatsAppHref(path: string) {
   const sourceUrl = new URL(path, siteConfig.url).toString();
-  const message = `Hi Joy, I'd like help planning a private Yunnan journey.\n\nPage: ${sourceUrl}`;
+  const pathname = basePath(path);
+  const yunnanFocused = pathname === "/" || pathname === "/journeys" ||
+    pathname.startsWith("/journeys/") || pathname === "/custom-china-tour" ||
+    pathname.startsWith("/china-destinations/yunnan");
+  const intro = yunnanFocused
+    ? "Hi Joy, I'd like help planning a private Yunnan journey."
+    : "Hi Joy, I found your website and would like help planning a trip to China.";
+  const message = `${intro}\\n\\nPage: ${sourceUrl}`;
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
-
 export function FloatingWhatsAppExperiment() {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false);
