@@ -12,7 +12,7 @@ const PAID_SIX_DAY_PAGE = "/journeys/kunming-dali-shaxi-lijiang-6-days";
 
 // Normalize the public URL (including locale) before matching.
 function basePath(path: string) {
-  return (path.replace(/^\\/zh(?=\\/|$)/, "") || "/").replace(/\\/+$/, "") || "/";
+  return (path.replace(/^\/zh(?=\/|$)/, "") || "/").replace(/\/+$/, "") || "/";
 }
 
 function eligiblePath(path: string) {
@@ -20,8 +20,8 @@ function eligiblePath(path: string) {
   // Preserve the paid six-day landing page and exclude transaction/legal pages
   // and tools; public travel content (including future guides) is eligible.
   if (pathname === PAID_SIX_DAY_PAGE) return false;
-  if (/^\\/(?:go|api)(?:\\/|$)/.test(pathname)) return false;
-  if (/^\\/(?:china-currency-converter|china-visa-checker|search)(?:\\/|$)/.test(pathname)) return false;
+  if (/^\/(?:go|api)(?:\/|$)/.test(pathname)) return false;
+  if (/^\/(?:china-currency-converter|china-visa-checker|search)(?:\/|$)/.test(pathname)) return false;
   if (["/booking", "/privacy-policy", "/terms-of-service", "/affiliate-disclosure", "/licensed-operator"].includes(pathname)) return false;
   return true;
 }
@@ -35,7 +35,7 @@ function buildWhatsAppHref(path: string) {
   const intro = yunnanFocused
     ? "Hi Joy, I'd like help planning a private Yunnan journey."
     : "Hi Joy, I found your website and would like help planning a trip to China.";
-  const message = `${intro}\\n\\nPage: ${sourceUrl}`;
+  const message = `${intro}\n\nPage: ${sourceUrl}`;
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 export function FloatingWhatsAppExperiment() {
