@@ -33,40 +33,18 @@ export function FloatingWhatsAppExperiment() {
     if (!FLOATING_WHATSAPP_ENABLED || !eligiblePath(path)) return;
 
     const desktop = window.matchMedia(DESKTOP_QUERY);
-    const intersecting = new Set<Element>();
-
     function updateVisibility() {
       setVisible(
         desktop.matches &&
-        window.scrollY >= SHOW_AFTER_SCROLL &&
-        intersecting.size === 0
+        window.scrollY >= SHOW_AFTER_SCROLL
       );
     }
-
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) intersecting.add(entry.target);
-        else intersecting.delete(entry.target);
-      }
-      updateVisibility();
-    }, { threshold: 0.08 });
-
-    // Do not overlay the original hero CTA, existing WhatsApp links,
-    // enquiry forms, final CTA, or footer.
-    const targets = document.querySelectorAll(
-      "main .hero-actions, main .journey-hero-actions, " +
-      "main a[href*='wa.me/'], main #plan, main #ask-joy, " +
-      "main #ask-joy-price, main #ask-joy-final, main #enquire, " +
-      "main form, footer"
-    );
-    targets.forEach((target) => observer.observe(target));
 
     window.addEventListener("scroll", updateVisibility, { passive: true });
     desktop.addEventListener("change", updateVisibility);
     updateVisibility();
 
     return () => {
-      observer.disconnect();
       window.removeEventListener("scroll", updateVisibility);
       desktop.removeEventListener("change", updateVisibility);
     };
