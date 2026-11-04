@@ -17,19 +17,21 @@ function eligiblePath(path: string) {
   return /^\/journeys\/[^/]+$/.test(path) && path !== PAID_SIX_DAY_PAGE;
 }
 
-const whatsappHref =
-  "https://wa.me/" +
-  siteConfig.whatsappNumber +
-  "?text=" +
-  encodeURIComponent("Hi Joy, I'd like help planning a private Yunnan journey.");
+function buildWhatsAppHref(path: string) {
+  const sourceUrl = new URL(path, siteConfig.url).toString();
+  const message = `Hi Joy, I'd like help planning a private Yunnan journey.\n\nPage: ${sourceUrl}`;
+  return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
 
 export function FloatingWhatsAppExperiment() {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false);
+  const [whatsappHref, setWhatsAppHref] = useState(() => buildWhatsAppHref("/"));
 
   useEffect(() => {
     const path = window.location.pathname.replace(/\/+$/, "") || "/";
     setVisible(false);
+    setWhatsAppHref(buildWhatsAppHref(path));
     if (!FLOATING_WHATSAPP_ENABLED || !eligiblePath(path)) return;
 
     const desktop = window.matchMedia(DESKTOP_QUERY);
