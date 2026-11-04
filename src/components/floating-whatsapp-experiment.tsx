@@ -3,36 +3,18 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
-import { trackEvent } from "@/lib/analytics";
 
-// One-switch rollback. Never modifies an existing journey CTA.
-const EXPERIMENT_ENABLED = true;
-const EXPERIMENT_ID = "floating_whatsapp_desktop_v1";
-const STORAGE_KEY = "hct_floating_whatsapp_desktop_v1";
+// Full rollout for the existing eligible desktop pages. Never modifies journey CTAs.
+const FLOATING_WHATSAPP_ENABLED = true;
 const DESKTOP_QUERY = "(min-width: 1025px)";
 const SHOW_AFTER_SCROLL = 360;
 const PAID_SIX_DAY_PAGE = "/journeys/kunming-dali-shaxi-lijiang-6-days";
-
-type Variant = "control" | "floating";
 
 function eligiblePath(path: string) {
   // The first test deliberately excludes Chinese, informational articles,
   // and the six-day Google Ads landing page.
   if (path === "/" || path === "/custom-china-tour" || path === "/journeys") return true;
   return /^\/journeys\/[^/]+$/.test(path) && path !== PAID_SIX_DAY_PAGE;
-}
-
-function assignedVariant(): Variant {
-  try {
-    const previous = window.localStorage.getItem(STORAGE_KEY);
-    if (previous === "control" || previous === "floating") return previous;
-    const selected: Variant = Math.random() < 0.5 ? "control" : "floating";
-    window.localStorage.setItem(STORAGE_KEY, selected);
-    return selected;
-  } catch {
-    // If storage is blocked, avoid showing an unmeasurable experiment variant.
-    return "control";
-  }
 }
 
 const whatsappHref =
@@ -48,17 +30,14 @@ export function FloatingWhatsAppExperiment() {
   useEffect(() => {
     const path = window.location.pathname.replace(/\/+$/, "") || "/";
     setVisible(false);
-    if (!EXPERIMENT_ENABLED || !eligiblePath(path)) return;
+    if (!FLOATING_WHATSAPP_ENABLED || !eligiblePath(path)) return;
 
     const desktop = window.matchMedia(DESKTOP_QUERY);
-    let variant: Variant | null = null;
-    let exposed = false;
     const intersecting = new Set<Element>();
 
     function updateVisibility() {
       setVisible(
         desktop.matches &&
-        variant === "floating" &&
         window.scrollY >= SHOW_AFTER_SCROLL &&
         intersecting.size === 0
       );
@@ -82,27 +61,14 @@ export function FloatingWhatsAppExperiment() {
     );
     targets.forEach((target) => observer.observe(target));
 
-    function updateDesktop() {
-      if (desktop.matches && !exposed) {
-        variant = assignedVariant();
-        exposed = true;
-        trackEvent("floating_whatsapp_experiment", {
-          experiment_id: EXPERIMENT_ID,
-          variant,
-          page_path: path,
-        });
-      }
-      updateVisibility();
-    }
-
     window.addEventListener("scroll", updateVisibility, { passive: true });
-    desktop.addEventListener("change", updateDesktop);
-    updateDesktop();
+    desktop.addEventListener("change", updateVisibility);
+    updateVisibility();
 
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", updateVisibility);
-      desktop.removeEventListener("change", updateDesktop);
+      desktop.removeEventListener("change", updateVisibility);
     };
   }, [pathname]);
 
@@ -116,7 +82,6 @@ export function FloatingWhatsAppExperiment() {
       rel="noopener noreferrer"
       aria-label="Chat with Joy on WhatsApp"
       data-cta-location="floating_whatsapp"
-      data-experiment-id={EXPERIMENT_ID}
     >
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none">
         <path d="M20.5 11.6a8.5 8.5 0 0 1-12.4 7.5L3 20.5l1.5-4.8A8.5 8.5 0 1 1 20.5 11.6Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/>
