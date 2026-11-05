@@ -1033,9 +1033,9 @@
     "successSample": "下载 6 天示例行程（PDF）",
     "successWhatsappNote": "如果你更想用 WhatsApp，现在就可以把同样的内容发过去。",
     "successWhatsapp": "通过 WhatsApp 发送",
-    "whenNextMonth": "下个月",
-    "whenInOneMonth": "1 个月后",
-    "whenInTwoMonths": "2 个月后"
+    "whenNextMonth": "1 个月内",
+    "whenInOneMonth": "1–2 个月后",
+    "whenInTwoMonths": "3 个月或更久"
   },
   "bookingTerms": {
     "kicker": "付款之前",
