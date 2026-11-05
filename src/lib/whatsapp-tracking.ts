@@ -59,12 +59,7 @@ export function installWhatsAppTracking() {
       page_path: conversionPage, lead_type: "whatsapp_click",
     };
     trackEvent("whatsapp_click", payload);
-    // Full attribution goes only to the same-origin receiver. Never send the
-    // message, phone, link text, query string or referrer URL to GA4.
-    void fetch("/api/whatsapp-click", {
-      method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
-      body: JSON.stringify({ lead_id: leadId, attribution, conversion_page: conversionPage, whatsapp_location: location, cta_location: payload.cta_location, device_type: /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? "mobile" : "desktop", browser_language: navigator.language }),
-    }).catch(() => { /* Analytics failure must never interrupt WhatsApp. */ });
+    // WhatsApp clicks are analytics events, not confirmed enquiries.\n    // Do not send an automatic inbox email for an unconfirmed click.
   }
   document.addEventListener("click", click, true);
   document.addEventListener("auxclick", click, true);
