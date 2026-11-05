@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { consultationHref } from "@/lib/consultation-message";
 import { siteConfig } from "@/lib/site-config";
 
 // Desktop rollout across travel content; preserve existing journey CTAs.
@@ -28,15 +29,7 @@ function eligiblePath(path: string) {
 
 function buildWhatsAppHref(path: string) {
   const sourceUrl = new URL(path, siteConfig.url).toString();
-  const pathname = basePath(path);
-  const yunnanFocused = pathname === "/" || pathname === "/journeys" ||
-    pathname.startsWith("/journeys/") || pathname === "/custom-china-tour" ||
-    pathname.startsWith("/china-destinations/yunnan");
-  const intro = yunnanFocused
-    ? "Hi Joy, I'd like help planning a private Yunnan journey."
-    : "Hi Joy, I found your website and would like help planning a trip to China.";
-  const message = `${intro}\n\nPage: ${sourceUrl}`;
-  return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  return consultationHref(/^\/zh(?:\/|$)/.test(path) ? "zh" : "en", sourceUrl);
 }
 export function FloatingWhatsAppExperiment() {
   const pathname = usePathname();
@@ -68,6 +61,7 @@ export function FloatingWhatsAppExperiment() {
   }, [pathname]);
 
   if (!visible) return null;
+  const zh = /^\/zh(?:\/|$)/.test(pathname);
 
   return (
     <a
@@ -75,14 +69,14 @@ export function FloatingWhatsAppExperiment() {
       href={whatsappHref}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with Joy on WhatsApp"
+      aria-label={zh ? "在WhatsApp上联系Joy" : "Chat with Joy on WhatsApp"}
       data-cta-location="floating_whatsapp"
     >
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none">
         <path d="M20.5 11.6a8.5 8.5 0 0 1-12.4 7.5L3 20.5l1.5-4.8A8.5 8.5 0 1 1 20.5 11.6Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/>
         <path d="M8.2 8.6c.4 3.1 2.1 4.8 5.3 5.7l1.1-1.2 2 1c-.3 1.6-1.5 2.4-2.8 2.1-4.2-1-6.8-3.6-7.6-7.6-.2-1.1.6-2.4 1.9-2.8l1.1 2-1.1 1Z" fill="currentColor"/>
       </svg>
-      <span>Chat with Joy</span>
+      <span>{zh ? "联系 Joy" : "Chat with Joy"}</span>
       <span className="floating-whatsapp-channel">WhatsApp</span>
     </a>
   );

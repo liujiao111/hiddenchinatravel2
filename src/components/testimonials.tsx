@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { useEffect, useLayoutEffect, useRef, useState, type TransitionEvent } from "react";
 import type { Testimonial } from "@/lib/testimonials";
@@ -28,6 +29,7 @@ function cardQuote(quote: string) {
 }
 
 export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref, archiveLabel }: Props) {
+  const locale = useLocale();
   const count = items.length;
   const loop = count > 3;
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -96,8 +98,7 @@ export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref
         <figure className="testimonials-card" key={item.id}>
           <blockquote>“{cardQuote(item.quote)}”</blockquote>
           <figcaption>
-            <b>— {item.name}</b>
-            <span>{item.country}</span>
+            {locale === "zh" ? <b>{item.name} · {item.country}</b> : <><b>— {item.name}</b><span>{item.country}</span></>}
           </figcaption>
         </figure>
       ))}</div>
@@ -121,7 +122,7 @@ export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref
           <figure className="testimonials-card" key={`${item.id}-${slideIndex}`} style={{ width: metrics.card, flexBasis: metrics.card }}>
             <blockquote>“{cardQuote(item.quote)}”</blockquote>
             <figcaption>
-              <b>— {item.name}</b>
+              <b>{item.name}</b>
               <span>{item.country}</span>
             </figcaption>
           </figure>

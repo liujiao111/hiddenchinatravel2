@@ -1,3 +1,4 @@
+import { consultationHref } from "@/lib/consultation-message";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -41,10 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-const whatsapp = "https://wa.me/8618880441791?text=" + encodeURIComponent("Hi Joy, I'd like help planning a private Yunnan journey.");
-
 type Step = [string, string, string];
-type SupportItem = { title: string; detail: string; href: string };
+type SupportItem = { title: string; detail: string; href: string; cta?: string };
 type Destination = { name: string; note: string; image: string; alt: string; href: string; cta: string };
 type Faq = [string, string];
 
@@ -53,13 +52,15 @@ export default async function Home({ params }: Props) {
   setRequestLocale(lang);
   const t = await getTranslations({ locale: lang, namespace: "home" });
 
+  const zh = lang === "zh";
+  const testimonials = getSelectedTestimonials(lang);
   const agencyName = lang === "zh" ? licensedOperator.nameZh : licensedOperator.nameEn;
   const fill = (s: string) =>
     s.replaceAll("{agencyEn}", licensedOperator.nameEn)
       .replaceAll("{agencyZh}", licensedOperator.nameZh)
       .replaceAll("{agency}", agencyName);
 
-  const journeys = getAllJourneys();
+  const journeys = getAllJourneys(lang);
   const firstEncounter = journeys.find((journey) => journey.slug === "kunming-dali-shaxi-lijiang-6-days");
   const classic = journeys.find((journey) => journey.slug === "kunming-dali-lijiang-shangri-la-private-tour");
 
@@ -100,17 +101,17 @@ export default async function Home({ params }: Props) {
       <div className="hero-copy">
         <p className="hero-kicker">{t("heroKicker")}</p>
         <h1>{t("heroTitleLine1")}<br />{t("heroTitleLine2")}</h1>
-        <p className="hero-lead hero-desktop-only">{t("heroLeadDesktop")}</p>
-        <p className="hero-lead hero-mobile-only">{t("heroLeadMobile")}</p>
-        <p className="hero-brand hero-desktop-only">{t("heroBrand")}</p>
+        <p className={zh ? "hero-lead" : "hero-lead hero-desktop-only"}>{t("heroLeadDesktop")}</p>
+        {!zh && <p className="hero-lead hero-mobile-only">{t("heroLeadMobile")}</p>}
+        <p className={zh ? "hero-brand" : "hero-brand hero-desktop-only"}>{t("heroBrand")}</p>
         <div className="hero-actions">
           <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">{t("cta")}</EnquireLink>
-          <Link href="/journeys" className="button button-light hero-desktop-only">{t("exploreJourneys")}</Link>
+          <Link href="/journeys" className={zh ? "button button-light" : "button button-light hero-desktop-only"}>{t("exploreJourneys")}</Link>
         </div>
-        <p className="hero-trust-line hero-desktop-only">{t("heroTrustDesktop")}</p>
-        <p className="hero-trust-line hero-mobile-only">{t("heroTrustMobile")}</p>
+        <p className={zh ? "hero-trust-line" : "hero-trust-line hero-desktop-only"}>{t("heroTrustDesktop")}</p>
+        {zh ? <small>{t("heroHelper")}</small> : <p className="hero-trust-line hero-mobile-only">{t("heroTrustMobile")}</p>}
         <small>{t("replyTime")}</small>
-        <Link href="/journeys" className="hero-text-link hero-mobile-only">{t("exploreJourneysMobile")}</Link>
+        {!zh && <Link href="/journeys" className="hero-text-link hero-mobile-only">{t("exploreJourneysMobile")}</Link>}
       </div>
     </section>
 
@@ -140,6 +141,7 @@ export default async function Home({ params }: Props) {
           {firstEncounter ? <JourneyCard priority journey={{
             title: t("card1Title"),
             subtitle: t("card1Subtitle"),
+            description: zh ? t("card1Intro") : undefined,
             href: `/journeys/${firstEncounter.slug}`,
             image: firstEncounter.frontmatter.coverImage,
             imageAlt: t("card1ImageAlt"),
@@ -152,6 +154,7 @@ export default async function Home({ params }: Props) {
           {classic ? <JourneyCard journey={{
             title: t("card2Title"),
             subtitle: t("card2Subtitle"),
+            description: zh ? t("card2Intro") : undefined,
             href: `/journeys/${classic.slug}`,
             image: classic.frontmatter.coverImage,
             imageAlt: t("card2ImageAlt"),
@@ -164,7 +167,8 @@ export default async function Home({ params }: Props) {
           <JourneyCard journey={{
             title: t("card3Title"),
             subtitle: t("card3Subtitle"),
-            href: "/custom-china-tour",
+            description: zh ? t("card3Intro") : undefined,
+            href: zh ? "/custom-china-tour#plan" : "/custom-china-tour",
             image: "/home/local-support.webp",
             imageAlt: t("card3ImageAlt"),
             destination: t("card3Destination"),
@@ -185,11 +189,12 @@ export default async function Home({ params }: Props) {
           <p>{t("whyIntro")}</p>
         </div>
         <div className="reason-grid reason-grid-six">{reasons.map(([number, title, text]) => <article key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></article>)}</div>
+        {zh && <div className="hero-actions"><EnquireLink className="button button-blue">{t("cta")}</EnquireLink><Link className="button button-light" href="/licensed-operator">{t("operatorLink")}</Link></div>}
       </div>
     </section>
 
     <Testimonials
-      items={getSelectedTestimonials(lang)}
+      items={zh ? testimonials.slice(0, 3) : testimonials}
       eyebrow={t("storiesEyebrow")}
       heading={t("storiesHeading")}
       intro={t("storiesIntro")}
@@ -208,11 +213,11 @@ export default async function Home({ params }: Props) {
         <p>{t("founderP1")}</p>
         <p>{t("founderP2")}</p>
         <p>{t("founderP3")}</p>
-        <p>{t("founderP4")}</p>
-        <p>{t("founderP5")}</p>
+        {!zh && <p>{t("founderP4")}</p>}
+        {!zh && <p>{t("founderP5")}</p>}
         <p className="home-signature"><b>Joy Liu</b><span>{t("founderRole")}</span></p>
         <Link href="/about-us">{t("founderStoryLink")}</Link>
-        <Link href="/contact">{t("founderAskLink")}</Link>
+        {zh ? <EnquireLink>{t("founderAskLink")}</EnquireLink> : <Link href="/contact">{t("founderAskLink")}</Link>}
       </div>
     </section>
 
@@ -223,7 +228,8 @@ export default async function Home({ params }: Props) {
           <h2>{t("prepareHeading")}</h2>
           <p>{t("prepareIntro")}</p>
         </div>
-        <div className="yunnan-practical-grid">{supportItems.map((item, index) => <Link href={item.href} key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p><b>{t("supportItemCta")}</b></Link>)}</div>
+        <div className="yunnan-practical-grid">{supportItems.map((item, index) => <Link href={item.href} key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p><b>{item.cta ?? t("supportItemCta")}</b></Link>)}</div>
+        {zh && <p className="home-helper">{t("prepareNote")}</p>}
         <div className="center"><Link href="/survival-kit" className="button button-light">{t("checklistCta")}</Link></div>
       </div>
     </section>
@@ -245,8 +251,10 @@ export default async function Home({ params }: Props) {
         <div className="section-heading">
           <p className="kicker">{t("faqKicker")}</p>
           <h2>{t("faqHeading")}</h2>
+          {zh && <p>{t("faqIntro")}</p>}
         </div>
         {faqs.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}
+        {zh && <p><Link href="/booking">{t("faqLink")}</Link></p>}
       </div>
     </section>
 
@@ -254,11 +262,12 @@ export default async function Home({ params }: Props) {
       <Image src="/home/plan-journey.webp" alt={t("finalAlt")} fill unoptimized sizes="100vw" />
       <div className="hero-shade" />
       <div>
+        {zh && <p className="kicker">{t("finalKicker")}</p>}
         <h2>{t("finalHeading")}</h2>
         <p>{t("finalText")}</p>
         <div className="hero-actions">
           <EnquireLink data-cta-location="home_final_custom" className="button button-blue">{t("cta")}</EnquireLink>
-          <Link href={whatsapp} data-cta-location="home_final_whatsapp" className="button button-light">{t("finalWhatsapp")}</Link>
+          <Link href={consultationHref(lang)} data-cta-location="home_final_whatsapp" className="button button-light">{t("finalWhatsapp")}</Link>
         </div>
         <p className="final-cta-trust">{t("finalTrust")}</p>
       </div>
