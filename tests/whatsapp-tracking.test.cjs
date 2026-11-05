@@ -8,11 +8,9 @@ const { JSDOM } = require('jsdom');
 const root = path.resolve(__dirname, '..');
 require.extensions['.ts'] = (module, filename) => module._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText, filename);
 const load = Module._load;
-let emails = [];
-let emailError = null;
 Module._load = function(name, parent, main) {
   if (name.startsWith('@/')) name = path.join(root, 'src', name.slice(2));
-  if (name === 'resend') return { Resend: class { emails = { send: async (message, options) => { emails.push({ message, options }); return { error: emailError }; } }; } };
+  if (name === 'resend') throw new Error('Click tracking must never load the email provider');
   return load.call(this, name, parent, main);
 };
 const a = require('../src/lib/attribution.ts');
@@ -98,7 +96,7 @@ test('A single template and high-entropy reference safely URL encode on mobile a
   const ids = new Set(Array.from({ length: 1000 }, () => w.generateLeadId())); assert.equal(ids.size, 1000);
   for (const platform of ['iPhone Safari', 'Android Chrome', 'Desktop Chrome']) {
     const id = w.generateLeadId(); const url = new URL(w.buildWhatsAppUrl(id));
-    assert.equal(url.hostname, 'wa.me', platform); assert.equal(url.pathname, '/8618880441791');
+    assert.equal(w.WHATSAPP_MESSAGE, "Hi Joy, I'd like help planning a private trip to Yunnan."); assert.equal(url.hostname, 'wa.me', platform); assert.equal(url.pathname, '/8618880441791');
     assert.equal(url.searchParams.get('text'), `${w.WHATSAPP_MESSAGE}\n\nRef: ${id}`);
     assert.match(id, /^HCT-\d{8}-[A-F0-9]{16}$/);
     assert.ok(!url.searchParams.get('text').includes('Campaign:'));
@@ -152,33 +150,48 @@ test('Explicit analytics denial keeps WhatsApp usable without events, records or
   assert.equal(events.length, 0); assert.equal(requests.length, 0); assert.equal(localStorage.getItem(a.ATTRIBUTION_KEY), null);
   assert.equal(document.cookie.includes(a.ATTRIBUTION_KEY), false); assert.ok(link.href.includes('Ref%3A')); cleanup();
 });
-test('Receiver records sanitized full attribution to existing mailbox with idempotency key', async () => {
-  process.env.RESEND_API_KEY = 'test'; process.env.ENQUIRY_FROM_EMAIL = 'test@example.com';
-  emails = []; emailError = null; const body = recordBody(); body.conversion_page = '/contact?email=private@example.com'; body.cta_location = '<script>\r\nBcc: victim@example.com';
-  const response = await route.POST(request(body));
-  assert.equal(response.status, 200); assert.equal(emails.length, 1);
-  const { message, options } = emails[0];
-  assert.ok(message.text.includes('test_gclid_123')); assert.ok(message.text.includes(body.lead_id));
-  assert.ok(message.text.includes('Conversion page: /contact\n')); assert.ok(!message.text.includes('private@example.com'));
-  assert.ok(!message.text.includes('<script>')); assert.ok(!message.text.includes('\r\nBcc:'));
-  assert.match(message.subject, /unconfirmed/); assert.equal(options.idempotencyKey, `whatsapp-${body.lead_id}`);
+async function captureReceiver(body) {
+  const logs = []; const originalInfo = console.info;
+  console.info = (...args) => logs.push(args);
+  try { return { response: await route.POST(request(body)), logs }; }
+  finally { console.info = originalInfo; }
+}
+test('Receiver logs sanitized attribution without email or URL query data', async () => {
+  const body = recordBody(); body.conversion_page = '/contact?email=private@example.com'; body.cta_location = '<script>\r\nBcc: victim@example.com';
+  const { response, logs } = await captureReceiver(body);
+  assert.equal(response.status, 200); assert.equal(logs.length, 1);
+  assert.equal(logs[0][0], '[whatsapp_click]');
+  const record = JSON.parse(logs[0][1]);
+  assert.equal(record.lead_id, body.lead_id); assert.equal(record.message_sent, 'unconfirmed');
+  assert.equal(record.attribution.last.params.gclid, 'test_gclid_123');
+  assert.equal(record.conversion_page, '/contact');
+  assert.ok(!logs[0][1].includes('private@example.com'));
+  assert.ok(!record.cta_location.includes('<script>')); assert.ok(!/[\r\n]/.test(record.cta_location));
 });
-test('Receiver distrusts spoofed source labels and tolerates malformed attribution', async () => {
+test('Receiver distrusts spoofed labels and tolerates malformed attribution', async () => {
   const body = recordBody(); body.attribution.last.source_label = 'Not Google Ads'; body.attribution.first.source = 'fake';
-  await route.POST(request(body)); assert.ok(emails.at(-1).message.text.includes('Source: Google Ads'));
-  body.attribution = { broken: true }; const response = await route.POST(request(body));
-  assert.equal(response.status, 200); assert.ok(emails.at(-1).message.text.includes('First source: N/A'));
+  let result = await captureReceiver(body);
+  assert.equal(JSON.parse(result.logs[0][1]).source_label, 'Google Ads');
+  body.attribution = { broken: true }; body.lead_id = w.generateLeadId();
+  result = await captureReceiver(body);
+  assert.equal(result.response.status, 200); assert.equal(JSON.parse(result.logs[0][1]).attribution.first, null);
+});
+test('Repeated references produce only one warm-instance diagnostic log', async () => {
+  const body = recordBody();
+  assert.equal((await captureReceiver(body)).logs.length, 1);
+  assert.equal((await captureReceiver(body)).logs.length, 0);
 });
 test('Receiver rejects cross-origin, oversized requests and invalid references', async () => {
   assert.equal((await route.POST(request(recordBody(), { origin: 'https://evil.test' }))).status, 403);
   assert.equal((await route.POST(request({ lead_id: '<script>' }))).status, 400);
   assert.equal((await route.POST(request({ data: 'x'.repeat(17000) }))).status, 413);
 });
-test('Receiver failure is not reported as a successful record or a form lead', async () => {
-  emailError = { message: 'failure' };
-  assert.equal((await route.POST(request(recordBody()))).status, 502);
-  emailError = null; delete process.env.RESEND_API_KEY;
-  assert.equal((await route.POST(request(recordBody()))).status, 503);
+test('Click logging works without email credentials and does not claim durable storage', async () => {
+  delete process.env.RESEND_API_KEY; delete process.env.ENQUIRY_FROM_EMAIL;
+  const { response } = await captureReceiver(recordBody());
+  assert.equal(response.status, 200);
+  const result = await response.json();
+  assert.equal(result.logged, true); assert.equal(result.recorded, undefined);
 });
 test('Blocked cookies/localStorage/sessionStorage leave consultation functional', () => {
   const { events } = browser();
