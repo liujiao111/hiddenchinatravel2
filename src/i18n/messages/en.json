@@ -1033,9 +1033,9 @@
     "successSample": "Download the 6-day sample itinerary (PDF)",
     "successWhatsappNote": "If you would rather continue on WhatsApp, you can send the same note now.",
     "successWhatsapp": "Send on WhatsApp",
-    "whenNextMonth": "Next month",
-    "whenInOneMonth": "In 1 month",
-    "whenInTwoMonths": "In 2 months"
+    "whenNextMonth": "Within 1 month",
+    "whenInOneMonth": "In 1–2 months",
+    "whenInTwoMonths": "In 3+ months"
   },
   "bookingTerms": {
     "kicker": "BEFORE YOU PAY",
