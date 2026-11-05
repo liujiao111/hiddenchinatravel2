@@ -1,9 +1,11 @@
 import { siteConfig } from "./site-config";
 
-// One template across every page, language and CTA. No marketing data or PII.
-export const WHATSAPP_MESSAGE = "Hi Joy, I'd like help planning a private trip to Yunnan.";
-export function buildWhatsAppUrl(leadId?: string) {
-  const message = leadId ? `${WHATSAPP_MESSAGE}\n\nRef: ${leadId}` : WHATSAPP_MESSAGE;
+// Centralized localized consultation templates. No personal details are inserted automatically.
+export const WHATSAPP_MESSAGE = "Hi Joy, I'm interested in planning a private Yunnan trip.\n\nWe're thinking of traveling in:\nNumber of travelers:\nApproximate trip length:\nPlaces we'd love to visit:\n\nI'd appreciate your suggestions. Thanks!";
+export const WHATSAPP_MESSAGE_ZH = "你好 Joy，我想了解云南私人定制旅行。\n\n大概出行月份：\n同行人数：\n预计旅行天数：\n感兴趣的地方：\n\n麻烦帮我看看可以怎么安排，谢谢！";
+export function buildWhatsAppUrl(leadId?: string, locale: "en" | "zh" = "en") {
+  const base = locale === "zh" ? WHATSAPP_MESSAGE_ZH : WHATSAPP_MESSAGE;
+  const message = leadId ? `${base}\n\nRef: ${leadId}` : base;
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 export function isConsultationWhatsApp(raw: string) {
