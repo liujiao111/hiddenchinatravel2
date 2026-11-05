@@ -1032,7 +1032,10 @@
     "successText": "Joy will personally review your enquiry. {replyTime} There is no obligation to book.",
     "successSample": "Download the 6-day sample itinerary (PDF)",
     "successWhatsappNote": "If you would rather continue on WhatsApp, you can send the same note now.",
-    "successWhatsapp": "Send on WhatsApp"
+    "successWhatsapp": "Send on WhatsApp",
+    "whenNextMonth": "Next month",
+    "whenInOneMonth": "In 1 month",
+    "whenInTwoMonths": "In 2 months"
   },
   "bookingTerms": {
     "kicker": "BEFORE YOU PAY",
