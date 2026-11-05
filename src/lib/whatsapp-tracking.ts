@@ -18,7 +18,7 @@ export function installWhatsAppTracking() {
   const recent = new WeakMap<HTMLAnchorElement, number>();
   function normalize(link: HTMLAnchorElement) {
     if (isConsultationWhatsApp(link.href)) {
-      if (!link.href.includes("Ref%3A")) link.href = buildWhatsAppUrl();
+      if (!link.href.includes("Ref%3A")) link.href = buildWhatsAppUrl(undefined, document.documentElement.lang);
     }
   }
   document.querySelectorAll<HTMLAnchorElement>("a[href]").forEach(normalize);
@@ -45,7 +45,7 @@ export function installWhatsAppTracking() {
     const leadId = generateLeadId();
     // Update synchronously and let the native anchor open with its original target.
     // No window.open, awaited request, extra screen or popup-blocker dependency.
-    link.href = buildWhatsAppUrl(leadId);
+    link.href = buildWhatsAppUrl(leadId, document.documentElement.lang);
     const attribution = getAttribution();
     if (analyticsDenied()) return;
     const conversionPage = window.location.pathname.slice(0, 500);

@@ -104,6 +104,17 @@ test('A single template and high-entropy reference safely URL encode on mobile a
     assert.ok(!url.searchParams.get('text').includes('Campaign:'));
   }
 });
+test('Chinese consultation drafts keep their language and the recorded reference on click', () => {
+  const { events } = browser('https://hiddenchinatravel.com/zh');
+  document.documentElement.lang = 'zh-Hans';
+  const link = anchor();
+  const cleanup = tracking.installWhatsAppTracking();
+  const draft = new URL(link.href).searchParams.get('text');
+  assert.match(draft, /出行月份/);
+  click(link);
+  assert.equal(new URL(link.href).searchParams.get('text'), draft + '\n\nRef: ' + events[0][2].lead_id);
+  cleanup();
+});
 test('WhatsApp consultation matching excludes social share, another phone, spoof hosts, email and telephone', () => {
   for (const href of ['https://wa.me/?text=share', 'https://wa.me/1234', 'https://evilwhatsapp.com/?phone=8618880441791', 'mailto:joy@example.com', 'tel:123']) assert.equal(w.isConsultationWhatsApp(href), false, href);
   assert.equal(w.isConsultationWhatsApp('https://api.whatsapp.com/send?phone=8618880441791'), true);

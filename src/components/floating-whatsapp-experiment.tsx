@@ -26,15 +26,13 @@ function eligiblePath(path: string) {
   return true;
 }
 
-export function FloatingWhatsAppExperiment() {
+export function FloatingWhatsAppExperiment({ locale }: { locale: string }) {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false);
-  const [whatsappHref, setWhatsAppHref] = useState(() => buildWhatsAppUrl());
 
   useEffect(() => {
     const path = window.location.pathname.replace(/\/+$/, "") || "/";
     setVisible(false);
-    setWhatsAppHref(buildWhatsAppUrl());
     if (!FLOATING_WHATSAPP_ENABLED || !eligiblePath(path)) return;
 
     const desktop = window.matchMedia(DESKTOP_QUERY);
@@ -60,17 +58,17 @@ export function FloatingWhatsAppExperiment() {
   return (
     <a
       className="floating-whatsapp"
-      href={whatsappHref}
+      href={buildWhatsAppUrl(undefined, locale)}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with Joy on WhatsApp"
+      aria-label={locale === "zh" ? "在WhatsApp上联系Joy" : "Chat with Joy on WhatsApp"}
       data-cta-location="floating_whatsapp"
     >
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none">
         <path d="M20.5 11.6a8.5 8.5 0 0 1-12.4 7.5L3 20.5l1.5-4.8A8.5 8.5 0 1 1 20.5 11.6Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/>
         <path d="M8.2 8.6c.4 3.1 2.1 4.8 5.3 5.7l1.1-1.2 2 1c-.3 1.6-1.5 2.4-2.8 2.1-4.2-1-6.8-3.6-7.6-7.6-.2-1.1.6-2.4 1.9-2.8l1.1 2-1.1 1Z" fill="currentColor"/>
       </svg>
-      <span>Chat with Joy</span>
+      <span>{locale === "zh" ? "联系 Joy" : "Chat with Joy"}</span>
       <span className="floating-whatsapp-channel">WhatsApp</span>
     </a>
   );

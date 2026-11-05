@@ -22,21 +22,9 @@ form fields, GA configuration, phone number, routes, CSS and SEO are preserved.
   Attribution is captured on mount and before a click, then persisted independently
   of the URL; no marketing parameters are removed by this implementation.
 
-## Customer template (identical on all pages, including /zh)
+## Customer template
 
-```text
-Hi Joy, I'd like help planning a private trip to China.
-
-Ref: HCT-20261105-<16 random hex characters>
-```
-
-No Source, Campaign, Page, ad IDs or personal form fields are added to the message.
-Existing CTA wording, styles, visibility rules, targets and phone stay unchanged.
-SSR/no-JS links use the same greeting; references and attribution require JavaScript.
-A new reference is generated only on activation, not on rendering or scrolling.
-Form success/fallback WhatsApp links use this same template; the already entered
-form fields are no longer copied to WhatsApp. Form/email content remains unchanged.
-Journal sharing retains its original share text and is **not** an inquiry event.
+The shared URL builder in `src/lib/whatsapp.ts` selects the English or Chinese draft for the page language. Each has optional trip-month, party-size, duration and destination prompts. Clicking a consultation link appends its random reference. The source page and marketing identifiers stay in the attribution record. Opening a draft only records a click.
 
 ## Architecture
 

@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 export type JourneyCardData = {
   title: string;
   subtitle?: string;
+  description?: string;
   href: string;
   image: string;
   imageAlt?: string;
@@ -32,6 +33,7 @@ export function JourneyCard({ journey, priority = false }: { journey: JourneyCar
       <h3>{journey.title}</h3>
       {journey.subtitle ? <p>{journey.subtitle}</p> : null}
       {journey.duration ? <p className="journey-card-duration">{journey.duration}</p> : null}
+      {journey.description ? <p>{journey.description}</p> : null}
       {journey.features?.length ? <ul>{journey.features.map((feature) => <li key={feature}>✓ {feature}</li>)}</ul> : null}
       {journey.fromPrice ? <b className="journey-card-price">{journey.fromPrice}</b> : null}
       {journey.priceNote ? <small className="journey-card-note">{journey.priceNote}</small> : null}

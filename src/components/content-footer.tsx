@@ -1,12 +1,10 @@
 "use client";
 
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { licensedOperator } from "@/lib/journey-trust";
 import { siteConfig } from "@/lib/site-config";
-
-const whatsapp = buildWhatsAppUrl();
 
 export function ContentCta() {
   const t = useTranslations("contentUi");
@@ -14,6 +12,8 @@ export function ContentCta() {
 }
 
 export function ContentFooter() {
+  const locale = useLocale();
+  const whatsapp = buildWhatsAppUrl(undefined, locale);
   const t = useTranslations("footer");
   const agencyValues = {
     agencyEn: licensedOperator.nameEn,
@@ -29,9 +29,9 @@ export function ContentFooter() {
       <div className="shell footer-grid">
         <section className="footer-brand" aria-labelledby="footer-brand-title">
           <h2 id="footer-brand-title">Hidden China Travel</h2>
-          <p className="footer-tagline">{t("tagline")}</p>
+          {locale !== "zh" && <p className="footer-tagline">{t("tagline")}</p>}
           <p>{t("intro")}</p>
-          <p className="footer-origin">{t("origin")}</p>
+          {locale !== "zh" && <p className="footer-origin">{t("origin")}</p>}
           <p className="footer-origin">{t("companyLine", agencyValues)}</p>
           <p className="footer-origin">{t("address", agencyValues)}</p>
           <p className="footer-origin"><a href={licensedOperator.creditRegistryUrl} target="_blank" rel="noopener noreferrer">{t("registry")}</a></p>
@@ -81,7 +81,7 @@ export function ContentFooter() {
           <Link href="/licensed-operator">{t("licensed")}</Link>
           <Link href="/booking">{t("bookingService")}</Link>
           <Link href="/contact">{t("contact")}</Link>
-          <Link href={whatsapp}>WhatsApp</Link>
+          <Link href={whatsapp}>{locale === "zh" ? t("ctaLink") : "WhatsApp"}</Link>
         </nav>
       </div>
 

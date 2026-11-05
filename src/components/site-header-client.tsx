@@ -3,7 +3,7 @@
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import Image from "next/image";
 import { LocaleLink as Link } from "@/components/locale-link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { EnquireLink } from "@/components/enquire-link";
 import { HashLink } from "@/components/hash-link";
@@ -27,8 +27,6 @@ const tailorMadeBase = {
 };
 
 type MenuName = "destinations" | "journeys" | "guides" | "about";
-
-const whatsapp = buildWhatsAppUrl();
 
 const popular = ["Yunnan", "Dali", "Lijiang", "Shangri-La", "Xishuangbanna", "Kunming", "Shaxi", "Yuanyang"];
 const regions = ["Yunnan", "Sichuan & Chongqing", "Beijing & North China", "Shanghai & the Lower Yangtze", "Xi’an & the Silk Road", "Guangxi & Guizhou", "Tibet & the Himalayas", "Southern China"];
@@ -73,7 +71,7 @@ const guideHrefs: Record<string, string> = {
   "Yunnan travel guide": "/china-destinations/yunnan",
 };
 
-const hrefFor = (label: string) => {
+const hrefFor = (label: string, whatsapp: string) => {
   if (guideHrefs[label]) return guideHrefs[label];
   if (label === "About us") return "/about-us";
   if (label === "Traveler stories") return "/traveler-stories";
@@ -102,6 +100,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { jou
   const [open, setOpen] = useState<MenuName | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = useTranslations("header");
+  const whatsapp = buildWhatsAppUrl(undefined, useLocale());
   const labels = t.raw("labels") as Record<string, string>;
   const label = (key: string) => labels[key] ?? key;
   const tailorMade = {
@@ -195,8 +194,8 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { jou
         </section>
       </div> : open === "guides" ? <div className="shell mega-groups mega-guides">
         <section className="mega-survival-feature"><Image src="/assets/blog/independent-travel-china/cover.webp" alt={t("mega.survivalAlt")} fill sizes="(max-width: 700px) 100vw, 30vw" unoptimized /><div><p>{t("mega.startHere")}</p><h2>{t("mega.survivalTitle")}</h2><span>{t("mega.survivalText")}</span><Link className="button button-light" href="/survival-kit">{t("mega.openSurvival")}</Link></div></section>
-        {menuGroups.guides.map(group => <section key={group.title}><h2>{label(group.title)}</h2>{group.links.map(item => <Link key={item} href={hrefFor(item)}>{label(item)}</Link>)}{group.title === "Destination guides" && <YunnanCountryGuideLink onSelect={() => setOpen(null)} />}</section>)}
-      </div> : <div className="shell mega-groups">{menuGroups.about.map((group) => <section key={group.title}><h2>{label(group.title)}</h2>{group.links.map((item) => <Link key={item} href={hrefFor(item)}>{label(item)}</Link>)}</section>)}<section className="mega-callout"><p className="kicker">{t("mega.notSure")}</p><h2>{t("mega.notSureText")}</h2><Link href={whatsapp} className="button button-light">{t("mega.startPlanning")}</Link></section></div>}
+        {menuGroups.guides.map(group => <section key={group.title}><h2>{label(group.title)}</h2>{group.links.map(item => <Link key={item} href={hrefFor(item, whatsapp)}>{label(item)}</Link>)}{group.title === "Destination guides" && <YunnanCountryGuideLink onSelect={() => setOpen(null)} />}</section>)}
+      </div> : <div className="shell mega-groups">{menuGroups.about.map((group) => <section key={group.title}><h2>{label(group.title)}</h2>{group.links.map((item) => <Link key={item} href={hrefFor(item, whatsapp)}>{label(item)}</Link>)}</section>)}<section className="mega-callout"><p className="kicker">{t("mega.notSure")}</p><h2>{t("mega.notSureText")}</h2><Link href={whatsapp} className="button button-light">{t("mega.startPlanning")}</Link></section></div>}
       <button className="mega-close" onClick={() => setOpen(null)} aria-label={t("closeMenu")}>×</button>
     </div>}
   </header>;

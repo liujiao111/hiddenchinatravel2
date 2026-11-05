@@ -1,9 +1,12 @@
 import { siteConfig } from "./site-config";
 
-// One template across every page, language and CTA. No marketing data or PII.
-export const WHATSAPP_MESSAGE = "Hi Joy, I'd like help planning a private trip to China.";
-export function buildWhatsAppUrl(leadId?: string) {
-  const message = leadId ? `${WHATSAPP_MESSAGE}\n\nRef: ${leadId}` : WHATSAPP_MESSAGE;
+// All consultation links share the same draft for the current page language.
+export const WHATSAPP_MESSAGE = "Hi Joy, I'd love your help planning a private trip to Yunnan. Here’s what I have in mind so far. I’m open to your suggestions.\n\nWhen we might travel:\nNumber of travelers:\nDays in Yunnan:\nPlaces we’d like to visit:";
+const chineseMessage = "你好 Joy，我想咨询云南旅行的路线和报价。这是我的大概计划，未确定的部分想听听你的建议。\n\n出行月份：\n同行人数：\n预计旅行天数：\n感兴趣的地方：";
+
+export function buildWhatsAppUrl(leadId?: string, locale = "en") {
+  const draft = locale.startsWith("zh") ? chineseMessage : WHATSAPP_MESSAGE;
+  const message = leadId ? `${draft}\n\nRef: ${leadId}` : draft;
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 export function isConsultationWhatsApp(raw: string) {
