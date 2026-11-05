@@ -182,32 +182,6 @@ If you have a rough month, departure airport and preferred pace, that is enough 
 
 If you would like the transfers and local arrangements handled, [explore a tailor-made private Yunnan tour](/custom-china-tour). Start with your available days and the places that interest you most.
 
-## Frequently Asked Questions
-
-### Do British citizens need a visa for a Yunnan holiday in 2026?
-
-Eligible ordinary British passport holders with nationality “British citizen” can currently enter China for tourism without a visa for up to 30 days. The published waiver runs through 31 December 2026. Check the [embassy notice](https://gb.china-embassy.gov.cn/eng/visa/notice/202602/t20260216_11860580.htm) for changes.
-
-### Can I assume the same visa-free rule for a 2027 holiday?
-
-No. The currently published end date is in 2026. Check the Chinese Embassy and [FCDO entry advice](https://www.gov.uk/foreign-travel-advice/china/entry-requirements) before making a 2027 booking that relies on the waiver.
-
-### Is there a direct flight from the UK to Kunming?
-
-Do not build your plan around one without checking live schedules for your dates. Compare complete connecting journeys to Kunming and, if useful, a return from Lijiang. Routes can change.
-
-### Is 10 days enough including the UK flights?
-
-It can be, if you limit the number of stops. Around 12 days is a more comfortable starting point for Kunming, Dali, Shaxi and Lijiang, depending on your flight times. Count actual hotel nights before adding a northwest extension.
-
-### Can I arrange only the Shaxi transfer?
-
-You can discuss partial local support instead of a full private journey. The available service, route, inclusions and final price need to be confirmed by the local partner.
-
-### Does the six-day journey include UK flights or Shangri-La?
-
-No. It is a six-day/five-night Yunnan core route. International flights and any additional places or nights require a separate proposal.
-
 ## Place Names to Save
 
 | English | Chinese | Pinyin |
