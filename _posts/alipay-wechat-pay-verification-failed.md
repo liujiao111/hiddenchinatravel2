@@ -192,20 +192,6 @@ If verification has stalled, don’t just keep pressing the same button. Identif
 
 And before you land in China, build a real backup into your setup: both Alipay and WeChat Pay (in case one fails), a reliable way to get online, a backup card from a different bank if possible, and a small amount of cash. No single app is foolproof for foreign users. The travelers who move through China most smoothly are the ones who planned for imperfection.
 
-## FAQ
-
-**Why does Alipay passport verification fail for foreigners?** Usually because of unclear passport photos, name format inconsistencies, or a mismatch between your passport, card, and app profile. Use your full legal name exactly as it appears on your passport and upload a clear, complete image of the photo page.
-
-**Why does WeChat Pay real-name verification keep failing?** Common causes include passport information issues, foreign card verification problems, and WeChat account security restrictions triggered by new accounts or unusual login patterns. Repeated failed attempts can also make the situation worse.
-
-**Can foreigners verify Alipay or WeChat Pay before arriving in China?** In many cases, yes — and it’s much better to try before you travel than to troubleshoot it at a hotel or restaurant. The experience varies depending on your country, card issuer, and phone number setup.
-
-**Why am I not receiving the SMS verification code?** Either your phone can’t receive international SMS, roaming is off, or the code is actually coming from your bank rather than the payment app. Check both your carrier settings and your bank’s verification method.
-
-**Can a VPN cause Alipay or WeChat Pay verification to fail?** It can add friction. Switching VPN locations repeatedly during verification may trigger security checks. For payment app setup, use a stable connection and avoid toggling your VPN on and off.
-
-**Foreign card not accepted on Alipay or WeChat Pay — what to do?** Check whether international online payments are enabled in your banking app and look for any pending approvals. Avoid multiple rapid retry attempts. If one card isn’t working, try a different Visa or Mastercard from a different bank.
-
 ## Related Guides
 
   * **[Payments in China for Foreigners](/payments-in-china)** — full overview of Alipay, WeChat Pay, cards, and cash backup
