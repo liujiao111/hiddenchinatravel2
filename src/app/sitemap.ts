@@ -27,6 +27,15 @@ function localizedEntry(
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    // Chinese-first articles without an English counterpart: publish their real URL only.
+    ...getAllContent("zh")
+      .filter((item) => !getContentBySlug(item.slug, "en") && isZhLive(`/${item.slug}`))
+      .map((item) => ({
+        url: localeUrl("zh", `/${item.slug}`),
+        lastModified: item.frontmatter.dateModified || item.frontmatter.date,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      })),
     localizedEntry("/", isZhLive("/"), { lastModified: coreUpdated, changeFrequency: "weekly", priority: 1 }),
     localizedEntry("/about-us", isZhLive("/about-us"), { lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.6 }),
     localizedEntry("/traveler-stories", isZhLive("/traveler-stories"), { lastModified: new Date("2026-10-26"), changeFrequency: "monthly", priority: 0.7 }),
