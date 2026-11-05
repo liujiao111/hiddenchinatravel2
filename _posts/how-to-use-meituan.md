@@ -182,16 +182,6 @@ If you are heading to Yunnan rather than one city, daily deals matter less than 
 
 If you’re heading to China and sorting out your full toolkit, check out our [survive kit](/survival-kit) for preparing china travel guides to squeeze even more value out of your travels.
 
-## FAQ
-
-**Can foreigners use Meituan without a Chinese number?** Often yes via WeChat login or the WeChat mini-program, depending on your WeChat verification status. A local +86 number makes signup smoother but is not always mandatory for every flow.
-
-**What do I need before using Meituan in China?** A working payment app (Alipay or WeChat Pay), stable mobile data, and a usable delivery address pin. Fix payment verification before fighting the Meituan signup screen.
-
-**Is Meituan only for food delivery?** No. Meituan also covers restaurant deals, cafés, attractions, and local services. Food delivery is just the part most travelers hit first.
-
-**What if Meituan asks for a Chinese phone number and blocks me?** Try WeChat login, the Alipay food path (Taobao Instant / Ele.me), in-person QR menus with staff help, or ask your hotel to place an order.
-
 ## Related Guides
 
 Planning your China trip? These practical guides may also help:
