@@ -231,22 +231,7 @@ Needs Google / WhatsApp / Gmail| Travel eSIM or international roaming
 Needs Chinese phone number| Consider local Chinese SIM  
 Long stay / study / work| Local SIM likely a better fit  
 Heavy local app user (Didi, delivery, bikes)| Local SIM may be needed  
-Remote worker| High-data eSIM + VPN backup  
-  
-  
-## FAQ
-
-**Does a China eSIM work without a VPN?** Often on mobile data, yes — because many eSIM providers route traffic outside mainland China. But it is not guaranteed for every provider or location, and it does not apply to hotel or public Wi-Fi, where a VPN is still needed.
-
-**Can I use WhatsApp with a China eSIM?** WhatsApp is one of the most commonly reported apps that works on a travel eSIM. Your account stays linked to your home number — the eSIM is just the data connection.
-
-**Does a China eSIM give me a Chinese phone number?** No, in almost all cases. Most travel eSIMs are data-only. You get mobile internet, not a Chinese phone number — and that is the single biggest limitation for travelers who need SMS verification for local services.
-
-**Can I use Alipay and WeChat Pay with an eSIM?** Working internet helps, but Alipay and WeChat Pay problems are usually about identity verification, bank card linking or account risk controls — not your SIM. An eSIM does not fix those. [See the payment verification guide.](/alipay-wechat-pay-verification-failed)
-
-**Is eSIM better than a local SIM card in China?** For short trips: eSIM is simpler — easier setup, home number stays active, may give international app access without VPN. For longer stays or heavy local service use: a local SIM is more practical because it includes a Chinese phone number.
-
-**Do I still need a VPN if I have an eSIM?** Not necessarily for mobile data — but yes for hotel Wi-Fi, public Wi-Fi and laptop use. Download a VPN before leaving home. [See the VPN guide for China.](/do-you-need-vpn-china)
+Remote worker| High-data eSIM + VPN backup
 
 ## Related Guides
 
