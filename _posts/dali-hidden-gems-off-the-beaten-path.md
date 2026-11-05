@@ -154,29 +154,6 @@ None of these places demand a fixed itinerary — that's the point of writing ab
 
 Want to weave these quieter places into a longer trip? [Plan a tailor-made Yunnan journey](/custom-china-tour) with time for the villages and countryside that interest you, rather than squeezing them into a rushed detour.
 
-## FAQ
-
-**Is Shaxi worth a day trip from Dali?**
-Not really — it's about 2 to 2.5 hours each way, which makes a same-day round trip exhausting for not much time on the ground. Most people who make the trip stay at least one night.
-
-**How far is Xizhou from Dali Old Town?**
-About 20 km, roughly 30–50 minutes by minibus or taxi depending on traffic. It's an easy half-day or full-day trip without staying overnight.
-
-**Do you need to buy a ticket for Shibaoshan?**
-Yes — entrance was ¥30 per person as of 2026. Confirm locally, since rural scenic-area pricing can change with little notice.
-
-**Is Zhoucheng free to visit?**
-Walking the village and the Puzhen Tie-Dye Museum are both free. A hands-on dyeing session with a local artisan costs extra, usually ¥30–50.
-
-**Can I visit these places without speaking Chinese?**
-Yes. None of them require English-speaking staff to enjoy — a translation app and a Didi account cover most situations. Shaxi, Shibaoshan and Nuodeng have the least English signage of the group, so it helps to have your accommodation name saved in Chinese characters to show a driver.
-
-**Is Weishan worth visiting instead of Shaxi?**
-They're not really substitutes — think of them as different trips. Weishan is closer (about 63 km, about an hour by bus, no overnight needed) and, based on visitor reviews, even quieter than Shaxi. Shaxi has more infrastructure if you want to stay a night and catch the Friday market. If you only have one extra day, Weishan is the easier add-on.
-
-**How do I get to Nuodeng, and is it worth the trip?**
-It's about 2.5 hours by car from Dali Old Town, and there's very little in the way of shops or amenities once you arrive — you're there for the village itself, not conveniences. It's worth it if you want a genuinely undeveloped village experience and have the extra time, but it's not a good fit for a first, short visit to Dali.
-
 ## Place Names Reference
 
 | English | Chinese | Pinyin |
