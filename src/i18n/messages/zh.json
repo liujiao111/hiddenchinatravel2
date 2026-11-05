@@ -1032,7 +1032,10 @@
     "successText": "Joy 会亲自查看你的咨询。{replyTime}没有任何预订义务。",
     "successSample": "下载 6 天示例行程（PDF）",
     "successWhatsappNote": "如果你更想用 WhatsApp，现在就可以把同样的内容发过去。",
-    "successWhatsapp": "通过 WhatsApp 发送"
+    "successWhatsapp": "通过 WhatsApp 发送",
+    "whenNextMonth": "下个月",
+    "whenInOneMonth": "1 个月后",
+    "whenInTwoMonths": "2 个月后"
   },
   "bookingTerms": {
     "kicker": "付款之前",
