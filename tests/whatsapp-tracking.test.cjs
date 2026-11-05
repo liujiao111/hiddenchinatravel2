@@ -101,8 +101,17 @@ test('A single template and high-entropy reference safely URL encode on mobile a
     assert.equal(url.hostname, 'wa.me', platform); assert.equal(url.pathname, '/8618880441791');
     assert.equal(url.searchParams.get('text'), `${w.WHATSAPP_MESSAGE}\n\nRef: ${id}`);
     assert.match(id, /^HCT-\d{8}-[A-F0-9]{16}$/);
-    assert.ok(!url.searchParams.get('text').includes('Campaign:'));\n    assert.ok(url.searchParams.get('text').includes('private trip to Yunnan'));
+    assert.ok(!url.searchParams.get('text').includes('Campaign:'));\n    assert.ok(url.searchParams.get('text').includes('private Yunnan trip'));
   }
+});
+test('Chinese WhatsApp prefill respects language and retains reference', () => {
+  const id = w.generateLeadId();
+  const zh = new URL(w.buildWhatsAppUrl(id, 'zh')).searchParams.get('text');
+  const en = new URL(w.buildWhatsAppUrl(id, 'en')).searchParams.get('text');
+  assert.equal(zh, `${w.WHATSAPP_MESSAGE_ZH}\n\nRef: ${id}`);
+  assert.equal(en, `${w.WHATSAPP_MESSAGE}\n\nRef: ${id}`);
+  assert.ok(zh.includes('同行人数：'));
+  assert.ok(en.includes('Number of travelers:'));
 });
 test('WhatsApp consultation matching excludes social share, another phone, spoof hosts, email and telephone', () => {
   for (const href of ['https://wa.me/?text=share', 'https://wa.me/1234', 'https://evilwhatsapp.com/?phone=8618880441791', 'mailto:joy@example.com', 'tel:123']) assert.equal(w.isConsultationWhatsApp(href), false, href);
