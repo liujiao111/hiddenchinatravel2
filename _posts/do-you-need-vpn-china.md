@@ -118,26 +118,6 @@ Keep it. Do not start from zero in a hotel lobby. Confirm **Obfuscated Servers**
 
 Full Nord steps and the Express caveat: [Best VPN for China](/best-vpn-for-china).
 
-## FAQ
-
-**Do I need a VPN in China if I use eSIM?**
-On mobile data, probably not for basic use. Add a VPN if you’re on hotel Wi-Fi a lot, or need Google/WhatsApp/Gmail reliably.
-
-**Which VPN should I install?**
-What I use: NordVPN (slow to connect on some hotel networks). Simpler app I have not daily-tested in China: ExpressVPN. Comparison → [Best VPN for China](/best-vpn-for-china)
-
-**Can I use Google Maps in China with a VPN?**
-Technically yes, but it’s still outdated with coordinate errors. Use Apple Maps or Alipay’s transport tools for navigation → [Maps and navigation in china](/maps-navigation-in-china)
-
-**What if the VPN stops working in my hotel?**
-Switch server (Japan / Singapore / Hong Kong). Confirm the China settings in the [comparison guide](/best-vpn-for-china). Change Wi-Fi to mobile data. Open the second app if you installed one.
-
-**What’s the most reliable VPN for China in 2026?**
-For absolute reliability at any price: **Astrill**. For what I actually run: **NordVPN**, knowing connects can take a long time. ExpressVPN is simpler; I have not daily-tested it in China.
-
-**Is it legal for tourists to use a VPN in China?**
-Tourists generally use VPNs for personal communication without issue. Use it reasonably and avoid politically sensitive content. This is not legal advice.
-
 ## Final setup
 
 Trip length| Best setup
