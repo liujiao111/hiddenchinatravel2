@@ -37,7 +37,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!item) return {};
   const { frontmatter } = item;
   const path = `/${slug}`;
-  const alternates = alternatesFor(lang, path, availableLocales(lang, slug));
+  const locales = availableLocales(lang, slug);
+  const alternates = locales.length === 1 && lang === "zh"
+    ? { canonical: `https://hiddenchinatravel.com/zh${path}`, languages: { "zh-Hans": `https://hiddenchinatravel.com/zh${path}` } }
+    : alternatesFor(lang, path, locales);
   const description = frontmatter.metaDescription || frontmatter.excerpt || frontmatter.description;
   const image = frontmatter.ogImage?.url || frontmatter.coverImage || "/home/hero.webp";
   const seoTitle = frontmatter.absoluteSeoTitle || frontmatter.seoTitle || frontmatter.title;
