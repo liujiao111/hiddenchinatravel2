@@ -42,10 +42,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-const whatsapp = buildWhatsAppUrl();
+
 
 type Step = [string, string, string];
-type SupportItem = { title: string; detail: string; href: string };
+type SupportItem = { title: string; detail: string; href: string; cta?: string };
 type Destination = { name: string; note: string; image: string; alt: string; href: string; cta: string };
 type Faq = [string, string];
 
@@ -53,6 +53,7 @@ export default async function Home({ params }: Props) {
   const { lang } = await params;
   setRequestLocale(lang);
   const t = await getTranslations({ locale: lang, namespace: "home" });
+  const whatsapp = buildWhatsAppUrl(undefined, lang);
 
   const agencyName = lang === "zh" ? licensedOperator.nameZh : licensedOperator.nameEn;
   const fill = (s: string) =>
@@ -213,7 +214,7 @@ export default async function Home({ params }: Props) {
         <p>{t("founderP5")}</p>
         <p className="home-signature"><b>Joy Liu</b><span>{t("founderRole")}</span></p>
         <Link href="/about-us">{t("founderStoryLink")}</Link>
-        <Link href="/contact">{t("founderAskLink")}</Link>
+        <EnquireLink data-cta-location="home_founder_ask">{t("founderAskLink")}</EnquireLink>
       </div>
     </section>
 
@@ -224,7 +225,7 @@ export default async function Home({ params }: Props) {
           <h2>{t("prepareHeading")}</h2>
           <p>{t("prepareIntro")}</p>
         </div>
-        <div className="yunnan-practical-grid">{supportItems.map((item, index) => <Link href={item.href} key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p><b>{t("supportItemCta")}</b></Link>)}</div>
+        <div className="yunnan-practical-grid">{supportItems.map((item, index) => <Link href={item.href} key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p><b>{item.cta || t("supportItemCta")}</b></Link>)}</div>
         <div className="center"><Link href="/survival-kit" className="button button-light">{t("checklistCta")}</Link></div>
       </div>
     </section>
