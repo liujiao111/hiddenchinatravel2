@@ -145,41 +145,14 @@ Don’t leave the store without confirming all of this:
 
 The SMS test is the one people skip and then regret. Sixty seconds at the counter saves a lot of frustration later.
 
-## FAQ
-
 ![easy esim setup china travel stay connected](/assets/blog/china-sim-card-for-foreigners/sim-card-setup-guide.webp)
 
-**Can foreigners buy a SIM card in China with a passport?** Yes. You must complete real-name registration and facial verification at an official carrier store or airport counter. Bring your original passport.
-
-**Should I get a physical China SIM or a travel eSIM?** Need a +86 number for app SMS or new local accounts? Get a physical SIM. Only need data and international apps? A travel eSIM is usually easier.
-
-**Which carrier is best for foreigners?** China Unicom is the usual first pick for foreign phones and tourist prepaid plans. Go to a flagship or directly operated store, not a small franchise. Ask for **预付费 (yùfùfèi) prepaid** — not a postpaid contract — and confirm hotspot (热点) if you need tethering.
 
 Trip Length| What to Look For| Approx. Cost  
 ---|---|---  
 1–7 days| 3–5GB data, no calls| ¥30–50  
 1–4 weeks| 10–20GB data + calls| ¥50–80  
-1–3 months| Unlimited (throttled after 20–30GB)| ¥80–150/month  
-
-**What if face verification fails at the store?** Remove glasses, improve lighting, retry. Ask for supervisor help or try another official branch. Online/pre-order SIMs that verify with uploaded photos can be a workaround. The system compares your live face to the passport photo — glasses, bad lighting, or an old passport photo are the usual failure triggers.
-
-**Do I need a Chinese number for Alipay and food delivery?** Not always — foreign cards work in many Alipay/WeChat flows now. A local number still helps with SMS codes, Meituan signup, and some registrations.
-
-### After you buy: SMS, data, and leaving China
-
-**Not receiving SMS codes:** International SMS may be disabled (ask the store to enable it), numbers starting with 170/171 are often blocked by apps (prefer 130–189), or the network is slow — wait, restart, retry. Have the store send a test SMS before you leave.
-
-**Signal but no internet:** Toggle mobile data on; set APN (Unicom `3gnet`, Mobile `cmnet`, Telecom `ctnet`); if Baidu loads but Google doesn’t, turn on your VPN; stuck on 2G may mean band incompatibility.
-
-**Do you need to cancel before leaving?** No. Prepaid SIMs expire when the plan ends. Before you leave, link a backup email to WeChat/Alipay tied to that number so you can recover accounts after the number is reassigned.
-
-### Can You Just Use International Roaming?
-
-Technically yes. Practically, almost no one should.
-
-Roaming costs from most home carriers are significantly higher than a local SIM — often $10–20 per day for data. More importantly, international roaming on most carriers still routes traffic through Chinese networks, which means the Great Firewall applies anyway. You’d be paying more and still can’t access Google.
-
-The one exception worth knowing: some airport counters sell **Hong Kong-based roaming SIMs** that technically give you a non-mainland connection, which means they bypass the Great Firewall without a VPN. They’re more expensive than a standard mainland SIM, but the all-in-one convenience (data + no Firewall) makes them a reasonable option for short trips if you want zero configuration on arrival.
+1–3 months| Unlimited (throttled after 20–30GB)| ¥80–150/month
 
 ## Useful Phrases for the Store
 
