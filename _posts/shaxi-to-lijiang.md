@@ -160,34 +160,7 @@ Our [6-day private Yunnan journey](/journeys/kunming-dali-shaxi-lijiang-6-days) 
 
 Already have your own plans? **[Ask Joy to help with transfers](/contact#enquire)**.
 
-## Frequently Asked Questions
-
-### Is there a train from Shaxi to Lijiang?
-No. Shaxi does not have a railway station, so the journey is by road.
-
-### How far is Shaxi from Lijiang?
-About 98–100 km by road, depending on the route and exact hotel locations.
-
-### How long does it take?
-Allow approximately 1.5–2.5 hours for a direct journey, including practical pickup and arrival arrangements.
-
-### Is there a direct bus from Shaxi to Lijiang?
-Direct passenger services have operated, but departure schedules, fares and stops must be checked for your travel date.
-
-### Can I visit Shibao Mountain on the way?
-Yes. Allow several hours and consider a private driver so your luggage can remain with the vehicle.
-
-### Can I bring large luggage?
-Yes, but check the vehicle's capacity in advance. Private transfers are easier with multiple large suitcases.
-
-### Can I go directly to Shuhe or Baisha?
-Usually with a private driver, subject to local road access. Shared services may only include central Lijiang stops.
-
-### Should I stay in Lijiang Old Town or Shuhe?
-Old Town is livelier and convenient for restaurants; Shuhe is quieter and better positioned for northern Lijiang.
-
----
-
 **About the author:** Joy Liu was born and raised in Yunnan and spent years living and travelling abroad. Joy founded Hidden China Travel to help international visitors plan private Yunnan journeys with clearer local guidance.
 
 *Last reviewed: November 2026. Transport schedules, fares and pickup points should always be reconfirmed before departure.*
+
