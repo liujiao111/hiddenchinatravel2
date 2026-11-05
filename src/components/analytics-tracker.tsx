@@ -53,20 +53,6 @@ export function AnalyticsTracker() {
         page_path: window.location.pathname,
       };
 
-      if (url.hostname === "wa.me" || url.hostname.endsWith("whatsapp.com")) {
-        trackEvent("whatsapp_click", {
-          ...common,
-          cta_location: link.dataset.ctaLocation === "floating_whatsapp"
-            ? "floating_whatsapp"
-            : link.closest("header")
-              ? "header"
-              : link.closest("footer")
-                ? "footer"
-                : "page_content",
-        });
-        return;
-      }
-
       if (url.origin !== window.location.origin) return;
 
       if (linkPath === "/custom-china-tour") {

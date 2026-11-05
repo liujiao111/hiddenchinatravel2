@@ -1,3 +1,4 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -7,7 +8,6 @@ import { ContactForm } from "@/components/contact-form";
 import { ContentFooter } from "@/components/content-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
-import { siteConfig } from "@/lib/site-config";
 import { getSelectedTestimonials } from "@/lib/testimonials";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
@@ -41,7 +41,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
   const tj = await getTranslations({ locale: lang, namespace: "journey" });
   const tq = await getTranslations({ locale: lang, namespace: "quickAsk" });
   const stories = getSelectedTestimonials(lang);
-  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(t("whatsappMessage"))}`;
+  const whatsapp = buildWhatsAppUrl();
   const steps = t.raw("steps") as [string, string, string][];
   const emphasis = t.raw("heroEmphasis") as string[];
   const founderParagraphs = t.raw("founderParagraphs") as string[];

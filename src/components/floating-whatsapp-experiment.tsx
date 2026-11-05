@@ -1,8 +1,8 @@
 "use client";
 
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/lib/site-config";
 
 // Desktop rollout across travel content; preserve existing journey CTAs.
 const FLOATING_WHATSAPP_ENABLED = true;
@@ -26,27 +26,15 @@ function eligiblePath(path: string) {
   return true;
 }
 
-function buildWhatsAppHref(path: string) {
-  const sourceUrl = new URL(path, siteConfig.url).toString();
-  const pathname = basePath(path);
-  const yunnanFocused = pathname === "/" || pathname === "/journeys" ||
-    pathname.startsWith("/journeys/") || pathname === "/custom-china-tour" ||
-    pathname.startsWith("/china-destinations/yunnan");
-  const intro = yunnanFocused
-    ? "Hi Joy, I'd like help planning a private Yunnan journey."
-    : "Hi Joy, I found your website and would like help planning a trip to China.";
-  const message = `${intro}\n\nPage: ${sourceUrl}`;
-  return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
-}
 export function FloatingWhatsAppExperiment() {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false);
-  const [whatsappHref, setWhatsAppHref] = useState(() => buildWhatsAppHref("/"));
+  const [whatsappHref, setWhatsAppHref] = useState(() => buildWhatsAppUrl());
 
   useEffect(() => {
     const path = window.location.pathname.replace(/\/+$/, "") || "/";
     setVisible(false);
-    setWhatsAppHref(buildWhatsAppHref(path));
+    setWhatsAppHref(buildWhatsAppUrl());
     if (!FLOATING_WHATSAPP_ENABLED || !eligiblePath(path)) return;
 
     const desktop = window.matchMedia(DESKTOP_QUERY);

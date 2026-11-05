@@ -1,7 +1,8 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 export type YunnanGuideLocale = "en" | "zh";
 
 const en = {
-  whatsapp: "https://wa.me/8618880441791?text=Hi%20Joy%2C%20I%27m%20planning%20a%20trip%20to%20Yunnan.%20My%20travel%20dates%20are%20____%20and%20I%27m%20interested%20in%20____.",
+  whatsapp: buildWhatsAppUrl(),
   facts: [
     ["BEST FOR", "First China trips · Culture · Mountains"],
     ["TIME TO ALLOW", "6–10 days for a first route"],
@@ -58,7 +59,7 @@ const en = {
 };
 
 const zh: typeof en = {
-  whatsapp: "https://wa.me/8618880441791?text=Joy%20%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%AD%A3%E5%9C%A8%E8%A7%84%E5%88%92%E4%BA%91%E5%8D%97%E4%B9%8B%E6%97%85%EF%BC%8C%E5%87%BA%E8%A1%8C%E6%97%A5%E6%9C%9F%E6%98%AF____%EF%BC%8C%E6%84%9F%E5%85%B4%E8%B6%A3%E7%9A%84%E6%98%AF____%E3%80%82",
+  whatsapp: buildWhatsAppUrl(),
   facts: [["适合人群", "第一次来中国 · 文化 · 山景"], ["建议天数", "第一条路线 6—10 天"], ["主要入口", "昆明"], ["舒适季节", "春季与秋季"]],
   routeStops: [
     ["01", "昆明", "抵达城市", "落地后先缓一缓，再坐高铁向西。昆明是方便的起点，不必匆匆略过，也不用安排得太满。"],

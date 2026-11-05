@@ -1,3 +1,4 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
@@ -50,7 +51,7 @@ export default function TravelerStoriesPage() {
   const { stories, featured, detailed, metrics, permit, operatorName, operatorNameZh, registryHref, reasons, gallery } = getTravelerStoryPage(locale);
   const title = t("metaTitle");
   const description = t("metaDescription");
-  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(t("whatsappMessage"))}`;
+  const whatsapp = buildWhatsAppUrl();
   const graph = {
     "@context": "https://schema.org",
     "@graph": [

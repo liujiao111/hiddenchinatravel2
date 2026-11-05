@@ -1,3 +1,4 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { LocaleLink as Link } from "@/components/locale-link";
@@ -16,7 +17,7 @@ export function TravelJournalPage({ journal }: { journal: TravelJournal }) {
   const zh = locale === "zh";
   const path = `/traveler-stories/${journal.slug}`;
   const url = localeUrl(locale, path);
-  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(zh ? `你好 Joy，我读了《${journal.title}》，想规划一趟云南之旅。` : `Hi Joy, I read “${journal.title}” and would like to plan a Yunnan journey.`)}`;
+  const whatsapp = buildWhatsAppUrl();
   const graph = {
     "@context": "https://schema.org",
     "@graph": [

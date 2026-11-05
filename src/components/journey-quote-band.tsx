@@ -1,7 +1,7 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { QuickAsk } from "@/components/quick-ask";
-import { siteConfig } from "@/lib/site-config";
 
 type Props = {
   id: string;
@@ -14,9 +14,8 @@ type Props = {
 
 export function JourneyQuoteBand({ id, source, sourceTitle, whatsapp, showRouteLink, compact }: Props) {
   const t = useTranslations("journey");
-  const tq = useTranslations("quickAsk");
   const planPoints = t.raw("planPoints") as string[];
-  const whatsappHref = whatsapp ?? `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(tq("whatsappPrompt", { sourceTitle }))}`;
+  const whatsappHref = whatsapp ?? buildWhatsAppUrl();
 
   return <section className={compact ? "journey-quote-band journey-quote-band-compact" : "journey-quote-band"}>
     <div className="shell journey-plan">

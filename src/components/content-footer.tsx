@@ -1,11 +1,12 @@
 "use client";
 
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useTranslations } from "next-intl";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { licensedOperator } from "@/lib/journey-trust";
 import { siteConfig } from "@/lib/site-config";
 
-const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=Hi%2C%20I%27d%20like%20help%20planning%20my%20China%20trip`;
+const whatsapp = buildWhatsAppUrl();
 
 export function ContentCta() {
   const t = useTranslations("contentUi");

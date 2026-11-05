@@ -1,8 +1,9 @@
 "use client";
 
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useEffect, useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { budgetBands, enquiryMessage, isQuoteReady, parseEnquiry, partySizes, travelWindows, type Enquiry } from "@/lib/enquiry";
+import { budgetBands, isQuoteReady, parseEnquiry, partySizes, travelWindows, type Enquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
 import { newAnalyticsEventId, trackEvent } from "@/lib/analytics";
 
@@ -83,7 +84,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
   }, [id]);
 
   const plain = layout === "plain";
-  const standbyWhatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(t("whatsappPrompt", { sourceTitle }))}`;
+  const standbyWhatsapp = buildWhatsAppUrl();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -105,7 +106,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
       return;
     }
 
-    const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(enquiryMessage(parsed))}`;
+    const whatsappUrl = buildWhatsAppUrl();
     setStatus("sending");
     setError("");
     setWhatsappHref(whatsappUrl);
