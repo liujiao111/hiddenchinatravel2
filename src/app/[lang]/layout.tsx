@@ -4,6 +4,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Script from "next/script";
+import { WhatsAppTracker } from "@/components/whatsapp-tracker";
 import { AnalyticsTracker } from "@/components/analytics-tracker";
 import { FloatingWhatsAppExperiment } from "@/components/floating-whatsapp-experiment";
 import { routing } from "@/i18n/routing";
@@ -62,6 +63,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
         <FloatingWhatsAppExperiment />
+        <WhatsAppTracker />
         {gtagSrcId ? <AnalyticsTracker /> : null}
       {gtagSrcId ? (
         <>

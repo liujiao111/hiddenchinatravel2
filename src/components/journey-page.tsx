@@ -1,3 +1,4 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -39,7 +40,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
   const isEightDayYunnanJourney = journey.slug === "kunming-dali-lijiang-shangri-la-private-tour";
   const stories = getTestimonialsForJourney(journey.slug, lang);
-  const whatsapp = `https://wa.me/8618880441791?text=${encodeURIComponent(t("whatsappMessage", { title: frontmatter.title }))}`;
+  const whatsapp = buildWhatsAppUrl();
   const completePrice = frontmatter.fromPrice > 0
     ? t("completePrice", { price: formatPriceLabel(frontmatter.fromPrice, frontmatter.currency), duration: frontmatter.duration.split("/")[0].trim().toLowerCase() })
     : t("tailoredQuote");

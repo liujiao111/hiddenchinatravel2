@@ -1,3 +1,4 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -43,7 +44,7 @@ export default async function CustomChinaTourPage({ params }: { params: Promise<
   const journeys = getAllJourneys(lang);
   const stories = getSelectedTestimonials(lang);
   const brand = getBrandIdentity(lang);
-  const whatsapp = "https://wa.me/8618880441791?text=" + encodeURIComponent(t("whatsappMessage"));
+  const whatsapp = buildWhatsAppUrl();
   const ideas = t.raw("ideas") as { title: string; route: string; text: string }[];
   const overviewItems = t.raw("overviewItems") as { label: string; value: string }[];
   const proposalCards = t.raw("proposalCards") as { title: string; text: string }[];

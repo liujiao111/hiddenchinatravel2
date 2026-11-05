@@ -1,5 +1,6 @@
 "use client";
 
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import Image from "next/image";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { useTranslations } from "next-intl";
@@ -27,7 +28,7 @@ const tailorMadeBase = {
 
 type MenuName = "destinations" | "journeys" | "guides" | "about";
 
-const whatsapp = "https://wa.me/8618880441791?text=Hi%2C%20I%27d%20like%20help%20planning%20a%20Yunnan%20journey";
+const whatsapp = buildWhatsAppUrl();
 
 const popular = ["Yunnan", "Dali", "Lijiang", "Shangri-La", "Xishuangbanna", "Kunming", "Shaxi", "Yuanyang"];
 const regions = ["Yunnan", "Sichuan & Chongqing", "Beijing & North China", "Shanghai & the Lower Yangtze", "Xi’an & the Silk Road", "Guangxi & Guizhou", "Tibet & the Himalayas", "Southern China"];

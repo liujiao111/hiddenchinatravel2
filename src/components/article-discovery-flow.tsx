@@ -1,3 +1,4 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useLocale, useTranslations } from "next-intl";
 import { CustomJourneyLink } from "@/components/custom-journey-link";
 import { LocaleLink as Link } from "@/components/locale-link";
@@ -6,7 +7,6 @@ import type { ContentItem } from "@/lib/content";
 import type { Journey } from "@/lib/journeys";
 import { GuideCard } from "@/components/guide-card";
 import { JourneyCard } from "@/components/journey-card";
-import { siteConfig } from "@/lib/site-config";
 import type { AppLocale } from "@/lib/i18n-seo";
 
 function readingTime(body: string, locale: AppLocale, label: (count: number) => string) {
@@ -37,7 +37,7 @@ export function ArticleDiscoveryFlow({
 }) {
   const locale = useLocale() as AppLocale;
   const t = useTranslations("contentUi");
-  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(locale === "zh" ? `你好 Joy，我正在阅读《${sourceTitle}》，想请你帮我规划第一次中国之行。` : `Hi Joy, I was reading "${sourceTitle}" and would like some help planning my first trip to China.`)}`;
+  const whatsapp = buildWhatsAppUrl();
   const journeyFeatures = [t("privateJourney"), t("noShopping"), t("localExperiences"), t("flexiblePace")];
 
   return <>
