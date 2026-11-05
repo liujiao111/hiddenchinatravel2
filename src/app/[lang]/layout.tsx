@@ -62,7 +62,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       </head>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
-        <FloatingWhatsAppExperiment />
+        <FloatingWhatsAppExperiment locale={lang} />
         <WhatsAppTracker />
         {gtagSrcId ? <AnalyticsTracker /> : null}
       {gtagSrcId ? (

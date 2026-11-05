@@ -2,7 +2,6 @@
 
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useEffect, useState } from "react";
-import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 
 // Desktop rollout across travel content; preserve existing journey CTAs.
@@ -27,9 +26,8 @@ function eligiblePath(path: string) {
   return true;
 }
 
-export function FloatingWhatsAppExperiment() {
+export function FloatingWhatsAppExperiment({ locale }: { locale: string }) {
   const pathname = usePathname();
-  const locale = useLocale();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
