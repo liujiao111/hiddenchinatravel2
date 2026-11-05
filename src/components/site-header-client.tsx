@@ -1,6 +1,6 @@
 "use client";
 
-import { consultationHref } from "@/lib/consultation-message";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import Image from "next/image";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { useLocale, useTranslations } from "next-intl";
@@ -100,7 +100,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { jou
   const [open, setOpen] = useState<MenuName | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = useTranslations("header");
-  const whatsapp = consultationHref(useLocale());
+  const whatsapp = buildWhatsAppUrl(undefined, useLocale());
   const labels = t.raw("labels") as Record<string, string>;
   const label = (key: string) => labels[key] ?? key;
   const tailorMade = {

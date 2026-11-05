@@ -1,6 +1,6 @@
 "use client";
 
-import { consultationHref } from "@/lib/consultation-message";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useLocale, useTranslations } from "next-intl";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { licensedOperator } from "@/lib/journey-trust";
@@ -13,7 +13,7 @@ export function ContentCta() {
 
 export function ContentFooter() {
   const locale = useLocale();
-  const whatsapp = consultationHref(locale);
+  const whatsapp = buildWhatsAppUrl(undefined, locale);
   const t = useTranslations("footer");
   const agencyValues = {
     agencyEn: licensedOperator.nameEn,

@@ -1,9 +1,10 @@
 "use client";
 
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useEffect, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { scheduleScrollToEnquire, scrollToEnquire } from "@/components/enquire-link";
-import { enquiryMessage, parseEnquiry, partySizes, type Enquiry } from "@/lib/enquiry";
+import { parseEnquiry, partySizes, type Enquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
 import { trackEvent } from "@/lib/analytics";
 
@@ -43,7 +44,7 @@ export function ContactForm() {
       return;
     }
 
-    const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(enquiryMessage(parsed))}`;
+    const whatsappUrl = buildWhatsAppUrl();
     setStatus("sending");
     setError("");
     setWhatsappHref(whatsappUrl);

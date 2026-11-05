@@ -1,4 +1,4 @@
-import { consultationHref } from "@/lib/consultation-message";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -267,7 +267,7 @@ export default async function Home({ params }: Props) {
         <p>{t("finalText")}</p>
         <div className="hero-actions">
           <EnquireLink data-cta-location="home_final_custom" className="button button-blue">{t("cta")}</EnquireLink>
-          <Link href={consultationHref(lang)} data-cta-location="home_final_whatsapp" className="button button-light">{t("finalWhatsapp")}</Link>
+          <Link href={buildWhatsAppUrl(undefined, lang)} data-cta-location="home_final_whatsapp" className="button button-light">{t("finalWhatsapp")}</Link>
         </div>
         <p className="final-cta-trust">{t("finalTrust")}</p>
       </div>

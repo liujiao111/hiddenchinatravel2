@@ -1,3 +1,4 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -9,7 +10,6 @@ import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { getOperatorPaymentCopy } from "@/lib/booking-terms-i18n";
 import { licensedOperator } from "@/lib/journey-trust";
-import { siteConfig } from "@/lib/site-config";
 import { getSelectedTestimonials } from "@/lib/testimonials";
 import { JsonLd, breadcrumbList } from "@/components/json-ld";
 import styles from "./about.module.css";
@@ -44,7 +44,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: Ap
   const t = await getTranslations({ locale: lang, namespace: "about" });
   const tj = await getTranslations({ locale: lang, namespace: "journey" });
   const stories = getSelectedTestimonials(lang);
-  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(t("whatsappMessage"))}`;
+  const whatsapp = buildWhatsAppUrl();
   const subnav = t.raw("subnav") as string[];
   const subnavHrefs = ["#joy", "#philosophy", "#why-us", "#booking", "#local-partners", "#stories"];
   const founderParagraphs = t.raw("founderParagraphs") as string[];
