@@ -119,7 +119,7 @@ export function ContactForm() {
       <div className="contact-field-row contact-trip-row">
         <label>
           <span>{t("when")}</span>
-          <select name="travelWindow" defaultValue="Next month" required>\n            <option value="Next month">{t("whenNextMonth")}</option>\n            <option value="In 1 month">{t("whenInOneMonth")}</option>\n            <option value="In 2 months">{t("whenInTwoMonths")}</option>\n          </select>
+          <select name="travelWindow" defaultValue="Within 1 month" required>\n            <option value="Within 1 month">{t("whenNextMonth")}</option>\n            <option value="In 1–2 months">{t("whenInOneMonth")}</option>\n            <option value="In 3+ months">{t("whenInTwoMonths")}</option>\n          </select>
         </label>
         <label>
           <span>{t("travelers")}</span>
