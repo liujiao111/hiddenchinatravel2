@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run check:faq && next build",
     "start": "next start",
     "lint": "eslint",
-    "test:whatsapp": "node --test tests/whatsapp-tracking.test.cjs"
+    "test:whatsapp": "node --test tests/whatsapp-tracking.test.cjs",
+    "check:faq": "node scripts/check-article-faq.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
