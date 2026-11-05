@@ -233,42 +233,6 @@ The journey includes two nights in Dali, one night in Shaxi and two nights in Li
 
 Already have your own itinerary? **[Ask Joy to Arrange Your Transfers](/contact#enquire)**
 
-## Frequently Asked Questions
-
-### Is there a train from Dali to Shaxi?
-
-No. Shaxi does not have a railway station. The final journey must be completed by bus, shared car, private transfer or self-driving.
-
-### How long does it take to travel from Dali to Shaxi?
-
-Most direct journeys take around two to three hours. The actual time depends on your pickup point, traffic, weather and transport type.
-
-### Is there a direct bus from Dali to Shaxi?
-
-Direct tourist services may operate, but schedules, fares and boarding points can change. Confirm the latest information before traveling.
-
-### How much does it cost to travel from Dali to Shaxi?
-
-The cost varies by transport type, season, departure point and whether the provider charges per person or per vehicle. Check the current price when booking rather than relying on an old online timetable.
-
-### Can Shaxi be visited as a day trip from Dali?
-
-Yes, but the return journey can take five hours or more. Staying overnight offers a more relaxed experience and allows you to continue to Lijiang without backtracking.
-
-### Is the road from Dali to Shaxi safe?
-
-The main road is paved and regularly used, but the final sections contain mountain bends. Choose an experienced driver and allow additional time during rain or poor weather.
-
-### Can I travel to Shaxi with large luggage?
-
-Yes, but confirm luggage capacity before booking a tourist bus or shared car. A private vehicle is more convenient for several large suitcases.
-
-### Should I visit Shaxi before Lijiang?
-
-Yes. Traveling from Dali to Shaxi and then continuing to Lijiang follows a natural route through northwest Yunnan and avoids unnecessary backtracking.
-
----
-
 ### About the author
 
 Joy Liu was born and raised in Yunnan and spent years living and travelling abroad. Joy founded Hidden China Travel to help international visitors plan private Yunnan journeys with clearer local guidance and fewer practical uncertainties.
