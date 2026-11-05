@@ -176,28 +176,6 @@ If you’re in the middle of a failed payment situation, run through this in ord
   * **Use cash as a short-term fallback** while you sort out the underlying issue
   * **Use in-app help** — both Alipay and WeChat Pay have built-in support options; Alipay also has a dedicated international customer service channel accessible through the app’s Help Center if in-app troubleshooting doesn’t resolve the issue
 
-## FAQ
-
-**Why does Alipay work in one place but fail in another?**
-
-Usually this comes down to the merchant’s checkout setup, which scan direction is being used, or a momentary network issue at that location. If it works in some places and not others, your account and card are likely fine — the failure is context-specific, not a sign that your whole setup is broken.
-
-**Can foreigners still use cash in China if mobile payment fails?**
-
-Yes. Cash (RMB) is still widely accepted, and recent policy has focused on making it easier for overseas visitors to use cash across more situations. Larger hotels, airports, and banks have currency exchange services. For a broader look at when mobile payment is the better choice and when cash makes more sense, see the [full China payment guide](/payments-in-china).
-
-**Is Visa or Mastercard better for China travel payments?**
-
-Both are commonly used as the basis for linking to Alipay and WeChat Pay, and both tend to be the most straightforward starting point for travelers. That said, actual payment success depends as much on your specific bank’s overseas settings as on the card network itself — a card from a bank with tight international restrictions may underperform regardless of whether it’s Visa or Mastercard.
-
-**Does a VPN break Alipay or WeChat Pay?**
-
-Not always, but an active VPN can add latency and cause timeouts. Turning it off and retrying once is a useful first troubleshooting step.
-
-**Can U.S. travelers use Alipay with U.S.-issued cards?**
-
-Many do successfully. A more useful framing than “will it work” is: some U.S.-issued cards may still fail because of issuer-side restrictions, billing verification mismatches, or risk control — not because U.S. cards are categorically blocked. If your card fails, check your bank’s international transaction settings before assuming it’s an Alipay issue.
-
 ## Where to Go From Here
 
 Payment failures in China are almost always diagnosable and usually fixable. Where you go next depends on what the problem actually is:
