@@ -134,22 +134,6 @@ Those “name + number” lists are leaked data or made-up checksums. Paste one 
 
 Use your passport. Same spelling, every booking.
 
-## FAQ
-
-**Do foreigners need a Chinese ID number to travel in China in 2026?** No. You need a passport, and you need the screens that accept it.
-
-**I searched for a real Chinese ID and name. What should I type?** Your passport. Switch 证件类型 to 护照. If that option is missing, change the app or the vendor. Do not paste a number from the internet.
-
-**Can I convert my passport number into Chinese ID format?** No. Extra zeros do not create a citizen number.
-
-**My name has no Chinese characters. Will 姓名 fail?** On a citizen-only form, yes. On a foreigner form, Latin letters from the passport are what they want. Do not invent a Chinese name for a tourist booking.
-
-**Is the Foreign Permanent Resident ID the same thing?** No. That card is for people who already have Chinese permanent residency. It does not come with a tourist stay or visa-free entry. Use the passport you showed at the border.
-
-**A SIM kiosk wanted to register the number under their ID.** Refuse. [Do it with your passport at an official store](/china-sim-card-for-foreigners).
-
-**I already entered the wrong document type.** Stop submitting. Delete the bad passenger or profile if you can, add a passport one. If payments are already looping, go to the [verification failed guide](/alipay-wechat-pay-verification-failed).
-
 ## Related Guides
 
   * [China Real-Name System for Foreigners](/china-real-name-system-foreigners) — the chain after the fields
