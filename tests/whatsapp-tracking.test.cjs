@@ -101,7 +101,7 @@ test('A single template and high-entropy reference safely URL encode on mobile a
     assert.equal(url.hostname, 'wa.me', platform); assert.equal(url.pathname, '/8618880441791');
     assert.equal(url.searchParams.get('text'), `${w.WHATSAPP_MESSAGE}\n\nRef: ${id}`);
     assert.match(id, /^HCT-\d{8}-[A-F0-9]{16}$/);
-    assert.ok(!url.searchParams.get('text').includes('Campaign:'));
+    assert.ok(!url.searchParams.get('text').includes('Campaign:'));\n    assert.ok(url.searchParams.get('text').includes('private trip to Yunnan'));
   }
 });
 test('WhatsApp consultation matching excludes social share, another phone, spoof hosts, email and telephone', () => {
@@ -121,12 +121,12 @@ test('Header, footer, floating, hero, mobile and tour buttons emit one event eac
     assert.equal(events.at(-1)[2].lead_type, 'whatsapp_click');
     assert.ok(!/email|phone|name|gclid|text|link_url/i.test(Object.keys(events.at(-1)[2]).join(' ')));
   }
-  assert.equal(events.length, 6); assert.equal(requests.length, 6); cleanup();
+  assert.equal(events.length, 6); assert.equal(requests.length, 0); cleanup();
 });
 test('Fast double clicks deduplicate both the event and reference; share links are not inquiries', () => {
   const { events, requests } = browser(); const cleanup = tracking.installWhatsAppTracking();
   const link = anchor(); click(link); const href = link.href; click(link);
-  assert.equal(events.length, 1); assert.equal(requests.length, 1); assert.equal(link.href, href);
+  assert.equal(events.length, 1); assert.equal(requests.length, 0); assert.equal(link.href, href);
   click(anchor(document.body, 'https://wa.me/?text=share')); assert.equal(events.length, 1); cleanup();
 });
 test('Strict Mode cleanup/remount and SPA dynamic links cannot duplicate click handlers', async () => {
@@ -152,33 +152,12 @@ test('Explicit analytics denial keeps WhatsApp usable without events, records or
   assert.equal(events.length, 0); assert.equal(requests.length, 0); assert.equal(localStorage.getItem(a.ATTRIBUTION_KEY), null);
   assert.equal(document.cookie.includes(a.ATTRIBUTION_KEY), false); assert.ok(link.href.includes('Ref%3A')); cleanup();
 });
-test('Receiver records sanitized full attribution to existing mailbox with idempotency key', async () => {
+test('Retired click receiver never sends an email', async () => {
   process.env.RESEND_API_KEY = 'test'; process.env.ENQUIRY_FROM_EMAIL = 'test@example.com';
-  emails = []; emailError = null; const body = recordBody(); body.conversion_page = '/contact?email=private@example.com'; body.cta_location = '<script>\r\nBcc: victim@example.com';
-  const response = await route.POST(request(body));
-  assert.equal(response.status, 200); assert.equal(emails.length, 1);
-  const { message, options } = emails[0];
-  assert.ok(message.text.includes('test_gclid_123')); assert.ok(message.text.includes(body.lead_id));
-  assert.ok(message.text.includes('Conversion page: /contact\n')); assert.ok(!message.text.includes('private@example.com'));
-  assert.ok(!message.text.includes('<script>')); assert.ok(!message.text.includes('\r\nBcc:'));
-  assert.match(message.subject, /unconfirmed/); assert.equal(options.idempotencyKey, `whatsapp-${body.lead_id}`);
-});
-test('Receiver distrusts spoofed source labels and tolerates malformed attribution', async () => {
-  const body = recordBody(); body.attribution.last.source_label = 'Not Google Ads'; body.attribution.first.source = 'fake';
-  await route.POST(request(body)); assert.ok(emails.at(-1).message.text.includes('Source: Google Ads'));
-  body.attribution = { broken: true }; const response = await route.POST(request(body));
-  assert.equal(response.status, 200); assert.ok(emails.at(-1).message.text.includes('First source: N/A'));
-});
-test('Receiver rejects cross-origin, oversized requests and invalid references', async () => {
-  assert.equal((await route.POST(request(recordBody(), { origin: 'https://evil.test' }))).status, 403);
-  assert.equal((await route.POST(request({ lead_id: '<script>' }))).status, 400);
-  assert.equal((await route.POST(request({ data: 'x'.repeat(17000) }))).status, 413);
-});
-test('Receiver failure is not reported as a successful record or a form lead', async () => {
-  emailError = { message: 'failure' };
-  assert.equal((await route.POST(request(recordBody()))).status, 502);
-  emailError = null; delete process.env.RESEND_API_KEY;
-  assert.equal((await route.POST(request(recordBody()))).status, 503);
+  emails = [];
+  const response = await route.POST(request(recordBody()));
+  assert.equal(response.status, 410);
+  assert.equal(emails.length, 0);
 });
 test('Blocked cookies/localStorage/sessionStorage leave consultation functional', () => {
   const { events } = browser();
