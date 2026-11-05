@@ -197,22 +197,6 @@ Delicious!| 好吃！| Hào chī!
 
 打包 (dǎ bāo) is the most useful phrase on this list. Say it and point at your plate — works everywhere, every time.
 
-## FAQ
-
-**What happened to Ele.me — is it the same as Taobao Instant?** Yes. Ele.me (饿了么) was rebranded as 淘宝闪购 (Taobao Instant) in 2026. The service is the same — food delivery accessible via Alipay. If you search “eleme” in Alipay, you’ll be redirected to the new name automatically.
-
-**Can I use Meituan without a Chinese phone number?** Sometimes. The WeChat mini-program version often works without a separate Meituan account, depending on your WeChat verification status. The standalone app allows WeChat login in many cases. If neither works, the hotel number approach is an option if the hotel is willing — but don’t rely on it as a given.
-
-**Does Taobao Instant work with a foreign card?** Yes, if you order through the Alipay mini-program. Alipay handles the payment with your linked Visa or Mastercard. No separate account needed.
-
-**What if the QR code menu asks for a Chinese phone number?** Skip the app entirely. Call the waiter over, point at what looks good, and say 我要这个. Most staff will understand.
-
-**Is food delivery in China expensive?** Quite affordable. Delivery fees are typically ¥3–6, and most restaurants waive them for orders over ¥20–30. A full meal with delivery usually comes to ¥20–40 ($3–6 USD).
-
-**Can I get Western food delivered?** In major cities, yes — both Meituan and Taobao Instant have Western food, pizza, and coffee categories. Outside tier-1 cities, selection gets thinner. In smaller cities, don’t count on it.
-
-**What if none of this works?** Every city in China has convenience stores (7-Eleven, FamilyMart, and local chains) with ready-to-eat food and snacks. They accept Alipay, WeChat Pay, and usually cash. Not the most exciting meal, but reliable. And honestly, asking your hotel reception to order for you is underrated — most hotels in tourist areas do it without any fuss.
-
 ## Related Guides
 
   * [How to Set Up Alipay as a Foreigner](/alipay-for-foreigners-china) — The foundation for QR ordering, delivery, and payments
