@@ -45,6 +45,7 @@ export const zhLivePaths = new Set<string>([
   "/dali-travel-guide",
   "/where-to-stay-in-dali",
   "/shaxi-ancient-town-guide",
+  "/dali-to-shaxi",
   "/dali-to-shaxi-ancient-town",
   "/dali-hidden-gems-off-the-beaten-path",
   "/lijiang-travel-guide",
