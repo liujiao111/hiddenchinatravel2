@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { getVisaCopy, type VisaLang } from "./i18n";
 import {
   normalizeCountryKey,
   toCanonicalCountryName,
@@ -253,9 +254,37 @@ export type SelectOption = {
   searchText?: string;
 };
 
-export function getCountrySelectOptions(): SelectOption[] {
+const zhRegionNames = new Intl.DisplayNames(["zh-Hans"], { type: "region" });
+
+/**
+ * Display name for a passport country in the requested locale.
+ * English keeps the canonical CSV name; Chinese uses the official
+ * Simplified Chinese country name derived from the ISO-2 code.
+ */
+export function getCountryDisplayName(
+  countryName: string,
+  lang: VisaLang = "en",
+): string {
+  if (lang !== "zh") return countryName;
+  const trimmed = countryName.trim();
+  if (!trimmed) return trimmed;
+  const canonical = toCanonicalCountryName(trimmed);
+  const key = normalizeCountryKey(canonical);
+  const option = getCache().countries.find(
+    (country) => normalizeCountryKey(country.name) === key,
+  );
+  if (!option) return trimmed;
+  try {
+    const name = zhRegionNames.of(option.iso2);
+    return name && name !== option.iso2 ? name : trimmed;
+  } catch {
+    return trimmed;
+  }
+}
+
+export function getCountrySelectOptions(lang: VisaLang = "en"): SelectOption[] {
   const seen = new Set<string>();
-  return getCountryOptions()
+  const options = getCountryOptions()
     .filter((c) => {
       const k = c.name.toLowerCase();
       if (seen.has(k)) return false;
@@ -264,15 +293,26 @@ export function getCountrySelectOptions(): SelectOption[] {
     })
     .map((c) => ({
       value: c.name,
-      label: c.name,
+      label: getCountryDisplayName(c.name, lang),
       searchText: `${c.name} ${c.iso2}`,
     }));
+
+  if (lang === "zh") {
+    return options.sort((a, b) =>
+      a.label.localeCompare(b.label, "zh-Hans-CN"),
+    );
+  }
+  return options;
 }
 
-export function getPortSelectOptions(): SelectOption[] {
+export function getPortSelectOptions(lang: VisaLang = "en"): SelectOption[] {
+  const copy = getVisaCopy(lang);
   return getPortOptions().map((p) => ({
     value: p.portId,
-    label: `${p.city} · ${p.portName}`,
+    label:
+      lang === "zh"
+        ? `${copy.portCityLabels[p.city] ?? p.city} · ${copy.portNameLabels[p.portName] ?? p.portName}`
+        : `${p.city} · ${p.portName}`,
     searchText: `${p.city} ${p.portName} ${p.province} ${p.portType} ${p.allowedStayArea}`,
   }));
 }

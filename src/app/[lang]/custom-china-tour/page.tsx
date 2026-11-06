@@ -9,6 +9,7 @@ import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { MuslimFriendly } from "@/components/muslim-friendly";
 import { Testimonials } from "@/components/testimonials";
 import { ContentFooter } from "@/components/content-footer";
+import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { JourneyInspirationProvider } from "@/components/journey-inspiration-context";
 import { YunnanInspiration } from "@/components/yunnan-inspiration";
 import { CustomJourneyForm } from "@/components/custom-journey-form";
@@ -41,6 +42,7 @@ export default async function CustomChinaTourPage({ params }: { params: Promise<
   const t = await getTranslations({ locale: lang, namespace: "customTour" });
   const tj = await getTranslations({ locale: lang, namespace: "journey" });
   const tq = await getTranslations({ locale: lang, namespace: "quickAsk" });
+  const tMobile = await getTranslations({ locale: lang, namespace: "mobileCta" });
   const journeys = getAllJourneys(lang);
   const stories = getSelectedTestimonials(lang);
   const brand = getBrandIdentity(lang);
@@ -82,6 +84,14 @@ export default async function CustomChinaTourPage({ params }: { params: Promise<
     <section className="journey-final-cta"><div><h2>{tj("closeHeading")}</h2><span>{tj("closeText")}</span><Link href="#plan" className="button button-light">{tj("startPlanning")}</Link></div></section>
     <Link href="#plan" className="journey-mobile-cta">{tj("startPlanning")} <span>→</span></Link>
     <ContentFooter />
+    <MobileCtaBar
+      whatsappHref={whatsapp}
+      formHref="#plan"
+      whatsappLabel={tMobile("whatsappLabel")}
+      formLabel={tMobile("formLabel")}
+      statusLabel={tMobile("statusLabel")}
+      formCtaLocation="custom_tour_mobile_form"
+    />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main></JourneyInspirationProvider>;
 }

@@ -1,5 +1,7 @@
 import { toCanonicalCountryName } from "./country-aliases";
+import { fillTemplate, getVisaCopy, type VisaLang } from "./i18n";
 import {
+  getCountryDisplayName,
   getHainan30Rule,
   getPortById,
   getTransit240Rule,
@@ -70,32 +72,6 @@ export type VisaEvaluationResult = {
   secondaryCta: { label: string; href: string };
 };
 
-const PURPOSE_LABELS: Record<string, string> = {
-  tourism: "Tourism",
-  business: "Business",
-  family_visit: "Family / Friends Visit",
-  exchange: "Exchange / Short Visit",
-  transit: "Transit",
-  study: "Study",
-  work: "Work",
-  journalism: "Journalism",
-  other: "Other / Not Sure",
-};
-
-const TRANSIT_LABELS: Record<string, string> = {
-  no_transit: "No transit",
-  third_country_confirmed: "Third country/region with confirmed onward ticket",
-  same_country_return: "Returning to the same country/region",
-  not_sure: "Not sure yet",
-};
-
-const STAY_LABELS: Record<number, string> = {
-  3: "1–3 days",
-  10: "4–10 days",
-  30: "11–30 days",
-  31: "More than 30 days",
-};
-
 const VISA_FREE_PURPOSES = new Set([
   "tourism",
   "business",
@@ -107,54 +83,76 @@ const VISA_FREE_PURPOSES = new Set([
 
 const SPECIAL_VISA_PURPOSES = new Set(["work", "study", "journalism"]);
 
-function portLabel(port: Transit240Port | undefined, portId: string): string {
+function portLabel(
+  port: Transit240Port | undefined,
+  portId: string,
+  lang: VisaLang,
+): string {
   if (!port) return portId || "—";
-  return `${port.city} · ${port.portName}`;
+  const copy = getVisaCopy(lang);
+  const city = copy.portCityLabels[port.city] ?? port.city;
+  const name = copy.portNameLabels[port.portName] ?? port.portName;
+  return `${city} · ${name}`;
 }
 
-function baseMeta(input: VisaCheckInput, port?: Transit240Port) {
+function portName(port: Transit240Port, lang: VisaLang): string {
+  const copy = getVisaCopy(lang);
+  return copy.portNameLabels[port.portName] ?? port.portName;
+}
+
+function stayArea(area: string, lang: VisaLang): string {
+  const copy = getVisaCopy(lang);
+  return copy.stayAreaLabels[area] ?? area;
+}
+
+function baseMeta(input: VisaCheckInput, port: Transit240Port | undefined, lang: VisaLang) {
+  const copy = getVisaCopy(lang);
   return {
-    nationality: toCanonicalCountryName(input.nationality) || input.nationality,
-    purpose: PURPOSE_LABELS[input.purpose] ?? input.purpose,
-    stayLabel: STAY_LABELS[input.stayDays] ?? `${input.stayDays} days`,
-    transitLabel: TRANSIT_LABELS[input.transitRoute] ?? input.transitRoute,
-    portLabel: portLabel(port, input.portId),
+    nationality: getCountryDisplayName(input.nationality, lang) || input.nationality,
+    purpose: copy.purposeLabels[input.purpose] ?? input.purpose,
+    stayLabel:
+      copy.stayLabels[String(input.stayDays)] ??
+      fillTemplate(copy.texts.stayDaysFallback, { days: input.stayDays }),
+    transitLabel: copy.transitLabels[input.transitRoute] ?? input.transitRoute,
+    portLabel: portLabel(port, input.portId, lang),
   };
 }
 
 function visaFreeResult(
   input: VisaCheckInput,
   rule: VisaFreeRule,
-  port?: Transit240Port,
+  port: Transit240Port | undefined,
+  lang: VisaLang,
 ): VisaEvaluationResult {
+  const copy = getVisaCopy(lang);
   const isMutual = rule.ruleType === "mutual_visa_free";
+  const policy = copy.policyTypeLabels[rule.policyType] ?? rule.policyType.toLowerCase();
+  const country = getCountryDisplayName(rule.country, lang);
   return {
     outcome: "visa_free",
-    kicker: isMutual
-      ? "Likely eligible · Mutual visa-free"
-      : "Likely eligible · Unilateral visa-free",
-    headline: `You may enter China visa-free for up to ${rule.maxStayDays} days`,
-    summary: `Based on your passport (${rule.country}), you appear to qualify under China’s ${rule.policyType.toLowerCase()} policy for short stays of up to ${rule.maxStayDays} days.`,
-    note: "Immigration officers make the final decision at the border. Carry a valid passport and supporting itinerary documents.",
-    checklist: [
-      `Passport valid for at least the length of your stay (policy max: ${rule.maxStayDays} days)`,
-      "Purpose of visit should match permitted short-stay activities",
-      "Round-trip or onward ticket may be requested",
-      "Hotel / police registration within 24 hours if required",
-      "Do not overstay — extensions are generally not available under visa-free entry",
-    ],
-    meta: baseMeta(input, port),
+    kicker: isMutual ? copy.texts.visaFreeKickerMutual : copy.texts.visaFreeKickerUnilateral,
+    headline: fillTemplate(copy.texts.visaFreeHeadline, { days: rule.maxStayDays }),
+    summary: fillTemplate(copy.texts.visaFreeSummary, {
+      country,
+      policy,
+      days: rule.maxStayDays,
+    }),
+    note: copy.texts.visaFreeNote,
+    checklist: copy.lists.visaFreeChecklist.map((item) =>
+      fillTemplate(item, { days: rule.maxStayDays }),
+    ),
+    meta: baseMeta(input, port, lang),
     policy: {
       policyType: rule.policyType,
       ruleType: rule.ruleType,
       maxStayDays: rule.maxStayDays,
     },
     primaryCta: {
-      label: "Read visa-free arrival guide",
+      label: copy.texts.ctaVisaFree,
       href: "/do-i-need-a-visa-for-china",
     },
     secondaryCta: {
-      label: "Official sources",
+      label: copy.texts.ctaOfficial,
       href: "#official-sources",
     },
   };
@@ -164,34 +162,37 @@ function hainan30Result(
   input: VisaCheckInput,
   rule: Hainan30CountryRule,
   port: Transit240Port,
+  lang: VisaLang,
 ): VisaEvaluationResult {
+  const copy = getVisaCopy(lang);
+  const country = getCountryDisplayName(rule.country, lang);
   return {
     outcome: "hainan_30",
-    kicker: "May qualify · Hainan 30-day visa-free",
-    headline: `You may stay in Hainan visa-free for up to ${rule.maxStayDays} days`,
-    summary: `From 20 August 2026, ${rule.country} ordinary-passport holders may enter through a Hainan open port and stay up to ${rule.maxStayDays} days inside Hainan Province only. This is not nationwide mainland visa-free entry.`,
-    note: rule.requirement,
-    checklist: [
-      "Hold an ordinary passport",
-      `Enter through a Hainan open port — you selected ${port.portName}`,
-      "Remain inside Hainan Province for the whole stay",
-      `Leave within ${rule.maxStayDays} days`,
-      "Tourism, business, family visits, and similar short activities only — work, study, and journalism still need a visa in advance",
-    ],
-    meta: baseMeta(input, port),
+    kicker: copy.texts.hainanKicker,
+    headline: fillTemplate(copy.texts.hainanHeadline, { days: rule.maxStayDays }),
+    summary: fillTemplate(copy.texts.hainanSummary, {
+      country,
+      days: rule.maxStayDays,
+    }),
+    note:
+      copy.requirementLabels[rule.requirement] ?? rule.requirement,
+    checklist: copy.lists.hainanChecklist.map((item) =>
+      fillTemplate(item, { port: portName(port, lang), days: rule.maxStayDays }),
+    ),
+    meta: baseMeta(input, port, lang),
     policy: {
-      policyType: "Hainan 30-day visa-free (island only)",
+      policyType: copy.texts.hainanPolicyType,
       ruleType: rule.ruleType,
       maxStayDays: rule.maxStayDays,
-      requirement: rule.requirement,
-      allowedStayArea: "Hainan Province",
+      requirement: copy.requirementLabels[rule.requirement] ?? rule.requirement,
+      allowedStayArea: stayArea("Hainan Province", lang),
     },
     primaryCta: {
-      label: "Read Hainan stay notes",
+      label: copy.texts.ctaHainan,
       href: "#official-sources",
     },
     secondaryCta: {
-      label: "Official sources",
+      label: copy.texts.ctaOfficial,
       href: "#official-sources",
     },
   };
@@ -201,34 +202,46 @@ function transit240Result(
   input: VisaCheckInput,
   rule: Transit240CountryRule,
   port: Transit240Port,
+  lang: VisaLang,
 ): VisaEvaluationResult {
+  const copy = getVisaCopy(lang);
+  const country = getCountryDisplayName(rule.country, lang);
+  const area = stayArea(port.allowedStayArea, lang);
   return {
     outcome: "transit_240",
-    kicker: "May qualify · 240-hour visa-free transit",
-    headline: `You may qualify for ${rule.maxStayHours}-hour (${rule.maxStayDays}-day) transit without a visa`,
-    summary: `Your passport (${rule.country}) is on China’s 240-hour transit visa-free list. Entering via ${port.portName} allows a stay within ${port.allowedStayArea}, subject to transit conditions.`,
-    note: rule.requirement,
-    checklist: [
-      "Confirmed onward ticket to a third country or region (not returning to the same origin)",
-      `Enter through an eligible port — you selected ${port.portName}`,
-      `Remain within the allowed stay area: ${port.allowedStayArea}`,
-      `Leave within ${rule.maxStayHours} hours (${rule.maxStayDays} days)`,
-      "Do not treat transit as a substitute for a tourist visa if your trip is a round-trip holiday",
-    ],
-    meta: baseMeta(input, port),
+    kicker: copy.texts.transitKicker,
+    headline: fillTemplate(copy.texts.transitHeadline, {
+      hours: rule.maxStayHours,
+      days: rule.maxStayDays,
+    }),
+    summary: fillTemplate(copy.texts.transitSummary, {
+      country,
+      port: portName(port, lang),
+      area,
+    }),
+    note: copy.requirementLabels[rule.requirement] ?? rule.requirement,
+    checklist: copy.lists.transitChecklist.map((item) =>
+      fillTemplate(item, {
+        port: portName(port, lang),
+        area,
+        hours: rule.maxStayHours,
+        days: rule.maxStayDays,
+      }),
+    ),
+    meta: baseMeta(input, port, lang),
     policy: {
       ruleType: rule.ruleType,
       maxStayDays: rule.maxStayDays,
       maxStayHours: rule.maxStayHours,
-      requirement: rule.requirement,
-      allowedStayArea: port.allowedStayArea,
+      requirement: copy.requirementLabels[rule.requirement] ?? rule.requirement,
+      allowedStayArea: area,
     },
     primaryCta: {
-      label: "Read transit visa-free guide",
+      label: copy.texts.ctaTransit,
       href: "/do-i-need-a-visa-for-china",
     },
     secondaryCta: {
-      label: "Official sources",
+      label: copy.texts.ctaOfficial,
       href: "#official-sources",
     },
   };
@@ -238,36 +251,39 @@ function nearMiss240Result(
   input: VisaCheckInput,
   rule: Transit240CountryRule,
   missing: string[],
-  port?: Transit240Port,
+  port: Transit240Port | undefined,
+  lang: VisaLang,
 ): VisaEvaluationResult {
+  const copy = getVisaCopy(lang);
+  const country = getCountryDisplayName(rule.country, lang);
+  const area = port ? stayArea(port.allowedStayArea, lang) : undefined;
   return {
     outcome: "near_miss_240",
-    kicker: "Almost · 240-hour transit conditions incomplete",
-    headline: "Your passport may qualify for 240-hour transit — but not with these details",
-    summary: `${rule.country} is on the 240-hour transit visa-free list, but your current trip details do not fully meet the published conditions.`,
-    missingConditions: missing,
-    note: rule.requirement,
-    checklist: [
-      "Confirm an onward ticket to a different third country/region",
-      "Choose an eligible 240-hour transit port of entry",
-      "Keep your stay within 10 days (240 hours)",
-      "Stay only within the allowed regional area for that port",
-      "If you cannot meet transit rules, apply for a tourist visa instead",
-    ],
-    meta: baseMeta(input, port),
+    kicker: copy.texts.nearMissKicker,
+    headline: copy.texts.nearMissHeadline,
+    summary: fillTemplate(copy.texts.nearMissSummary, { country }),
+    missingConditions: missing.map((item) =>
+      fillTemplate(item, {
+        days: rule.maxStayDays,
+        hours: rule.maxStayHours,
+      }),
+    ),
+    note: copy.requirementLabels[rule.requirement] ?? rule.requirement,
+    checklist: copy.lists.nearMissChecklist,
+    meta: baseMeta(input, port, lang),
     policy: {
       ruleType: rule.ruleType,
       maxStayDays: rule.maxStayDays,
       maxStayHours: rule.maxStayHours,
-      requirement: rule.requirement,
-      allowedStayArea: port?.allowedStayArea,
+      requirement: copy.requirementLabels[rule.requirement] ?? rule.requirement,
+      allowedStayArea: area,
     },
     primaryCta: {
-      label: "See how transit visa-free works",
+      label: copy.texts.ctaSeeTransit,
       href: "/do-i-need-a-visa-for-china",
     },
     secondaryCta: {
-      label: "Official sources",
+      label: copy.texts.ctaOfficial,
       href: "#official-sources",
     },
   };
@@ -276,72 +292,73 @@ function nearMiss240Result(
 function visaRequiredResult(
   input: VisaCheckInput,
   reason: string,
-  port?: Transit240Port,
-  extras?: { kicker?: string; headline?: string; checklist?: string[] },
+  port: Transit240Port | undefined,
+  lang: VisaLang,
+  extras?: { kicker?: string; headline?: string; checklist?: string[]; note?: string },
 ): VisaEvaluationResult {
+  const copy = getVisaCopy(lang);
   const special = SPECIAL_VISA_PURPOSES.has(input.purpose);
   return {
     outcome: "visa_required",
     kicker: extras?.kicker
       ? extras.kicker
       : special
-        ? "Visa required · Special purpose"
-        : "Visa likely required",
+        ? copy.texts.requiredKickerSpecial
+        : copy.texts.requiredKicker,
     headline: extras?.headline
       ? extras.headline
       : special
-        ? "You will need the correct visa category before travel"
-        : "You will probably need a China visa before travel",
+        ? copy.texts.requiredHeadlineSpecial
+        : copy.texts.requiredHeadline,
     summary: reason,
-    note: extras?.checklist
-      ? "Immigration officers make the final decision. Work, study, and journalism still need a visa in advance."
-      : "Apply at a Chinese embassy, consulate, or authorized visa application center. Processing times vary by country and season.",
+    note: extras?.note
+      ? extras.note
+      : extras?.checklist
+        ? copy.texts.requiredNoteSpecial
+        : copy.texts.requiredNoteStandard,
     checklist: extras?.checklist
       ? extras.checklist
       : special
-      ? [
-          "Confirm the correct visa type (e.g. Z work, X study, J journalism)",
-          "Gather invitation letters and supporting documents early",
-          "Do not travel on a tourist (L) visa for work or long study",
-          "Check biometrics / interview requirements for your country",
-          "Avoid non-refundable tickets until the visa is issued",
-        ]
-      : [
-          "Typical tourist visa is category L; business is often M",
-          "Prepare passport, photo, itinerary, and invitations if needed",
-          "Apply several weeks before departure",
-          "Some nationalities use visa centers or online pre-applications",
-          "Confirm entry requirements with your airline before check-in",
-        ],
-    meta: baseMeta(input, port),
+      ? copy.lists.requiredChecklistSpecial
+      : copy.lists.requiredChecklistStandard,
+    meta: baseMeta(input, port, lang),
     primaryCta: {
-      label: "Browse visa application guides",
+      label: copy.texts.ctaBrowseGuides,
       href: "/do-i-need-a-visa-for-china",
     },
     secondaryCta: {
-      label: "Official sources",
+      label: copy.texts.ctaOfficial,
       href: "#official-sources",
     },
   };
 }
 
-export function evaluateVisa(input: VisaCheckInput): VisaEvaluationResult {
+export function evaluateVisa(
+  input: VisaCheckInput,
+  lang: VisaLang = "en",
+): VisaEvaluationResult {
+  const copy = getVisaCopy(lang);
   const port = input.portId ? getPortById(input.portId) : undefined;
   const nationality = toCanonicalCountryName(input.nationality);
+  const nationalityLabel = getCountryDisplayName(nationality, lang) || nationality;
 
   if (!nationality || !input.purpose || !input.stayDays || !input.transitRoute) {
     return visaRequiredResult(
       input,
-      "Incomplete trip details — please complete all fields and try again.",
+      copy.texts.incompleteDetails,
       port,
+      lang,
     );
   }
 
   if (SPECIAL_VISA_PURPOSES.has(input.purpose)) {
     return visaRequiredResult(
       input,
-      `Your purpose (${PURPOSE_LABELS[input.purpose] ?? input.purpose}) generally requires a dedicated China visa and is not covered by short-stay visa-free or transit policies.`,
+      fillTemplate(copy.texts.specialPurposeSummary, {
+        purpose: copy.purposeLabels[input.purpose] ?? input.purpose,
+      }),
       port,
+      lang,
     );
   }
 
@@ -351,7 +368,7 @@ export function evaluateVisa(input: VisaCheckInput): VisaEvaluationResult {
     VISA_FREE_PURPOSES.has(input.purpose) &&
     input.stayDays <= visaFree.maxStayDays
   ) {
-    return visaFreeResult(input, visaFree, port);
+    return visaFreeResult(input, visaFree, port, lang);
   }
 
   const hainan = getHainan30Rule(nationality);
@@ -362,7 +379,7 @@ export function evaluateVisa(input: VisaCheckInput): VisaEvaluationResult {
     VISA_FREE_PURPOSES.has(input.purpose) &&
     input.stayDays <= hainan.maxStayDays
   ) {
-    return hainan30Result(input, hainan, port);
+    return hainan30Result(input, hainan, port, lang);
   }
 
   // Visa-free country but stay too long
@@ -384,17 +401,18 @@ export function evaluateVisa(input: VisaCheckInput): VisaEvaluationResult {
   if (transitRule && shouldEvaluateTransit240) {
     const missing: string[] = [];
     if (input.transitRoute !== "third_country_confirmed") {
-      missing.push(
-        "Confirmed onward ticket to a third country/region (not a same-country return)",
-      );
+      missing.push(copy.lists.nearMissConditions[0]);
     }
     if (input.stayDays > transitRule.maxStayDays) {
       missing.push(
-        `Stay within ${transitRule.maxStayDays} days (${transitRule.maxStayHours} hours)`,
+        fillTemplate(copy.lists.nearMissConditions[1], {
+          days: transitRule.maxStayDays,
+          hours: transitRule.maxStayHours,
+        }),
       );
     }
     if (!port) {
-      missing.push("Enter through an eligible 240-hour transit port");
+      missing.push(copy.lists.nearMissConditions[2]);
     }
 
     const qualifies =
@@ -403,17 +421,24 @@ export function evaluateVisa(input: VisaCheckInput): VisaEvaluationResult {
       Boolean(port);
 
     if (qualifies && port) {
-      return transit240Result(input, transitRule, port);
+      return transit240Result(input, transitRule, port, lang);
     }
 
-    return nearMiss240Result(input, transitRule, missing, port);
+    return nearMiss240Result(input, transitRule, missing, port, lang);
   }
 
   if (visaFree && input.stayDays > visaFree.maxStayDays) {
+    const stayLabel =
+      copy.stayLabels[String(input.stayDays)] ??
+      fillTemplate(copy.texts.stayDaysFallback, { days: input.stayDays });
     return visaRequiredResult(
       input,
-      `Your passport may qualify for ${visaFree.maxStayDays}-day visa-free entry, but your planned stay (${STAY_LABELS[input.stayDays] ?? input.stayDays + " days"}) exceeds that limit. Apply for a visa for longer trips.`,
+      fillTemplate(copy.texts.overstaySummary, {
+        days: visaFree.maxStayDays,
+        stay: stayLabel,
+      }),
       port,
+      lang,
     );
   }
 
@@ -421,46 +446,38 @@ export function evaluateVisa(input: VisaCheckInput): VisaEvaluationResult {
     if (hainan) {
       return visaRequiredResult(
         input,
-        `From 20 August 2026, ${nationality} ordinary-passport holders have two visa-free paths: (1) 240-hour transit with a confirmed onward ticket to a third country through a designated port, or (2) up to 30 days in Hainan Province only after entering through a Hainan open port. A mainland round-trip holiday that starts and ends at home still needs a visa.`,
+        fillTemplate(copy.texts.twoPathsSummary, { country: nationalityLabel }),
         port,
+        lang,
         {
-          kicker: "Two visa-free paths · mainland holiday still needs a visa",
-          headline:
-            "240-hour transit and Hainan 30-day stay — not nationwide visa-free",
-          checklist: [
-            "Hainan 30-day stay: enter through Haikou, Sanya, or another Hainan open port and remain on the island",
-            "240-hour transit: confirmed onward ticket to a third country through a designated port",
-            "A mainland round-trip holiday that starts and ends at home still needs a visa",
-            "Tourism, business, visits, and family stays only — work, study, and journalism need a visa in advance",
-            "Ordinary passport required",
-          ],
+          kicker: copy.texts.twoPathsKicker,
+          headline: copy.texts.twoPathsHeadline,
+          checklist: copy.lists.twoPathsChecklist,
         },
       );
     }
     return visaRequiredResult(
       input,
-      `For a standalone ${PURPOSE_LABELS[input.purpose] ?? "trip"} to China (no third-country transit), ${nationality} passport holders typically need a China visa before travel. 240-hour transit is a separate path only when you have a confirmed onward ticket to a third country.`,
+      fillTemplate(copy.texts.standaloneSummary, {
+        purpose: copy.purposeLabels[input.purpose] ?? "trip",
+        country: nationalityLabel,
+      }),
       port,
+      lang,
       {
-        kicker: "240-hour transit possible · mainland holiday needs a visa",
-        headline:
-          "A mainland holiday still needs a visa — 240-hour transit is a separate path",
-        checklist: [
-          "Confirmed onward ticket to a third country or region (not a same-country return)",
-          "Enter through an eligible 240-hour port",
-          "Stay within 240 hours and inside the allowed region for that port",
-          "A standalone holiday that starts and ends at home still needs a tourist visa",
-          "Confirm entry requirements with your airline before check-in",
-        ],
+        kicker: copy.texts.standaloneKicker,
+        headline: copy.texts.standaloneHeadline,
+        checklist: copy.lists.standaloneChecklist,
       },
     );
   }
 
   return visaRequiredResult(
     input,
-    `We did not find a short-stay visa-free or 240-hour transit match for ${nationality} with your trip details. Plan to apply for a China visa before travel.`,
+    fillTemplate(copy.texts.noMatchSummary, { country: nationalityLabel }),
     port,
+    lang,
   );
 }
 
-export { PURPOSE_LABELS, TRANSIT_LABELS, STAY_LABELS };
+export { PURPOSE_LABELS, TRANSIT_LABELS, STAY_LABELS } from "./i18n";

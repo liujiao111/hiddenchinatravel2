@@ -12,19 +12,19 @@
     "close": "关闭",
     "cta": "开始规划我的云南之旅",
     "viewAllJourneys": "查看全部行程",
-    "fromPrice": "{price} 起",
-    "tailoredQuote": "获取定制报价",
-    "tripPlanAria": "获取我的行程方案",
-    "contactAria": "联系我们",
-    "homeAria": "Hidden China Travel 首页",
-    "mobileAria": "移动端导航",
-    "mainAria": "主导航",
-    "closeMenu": "关闭菜单",
     "tailorMade": {
       "title": "云南定制旅行",
-      "duration": "定制 · 私家团",
-      "sellingPoint": "围绕你设计的私家行程"
+      "duration": "天数灵活",
+      "sellingPoint": "根据你的日期、兴趣和节奏量身设计"
     },
+    "fromPrice": "{price} 起",
+    "tailoredQuote": "定制报价",
+    "contactAria": "联系我们",
+    "homeAria": "Hidden China Travel 首页",
+    "tripPlanAria": "咨询你的行程方案",
+    "mainAria": "主导航",
+    "mobileAria": "移动端导航",
+    "closeMenu": "关闭菜单",
     "labels": {
       "Yunnan": "云南",
       "Dali": "大理",
@@ -37,76 +37,64 @@
       "Sichuan & Chongqing": "四川与重庆",
       "Beijing & North China": "北京与华北",
       "Shanghai & the Lower Yangtze": "上海与长江下游",
-      "Xi’an & the Silk Road": "西安与丝绸之路",
+      "Xi'an and the Silk Road": "西安与丝绸之路",
       "Guangxi & Guizhou": "广西与贵州",
       "Tibet & the Himalayas": "西藏与喜马拉雅",
-      "Southern China": "中国南方",
-      "Before you arrive": "出发前准备",
-      "Getting around": "交通与出行",
+      "Southern China": "华南",
+      "Before you arrive": "出发前必读",
+      "Getting around": "当地出行",
       "Destination guides": "目的地指南",
       "Hidden China Travel": "Hidden China Travel",
-      "Our approach": "我们的旅行理念",
+      "Our approach": "我们的方式",
       "Talk to us": "联系我们",
       "Visa & entry": "签证与入境",
-      "Visa checker": "签证查询",
-      "Payments in China": "中国支付指南",
+      "Visa checker": "签证查询工具",
+      "Payments in China": "在中国付款",
       "Currency converter": "汇率换算",
       "Internet, VPN & eSIM": "上网、VPN 与 eSIM",
-      "Hotels for foreigners": "外国游客住宿指南",
-      "China trains": "中国铁路出行",
-      "Using Didi": "滴滴使用指南",
+      "Hotels for foreigners": "外国人住宿",
+      "China trains": "中国火车",
+      "Using Didi": "使用滴滴",
       "Maps & navigation": "地图与导航",
-      "Booking attraction tickets": "景点门票预约",
-      "Yunnan travel guide": "云南旅行指南",
+      "Booking attraction tickets": "景点门票预订",
       "Kunming travel guide": "昆明旅行指南",
       "Dali travel guide": "大理旅行指南",
-      "Where to stay in Dali": "大理住宿指南",
-      "Dali hidden gems": "大理小众去处",
+      "Where to stay in Dali": "大理住哪里",
+      "Dali hidden gems": "大理小众玩法",
+      "Yunnan travel guide": "云南旅行指南",
       "About us": "关于我们",
-      "Traveler stories": "游客故事",
+      "Traveler stories": "旅行故事",
       "Booking & service": "预订与服务",
       "Why travel with us": "为什么选择我们",
       "Our licensed agency": "持牌旅行社",
       "Travel at your pace": "按你的节奏旅行",
-      "Experiences, not checklists": "重体验，不赶打卡",
-      "Practical preparation": "实用行前准备",
+      "Experiences, not checklists": "重体验，不打卡",
+      "Practical preparation": "行前实用准备",
       "Responsible local travel": "负责任的本地旅行",
       "Start a conversation": "开始沟通",
-      "Request a route check": "请我们看看路线",
-      "Get the Dali local guide": "获取大理本地指南",
-      "WhatsApp support": "WhatsApp 咨询"
+      "Request a route check": "让 Joy 看看路线",
+      "Get the Dali local guide": "找大理本地向导",
+      "WhatsApp support": "WhatsApp 联系"
     },
     "mega": {
       "mostPopular": "热门目的地",
       "exploreYunnan": "探索云南",
-      "exploreByRegion": "按区域探索",
+      "exploreByRegion": "按地区探索",
       "beginWithYunnan": "从云南开始",
-      "privateJourneys": "云南私家行程",
-      "journeysHeading": "从一条精选路线开始。",
+      "privateJourneys": "私人定制行程",
+      "journeysHeading": "为你设计的行程",
       "private": "私家团",
-      "viewJourney": "查看行程 →",
+      "viewJourney": "查看这条路线 →",
       "designJourney": "定制我的行程 →",
       "viewAllJourneys": "查看全部行程 →",
-      "startHere": "从这里开始 · 免费清单",
-      "survivalTitle": "中国之行所需准备，都整理在这里。",
-      "survivalText": "入境、预约、eSIM、VPN、支付，以及出发前需要保存的内容。",
-      "openSurvival": "打开中国行前锦囊 →",
-      "survivalAlt": "正在准备中国之旅的游客",
-      "notSure": "不知道从哪里开始？",
-      "notSureText": "告诉我们，你想怎样游中国。",
+      "survivalAlt": "中国旅行实用指南",
+      "startHere": "从这里开始",
+      "survivalTitle": "中国生存手册",
+      "survivalText": "签证、付款、上网、地图、交通——出发前需要知道的事都在这里。",
+      "openSurvival": "打开生存手册",
+      "notSure": "还没想好从哪里开始？",
+      "notSureText": "告诉 Joy 你的日期和人数，看过书面路线再决定是否付款。",
       "startPlanning": "开始规划我的行程"
-    },
-    "countryGuide": {
-      "title": "按出发国家查看",
-      "from": "从{country}出发游云南",
-      "all": "查看全部出发地指南 →",
-      "countries": {
-        "SG": "新加坡",
-        "US": "美国",
-        "AU": "澳大利亚",
-        "GB": "英国",
-        "MY": "马来西亚"
-      }
     }
   },
   "localeSwitcher": {
@@ -122,40 +110,28 @@
     "guide": "指南",
     "seeAll": "查看全部搜索结果 →",
     "none": "没有找到相关指南，换个关键词试试。",
-    "metaTitle": "搜索中国旅行指南",
-    "metaDescription": "搜索 Hidden China Travel 的云南行程、目的地建议和实用旅行指南。",
-    "kicker": "旅行指南与私家行程",
-    "heading": "想找哪方面的内容？",
-    "resultsCount": "找到 {count} 条与“{query}”相关的结果",
-    "defaultHeading": "搜索中国旅行建议",
-    "querySubtitle": "查找实用指南和云南行程灵感。",
-    "defaultSubtitle": "可以试试云南、大理、私家团或定制旅行。",
-    "emptyTitle": "暂时没有精确匹配的结果。",
-    "emptyText": "换个简短的关键词，或从首页的旅行指南开始浏览。",
-    "browseGuides": "浏览旅行指南",
-    "types": {
-      "page": "页面",
-      "hub": "旅行指南",
-      "article": "旅行指南",
-      "journey": "行程"
-    },
-    "view": {
-      "page": "查看页面",
-      "hub": "查看指南",
-      "article": "查看指南",
-      "journey": "查看行程"
-    }
+    "metaTitle": "旅行指南搜索 | Hidden China Travel",
+    "metaDescription": "搜索签证、付款、上网、地图、交通与云南目的地等实用中国旅行指南。",
+    "kicker": "搜索",
+    "heading": "搜索旅行指南",
+    "resultsCount": "找到 {count} 条与「{query}」相关的结果",
+    "querySubtitle": "匹配的指南、专题页与实用工具。",
+    "defaultHeading": "你想了解什么？",
+    "defaultSubtitle": "搜索签证、付款、上网、地图、交通与云南旅行指南。",
+    "emptyTitle": "没有找到匹配内容",
+    "emptyText": "换个更短的关键词，或从下方浏览指南索引。",
+    "browseGuides": "浏览全部指南"
   },
   "footer": {
-    "tagline": "从云南出发，认识更丰富的中国。",
-    "intro": "Hidden China Travel 从云南出发，为国际旅客提供私人定制旅行、本地行程支持与实用的中国行前指南。我们重视合理的路线安排、清楚的服务说明，以及旅行前后的可靠沟通。",
-    "origin": "云南本地经验 · 私人出行 · 行前支持",
+    "tagline": "中国，按你的节奏走。",
+    "intro": "为探索中国的旅行者，提供用心设计的行程、实用的行前指南和本地人的真实经验。",
+    "origin": "生于云南，也走过世界。",
     "companyLine": "{agencyZh} · 经营许可证 {permit} · 统一社会信用代码 {credit}",
     "address": "{addressZh}",
     "registry": "在国家企业信用信息公示系统查询公司信息",
     "journeysHeading": "行程",
     "journeyFirst": "初遇云南",
-    "journeyEssence": "云南经典之旅",
+    "journeyEssence": "云南精华",
     "journeyAll": "云南行程一览",
     "journeyCustom": "云南定制旅行",
     "resourcesHeading": "实用资源",
@@ -188,171 +164,168 @@
   },
   "home": {
     "meta": {
-      "title": "云南私人定制旅行与私家团 | Hidden China Travel",
-      "ogTitle": "云南私人定制旅行 | Hidden China Travel",
-      "description": "Hidden China Travel 提供云南私人定制旅行，覆盖昆明、大理、沙溪、丽江、泸沽湖和香格里拉。私人用车、无购物安排，由云南本地持牌旅行社签约履约。免费咨询，获取初步行程建议。"
+      "title": "云南私家团与定制旅行 | Hidden China Travel",
+      "ogTitle": "云南私家团与定制旅行",
+      "description": "从大理的湖畔村落，到丽江的雪山脚下——为海外华语游客定制的云南私家旅行：专车专导、行程灵活，熟悉云南的本地人帮你规划。"
     },
-    "heroKicker": "云南私人定制旅行 · Hidden China Travel",
-    "heroTitleLine1": "云南之旅，",
-    "heroTitleLine2": "由你决定怎么走",
+    "heroKicker": "云南私人定制旅行",
+    "heroTitleLine1": "把云南，",
+    "heroTitleLine2": "走成自己的节奏",
     "heroAlt": "云南雪山脚下，碧蓝湖水旁的栈道",
-    "heroLeadDesktop": "为海外旅客提供云南私人定制旅行。从大理洱海、沙溪古镇到丽江雪山和香格里拉，我们根据你的日期、人数、兴趣及预算安排专属路线。全程只与你的同行者出行，不拼团、不安排购物行程。你只需要告诉我们大概想去哪里，剩下的交给我们一起规划。",
-    "heroLeadMobile": "为海外旅客提供云南私人定制旅行。根据日期、人数和兴趣安排专属路线，只与你的同行者出行，不拼团、无购物安排。告诉我们大概想去哪里，就可以开始规划。",
-    "heroBrand": "Joy Liu 在云南长大，也曾在日本和菲律宾生活，为你提供本地行程建议。",
-    "cta": "定制我的云南行程",
+    "heroLeadDesktop": "从大理的湖畔村落，到丽江的雪山脚下。让熟悉云南的当地人，帮你规划一趟符合自己时间、兴趣和步调的旅行。",
+    "heroLeadMobile": "从大理的湖畔村落，到丽江的雪山脚下——按你的时间、兴趣和步调设计的旅行。",
+    "heroBrand": "生于云南，也走过世界。",
+    "cta": "定制我的行程 — 免费方案",
     "exploreJourneys": "查看精选行程",
     "exploreJourneysMobile": "查看精选行程 →",
-    "heroTrustDesktop": "全程私人出行 · 无购物安排 · 免费咨询，持牌旅行社履约",
-    "heroTrustMobile": "私人出行 · 无购物安排 · 免费咨询",
-    "replyTime": "北京时间工作日 9:00 至 18:00 通常 2 小时内回复，其他时间 24 小时内回复。",
-    "howKicker": "如何开始",
-    "howHeading": "不必做好攻略，才能开始规划",
-    "howIntro": "告诉 Joy 你的大概想法，我们会结合云南各地的路程、季节和停留时间，把想去的地方整理成一条合理的路线。你可以先看方案，再决定下一步。",
+    "heroTrustDesktop": "全程私家团 · 无购物点 · 免费咨询",
+    "heroTrustMobile": "全程私家团 · 无购物点 · 免费咨询",
+    "trustBadges": ["100% 无购物", "仅付 20% 定金", "持牌旅行社 L-YN-1017500"],
+    "replyTime": "工作时间通常 15 分钟内回复。",
+    "howKicker": "合作流程",
+    "howHeading": "规划云南之旅，其实很简单",
+    "howIntro": "不需要完整的行程计划。告诉 Joy 大致的出行月份、人数和兴趣，她会帮你把旅行想法变成一条舒适、可行的路线。",
     "howItWorks": [
       [
         "01",
-        "告诉我们你的旅行想法",
-        "说说你大概几月出发、同行几人、计划玩多少天，以及最感兴趣的地方。即使还没决定具体日期，或者只知道想去大理和丽江，也可以开始沟通。"
+        "说说你的想法",
+        "告诉我们你打算什么时候出发、几个人同行，以及最想体验什么。"
       ],
       [
         "02",
-        "获取初步行程建议",
-        "Joy 会根据你的旅行时间、兴趣和出行习惯，整理初步路线。哪些地方值得多住一晚，哪些路程会占用较多时间，也会提前说明。"
+        "收到路线建议",
+        "Joy 会结合路程耗时、季节条件和你喜欢的节奏，给出实用的路线方案。"
       ],
       [
         "03",
-        "沟通调整并确认",
-        "根据你的反馈调整目的地、停留天数、住宿和服务安排。路线、报价及相关条款确认后，再由持牌旅行社办理合同和预订事宜。"
+        "调整并确认",
+        "行程、酒店和服务都可以调整，看过最终报价之后，再决定是否预订。"
       ]
     ],
-    "howHelper": "咨询及初步行程规划免费。看过方案和报价后，再决定是否预订。",
-    "journeysKicker": "精选云南私家行程",
+    "howHelper": "咨询和初步规划不收费，看过方案和报价再决定。",
+    "journeysKicker": "精选私家行程",
     "journeysHeading": "从一条喜欢的路线开始",
-    "journeysIntro": "这些路线可以作为规划起点。你可以参考已有安排，也可以按照自己的日期和兴趣重新组合目的地。我们优先考虑路程和停留时间，而不是把景点塞满每一天。",
+    "journeysIntro": "选一条推荐路线，或者以它为灵感，定制你的行程——每条路线都可以按你的日期、人数和节奏调整。",
     "card1Title": "初遇云南",
-    "card1Subtitle": "昆明 · 大理 · 沙溪 · 丽江",
-    "card1Duration": "6 天 5 晚",
+    "card1Subtitle": "昆明 · 大理 · 丽江 · 沙溪",
+    "card1Duration": "6 天 5 晚 · 私家团",
     "card1Features": [
-      "全程私人用车",
-      "安排司机兼向导服务",
-      "沙溪古镇住宿一晚",
-      "无购物安排"
-    ],
-    "card2Title": "云南经典之旅",
-    "card2Subtitle": "昆明 · 大理 · 丽江 · 虎跳峡 · 香格里拉",
-    "card2Duration": "8 天 7 晚",
-    "card2Features": [
-      "私人专车服务",
-      "根据路线和预算安排住宿",
-      "串联洱海、玉龙雪山、虎跳峡和香格里拉",
-      "无购物安排"
-    ],
-    "card3Title": "云南定制旅行",
-    "card3Subtitle": "天数与路线灵活安排",
-    "card3Destination": "根据你的日期、兴趣和预算设计专属路线",
-    "card3Features": [
-      "适合情侣、家庭与朋友同行",
-      "根据日期、兴趣和预算设计路线",
-      "灵活调整停留时间和住宿安排",
-      "提供来华旅行的实用准备建议"
+      "全程专车",
+      "司机兼向导全程陪同",
+      "沙溪古镇过夜，慢游茶马古道",
+      "全程无购物点"
     ],
     "card1ImageAlt": "初遇云南路线沿途的传统建筑与山景",
+    "card2Title": "云南精华",
+    "card2Subtitle": "洱海 · 玉龙雪山 · 虎跳峡",
+    "card2Duration": "8 天 7 晚 · 私家团",
+    "card2Features": [
+      "司机兼向导全程陪同",
+      "精挑细选的酒店",
+      "串联洱海、雪山与香格里拉高原风光",
+      "全程无购物点"
+    ],
     "card2ImageAlt": "云南精华路线沿途的山水风光",
+    "card3Title": "云南定制旅行",
+    "card3Subtitle": "完全围绕你设计的私家行程",
+    "card3Destination": "按你的日期、兴趣和节奏量身设计",
+    "card3Features": [
+      "适合情侣、家庭和朋友出行",
+      "司机兼向导全程陪同",
+      "慢节奏路线，少换酒店",
+      "首次来中国的实用支持"
+    ],
     "card3ImageAlt": "云南高原湖泊上的一叶木舟",
-    "fromPrice": "每人 {price} 起",
-    "cardCta": "查看行程详情",
-    "card3Cta": "定制我的云南行程",
-    "journeysHelper": "价格为每人全程参考起价，非每天价格。实际报价取决于日期、人数、住宿及服务安排，具体内容以最终书面方案为准。",
-    "whyKicker": "我们的服务方式",
-    "whyHeading": "熟悉云南，也把旅客关心的细节放在心上",
-    "whyIntro": "云南各地相距不近，一条好路线需要考虑的不只是景点，还有每天的车程、海拔变化、住宿位置和实际游玩时间。我们提前梳理这些安排，让你在出发前知道这趟旅行会怎样进行。",
+    "fromPrice": "{price} 起 / 每人",
+    "cardCta": "查看这条路线 →",
+    "card3Cta": "定制我的云南之旅 →",
+    "journeysHelper": "只要提供出行月份、天数和大概人数，就可以开始。",
+    "whyKicker": "为什么选择我们",
+    "whyHeading": "本地人的经验，也理解远道而来的你",
+    "whyIntro": "Hidden China Travel 既有一手的云南本地经验，也理解海外游客在出发来中国之前，心里那些真实的疑问。",
     "reasons": [
       [
         "01",
-        "真正的私家旅行",
-        "整趟行程只与你自己的家人、伴侣或朋友同行，不与陌生游客拼团。用车、出发时间及每日安排根据你们的计划确定，不必跟随大型旅游团统一行动，也能为喜欢的地方留出更多时间。"
+        "真正的私家团",
+        "全程只有你们自己人、一辆专车和一份商定好的行程。没有大巴拼团，也没有赶场式的固定打卡。"
       ],
       [
         "02",
-        "不安排购物行程",
-        "我们不会把购物店列为行程的一部分，也不依靠购物佣金决定路线。每天的时间优先留给已确认的景点、当地体验和必要的休息。你想自由购物，当然可以自行安排。"
+        "全程无购物点",
+        "行程围绕风景、人和体验来设计——没有强制购物点，也没有为了拿回扣的绕路。"
       ],
       [
         "03",
-        "云南本地持牌旅行社履约",
-        "Hidden China Travel 是云南美珍国际旅行社有限公司面向国际旅客提供服务的品牌与网站。该公司持有旅行社业务经营许可证 L-YN-1017500，并负责旅游合同签订、团款收取及行程履约。"
+        "本地持牌旅行社履约",
+        "Hidden China Travel 是云南美珍国际旅行社有限公司（昆明）的英文服务网站，旅游合同与付款由这家持牌旅行社办理。"
       ],
       [
         "04",
-        "付款前把细节说明清楚",
-        "在确认预订前，你会收到书面路线与报价。酒店安排、用车服务、景点门票、费用包含与不包含项目，以及付款和取消条款，都会提前说明。有疑问的地方可以沟通清楚，再决定是否预订。"
+        "出发之前，一切清清楚楚",
+        "路线、服务、包含与不包含的项目，都会写进书面方案和报价——确认之前，每一项都清清楚楚。"
       ],
       [
         "05",
-        "初次来华，也能更从容",
-        "我们了解国际旅客在使用中国移动支付、地图、交通工具和网络服务时可能遇到的困难。除了路线规划，也会分享实用指南，帮助你提前了解当地的使用方式和必要准备。"
+        "第一次来中国也安心",
+        "支付、上网、交通、地图和入境准备，都有实用的行前指导。"
       ],
       [
         "06",
-        "从行前准备到旅途中都有人协助",
-        "出发前可以与 Joy 确认行程细节和需要准备的事项。旅行期间如遇到时间变动、交通衔接或其他与行程相关的问题，可以联系 Joy 沟通，并由履约旅行社协调相应服务。"
+        "从计划到旅途，始终有人照应",
+        "出发前和旅途中遇到问题，Joy 都会及时回应和处理，不让临时变化变成旅途当天的压力。"
       ]
     ],
-    "storiesEyebrow": "来自旅途中的真实反馈",
-    "storiesHeading": "旅行结束后，他们记住了什么",
-    "storiesIntro": "有的客人看重沿途风景，有的更在意与家人相处的时间。这里收录参加云南私家行程的旅客留下的真实反馈，涉及路线安排、当地体验与旅途服务。具体服务人员以各自行程的书面确认为准。",
-    "storiesNote": "为保护隐私，部分姓名采用缩写或简化形式；部分非中文反馈经过翻译和轻度编辑，未改变原意。页面仅展示真实收到的评价。",
+    "storiesEyebrow": "游客故事",
+    "storiesHeading": "他们记住了什么",
+    "storiesIntro": "来自私家团客人的真实反馈。你出行日期的司机兼向导，以书面方案中确认的人选为准。",
+    "storiesNote": "部分姓名做了缩写处理，部分反馈经翻译和编辑以便阅读。",
     "storiesArchive": "阅读更多游客故事",
-    "founderKicker": "认识创始人",
-    "founderHeading": "从云南出发，用更熟悉旅客的方式介绍家乡",
+    "founderKicker": "认识你的旅行规划师",
+    "founderHeading": "生于云南，也走过世界",
     "founderAlt": "Hidden China Travel 创始人 Joy Liu",
-    "founderP1": "我在云南长大，后来曾在日本和菲律宾生活。这些经历让我有机会从旅行者的角度重新认识自己熟悉的地方。",
-    "founderP2": "到了一个陌生的国家，最让人费心的往往不是去哪里玩，而是怎样付款、乘坐交通工具、使用网络，以及理解那些当地人习以为常的规则。我也经历过这样的摸索，因此更能理解国际旅客来到中国时，希望有人提前把事情解释清楚。",
-    "founderP3": "创办 Hidden China Travel，是因为我想用自己的云南本地经验，帮助更多人安排一趟舒适、清楚、有个人选择空间的旅行。",
-    "founderP4": "云南很大，每个地方都有值得停留的理由，但假期总是有限。我更愿意先了解你想看什么、喜欢怎样旅行，再讨论哪些地方值得安排、哪里应该多留一点时间。",
-    "founderP5": "我主要负责与你沟通需求、规划路线和协调行程细节。正式旅游合同、团款收取及行程执行，由云南美珍国际旅行社有限公司负责。希望你少一些安排上的顾虑，把时间留给旅途本身。",
-    "founderRole": "Hidden China Travel 创始人 · 云南旅行规划顾问",
-    "founderStoryLink": "了解 Joy 的故事",
-    "founderAskLink": "向 Joy 咨询",
-    "prepareKicker": "中国旅行实用指南",
-    "prepareHeading": "除了安排路线，也帮你做好出发准备",
-    "prepareIntro": "中国的支付方式、网络环境和交通工具可能与你平时习惯的不同。我们整理了可以提前查阅的实用指南。已经预订云南行程的客人，也会收到与实际路线和交通安排相关的准备建议。",
+    "founderP1": "我在云南长大，后来在日本和菲律宾生活过。",
+    "founderP2": "在异国生活，意味着我自己也成了那个“外国游客”——付款、坐车、看懂陌生的规则，这些当地人习以为常的小事，突然都需要提前做功课，需要可信赖的本地信息。",
+    "founderP3": "这段经历，改变了我对旅行的理解。",
+    "founderP4": "我创办 Hidden China Travel，就是希望帮远道而来的朋友少一点不确定、多一些有人在身边的安心，也有足够的时间，去欣赏那些著名景点之间的风景。",
+    "founderP5": "我是云南美珍国际旅行社的旅行顾问：帮你把路线打磨好，再由旅行社确认合同、收取团款并执行行程。",
+    "founderRole": "创始人 · 云南旅行规划师",
+    "founderStoryLink": "读读 Joy 的故事 →",
+    "founderAskLink": "向 Joy 咨询 →",
+    "prepareKicker": "首次来华支持",
+    "prepareHeading": "我们帮你的，不只是行程",
+    "prepareIntro": "在中国，付款、上网、地图、交通和景点预约的方式可能都不太一样。我们的实用指南帮你在出发前就准备好；预订私家团的客人，还会收到针对自己路线的行前建议。",
     "supportItems": [
       {
         "title": "入境政策",
-        "detail": "根据护照、旅行日期和入境计划，了解需要核实的签证、免签及入境要求，并通过官方渠道确认最新规定。",
-        "href": "/survival-kit#entry",
-        "cta": "查看入境指南"
+        "detail": "按你的护照和路线，查清签证、免签或过境规则。",
+        "href": "/survival-kit#entry"
       },
       {
-        "title": "移动支付",
-        "detail": "了解支付宝、微信支付的基本设置、境外银行卡绑定方式，以及付款失败时可以准备的替代方法。",
-        "href": "/survival-kit#payment",
-        "cta": "查看支付指南"
+        "title": "支付",
+        "detail": "出发前装好支付宝，并准备一个备用支付方式。",
+        "href": "/survival-kit#payment"
       },
       {
-        "title": "上网与通信",
-        "detail": "比较国际漫游、旅行 eSIM 和中国本地 SIM 卡的用途，提前了解常用应用、网络连接和通信方面的注意事项。",
-        "href": "/survival-kit#esim",
-        "cta": "查看上网指南"
+        "title": "上网与流量",
+        "detail": "选好国际漫游或旅行 eSIM，并保存好设置教程。",
+        "href": "/survival-kit#esim"
       },
       {
         "title": "地图与交通",
-        "detail": "认识中国常用的地图、打车和铁路出行工具，了解如何保存中文地址、寻找上车地点以及衔接不同交通方式。",
-        "href": "/survival-kit#maps",
-        "cta": "查看交通指南"
+        "detail": "抵达前准备好地图、火车票和日常出行方式。",
+        "href": "/survival-kit#maps"
       }
     ],
-    "supportItemCta": "查看准备建议",
-    "checklistCta": "查看中国行前准备清单",
-    "destKicker": "云南目的地",
-    "destHeading": "从这些地方，认识不一样的云南",
-    "destIntro": "云南的城市、古镇与高原湖泊各有特点，并不是每个地方都必须去。可以先了解感兴趣的目的地，再根据旅行天数、路程和季节，决定怎样把它们连成一条路线。",
-    "destGuideLink": "查看完整云南旅行指南",
+    "supportItemCta": "去准备 →",
+    "checklistCta": "打开中国行前准备清单 →",
+    "destKicker": "探索云南",
+    "destHeading": "找到适合你旅程的地方",
+    "destIntro": "云南不只有一条路线。先从我们最熟悉的地方开始，再按你的时间和兴趣自由组合。",
+    "destGuideLink": "打开完整的云南旅行指南 →",
     "destinations": [
       {
         "name": "昆明",
-        "note": "云南主要的交通门户，也是适应当地生活的一个好起点。除了石林，市区的翠湖、公园和滇池周边也值得留出时间。",
+        "note": "云南的门户城市——看石林的喀斯特奇观，也适合在长途飞行后稍作休整。",
         "image": "/assets/blog/kunming-travel-guide/cover-stone-forest.webp",
         "alt": "昆明附近石林的喀斯特石峰",
         "href": "/kunming-travel-guide",
@@ -360,7 +333,7 @@
       },
       {
         "name": "大理",
-        "note": "苍山与洱海之间，分布着古城、白族村落和湖滨小镇。可以沿洱海走走，在喜洲看传统民居，也可以多留一天享受湖边生活。",
+        "note": "洱海边的白族村落和湖畔生活，节奏自然而然慢下来。",
         "image": "/assets/destinations/yunnan/dali.webp",
         "alt": "苍山映衬下的大理古城五华楼",
         "href": "/dali-travel-guide",
@@ -368,15 +341,15 @@
       },
       {
         "name": "沙溪",
-        "note": "曾是茶马古道上的重要集市。寺登街、古戏台和玉津桥保留着小镇的历史面貌，住上一晚，更能感受清晨和傍晚的安静。",
+        "note": "茶马古道上的古镇，值得住一晚——清晨和夜晚，才是它真实的样子。",
         "image": "/assets/destinations/yunnan/shaxi.webp",
         "alt": "沙溪古镇的传统瓦屋顶与街巷",
-        "href": "/shaxi-ancient-town-guide",
+        "href": "/dali-hidden-gems-off-the-beaten-path",
         "cta": "探索沙溪"
       },
       {
         "name": "丽江",
-        "note": "从古城水巷到白沙、束河，再到玉龙雪山，丽江既有纳西文化与传统村落，也适合安排一整天探索雪山和蓝月谷。",
+        "note": "古城街巷、纳西文化，以及玉龙雪山周边的风景。",
         "image": "/assets/destinations/yunnan/lijiang.webp",
         "alt": "丽江古城的屋顶与流水，远处是群山",
         "href": "/lijiang-travel-guide",
@@ -384,58 +357,58 @@
       },
       {
         "name": "泸沽湖",
-        "note": "位于云南与四川交界的高原湖泊，沿岸分布着摩梭村落。适合愿意花更多时间欣赏湖景、了解当地生活的旅客。",
+        "note": "滇西北的高原湖泊和摩梭文化——旅行时间充裕的话，值得为它多留两天。",
         "image": "/assets/destinations/yunnan/lugu-lake.webp",
         "alt": "滇西北泸沽湖安静的湖岸与凉亭",
         "href": "/china-destinations/yunnan",
-        "cta": "探索泸沽湖"
+        "cta": "查看云南路线"
       },
       {
         "name": "香格里拉",
-        "note": "高原草甸、松赞林寺、普达措与周边藏族村落，构成了香格里拉的主要旅行体验。这里海拔较高，行程需要留意身体适应情况。",
+        "note": "高原风光和藏族文化，云南截然不同的另一面。",
         "image": "/assets/destinations/yunnan/shangri-la.webp",
         "alt": "香格里拉附近的高原湖泊与森林",
         "href": "/shangri-la-travel-guide",
         "cta": "探索香格里拉"
       }
     ],
-    "faqKicker": "预订前须知",
-    "faqHeading": "关于云南私人旅行，你可能还想了解",
+    "faqKicker": "开始之前",
+    "faqHeading": "常见问题",
     "faqs": [
       [
-        "云南私家行程一般需要多少预算？",
-        "费用取决于出行日期、人数、路线、住宿和具体服务安排。首页展示的是精选行程的每人参考起价，不代表所有日期都适用。确认你的基本需求后，我们会提供相应报价，并列明包含和不包含的项目，方便你判断是否符合预算。"
+        "云南私家团大概多少钱？",
+        "价格取决于路线、出行人数、日期和酒店标准。了解你的计划之后，我们会提供一份定制报价，包含与不包含的项目都会写得清清楚楚。"
       ],
       [
-        "行程可以根据我的需求调整吗？",
-        "可以。网站上的精选路线只是规划起点，并非必须照着走的固定套餐。你可以调整旅行天数、目的地、住宿偏好和游玩安排。如果有老人或孩子同行，或希望减少长途乘车，我们也会据此调整路线，提前说明必要的取舍。"
+        "行程可以定制吗？",
+        "可以。推荐路线只是起点，不是固定套餐。天数、节奏、酒店、目的地、活动和向导讲解的程度，都可以按你们的兴趣和需求调整。"
       ],
       [
-        "获取初步路线和报价需要付费吗？",
-        "不需要。你可以先告诉 Joy 大概的出行月份、人数、天数和感兴趣的地方。我们会根据这些信息提供初步行程建议与报价。收到方案后，你可以继续沟通调整，也可以自行决定是否预订。未经确认不会替你安排付费预订。"
+        "拿到路线方案之前，需要先付费吗？",
+        "不需要。你可以先分享出行日期、大致天数、人数和兴趣。看过方案和报价之后，才会涉及付款。"
       ],
       [
-        "实际负责行程执行的是哪家公司？",
-        "Hidden China Travel 是云南美珍国际旅行社有限公司面向国际旅客提供服务的品牌与网站。Joy Liu 负责前期沟通和路线规划；旅游合同由该持牌旅行社签订，团款由该公司收取，行程也由其负责履约。旅行社经营许可证编号为 L-YN-1017500。"
+        "在云南，实际执行行程的是谁？",
+        "Hidden China Travel 是云南美珍国际旅行社有限公司的英文服务网站，这是一家位于昆明的持牌旅行社。Joy Liu 是你的旅行顾问——从第一次咨询到行程结束，你都直接和 Joy 沟通。旅游合同与付款均与该旅行社办理，进入公司账户。"
       ],
       [
-        "费用通常包含哪些服务？",
-        "不同路线的报价范围会有所区别。根据实际方案，可以安排私人车辆、司机或向导、酒店及景点门票等服务，但不能默认所有项目均已包含。每份正式报价都会列明服务内容、包含与不包含的费用，以及需要旅客自行承担的项目。"
+        "付款和取消规则是怎样的？",
+        "确认书面行程单和旅游合同后，向云南美珍国际旅行社有限公司的对公账户支付 20% 定金，支持支付宝、微信或银行转账，收款账户名与合同公司一致。随后我们预订酒店、门票和车辆，剩余 80% 在首次接站、行程开始后支付。行程开始前 7 天以上取消，定金可退，但需扣除已预订且无法退回的酒店或门票费用；出发前 7 天以内取消，定金不退。"
       ],
       [
-        "付款和取消规则是什么？",
-        "确认书面行程及旅游合同后，按照合同约定向云南美珍国际旅行社有限公司付款，具体收款方式、定金比例和尾款时间以书面确认为准。取消或变更可能涉及已预订资源的费用，退款条件以最终合同及双方书面确认的条款为准。"
+        "费用通常包含什么？",
+        "每条路线略有不同，通常包含全程专车、司机兼向导、住宿和部分景点门票，方案中会写明哪些包含、哪些需要自付。旅行社已投保 2026 年度旅行社责任险（中国太平洋财产保险承保，保单号 AKUM0AC10625QAAA1R9T），对其依法应承担的人身伤害责任，每人最高赔付 180 万元人民币，在你的姓名和护照号登记后生效。请自行购买国际医疗与救援保险，此费用不包含在报价内。"
       ],
       [
-        "提交咨询后多久可以收到回复？",
-        "北京时间工作日 9:00 至 18:00，通常会在 2 小时内回复；其他时间通常在 24 小时内回复。初次回复会先确认你的旅行需求。涉及多个目的地、特殊住宿或复杂交通安排时，完整方案可能需要更长时间，我们会在沟通中说明。"
+        "多久能收到回复？",
+        "工作日 9:00–18:00（北京时间），Joy 通常在 2 小时内回复；其他时间 24 小时内回复。路线复杂或旺季日期，详细方案可能需要更长时间。"
       ]
     ],
-    "finalHeading": "你的云南之旅，可以从一个简单的想法开始",
-    "finalText": "不需要先完成攻略，也不必确定每一天的安排。告诉 Joy 你大概想几月出发、几人同行、计划玩多少天，以及最感兴趣的地方。我们会先帮你梳理路线，提供初步行程建议和报价。咨询与初步规划免费，你可以看过方案、了解服务内容之后，再决定是否预订。",
+    "finalHeading": "准备好开始规划云南之旅了吗？",
+    "finalText": "不需要现成的行程。告诉我们你的出行日期或大概月份、同行人数，以及感兴趣的地方或体验——Joy 会帮你把这些想法，变成一条切实可行的路线。",
     "finalWhatsapp": "在 WhatsApp 上联系 Joy",
     "finalAlt": "云南碧蓝的湖水与雪山",
-    "finalTrust": "免费咨询 · 无需立即预订 · 方案与费用提前确认"
+    "finalTrust": "免费咨询 · 无需立即预订 · 看过方案和报价再决定"
   },
   "journeys": {
     "metaTitle": "云南私家定制行程",
@@ -748,7 +721,7 @@
     "navQuestions": "常见问题",
     "navAction": "开始规划",
     "overviewTitle": "从你的计划出发，而不是从套餐出发。",
-    "overviewDescription": "现有路线只是起点。如果不符合你的计划，我们可以从零开始，设计一趟完全属于你的行程。",
+    "overviewDescription": "现有路线只是起点。如果不合你的旅行，我们可以从零开始，设计一趟完全属于你的行程。",
     "overviewItems": [
       {
         "label": "去哪里",
@@ -765,7 +738,7 @@
     ],
     "overviewAction": "告诉我们你的想法",
     "manifestoLeadA": "一趟真正",
-    "manifestoLeadB": "属于你的旅行。",
+    "manifestoLeadB": "像你的旅行。",
     "manifestoText": "一个安静的清晨，而不是又一次早起赶路。在一个地方多待一会儿，少在酒店之间折腾。跟着自己的兴趣走。",
     "manifestoStrong": "我们的第一步，是倾听。",
     "preferencesHeading": "怎样才是属于你的旅行？",
@@ -795,12 +768,12 @@
     "processHeading": "从一个最初的想法，到一趟值得期待的旅行。",
     "hostKicker": "你的本地联系人",
     "hostTitle": "你的行程，由 Joy 亲自规划。",
-    "hostQuote": "在国外生活的经历让我明白：有一个值得信任的本地人，旅行时的感受会完全不同。",
+    "hostQuote": "在国外生活的经历让我明白：有一个可以信任的本地人，一个地方的感觉会完全不同。",
     "hostCopy": "Joy 在云南出生长大。{consultant}",
     "hostAlt": "Hidden China Travel 旅行顾问 Joy",
     "hostLink": "认识 JOY →",
     "quoteHeading": "先看到清楚的方案，再做决定。",
-    "quoteText": "价格由你的日期、路线与人数决定。整理书面方案之前，我们会先聊你的预算和优先考虑的事项。",
+    "quoteText": "价格由你的日期、路线与人数决定。细节落到纸面之前，我们会先聊你的预算和优先级。",
     "proposalCards": [
       {
         "title": "你的路线",
@@ -823,7 +796,7 @@
     "termsIntro": "确认书面行程单与旅游合同后支付 20% 定金，首次接站后结清尾款。",
     "plannerHeading": "告诉我们你的想法。",
     "plannerText": "只需要几个细节就可以开始。Joy 会先通过邮件与你讨论路线，再出具行程和报价。{replyTime}",
-    "plannerSample": "想看看云南私家路线长什么样？提交表单后可以下载一份示例行程——它只是示例，不是必须照搬的套餐。如果你已有偏好的路线类型，「初遇云南」和「云南精华」都是不错的起点。",
+    "plannerSample": "想看看云南私家路线长什么样？提交表单后可以下载一份示例行程——它只是示例，不是必须照搬的套餐。如果你已经喜欢某种路线形状，「初见云南」和「云南精华」都是不错的起点。",
     "plannerBeyond": "云南是我们的起点。如果你还想去中国其他地方，写在下面，我们一起讨论可能性。泸沽湖等未列为现成路线的目的地，也可以在这里定制。",
     "plannerPrefer": "更想直接聊？",
     "plannerWhatsapp": "在 WhatsApp 上联系 Joy →",
@@ -839,7 +812,7 @@
         "可以。告诉我们你看中了哪条、想改哪里——天数增减、增加途经点、酒店偏好或放慢节奏都可以谈，不必从一张白纸开始。"
       ],
       [
-        "我还没确定日期和预算，能开始吗？",
+        "我还需要没确定日期和预算，能开始吗？",
         "可以。一个月份、大致天数或几个喜欢的地方就足够起步。出具正式报价前，我们会先和你确认日期、人数与优先级。"
       ],
       [
@@ -1038,13 +1011,13 @@
     "successWhatsappNote": "如果你更想用 WhatsApp，现在就可以把同样的内容发过去。",
     "successWhatsapp": "通过 WhatsApp 发送",
     "whenNextMonth": "1 个月内",
-    "whenInOneMonth": "1–2 个月后",
-    "whenInTwoMonths": "3 个月或更久"
+    "whenInOneMonth": "1–2 个月",
+    "whenInTwoMonths": "3 个月以上"
   },
   "bookingTerms": {
     "kicker": "付款之前",
     "headingDefault": "预订、付款与取消",
-    "introDefault": "以下条款同样适用于「初遇云南」「云南精华」与定制云南之旅。",
+    "introDefault": "以下条款同样适用于「初见云南」「云南精华」与定制云南之旅。",
     "fullNoteLink": "阅读完整的预订与服务说明 →",
     "licenceLink": "经营许可与责任保险 →"
   },
@@ -1161,15 +1134,15 @@
     "whySub": "一对一的用心、务实的考量和本地人的视角——让你少花时间在琐碎上，多花时间在风景里。",
     "reasons": [
       [
-        "本地人的视角，也理解旅行者的疑问。",
-        "云南是家，走遍中国和海外的经历塑造了我看它的方式。你想探索的地方我熟悉，你没想到要问的问题，我也懂。"
+        "本地人的视角，旅行者的理解。",
+        "云南是家，走遍中国和海外的经历塑造了我看它方式。你想探索的地方我熟悉，你没想到要问的问题，我也懂。"
       ],
       [
-        "直接和规划师沟通，不必排队等回复。",
-        "你的旅行，直接和我沟通。你的兴趣、疑问和偏好主导我们的交流，而不是淹没在销售话术和标准套餐里。"
+        "一个真实的人，而不是排队等回复。",
+        "你的旅行直接和我谈。你的兴趣、疑问和偏好主导我们的沟通，而不是淹没在销售话术和标准套餐里。"
       ],
       [
-        "每一天是否顺利，藏在细节里。",
+        "好的一天，来自细节。",
         "好看的路线只是开始。任何安排确认之前，我们都会先理清车程、酒店位置、步行强度、门票和季节条件。"
       ],
       [
@@ -1208,123 +1181,333 @@
     "ctaEmail": "想用邮件？联系我们 →",
     "ctaNote": "直接与 Joy 沟通，没有预订义务。"
   },
-  "contentUi": {
-    "home": "首页",
-    "travelGuides": "旅行指南",
-    "commonQuestions": "常见问题",
-    "faqHeading": "你可能想问",
-    "readGuide": "阅读指南 →",
-    "readThisGuide": "阅读这篇指南",
-    "explore": "继续了解 →",
-    "relatedTopics": "继续了解相关主题",
-    "travelEssential": "中国行前准备",
-    "beforeYouArrive": "出发之前",
-    "shortAnswer": "先说结论",
-    "makeRightChoice": "选适合自己的方式",
-    "updatedFor2026": "2026 年更新",
+  "article": {
+    "breadcrumbHome": "首页",
+    "breadcrumbGuides": "旅行攻略",
     "by": "作者：{name}",
     "updated": "更新于 {date}",
-    "askRoutePrice": "向 JOY 咨询路线和价格",
-    "continueExploring": "继续了解中国旅行",
-    "continueIntro": "这些实用指南，帮你把第一次中国之行准备得更从容。",
-    "preparingFirst": "正在准备第一次来中国？",
-    "viewSurvival": "查看完整的中国行前锦囊 →",
-    "seeYunnan": "把云南串成一趟旅行",
-    "routeTogether": "看看一条云南路线是怎样串起来的。",
-    "practicalAnswered": "实用问题有了答案，接下来想想这趟旅行可以怎样走。",
-    "followRoute": "沿着{route}走一趟私家旅程。先看清每日安排、旅行节奏和包含的服务，再决定它是否适合你。",
-    "dayByDay": "查看每日行程 →",
-    "differentRoute": "想换一条路线或调整节奏？",
-    "customYunnan": "了解云南定制旅行 →",
-    "exploreYunnan": "查看云南旅行指南 →",
-    "unhurriedJourney": "一条不赶时间的云南路线，按你的日期和同行人来安排。",
-    "tailoredQuote": "根据你的日期提供定制报价",
-    "privateJourney": "私家行程",
-    "noShopping": "无购物点",
-    "localExperiences": "本地体验",
-    "flexiblePace": "节奏灵活",
-    "minRead": "约 {count} 分钟读完",
-    "prepareChina": "准备中国之行",
-    "prepareTitle": "出发前要办的事，一次理清。",
-    "prepareText": "用一份清单准备好入境、预订、上网、支付和抵达后的安排。",
-    "openSurvival": "打开中国行前锦囊",
-    "readMoreTopic": "继续阅读这个主题",
-    "privateYunnanTrip": "云南私家之旅",
-    "wantRoutePrice": "想要一条路线和价格参考？",
-    "datesGroupEnough": "告诉 Joy 日期和人数，就能收到大致价格区间。",
-    "askJoy": "咨询 JOY",
-    "planChinaAria": "规划你的中国之旅",
-    "guideTopicsAria": "中国旅行指南主题",
-    "legalInformation": "法律与服务信息",
-    "lastUpdated": "最近更新：{date}",
-    "planYunnan": "正在计划云南之旅？",
-    "travelOwnPace": "中国，按你的节奏走。",
-    "datesGroupBudget": "提供日期、人数和预算，就能获得路线草案和价格区间。",
-    "startPlanning": "开始规划我的行程",
-    "topics": {
-      "Essentials": "行前必备",
-      "Payments": "支付",
-      "Internet": "上网",
-      "Maps": "地图",
-      "Transport": "交通",
-      "Hotels": "住宿",
-      "Tickets": "门票",
-      "Payments in China": "中国支付指南",
-      "Internet in China": "中国上网指南",
-      "Maps & navigation": "地图与导航",
-      "Transport in China": "中国交通指南",
-      "Hotels in China": "中国住宿指南",
-      "Attraction tickets": "景点门票",
-      "Food & delivery": "餐饮与外卖",
-      "Itinerary planning": "行程规划",
-      "China travel essentials": "中国行前必备"
+    "faqKicker": "常见问题",
+    "faqHeading": "常见问题解答",
+    "mobileAsk": "向 Joy 咨询路线与报价",
+    "readTime": "{minutes} 分钟阅读",
+    "discoveryTitle": "继续探索中国",
+    "discoveryIntro": "实用指南，帮你为第一次中国之行做好准备。",
+    "discoveryPrepLabel": "第一次来中国？",
+    "discoveryKitLink": "查看完整的中国生存包 →",
+    "discoveryReadGuide": "阅读这篇指南",
+    "yunnanKicker": "把云南当成一段行程",
+    "yunnanHeadingDefault": "实用问题都解决了，你的行程可以是什么样？",
+    "yunnanHeadingPlanning": "看看一条云南路线是怎么串起来的。",
+    "yunnanBody": "沿着{route}的私家路线走一遍，看清每日安排、旅行节奏和已包含的内容，再决定是否适合你。",
+    "yunnanCta": "查看每日行程 →",
+    "yunnanCustomPrompt": "想换一条路线或节奏？",
+    "yunnanGuideLink": "探索云南旅行攻略 →",
+    "journeyPrivate": "私家行程",
+    "journeyNoShopping": "无购物安排",
+    "journeyLocal": "本地体验",
+    "journeyFlexible": "节奏灵活",
+    "journeySubtitle": "围绕你的日期和同行人数设计的从容云南路线。",
+    "journeyCta": "查看每日行程 →",
+    "priceFrom": "{price} 起",
+    "tailoredQuote": "按你的日期定制报价",
+    "asideAria": "规划你的中国之旅",
+    "asideKicker": "中国行前准备",
+    "asideHeading": "出发前需要搞定的一切。",
+    "asideBody": "用一份清单搞定入境、预订、网络、支付和抵达。",
+    "asideKitCta": "打开生存包",
+    "asideRelatedLabel": "继续读这个主题",
+    "asideAskKicker": "云南私家行程",
+    "asideAskHeading": "想要路线和报价？",
+    "asideAskBody": "告诉我日期和人数，Joy 就能给你一个价格区间。",
+    "asideAskCta": "咨询 Joy",
+    "asideHubPayments": "中国支付",
+    "asideHubInternet": "中国网络",
+    "asideHubMaps": "地图与导航",
+    "asideHubTransport": "中国交通",
+    "asideHubHotels": "中国酒店",
+    "asideHubAttractions": "景点门票",
+    "asideHubFood": "美食与外卖",
+    "asideHubItinerary": "行程规划",
+    "asideHubEssentials": "中国旅行必备",
+    "yunnanCustomLink": "了解定制云南行程 →"
+  },
+  "hub": {
+    "eyebrowDefault": "实用中国旅行攻略",
+    "shortAnswer": "一句话答案",
+    "badgeDefault": "指南",
+    "readGuide": "阅读指南 →",
+    "beforeYouArrive": "抵达之前",
+    "decisionKicker": "做出正确选择",
+    "faqKicker": "常见问题",
+    "faqHeading": "常见问题解答",
+    "relatedHeading": "探索相关主题",
+    "relatedBadge": "旅行必备",
+    "explore": "探索 →",
+    "breadcrumbHome": "首页"
+  },
+  "topicNav": {
+    "aria": "中国旅行攻略主题",
+    "essentials": "行前必备",
+    "payments": "支付",
+    "internet": "网络",
+    "maps": "地图",
+    "transport": "交通",
+    "hotels": "住宿",
+    "tickets": "门票"
+  },
+  "contentCta": {
+    "kicker": "正在计划云南之行？",
+    "heading": "按你自己的节奏游中国。",
+    "body": "只要告诉我日期、人数和预算，就能给你一份路线草案和价格区间。",
+    "button": "开始规划我的行程"
+  },
+  "currencyConverter": {
+    "meta": {
+      "title": "中国汇率换算器：美元换人民币 · 人民币换美元",
+      "description": "按最新参考汇率换算美元、新元、欧元、英镑等货币与人民币的金额，对照常用人民币数额，快速规划你的中国旅行预算。",
+      "ogTitle": "中国汇率换算器 | Hidden China Travel",
+      "ogDescription": "实时参考汇率，帮你把旅行预算换算成人民币。",
+      "twitterTitle": "中国汇率换算器",
+      "twitterDescription": "实时参考汇率，帮你把旅行预算换算成人民币。"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "survivalKit": "中国行前锦囊",
+      "current": "汇率换算"
+    },
+    "hero": {
+      "kicker": "中国旅行实用工具",
+      "title": "中国汇率换算器",
+      "lead": "按最新参考汇率，看看外面的价格折合人民币是多少。",
+      "cta": "换算一个价格 ↓"
+    },
+    "aside": {
+      "kicker": "在中国付款",
+      "heading": "账单上的数字可能不一样。",
+      "body": "这里的汇率只是参考。你的银行、信用卡、ATM 或兑换点会使用自己的汇率，并可能另行收费。",
+      "paymentLink": "阅读《中国付款指南》→",
+      "alipayLink": "抵达前先绑好支付宝 →"
+    },
+    "beforeYouPay": {
+      "kicker": "付款之前",
+      "heading": "把真实成本算进预算。",
+      "body": "中间价适合用来横向比较，但它不等于机场柜台或刷卡时的实际成交价。记得问清楚银行是否收取货币转换费；当终端让你选择币种时，对比一下「用人民币支付」和「按本币换算」哪一种更划算。",
+      "checksTitle": "出发前先做三个检查",
+      "checks": [
+        "看清上方的参考汇率及其日期。",
+        "查清你的银行或发卡行的货币转换条款。",
+        "另外准备一种付款方式，以防某笔交易失败。"
+      ],
+      "kitLink": "打开《中国行前锦囊》→"
+    },
+    "faq": {
+      "kicker": "常见问题",
+      "heading": "关于钱的问题",
+      "items": [
+        {
+          "question": "RMB 和 CNY 是同一个东西吗？",
+          "answer": "人民币的英文名称是 Renminbi（RMB），yuan 是它的主要计量单位；CNY 则是银行和汇率工具使用的货币代码。"
+        },
+        {
+          "question": "这就是支付宝或银行实际给我的汇率吗？",
+          "answer": "不是。换算器显示的是市场参考汇率，最终金额取决于你的支付渠道所使用的汇率、手续费和结算时间。"
+        },
+        {
+          "question": "可以用这个工具直接换钱吗？",
+          "answer": "不可以。它只是一个预算计算器，不处理付款，也不提供货币兑换。"
+        }
+      ]
+    },
+    "tool": {
+      "step": "01 / 换算",
+      "heading": "这个价格折合人民币是多少？",
+      "lead": "先用中间价参考汇率定位价格区间，再决定用刷卡、现金还是手机钱包付款。",
+      "amount": "金额",
+      "amountHint": "请输入大于 0 的金额",
+      "from": "从",
+      "to": "换算为",
+      "swapAria": "对调两种货币",
+      "invalidAmount": "请输入有效金额",
+      "rateUnavailable": "汇率暂不可用",
+      "rateDate": "汇率日期：",
+      "source": "来源：",
+      "updatesHourly": "大约每小时更新一次",
+      "loadFailed": "实时汇率未能加载，请尝试刷新。",
+      "refreshing": "刷新中…",
+      "refresh": "刷新汇率 ↻",
+      "errorMessage": "汇率暂时无法获取，上一次的参考汇率仍然显示。",
+      "quickHeading": "速查 · 人民币"
     }
   },
-  "stories": {
-    "metaTitle": "游客故事与真实评价",
-    "metaDescription": "读读家庭、情侣和第一次来中国的游客，在 Joy 规划的云南私家旅程中留下的真实故事与感受。",
-    "heroAlt": "傍晚的大理古城，传统瓦屋顶与灯笼照亮的街巷",
+  "visaChecker": {
+    "meta": {
+      "title": "中国签证查询工具 2026：测一测你的入境路线",
+      "description": "按护照、停留天数和行程路线，核对中国免签、海南 30 天和 240 小时过境免签政策，看清出发前需要确认的条件。",
+      "ogTitle": "中国签证查询工具 2026",
+      "ogDescription": "按护照和行程路线核对中国的入境方案。",
+      "twitterTitle": "中国签证查询工具 2026",
+      "twitterDescription": "按护照和行程路线核对中国的入境方案。"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "survivalKit": "中国行前锦囊",
+      "current": "签证查询"
+    },
+    "hero": {
+      "kicker": "中国旅行实用工具",
+      "title": "中国签证查询工具",
+      "lead": "在下单行程之前，先找出适合你护照和路线的入境方案。",
+      "cta": "查询我的入境方案 ↓"
+    },
+    "aside": {
+      "kicker": "需要留意",
+      "heading": "一个问题的差别，就可能改变结论。",
+      "body": "「飞回出发国」和「持确认机票过境第三国」是两回事。入境口岸和停留时长同样会影响结果。",
+      "visaLink": "阅读《中国签证指南》→",
+      "kitLink": "打开行前清单 →"
+    },
+    "countries": {
+      "kicker": "国别指南",
+      "heading": "从你的护照开始。",
+      "body": "国别页面讲的是通用规则；你的具体路线请用上方的查询工具核对。",
+      "viewGuide": "查看指南 →",
+      "englishOnlyNote": "详细的国别指南目前只有英文版，点击将打开英文页面。"
+    },
+    "sources": {
+      "kicker": "出发前请核实",
+      "heading": "官方信息源",
+      "body": "政策和可用口岸都可能调整。请查对你护照对应的最新规定，并让航空公司确认旅行证件要求。",
+      "nia": "国家移民管理局 ↗",
+      "mfa": "中华人民共和国外交部 ↗",
+      "visaCentre": "中国签证申请服务中心 ↗"
+    },
+    "faq": {
+      "kicker": "常见问题",
+      "heading": "依赖入境政策之前",
+      "items": [
+        {
+          "question": "免签入境适用于所有护照类型吗？",
+          "answer": "公布的免签政策通常针对普通护照。如果你持旅行证或临时证件，请向中国使领馆和航空公司确认。"
+        },
+        {
+          "question": "240 小时过境等同于旅游签证吗？",
+          "answer": "不一样。它适用于符合条件的国籍，经指定口岸前往另一个国家或地区时过境停留，并受停留天数和允许活动区域的限制。"
+        },
+        {
+          "question": "需要出示续程机票吗？",
+          "answer": "240 小时过境需要持前往第三国或第三地区的确认续程机票。口岸官员也可能向免签旅客询问行程和住宿安排。"
+        }
+      ]
+    },
+    "form": {
+      "step": "01 / 核对路线",
+      "heading": "从你的护照开始。",
+      "lead": "依据已公布的入境规则给出简明结论，并列出与你行程相关的关键条件。",
+      "nationality": "护照签发国",
+      "nationalityPlaceholder": "请选择你的护照签发国",
+      "purpose": "出行目的",
+      "stayDays": "停留时长（天）",
+      "route": "行程路线",
+      "port": "入境口岸",
+      "portHint": "过境和海南政策需要此项",
+      "portPlaceholder": "选择你的入境口岸（如已知）",
+      "submit": "查询入境规则 →",
+      "submitting": "查询中…",
+      "formNote": "适用于普通护照 · 结果仅供行程规划参考",
+      "errorGeneric": "查询失败，请重试。",
+      "purposes": {
+        "tourism": "旅游",
+        "business": "商务",
+        "family_visit": "探亲访友",
+        "exchange": "短期交流",
+        "transit": "过境",
+        "study": "留学",
+        "work": "工作",
+        "journalism": "记者"
+      },
+      "routes": {
+        "no_transit": "先到中国，之后返回本国",
+        "third_country_confirmed": "持续程机票前往另一个国家或地区",
+        "same_country_return": "返回同一个国家或地区",
+        "not_sure": "还没确定"
+      }
+    },
+    "result": {
+      "passport": "护照",
+      "stay": "停留",
+      "arrival": "入境",
+      "permittedArea": "允许停留区域：",
+      "missingConditions": "尚未满足的条件",
+      "prepare": "需要准备",
+      "officialSources": "核对官方信息源 →",
+      "disclaimer": "最终是否准入由口岸官员决定。预订前请确认最新规定。"
+    }
+  },
+  "floatingChat": {
+    "bubbleText": "计划去云南旅行？和 Joy 聊聊，免费获取行程建议。",
+    "bubbleClose": "关闭",
+    "ariaLabel": "在 WhatsApp 上与 Joy 聊天",
+    "tooltip": "通常 15 分钟内回复",
+    "badge": "和 Joy 聊聊"
+  },
+  "mobileCta": {
+    "whatsappLabel": "WhatsApp 咨询",
+    "formLabel": "获取行程",
+    "statusLabel": "通常 15 分钟内回复",
+    "whatsappAria": "在 WhatsApp 上与 Joy 聊天",
+    "formAria": "向 Joy 发送咨询"
+  },
+  "contentUi": {
     "home": "首页",
-    "current": "游客故事",
-    "kicker": "云南私家之旅",
-    "heroTitle": "云南给他们的感受，由他们自己说。",
-    "heroLead": "这些留言来自与 Joy Liu 同行的私家团客人：再次出发的家庭、蜜月中的新婚夫妇，还有第一次带孩子来中国的父母。每一趟规划，都围绕着具体的人。",
-    "readStories": "读读他们的故事",
-    "startPlanning": "开始规划我的行程",
-    "privacy": "为保护客人隐私，页面使用沿途风景照片，而不是游客本人的照片。",
-    "featuredNav": "精选故事",
-    "notesNav": "游客留言",
-    "whyNav": "为什么这样旅行",
-    "trustNav": "信任与资质",
-    "notesMetric": "本页公开的游客留言",
-    "countriesMetric": "留言客人来自的国家",
-    "privateMetric": "只与自己的同伴、专车和节奏同行",
-    "joyMetric": "同一位顾问，从第一次沟通陪到旅途结束",
+    "lastUpdated": "最后更新",
+    "legalInformation": "法律信息",
+    "customYunnan": "定制我的云南行程"
+  },
+  "stories": {
+    "metaTitle": "旅行故事 | Hidden China Travel",
+    "metaDescription": "来自真实旅行者的记录——他们与 Joy Liu 一起规划了云南私人定制行程。",
+    "heroTitle": "旅行故事",
+    "heroLead": "来自与我们在云南共走过私人路线的人的记录。部分姓名做了缩写，部分内容经过翻译。",
+    "heroAlt": "旅行者在云南古镇中行走",
+    "kicker": "旅行故事",
+    "current": "当前",
     "featuredTitle": "精选故事",
-    "featuredIntro": "他们讲到的人、规划和旅途片段，共同组成了这些故事。",
-    "readJournal": "阅读旅行手记",
-    "notesTitle": "游客留言",
-    "notesIntro": "从每位客人的一句话开始。有完整故事的内容可以继续往下读，其余留言在这里完整呈现。",
-    "readAccount": "阅读完整留言",
-    "colophon": "部分姓名做了缩写处理，部分留言经翻译和编辑以便阅读。",
-    "whoTraveled": "谁在这次旅行中",
-    "whereNote": "留言写的是什么地方",
-    "whatStayed": "什么留在了记忆里",
-    "galleryIntro": "大理、沙溪、虎跳峡、丽江和香格里拉——这些故事发生的地方。",
-    "galleryNote": "照片拍摄于行程沿途，并非由这些留言的客人提供；实际行程也不保证复现照片中的每个画面。",
-    "whyTitle": "为什么游客选择这样的方式",
-    "whyIntro": "不同留言里反复出现同样的细节，它们也是一趟云南私家旅程被认真安排的方式。",
-    "trustTitle": "信任与资质",
-    "trustIntro": "每趟行程由 Joy Liu 规划，旅游合同与款项由下方列明的昆明持牌旅行社办理。",
-    "companyDocuments": "查看公司资质文件",
-    "registry": "在国家企业信用信息公示系统查询",
-    "bookingPayment": "了解预订与付款流程",
-    "tripadvisorText": "本页留言标明同行者和地点，并在获得许可后公开。部分姓名做了缩写，部分内容为便于阅读经过翻译。这里没有附带 Tripadvisor 平均评分。",
-    "googleText": "本页没有展示 Google 评分。当有完整公开的主页可供查看时，链接会放在这里，与许可证和公司文件一起供你核验。",
-    "ctaTitle": "告诉 Joy，谁要一起出发。",
-    "ctaText": "一个大概的月份、同行的人，以及你希望每天怎样度过。付款前，你会先看到书面路线；看清并认可之后，才需要决定是否确认。",
-    "whatsapp": "也可以在 WhatsApp 上写给 Joy",
-    "whatsappMessage": "你好 Joy，我读了游客故事，想聊聊云南私家旅行。",
-    "ctaAlt": "洱海生态廊道边，一位音乐人在停靠的小船上弹吉他"
+    "featuredIntro": "来自近期行程的几份记录。",
+    "featuredNav": "精选故事",
+    "galleryTitle": "在路上",
+    "galleryIntro": "来自我们实际走过路线的简短图文记录。",
+    "galleryNote": "照片均拍摄于我们自己的行程，已获得许可。",
+    "notesTitle": "旅行者的记录",
+    "notesIntro": "更长的记录，行程结束后写下。",
+    "notesMetric": "篇旅行记录",
+    "notesNav": "全部记录",
+    "whoTraveled": "谁在旅行",
+    "joyMetric": "1 位本地规划师",
+    "privateMetric": "100% 私人行程",
+    "countriesMetric": "5 个客源国",
+    "whyTitle": "为什么分享这些记录",
+    "whyIntro": "一趟旅行会改变你对一个地方的记忆。这些文字由亲历者写下。",
+    "whyNav": "为什么分享",
+    "trustTitle": "真实与核验",
+    "trustIntro": "以下每份记录都由旅行者本人撰写。姓名缩写或文字翻译的地方都有标注。",
+    "trustNav": "信任细节",
+    "readAccount": "读这份记录 →",
+    "readStories": "读完整故事 →",
+    "readJournal": "读这篇日志 →",
+    "whatStayed": "留在他们记忆里的",
+    "whereNote": "与我们同行后写下。",
+    "bookingPayment": "预订与付款流程",
+    "companyDocuments": "查看公司文件",
+    "registry": "在 gsxt.gov.cn 查询公司",
+    "privacy": "我们如何处理隐私",
+    "tripadvisorText": "这些记录旁没有 Tripadvisor 评分。这些是真实行程中的真实记录。",
+    "googleText": "本页没有 Google 评分。若能完整读取到的档案，其链接会放在这里。",
+    "ctaTitle": "告诉 Joy 谁在旅行。",
+    "ctaText": "几个日期，或者只是你想让这趟旅行的感觉。你会先看到书面路线，再决定是否付款。",
+    "ctaAlt": "洱海岸边一只系泊小船上的吉他手",
+    "whatsapp": "或在 WhatsApp 上联系 Joy",
+    "startPlanning": "开始规划我的行程",
+    "colophon": "来自我们实际行程的记录与照片。由旅行者撰写，为篇幅做了轻度编辑。",
+    "home": "首页"
   }
 }

@@ -24,8 +24,13 @@ export const htmlLang: Record<AppLocale, string> = {
  * not English scaffolding). Everything under /zh NOT listed here renders
  * with noindex and stays out of the sitemap until its translation lands
  * (see docs/i18n-plan.md §6 — 渐进发布).
+ *
+ * Blog post and hub paths are included because their Chinese translations
+ * now exist in _posts-zh/ and content-zh/hubs/. If a translation is removed
+ * or marked as draft, remove its path here too.
  */
 export const zhLivePaths = new Set<string>([
+  // — Static pages (translated via i18n messages) —
   "/", // 中文首页已翻译上线
   "/journeys",
   "/journeys/kunming-dali-shaxi-lijiang-6-days",
@@ -33,23 +38,62 @@ export const zhLivePaths = new Set<string>([
   "/custom-china-tour",
   "/contact",
   "/about-us",
-  "/traveler-stories",
-  "/traveler-stories/from-chinas-cities-to-yunnans-landscapes",
-  "/booking",
-  "/licensed-operator",
-  "/privacy-policy",
-  "/terms-of-service",
-  "/affiliate-disclosure",
+  "/survival-kit",
   "/china-destinations/yunnan",
-  "/kunming-travel-guide",
-  "/dali-travel-guide",
-  "/where-to-stay-in-dali",
-  "/shaxi-ancient-town-guide",
-  "/dali-to-shaxi",
-  "/dali-to-shaxi-ancient-town",
+  "/china-visa-checker",
+  "/china-currency-converter",
+  "/traveler-stories",
+
+  // — Blog posts (_posts-zh/) —
+  "/alipay-for-foreigners-china",
+  "/alipay-wechat-pay-verification-failed",
+  "/best-esim-for-china-travel",
+  "/best-vpn-for-china",
+  "/book-china-high-speed-rail-foreigners",
+  "/china-attraction-ticket-booking-foreigners-2026",
+  "/china-real-name-system-foreigners",
+  "/china-sim-card-for-foreigners",
+  "/china-visa-free-countries-2026",
+  "/chinese-id-number-foreigners",
   "/dali-hidden-gems-off-the-beaten-path",
+  "/dali-travel-guide",
+  "/digital-survival-china-internet-guide",
+  "/digital-survival-china-payment-guide",
+  "/digital-survival-china-transport-guide",
+  "/do-i-need-a-visa-for-china",
+  "/do-you-need-vpn-china",
+  "/google-maps-china-not-working",
+  "/hotels-in-china-for-foreigners",
+  "/how-to-plan-china-itinerary",
+  "/how-to-use-didi-china-foreigners",
+  "/how-to-use-meituan",
+  "/independent-travel-china",
+  "/kunming-travel-guide",
   "/lijiang-travel-guide",
+  "/order-food-china-without-chinese-number",
   "/shangri-la-travel-guide",
+  "/shaxi-ancient-town-guide",
+  "/trip-com-esim-china-review",
+  "/wechat-pay-for-foreigners-china",
+  "/where-to-stay-in-dali",
+  "/why-china-attractions-require-reservations",
+  "/why-your-payment-fails-in-china",
+  "/yunnan-travel-from-australia",
+  "/yunnan-travel-from-malaysia",
+  "/yunnan-travel-from-singapore",
+  "/yunnan-travel-from-uk",
+  "/yunnan-travel-from-usa",
+
+  // — Hub pages (content-zh/hubs/) —
+  "/attraction-tickets-in-china",
+  "/china-itinerary-planning",
+  "/china-travel-essentials",
+  "/food-delivery-in-china",
+  "/hotels-in-china",
+  "/internet-in-china",
+  "/maps-navigation-in-china",
+  "/payments-in-china",
+  "/transport-in-china",
 ]);
 
 export function isZhLive(path: string): boolean {

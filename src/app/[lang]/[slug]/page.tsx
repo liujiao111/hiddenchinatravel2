@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { ArticlePage } from "@/components/article-page";
 import { HubPage } from "@/components/hub-page";
 import { LegalPage } from "@/components/legal-page";
-import { BookingPage } from "@/components/booking-page";
 import { routing } from "@/i18n/routing";
 import { absoluteUrl, getAllContent, getContentBySlug, translationSlug } from "@/lib/content";
 import { alternatesFor, robotsFor, type AppLocale } from "@/lib/i18n-seo";
@@ -37,10 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!item) return {};
   const { frontmatter } = item;
   const path = `/${slug}`;
-  const locales = availableLocales(lang, slug);
-  const alternates = locales.length === 1 && lang === "zh"
-    ? { canonical: `https://hiddenchinatravel.com/zh${path}`, languages: { "zh-Hans": `https://hiddenchinatravel.com/zh${path}` } }
-    : alternatesFor(lang, path, locales);
+  const alternates = alternatesFor(lang, path, availableLocales(lang, slug));
   const description = frontmatter.metaDescription || frontmatter.excerpt || frontmatter.description;
   const image = frontmatter.ogImage?.url || frontmatter.coverImage || "/home/hero.webp";
   const seoTitle = frontmatter.absoluteSeoTitle || frontmatter.seoTitle || frontmatter.title;
@@ -82,8 +78,7 @@ export default async function ContentPage({ params }: Props) {
     [otherLang]: getContentBySlug(otherSlug, otherLang) ? `/${otherSlug}` : null,
   } as const;
 
-  if (item.kind === "hub") return <HubPage item={item} alternate={alternate} />;
-  if (item.kind === "legal" && item.slug === "booking") return <BookingPage item={item} alternate={alternate} />;
+  if (item.kind === "hub") return <HubPage item={item} alternate={alternate} lang={lang} />;
   if (item.kind === "legal") return <LegalPage item={item} alternate={alternate} />;
-  return <ArticlePage item={item} alternate={alternate} />;
+  return <ArticlePage item={item} alternate={alternate} lang={lang} />;
 }

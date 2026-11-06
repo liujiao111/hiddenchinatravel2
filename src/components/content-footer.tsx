@@ -1,16 +1,15 @@
 "use client";
 
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useTranslations } from "next-intl";
-import { LocaleLink as Link } from "@/components/locale-link";
+import { Link } from "@/i18n/navigation";
 import { licensedOperator } from "@/lib/journey-trust";
 import { siteConfig } from "@/lib/site-config";
 
-const whatsapp = buildWhatsAppUrl();
+const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=Hi%2C%20I%27d%20like%20help%20planning%20my%20China%20trip`;
 
 export function ContentCta() {
-  const t = useTranslations("contentUi");
-  return <section className="content-cta"><div><p>{t("planYunnan")}</p><h2>{t("travelOwnPace")}</h2><span>{t("datesGroupBudget")}</span><a className="button button-light" href="#ask-joy">{t("startPlanning")}</a></div></section>;
+  const t = useTranslations("contentCta");
+  return <section className="content-cta"><div><p>{t("kicker")}</p><h2>{t("heading")}</h2><span>{t("body")}</span><a className="button button-light" href="#ask-joy">{t("button")}</a></div></section>;
 }
 
 export function ContentFooter() {

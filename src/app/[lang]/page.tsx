@@ -7,6 +7,7 @@ import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { EnquireLink } from "@/components/enquire-link";
 import { JourneyCard } from "@/components/journey-card";
+import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { licensedOperator } from "@/lib/journey-trust";
@@ -53,6 +54,7 @@ export default async function Home({ params }: Props) {
   const { lang } = await params;
   setRequestLocale(lang);
   const t = await getTranslations({ locale: lang, namespace: "home" });
+  const tMobile = await getTranslations({ locale: lang, namespace: "mobileCta" });
   const whatsapp = buildWhatsAppUrl(undefined, lang);
 
   const agencyName = lang === "zh" ? licensedOperator.nameZh : licensedOperator.nameEn;
@@ -70,6 +72,7 @@ export default async function Home({ params }: Props) {
   const supportItems = t.raw("supportItems") as SupportItem[];
   const destinations = t.raw("destinations") as Destination[];
   const faqs = (t.raw("faqs") as Faq[]).map(([q, a]) => [q, fill(a)] as Faq);
+  const trustBadges = t.raw("trustBadges") as string[];
 
   const fromPrice = (price: number, currency: string, basis: string) =>
     t("fromPrice", { price: formatPriceLabel(price, currency), basis });
@@ -109,8 +112,9 @@ export default async function Home({ params }: Props) {
           <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">{t("cta")}</EnquireLink>
           <Link href="/journeys" className="button button-light hero-desktop-only">{t("exploreJourneys")}</Link>
         </div>
-        <p className="hero-trust-line hero-desktop-only">{t("heroTrustDesktop")}</p>
-        <p className="hero-trust-line hero-mobile-only">{t("heroTrustMobile")}</p>
+        <ul className="hero-trust-badges">
+          {trustBadges.map((badge) => <li key={badge}><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" /></svg>{badge}</li>)}
+        </ul>
         <small>{t("replyTime")}</small>
         <Link href="/journeys" className="hero-text-link hero-mobile-only">{t("exploreJourneysMobile")}</Link>
       </div>
@@ -266,6 +270,14 @@ export default async function Home({ params }: Props) {
       </div>
     </section>
     <ContentFooter />
+    <MobileCtaBar
+      whatsappHref={whatsapp}
+      formHref="/contact#enquire"
+      whatsappLabel={tMobile("whatsappLabel")}
+      formLabel={tMobile("formLabel")}
+      statusLabel={tMobile("statusLabel")}
+      formCtaLocation="home_mobile_form"
+    />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }} />
   </main>;
 }

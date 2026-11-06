@@ -14,23 +14,35 @@ export type CurrencyCode =
 export type CurrencyOption = {
   code: CurrencyCode;
   name: string;
+  /** Simplified Chinese display name (used on /zh pages). */
+  nameZh: string;
   symbol: string;
 };
 
 /** Traveler-facing currencies — CNY first, then common inbound origins. */
 export const CURRENCIES: CurrencyOption[] = [
-  { code: "CNY", name: "Chinese Yuan (RMB)", symbol: "¥" },
-  { code: "USD", name: "US Dollar", symbol: "$" },
-  { code: "EUR", name: "Euro", symbol: "€" },
-  { code: "GBP", name: "British Pound", symbol: "£" },
-  { code: "HKD", name: "Hong Kong Dollar", symbol: "HK$" },
-  { code: "AUD", name: "Australian Dollar", symbol: "A$" },
-  { code: "CAD", name: "Canadian Dollar", symbol: "C$" },
-  { code: "JPY", name: "Japanese Yen", symbol: "¥" },
-  { code: "SGD", name: "Singapore Dollar", symbol: "S$" },
-  { code: "KRW", name: "South Korean Won", symbol: "₩" },
-  { code: "TWD", name: "New Taiwan Dollar", symbol: "NT$" },
+  { code: "CNY", name: "Chinese Yuan (RMB)", nameZh: "人民币", symbol: "¥" },
+  { code: "USD", name: "US Dollar", nameZh: "美元", symbol: "$" },
+  { code: "EUR", name: "Euro", nameZh: "欧元", symbol: "€" },
+  { code: "GBP", name: "British Pound", nameZh: "英镑", symbol: "£" },
+  { code: "HKD", name: "Hong Kong Dollar", nameZh: "港元", symbol: "HK$" },
+  { code: "AUD", name: "Australian Dollar", nameZh: "澳元", symbol: "A$" },
+  { code: "CAD", name: "Canadian Dollar", nameZh: "加元", symbol: "C$" },
+  { code: "JPY", name: "Japanese Yen", nameZh: "日元", symbol: "¥" },
+  { code: "SGD", name: "Singapore Dollar", nameZh: "新加坡元", symbol: "S$" },
+  { code: "KRW", name: "South Korean Won", nameZh: "韩元", symbol: "₩" },
+  { code: "TWD", name: "New Taiwan Dollar", nameZh: "新台币", symbol: "NT$" },
 ];
+
+export type CurrencyLang = "en" | "zh";
+
+/** Localised currency display name. */
+export function currencyName(
+  currency: CurrencyOption,
+  lang: CurrencyLang = "en",
+): string {
+  return lang === "zh" ? currency.nameZh : currency.name;
+}
 
 export const DEFAULT_FROM: CurrencyCode = "USD";
 export const DEFAULT_TO: CurrencyCode = "CNY";

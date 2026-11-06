@@ -7,7 +7,7 @@ import type { LocaleAlternate } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { HashLink } from "@/components/hash-link";
 import { PlanJourneyClose } from "@/components/plan-journey-close";
-import { JourneyMobileCta } from "@/components/journey-mobile-cta";
+import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { SiteHeader } from "@/components/site-header";
 import { QuickAsk } from "@/components/quick-ask";
 import { JourneyQuoteBand } from "@/components/journey-quote-band";
@@ -36,6 +36,7 @@ const sixDayPhotoSrc: Record<string, string> = {
 export function JourneyPage({ journey, alternate }: { journey: Journey; alternate?: LocaleAlternate }) {
   const { frontmatter } = journey;
   const t = useTranslations("journey");
+  const tMobile = useTranslations("mobileCta");
   const lang = useLocale() as "en" | "zh";
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
   const isEightDayYunnanJourney = journey.slug === "kunming-dali-lijiang-shangri-la-private-tour";
@@ -204,7 +205,13 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
     {frontmatter.bookingNotes?.length ? null : <YunnanTravelNotes />}
 
     {isSixDayYunnanJourney ? <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/custom-china-tour" showForm={false} /> : <section className="journey-final-cta"><div><p>{t("finalKicker")}</p><h2>{t("finalHeading")}</h2><span>{t("finalText")}</span><HashLink href="#ask-joy" className="button button-light">{t("startPlanning")}</HashLink><Link href={whatsapp} className="journey-final-alt">{t("chatWhatsapp")}</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">{t("customRouteLink")}</Link></div></section>}
-    <JourneyMobileCta href={isSixDayYunnanJourney ? whatsapp : "#ask-joy"} label={t("startPlanning")} />
+    <MobileCtaBar
+      whatsappHref={whatsapp}
+      formHref={isSixDayYunnanJourney ? "#ask-joy-final" : "#ask-joy"}
+      whatsappLabel={tMobile("whatsappLabel")}
+      formLabel={tMobile("formLabel")}
+      statusLabel={tMobile("statusLabel")}
+    />
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;

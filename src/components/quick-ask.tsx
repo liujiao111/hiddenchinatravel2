@@ -34,7 +34,7 @@ function travelMonthOptions(locale: string, notSureLabel: string) {
 
 function syncMobileAskBars() {
   const hide = visibleAskTargets.size > 0;
-  document.querySelectorAll(".article-mobile-ask").forEach((bar) => {
+  document.querySelectorAll(".article-mobile-ask, .mobile-cta-bar").forEach((bar) => {
     bar.classList.toggle("ask-bar-hidden", hide);
   });
 }
@@ -54,7 +54,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
 
   useEffect(() => {
     const target = document.getElementById(id);
-    const bars = document.querySelectorAll(".article-mobile-ask");
+    const bars = document.querySelectorAll(".article-mobile-ask, .mobile-cta-bar");
     if (!target || bars.length === 0) return;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) visibleAskTargets.add(id);

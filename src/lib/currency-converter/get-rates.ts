@@ -157,11 +157,15 @@ export function convertAmount(
   return fromCny / cnyPerUnit[to];
 }
 
-export function formatMoney(amount: number, code: CurrencyCode): string {
+export function formatMoney(
+  amount: number,
+  code: CurrencyCode,
+  locale: string = "en-US",
+): string {
   if (!Number.isFinite(amount)) return "—";
   const maxFraction = code === "JPY" || code === "KRW" ? 0 : 2;
   try {
-    return new Intl.NumberFormat("en-US", {
+    return new Intl.NumberFormat(locale, {
       style: "currency",
       currency: code,
       currencyDisplay: "narrowSymbol",
@@ -174,11 +178,15 @@ export function formatMoney(amount: number, code: CurrencyCode): string {
 }
 
 /** Mid-market unit rate for display (toureler-friendly, usually 4 dp). */
-export function formatUnitRate(amount: number, code: CurrencyCode): string {
+export function formatUnitRate(
+  amount: number,
+  code: CurrencyCode,
+  locale: string = "en-US",
+): string {
   if (!Number.isFinite(amount)) return "—";
   const digits = code === "JPY" || code === "KRW" ? 2 : 4;
   try {
-    return new Intl.NumberFormat("en-US", {
+    return new Intl.NumberFormat(locale, {
       style: "currency",
       currency: code,
       currencyDisplay: "narrowSymbol",

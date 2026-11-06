@@ -3,12 +3,14 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
+import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { QuickAsk } from "@/components/quick-ask";
 import { JourneyCard } from "@/components/journey-card";
 import { SiteHeader } from "@/components/site-header";
 import { getAllJourneys } from "@/lib/journeys";
 import { formatPriceLabel } from "@/lib/format-price";
 import { JsonLd, breadcrumbList } from "@/components/json-ld";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -38,6 +40,8 @@ export default async function JourneysPage({ params }: { params: Promise<{ lang:
   const { lang } = await params;
   setRequestLocale(lang);
   const t = await getTranslations({ locale: lang, namespace: "journeys" });
+  const tMobile = await getTranslations({ locale: lang, namespace: "mobileCta" });
+  const whatsapp = buildWhatsAppUrl(undefined, lang);
   const journeys = getAllJourneys(lang);
   return <main>
     <SiteHeader />
@@ -62,6 +66,14 @@ export default async function JourneysPage({ params }: { params: Promise<{ lang:
     <section className="journeys-philosophy section-sand"><div className="shell"><h2>{t("philosophyHeading")}</h2><div>{(t.raw("philosophyPoints") as string[]).map((item, index) => <p key={item}><span>0{index + 1}</span>{item}</p>)}</div></div></section>
     <QuickAsk source="/journeys" sourceTitle={t("quickAskSourceTitle")} intent="trip" />
     <ContentFooter />
+    <MobileCtaBar
+      whatsappHref={whatsapp}
+      formHref="#ask-joy"
+      whatsappLabel={tMobile("whatsappLabel")}
+      formLabel={tMobile("formLabel")}
+      statusLabel={tMobile("statusLabel")}
+      formCtaLocation="journeys_mobile_form"
+    />
     <JsonLd data={{
       "@context": "https://schema.org",
       "@graph": [

@@ -1,22 +1,23 @@
-import { useTranslations } from "next-intl";
-import { LocaleLink as Link } from "@/components/locale-link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
+import type { AppLocale } from "@/lib/i18n-seo";
 
 const topics = [
-  { label: "Essentials", href: "/china-travel-essentials", matches: ["essentials", "visa", "planning", "food"] },
-  { label: "Payments", href: "/payments-in-china", matches: ["payment"] },
-  { label: "Internet", href: "/internet-in-china", matches: ["internet", "vpn", "sim"] },
-  { label: "Maps", href: "/maps-navigation-in-china", matches: ["maps", "navigation"] },
-  { label: "Transport", href: "/transport-in-china", matches: ["transport"] },
-  { label: "Hotels", href: "/hotels-in-china", matches: ["hotel"] },
-  { label: "Tickets", href: "/attraction-tickets-in-china", matches: ["ticket", "attraction"] },
-];
+  { key: "essentials", href: "/china-travel-essentials", matches: ["essentials", "visa", "planning", "food"] },
+  { key: "payments", href: "/payments-in-china", matches: ["payment"] },
+  { key: "internet", href: "/internet-in-china", matches: ["internet", "vpn", "sim"] },
+  { key: "maps", href: "/maps-navigation-in-china", matches: ["maps", "navigation"] },
+  { key: "transport", href: "/transport-in-china", matches: ["transport"] },
+  { key: "hotels", href: "/hotels-in-china", matches: ["hotel"] },
+  { key: "tickets", href: "/attraction-tickets-in-china", matches: ["ticket", "attraction"] },
+] as const;
 
-export function TopicNavigation({ active }: { active?: string }) {
-  const t = useTranslations("contentUi");
+export async function TopicNavigation({ active, lang }: { active?: string; lang: AppLocale }) {
+  const t = await getTranslations({ locale: lang, namespace: "topicNav" });
   const activeTopic = active?.toLowerCase() || "";
-  return <nav className="topic-nav" aria-label={t("guideTopicsAria")}>
+  return <nav className="topic-nav" aria-label={t("aria")}>
     <div className="shell topic-nav-inner">
-      {topics.map(({ label, href, matches }) => <Link key={href} href={href} className={matches.some((match) => activeTopic.includes(match)) ? "active" : ""}>{t(`topics.${label}`)}</Link>)}
+      {topics.map(({ key, href, matches }) => <Link key={href} href={href} className={matches.some((match) => activeTopic.includes(match)) ? "active" : ""}>{t(key)}</Link>)}
     </div>
   </nav>;
 }

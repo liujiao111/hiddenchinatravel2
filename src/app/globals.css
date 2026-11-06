@@ -110,6 +110,35 @@ p { line-height:1.7; }
 .hero-copy>p.hero-brand { margin:8px auto 28px; font-family:Georgia,serif; font-size:1.08rem; font-style:italic; }
 .hero h1 { max-width:920px; margin:12px auto 18px; font-size:clamp(3rem,6vw,5.7rem); line-height:.98; text-shadow:0 2px 22px rgba(0,0,0,.3); }
 .hero-trust-line { max-width:720px; margin:20px auto 0; font-size:.92rem; line-height:1.6; }
+
+/* Trust badge tag cards with green checkmarks */
+.hero-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 720px;
+  margin: 20px auto 0;
+  padding: 0;
+  list-style: none;
+}
+.hero-trust-badges li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+.hero-trust-badges svg { color: #25D366; flex: none; }
+
 .hero-copy>small { display:block; margin-top:16px; color:rgba(255,255,255,.92); font-size:.88rem; text-shadow:0 1px 10px rgba(0,0,0,.4); }
 .hero-text-link { display:inline-block; margin-top:16px; padding-bottom:4px; border-bottom:1px solid rgba(255,255,255,.7); font-size:.8rem; font-weight:750; letter-spacing:.04em; }
 .hero-mobile-only { display:none; }
@@ -622,6 +651,8 @@ a.utility-card { color:inherit; }
   .hero-mobile-only { display:block; }
   .hero-text-link.hero-mobile-only { display:inline-block; }
   .hero-trust-line { max-width:340px; }
+  .hero-trust-badges { max-width:340px; gap:6px; }
+  .hero-trust-badges li { font-size:.68rem; padding:4px 10px; }
   .tabs { gap:22px; overflow:auto; justify-content:flex-start; }
   .destination-grid { grid-template-columns:1fr; }
   .image-card { min-height:430px; }
@@ -883,6 +914,9 @@ a.utility-card { color:inherit; }
 .journey-price-grid article.featured { border:1px solid #bdc7c1; border-top:4px solid #345d58; }
 .journey-detail-label { display:block; margin-bottom:14px; }
 .journey-mobile-cta,.article-mobile-ask { display:none; }
+/* Split mobile CTA bar — mobile only. Base rule hides it on desktop;
+   the full layout lives in the max-width:700px media query below. */
+.mobile-cta-bar { display:none; }
 
 @media (max-width:1000px) {
   .journey-gallery-viewport { aspect-ratio:16/9; }
@@ -960,8 +994,95 @@ a.utility-card { color:inherit; }
   .ask-bar-hidden { display:none !important; }
   body:has(#ask-joy:target) .journey-mobile-cta,
   body:has(#ask-joy-price:target) .journey-mobile-cta,
-  body:has(#ask-joy:target) .article-mobile-ask { display:none !important; }
-  main:has(.article-mobile-ask),main:has(.journey-mobile-cta) { padding-bottom:78px; }
+  body:has(#ask-joy:target) .article-mobile-ask,
+  body:has(#ask-joy:target) .mobile-cta-bar,
+  body:has(#ask-joy-price:target) .mobile-cta-bar { display:none !important; }
+  main:has(.article-mobile-ask),main:has(.journey-mobile-cta),main:has(.mobile-cta-bar) { padding-bottom:78px; }
+
+  /* ---- Split mobile CTA bar (WhatsApp primary + form secondary) ---- */
+  .mobile-cta-bar {
+    position: fixed;
+    z-index: 80;
+    right: 0;
+    left: 0;
+    bottom: max(0px, env(safe-area-inset-bottom, 0px));
+    display: flex;
+    height: 60px;
+    align-items: stretch;
+    box-shadow: 0 -6px 24px rgba(20,33,28,.18);
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+  .mobile-cta-whatsapp {
+    flex: 1 1 62%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 18px;
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-cta-whatsapp:active { background: #1da851; }
+  .mobile-cta-icon {
+    width: 26px;
+    height: 26px;
+    flex: none;
+    color: #fff;
+  }
+  .mobile-cta-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    line-height: 1.2;
+    min-width: 0;
+  }
+  .mobile-cta-whatsapp .mobile-cta-label {
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mobile-cta-status {
+    font-size: .6rem;
+    font-weight: 500;
+    opacity: .85;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mobile-cta-form {
+    flex: 1 1 38%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    background: #282821;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-cta-form:active { background: #3a3a31; }
+  .mobile-cta-form .mobile-cta-label {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* When the split bar is visible, hide the floating WhatsApp button on mobile
+     to avoid two redundant WhatsApp entry points. */
+  body:has(.mobile-cta-bar:not(.ask-bar-hidden)) .wa-float { display: none; }
+  /* Keep the old nudge rule for pages still using .journey-mobile-cta */
+  body:has(.journey-mobile-cta:not(.ask-bar-hidden)) .wa-float,
+  body:has(.article-mobile-ask:not(.ask-bar-hidden)) .wa-float { bottom: 82px; }
 }
 
 
@@ -2002,44 +2123,162 @@ a.utility-card { color:inherit; }
 }
 
 
-/* Floating WhatsApp for all eligible desktop visitors; mobile keeps existing sticky CTAs. */
-.floating-whatsapp {
-  display: none;
+/* Floating WhatsApp widget — appears on all eligible pages (mobile + desktop).
+   Preserves data-cta-location="floating_whatsapp" for whatsapp-tracking.ts.
+   Existing mobile sticky bars (.journey-mobile-cta / .article-mobile-ask)
+   remain for journey & article pages; this widget sits above them via z-index. */
+.wa-float {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 55;
-  min-height: 50px;
-  align-items: center;
-  gap: 9px;
-  padding: 9px 17px 9px 13px;
-  border: 1px solid rgba(255,255,255,.22);
-  border-radius: 999px;
-  background: #345d58;
-  box-shadow: 0 9px 28px rgba(22,43,37,.23);
-  color: #fff;
-  font-size: .83rem;
-  font-weight: 650;
-  letter-spacing: 0;
-  line-height: 1.2;
-  text-decoration: none;
+  right: 20px;
+  bottom: 20px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
 }
-.floating-whatsapp svg { width: 23px; height: 23px; flex: none; }
-.floating-whatsapp-channel {
-  padding-left: 9px;
-  border-left: 1px solid rgba(255,255,255,.33);
-  color: rgba(255,255,255,.84);
+
+/* ---- Chat bubble popup ---- */
+.wa-bubble {
+  position: relative;
+  max-width: 280px;
+  padding: 14px 16px 12px;
+  border-radius: 14px 14px 4px 14px;
+  background: #fff;
+  box-shadow: 0 6px 24px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.06);
+  color: var(--ink);
+  font-size: .82rem;
+  line-height: 1.45;
+  animation: wa-bubble-in .32s cubic-bezier(.22,1,.36,1) both;
+}
+.wa-bubble::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: -7px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  transform: rotate(45deg);
+  box-shadow: 2px 2px 3px rgba(0,0,0,.04);
+}
+.wa-bubble-text { margin: 0; font-weight: 600; }
+.wa-bubble-hint {
+  display: block;
+  margin-top: 4px;
   font-size: .71rem;
-  font-weight: 500;
+  font-weight: 400;
+  color: #6b7280;
 }
-.floating-whatsapp:hover, .floating-whatsapp:focus-visible {
-  background: #254842;
+.wa-bubble-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.wa-bubble-close:hover { background: #f3f4f6; color: #4b5563; }
+
+@keyframes wa-bubble-in {
+  from { opacity: 0; transform: translateY(8px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---- Floating button + badge wrapper ---- */
+.wa-float-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Persistent badge label to the left of the button (desktop only) */
+.wa-float-badge {
+  display: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,.1);
+  color: var(--ink);
+  font-size: .78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (min-width: 701px) {
+  .wa-float-badge { display: inline-block; }
+}
+
+/* ---- Floating button ---- */
+.wa-float-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 4px 14px rgba(37,211,102,.4);
   color: #fff;
-  box-shadow: 0 12px 32px rgba(22,43,37,.29);
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.floating-whatsapp:focus-visible { outline: 3px solid #e1cda1; outline-offset: 3px; }
-@media (min-width: 1025px) {
-  .floating-whatsapp { display: inline-flex; }
+.wa-float-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 20px rgba(37,211,102,.5);
+}
+.wa-float-btn:focus-visible {
+  outline: 3px solid #e1cda1;
+  outline-offset: 3px;
+}
+.wa-float-icon { width: 28px; height: 28px; flex: none; }
+
+/* Subtle pulse ring — slow and tasteful */
+.wa-float-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25D366;
+  opacity: 0;
+  animation: wa-pulse 2.8s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes wa-pulse {
+  0%   { transform: scale(1);   opacity: .35; }
+  70%  { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ---- Responsive adjustments ---- */
+/* On mobile, the split CTA bar replaces the floating button.
+   For pages still using the old .journey-mobile-cta / .article-mobile-ask,
+   nudge the floating button up. */
+body:has(.journey-mobile-cta:not(.ask-bar-hidden)) .wa-float,
+body:has(.article-mobile-ask:not(.ask-bar-hidden)) .wa-float {
+  bottom: 82px;
+}
+/* Hide pulse on mobile to save battery */
+@media (max-width: 700px) {
+  .wa-float { right: 16px; bottom: 16px; }
+  .wa-bubble { max-width: 230px; font-size: .78rem; }
+  .wa-float-btn { width: 50px; height: 50px; }
+  .wa-float-icon { width: 25px; height: 25px; }
+}
+
+/* Reduce motion: disable animations */
+@media (prefers-reduced-motion: reduce) {
+  .wa-float-pulse { animation: none; }
+  .wa-bubble { animation: none; }
 }
 
 

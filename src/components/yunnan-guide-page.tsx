@@ -1,9 +1,10 @@
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { CustomJourneyLink } from "@/components/custom-journey-link";
 import { breadcrumbList } from "@/components/json-ld";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { ContentFooter } from "@/components/content-footer";
+import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { QuickAsk } from "@/components/quick-ask";
 import { GuideCard } from "@/components/guide-card";
 import { JourneyCard } from "@/components/journey-card";
@@ -25,6 +26,7 @@ const countryNames: Record<string, string> = {
 
 export function YunnanGuidePage({ journey }: { journey: Journey }) {
   const locale = useLocale() as AppLocale;
+  const tMobile = useTranslations("mobileCta");
   const { facts, routeStops, placeCards, guides, seasons, practical, faqs, copy, whatsapp } = getYunnanGuideContent(locale);
   const countryGuides = getPublishedYunnanCountryGuides();
   const { frontmatter } = journey;
@@ -100,6 +102,13 @@ export function YunnanGuidePage({ journey }: { journey: Journey }) {
     <section className="yunnan-faq section" id="faq"><div className="narrow"><div className="yunnan-section-heading"><span>{copy.faqKicker}</span><h2>{copy.faqTitle}</h2></div>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></section>
 
     <QuickAsk source={path} sourceTitle={copy.sourceTitle} intent="trip" />
+    <MobileCtaBar
+      whatsappHref={whatsapp}
+      formHref="#ask-joy"
+      whatsappLabel={tMobile("whatsappLabel")}
+      formLabel={tMobile("formLabel")}
+      statusLabel={tMobile("statusLabel")}
+    />
     <section className="yunnan-final-cta"><div><span>{copy.finalKicker}</span><h2>{copy.finalTitle}</h2><p>{copy.finalText}</p><div><Link href="/custom-china-tour#plan" data-cta-location="yunnan_hub_final" className="button button-light">{copy.finalCta}</Link><Link href={whatsapp}>{copy.whatsappCta}</Link><Link href={journeyHref}>{copy.viewJourney}</Link></div></div></section>
 
     <ContentFooter />
