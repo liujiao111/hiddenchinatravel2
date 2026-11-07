@@ -6,7 +6,9 @@
     "name": "Daniel & Sarah L.",
     "country": "新加坡",
     "rating": 5.0,
-    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "journeySlugs": [
+      "kunming-dali-shaxi-lijiang-6-days"
+    ],
     "featured": true
   },
   {
@@ -26,7 +28,9 @@
     "name": "Rachel & Kevin M.",
     "country": "美国",
     "rating": 4.9,
-    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "journeySlugs": [
+      "kunming-dali-shaxi-lijiang-6-days"
+    ],
     "featured": true
   },
   {
@@ -36,7 +40,9 @@
     "name": "Faisal & Aisha R.",
     "country": "印度尼西亚",
     "rating": 4.7,
-    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "journeySlugs": [
+      "kunming-dali-shaxi-lijiang-6-days"
+    ],
     "featured": true
   },
   {
@@ -46,7 +52,9 @@
     "name": "Emily C.",
     "country": "加拿大",
     "rating": 4.8,
-    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "journeySlugs": [
+      "kunming-dali-shaxi-lijiang-6-days"
+    ],
     "featured": true
   },
   {
@@ -56,7 +64,9 @@
     "name": "Claire & Thomas",
     "country": "法国",
     "rating": 5.0,
-    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "journeySlugs": [
+      "kunming-dali-shaxi-lijiang-6-days"
+    ],
     "featured": true
   },
   {
@@ -66,7 +76,9 @@
     "name": "Mark & Susan T.",
     "country": "澳大利亚",
     "rating": 4.8,
-    "journeySlugs": ["kunming-dali-lijiang-shangri-la-private-tour"],
+    "journeySlugs": [
+      "kunming-dali-lijiang-shangri-la-private-tour"
+    ],
     "featured": true
   },
   {
@@ -76,7 +88,9 @@
     "name": "Michelle H.",
     "country": "新西兰",
     "rating": 4.9,
-    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "journeySlugs": [
+      "kunming-dali-shaxi-lijiang-6-days"
+    ],
     "featured": true
   },
   {
@@ -86,7 +100,9 @@
     "name": "David & Emma R.",
     "country": "英国",
     "rating": 5.0,
-    "journeySlugs": ["kunming-dali-shaxi-lijiang-6-days"],
+    "journeySlugs": [
+      "kunming-dali-shaxi-lijiang-6-days"
+    ],
     "featured": true
   },
   {
@@ -96,7 +112,9 @@
     "name": "Peter & Jenny K.",
     "country": "德国",
     "rating": 4.8,
-    "journeySlugs": [],
+    "journeySlugs": [
+      "kunming-dali-lijiang-shangri-la-private-tour"
+    ],
     "featured": true
   }
 ]

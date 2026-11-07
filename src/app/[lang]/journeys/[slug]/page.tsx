@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { JourneyPage } from "@/components/journey-page";
+import { JourneyPageV2 } from "@/components/journey-page-v2";
 import { routing } from "@/i18n/routing";
 import { alternatesFor, robotsFor, type AppLocale } from "@/lib/i18n-seo";
 import { getAllJourneys, getJourneyBySlug } from "@/lib/journeys";
@@ -74,5 +75,8 @@ export default async function JourneyDetailPage({ params }: Props) {
     [lang]: `/journeys/${journey.slug}`,
     [otherLang]: getJourneyBySlug(otherSlug, otherLang) ? `/journeys/${otherSlug}` : null,
   } as const;
+  if (slug === "kunming-dali-lijiang-shangri-la-private-tour") {
+    return <JourneyPageV2 journey={journey} alternate={alternate} />;
+  }
   return <JourneyPage journey={journey} alternate={alternate} />;
 }

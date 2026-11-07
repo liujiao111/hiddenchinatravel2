@@ -11,7 +11,7 @@ journeyType: "Private journey"
 fromPrice: 680
 currency: "USD"
 priceBasis: "per person"
-coverImage: "/assets/destinations/yunnan/jade-dragon.webp"
+coverImage: "/home/hero.webp"
 coverAlt: "Jade Dragon Snow Mountain above a turquoise lake"
 featured: true
 status: "published"

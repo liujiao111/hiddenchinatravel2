@@ -41,6 +41,7 @@ export type JourneyFrontmatter = {
   heroTitle?: string;
   heroSecondaryLabel?: string;
   heroDescription?: string;
+  heroPrimaryLabel?: string;
   heroNote?: string;
   heroBounds?: string;
   overviewTitle?: string;

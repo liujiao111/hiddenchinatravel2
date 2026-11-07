@@ -11,7 +11,7 @@ journeyType: "私家行程"
 fromPrice: 680
 currency: "USD"
 priceBasis: "每人"
-coverImage: "/assets/destinations/yunnan/jade-dragon.webp"
+coverImage: "/home/hero.webp"
 coverAlt: "玉龙雪山与山脚的碧蓝湖水"
 featured: true
 status: "published"
