@@ -121,26 +121,6 @@ faqs:
 
 完整的Nord步骤和Express的注意事项：[中国最佳VPN](/best-vpn-for-china)。
 
-## 常见问题
-
-**我用eSIM在中国还需要VPN吗？**
-在移动数据上，基本使用大概率不需要。如果你经常用酒店Wi-Fi，或需要稳定访问Google/WhatsApp/Gmail，就加VPN。
-
-**应该装哪个VPN？**
-我在用的：NordVPN（在一些酒店网络上连接慢）。我还没在中国日常测试过的更简单的App：ExpressVPN。对比 → [中国最佳VPN](/best-vpn-for-china)
-
-**在中国用VPN能用Google Maps吗？**
-技术上能打开，但仍然过时且有坐标错误。导航用Apple Maps或支付宝交通工具 → [中国地图与导航](/maps-navigation-in-china)
-
-**如果VPN在酒店里不工作了怎么办？**
-切换服务器（日本/新加坡/香港）。在[对比指南](/best-vpn-for-china)中确认中国设置。从Wi-Fi切到移动数据。如果你装了第二个App就打开。
-
-**2026年中国最可靠的VPN是什么？**
-不考虑价格追求绝对可靠性：**Astrill**。我实际在用的：**NordVPN**，知道连接可能要很久。ExpressVPN更简单；我没有在中国日常测试过。
-
-**游客在中国用VPN合法吗？**
-游客通常用VPN进行个人通信没有问题。合理使用，避免涉及政治敏感内容。这不是法律建议。
-
 ## 最终设置
 
 旅行时长| 最佳设置
