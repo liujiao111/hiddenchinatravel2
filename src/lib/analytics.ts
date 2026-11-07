@@ -1,7 +1,10 @@
+import { analyticsDenied } from "./attribution";
+
 export type AnalyticsParams = Record<string, string | number | boolean | undefined>;
 
 declare global {
   interface Window {
+    uetq?: { push: (...args: unknown[]) => unknown };
     gtag?: (
       command: "event" | "config" | "js",
       target: string | Date,
@@ -20,6 +23,13 @@ export function newAnalyticsEventId() {
 
 export function trackEvent(eventName: string, params: AnalyticsParams = {}) {
   if (typeof window === "undefined") return;
+
+  // Only confirmed form submissions and intentional consultation clicks are goals.
+  // Queue early actions until bat.js loads. Do not forward PII or GA's nominal value.
+  if ((eventName === "generate_lead" || eventName === "whatsapp_click") && !analyticsDenied()) {
+    window.uetq = window.uetq || ([] as unknown[]);
+    window.uetq.push("event", eventName, {});
+  }
 
   const payload =
     eventName === "generate_lead"

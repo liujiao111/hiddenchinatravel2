@@ -101,7 +101,8 @@ test('A single template and high-entropy reference safely URL encode on mobile a
     assert.equal(url.hostname, 'wa.me', platform); assert.equal(url.pathname, '/8618880441791');
     assert.equal(url.searchParams.get('text'), `${w.WHATSAPP_MESSAGE}\n\nRef: ${id}`);
     assert.match(id, /^HCT-\d{8}-[A-F0-9]{16}$/);
-    assert.ok(!url.searchParams.get('text').includes('Campaign:'));\n    assert.ok(url.searchParams.get('text').includes('private Yunnan trip'));
+    assert.ok(!url.searchParams.get('text').includes('Campaign:'));
+    assert.ok(url.searchParams.get('text').includes('private Yunnan trip'));
   }
 });
 test('Chinese WhatsApp prefill respects language and retains reference', () => {
@@ -189,4 +190,30 @@ test('Cookie access denied still persists through the independent localStorage f
   assert.ok(localStorage.getItem(a.ATTRIBUTION_KEY));
   window.history.pushState({}, '', '/zh/contact');
   assert.deepEqual(a.getAttribution().first, first.first);
+});
+
+test('Microsoft UET queues only lead goals, without personal data or invented revenue', () => {
+  browser();
+  const { trackEvent } = require('../src/lib/analytics.ts');
+  trackEvent('form_submit_attempt');
+  assert.equal(window.uetq, undefined);
+  trackEvent('generate_lead', { email: 'private@example.com', value: 1 });
+  trackEvent('whatsapp_click', { lead_id: 'private-reference' });
+  assert.deepEqual(window.uetq, [
+    'event', 'generate_lead', {},
+    'event', 'whatsapp_click', {},
+  ]);
+});
+
+test('Microsoft UET respects explicit analytics denial and works after queue replacement', () => {
+  browser();
+  const { trackEvent } = require('../src/lib/analytics.ts');
+  const events = [];
+  window.uetq = { push: (...args) => events.push(args) };
+  window.dataLayer = [['consent', 'update', { analytics_storage: 'denied' }]];
+  trackEvent('generate_lead');
+  assert.deepEqual(events, []);
+  window.dataLayer.push(['consent', 'update', { analytics_storage: 'granted' }]);
+  trackEvent('generate_lead');
+  assert.deepEqual(events, [['event', 'generate_lead', {}]]);
 });
