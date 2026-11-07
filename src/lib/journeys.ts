@@ -27,6 +27,10 @@ export type JourneyFrontmatter = {
   priceBasis: string;
   coverImage: string;
   coverAlt?: string;
+  /** Open Graph / Twitter card image. Falls back to coverImage. */
+  ogImage?: { url?: string; alt?: string; width?: number; height?: number };
+  /** Extra query terms this page should rank for. */
+  keywords?: string[];
   featured?: boolean;
   status?: "draft" | "planned" | "published";
   /** Slug of the paired translation in the other language. */

@@ -34,11 +34,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!journey) return {};
   const { frontmatter } = journey;
   const canonical = alternatesFor(lang, `/journeys/${slug}`).canonical;
+  const ogUrl = frontmatter.ogImage?.url || frontmatter.coverImage;
+  const ogAlt = frontmatter.ogImage?.alt || frontmatter.coverAlt || frontmatter.title;
   return {
     title: frontmatter.seoTitle,
     description: frontmatter.metaDescription,
+    keywords: frontmatter.keywords,
     ...journeyAlternates(lang, slug),
-    openGraph: { title: frontmatter.seoTitle, description: frontmatter.metaDescription, url: canonical, type: "website", images: [{ url: frontmatter.coverImage }] },
+    openGraph: {
+      title: frontmatter.seoTitle,
+      description: frontmatter.metaDescription,
+      url: canonical,
+      type: "website",
+      images: [
+        {
+          url: ogUrl,
+          alt: ogAlt,
+          width: frontmatter.ogImage?.width ?? 1600,
+          height: frontmatter.ogImage?.height ?? 1045,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: frontmatter.seoTitle,
+      description: frontmatter.metaDescription,
+      images: [{ url: ogUrl, alt: ogAlt }],
+    },
   };
 }
 

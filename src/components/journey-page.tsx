@@ -64,11 +64,35 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
         "@type": "TouristTrip",
         name: frontmatter.heroTitle || frontmatter.title,
         description: frontmatter.metaDescription,
-        image: `https://hiddenchinatravel.com${frontmatter.coverImage}`,
+        image: [
+          `https://hiddenchinatravel.com${frontmatter.ogImage?.url || frontmatter.coverImage}`,
+        ],
         touristType: frontmatter.travelStyles,
         itinerary: frontmatter.route,
+        departureTime: frontmatter.duration,
         provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" },
-        ...(frontmatter.fromPrice > 0 ? { offers: { "@type": "Offer", priceCurrency: frontmatter.currency, price: frontmatter.fromPrice, url: `https://hiddenchinatravel.com/journeys/${journey.slug}` } } : {}),
+        ...(frontmatter.fromPrice > 0 ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: frontmatter.currency,
+            price: frontmatter.fromPrice,
+            url: `https://hiddenchinatravel.com/journeys/${journey.slug}`,
+            availability: "https://schema.org/InStock",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: frontmatter.fromPrice,
+              priceCurrency: frontmatter.currency,
+              description: `From ${formatPriceLabel(frontmatter.fromPrice, frontmatter.currency)} ${frontmatter.priceBasis} for the complete journey`,
+            },
+          },
+        } : {}),
+        ...(frontmatter.itinerary.length ? {
+          hasPart: frontmatter.itinerary.map((day) => ({
+            "@type": "TouristTrip",
+            name: `${day.days}: ${day.title}`,
+            description: day.description,
+          })),
+        } : {}),
       },
       breadcrumbList([
         { name: t("breadcrumbHome"), href: "/" },
@@ -83,7 +107,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
     <JourneyHero
       title={frontmatter.heroTitle || frontmatter.title}
       name={frontmatter.heroTitle ? frontmatter.title : undefined}
-      image={isSixDayYunnanJourney ? "/home/hero.webp" : isEightDayYunnanJourney ? "/assets/blog/yunnan-travel-from-uk/shangri-la-pudacuo.webp" : frontmatter.coverImage}
+      image={isSixDayYunnanJourney ? "/home/hero.webp" : frontmatter.coverImage}
       imageAlt={frontmatter.coverAlt || "Mountains and countryside along a Yunnan journey"}
       eyebrow={frontmatter.heroEyebrow || t("heroEyebrowDefault")}
       description={frontmatter.heroDescription || frontmatter.excerpt}

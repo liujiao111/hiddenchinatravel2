@@ -1,8 +1,8 @@
 ---
 title: "The Essence of Yunnan"
 shortTitle: "The Essence of Yunnan"
-seoTitle: "The Essence of Yunnan: 8-Day Private Tour"
-metaDescription: "The Essence of Yunnan is a private 8-day journey through Kunming, Dali, Lijiang and Shangri-La, with private transport, a driver-guide and from US$799 per person for the complete trip."
+seoTitle: "Yunnan Private Tour 8 Days: Kunming, Dali, Lijiang, Shangri-La"
+metaDescription: "8-day private Yunnan tour through Kunming, Dali, Lijiang and Shangri-La — Erhai Lake, Jade Dragon Snow Mountain, Tiger Leaping Gorge. Private car and driver-guide, from US$799 per person."
 excerpt: "Erhai Lake • Jade Dragon Snow Mountain • Tiger Leaping Gorge"
 duration: "8 days / 7 nights"
 route: "Kunming → Dali → Lijiang → Shangri-La → Kunming"
@@ -11,8 +11,24 @@ journeyType: "Private journey for your party only"
 fromPrice: 799
 currency: "USD"
 priceBasis: "per person"
-coverImage: "/assets/destinations/yunnan/shangri-la.webp"
-coverAlt: "Highland lake and forest near Shangri-La"
+coverImage: "/assets/destinations/yunnan/dali-erhai-cover.webp"
+coverAlt: "Sunlit Erhai Lake at Dali with the Cangshan Mountains behind"
+ogImage:
+  url: "/assets/destinations/yunnan/dali-erhai-cover.webp"
+  alt: "Private tour group at Erhai Lake, Dali, Yunnan"
+  width: 1600
+  height: 1045
+keywords:
+  - "yunnan private tour"
+  - "8 day yunnan tour"
+  - "kunming dali lijiang shangri-la tour"
+  - "dali erhai lake tour"
+  - "yunnan tailor-made tour"
+  - "private tour china"
+  - "tiger leaping gorge tour"
+  - "jade dragon snow mountain tour"
+  - "shangri-la tour"
+  - "yunnan holiday package"
 featured: false
 status: "published"
 displayOrder: 3

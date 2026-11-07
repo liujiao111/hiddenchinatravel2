@@ -1,8 +1,8 @@
 ---
 title: "云南精华"
 shortTitle: "云南精华"
-seoTitle: "云南精华：8 天 7 晚私家团"
-metaDescription: "云南精华是一条 8 天 7 晚的私家路线，串联昆明、大理、丽江与香格里拉，全程专车与司机兼向导，每人 US$799 起（全程价格）。"
+seoTitle: "云南私家团 8 天：昆明·大理·丽江·香格里拉定制路线"
+metaDescription: "8 天云南私家定制路线，串联昆明、大理、丽江与香格里拉：洱海、玉龙雪山、虎跳峡。全程专车与司机兼向导，每人 US$799 起，含全程不购物。"
 excerpt: "洱海 • 玉龙雪山 • 虎跳峡"
 duration: "8 天 / 7 晚"
 route: "昆明 → 大理 → 丽江 → 香格里拉 → 昆明"
@@ -11,8 +11,24 @@ journeyType: "只接待你一行的私家团"
 fromPrice: 799
 currency: "USD"
 priceBasis: "每人"
-coverImage: "/assets/destinations/yunnan/shangri-la.webp"
-coverAlt: "香格里拉附近的高原湖泊与森林"
+coverImage: "/assets/destinations/yunnan/dali-erhai-cover.webp"
+coverAlt: "阳光下的洱海与远处的苍山"
+ogImage:
+  url: "/assets/destinations/yunnan/dali-erhai-cover.webp"
+  alt: "大理洱海边的私家团行程"
+  width: 1600
+  height: 1045
+keywords:
+  - "云南私家团"
+  - "云南定制游"
+  - "8 天云南路线"
+  - "昆明大理丽江香格里拉"
+  - "大理洱海"
+  - "玉龙雪山"
+  - "虎跳峡"
+  - "香格里拉旅游"
+  - "云南自由行包团"
+  - "云南旅游攻略"
 featured: false
 status: "published"
 displayOrder: 3
