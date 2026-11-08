@@ -8,16 +8,6 @@ import { parseEnquiry, partySizes, type Enquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
 import { trackEvent } from "@/lib/analytics";
 
-function enquirySource() {
-  try {
-    const referrer = new URL(document.referrer);
-    if (referrer.origin === window.location.origin && referrer.pathname.startsWith("/") && !/[\\s<>]/.test(referrer.pathname)) return referrer.pathname;
-  } catch {
-    // Direct visits have no usable referrer.
-  }
-  return "/contact";
-}
-
 export function ContactForm() {
   const t = useTranslations("contactForm");
   const tq = useTranslations("quickAsk");
@@ -37,7 +27,7 @@ export function ContactForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(event.currentTarget).entries());
-    const parsed = parseEnquiry({ ...data, source: enquirySource(), allowEmptyPlans: true });
+    const parsed = parseEnquiry({ ...data, source: window.location.href, allowEmptyPlans: true });
     if ("error" in parsed) {
       setStatus("error");
       setError(parsed.error);

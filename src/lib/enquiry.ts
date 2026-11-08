@@ -27,9 +27,16 @@ function optionalChoice(value: string, allowed: readonly string[]) {
 }
 
 function cleanSource(value: string) {
-  const source = value.trim().slice(0, 180);
-  if (!source.startsWith("/") || /[\s<>]/.test(source)) return "";
-  return source;
+  const source = value.trim();
+  if (/[\s<>]/.test(source)) return "";
+  // Keep relative paths from older clients, and preserve full URLs without truncating tracking parameters.
+  if (source.startsWith("/") && !source.startsWith("//")) return source;
+  try {
+    const url = new URL(source);
+    return url.protocol === "https:" || url.protocol === "http:" ? source : "";
+  } catch {
+    return "";
+  }
 }
 
 function cleanTravelDates(value: string) {

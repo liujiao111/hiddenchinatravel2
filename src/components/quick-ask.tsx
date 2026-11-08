@@ -97,7 +97,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
       ...data,
       plans,
       interest: wantsQuote ? "Yunnan Journey" : "China Travel Advice",
-      source,
+      source: window.location.href,
     });
 
     if ("error" in parsed) {
