@@ -9,7 +9,6 @@ import { EnquireLink } from "@/components/enquire-link";
 import { JourneyCard } from "@/components/journey-card";
 import { JourneyQuoteBand } from "@/components/journey-quote-band";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
-import { QuickAsk } from "@/components/quick-ask";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { licensedOperator } from "@/lib/journey-trust";
@@ -230,22 +229,12 @@ export default async function Home({ params }: Props) {
       </div>
     </section>
 
-    <section className="home-founder-enquiry section" aria-labelledby="home-founder-enquiry-title">
-      <div className="shell home-founder-enquiry-layout">
-        <header>
-          <p className="kicker">{t("founderFormKicker")}</p>
-          <h2 id="home-founder-enquiry-title">{t("founderFormHeading")}</h2>
-          <p>{t("founderFormIntro")}</p>
-        </header>
-        <QuickAsk
-          id="home-founder-ask"
-          layout="embedded"
-          source={lang === "zh" ? "/zh/" : "/"}
-          sourceTitle={t("meta.ogTitle")}
-          intent="trip"
-        />
-      </div>
-    </section>
+    <JourneyQuoteBand
+      id="home-founder-ask"
+      source={lang === "zh" ? "/zh/" : "/"}
+      sourceTitle={t("meta.ogTitle")}
+      whatsapp={whatsapp}
+    />
 
     <section className="home-arrival-support section" id="guides">
       <div className="shell home-arrival-layout">
