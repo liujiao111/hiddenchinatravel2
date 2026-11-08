@@ -99,7 +99,7 @@ export default async function Home({ params }: Props) {
     ],
   };
 
-  return <main><SiteHeader />
+  return <main><SiteHeader searchInitialQuery="6 days yunnan private tour" />
     <section className="hero">
       <Image src="/home/hero.webp" alt={t("heroAlt")} fill preload sizes="100vw" />
       <div className="hero-shade" />

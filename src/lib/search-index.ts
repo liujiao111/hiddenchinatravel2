@@ -9,11 +9,24 @@ import { getTravelJournals } from "@/lib/travel-journals";
 function getZhSearchIndex(): SearchItem[] {
   const pages: SearchItem[] = [
     { id: "home", title: "Hidden China Travel 中文首页", href: "/", description: "云南私家团、定制旅行，以及面向海外华语游客的实用行前建议。", type: "page", keywords: ["首页", "中国", "云南", "私家团", "定制旅行"] },
-    { id: "journeys", title: "云南私家行程", href: "/journeys", description: "从昆明、大理、丽江到香格里拉，选择一条可按你的日期和节奏调整的私家路线。", type: "page", keywords: ["云南行程", "私家团", "昆明", "大理", "丽江", "香格里拉"] },
+    { id: "journeys", title: "云南私家行程", href: "/journeys", description: "从昆明、大理、丽江到香格里拉，选择一条可按你的日期和节奏调整的私家路线。", type: "page", keywords: ["云南行程", "私家团", "昆明", "大理", "丽江", "香格里拉", "6 days yunnan private tour"] },
+    { id: "yunnan-guide", title: "云南旅行指南", href: "/china-destinations/yunnan", description: "了解昆明、大理、沙溪、丽江与香格里拉的目的地信息和路线建议。", type: "hub", keywords: ["云南旅游", "云南旅行", "云南攻略", "昆明", "大理", "沙溪", "丽江", "香格里拉"] },
+    { id: "survival-kit", title: "中国行前锦囊", href: "/survival-kit", description: "签证、支付、上网、地图、交通和景点预约的实用准备指南。", type: "hub", keywords: ["中国旅行准备", "中国生存手册", "签证", "支付宝", "微信支付", "eSIM", "交通"] },
+    { id: "visa-checker", title: "中国签证查询工具", href: "/china-visa-checker", description: "根据护照、停留时间和行程路线查询适用的中国入境方案。", type: "page", keywords: ["中国签证", "免签", "过境免签", "签证查询"] },
     { id: "about", title: "认识 Joy 与 Hidden China Travel", href: "/about-us", description: "认识在云南长大的旅行顾问 Joy，了解我们的规划方式与持牌旅行社履约安排。", type: "page", keywords: ["Joy Liu", "关于我们", "云南本地", "旅行社"] },
     { id: "contact", title: "联系 Hidden China Travel", href: "/contact", description: "直接与 Joy 沟通云南旅行、首次来华准备和私家行程规划。", type: "page", keywords: ["联系我们", "Joy Liu", "WhatsApp", "行程咨询"] },
     { id: "custom-tour", title: "云南定制旅行", href: "/custom-china-tour", description: "围绕你的日期、兴趣和节奏，设计一趟云南私家之旅。", type: "page", keywords: ["云南定制", "私人定制", "私家行程", "路线规划"] },
   ];
+
+  const journals = getTravelJournals("zh").map<SearchItem>((journal) => ({
+    id: `journal-${journal.slug}`,
+    title: journal.title,
+    href: `/traveler-stories/${journal.slug}`,
+    description: journal.description,
+    type: "article",
+    keywords: [journal.traveler, journal.country, journal.travelStyle, journal.route, "旅行手记", "云南旅行"],
+    image: journal.heroImage,
+  }));
 
   const journeys = getAllJourneys("zh").map<SearchItem>((journey) => ({
     id: `journey-${journey.slug}`,
@@ -21,11 +34,21 @@ function getZhSearchIndex(): SearchItem[] {
     href: `/journeys/${journey.slug}`,
     description: journey.frontmatter.excerpt,
     type: "journey",
-    keywords: [journey.frontmatter.route, ...journey.frontmatter.travelStyles],
+    keywords: [journey.frontmatter.route, journey.frontmatter.duration, journey.slug.replaceAll("-", " "), "Yunnan private tour", ...journey.frontmatter.travelStyles],
     image: journey.frontmatter.coverImage,
   }));
 
-  return [...pages, ...journeys];
+  const content = getAllContent("zh").map<SearchItem>((item) => ({
+    id: item.slug,
+    title: item.frontmatter.title,
+    href: `/${item.slug}`,
+    description: item.frontmatter.excerpt || item.frontmatter.description || item.frontmatter.metaDescription || "",
+    type: item.kind === "legal" ? "page" : item.kind,
+    keywords: [item.frontmatter.section || "", ...(item.frontmatter.keywords || [])].filter(Boolean),
+    image: item.frontmatter.coverImage,
+  }));
+
+  return [...pages, ...journals, ...journeys, ...content];
 }
 
 export function getSearchIndex(locale: AppLocale = "en"): SearchItem[] {
@@ -33,6 +56,7 @@ export function getSearchIndex(locale: AppLocale = "en"): SearchItem[] {
 
   const pages: SearchItem[] = [
     { id: "home", title: "Hidden China Travel", href: "/", description: "Private journeys, local knowledge and practical travel guides for China.", type: "page", keywords: ["home", "China", "Yunnan", "journeys"] },
+    { id: "journeys", title: "Yunnan Private Journeys", href: "/journeys", description: "Compare private Yunnan routes and find a starting point for a tailored trip.", type: "page", keywords: ["6 days yunnan private tour", "6 days", "private tour", "Yunnan itinerary"] },
     { id: "about", title: "About Hidden China Travel", href: "/about-us", description: "Meet Joy Liu and learn about our personal approach to travel in China.", type: "page", keywords: ["Joy Liu", "about", "local travel"] },
     { id: "traveler-stories", title: "Traveler Stories", href: "/traveler-stories", description: "Notes from families, couples and first-time visitors on private Yunnan journeys.", type: "page", keywords: ["traveler stories", "reviews", "testimonials", "private Yunnan", "Joy Liu"] },
     ...getTravelJournals().map<SearchItem>((journal) => ({
@@ -65,7 +89,7 @@ export function getSearchIndex(locale: AppLocale = "en"): SearchItem[] {
     href: `/journeys/${journey.slug}`,
     description: journey.frontmatter.excerpt,
     type: "journey",
-    keywords: [journey.frontmatter.route, ...journey.frontmatter.travelStyles],
+    keywords: [journey.frontmatter.route, journey.frontmatter.duration, journey.slug.replaceAll("-", " "), "Yunnan private tour", ...journey.frontmatter.travelStyles],
     image: journey.frontmatter.coverImage,
   }));
 

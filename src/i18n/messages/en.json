@@ -110,6 +110,18 @@
     "guide": "Guide",
     "seeAll": "See all search results →",
     "none": "No guides found. Try another phrase.",
+    "types": {
+      "article": "Article",
+      "hub": "Guide",
+      "journey": "Journey",
+      "page": "Page"
+    },
+    "view": {
+      "article": "Read article",
+      "hub": "Open guide",
+      "journey": "View journey",
+      "page": "Open page"
+    },
     "metaTitle": "Search travel guides | Hidden China Travel",
     "metaDescription": "Search practical China travel guides on visas, payments, internet, maps, transport and Yunnan destinations.",
     "kicker": "SEARCH",

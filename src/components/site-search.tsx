@@ -8,10 +8,11 @@ import { matchSearchItems, type SearchItem } from "@/lib/search-types";
 type SiteSearchProps = {
   initialQuery?: string;
   items?: SearchItem[];
+  autoOpen?: boolean;
   variant?: "header" | "page";
 };
 
-export function SiteSearch({ initialQuery = "", items: suppliedItems, variant = "header" }: SiteSearchProps) {
+export function SiteSearch({ initialQuery = "", items: suppliedItems, autoOpen = false, variant = "header" }: SiteSearchProps) {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("search");
@@ -19,8 +20,8 @@ export function SiteSearch({ initialQuery = "", items: suppliedItems, variant = 
   const rootRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState(initialQuery);
   const [items, setItems] = useState<SearchItem[]>(suppliedItems || []);
-  const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(autoOpen && Boolean(initialQuery.trim()));
+  const [loading, setLoading] = useState(autoOpen && Boolean(initialQuery.trim()));
   const [activeIndex, setActiveIndex] = useState(-1);
   const results = matchSearchItems(items, query, variant === "header" ? 6 : undefined);
 
@@ -42,6 +43,23 @@ export function SiteSearch({ initialQuery = "", items: suppliedItems, variant = 
     document.addEventListener("mousedown", handleOutsideClick);
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, []);
+
+  useEffect(() => {
+    if (!autoOpen || variant !== "header" || !initialQuery.trim() || suppliedItems?.length) return;
+    let cancelled = false;
+    fetch(`/api/search-index?locale=${encodeURIComponent(locale)}`)
+      .then(async (response) => {
+        if (response.ok) {
+          const index = await response.json() as SearchItem[];
+          if (!cancelled) setItems(index);
+        }
+      })
+      .catch(() => undefined)
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, [autoOpen, initialQuery, locale, suppliedItems, variant]);
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

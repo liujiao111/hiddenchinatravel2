@@ -58,10 +58,10 @@ p { line-height:1.7; }
 .site-search button { display:grid; width:40px; height:36px; flex:0 0 40px; place-items:center; border:0; background:transparent; color:#294f49; cursor:pointer; }
 .site-search button svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.7; }
 .search-suggestions { position:absolute; z-index:50; top:calc(100% + 8px); right:0; width:min(390px,calc(100vw - 40px)); padding:8px; background:white; color:#282821; box-shadow:0 18px 45px rgba(16,34,29,.22); }
-.search-suggestions>a { display:grid; grid-template-columns:62px 1fr; gap:10px; align-items:center; padding:11px 12px; }
+.search-suggestions>a { display:grid; grid-template-columns:82px minmax(0,1fr); gap:10px; align-items:center; padding:12px; }
 .search-suggestions>a:hover,.search-suggestions>a.active { background:#eef3ef; }
-.search-suggestions span { color:#887349; font-size:.58rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
-.search-suggestions b { font-family:Georgia,serif; font-size:.95rem; font-weight:400; line-height:1.25; }
+.search-suggestions span { overflow:hidden; color:#887349; font-size:.58rem; font-weight:800; letter-spacing:.08em; text-overflow:ellipsis; text-transform:uppercase; white-space:nowrap; }
+.search-suggestions b { min-width:0; font-family:Georgia,serif; font-size:.95rem; font-weight:400; line-height:1.35; overflow-wrap:anywhere; }
 .search-suggestions p { margin:0; padding:18px 14px; color:#696b65; font-size:.8rem; }
 .search-suggestions .search-all { display:block; margin-top:5px; border-top:1px solid #e2dfd3; color:#315b55; font-size:.68rem; font-weight:800; letter-spacing:.08em; text-align:center; }
 .mega-menu { position:absolute; z-index:30; top:100%; left:0; width:100%; min-height:425px; padding:28px 0 38px; background:#587d78; color:white; box-shadow:0 20px 35px rgba(17,31,28,.2); }

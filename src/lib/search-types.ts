@@ -10,8 +10,10 @@ export type SearchItem = {
 
 export type SearchMatch = SearchItem & { score: number };
 
+const typePriority: Record<SearchItem["type"], number> = { journey: 0, page: 1, hub: 1, article: 2 };
+
 function normalize(value: string) {
-  return value.toLowerCase().normalize("NFKD").replace(/[^a-z0-9\s-]/g, " ").replace(/\s+/g, " ").trim();
+  return value.toLowerCase().normalize("NFKC").replace(/[^\p{L}\p{N}\s-]/gu, " ").replace(/\s+/g, " ").trim();
 }
 
 export function matchSearchItems(items: SearchItem[], query: string, limit?: number): SearchMatch[] {
@@ -36,7 +38,9 @@ export function matchSearchItems(items: SearchItem[], query: string, limit?: num
       if (description.includes(term)) score += 3;
     }
     return [{ ...item, score }];
-  }).sort((a, b) => b.score - a.score || a.title.localeCompare(b.title));
+  }).sort((a, b) => {
+    return typePriority[a.type] - typePriority[b.type] || b.score - a.score || a.title.localeCompare(b.title);
+  });
 
   return typeof limit === "number" ? matches.slice(0, limit) : matches;
 }

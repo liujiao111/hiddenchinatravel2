@@ -98,7 +98,7 @@ function HeaderMenuIcon({ open }: { open: boolean }) {
     : <svg viewBox="0 0 24 16" aria-hidden="true"><path d="M1 1.5h22M1 8h22M1 14.5h22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>;
 }
 
-export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { journeys: HeaderJourney[]; cta?: { href: string; label: string; location?: string; mailHref?: string }; conversion?: boolean; alternate?: LocaleAlternate }) {
+export function SiteHeaderClient({ journeys, cta, conversion, alternate, searchInitialQuery }: { journeys: HeaderJourney[]; cta?: { href: string; label: string; location?: string; mailHref?: string }; conversion?: boolean; alternate?: LocaleAlternate; searchInitialQuery?: string }) {
   const [open, setOpen] = useState<MenuName | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = useTranslations("header");
@@ -157,7 +157,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate }: { jou
           <button className={open === "about" ? "active" : ""} onClick={() => setOpen("about")} onMouseEnter={() => setOpen("about")} aria-expanded={open === "about"}>{t("aboutUs")}<span className="nav-chevron" aria-hidden="true" /></button>
           <Link href="/contact" onMouseEnter={() => setOpen(null)} onClick={() => setOpen(null)}>{t("contactUs")}</Link>
         </div>
-        <SiteSearch />
+        <SiteSearch initialQuery={searchInitialQuery} autoOpen={Boolean(searchInitialQuery)} />
       </div>
     </nav>}
 

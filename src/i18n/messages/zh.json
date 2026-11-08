@@ -110,6 +110,18 @@
     "guide": "指南",
     "seeAll": "查看全部搜索结果 →",
     "none": "没有找到相关指南，换个关键词试试。",
+    "types": {
+      "article": "文章",
+      "hub": "专题",
+      "journey": "行程",
+      "page": "页面"
+    },
+    "view": {
+      "article": "阅读文章",
+      "hub": "查看专题",
+      "journey": "查看行程",
+      "page": "打开页面"
+    },
     "metaTitle": "旅行指南搜索 | Hidden China Travel",
     "metaDescription": "搜索签证、付款、上网、地图、交通与云南目的地等实用中国旅行指南。",
     "kicker": "搜索",
