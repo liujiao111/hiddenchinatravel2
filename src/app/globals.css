@@ -1348,7 +1348,7 @@ a.utility-card { color:inherit; }
 .article-hero:not(.has-image) .article-byline { color:#68706a; }
 .article-intro { max-width:900px; padding-top:58px; padding-bottom:58px; text-align:center; }
 .article-intro p { margin:0; font-family:Georgia,serif; font-size:clamp(1.25rem,2vw,1.65rem); line-height:1.55; color:#40534e; }
-.article-layout { display:grid; grid-template-columns:minmax(0,760px) 240px; justify-content:center; gap:76px; align-items:start; padding-bottom:90px; }
+.article-layout { display:grid; grid-template-columns:minmax(0,760px) 276px; justify-content:center; gap:64px; align-items:start; padding-bottom:90px; }
 .article-body { min-width:0; }
 .markdown-content { color:#333832; font-size:1.04rem; line-height:1.82; }
 .markdown-content>*:first-child { margin-top:0; }
@@ -1393,21 +1393,21 @@ a.utility-card { color:inherit; }
 .markdown-content.compact p { margin:0; }
 .article-aside { position:sticky; top:28px; }
 .article-aside-journey { overflow:hidden; border-top:3px solid #345d58; background:#f2efe3; }
-.article-aside-image { position:relative; display:block; height:142px; overflow:hidden; background:#d8d4bd; }
+.article-aside-image { position:relative; display:block; height:160px; overflow:hidden; background:#d8d4bd; }
 .article-aside-image img { object-fit:cover; }
-.article-aside-journey-copy { padding:22px 20px 20px; }
-.article-aside-journey-copy>p { margin:0 0 11px; color:#8b734d; font-size:.64rem; font-weight:800; letter-spacing:.12em; }
+.article-aside-journey-copy { padding:23px 22px 21px; }
+.article-aside-journey-copy>p { margin:0 0 11px; color:#8b734d; font-size:.68rem; font-weight:800; letter-spacing:.12em; }
 .article-aside-journey-copy h2 { margin:0 0 8px; color:#294b44; font-family:Georgia,serif; font-size:1.55rem; font-weight:400; line-height:1.14; }
-.article-aside-journey-copy>span { display:block; color:#5f625c; font-size:.76rem; line-height:1.5; }
+.article-aside-journey-copy>span { display:block; color:#5f625c; font-size:.8rem; line-height:1.5; }
 .article-aside-journey-copy .article-aside-route { color:#345d58; font-weight:650; }
 .article-aside-journey-copy .article-aside-duration { margin-top:7px; }
-.article-aside-price { display:block; margin-top:13px; color:#294b44; font-family:Georgia,serif; font-size:1rem; font-weight:600; }
-.article-aside-price small { font-family:inherit; font-size:.75rem; font-weight:400; }
-.article-aside-price-note { display:block; margin-top:5px; color:#73756d; font-size:.65rem; line-height:1.45; }
-.article-aside .article-aside-primary { display:flex; min-height:48px; align-items:center; justify-content:space-between; gap:10px; margin-top:17px; padding:10px 13px; background:#345d58; color:#fff; font-size:.68rem; font-weight:800; letter-spacing:.04em; }
+.article-aside-price { display:block; margin-top:14px; color:#294b44; font-family:Georgia,serif; font-size:1.08rem; font-weight:600; }
+.article-aside-price small { font-family:inherit; font-size:.78rem; font-weight:400; }
+.article-aside-price-note { display:block; margin-top:6px; color:#73756d; font-size:.7rem; line-height:1.5; }
+.article-aside .article-aside-primary { display:flex; min-height:52px; align-items:center; justify-content:space-between; gap:10px; margin-top:18px; padding:11px 15px; background:#345d58; color:#fff; font-size:.72rem; font-weight:800; letter-spacing:.04em; }
 .article-aside .article-aside-primary:hover { background:#284b44; }
 .article-aside-primary span { font-size:1rem; }
-.article-aside .article-aside-all-journeys { display:block; margin-top:12px; color:#345d58; font-size:.72rem; font-weight:750; }
+.article-aside .article-aside-all-journeys { display:block; margin-top:13px; color:#345d58; font-size:.76rem; font-weight:750; }
 .article-aside-related { display:flex; flex-direction:column; gap:8px; margin-top:16px; padding:15px 18px; border:1px solid #d5d0bd; background:#f7f5ed; }
 .article-aside-related span { color:#796c54; font-size:.61rem; font-weight:800; letter-spacing:.08em; }
 .article-aside-related a { color:#345d58; font-size:.72rem; font-weight:700; }

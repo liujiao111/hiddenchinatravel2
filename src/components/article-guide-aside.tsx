@@ -27,7 +27,7 @@ export async function ArticleGuideAside({ section, lang, journey }: { section?: 
   return <aside className="article-aside" aria-label={t("asideAria")}>
     {journey ? <article className="article-aside-journey">
       <Link className="article-aside-image" href={`/journeys/${journey.slug}`} data-cta-location="article_aside_featured_journey" tabIndex={-1} aria-hidden="true">
-        <Image src={journey.frontmatter.coverImage} alt="" fill sizes="(max-width: 900px) 100vw, 240px" />
+        <Image src={journey.frontmatter.coverImage} alt="" fill sizes="(max-width: 900px) 100vw, 276px" />
       </Link>
       <div className="article-aside-journey-copy">
         <p>{t("asideJourneyKicker")}</p>
