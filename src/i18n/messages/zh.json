@@ -164,9 +164,9 @@
   },
   "home": {
     "meta": {
-      "title": "云南私家团与定制旅行 | Hidden China Travel",
-      "ogTitle": "云南私家团与定制旅行",
-      "description": "从大理的湖畔村落，到丽江的雪山脚下——为海外华语游客定制的云南私家旅行：专车专导、行程灵活，熟悉云南的本地人帮你规划。"
+      "title": "云南私家定制游｜昆明、大理、丽江与香格里拉 | Hidden China Travel",
+      "ogTitle": "云南私家定制游｜昆明、大理、丽江与香格里拉",
+      "description": "规划昆明、大理、丽江与香格里拉的云南私家游。专车及中英文司机兼导，路线按日期、人数与节奏调整。查看参考行程，或免费获取路线建议和报价。"
     },
     "heroKicker": "云南私人定制旅行",
     "heroTitleLine1": "100% 量身定制的",
@@ -175,13 +175,13 @@
     "heroLeadDesktop": "按你的节奏，探索大理、丽江与香格里拉。从昆明到雪山之巅，完全围绕你的时间、兴趣和旅行方式来设计。",
     "heroLeadMobile": "按你的节奏，探索大理、丽江与香格里拉。从昆明到雪山之巅，完全围绕你的时间、兴趣和旅行方式来设计。",
     "heroBrand": "生于云南，也走过世界。",
-    "cta": "定制我的行程 — 免费方案",
-    "exploreJourneys": "查看精选行程",
+    "cta": "免费获取路线建议与报价",
+    "exploreJourneys": "浏览参考行程",
     "exploreJourneysMobile": "查看精选行程 →",
     "heroTrustDesktop": "全程私家团 · 无购物点 · 免费咨询",
     "heroTrustMobile": "全程私家团 · 无购物点 · 免费咨询",
-    "trustBadges": ["100% 定制且无购物", "20% 可退定金", "持牌本地专家"],
-    "replyTime": "工作时间通常 15 分钟内回复。",
+    "trustBadges": ["100% 定制且无购物", "支付 20% 定金；退款按取消政策执行", "持牌本地专家"],
+    "replyTime": "通常 15 分钟内回复。",
     "howKicker": "合作流程",
     "howHeading": "规划云南之旅，其实很简单",
     "howIntro": "不需要完整的行程计划。告诉 Joy 大致的出行月份、人数和兴趣，她会帮你把旅行想法变成一条舒适、可行的路线。",
@@ -291,6 +291,9 @@
     "founderRole": "创始人 · 云南旅行规划师",
     "founderStoryLink": "读读 Joy 的故事 →",
     "founderAskLink": "向 Joy 咨询 →",
+    "founderFormKicker": "把想法变成路线",
+    "founderFormHeading": "告诉 Joy，你想怎样游云南。",
+    "founderFormIntro": "留下大致出行月份、同行人数和偏好。Joy 会先帮你梳理路线并回复价格区间，不需要先做决定。",
     "prepareKicker": "首次来华支持",
     "prepareHeading": "我们帮你的，不只是行程",
     "prepareIntro": "在中国，付款、上网、地图、交通和景点预约的方式可能都不太一样。我们的实用指南帮你在出发前就准备好；预订私家团的客人，还会收到针对自己路线的行前建议。",
@@ -402,7 +405,7 @@
       ],
       [
         "多久能收到回复？",
-        "工作日 9:00–18:00（北京时间），Joy 通常在 2 小时内回复；其他时间 24 小时内回复。路线复杂或旺季日期，详细方案可能需要更长时间。"
+        "Joy 通常在 15 分钟内回复；复杂路线或旺季日期，详细方案可能需要更长时间。"
       ]
     ],
     "finalHeading": "准备好开始规划云南之旅了吗？",
@@ -664,7 +667,7 @@
     "sendError": "暂时无法发送，请稍后再试。",
     "sendOnWhatsapp": "改用 WhatsApp 发送",
     "formNote": "提供日期、人数和预算，Joy 就能回复价格区间。{replyTime}填写此表单不会产生任何预订。",
-    "replyTime": "工作日 9:00–18:00（北京时间）通常 2 小时内回复，其他时间 24 小时内回复。",
+    "replyTime": "通常 15 分钟内回复。",
     "successQuoteTitle": "Joy 已收到报价所需的信息。",
     "successNoteTitle": "Joy 已收到你的留言。",
     "successQuoteText": "你会收到一份简短的路线草案和价格区间，包含费用明细，不需要根据这封回复做任何预订。",
@@ -899,7 +902,7 @@
       "✓ Joy 亲自回复",
       "✓ 定制行程建议",
       "✓ 没有预订义务",
-      "✓ 通常 12 小时内回复"
+      "✓ 通常 15 分钟内回复"
     ],
     "questionsKicker": "旅行者为什么找我们",
     "questionsHeading": "常见问题",
@@ -1212,15 +1215,12 @@
     "priceFrom": "{price} 起",
     "tailoredQuote": "按你的日期定制报价",
     "asideAria": "规划你的中国之旅",
-    "asideKicker": "中国行前准备",
-    "asideHeading": "出发前需要搞定的一切。",
-    "asideBody": "用一份清单搞定入境、预订、网络、支付和抵达。",
+    "asideJourneyKicker": "云南精选私家行程",
+    "asidePriceFrom": "参考起价 {price} · {basis}",
+    "asideJourneyCta": "查看路线与每日安排",
+    "asideAllJourneys": "比较全部云南私家行程",
     "asideKitCta": "打开生存包",
     "asideRelatedLabel": "继续读这个主题",
-    "asideAskKicker": "云南私家行程",
-    "asideAskHeading": "想要路线和报价？",
-    "asideAskBody": "告诉我日期和人数，Joy 就能给你一个价格区间。",
-    "asideAskCta": "咨询 Joy",
     "asideHubPayments": "中国支付",
     "asideHubInternet": "中国网络",
     "asideHubMaps": "地图与导航",

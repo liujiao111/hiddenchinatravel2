@@ -7,6 +7,7 @@ import type { Journey } from "@/lib/journeys";
 import type { AppLocale } from "@/lib/i18n-seo";
 import { GuideCard } from "@/components/guide-card";
 import { JourneyCard } from "@/components/journey-card";
+import { JourneyQuoteBand } from "@/components/journey-quote-band";
 import { siteConfig } from "@/lib/site-config";
 
 function wordCount(body: string) {
@@ -48,30 +49,6 @@ export async function ArticleDiscoveryFlow({
   };
 
   return <>
-    <section className="article-discovery article-explore">
-      <div className="shell">
-        <header className="article-flow-heading">
-          <h2>{t("discoveryTitle")}</h2>
-          <p>{t("discoveryIntro")}</p>
-        </header>
-        <div className="article-guide-grid">
-          {related.map((item) => <GuideCard key={item.slug} guide={{
-            title: item.frontmatter.title,
-            excerpt: item.frontmatter.excerpt,
-            href: `/${item.slug}`,
-            image: item.frontmatter.coverImage || "/home/hero.webp",
-            imageAlt: item.frontmatter.title,
-            readTime: readTime(item.body),
-            readLabel: t("discoveryReadGuide"),
-          }} />)}
-        </div>
-        <div className="article-secondary-link">
-          <span>{t("discoveryPrepLabel")}</span>
-          <Link href="/china-travel-essentials">{t("discoveryKitLink")}</Link>
-        </div>
-      </div>
-    </section>
-
     {journey ? <section className="article-discovery article-yunnan">
       <div className="shell article-yunnan-layout">
         <div className="article-yunnan-copy">
@@ -98,6 +75,32 @@ export async function ArticleDiscoveryFlow({
         </div>
       </div>
     </section> : null}
+
+    <JourneyQuoteBand id="ask-joy" source={sourcePath} sourceTitle={sourceTitle} whatsapp={whatsapp} />
+
+    <section className="article-discovery article-explore">
+      <div className="shell">
+        <header className="article-flow-heading">
+          <h2>{t("discoveryTitle")}</h2>
+          <p>{t("discoveryIntro")}</p>
+        </header>
+        <div className="article-guide-grid">
+          {related.map((item) => <GuideCard key={item.slug} guide={{
+            title: item.frontmatter.title,
+            excerpt: item.frontmatter.excerpt,
+            href: `/${item.slug}`,
+            image: item.frontmatter.coverImage || "/home/hero.webp",
+            imageAlt: item.frontmatter.title,
+            readTime: readTime(item.body),
+            readLabel: t("discoveryReadGuide"),
+          }} />)}
+        </div>
+        <div className="article-secondary-link">
+          <span>{t("discoveryPrepLabel")}</span>
+          <Link href="/china-travel-essentials">{t("discoveryKitLink")}</Link>
+        </div>
+      </div>
+    </section>
 
     <PlanJourneyClose id="ask-joy-close" source={sourcePath} sourceTitle={sourceTitle} whatsapp={whatsapp} />
   </>;

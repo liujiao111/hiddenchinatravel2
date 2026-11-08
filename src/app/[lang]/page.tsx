@@ -7,7 +7,9 @@ import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { EnquireLink } from "@/components/enquire-link";
 import { JourneyCard } from "@/components/journey-card";
+import { JourneyQuoteBand } from "@/components/journey-quote-band";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
+import { QuickAsk } from "@/components/quick-ask";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { licensedOperator } from "@/lib/journey-trust";
@@ -100,7 +102,7 @@ export default async function Home({ params }: Props) {
 
   return <main><SiteHeader />
     <section className="hero">
-      <Image src="/home/hero.webp" alt={t("heroAlt")} fill preload unoptimized sizes="100vw" />
+      <Image src="/home/hero.webp" alt={t("heroAlt")} fill preload sizes="100vw" />
       <div className="hero-shade" />
       <div className="hero-copy">
         <p className="hero-kicker">{t("heroKicker")}</p>
@@ -110,28 +112,12 @@ export default async function Home({ params }: Props) {
         <p className="hero-brand hero-desktop-only">{t("heroBrand")}</p>
         <div className="hero-actions">
           <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">{t("cta")}</EnquireLink>
-          <Link href="/journeys" className="button button-light hero-desktop-only">{t("exploreJourneys")}</Link>
+          <Link href="/journeys" className="button button-light">{t("exploreJourneys")}</Link>
         </div>
         <ul className="hero-trust-badges">
           {trustBadges.map((badge) => <li key={badge}><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" /></svg>{badge}</li>)}
         </ul>
         <small>{t("replyTime")}</small>
-        <Link href="/journeys" className="hero-text-link hero-mobile-only">{t("exploreJourneysMobile")}</Link>
-      </div>
-    </section>
-
-    <section className="section process" id="how-it-works">
-      <div className="narrow">
-        <p className="kicker">{t("howKicker")}</p>
-        <h2>{t("howHeading")}</h2>
-        <p>{t("howIntro")}</p>
-      </div>
-      <div className="shell">
-        <div className="process-grid">{howItWorks.map(([number, title, text]) => <div key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></div>)}</div>
-        <div className="center">
-          <EnquireLink data-cta-location="home_how_it_works" className="button button-blue">{t("cta")}</EnquireLink>
-          <p className="home-helper">{t("howHelper")}</p>
-        </div>
       </div>
     </section>
 
@@ -183,6 +169,13 @@ export default async function Home({ params }: Props) {
       </div>
     </section>
 
+    <JourneyQuoteBand
+      id="home-midpage-ask"
+      source={lang === "zh" ? "/zh/" : "/"}
+      sourceTitle={t("journeysHeading")}
+      whatsapp={whatsapp}
+    />
+
     <section className="section why" id="why-us">
       <div className="shell">
         <div className="section-heading light">
@@ -204,6 +197,21 @@ export default async function Home({ params }: Props) {
       archiveLabel={t("storiesArchive")}
     />
 
+    <section className="section process" id="how-it-works">
+      <div className="narrow">
+        <p className="kicker">{t("howKicker")}</p>
+        <h2>{t("howHeading")}</h2>
+        <p>{t("howIntro")}</p>
+      </div>
+      <div className="shell">
+        <div className="process-grid">{howItWorks.map(([number, title, text]) => <div key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></div>)}</div>
+        <div className="center">
+          <EnquireLink data-cta-location="home_how_it_works" className="button button-blue">{t("cta")}</EnquireLink>
+          <p className="home-helper">{t("howHelper")}</p>
+        </div>
+      </div>
+    </section>
+
     <section className="about-feature reverse home-founder" id="joy">
       <div className="about-feature-image">
         <Image src="/brand/founder/portrait.webp" alt={t("founderAlt")} fill sizes="(max-width: 800px) 100vw, 50vw" />
@@ -219,6 +227,23 @@ export default async function Home({ params }: Props) {
         <p className="home-signature"><b>Joy Liu</b><span>{t("founderRole")}</span></p>
         <Link href="/about-us">{t("founderStoryLink")}</Link>
         <EnquireLink data-cta-location="home_founder_ask">{t("founderAskLink")}</EnquireLink>
+      </div>
+    </section>
+
+    <section className="home-founder-enquiry section" aria-labelledby="home-founder-enquiry-title">
+      <div className="shell home-founder-enquiry-layout">
+        <header>
+          <p className="kicker">{t("founderFormKicker")}</p>
+          <h2 id="home-founder-enquiry-title">{t("founderFormHeading")}</h2>
+          <p>{t("founderFormIntro")}</p>
+        </header>
+        <QuickAsk
+          id="home-founder-ask"
+          layout="embedded"
+          source={lang === "zh" ? "/zh/" : "/"}
+          sourceTitle={t("meta.ogTitle")}
+          intent="trip"
+        />
       </div>
     </section>
 
@@ -263,7 +288,7 @@ export default async function Home({ params }: Props) {
     </section>
 
     <section className="cta-band final-cta" id="plan">
-      <Image src="/home/plan-journey.webp" alt={t("finalAlt")} fill unoptimized sizes="100vw" />
+      <Image src="/home/plan-journey.webp" alt={t("finalAlt")} fill sizes="100vw" />
       <div className="hero-shade" />
       <div>
         <h2>{t("finalHeading")}</h2>

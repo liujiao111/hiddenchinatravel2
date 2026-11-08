@@ -166,7 +166,7 @@
     "meta": {
       "title": "Private Yunnan Tours & Tailor-Made Journeys | Hidden China Travel",
       "ogTitle": "Private Yunnan Tours & Tailor-Made Journeys",
-      "description": "Plan a private Yunnan journey through Kunming, Dali, Lijiang and Shaxi, with tailor-made itineraries, private transport, local guides and personal support."
+      "description": "Plan a private Yunnan tour through Kunming, Dali, Lijiang and Shangri-La. Private transport and bilingual driver-guides, with routes shaped around your dates, group and pace. Browse sample journeys or get free route advice and a quote."
     },
     "heroKicker": "PRIVATE YUNNAN JOURNEYS",
     "heroTitleLine1": "100% Tailor-Made",
@@ -175,13 +175,13 @@
     "heroLeadDesktop": "Explore Dali, Lijiang & Shangri-La at Your Own Pace. From Kunming to the snow mountains, shaped entirely around your dates, interests, and travel style.",
     "heroLeadMobile": "Explore Dali, Lijiang & Shangri-La at Your Own Pace. From Kunming to the snow mountains, shaped entirely around your dates, interests, and travel style.",
     "heroBrand": "Born in Yunnan. Shaped by experiences abroad.",
-    "cta": "Customize My Trip — Free Proposal",
-    "exploreJourneys": "EXPLORE JOURNEYS",
+    "cta": "Get a Free Route Plan & Quote",
+    "exploreJourneys": "Browse Sample Journeys",
     "exploreJourneysMobile": "Explore journeys →",
     "heroTrustDesktop": "No shopping stops · 20% after the signed contract · 80% after your driver meets you",
     "heroTrustMobile": "20% after the contract · 80% when your driver meets you",
-    "trustBadges": ["100% Tailor-Made & No Shopping", "20% Refundable Deposit", "Licensed Local Expert"],
-    "replyTime": "Replies within 15 minutes during business hours.",
+    "trustBadges": ["100% Tailor-Made & No Shopping", "20% deposit; refunds follow cancellation policy", "Licensed Local Expert"],
+    "replyTime": "Usually replies within 15 minutes.",
     "howKicker": "HOW IT WORKS",
     "howHeading": "Planning Your Yunnan Journey Is Simple",
     "howIntro": "You do not need a finished itinerary. Share your dates, group size and travel interests, and Joy will help turn your ideas into a practical private journey.",
@@ -291,6 +291,9 @@
     "founderRole": "Founder and Yunnan Travel Planner",
     "founderStoryLink": "Read Joy’s story →",
     "founderAskLink": "Ask Joy a question →",
+    "founderFormKicker": "TURN YOUR IDEAS INTO A ROUTE",
+    "founderFormHeading": "Tell Joy how you would like to explore Yunnan.",
+    "founderFormIntro": "Share your approximate travel month, group size and interests. Joy will help shape a practical route and reply with a price range. There is no need to decide or book now.",
     "prepareKicker": "FIRST-TIME CHINA SUPPORT",
     "prepareHeading": "We Help With More Than the Itinerary",
     "prepareIntro": "Payments, mobile data, maps, transportation and attraction bookings can work differently in China. Our practical travel guides help you prepare before departure, while guests booking a private journey receive relevant preparation advice for their route.",
@@ -402,7 +405,7 @@
       ],
       [
         "How soon will I receive a reply?",
-        "Joy normally replies within 2 hours on weekdays, 9:00–18:00 Beijing time, and within 24 hours at other times. More detailed proposals may take longer for complex routes or busy dates."
+        "Joy usually replies within 15 minutes. Detailed proposals may take longer for complex routes or busy dates."
       ]
     ],
     "finalHeading": "Ready to Start Planning Yunnan?",
@@ -664,7 +667,7 @@
     "sendError": "We could not send this just now.",
     "sendOnWhatsapp": "Send on WhatsApp instead",
     "formNote": "Dates, group size and budget let Joy reply with a price range. {replyTime} No booking from this form.",
-    "replyTime": "Weekdays 9:00–18:00 Beijing time, usually within 2 hours. Other times, within 24 hours.",
+    "replyTime": "Usually replies within 15 minutes.",
     "successQuoteTitle": "Joy has what he needs to quote this route.",
     "successNoteTitle": "Joy has your note.",
     "successQuoteText": "Expect a short route sketch and a price range, with what is included. There is no need to book from that reply.",
@@ -899,7 +902,7 @@
       "✓ Personal response from Joy",
       "✓ Custom itinerary suggestions",
       "✓ No obligation to book",
-      "✓ Usually reply within 12 hours"
+      "✓ Usually replies within 15 minutes"
     ],
     "questionsKicker": "WHY TRAVELERS CONTACT US",
     "questionsHeading": "Common Questions",
@@ -1212,15 +1215,12 @@
     "priceFrom": "From {price}",
     "tailoredQuote": "Tailored quote for your dates",
     "asideAria": "Plan your China trip",
-    "asideKicker": "PREPARE FOR CHINA",
-    "asideHeading": "Everything to sort before you go.",
-    "asideBody": "Follow one checklist for entry, bookings, internet, payments and arrival.",
+    "asideJourneyKicker": "A FEATURED PRIVATE YUNNAN JOURNEY",
+    "asidePriceFrom": "Indicative price: {price} · {basis}",
+    "asideJourneyCta": "See the route and each day",
+    "asideAllJourneys": "Compare all private Yunnan journeys",
     "asideKitCta": "OPEN THE SURVIVAL KIT",
     "asideRelatedLabel": "READ MORE ON THIS TOPIC",
-    "asideAskKicker": "A PRIVATE YUNNAN TRIP",
-    "asideAskHeading": "Want a route and a price?",
-    "asideAskBody": "Dates and group size are enough for Joy to reply with a range.",
-    "asideAskCta": "ASK JOY",
     "asideHubPayments": "Payments in China",
     "asideHubInternet": "Internet in China",
     "asideHubMaps": "Maps & navigation",

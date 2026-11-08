@@ -30,9 +30,13 @@ function cardQuote(quote: string) {
 export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref, archiveLabel }: Props) {
   const count = items.length;
   const loop = count > 3;
+  // Three cards can be visible at desktop widths, so keep three clones on
+  // either side to make both wrap directions continuous.
+  const cloneCount = loop ? Math.min(3, count) : 0;
   const viewportRef = useRef<HTMLDivElement>(null);
-  const [index, setIndex] = useState(loop ? count : 0);
+  const [index, setIndex] = useState(cloneCount);
   const [animate, setAnimate] = useState(true);
+  const [moving, setMoving] = useState(false);
   const [metrics, setMetrics] = useState({ card: 320, peek: 72, gap: 18 });
 
   useEffect(() => {
@@ -62,20 +66,25 @@ export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref
 
   if (count === 0) return null;
 
-  const slides = loop ? [...items, ...items, ...items] : items;
-  const active = ((index % count) + count) % count;
+  const slides = loop
+    ? [...items.slice(-cloneCount), ...items, ...items.slice(0, cloneCount)]
+    : items;
+  const active = loop ? ((index - cloneCount) % count + count) % count : index;
 
   const go = (delta: number) => {
+    if (moving) return;
     setAnimate(true);
-    setIndex((value) => (loop ? value + delta : (value + delta + count) % count));
+    setMoving(loop);
+    setIndex((value) => loop ? value + delta : (value + delta + count) % count);
   };
 
   const handleTransitionEnd = (event: TransitionEvent<HTMLDivElement>) => {
-    if (!loop || event.target !== event.currentTarget) return;
-    if (index < count) {
+    if (!loop || !moving || event.target !== event.currentTarget) return;
+    setMoving(false);
+    if (index < cloneCount) {
       setAnimate(false);
       setIndex(index + count);
-    } else if (index >= count * 2) {
+    } else if (index >= cloneCount + count) {
       setAnimate(false);
       setIndex(index - count);
     }
@@ -117,8 +126,8 @@ export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref
         }}
         onTransitionEnd={handleTransitionEnd}
       >
-        {slides.map((item, slideIndex) => (
-          <figure className="testimonials-card" key={`${item.id}-${slideIndex}`} style={{ width: metrics.card, flexBasis: metrics.card }}>
+        {slides.map((item) => (
+          <figure className="testimonials-card" key={item.id} style={{ width: metrics.card, flexBasis: metrics.card }}>
             <blockquote>“{cardQuote(item.quote)}”</blockquote>
             <figcaption>
               <b>— {item.name}</b>
@@ -140,8 +149,9 @@ export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref
             aria-label={`Show story from ${item.name}`}
             className={itemIndex === active ? "active" : ""}
             onClick={() => {
-              setAnimate(true);
-              setIndex(loop ? count + itemIndex : itemIndex);
+              setAnimate(false);
+              setMoving(false);
+              setIndex(cloneCount + itemIndex);
             }}
           />
         ))}

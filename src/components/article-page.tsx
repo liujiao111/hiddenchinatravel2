@@ -10,10 +10,8 @@ import { ArticleGuideAside } from "@/components/article-guide-aside";
 import { ContentFooter } from "@/components/content-footer";
 import { MarkdownContent } from "@/components/markdown-content";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
-import { QuickAsk } from "@/components/quick-ask";
 import { SiteHeader } from "@/components/site-header";
 import { TopicNavigation } from "@/components/topic-navigation";
-import { isTripPlanningSection } from "@/lib/enquiry";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { getAllJourneys } from "@/lib/journeys";
 import { breadcrumbList } from "@/components/json-ld";
@@ -80,10 +78,9 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
         </div>
       </header>
       {frontmatter.excerpt && <div className="article-intro shell"><p>{frontmatter.excerpt}</p></div>}
-      <QuickAsk source={`/${item.slug}`} sourceTitle={frontmatter.title} intent={isTripPlanningSection(frontmatter.section) ? "trip" : "advice"} />
       <div className="article-layout shell">
         <div className="article-body"><MarkdownContent>{item.body}</MarkdownContent></div>
-        <ArticleGuideAside section={frontmatter.section} lang={lang} />
+        <ArticleGuideAside section={frontmatter.section} lang={lang} journey={featuredJourney} />
       </div>
     </article>
     {frontmatter.faqs?.length ? <section className="article-faq"><div className="narrow"><p className="article-section">{t("faqKicker")}</p><h2>{t("faqHeading")}</h2>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><MarkdownContent compact>{faq.answer}</MarkdownContent></details>)}</div></section> : null}
