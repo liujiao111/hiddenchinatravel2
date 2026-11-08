@@ -1668,6 +1668,29 @@ a.utility-card { color:inherit; }
 .yunnan-practical-grid h3 { margin:34px 0 12px; color:#fff; font-size:1.55rem; }
 .yunnan-practical-grid p { margin:0; color:#dce4df; font-size:.84rem; }
 .yunnan-practical-grid b { margin-top:auto; padding-top:24px; color:#fff; font-size:.65rem; letter-spacing:.09em; }
+.home-arrival-support { background:#f5f5ef; color:#282821; }
+.home-arrival-layout { display:grid; grid-template-columns:.88fr 1.12fr; align-items:center; gap:clamp(42px,6.5vw,84px); }
+.home-arrival-visual { position:relative; min-height:550px; overflow:hidden; background:#d8d4bb; }
+.home-arrival-visual>img { object-fit:cover; object-position:center; transition:transform .7s; }
+.home-arrival-visual:hover>img { transform:scale(1.025); }
+.home-arrival-image-caption { position:absolute; right:0; bottom:0; left:0; padding:34px 30px 27px; background:linear-gradient(transparent,rgba(24,43,38,.82)); color:#fff; }
+.home-arrival-image-caption span,.home-arrival-heading>span { color:#a28a5c; font-size:.65rem; font-weight:800; letter-spacing:.17em; text-transform:uppercase; }
+.home-arrival-image-caption span { color:#e3d2aa; }
+.home-arrival-image-caption p { margin:9px 0 0; font-family:Georgia,serif; font-size:1.45rem; line-height:1.25; }
+.home-arrival-copy { max-width:610px; }
+.home-arrival-heading h2 { margin:19px 0 17px; color:#243f39; font-size:clamp(2.35rem,3.9vw,3.65rem); line-height:1.02; letter-spacing:-.03em; }
+.home-arrival-heading>p { margin:0; color:#5d625b; font-size:.94rem; line-height:1.75; }
+.home-arrival-list { margin-top:28px; border-top:1px solid #d1cebf; }
+.home-arrival-item { display:grid; grid-template-columns:34px 1fr 20px; align-items:start; gap:13px; padding:17px 0 16px; border-bottom:1px solid #d1cebf; transition:padding .2s,color .2s; }
+.home-arrival-item:hover { padding-right:4px; padding-left:4px; color:#345d58; }
+.home-arrival-item>span { padding-top:2px; color:#8f7446; font-family:Georgia,serif; font-size:.9rem; }
+.home-arrival-item h3 { margin:0 0 4px; color:#243f39; font-family:Georgia,serif; font-size:1.18rem; }
+.home-arrival-item p { margin:0; color:#62655f; font-size:.78rem; line-height:1.55; }
+.home-arrival-item strong { display:block; margin-top:5px; color:#345d58; font-size:.62rem; font-weight:800; letter-spacing:.07em; }
+.home-arrival-item>b { padding-top:1px; color:#8f7446; font-size:1rem; font-weight:400; }
+.home-arrival-cta { display:inline-flex; align-items:center; gap:13px; margin-top:23px; padding-bottom:7px; border-bottom:1px solid #8f7446; color:#345d58; font-size:.69rem; font-weight:800; letter-spacing:.08em; }
+.home-arrival-cta span { font-size:.95rem; transition:transform .2s; }
+.home-arrival-cta:hover span { transform:translateX(4px); }
 .yunnan-faq details { border-top:1px solid #bcc2b8; text-align:left; }
 .yunnan-faq details:last-child { border-bottom:1px solid #bcc2b8; }
 .yunnan-faq summary { display:flex; min-height:75px; align-items:center; justify-content:space-between; gap:25px; cursor:pointer; list-style:none; font-family:Georgia,serif; font-size:1.13rem; }
@@ -1691,6 +1714,8 @@ a.utility-card { color:inherit; }
   .yunnan-guide-grid { grid-template-columns:repeat(2,1fr); }
   .yunnan-country-grid { grid-template-columns:1fr 1fr; }
   .yunnan-season-grid,.yunnan-practical-grid { grid-template-columns:1fr 1fr; }
+  .home-arrival-layout { grid-template-columns:.8fr 1.2fr; gap:30px; }
+  .home-arrival-visual { min-height:490px; }
 }
 
 @media (max-width:700px) {
@@ -1710,6 +1735,12 @@ a.utility-card { color:inherit; }
   .yunnan-intro .narrow,.yunnan-section-heading { text-align:left; }
   .yunnan-intro h2 { font-size:2.8rem; }
   .yunnan-route-stops,.yunnan-place-grid,.yunnan-guide-grid,.yunnan-country-grid,.yunnan-season-grid,.yunnan-practical-grid { grid-template-columns:1fr; }
+  .home-arrival-layout { grid-template-columns:1fr; gap:34px; }
+  .home-arrival-visual { min-height:320px; order:2; }
+  .home-arrival-copy { order:1; }
+  .home-arrival-heading h2 { font-size:2.65rem; }
+  .home-arrival-image-caption { padding:26px 22px 21px; }
+  .home-arrival-image-caption p { font-size:1.3rem; }
   .yunnan-country-grid>a:last-child { grid-column:auto; }
   .yunnan-country-grid>a { min-height:0; padding:27px 24px; }
   .yunnan-route-stops article,.yunnan-route-stops article:nth-child(2) { border-right:0; border-bottom:1px solid #b7b39d; }

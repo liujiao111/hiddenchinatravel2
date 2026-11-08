@@ -222,15 +222,21 @@ export default async function Home({ params }: Props) {
       </div>
     </section>
 
-    <section className="yunnan-prepare section" id="guides">
-      <div className="shell">
-        <div className="yunnan-section-heading light">
-          <span>{t("prepareKicker")}</span>
-          <h2>{t("prepareHeading")}</h2>
-          <p>{t("prepareIntro")}</p>
+    <section className="home-arrival-support section" id="guides">
+      <div className="shell home-arrival-layout">
+        <div className="home-arrival-visual">
+          <Image src="/assets/blog/independent-travel-china/china-grocery-scan-mobile-payments.webp" alt="" fill sizes="(max-width: 800px) 100vw, 42vw" />
+          <div className="home-arrival-image-caption"><span>{t("prepareKicker")}</span><p>{t("supportImageCaption")}</p></div>
         </div>
-        <div className="yunnan-practical-grid">{supportItems.map((item, index) => <Link href={item.href} key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p><b>{item.cta || t("supportItemCta")}</b></Link>)}</div>
-        <div className="center"><Link href="/survival-kit" className="button button-light">{t("checklistCta")}</Link></div>
+        <div className="home-arrival-copy">
+          <div className="home-arrival-heading">
+            <span>{t("prepareKicker")}</span>
+            <h2>{t("prepareHeading")}</h2>
+            <p>{t("prepareIntro")}</p>
+          </div>
+          <div className="home-arrival-list">{supportItems.map((item, index) => <Link href={item.href} key={item.title} className="home-arrival-item"><span>0{index + 1}</span><div><h3>{item.title}</h3><p>{item.detail}</p><strong>{item.cta || t("supportItemCta")}</strong></div><b aria-hidden="true">→</b></Link>)}</div>
+          <Link href="/survival-kit" className="home-arrival-cta">{t("checklistCta")} <span aria-hidden="true">→</span></Link>
+        </div>
       </div>
     </section>
 
