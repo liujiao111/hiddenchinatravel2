@@ -5,12 +5,12 @@ import { Link } from "@/i18n/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
 import { JourneyHero, JourneyFactCards } from "@/components/journey-landing";
-import { Testimonials } from "@/components/testimonials";
+import { CompactJourneyServiceProof } from "@/components/compact-journey-service-proof";
 import { JourneyCard } from "@/components/journey-card";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { PreviewEnquiryForm } from "@/components/preview-enquiry-form";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
-import { getSelectedTestimonials } from "@/lib/testimonials";
+
 import type { AppLocale } from "@/lib/i18n-seo";
 import "./preview.css";
 
@@ -31,8 +31,8 @@ const faqs = [
   ["How many days do I need for Yunnan?", "Six days works well for Dali, Shaxi and Lijiang. Seven to eight days can include Tiger Leaping Gorge and Shangri-La; ten to twelve days gives you more time to explore at a comfortable pace."],
   ["How much does a private Yunnan tour cost?", "Our published sample 6-day journey starts at US$680 per person, based on two adults sharing one room. For longer or 8-day journeys, request an initial price. Final prices vary by season, hotel choice, group size and inclusions."],
   ["Can I customize the 6-day or 8-day route?", "Yes. Add or remove destinations, adjust the pace, select hotels and choose experiences. We will explain what fits comfortably within your available days."],
-  ["Is the journey completely private?", "Yes. Travel with your own partner, family or friends rather than joining a scheduled group departure. The vehicle and driver-guide are arranged for your party."],
-  ["What is normally included in the quotation?", "Your written quotation lists hotels, transportation, guide arrangements, attraction tickets, any included train tickets and meals, plus exclusions. The package is only confirmed after you review and approve it."],
+  ["Is the journey completely private?", "Yes. Travel with your own partner, family or friends rather than joining a scheduled group departure. The vehicle and driver-guide are arranged for your party, though the assigned person or vehicle may change between destinations according to the confirmed plan."],
+  ["What is normally included in the quotation?", "Your written quotation identifies the named hotels and room types, vehicle arrangements, driver-guide language and service hours, and the tickets, trains and meals actually included. It also lists exclusions. The package is only confirmed after you review and approve it."],
   ["Do I need confirmed dates before enquiring?", "No. An approximate month, number of travelers and likely trip length are enough to get started."],
   ["How does booking and payment work?", "Review the written itinerary and quotation first, then sign the licensed agency's travel contract. The usual arrangement is a 20% deposit and the remaining balance after your first pickup, subject to your agreed written terms."],
 ];
@@ -42,7 +42,7 @@ export default async function TailorMadePreview({ params }: Props) {
   const { lang } = await params;
   setRequestLocale(lang);
   const whatsapp = buildWhatsAppUrl(undefined, lang);
-  const reviews = getSelectedTestimonials("en").slice(0, 3);
+
   return <main className="tailor-preview">
     <SiteHeader conversion cta={{ href: "#plan", label: cta }} />
     <JourneyHero title="Private Yunnan Tours, Designed Around You" eyebrow="TAILOR-MADE YUNNAN" image="/home/hero.webp" imageAlt="Yunnan's Jade Dragon Snow Mountain" description="Explore Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La on a private journey shaped around your dates, interests and pace." primary={{href:"#plan",label:cta}} secondary={{href:"#routes",label:"Explore Route Ideas"}} note="Sample 6-day private journeys from US$680 per person. Based on two adults sharing one room. Final pricing depends on season, route, hotels and included services." includes={["A route designed around your available time","Your own English-speaking driver-guide and private vehicle","Hotels and experiences matched to your travel style","No fixed departures, mixed groups or shopping stops"]}/>
@@ -64,10 +64,17 @@ export default async function TailorMadePreview({ params }: Props) {
     <p className="preview-price-note">The sample 6-day price is based on two adults sharing one room. Final prices depend on season, route, group size, selected hotels and included services. The written proposal confirms exactly what is included.</p>
     <div className="preview-route-help"><h3>Not sure which route fits your trip?</h3><p>Tell us your approximate duration and group size. Joy will suggest a realistic route for your season and interests.</p><a className="button button-blue" href="#plan">Help Me Choose</a></div>
     </div></section>
+    <JourneyFactCards id="what-to-expect" title="A Private Journey, Thoughtfully Arranged" cards={[
+      { icon: "route", title: "Your route, professionally planned", lines: ["A realistic day-by-day plan for your dates", "Travel time, altitude and sightseeing pace considered"] },
+      { icon: "person", title: "Private driver-guide service", lines: ["English-speaking service confirmed for your dates", "Driving, pickups, local context and itinerary coordination", "Specialist attraction guides quoted separately if needed"] },
+      { icon: "calendar", title: "Transport & comfortable stays", lines: ["Private five- or seven-seat vehicle as suitable", "Selected hotels, room types and breakfasts named in your proposal"] },
+      { icon: "note", title: "Clear arrangements before booking", lines: ["Written total price, inclusions and exclusions", "Tickets, trains, meals and upgrades listed only when included"] },
+    ]} />
     <section className="section preview-custom"><div className="shell"><div className="preview-heading"><p className="kicker">TAILORED TO YOU</p><h2>Make the Journey Yours</h2></div><div className="preview-two">
     <article><h3>Route & Pace</h3><ul><li>Add or remove destinations</li><li>Spend longer in fewer places</li><li>Choose gentler starts or fuller days</li><li>Adjust hiking and altitude exposure</li></ul></article>
     <article><h3>Hotels & Experiences</h3><ul><li>Comfortable, premium or character hotels</li><li>Food, photography and cultural experiences</li><li>Family-friendly arrangements</li><li>Dietary and mobility requirements</li></ul></article>
     </div></div></section>
+    <CompactJourneyServiceProof />
     <JourneyFactCards id="why-travel" title="Why travel with us" cards={[
       { icon:"person", title:"Planned by a Yunnan local", lines:["Born in Yunnan, Joy plans routes with practical advice on seasons, travel time and pace"] },
       { icon:"party", title:"One contact throughout", lines:["Speak with Joy from your first enquiry through planning and your journey"] },
@@ -79,7 +86,7 @@ export default async function TailorMadePreview({ params }: Props) {
       <article><span>02</span><h3>Receive a route and price</h3><p>Joy suggests a realistic route and an initial price range based on your travel month, trip length and group size.</p></article>
       <article><span>03</span><h3>Adjust before booking</h3><p>Change the route, hotels, pace or experiences until the plan fits.</p></article>
     </div><p className="preview-centered">There is no payment or booking commitment when requesting an initial proposal.</p></div></section>
-    {reviews.length>0?<Testimonials items={reviews} eyebrow="TRAVELER STORIES" heading="What Travelers Remember" intro="Experiences shared by travelers who explored Yunnan with our local team." note="Some traveler names have been shortened for privacy. Reviews not originally written in English have been translated without changing their meaning." />:null}
+    {/* Traveler testimonials are withheld on this preview until original sources and permission are verified. */}
     <section className="section preview-plan" id="plan"><div className="shell preview-plan-grid">
       <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy, founder of Hidden China Travel" fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">PLAN DIRECTLY WITH JOY</p><h2>Get a Suggested Yunnan Route & Price</h2><p>You do not need a finished itinerary. Share your approximate travel month, number of days and group size, and Joy will suggest a realistic starting route and price range based on your interests.</p><p><strong>Based in Kunming</strong> · English-language planning and local support</p><p className="preview-quiet">Prefer WhatsApp? <Link href={whatsapp} data-cta-location="preview_form_whatsapp">Chat with Joy →</Link></p></div>
       <PreviewEnquiryForm />
