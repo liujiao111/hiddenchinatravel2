@@ -145,7 +145,13 @@ export function RealJourneyEvidence() {
         </> : <div className="real-evidence-pending"><h3>Real planning records, coming after review</h3><p>{notes.planning}</p></div>}
         {active !== "planning" ? <p className="real-evidence-note">{notes[active]}</p> : null}
       </div>
-      <div className="real-evidence-cta"><h3>Want to see what your own Yunnan journey could look like?</h3><a className="button button-blue" href="#plan">Get My Route &amp; Price</a></div>
+    </div>
+    <div className="journey-final-cta real-evidence-cta">
+      <div className="shell">
+        <h2>Want to see what your own Yunnan journey could look like?</h2>
+        <span>Tell Joy a little about your group and interests to receive a suggested private route and price range.</span>
+        <a className="button button-light" href="#plan" data-cta-location="preview_evidence_cta">Get My Route &amp; Price</a>
+      </div>
     </div>
 
     <dialog ref={dialogRef} className="real-evidence-dialog" onClose={close} onCancel={close} aria-label={selected?.title || "Journey photo"}>
