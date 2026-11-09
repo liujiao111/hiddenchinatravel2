@@ -52,7 +52,7 @@ export default async function TailorMadePreview({ params }: Props) {
       { icon:"party",title:"Fully private",lines:["Your Own Journey","With your partner, family or friends"] },
       { icon:"pin",title:"Local planning",lines:["Planned in Yunnan","Routes, seasons and travel time explained"] },
       { icon:"note",title:"Clear Proposal",lines:["Route, selected hotels, inclusions and total price confirmed in writing before booking"] },
-    ]} />
+    ]} action={{href:"#plan",label:"Get My Route & Price"}} />
     <section className="section preview-fit"><div className="shell preview-two">
       <article><p className="kicker">YOUR KIND OF TRIP</p><h2>Who it's for</h2><p>For couples, families, friends and small private groups who want local guidance without joining a scheduled tour.</p><p>You do not need to know the exact route. A rough trip length and group size are enough.</p></article>
       <article><p className="kicker">SEASONAL ADVICE</p><h2>When to go</h2><p>March to May and September to November are generally the most comfortable periods for classic Dali, Lijiang and Shangri-La routes.</p><p>Summer is greener but wetter. Winter is quieter, with colder conditions at higher elevations.</p></article>
@@ -86,7 +86,7 @@ export default async function TailorMadePreview({ params }: Props) {
       <article><span>01</span><h3>Share the basics</h3><p>Tell us your trip length, group size and places or experiences that interest you. Dates can follow later.</p></article>
       <article><span>02</span><h3>Receive a route and price</h3><p>Joy suggests a realistic route and an initial price range based on your trip length, group size and interests.</p></article>
       <article><span>03</span><h3>Adjust before booking</h3><p>Review changes to hotels, pace and experiences before booking; any change to included services or price is confirmed in writing.</p></article>
-    </div><p className="preview-centered">There is no payment or booking commitment when requesting an initial proposal.</p><p className="preview-support-note"><strong>Support during your journey:</strong> Joy and the local operations team help coordinate agreed pickups, transfers and sightseeing arrangements. If weather, train schedules or attraction availability changes, the team will discuss workable alternatives with you. Any additional cost or refund difference is confirmed before you agree. Support contacts and operating arrangements are stated in your proposal.</p></div></section>
+    </div><p className="preview-centered">There is no payment or booking commitment when requesting an initial proposal.</p></div></section>
     {/* Traveler testimonials are withheld on this preview until original sources and permission are verified. */}
     <section className="section preview-plan" id="plan"><div className="shell preview-plan-grid">
       <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy, founder of Hidden China Travel" fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">PLAN DIRECTLY WITH JOY</p><h2>Get a Suggested Yunnan Route & Price</h2><p>You do not need a finished itinerary. Share your approximate number of days and group size, and Joy will suggest a realistic starting route and price range based on your interests.</p><p><strong>Based in Kunming</strong> · English-language planning and local support</p><p className="preview-quiet">Prefer WhatsApp? <Link href={whatsapp} data-cta-location="preview_form_whatsapp">Chat with Joy →</Link></p></div>
