@@ -17,7 +17,9 @@ export function parseCustomJourneyEnquiry(value: unknown): CustomJourneyEnquiry 
     if (typeof input[key] !== "string" || input[key].length > limit) return null;
     fields[key] = input[key].trim();
   }
-  if (!fields.name || /[\r\n]/.test(fields.name + fields.email) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) return null;
+  if (!fields.name || /[\r\n]/.test(fields.name + fields.email)) return null;
+  if (fields.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) return null;
+  if (!fields.email && (!fields.whatsapp || fields.whatsapp.replace(/\D/g, "").length < 8)) return null;
   if (input.consent !== true || fields.website || !/^[0-9a-f-]{36}$/i.test(fields.requestId)) return null;
   if (!Number.isInteger(input.adults) || Number(input.adults) < 1 || Number(input.adults) > 30 || !Number.isInteger(input.children) || Number(input.children) < 0 || Number(input.children) > 20) return null;
   if (!journeyBudgets.includes(fields.budget as typeof journeyBudgets[number]) || !journeyComfort.includes(fields.comfort as typeof journeyComfort[number])) return null;
