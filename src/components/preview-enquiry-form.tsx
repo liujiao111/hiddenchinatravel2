@@ -85,8 +85,6 @@ export function PreviewEnquiryForm() {
     </div>
     <div className="contact-field-row">
       <label><span>WhatsApp <small>(optional)</small></span><input name="whatsapp" type="tel" autoComplete="tel" maxLength={40} placeholder="+65 1234 5678" /></label>
-    </div>
-    <div className="contact-field-row">
       <label><span>Number of travelers *</span><select name="partyRange" defaultValue="2" required>{partyOptions.map(p => <option key={p.label} value={p.label}>{p.label}</option>)}</select></label>
     </div>
     <label><span>Approximate trip length *</span><select name="tripLength" required defaultValue=""><option value="" disabled>How many days?</option>{["5–6 days","7–8 days","9–12 days","More than 12 days","Not decided yet"].map(x => <option value={x} key={x}>{x}</option>)}</select></label>
