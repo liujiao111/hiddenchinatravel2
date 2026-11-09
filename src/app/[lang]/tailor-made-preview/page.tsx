@@ -22,16 +22,16 @@ export const metadata: Metadata = {
 };
 
 const routes = [
-  { num: "01", title: "6-Day First Encounter", places: "6 DAYS · DALI · SHAXI · LIJIANG", image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp", alt: "A stone-paved street in Shaxi", description: "A relaxed introduction to western Yunnan, with Erhai Lake, Bai culture, an overnight stay in Shaxi and a full day at Jade Dragon Snow Mountain.", best: "First-time visitors with limited time", price: "From US$680 per person", href: "/journeys/kunming-dali-shaxi-lijiang-6-days" },
-  { num: "02", title: "8-Day Mountains & Ancient Towns", places: "8 DAYS · DALI · LIJIANG · TIGER LEAPING GORGE · SHANGRI-LA", image: "/assets/destinations/yunnan/tiger-leaping.webp", alt: "Mountain gorge in Yunnan", description: "A classic western Yunnan route combining ancient towns, mountain landscapes, Tiger Leaping Gorge and the Tibetan culture of Shangri-La.", best: "Travelers wanting Yunnan’s classic highlights", price: "Request an Initial Price", href: "/journeys/kunming-dali-lijiang-shangri-la-private-tour" },
+  { num: "01", title: "6-Day First Encounter", places: "6 DAYS · DALI · SHAXI · LIJIANG", image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp", alt: "A stone-paved street in Shaxi", description: "Meet Bai artisans beside Erhai Lake, spend a quiet night in Shaxi’s old Tea Horse Road town, then give Jade Dragon Snow Mountain a full day — without rushing between stops.", best: "First-time visitors with limited time", price: "From US$680 per person", href: "/journeys/kunming-dali-shaxi-lijiang-6-days" },
+  { num: "02", title: "8-Day Mountains & Ancient Towns", places: "8 DAYS · DALI · LIJIANG · TIGER LEAPING GORGE · SHANGRI-LA", image: "/assets/destinations/yunnan/tiger-leaping.webp", alt: "Mountain gorge in Yunnan", description: "Go from lakeside Dali and Lijiang’s old lanes to the dramatic road through Tiger Leaping Gorge. Continue into Shangri-La for Tibetan culture and a slower highland day.", best: "Travelers wanting Yunnan’s classic highlights", price: "From US$799 per person", href: "/journeys/kunming-dali-lijiang-shangri-la-private-tour" },
 ];
 
 const faqs = [
   ["How many days do I need for Yunnan?", "Six days works well for Dali, Shaxi and Lijiang. Seven to eight days can include Tiger Leaping Gorge and Shangri-La; ten to twelve days gives you more time to explore at a comfortable pace."],
-  ["How much does a private Yunnan tour cost?", "Our published sample 6-day journey starts at US$680 per person, based on two adults sharing one room. For longer or 8-day journeys, request an initial price. Final prices vary by season, hotel choice, group size and inclusions."],
+  ["How much does a private Yunnan tour cost?", "Our sample 6-day journey starts at US$680 per person and the 8-day journey starts at US$799 per person. These are starting prices, not fixed quotes. Final costs depend on season, hotel choice, group size and the confirmed inclusions."],
   ["Can I customize the 6-day or 8-day route?", "Yes. Add or remove destinations, adjust the pace, select hotels and choose experiences. We will explain what fits comfortably within your available days."],
-  ["Is the journey completely private?", "Yes. Travel with your own partner, family or friends rather than joining a scheduled group departure. The vehicle and driver-guide are arranged for your party, though the assigned person or vehicle may change between destinations according to the confirmed plan."],
-  ["What is normally included in the quotation?", "Your written quotation identifies the named hotels and room types, vehicle arrangements, driver-guide language and service hours, and the tickets, trains and meals actually included. It also lists exclusions. The package is only confirmed after you review and approve it."],
+  ["Is the journey completely private?", "Yes. Travel with your own partner, family or friends, without shared groups or mandatory shopping stops. Choose Chinese- or English-speaking service at no extra guide-language charge, with one dedicated driver-guide for the full journey. Your assigned guide and vehicle are confirmed before departure."],
+  ["What is normally included in the quotation?", "The sample 6-day tour includes private transport, one driver-guide throughout, premium hotels with breakfast, second-class high-speed rail and listed attraction tickets. Lunches and dinners, international flights, travel insurance and personal expenses are not included. Your written quote specifies all services for your chosen route."],
   ["What happens if the weather or train times change?", "Joy and the local team coordinate changes to the agreed itinerary, including revised pickups or alternate visits where practical. Weather-sensitive sites and train tickets depend on availability. Proposed changes, charges and any refunds are discussed before confirmation."],
   ["Do I need confirmed dates before enquiring?", "No. Your group size and approximate trip length are enough to get started."],
   ["How does booking and payment work?", "Review the written itinerary and quotation first, then sign the licensed agency's travel contract. The usual arrangement is a 20% deposit and the remaining balance after your first pickup, subject to your agreed written terms."],
@@ -45,12 +45,12 @@ export default async function TailorMadePreview({ params }: Props) {
 
   return <main className="tailor-preview">
     <SiteHeader conversion cta={{ href: "#plan", label: cta }} />
-    <JourneyHero title="Private Yunnan Tours, Designed Around You" eyebrow="TAILOR-MADE YUNNAN" image="/home/hero.webp" imageAlt="Yunnan's Jade Dragon Snow Mountain" description="Explore Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La on a private journey shaped around your dates, interests and pace." primary={{href:"#plan",label:cta}} secondary={{href:"#routes",label:"Explore Route Ideas"}} note="Sample 6-day private journeys from US$680 per person. Based on two adults sharing one room. Final pricing depends on season, route, hotels and included services."/>
+    <JourneyHero title="Private Yunnan Tours, Designed Around You" eyebrow="TAILOR-MADE YUNNAN" image="/home/hero.webp" imageAlt="Yunnan's Jade Dragon Snow Mountain" description="Explore Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La on a private journey shaped around your dates, interests and pace." primary={{href:"#plan",label:cta}} secondary={{href:"#routes",label:"Explore Route Ideas"}} note="6 days from US$680 · 8 days from US$799 per person. Reference starting prices; final quotes depend on your dates, party and confirmed services."/>
     <JourneyFactCards id="glance" title="At a glance" cards={[
       { icon:"calendar", title:"Flexible Duration", lines:["6–12 Days","A route shaped around your available time, interests and preferred pace."] },
-      { icon:"route", title:"Private Travel", lines:["Just Your Group","Private vehicle and English-speaking driver-guide. No shared groups, fixed departures or shopping stops."] },
-      { icon:"star", title:"Hotels & Experiences", lines:["Matched to You","Selected hotels and local experiences tailored to your comfort, interests and travel style."] },
-      { icon:"note", title:"Clear Proposal", lines:["Know Before Booking","A written route, hotel selection, confirmed inclusions and total price before you decide."] },
+      { icon:"route", title:"100% Tailor-Made & No Shopping", lines:["Just Your Group","Private vehicle and English-speaking driver-guide. No shared groups, fixed departures or shopping stops."] },
+      { icon:"star", title:"One Guide, Your Language", lines:["Chinese or English Included","Choose your guide language at no extra charge; one dedicated driver-guide throughout."] },
+      { icon:"note", title:"Transparent Booking", lines:["20% Deposit","Booking and refunds follow the agreed cancellation policy in your contract."] },
     ]} action={{href:"#plan",label:"Get My Route & Price"}} />
     <section className="section preview-fit"><div className="shell preview-two">
       <article><p className="kicker">YOUR KIND OF TRIP</p><h2>Who it's for</h2><p>For couples, families, friends and small private groups who want local guidance without joining a scheduled tour.</p><p>You do not need to know the exact route. A rough trip length and group size are enough.</p></article>
@@ -70,7 +70,7 @@ export default async function TailorMadePreview({ params }: Props) {
         trackingLocation: "preview_route_" + r.num,
       }} />
     )}</div>
-    <p className="preview-price-note">The sample 6-day price is based on two adults sharing one room. Final prices depend on season, route, group size, selected hotels and included services. The written proposal confirms exactly what is included.</p>
+    <p className="preview-price-note">Starting prices are per person, based on two adults sharing a room. Final prices vary by travel dates, group size, hotel selection and confirmed services.</p>
     </div>
     <div className="preview-longer-journey">
       <div className="shell preview-longer-inner">
@@ -87,23 +87,33 @@ export default async function TailorMadePreview({ params }: Props) {
     </div>
     </section>
     <RealJourneyEvidence />
-    <JourneyFactCards id="what-to-expect" title="A Private Journey, Thoughtfully Arranged" cards={[
-      { icon: "route", title: "Your route, professionally planned", lines: ["A realistic day-by-day plan for your dates", "Travel time, altitude and sightseeing pace considered"] },
-      { icon: "person", title: "Private driver-guide service", lines: ["English-speaking service confirmed for your dates", "Driving, pickups, local context and itinerary coordination", "Specialist attraction guides quoted separately if needed"] },
-      { icon: "calendar", title: "Transport & comfortable stays", lines: ["Private five- or seven-seat vehicle as suitable", "Selected hotels, room types and breakfasts named in your proposal"] },
-      { icon: "note", title: "Clear arrangements before booking", lines: ["Written total price, inclusions and exclusions", "Tickets, trains, meals and upgrades listed only when included"] },
-    ]} />
+    <section className="section preview-inclusions" id="included-excluded"><div className="shell">
+      <div className="preview-heading"><p className="kicker">THE 6-DAY REFERENCE JOURNEY</p><h2>What’s Included — and What’s Not</h2><p>The same inclusions and exclusions listed on our 6-day journey page. For the 8-day route or custom plans, your written proposal confirms the exact services.</p></div>
+      <div className="preview-inclusion-grid">
+        <article><span className="journey-detail-label">INCLUDED IN THE 6-DAY TOUR</span><ul>
+          <li>A private vehicle throughout the journey, including fuel, tolls, parking, and your driver’s meals and accommodation</li>
+          <li>A driver-guide for the whole journey</li>
+          <li>Premium hotels throughout, with breakfast included</li>
+          <li>High-speed rail tickets during the journey, in second class</li>
+          <li>Entrance tickets for the sights listed in the itinerary</li>
+        </ul></article>
+        <article><span className="journey-detail-label">NOT INCLUDED</span><ul>
+          <li>Lunch and dinner</li><li>International flights</li><li>Travel insurance</li><li>Personal expenses</li>
+        </ul></article>
+      </div>
+      <p className="preview-inclusions-note">Chinese- or English-speaking driver-guide service is included at the same price, with one dedicated guide for your journey. All tour details are confirmed in the written proposal.</p>
+    </div></section>
     <section className="section preview-custom"><div className="shell"><div className="preview-heading"><p className="kicker">TAILORED TO YOU</p><h2>Make the Journey Yours</h2></div><div className="preview-two">
     <article><h3>Route & Pace</h3><ul><li>Add or remove destinations</li><li>Spend longer in fewer places, such as an extra night in Dali or Lijiang</li><li>Choose gentler starts or fuller days</li><li>Adjust hiking and altitude exposure</li></ul></article>
     <article><h3>Hotels & Experiences</h3><ul><li>Comfortable, premium or characterful hotels, confirmed by name</li><li>Bai tie-dye workshops in Zhoucheng and a night in Shaxi</li><li>Local food, photography and countryside walks</li><li>Family-friendly arrangements</li><li>Dietary and mobility requirements</li></ul></article>
     </div></div></section>
     
-    <JourneyFactCards id="why-travel" title="Why travel with us" cards={[
-      { icon:"person", title:"Planned by a Yunnan local", lines:["Born in Yunnan, Joy plans routes with practical advice on seasons, travel time and pace"] },
-      { icon:"party", title:"One contact throughout", lines:["Speak with Joy from your first enquiry through planning and your journey"] },
-      { icon:"licence", title:"Licensed local operator", lines:["Contract and payment through Yunnan Meizhen International Travel Agency","Permit L-YN-1017500"] },
-      { icon:"note", title:"Everything in writing", lines:["Route, hotels, inclusions, exclusions and total price before you decide"] },
-    ]} action={{href:"/licensed-operator",label:"View licence and booking protection"}} />
+    <JourneyFactCards id="why-travel" title="Local Planning. Licensed Delivery." cards={[
+      { icon:"person", title:"Yunnan-rooted route planning", lines:["Route advice informed by local knowledge of seasons, travel times and the real pace between stops"] },
+      { icon:"party", title:"One coordinated local team", lines:["Joy handles your enquiry and route advice; Yunnan Meizhen’s licensed operations team coordinates bookings and on-the-ground service"] },
+      { icon:"licence", title:"Licensed tour operator", lines:["Travel contract and payment with Yunnan Meizhen International Travel Agency","Permit L-YN-1017500"] },
+      { icon:"note", title:"A plan you can review", lines:["Written hotel choices, transport arrangements and inclusions before signing","20% deposit usually applies; refunds follow your contract’s cancellation terms"] },
+    ]} action={{href:"/licensed-operator",label:"Check our licensed operator"}} />
     <section className="section preview-process journey-support-flow"><div className="shell journey-section-layout"><header className="preview-heading"><p className="kicker">THREE SIMPLE STEPS</p><h2>How planning works</h2></header><div className="journey-support-grid">
       <article><span>01</span><h3>Share the basics</h3><p>Tell us your trip length, group size and places or experiences that interest you. Dates can follow later.</p></article>
       <article><span>02</span><h3>Receive a route and price</h3><p>Joy suggests a realistic route and an initial price range based on your trip length, group size and interests.</p></article>
@@ -111,7 +121,7 @@ export default async function TailorMadePreview({ params }: Props) {
     </div><p className="preview-centered">There is no payment or booking commitment when requesting an initial proposal.</p></div></section>
     {/* Traveler testimonials are withheld on this preview until original sources and permission are verified. */}
     <section className="section preview-plan" id="plan"><div className="shell preview-plan-grid">
-      <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy, founder of Hidden China Travel" fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">PLAN DIRECTLY WITH JOY</p><h2>Get a Suggested Yunnan Route & Price</h2><p>You do not need a finished itinerary. Share your approximate number of days and group size, and Joy will suggest a realistic starting route and price range based on your interests.</p><p><strong>Based in Kunming</strong> · English-language planning and local support</p><p className="preview-quiet">Prefer WhatsApp? <Link href={whatsapp} data-cta-location="preview_form_whatsapp">Chat with Joy →</Link></p></div>
+      <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy, founder of Hidden China Travel" fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">LOCAL PLANNING, LICENSED DELIVERY</p><h2>Get a Suggested Yunnan Route & Price</h2><p>You do not need a finished itinerary. Share your approximate number of days and group size, and We will suggest a realistic starting route and price range based on your interests, with bookings and on-the-ground arrangements coordinated by our licensed local team.</p><p><strong>Yunnan local knowledge</strong> · Chinese- or English-speaking service · Licensed local delivery</p><p className="preview-quiet">Prefer WhatsApp? <Link href={whatsapp} data-cta-location="preview_form_whatsapp">Chat with Joy →</Link></p></div>
       <PreviewEnquiryForm />
     </div></section>
     <section className="section preview-payment journey-support-flow"><div className="shell journey-section-layout">
