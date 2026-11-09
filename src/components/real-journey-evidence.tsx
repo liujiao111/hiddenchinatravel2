@@ -133,7 +133,7 @@ export function RealJourneyEvidence() {
       </div>
       <div id="real-evidence-panel" role="tabpanel" aria-labelledby={`evidence-tab-${active}`}>
         {items.length ? <>
-          <div className="real-evidence-grid">
+          <div className={`real-evidence-grid real-evidence-grid-${active}`}>
             {items.slice(0, expanded[active] ? items.length : 4).map((item, i) =>
               <button className="real-evidence-item" key={item.src} type="button" onClick={() => setViewing(i)} aria-label={`View photo: ${item.title}`}>
                 <span className="real-evidence-image"><Image src={encodeURI(item.src)} alt={item.alt} fill
