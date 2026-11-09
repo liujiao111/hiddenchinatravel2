@@ -17,14 +17,13 @@ import "./preview.css";
 type Props = { params: Promise<{ lang: AppLocale }> };
 export const metadata: Metadata = {
   title: "Private Yunnan Tours, Designed Around You — Preview",
-  description: "Explore three private Yunnan route ideas. Tell Joy your trip length and group size to receive a suggested itinerary and initial price.",
+  description: "Explore two ready-planned private Yunnan routes and tailor a longer journey. Tell Joy your trip length and group size to receive a suggested itinerary and initial price.",
   robots: { index: false, follow: false },
 };
 
 const routes = [
-  { num: "01", title: "6-Day First Encounter", places: "Dali · Shaxi · Lijiang", duration: "6 DAYS", image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp", alt: "A stone-paved street in Shaxi", description: "Erhai Lake, Bai culture, a night in Shaxi and a full day at Jade Dragon Snow Mountain.", best: "First-time visitors with limited time", price: "From US$680 per person", href: "/journeys/kunming-dali-shaxi-lijiang-6-days" },
-  { num: "02", title: "8-Day Mountains & Ancient Towns", places: "Dali · Lijiang · Tiger Leaping Gorge · Shangri-La", duration: "8 DAYS", image: "/assets/destinations/yunnan/tiger-leaping.webp", alt: "Mountain gorge in Yunnan", description: "A classic western Yunnan route combining ancient towns, mountain landscapes, Tiger Leaping Gorge and the Tibetan culture of Shangri-La.", best: "Travelers wanting Yunnan's classic highlights", price: "Request an initial price", href: "/journeys/kunming-dali-lijiang-shangri-la-private-tour" },
-  { num: "03", title: "10–12 Day Yunnan in Depth", places: "Kunming · Dali · Shaxi · Lijiang · Shangri-La", duration: "10–12 DAYS", image: "/assets/blog/dali-travel-guide/erhai-lake-cangshan.webp", alt: "Erhai Lake and Cangshan in Dali", description: "Stay overnight on Shaxi’s Tea Horse Road, explore Bai traditions in Dali, and allow more time for food, photography and gentle walks.", best: "Travelers who prefer depth over rushing", price: "Tailor-made quotation", href: "#plan" },
+  { num: "01", title: "6-Day First Encounter", places: "6 DAYS · DALI · SHAXI · LIJIANG", image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp", alt: "A stone-paved street in Shaxi", description: "A relaxed introduction to western Yunnan, with Erhai Lake, Bai culture, an overnight stay in Shaxi and a full day at Jade Dragon Snow Mountain.", best: "First-time visitors with limited time", price: "From US$680 per person", href: "/journeys/kunming-dali-shaxi-lijiang-6-days" },
+  { num: "02", title: "8-Day Mountains & Ancient Towns", places: "8 DAYS · DALI · LIJIANG · TIGER LEAPING GORGE · SHANGRI-LA", image: "/assets/destinations/yunnan/tiger-leaping.webp", alt: "Mountain gorge in Yunnan", description: "A classic western Yunnan route combining ancient towns, mountain landscapes, Tiger Leaping Gorge and the Tibetan culture of Shangri-La.", best: "Travelers wanting Yunnan’s classic highlights", price: "Request an Initial Price", href: "/journeys/kunming-dali-lijiang-shangri-la-private-tour" },
 ];
 
 const faqs = [
@@ -57,13 +56,32 @@ export default async function TailorMadePreview({ params }: Props) {
       <article><p className="kicker">YOUR KIND OF TRIP</p><h2>Who it's for</h2><p>For couples, families, friends and small private groups who want local guidance without joining a scheduled tour.</p><p>You do not need to know the exact route. A rough trip length and group size are enough.</p></article>
       <article><p className="kicker">SEASONAL ADVICE</p><h2>When to go</h2><p>March to May and September to November are generally the most comfortable periods for classic Dali, Lijiang and Shangri-La routes.</p><p>Summer is greener but wetter. Winter is quieter, with colder conditions at higher elevations.</p></article>
     </div></section>
-    <section className="section preview-routes" id="routes"><div className="shell"><div className="preview-heading"><p className="kicker">A STARTING POINT, NOT A FIXED PACKAGE</p><h2>Three ways to explore Yunnan</h2><p>Pick a route you like, then make it yours.</p></div>
-    <div className="journeys-card-grid preview-reused-journeys">{routes.map(r => <div className="preview-reused-journey" key={r.num}>
-      <JourneyCard journey={{ title: r.title, subtitle: r.description, href: r.href, image: r.image, imageAlt: r.alt, duration: r.duration, destination: r.places, fromPrice: r.price, features: [`Best for: ${r.best}`], ctaLabel: r.num==="01" ? "View the 6-Day Journey" : r.num==="02" ? "View the 8-Day Journey" : "Design a Longer Journey", trackingLocation: "preview_route_"+r.num }} />
-      {r.num!=="03" ? <a className="preview-customize-route" href="#plan">Customize This Route →</a> : null}
-    </div>)}</div>
+    <section className="section preview-routes" id="routes"><div className="shell"><div className="preview-heading">
+      <p className="kicker">A STARTING POINT, NOT A FIXED PACKAGE</p>
+      <h2>Start with a Ready-Planned Yunnan Route</h2>
+      <p>Explore two carefully planned journeys, then customize the route, pace and hotels around your trip.</p>
+    </div>
+    <div className="journeys-card-grid preview-reused-journeys">{routes.map(r =>
+      <JourneyCard key={r.num} journey={{
+        title: r.title, subtitle: r.description, href: r.href, image: r.image, imageAlt: r.alt,
+        destination: r.places, fromPrice: r.price, features: [`Best for ${r.best}`],
+        ctaLabel: r.num === "01" ? "View the 6-Day Journey" : "View the 8-Day Journey",
+        secondaryHref: "#plan", secondaryLabel: "Customize This Route",
+        trackingLocation: "preview_route_" + r.num,
+      }} />
+    )}</div>
     <p className="preview-price-note">The sample 6-day price is based on two adults sharing one room. Final prices depend on season, route, group size, selected hotels and included services. The written proposal confirms exactly what is included.</p>
-    <div className="preview-route-help"><h3>Not sure which route fits your trip?</h3><p>Tell us your approximate duration and group size. Joy will suggest a realistic route for your season and interests.</p><a className="button button-blue" href="#plan">Help Me Choose</a></div>
+    <div className="preview-longer-journey">
+      <Image src="/assets/blog/dali-travel-guide/erhai-lake-cangshan.webp" alt="Erhai Lake and Cangshan in Dali" fill sizes="(max-width:700px) 100vw, 1100px" />
+      <div className="preview-longer-shade" />
+      <div className="preview-longer-copy">
+        <p className="kicker">NEED MORE TIME IN YUNNAN?</p>
+        <h3>Planning a 10–12 Day Journey?</h3>
+        <p>A longer trip can combine Kunming, Dali, Shaxi, Lijiang and Shangri-La at a more comfortable pace, with more time for local culture, photography, food or hiking.</p>
+        <p>Tell Joy your trip length, group size and interests. You’ll receive a suggested route and initial price range.</p>
+        <a className="button journey-primary-action" href="#plan" data-cta-location="preview_longer_journey">Design My Longer Yunnan Journey</a>
+      </div>
+    </div>
     </div></section>
     <RealJourneyEvidence />
     <JourneyFactCards id="what-to-expect" title="A Private Journey, Thoughtfully Arranged" cards={[
