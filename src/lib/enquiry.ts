@@ -14,6 +14,8 @@ export type Enquiry = {
   interest: string;
   plans: string;
   source: string;
+  originPage: string;
+  originCta: string;
   travelers: string;
   budget: string;
 };
@@ -37,6 +39,15 @@ function cleanSource(value: string) {
   } catch {
     return "";
   }
+}
+
+function cleanOriginPage(value: string) {
+  // Internal path only: no external URLs, query strings, fragments or control chars.
+  return /^\\/(?!\\/)[^?#\\s<>]{0,499}$/.test(value) ? value : "";
+}
+
+function cleanOriginCta(value: string) {
+  return value.replace(/[\\u0000-\\u001f\\u007f<>]/g, " ").replace(/\\s+/g, " ").trim().slice(0, 100);
 }
 
 function cleanTravelDates(value: string) {
@@ -73,7 +84,7 @@ export function parseEnquiry(input: Record<string, unknown>): Enquiry | { error:
   if (plans.length > 4000) return { error: "Please keep your note under 4,000 characters." };
   if (whatsapp.length > 40) return { error: "Please check the WhatsApp number." };
 
-  return { name, email, whatsapp, travelWindow, interest: interestValue, plans, source: cleanSource(String(input.source ?? "")), travelers, budget };
+  return { name, email, whatsapp, travelWindow, interest: interestValue, plans, source: cleanSource(String(input.source ?? "")), originPage: cleanOriginPage(String(input.originPage ?? "")), originCta: cleanOriginCta(String(input.originCta ?? "")), travelers, budget };
 }
 
 export function missingQuoteFacts(enquiry: Enquiry) {
@@ -102,7 +113,9 @@ export function enquiryMessage(enquiry: Enquiry) {
     `Travel dates: ${enquiry.travelWindow || "Not provided"}`,
     `Travelers: ${enquiry.travelers || "Not provided"}`,
     ...(enquiry.budget ? [`Budget per person: ${enquiry.budget}`] : []),
-    ...(enquiry.source ? [`Page: ${enquiry.source}`] : []),
+    `Enquiry origin page: ${enquiry.originPage || "Direct / unknown"}`,
+    ...(enquiry.originCta ? [`Origin CTA: ${enquiry.originCta}`] : []),
+    ...(enquiry.source ? [`Submission page: ${enquiry.source}`] : []),
     "",
     "My plans:",
     enquiry.plans,
