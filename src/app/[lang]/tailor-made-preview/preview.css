@@ -70,15 +70,36 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .journey-card-actions a:last-child{text-decoration:underline;text-underline-offset:4px;font-weight:500}
 .tailor-preview .journey-card-actions a:hover{text-decoration:underline}
 .tailor-preview .journey-card-actions a:focus-visible{outline:3px solid #fff;outline-offset:4px}
-.tailor-preview .preview-longer-journey{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:36px;align-items:center;width:100%;min-height:0;margin-top:32px;padding:34px 38px;background:#edf5f2;border:1px solid #dbe6e0;color:#243f39}
-.tailor-preview .preview-longer-copy{max-width:740px;min-width:0}
-.tailor-preview .preview-longer-copy .kicker{color:#567c70;font-size:.68rem;letter-spacing:.15em;font-weight:800;margin:0}
-.tailor-preview .preview-longer-copy h3{font-size:clamp(1.55rem,2.5vw,2.2rem);line-height:1.2;color:#243f39;margin:10px 0 12px}
-.tailor-preview .preview-longer-copy p:not(.kicker){color:#53635c;font-size:.92rem;line-height:1.6;margin:0 0 8px}
+/* Full-bleed callout; content aligns with the site's shared .shell width. */
+.tailor-preview .preview-longer-journey {
+  width:100%;
+  margin-top:36px;
+  background:#243f39;
+  color:#fff;
+}
+.tailor-preview .preview-longer-inner {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:44px;
+  padding-top:45px;
+  padding-bottom:45px;
+}
+.tailor-preview .preview-longer-copy{max-width:800px;min-width:0}
+.tailor-preview .preview-longer-copy .kicker{color:#d8c59a;font-size:.68rem;letter-spacing:.16em;font-weight:800;margin:0 0 10px}
+.tailor-preview .preview-longer-copy h3{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(1.75rem,2.6vw,2.55rem);line-height:1.2;color:#fff;margin:0 0 13px}
+.tailor-preview .preview-longer-copy p:not(.kicker){color:rgba(255,255,255,.88);font-size:.95rem;line-height:1.65;margin:0 0 9px}
 .tailor-preview .preview-longer-action{display:flex;justify-content:flex-end;align-items:center}
-.tailor-preview .preview-longer-action .button{max-width:270px;text-align:center;line-height:1.45;white-space:normal}
-@media(max-width:900px){.tailor-preview .preview-longer-journey{grid-template-columns:1fr;gap:14px;padding:28px}.tailor-preview .preview-longer-action{justify-content:flex-start}}
-@media(max-width:700px){.tailor-preview .preview-longer-journey{margin-top:24px;padding:25px 22px}.tailor-preview .preview-longer-action .button{max-width:none;width:100%}}
+.tailor-preview .preview-longer-action .button{max-width:250px;text-align:center;line-height:1.45;white-space:normal}
+@media(max-width:900px){
+  .tailor-preview .preview-longer-inner{grid-template-columns:1fr;gap:18px;padding-top:38px;padding-bottom:38px}
+  .tailor-preview .preview-longer-action{justify-content:flex-start}
+}
+@media(max-width:700px){
+  .tailor-preview .preview-longer-journey{margin-top:25px}
+  .tailor-preview .preview-longer-inner{padding-top:32px;padding-bottom:34px}
+  .tailor-preview .preview-longer-action .button{max-width:none;width:100%}
+}
 
 .tailor-preview .journey-fact-cards .shell>a{display:block;margin:30px auto 0;text-align:center;text-decoration:underline;font-weight:700;color:#28675d}
 .tailor-preview .preview-plan-joy{padding-top:0!important}
@@ -198,3 +219,17 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .real-evidence-grid-travelers .real-evidence-image img,
 .tailor-preview .real-evidence-grid-vehicles-guides .real-evidence-image img,
 .tailor-preview .real-evidence-grid-hotels .real-evidence-image img{object-fit:contain!important}
+
+/* Preview palette: alternate white and warm neutrals, not repeated blue-green panels. */
+.tailor-preview .preview-fit {background:#f7f7f0}
+.tailor-preview .preview-fit article {background:#fff;border-color:#e8e5da}
+.tailor-preview .preview-custom {background:#faf9f4}
+.tailor-preview .preview-custom .preview-two article {background:#fff;border-color:#e3dfd3}
+.tailor-preview .real-journey-evidence {background:#f7f5ee}
+.tailor-preview .real-evidence-item {background:#fff}
+.tailor-preview .real-evidence-image {background:#efede6}
+.tailor-preview .real-evidence-cta {border-color:#d8d1bf}
+.tailor-preview .journey-fact-cards {background:#f3f1e8}
+.tailor-preview .preview-plan {background:#f7f7f0}
+.tailor-preview .preview-payment {background:#fff}
+.tailor-preview .preview-process {background:#f7f7f0}
