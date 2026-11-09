@@ -94,13 +94,19 @@ const notes: Record<Category, string> = {
   planning: "These are cropped, privacy-checked excerpts from a real travel contract. Customer enquiries and planning conversations will be added only after their original records and publication permissions are verified.",
 };
 
-export function RealJourneyEvidence() {
+export function RealJourneyEvidence({ locale = "en" }: { locale?: "en" | "zh" }) {
+  const zh = locale === "zh";
   const [active, setActive] = useState<Category>("travelers");
   const [expanded, setExpanded] = useState<Partial<Record<Category, boolean>>>({});
   const [viewing, setViewing] = useState<number | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const items = records[active];
   const selected = viewing === null ? null : items[viewing];
+  const categoryTitle = (id: Category) => zh ? ({ travelers:"旅客旅程", "vehicles-guides":"车辆与向导", hotels:"酒店实景", planning:"预订与合同" } as Record<Category,string>)[id] : categories.find(c=>c.id===id)?.label || id;
+  const titleFor = (item: Evidence, index: number) => !zh ? item.title : active === "travelers" ? `云南旅行照片 ${index+1}` : active === "hotels" ? `酒店实景 ${index+1}` : active === "vehicles-guides" ? `车辆与本地团队 ${index+1}` : ["实际旅游合同封面","合同中的持证旅行社信息","旅行社合同印章"][index] || "真实合同记录";
+  const detailFor = (item: Evidence) => zh ? active === "planning" ? "已脱敏的真实合同资料" : "实际服务资料照片" : item.detail;
+  const copyFor = (item: Evidence, index: number) => !zh ? item.copy : active === "travelers" ? "现有旅行资料中的旅客照片，未公开身份及具体行程信息。" : active === "hotels" ? "当地合作酒店参考照片。具体酒店、房型及早餐安排以正式报价为准。" : active === "vehicles-guides" ? "云南本地车辆与团队参考照片。具体车型、服务人员及向导语言按确认行程安排。" : ["实际旅游合同的已脱敏封面，客人身份和合同编号均未公开。","合同展示了云南美珍国际旅行社有限公司的签约主体信息。","展示旅行社合同印章的已脱敏资料。"][index] || "已脱敏合同资料。";
+  const noteFor = (id: Category) => !zh ? notes[id] : ({ travelers:"照片来自已有旅行资料，不代表照片人物提供了公开评价。", "vehicles-guides":"展示实际车辆及团队资料。中文或英文司机兼向导可选，具体安排会在出行前确认。", hotels:"这里展示的是酒店参考照片，实际酒店名称、房型和早餐安排会在书面报价中列明。", planning:"此处仅展示脱敏的真实合同片段，客户沟通记录须经隐私及发布授权确认后才会公开。" } as Record<Category,string>)[id];
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -119,46 +125,46 @@ export function RealJourneyEvidence() {
   return <section className="journey-proof section section-sand real-journey-evidence" id="real-arrangements" aria-labelledby="real-evidence-title">
     <div className="shell">
       <div className="journey-editorial-heading real-evidence-heading">
-        <span>BEHIND YOUR YUNNAN JOURNEY</span>
-        <h2 id="real-evidence-title">Real Journeys, Real Arrangements</h2>
-        <p>See the vehicles, hotels, local team and planning details behind our private Yunnan journeys.</p>
+        <span>{zh ? "真实云南旅行服务" : "BEHIND YOUR YUNNAN JOURNEY"}</span>
+        <h2 id="real-evidence-title">{zh ? "真实旅程，真实安排" : "Real Journeys, Real Arrangements"}</h2>
+        <p>{zh ? "看看我们为云南私人旅行安排的车辆、酒店、本地团队及合同资料。" : "See the vehicles, hotels, local team and planning details behind our private Yunnan journeys."}</p>
       </div>
-      <div className="proof-group-switch journey-proof-tabs real-evidence-tabs" role="tablist" aria-label="Real journey evidence categories">
+      <div className="proof-group-switch journey-proof-tabs real-evidence-tabs" role="tablist" aria-label={zh ? "真实旅行资料分类" : "Real journey evidence categories"}>
         {categories.map(category => <button key={category.id} type="button"
           role="tab" id={`evidence-tab-${category.id}`}
           aria-controls="real-evidence-panel"
           aria-selected={active === category.id}
           tabIndex={active === category.id ? 0 : -1}
-          onClick={() => changeCategory(category.id)}>{category.label}</button>)}
+          onClick={() => changeCategory(category.id)}>{categoryTitle(category.id)}</button>)}
       </div>
       <div id="real-evidence-panel" role="tabpanel" aria-labelledby={`evidence-tab-${active}`}>
         {items.length ? <>
           <div className={`real-evidence-grid real-evidence-grid-${active}`}>
             {items.slice(0, expanded[active] ? items.length : 4).map((item, i) =>
-              <button className="real-evidence-item" key={item.src} type="button" onClick={() => setViewing(i)} aria-label={`View photo: ${item.title}`}>
+              <button className="real-evidence-item" key={item.src} type="button" onClick={() => setViewing(i)} aria-label={zh ? `查看图片：${titleFor(item, i)}` : `View photo: ${item.title}`}>
                 <span className="real-evidence-image"><Image src={encodeURI(item.src)} alt={item.alt} fill
                   sizes="(max-width: 700px) 46vw, (max-width: 1100px) 44vw, 25vw" /></span>
-                <span className="real-evidence-caption"><small>{item.detail}</small><strong>{item.title}</strong></span>
+                <span className="real-evidence-caption"><small>{detailFor(item)}</small><strong>{titleFor(item, i)}</strong></span>
               </button>)}
           </div>
-          {items.length > 4 ? <div className="real-evidence-more"><button type="button" className="button button-light" onClick={() => setExpanded(value => ({...value, [active]: !value[active]}))}>{expanded[active] ? "Show fewer" : `View more (${items.length - 4})`}</button></div> : null}
-        </> : <div className="real-evidence-pending"><h3>Real planning records, coming after review</h3><p>{notes.planning}</p></div>}
-        {active !== "planning" ? <p className="real-evidence-note">{notes[active]}</p> : null}
+          {items.length > 4 ? <div className="real-evidence-more"><button type="button" className="button button-light" onClick={() => setExpanded(value => ({...value, [active]: !value[active]}))}>{expanded[active] ? (zh ? "收起" : "Show fewer") : (zh ? `查看更多（${items.length-4}）` : `View more (${items.length - 4})`)}</button></div> : null}
+        </> : <div className="real-evidence-pending"><h3>{zh ? "更多真实预订资料审核中" : "Real planning records, coming after review"}</h3><p>{noteFor("planning")}</p></div>}
+        {active !== "planning" ? <p className="real-evidence-note">{noteFor(active)}</p> : null}
       </div>
     </div>
     <div className="journey-final-cta real-evidence-cta">
       <div className="shell">
-        <h2>Want to see what your own Yunnan journey could look like?</h2>
-        <span>Tell Joy a little about your group and interests to receive a suggested private route and price range.</span>
-        <a className="button button-light" href="#plan" data-cta-location="preview_evidence_cta">Get My Route &amp; Price</a>
+        <h2>{zh ? "想看看你的专属云南行程可以怎么安排？" : "Want to see what your own Yunnan journey could look like?"}</h2>
+        <span>{zh ? "告诉 Joy 你的出行人数和兴趣，我们会提供适合你的私人路线与初步报价。" : "Tell Joy a little about your group and interests to receive a suggested private route and price range."}</span>
+        <a className="button button-light" href="#plan" data-cta-location="preview_evidence_cta">{zh ? "获取定制路线与报价" : "Get My Route & Price"}</a>
       </div>
     </div>
 
-    <dialog ref={dialogRef} className="real-evidence-dialog" onClose={close} onCancel={close} aria-label={selected?.title || "Journey photo"}>
+    <dialog ref={dialogRef} className="real-evidence-dialog" onClose={close} onCancel={close} aria-label={selected ? titleFor(selected, viewing ?? 0) : (zh ? "旅程照片" : "Journey photo")}>
       {selected ? <div className="real-evidence-modal">
-        <div className="real-evidence-modal-head"><span>{categories.find(c=>c.id===active)?.label.toUpperCase()}</span><button type="button" className="real-evidence-close" onClick={close} aria-label="Close image">×</button></div>
+        <div className="real-evidence-modal-head"><span>{categoryTitle(active)}</span><button type="button" className="real-evidence-close" onClick={close} aria-label={zh ? "关闭图片" : "Close image"}>×</button></div>
         <div className="real-evidence-modal-image"><Image src={encodeURI(selected.src)} alt={selected.alt} fill sizes="(max-width: 800px) 90vw, 900px" /></div>
-        <div className="real-evidence-modal-info"><div><small>{selected.detail}</small><h3>{selected.title}</h3><p>{selected.copy}</p></div><div className="proof-carousel-controls"><span>{String(viewing!+1).padStart(2,"0")} / {String(items.length).padStart(2,"0")}</span><div><button type="button" aria-label="Previous image" onClick={() => move(-1)}>←</button><button type="button" aria-label="Next image" onClick={() => move(1)}>→</button></div></div></div>
+        <div className="real-evidence-modal-info"><div><small>{detailFor(selected)}</small><h3>{titleFor(selected, viewing ?? 0)}</h3><p>{copyFor(selected, viewing ?? 0)}</p></div><div className="proof-carousel-controls"><span>{String(viewing!+1).padStart(2,"0")} / {String(items.length).padStart(2,"0")}</span><div><button type="button" aria-label={zh ? "上一张图片" : "Previous image"} onClick={() => move(-1)}>←</button><button type="button" aria-label={zh ? "下一张图片" : "Next image"} onClick={() => move(1)}>→</button></div></div></div>
       </div> : null}
     </dialog>
   </section>;
