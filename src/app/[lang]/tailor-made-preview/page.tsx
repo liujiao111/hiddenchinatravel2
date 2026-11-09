@@ -82,7 +82,7 @@ export default async function TailorMadePreview({ params }: Props) {
       { icon:"licence", title:"Licensed local operator", lines:["Contract and payment through Yunnan Meizhen International Travel Agency","Permit L-YN-1017500"] },
       { icon:"note", title:"Everything in writing", lines:["Route, hotels, inclusions, exclusions and total price before you decide"] },
     ]} action={{href:"/licensed-operator",label:"View licence and booking protection"}} />
-    <section className="section preview-process"><div className="shell"><div className="preview-heading"><p className="kicker">THREE SIMPLE STEPS</p><h2>How planning works</h2></div><div className="journey-support-grid preview-steps">
+    <section className="section preview-process"><div className="shell"><div className="preview-heading"><p className="kicker">THREE SIMPLE STEPS</p><h2>How planning works</h2></div><div className="preview-steps">
       <article><span>01</span><h3>Share the basics</h3><p>Tell us your trip length, group size and places or experiences that interest you. Dates can follow later.</p></article>
       <article><span>02</span><h3>Receive a route and price</h3><p>Joy suggests a realistic route and an initial price range based on your trip length, group size and interests.</p></article>
       <article><span>03</span><h3>Adjust before booking</h3><p>Review changes to hotels, pace and experiences before booking; any change to included services or price is confirmed in writing.</p></article>
