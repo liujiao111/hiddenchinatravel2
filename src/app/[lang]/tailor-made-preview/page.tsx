@@ -92,7 +92,7 @@ export default async function TailorMadePreview({ params }: Props) {
       <div className="preview-inclusion-grid">
         <article><span className="journey-detail-label">INCLUDED IN THE 6-DAY TOUR</span><ul>
           <li>A private vehicle throughout the journey, including fuel, tolls, parking, and your driver’s meals and accommodation</li>
-          <li>A driver-guide for the whole journey</li>
+          <li>One Chinese- or English-speaking driver-guide for the whole journey, included at the same price</li>
           <li>Premium hotels throughout, with breakfast included</li>
           <li>High-speed rail tickets during the journey, in second class</li>
           <li>Entrance tickets for the sights listed in the itinerary</li>
