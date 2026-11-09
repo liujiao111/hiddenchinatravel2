@@ -60,15 +60,38 @@ for (let index = 0; index < Math.max(vehiclePhotos.length, guidePhotos.length); 
   if (vehiclePhotos[index]) transportAndGuides.push(vehiclePhotos[index]);
   if (guidePhotos[index]) transportAndGuides.push(guidePhotos[index]);
 }
+const planningDocuments: Evidence[] = [
+  {
+    src: "/assets/planning/contract-cover.webp",
+    alt: "Redacted sample travel contract cover from Yunnan Meizhen",
+    title: "Signed travel contract · cover",
+    detail: "Real contract excerpt · personal information removed",
+    copy: "A cropped cover from an actual Yunnan travel contract. The original contract number and identifying code are not displayed.",
+  },
+  {
+    src: "/assets/planning/contract-agency.webp",
+    alt: "Travel agency name and registration information on a real contract",
+    title: "Licensed agency named in contract",
+    detail: "Agency and permit details",
+    copy: "The contract identifies Yunnan Meizhen International Travel Agency as the contracting travel operator.",
+  },
+  {
+    src: "/assets/planning/contract-seal.webp",
+    alt: "Yunnan Meizhen company seal on a real travel contract",
+    title: "Contract acknowledgement and seal",
+    detail: "Company seal · redacted excerpt",
+    copy: "An excerpt showing the travel agency's company seal. Guest information and unrelated details are excluded.",
+  },
+];
 const records: Record<Category, Evidence[]> = {
-  travelers, "vehicles-guides": transportAndGuides, hotels: hotelPhotos, planning: [],
+  travelers, "vehicles-guides": transportAndGuides, hotels: hotelPhotos, planning: planningDocuments,
 };
 
 const notes: Record<Category, string> = {
   travelers: "Guest photos are shown independently of the written reviews; a photo does not identify any reviewer.",
   "vehicles-guides": "The vehicle and English-speaking driver-guide shown are examples from our local arrangements. Vehicle size, assigned team members and language support are confirmed for your dates, route and luggage.",
   hotels: "These are existing hotel examples, not guaranteed properties. Your quotation names the hotels, room types and included breakfasts.",
-  planning: "We will add anonymized enquiry, route revision and proposal records only after the original materials and permission to publish have been verified.",
+  planning: "These are cropped, privacy-checked excerpts from a real travel contract. Customer enquiries and planning conversations will be added only after their original records and publication permissions are verified.",
 };
 
 export function RealJourneyEvidence() {
