@@ -14,10 +14,12 @@ export type JourneyCardData = {
   features?: string[];
   ctaLabel?: string;
   trackingLocation?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
 };
 
 export function JourneyCard({ journey, priority = false }: { journey: JourneyCardData; priority?: boolean }) {
-  return <Link href={journey.href} className="journey-card" data-cta-location={journey.trackingLocation}>
+  const contents = <>
     <Image
       src={journey.image}
       alt={journey.imageAlt || journey.title}
@@ -35,7 +37,14 @@ export function JourneyCard({ journey, priority = false }: { journey: JourneyCar
       {journey.features?.length ? <ul>{journey.features.map((feature) => <li key={feature}>✓ {feature}</li>)}</ul> : null}
       {journey.fromPrice ? <b className="journey-card-price">{journey.fromPrice}</b> : null}
       {journey.priceNote ? <small className="journey-card-note">{journey.priceNote}</small> : null}
-      <strong>{journey.ctaLabel || "Explore the journey →"}</strong>
+      {journey.secondaryHref
+        ? <div className="journey-card-actions"><Link href={journey.href} data-cta-location={journey.trackingLocation}>{journey.ctaLabel || "View the Journey"} →</Link><Link href={journey.secondaryHref} data-cta-location={journey.trackingLocation ? journey.trackingLocation + "_customize" : undefined}>{journey.secondaryLabel || "Customize This Route"}</Link></div>
+        : <strong>{journey.ctaLabel || "Explore the journey →"}</strong>}
     </div>
-  </Link>;
+  </>;
+  // Cards with two actions cannot be wrapped in an outer link: nested links
+  // are invalid and break keyboard/touch interactions.
+  return journey.secondaryHref
+    ? <article className="journey-card journey-card-dual">{contents}</article>
+    : <Link href={journey.href} className="journey-card" data-cta-location={journey.trackingLocation}>{contents}</Link>;
 }
