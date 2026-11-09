@@ -239,6 +239,30 @@ const cta = L("Get a Suggested Route & Price");
       </div>
     </div>
     </section>
+    <section className="section preview-routes" id="sample-itinerary" aria-labelledby="sample-itinerary-heading">
+      <div className="shell">
+        <div className="preview-heading">
+          <p className="kicker">{lang === "zh" ? "免费下载参考行程" : "EXPLORE A SAMPLE ITINERARY"}</p>
+          <h2 id="sample-itinerary-heading">{lang === "zh" ? "云南秘境探索 · 8天7晚" : "8-Day Yunnan Hidden Explorer"}</h2>
+          <p>{lang === "zh" ? "从昆明出发，经大理、沙溪和丽江，探索虎跳峡、哈巴雪山与白水台。查看完整英文版PDF行程，再按你的日期、兴趣与酒店偏好定制。" : "Journey from Kunming through Dali, Shaxi and Lijiang, exploring Tiger Leaping Gorge, Haba Snow Mountain and Baishuitai. Preview the complete 8-day journey, then make it your own."}</p>
+        </div>
+        <div className="preview-two">
+          <article>
+            <Image src="/assets/destinations/yunnan/tiger-leaping.webp" alt={lang === "zh" ? "云南虎跳峡壮丽峡谷" : "Tiger Leaping Gorge in Yunnan"} width={780} height={500} style={{ width: "100%", height: "auto", borderRadius: "12px", objectFit: "cover" }} />
+          </article>
+          <article>
+            <p className="kicker">{lang === "zh" ? "8天7晚 · 私人定制 · 4星酒店可升级" : "8 DAYS · PRIVATE TOUR · 4-STAR HOTELS, UPGRADABLE"}</p>
+            <h3>{lang === "zh" ? "先看看旅程，再决定如何出发" : "See what your Yunnan journey could look like"}</h3>
+            <p>{lang === "zh" ? "示例包含私人用车、英文导游、昆明接机、丽江送机、昆明至大理二等座高铁及行程所列景点门票。机票与个人消费不包含。" : "The sample includes private transport, an English-speaking guide, Kunming airport pick-up, Lijiang airport drop-off, second-class rail from Kunming to Dali and listed attraction admissions. Flights and personal expenses are excluded."}</p>
+            <p>{lang === "zh" ? "这是一份参考行程，不是固定拼团产品；酒店、节奏和体验均可调整。" : "This is an example, not a fixed group departure. Hotels, pace and experiences can all be tailored."}</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "20px" }}>
+              <a className="button button-primary" href="/assets/samples/Hidden_China_Travel_Yunnan_Hidden_Explorer_8D7N_EN.pdf" target="_blank" rel="noopener noreferrer" data-cta-location="private_yunnan_sample_pdf">{lang === "zh" ? "查看英文示例行程 PDF ↗" : "View Sample Itinerary (PDF) ↗"}</a>
+              <a className="button button-outline" href="#plan" data-cta-location="private_yunnan_sample_plan">{lang === "zh" ? "定制类似行程" : "Plan a Similar Trip"}</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
     <RealJourneyEvidence locale={lang} />
     <section className="section preview-inclusions" id="included-excluded"><div className="shell">
       <div className="preview-heading"><p className="kicker">{L("THE 6-DAY REFERENCE JOURNEY")}</p><h2>{L("What’s Included — and What’s Not")}</h2><p>{L("The same inclusions and exclusions listed on our 6-day journey page. For the 8-day route or custom plans, your written proposal confirms the exact services.")}</p></div>
