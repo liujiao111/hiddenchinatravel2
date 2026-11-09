@@ -1454,16 +1454,16 @@
     }
   },
   "floatingChat": {
-    "bubbleText": "Planning a trip to Yunnan? Chat with Joy for a free itinerary.",
+    "bubbleText": "Planning a Yunnan trip? Chat with Joy for a free route suggestion.",
     "bubbleClose": "Close",
     "ariaLabel": "Chat with Joy on WhatsApp",
-    "tooltip": "Usually replies within 15 minutes",
+    "tooltip": "Personalized advice from our Yunnan-based team.",
     "badge": "Chat with Joy"
   },
   "mobileCta": {
     "whatsappLabel": "Chat on WhatsApp",
     "formLabel": "Get Itinerary",
-    "statusLabel": "Usually replies within 15 minutes",
+    "statusLabel": "Yunnan-based travel advice",
     "whatsappAria": "Chat with Joy on WhatsApp",
     "formAria": "Send an enquiry to Joy"
   },
