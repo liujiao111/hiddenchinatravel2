@@ -116,3 +116,44 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 @media(max-width:700px){.tailor-preview .preview-proof-photo{aspect-ratio:1.55}}
 
 
+
+/* Evidence library uses the existing journey-proof tabs, section palette and
+   proof-carousel navigation controls. No independent marketing-card treatment. */
+.tailor-preview .real-journey-evidence{background:#f2f7f5}
+.tailor-preview .real-evidence-heading{margin-bottom:28px}
+.tailor-preview .real-evidence-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;max-width:100%;gap:10px;padding-bottom:6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.tailor-preview .real-evidence-tabs button{flex:0 0 auto;white-space:nowrap}
+.tailor-preview .real-evidence-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:30px}
+.tailor-preview .real-evidence-item{display:flex;flex-direction:column;min-width:0;padding:0;border:0;background:#fff;color:inherit;text-align:left;cursor:zoom-in;overflow:hidden}
+.tailor-preview .real-evidence-item:focus-visible{outline:3px solid #087eb8;outline-offset:3px}
+.tailor-preview .real-evidence-image{display:block;position:relative;width:100%;aspect-ratio:4/3;background:#dce8e4;overflow:hidden}
+.tailor-preview .real-evidence-image img{object-fit:cover}
+.tailor-preview .real-evidence-caption{padding:13px 14px 17px;display:flex;flex-direction:column;gap:5px}
+.tailor-preview .real-evidence-caption small{font-size:.67rem;color:#59736b;letter-spacing:.04em}
+.tailor-preview .real-evidence-caption strong{font-size:.87rem;line-height:1.4;font-weight:650}
+.tailor-preview .real-evidence-more{text-align:center;margin-top:24px}
+.tailor-preview .real-evidence-more .button{border:1px solid #c8d5ce;cursor:pointer}
+.tailor-preview .real-evidence-note{font-size:.8rem;color:#55615c;margin:24px 0 0;line-height:1.6}
+.tailor-preview .real-evidence-pending{margin-top:26px;padding:32px;background:white;max-width:760px}
+.tailor-preview .real-evidence-pending h3{font-size:1.4rem}
+.tailor-preview .real-evidence-cta{margin-top:42px;border-top:1px solid #ccd8d1;padding-top:28px;text-align:center}
+.tailor-preview .real-evidence-cta h3{font-size:clamp(1.3rem,2.4vw,1.8rem);margin:0 0 20px}
+.real-evidence-dialog{max-width:min(960px,calc(100vw - 28px));width:100%;max-height:calc(100dvh - 30px);padding:0;border:0;background:#fff;color:#282821;box-shadow:0 20px 70px #0006;overflow:auto}
+.real-evidence-dialog::backdrop{background:rgba(15,29,27,.76)}
+.real-evidence-modal-head{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;font-size:.72rem;letter-spacing:.12em;color:#4d6a60}
+.real-evidence-close{width:38px;height:38px;border:0;background:#eff4f1;color:#273d36;font-size:1.5rem;cursor:pointer}
+.real-evidence-modal-image{position:relative;width:100%;height:min(62dvh,570px);background:#ecf0ec}
+.real-evidence-modal-image img{object-fit:contain}
+.real-evidence-modal-info{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;padding:18px 22px 24px}
+.real-evidence-modal-info small{color:#56776d}
+.real-evidence-modal-info h3{font-size:1.5rem;margin:6px 0}
+.real-evidence-modal-info p{max-width:620px;font-size:.85rem;color:#59665e;margin:0}
+.real-evidence-modal-info .proof-carousel-controls{flex-shrink:0}
+@media(max-width:900px){.tailor-preview .real-evidence-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){
+.tailor-preview .real-evidence-grid{gap:10px}
+.tailor-preview .real-evidence-caption{padding:10px}
+.tailor-preview .real-evidence-caption strong{font-size:.78rem}
+.real-evidence-modal-info{flex-wrap:wrap;gap:18px}
+.real-evidence-modal-image{height:55dvh}
+}
