@@ -2283,6 +2283,26 @@ a.utility-card { color:inherit; }
   outline-offset: 3px;
 }
 .wa-float-icon { width: 28px; height: 28px; flex: none; }
+/* Return-to-top action under the floating WhatsApp button. */
+.wa-back-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 48px;
+  margin-top: 2px;
+  border: 1px solid #d6e0dc;
+  border-radius: 999px;
+  background: #fff;
+  color: #345d58;
+  box-shadow: 0 3px 13px rgba(0,0,0,.12);
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.wa-back-to-top:hover { background: #eef5f3; transform: translateY(-2px); }
+.wa-back-to-top:focus-visible { outline: 3px solid #e1cda1; outline-offset: 3px; }
+@media (max-width:700px) { .wa-back-to-top { width: 50px; height: 44px; } }
+
 
 /* Subtle pulse ring — slow and tasteful */
 .wa-float-pulse {
