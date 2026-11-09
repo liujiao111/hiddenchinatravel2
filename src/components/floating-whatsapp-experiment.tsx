@@ -85,7 +85,7 @@ export function FloatingWhatsAppExperiment() {
   if (!mounted || !eligible) return null;
 
   return (
-    <div className="wa-float" onMouseEnter={handleMouseEnter}>
+    <div className="wa-float">
       {/* Chat bubble popup */}
       {bubbleOpen && (
         <div className="wa-bubble" role="dialog" aria-label={t("ariaLabel")}>
@@ -105,7 +105,7 @@ export function FloatingWhatsAppExperiment() {
       )}
 
       {/* Floating button with persistent badge label */}
-      <div className="wa-float-action">
+      <div className="wa-float-action" onMouseEnter={handleMouseEnter}>
         <span className="wa-float-badge" aria-hidden="true">{t("badge")}</span>
         <a
           className="wa-float-btn"
@@ -124,7 +124,7 @@ export function FloatingWhatsAppExperiment() {
       </div>
       {showBackToTop && (
         <button className="wa-back-to-top" type="button" onClick={handleBackToTop} aria-label={locale === "zh" ? "返回顶部" : "Back to top"} title={locale === "zh" ? "返回顶部" : "Back to top"}>
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="m6 14 6-6 6 6" />
             <path d="M12 8v12" />
           </svg>
