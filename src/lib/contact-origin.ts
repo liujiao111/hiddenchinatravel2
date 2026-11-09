@@ -63,13 +63,11 @@ export function installContactOriginTracking() {
     }
     if (!isContactPage(target.pathname) || isContactPage(window.location.pathname)) return;
 
-    const cta = (
-      link.dataset.ctaLocation ||
-      link.closest<HTMLElement>("[data-cta-location]")?.dataset.ctaLocation ||
-      link.getAttribute("aria-label") ||
-      link.textContent ||
-      "link"
-    ).replace(/[\u0000-\u001f\u007f<>]/g, " ").replace(/\s+/g, " ").trim().slice(0, 100);
+    const ctaLocation = link.dataset.ctaLocation ||
+      link.closest<HTMLElement>("[data-cta-location]")?.dataset.ctaLocation || "";
+    const label = link.getAttribute("aria-label") || link.textContent || "link";
+    const cta = (ctaLocation ? `${label} [${ctaLocation}]` : label)
+      .replace(/[\u0000-\u001f\u007f<>]/g, " ").replace(/\s+/g, " ").trim().slice(0, 100);
 
     const origin: ContactOrigin = {
       page: window.location.pathname,
