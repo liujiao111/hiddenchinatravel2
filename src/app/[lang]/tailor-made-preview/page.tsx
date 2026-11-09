@@ -22,8 +22,8 @@ export const metadata: Metadata = {
 };
 
 const routes = [
-  { num: "01", title: "6-Day First Encounter", places: "6 DAYS · DALI · SHAXI · LIJIANG", image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp", alt: "A stone-paved street in Shaxi", description: "Meet Bai artisans beside Erhai Lake, spend a quiet night in Shaxi’s old Tea Horse Road town, then give Jade Dragon Snow Mountain a full day — without rushing between stops.", best: "First-time visitors with limited time", price: "From US$680 per person", href: "/journeys/kunming-dali-shaxi-lijiang-6-days" },
-  { num: "02", title: "8-Day Mountains & Ancient Towns", places: "8 DAYS · DALI · LIJIANG · TIGER LEAPING GORGE · SHANGRI-LA", image: "/assets/destinations/yunnan/tiger-leaping.webp", alt: "Mountain gorge in Yunnan", description: "Go from lakeside Dali and Lijiang’s old lanes to the dramatic road through Tiger Leaping Gorge. Continue into Shangri-La for Tibetan culture and a slower highland day.", best: "Travelers wanting Yunnan’s classic highlights", price: "From US$799 per person", href: "/journeys/kunming-dali-lijiang-shangri-la-private-tour" },
+  { num: "01", title: "6-Day First Encounter", places: "6 DAYS · KUNMING → DALI · SHAXI · LIJIANG", image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp", alt: "A stone-paved street in Shaxi", description: "Meet Bai artisans beside Erhai Lake, spend a quiet night in Shaxi’s old Tea Horse Road town, then give Jade Dragon Snow Mountain a full day — without rushing between stops.", best: "First-time visitors with limited time", price: "From US$680 per person", href: "/journeys/kunming-dali-shaxi-lijiang-6-days" },
+  { num: "02", title: "8-Day Mountains & Ancient Towns", places: "8 DAYS · KUNMING · DALI · LIJIANG · TIGER LEAPING GORGE · SHANGRI-LA", image: "/assets/destinations/yunnan/tiger-leaping.webp", alt: "Mountain gorge in Yunnan", description: "Go from lakeside Dali and Lijiang’s old lanes to the dramatic road through Tiger Leaping Gorge. Continue into Shangri-La for Tibetan culture and a slower highland day.", best: "Travelers wanting Yunnan’s classic highlights", price: "From US$799 per person", href: "/journeys/kunming-dali-lijiang-shangri-la-private-tour" },
 ];
 
 const faqs = [
@@ -48,7 +48,7 @@ export default async function TailorMadePreview({ params }: Props) {
     <JourneyHero title="Private Yunnan Tours, Designed Around You" eyebrow="TAILOR-MADE YUNNAN" image="/home/hero.webp" imageAlt="Yunnan's Jade Dragon Snow Mountain" description="Explore Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La on a private journey shaped around your dates, interests and pace." primary={{href:"#plan",label:cta}} secondary={{href:"#routes",label:"Explore Route Ideas"}} note="6 days from US$680 · 8 days from US$799 per person. Reference starting prices; final quotes depend on your dates, party and confirmed services."/>
     <JourneyFactCards id="glance" title="At a glance" cards={[
       { icon:"calendar", title:"Flexible Duration", lines:["6–12 Days","A route shaped around your available time, interests and preferred pace."] },
-      { icon:"route", title:"100% Tailor-Made & No Shopping", lines:["Just Your Group","Private vehicle and English-speaking driver-guide. No shared groups, fixed departures or shopping stops."] },
+      { icon:"route", title:"100% Tailor-Made & No Shopping", lines:["Just Your Group","Private travel shaped to your group, with no shared departures or compulsory shopping stops."] },
       { icon:"star", title:"One Guide, Your Language", lines:["Chinese or English Included","Choose your guide language at no extra charge; one dedicated driver-guide throughout."] },
       { icon:"note", title:"Transparent Booking", lines:["20% Deposit","Booking and refunds follow the agreed cancellation policy in your contract."] },
     ]} action={{href:"#plan",label:"Get My Route & Price"}} />
@@ -110,9 +110,9 @@ export default async function TailorMadePreview({ params }: Props) {
     
     <JourneyFactCards id="why-travel" title="Local Planning. Licensed Delivery." cards={[
       { icon:"person", title:"Yunnan-rooted route planning", lines:["Route advice informed by local knowledge of seasons, travel times and the real pace between stops"] },
-      { icon:"party", title:"One coordinated local team", lines:["Joy handles your enquiry and route advice; Yunnan Meizhen’s licensed operations team coordinates bookings and on-the-ground service"] },
+      { icon:"party", title:"Planning backed by local operations", lines:["Joy helps with the initial route; Yunnan Meizhen’s licensed team coordinates booking and delivery"] },
       { icon:"licence", title:"Licensed tour operator", lines:["Travel contract and payment with Yunnan Meizhen International Travel Agency","Permit L-YN-1017500"] },
-      { icon:"note", title:"A plan you can review", lines:["Written hotel choices, transport arrangements and inclusions before signing","20% deposit usually applies; refunds follow your contract’s cancellation terms"] },
+      { icon:"note", title:"Confirmed before departure", lines:["Named hotels, guide-language choice and vehicle class agreed in writing","Local operations team coordinates pickups and logistics"] },
     ]} action={{href:"/licensed-operator",label:"Check our licensed operator"}} />
     <section className="section preview-process journey-support-flow"><div className="shell journey-section-layout"><header className="preview-heading"><p className="kicker">THREE SIMPLE STEPS</p><h2>How planning works</h2></header><div className="journey-support-grid">
       <article><span>01</span><h3>Share the basics</h3><p>Tell us your trip length, group size and places or experiences that interest you. Dates can follow later.</p></article>
@@ -121,7 +121,7 @@ export default async function TailorMadePreview({ params }: Props) {
     </div><p className="preview-centered">There is no payment or booking commitment when requesting an initial proposal.</p></div></section>
     {/* Traveler testimonials are withheld on this preview until original sources and permission are verified. */}
     <section className="section preview-plan" id="plan"><div className="shell preview-plan-grid">
-      <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy, founder of Hidden China Travel" fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">LOCAL PLANNING, LICENSED DELIVERY</p><h2>Get a Suggested Yunnan Route & Price</h2><p>You do not need a finished itinerary. Share your approximate number of days and group size, and We will suggest a realistic starting route and price range based on your interests, with bookings and on-the-ground arrangements coordinated by our licensed local team.</p><p><strong>Yunnan local knowledge</strong> · Chinese- or English-speaking service · Licensed local delivery</p><p className="preview-quiet">Prefer WhatsApp? <Link href={whatsapp} data-cta-location="preview_form_whatsapp">Chat with Joy →</Link></p></div>
+      <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy, founder of Hidden China Travel" fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">LOCAL PLANNING, LICENSED DELIVERY</p><h2>Get a Suggested Yunnan Route & Price</h2><p>You do not need a finished itinerary. Share your approximate number of days and group size, and we will suggest a realistic starting route and price range based on your interests, with bookings and on-the-ground arrangements coordinated by our licensed local team.</p><p><strong>Yunnan-based operations team</strong> · Chinese- or English-speaking service · Licensed local delivery</p><p className="preview-quiet">Prefer WhatsApp? <Link href={whatsapp} data-cta-location="preview_form_whatsapp">Chat with Joy →</Link></p></div>
       <PreviewEnquiryForm />
     </div></section>
     <section className="section preview-payment journey-support-flow"><div className="shell journey-section-layout">
@@ -134,7 +134,7 @@ export default async function TailorMadePreview({ params }: Props) {
       <p className="preview-centered">Your signed contract controls the payment schedule, cancellation terms and refunds.</p>
     </div></section>
     <section className="section journey-faq" id="questions"><div className="narrow"><h2>Frequently Asked Questions</h2>{faqs.map(([q,a])=><details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
-    <section className="journey-final-cta"><div><h2>Your Yunnan journey starts with a conversation.</h2><span>Share your trip length and ideas. Joy will suggest a route and initial price.</span><a className="button button-light" href="#plan">Get a Suggested Route & Price</a></div></section>
+    <section className="journey-final-cta"><div><h2>Your Yunnan journey starts with a conversation.</h2><span>Tell us about your party and interests. Get a suggested route and initial price range, with no commitment to book.</span><a className="button button-light" href="#plan">Get a Suggested Route & Price</a></div></section>
     <MobileCtaBar whatsappHref={whatsapp} formHref="#plan" whatsappLabel="" formLabel="Get a Suggested Route & Price" formOnly formCtaLocation="preview_mobile_route_price" />
     <ContentFooter />
   </main>;
