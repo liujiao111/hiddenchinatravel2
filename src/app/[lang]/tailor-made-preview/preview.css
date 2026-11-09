@@ -242,3 +242,23 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .preview-plan {background:#e6eef1}
 .tailor-preview .preview-payment.journey-support-flow {background:#fff}
 .tailor-preview .journey-faq {background:#e6eef1}
+
+/* Exact six-day inclusions and exclusions, using the site's journey-details
+   presentation and the established white / pale-blue preview section rhythm. */
+.tailor-preview .preview-inclusions{background:#e6eef1}
+.tailor-preview .preview-inclusion-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:22px;align-items:start}
+.tailor-preview .preview-inclusion-grid article{background:#fff;padding:30px 32px;min-height:100%}
+.tailor-preview .preview-inclusion-grid ul{list-style:none;padding:0;margin:18px 0 0}
+.tailor-preview .preview-inclusion-grid li{position:relative;padding:12px 0 12px 24px;border-bottom:1px solid #e2e6e3;font-size:.94rem;line-height:1.55;color:#34473f}
+.tailor-preview .preview-inclusion-grid li:last-child{border:0}
+.tailor-preview .preview-inclusion-grid article:first-child li:before{content:"✓";position:absolute;left:0;color:#28675d;font-weight:800}
+.tailor-preview .preview-inclusion-grid article:last-child li:before{content:"–";position:absolute;left:0;color:#8a7345;font-weight:800}
+.tailor-preview .preview-inclusions-note{max-width:820px;margin:22px auto 0;text-align:center;font-size:.86rem;line-height:1.65;color:#48635e}
+.tailor-preview .preview-consent{display:flex!important;align-items:flex-start;gap:10px;margin:3px 0 22px!important;font-size:.78rem;line-height:1.55;color:#4c5c55}
+.tailor-preview .preview-consent input[type="checkbox"]{width:18px;height:18px;flex:0 0 18px;margin:1px 0 0}
+.tailor-preview .preview-consent span{display:block}
+.tailor-preview .preview-consent a{color:#08679c;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:800px){
+.tailor-preview .preview-inclusion-grid{grid-template-columns:1fr;gap:14px}
+.tailor-preview .preview-inclusion-grid article{padding:22px}
+}
