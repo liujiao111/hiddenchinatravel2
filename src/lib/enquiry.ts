@@ -43,11 +43,11 @@ function cleanSource(value: string) {
 
 function cleanOriginPage(value: string) {
   // Internal path only: no external URLs, query strings, fragments or control chars.
-  return /^\\/(?!\\/)[^?#\\s<>]{0,499}$/.test(value) ? value : "";
+  return /^\/(?!\/)[^?#\s<>]{0,499}$/.test(value) ? value : "";
 }
 
 function cleanOriginCta(value: string) {
-  return value.replace(/[\\u0000-\\u001f\\u007f<>]/g, " ").replace(/\\s+/g, " ").trim().slice(0, 100);
+  return value.replace(/[\u0000-\u001f\u007f<>]/g, " ").replace(/\s+/g, " ").trim().slice(0, 100);
 }
 
 function cleanTravelDates(value: string) {
