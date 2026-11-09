@@ -263,19 +263,4 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .preview-inclusion-grid article{padding:22px}
 }
 
-/* Preview Hero: visible reference prices above the existing CTA, no duplicate hero. */
-.tailor-preview .journey-hero-price-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:min(650px,100%);margin:24px auto 0;border:1px solid rgba(255,255,255,.48);background:rgba(15,35,31,.54);backdrop-filter:blur(5px)}
-.tailor-preview .journey-hero-price-option{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;padding:17px 22px}
-.tailor-preview .journey-hero-price-option+.journey-hero-price-option{border-left:1px solid rgba(255,255,255,.30)}
-.tailor-preview .journey-hero-price-label{color:#e1cda1;font-size:.72rem;letter-spacing:.06em;font-weight:700}
-.tailor-preview .journey-hero-price-option strong{color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(2rem,3.5vw,3.15rem);line-height:1.1}
-.tailor-preview .journey-hero-price-unit{font-size:.72rem;color:rgba(255,255,255,.85)}
-.tailor-preview .journey-hero-actions{margin-top:22px}
-.tailor-preview .journey-hero-copy>small{max-width:680px;margin:14px auto 0;line-height:1.5}
-@media(max-width:700px){
-.tailor-preview .journey-hero-price-options{margin-top:21px}
-.tailor-preview .journey-hero-price-option{padding:15px 9px;gap:4px}
-.tailor-preview .journey-hero-price-label{font-size:.62rem}
-.tailor-preview .journey-hero-price-option strong{font-size:clamp(1.65rem,6.4vw,2.2rem)}
-.tailor-preview .journey-hero-price-unit{font-size:.65rem}
-}
+
