@@ -71,7 +71,9 @@ export default async function TailorMadePreview({ params }: Props) {
       }} />
     )}</div>
     <p className="preview-price-note">The sample 6-day price is based on two adults sharing one room. Final prices depend on season, route, group size, selected hotels and included services. The written proposal confirms exactly what is included.</p>
-      <div className="preview-longer-journey">
+    </div>
+    <div className="preview-longer-journey">
+      <div className="shell preview-longer-inner">
         <div className="preview-longer-copy">
           <p className="kicker">NEED MORE TIME IN YUNNAN?</p>
           <h3>Planning a 10–12 Day Journey?</h3>
@@ -79,7 +81,7 @@ export default async function TailorMadePreview({ params }: Props) {
           <p>Share your trip length, group size and interests. Joy will suggest a suitable route and initial price range.</p>
         </div>
         <div className="preview-longer-action">
-          <a className="button button-blue" href="#plan" data-cta-location="preview_longer_journey">Design My Longer Yunnan Journey →</a>
+          <a className="button button-light" href="#plan" data-cta-location="preview_longer_journey">Design My Longer Yunnan Journey →</a>
         </div>
       </div>
     </div>
