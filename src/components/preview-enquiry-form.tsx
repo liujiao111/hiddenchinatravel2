@@ -3,9 +3,6 @@
 import { useRef, useState, useEffect, type FormEvent } from "react";
 import { trackEvent } from "@/lib/analytics";
 
-const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-const currentYear = new Date().getFullYear();
-const years = Array.from({length: 6}, (_, i) => String(currentYear + i));
 const partyOptions = [
   { label: "1", count: 1 }, { label: "2", count: 2 },
   { label: "3–4", count: 3 }, { label: "5–6", count: 5 },
@@ -32,21 +29,15 @@ export function PreviewEnquiryForm() {
     event.preventDefault();
     if (status === "sending" || status === "success") return;
     const form = new FormData(event.currentTarget);
-    const travelMonth = String(form.get("travelMonth") || "");
-    const travelYear = String(form.get("travelYear") || "");
-    if (!travelMonth || !travelYear) { setStatus("error"); setError("Please choose a travel month and year."); return; }
     idRef.current ??= crypto.randomUUID();
-    const month = String(form.get("travelMonth") || "");
-    const year = String(form.get("travelYear") || "");
     const partyLabel = String(form.get("partyRange") || "");
-    const timing = month === "Not decided yet" || year === "Not decided yet" ? "Not decided yet" : month + " " + year;
     const days = String(form.get("tripLength") || "");
     const travelers = partyOptions.find(x => x.label === partyLabel)?.count ?? 2;
     const payload = {
       name: String(form.get("name") || ""),
       email: String(form.get("email") || ""),
-      whatsapp: "",
-      travelTiming: timing,
+      whatsapp: String(form.get("whatsapp") || "").trim(),
+      travelTiming: "",
       tripLength: days,
       adults: travelers,
       children: 0,
@@ -80,7 +71,7 @@ export function PreviewEnquiryForm() {
     }
   }
 
-  if (status === "success") return <div className="preview-success" role="status"><h3>Thank you — your enquiry is on its way to Joy.</h3><p>We'll use your travel month, trip length and group size to suggest a Yunnan route and initial price. No booking commitment.</p></div>;
+  if (status === "success") return <div className="preview-success" role="status"><h3>Thank you — your enquiry is on its way to Joy.</h3><p>We'll use your trip length, group size and interests to suggest a Yunnan route and initial price. No booking commitment.</p></div>;
 
   return <form className="contact-form preview-enquiry" onSubmit={submit} onFocus={() => {
     if (!startedRef.current) {
@@ -93,8 +84,7 @@ export function PreviewEnquiryForm() {
       <label><span>Email *</span><input required name="email" type="email" autoComplete="email" maxLength={254} placeholder="you@example.com" /></label>
     </div>
     <div className="contact-field-row">
-      <label><span>Travel month *</span><select name="travelMonth" required defaultValue=""><option value="" disabled>Select month</option>{months.map(month => <option value={month} key={month}>{month}</option>)}<option value="Not decided yet">Not decided yet</option></select></label>
-      <label><span>Travel year *</span><select name="travelYear" required defaultValue=""><option value="" disabled>Select year</option>{years.map(year => <option key={year} value={year}>{year}</option>)}<option value="Not decided yet">Not decided yet</option></select></label>
+      <label><span>WhatsApp <small>(optional)</small></span><input name="whatsapp" type="tel" autoComplete="tel" maxLength={40} placeholder="+65 1234 5678" /></label>
     </div>
     <div className="contact-field-row">
       <label><span>Number of travelers *</span><select name="partyRange" defaultValue="2" required>{partyOptions.map(p => <option key={p.label} value={p.label}>{p.label}</option>)}</select></label>
