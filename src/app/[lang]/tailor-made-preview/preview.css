@@ -33,7 +33,7 @@
 .tailor-preview .preview-enquiry input,.tailor-preview .preview-enquiry select,.tailor-preview .preview-enquiry textarea{width:100%;max-width:100%}
 .tailor-preview .preview-enquiry button{width:100%;cursor:pointer}
 .tailor-preview .preview-success{background:#fff;padding:36px}
-.tailor-preview .preview-payment{background:#fff}
+.tailor-preview .preview-payment{background:#f7f7f0}
 .tailor-preview .preview-payment-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 .tailor-preview .preview-payment-grid p{padding:20px;background:#eef6f3;margin:0}
 .tailor-preview .preview-payment small{display:block;margin-top:14px;color:#65746d}
