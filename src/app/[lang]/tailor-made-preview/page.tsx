@@ -17,7 +17,7 @@ import "./preview.css";
 type Props = { params: Promise<{ lang: AppLocale }> };
 export const metadata: Metadata = {
   title: "Private Yunnan Tours, Designed Around You — Preview",
-  description: "Explore three private Yunnan route ideas. Tell Joy your dates, trip length and group size to receive a suggested itinerary and initial price.",
+  description: "Explore three private Yunnan route ideas. Tell Joy your trip length and group size to receive a suggested itinerary and initial price.",
   robots: { index: false, follow: false },
 };
 
@@ -33,7 +33,7 @@ const faqs = [
   ["Can I customize the 6-day or 8-day route?", "Yes. Add or remove destinations, adjust the pace, select hotels and choose experiences. We will explain what fits comfortably within your available days."],
   ["Is the journey completely private?", "Yes. Travel with your own partner, family or friends rather than joining a scheduled group departure. The vehicle and driver-guide are arranged for your party, though the assigned person or vehicle may change between destinations according to the confirmed plan."],
   ["What is normally included in the quotation?", "Your written quotation identifies the named hotels and room types, vehicle arrangements, driver-guide language and service hours, and the tickets, trains and meals actually included. It also lists exclusions. The package is only confirmed after you review and approve it."],
-  ["Do I need confirmed dates before enquiring?", "No. An approximate month, number of travelers and likely trip length are enough to get started."],
+  ["Do I need confirmed dates before enquiring?", "No. Your group size and approximate trip length are enough to get started."],
   ["How does booking and payment work?", "Review the written itinerary and quotation first, then sign the licensed agency's travel contract. The usual arrangement is a 20% deposit and the remaining balance after your first pickup, subject to your agreed written terms."],
 ];
 
@@ -53,7 +53,7 @@ export default async function TailorMadePreview({ params }: Props) {
       { icon:"note",title:"Clear Proposal",lines:["Route, selected hotels, inclusions and total price confirmed in writing before booking"] },
     ]} />
     <section className="section preview-fit"><div className="shell preview-two">
-      <article><p className="kicker">YOUR KIND OF TRIP</p><h2>Who it's for</h2><p>For couples, families, friends and small private groups who want local guidance without joining a scheduled tour.</p><p>You do not need to know the exact route. An approximate month, trip length and group size are enough.</p></article>
+      <article><p className="kicker">YOUR KIND OF TRIP</p><h2>Who it's for</h2><p>For couples, families, friends and small private groups who want local guidance without joining a scheduled tour.</p><p>You do not need to know the exact route. A rough trip length and group size are enough.</p></article>
       <article><p className="kicker">SEASONAL ADVICE</p><h2>When to go</h2><p>March to May and September to November are generally the most comfortable periods for classic Dali, Lijiang and Shangri-La routes.</p><p>Summer is greener but wetter. Winter is quieter, with colder conditions at higher elevations.</p></article>
     </div></section>
     <section className="section preview-routes" id="routes"><div className="shell"><div className="preview-heading"><p className="kicker">A STARTING POINT, NOT A FIXED PACKAGE</p><h2>Three ways to explore Yunnan</h2><p>Pick a route you like, then make it yours.</p></div>
@@ -82,18 +82,18 @@ export default async function TailorMadePreview({ params }: Props) {
       { icon:"note", title:"Everything in writing", lines:["Route, hotels, inclusions, exclusions and total price before you decide"] },
     ]} action={{href:"/licensed-operator",label:"View licence and booking protection"}} />
     <section className="section preview-process"><div className="shell"><div className="preview-heading"><p className="kicker">THREE SIMPLE STEPS</p><h2>How planning works</h2></div><div className="journey-support-grid preview-steps">
-      <article><span>01</span><h3>Share the basics</h3><p>Approximate month, trip length, group size and places that interest you.</p></article>
-      <article><span>02</span><h3>Receive a route and price</h3><p>Joy suggests a realistic route and an initial price range based on your travel month, trip length and group size.</p></article>
+      <article><span>01</span><h3>Share the basics</h3><p>Trip length, group size and places that interest you.</p></article>
+      <article><span>02</span><h3>Receive a route and price</h3><p>Joy suggests a realistic route and an initial price range based on your trip length, group size and interests.</p></article>
       <article><span>03</span><h3>Adjust before booking</h3><p>Change the route, hotels, pace or experiences until the plan fits.</p></article>
     </div><p className="preview-centered">There is no payment or booking commitment when requesting an initial proposal.</p></div></section>
     {/* Traveler testimonials are withheld on this preview until original sources and permission are verified. */}
     <section className="section preview-plan" id="plan"><div className="shell preview-plan-grid">
-      <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy, founder of Hidden China Travel" fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">PLAN DIRECTLY WITH JOY</p><h2>Get a Suggested Yunnan Route & Price</h2><p>You do not need a finished itinerary. Share your approximate travel month, number of days and group size, and Joy will suggest a realistic starting route and price range based on your interests.</p><p><strong>Based in Kunming</strong> · English-language planning and local support</p><p className="preview-quiet">Prefer WhatsApp? <Link href={whatsapp} data-cta-location="preview_form_whatsapp">Chat with Joy →</Link></p></div>
+      <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy, founder of Hidden China Travel" fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">PLAN DIRECTLY WITH JOY</p><h2>Get a Suggested Yunnan Route & Price</h2><p>You do not need a finished itinerary. Share your approximate number of days and group size, and Joy will suggest a realistic starting route and price range based on your interests.</p><p><strong>Based in Kunming</strong> · English-language planning and local support</p><p className="preview-quiet">Prefer WhatsApp? <Link href={whatsapp} data-cta-location="preview_form_whatsapp">Chat with Joy →</Link></p></div>
       <PreviewEnquiryForm />
     </div></section>
     <section className="section preview-payment"><div className="shell"><h2>Clear Booking and Payment</h2><div className="preview-payment-grid"><p>Review the written itinerary and quotation before booking.</p><p>Sign a travel contract with the licensed agency.</p><p>Pay a 20% deposit to confirm arrangements.</p><p>Pay the remaining balance after your first pickup.</p></div><small>Booking and refund terms are confirmed in your written contract.</small></div></section>
     <section className="section journey-faq" id="questions"><div className="narrow"><h2>Frequently Asked Questions</h2>{faqs.map(([q,a])=><details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
-    <section className="journey-final-cta"><div><h2>Your Yunnan journey starts with a conversation.</h2><span>Share your dates and ideas. Joy will suggest a route and initial price.</span><a className="button button-light" href="#plan">Get a Suggested Route & Price</a></div></section>
+    <section className="journey-final-cta"><div><h2>Your Yunnan journey starts with a conversation.</h2><span>Share your trip length and ideas. Joy will suggest a route and initial price.</span><a className="button button-light" href="#plan">Get a Suggested Route & Price</a></div></section>
     <MobileCtaBar whatsappHref={whatsapp} formHref="#plan" whatsappLabel="" formLabel="Get a Suggested Route & Price" formOnly formCtaLocation="preview_mobile_route_price" />
     <ContentFooter />
   </main>;
