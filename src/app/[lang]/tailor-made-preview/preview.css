@@ -125,7 +125,10 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 /* Evidence library uses the existing journey-proof tabs, section palette and
    proof-carousel navigation controls. No independent marketing-card treatment. */
 .tailor-preview .real-journey-evidence{background:#f2f7f5}
-.tailor-preview .real-evidence-heading{margin-bottom:28px}
+.tailor-preview .real-evidence-heading{display:block;max-width:960px;margin:0 auto 32px;text-align:center}
+.tailor-preview .real-evidence-heading h2{max-width:960px;margin:14px auto 16px;font-size:clamp(2.1rem,4vw,3.5rem);line-height:1.12;text-wrap:balance}
+.tailor-preview .real-evidence-heading p{max-width:700px;margin:0 auto;line-height:1.65}
+@media(max-width:700px){.tailor-preview .real-evidence-heading h2{font-size:clamp(2rem,7vw,2.6rem)}}
 .tailor-preview .real-evidence-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;max-width:100%;gap:10px;padding-bottom:6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
 .tailor-preview .real-evidence-tabs button{flex:0 0 auto;white-space:nowrap}
 .tailor-preview .real-evidence-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:30px}
