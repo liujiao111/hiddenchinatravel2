@@ -34,6 +34,8 @@ type Props = {
   statusLabel?: string;
   /** Tracking label for the secondary CTA. */
   formCtaLocation?: string;
+  /** Optional form-only preview mode; leaves existing two-action bars unchanged. */
+  formOnly?: boolean;
 };
 
 export function MobileCtaBar({
@@ -43,6 +45,7 @@ export function MobileCtaBar({
   formLabel,
   statusLabel,
   formCtaLocation = "mobile_button",
+  formOnly = false,
 }: Props) {
   const [hidden, setHidden] = useState(false);
 
@@ -53,7 +56,8 @@ export function MobileCtaBar({
 
     function watch() {
       if (cancelled) return;
-      const forms = hideWhenVisible.flatMap((id) => {
+      const targets = formOnly ? [formHref.replace(/^#/, "")] : hideWhenVisible;
+      const forms = targets.flatMap((id) => {
         const el = document.getElementById(id);
         return el ? [el] : [];
       });
@@ -79,9 +83,11 @@ export function MobileCtaBar({
       cancelled = true;
       observer?.disconnect();
     };
-  }, []);
+  }, [formOnly, formHref]);
 
   const barClass = hidden ? "mobile-cta-bar ask-bar-hidden" : "mobile-cta-bar";
+
+  if (formOnly) return <div className={barClass + " mobile-cta-form-only"}><HashLink href={formHref} className="mobile-cta-form" data-cta-location={formCtaLocation} onJump={() => setHidden(true)}><span className="mobile-cta-label">{formLabel}</span></HashLink></div>;
 
   return (
     <div className={barClass}>
