@@ -46,12 +46,12 @@ export default async function TailorMadePreview({ params }: Props) {
 
   return <main className="tailor-preview">
     <SiteHeader conversion cta={{ href: "#plan", label: cta }} />
-    <JourneyHero title="Private Yunnan Tours, Designed Around You" eyebrow="TAILOR-MADE YUNNAN" image="/home/hero.webp" imageAlt="Yunnan's Jade Dragon Snow Mountain" description="Explore Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La on a private journey shaped around your dates, interests and pace." primary={{href:"#plan",label:cta}} secondary={{href:"#routes",label:"Explore Route Ideas"}} note="Sample 6-day private journeys from US$680 per person. Based on two adults sharing one room. Final pricing depends on season, route, hotels and included services." includes={["A route designed around your available time","Your own English-speaking driver-guide and private vehicle","Hotels and experiences matched to your travel style","No fixed departures, mixed groups or shopping stops"]}/>
+    <JourneyHero title="Private Yunnan Tours, Designed Around You" eyebrow="TAILOR-MADE YUNNAN" image="/home/hero.webp" imageAlt="Yunnan's Jade Dragon Snow Mountain" description="Explore Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La on a private journey shaped around your dates, interests and pace." primary={{href:"#plan",label:cta}} secondary={{href:"#routes",label:"Explore Route Ideas"}} note="Sample 6-day private journeys from US$680 per person. Based on two adults sharing one room. Final pricing depends on season, route, hotels and included services."/>
     <JourneyFactCards id="glance" title="At a glance" cards={[
-      { icon:"calendar",title:"Flexible duration",lines:["6–12 Days","From a short introduction to a more complete journey"] },
-      { icon:"party",title:"Fully private",lines:["Your Own Journey","With your partner, family or friends"] },
-      { icon:"pin",title:"Local planning",lines:["Planned in Yunnan","Routes, seasons and travel time explained"] },
-      { icon:"note",title:"Clear Proposal",lines:["Route, selected hotels, inclusions and total price confirmed in writing before booking"] },
+      { icon:"calendar", title:"Flexible Duration", lines:["6–12 Days","A route shaped around your available time, interests and preferred pace."] },
+      { icon:"route", title:"Private Travel", lines:["Just Your Group","Private vehicle and English-speaking driver-guide. No shared groups, fixed departures or shopping stops."] },
+      { icon:"star", title:"Hotels & Experiences", lines:["Matched to You","Selected hotels and local experiences tailored to your comfort, interests and travel style."] },
+      { icon:"note", title:"Clear Proposal", lines:["Know Before Booking","A written route, hotel selection, confirmed inclusions and total price before you decide."] },
     ]} action={{href:"#plan",label:"Get My Route & Price"}} />
     <section className="section preview-fit"><div className="shell preview-two">
       <article><p className="kicker">YOUR KIND OF TRIP</p><h2>Who it's for</h2><p>For couples, families, friends and small private groups who want local guidance without joining a scheduled tour.</p><p>You do not need to know the exact route. A rough trip length and group size are enough.</p></article>
