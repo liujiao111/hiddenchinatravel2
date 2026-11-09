@@ -115,7 +115,7 @@ export function enquiryMessage(enquiry: Enquiry) {
     ...(enquiry.budget ? [`Budget per person: ${enquiry.budget}`] : []),
     `Enquiry origin page: ${enquiry.originPage || "Direct / unknown"}`,
     ...(enquiry.originCta ? [`Origin CTA: ${enquiry.originCta}`] : []),
-    ...(enquiry.source ? [`Submission page: ${enquiry.source}`] : []),
+    ...(enquiry.source ? [`Page: ${enquiry.source}`] : []),
     "",
     "My plans:",
     enquiry.plans,
