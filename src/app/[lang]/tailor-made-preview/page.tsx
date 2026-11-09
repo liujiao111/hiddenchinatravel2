@@ -71,16 +71,17 @@ export default async function TailorMadePreview({ params }: Props) {
       }} />
     )}</div>
     <p className="preview-price-note">The sample 6-day price is based on two adults sharing one room. Final prices depend on season, route, group size, selected hotels and included services. The written proposal confirms exactly what is included.</p>
-    </div><div className="preview-longer-journey">
-      <Image src="/assets/blog/dali-travel-guide/erhai-lake-cangshan.webp" alt="Erhai Lake and Cangshan in Dali" fill sizes="(max-width:700px) 100vw, 1100px" />
-      <div className="preview-longer-shade" />
-      <div className="shell preview-longer-shell"><div className="preview-longer-copy">
-        <p className="kicker">NEED MORE TIME IN YUNNAN?</p>
-        <h3>Planning a 10–12 Day Journey?</h3>
-        <p>A longer trip can combine Kunming, Dali, Shaxi, Lijiang and Shangri-La at a more comfortable pace, with more time for local culture, photography, food or hiking.</p>
-        <p>Tell Joy your trip length, group size and interests. You’ll receive a suggested route and initial price range.</p>
-        <a className="button journey-primary-action" href="#plan" data-cta-location="preview_longer_journey">Design My Longer Yunnan Journey</a>
-      </div></div>
+      <div className="preview-longer-journey">
+        <div className="preview-longer-copy">
+          <p className="kicker">NEED MORE TIME IN YUNNAN?</p>
+          <h3>Planning a 10–12 Day Journey?</h3>
+          <p>Explore Kunming, Dali, Shaxi, Lijiang and Shangri-La at a more comfortable pace, with extra time for local culture, photography, food or hiking.</p>
+          <p>Share your trip length, group size and interests. Joy will suggest a suitable route and initial price range.</p>
+        </div>
+        <div className="preview-longer-action">
+          <a className="button button-blue" href="#plan" data-cta-location="preview_longer_journey">Design My Longer Yunnan Journey →</a>
+        </div>
+      </div>
     </div>
     </section>
     <RealJourneyEvidence />
