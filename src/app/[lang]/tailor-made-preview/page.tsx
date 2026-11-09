@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
 import { JourneyHero, JourneyFactCards } from "@/components/journey-landing";
 import { Testimonials } from "@/components/testimonials";
+import { JourneyCard } from "@/components/journey-card";
 import { PreviewEnquiryForm } from "@/components/preview-enquiry-form";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { getSelectedTestimonials } from "@/lib/testimonials";
@@ -55,10 +56,10 @@ export default async function TailorMadePreview({ params }: Props) {
       <article><p className="kicker">SEASONAL ADVICE</p><h2>When to go</h2><p>March to May and September to November are generally the most comfortable periods for classic Dali, Lijiang and Shangri-La routes.</p><p>Summer is greener but wetter. Winter is quieter, with colder conditions at higher elevations.</p></article>
     </div></section>
     <section className="section preview-routes" id="routes"><div className="shell"><div className="preview-heading"><p className="kicker">A STARTING POINT, NOT A FIXED PACKAGE</p><h2>Three ways to explore Yunnan</h2><p>Pick a route you like, then make it yours.</p></div>
-    <div className="preview-route-grid">{routes.map(r=><article className="preview-route" key={r.num}>
-      <div className="preview-route-image"><Image src={r.image} alt={r.alt} fill sizes="(max-width: 800px) 100vw, 33vw" /><span>{r.duration}</span></div>
-      <div className="preview-route-body"><small>{r.num} / ROUTE IDEA</small><h3>{r.title}</h3><p className="preview-places">{r.places}</p><p>{r.description}</p><p className="preview-best"><strong>Best for:</strong> {r.best}</p><strong className="preview-price">{r.price}</strong><div className="preview-route-actions"><Link href={r.href} className="button button-blue">{r.num==="01"?"View the 6-Day Journey":r.num==="02"?"View the 8-Day Journey":"Design a Longer Journey"}</Link>{r.num!=="03"?<a href="#plan">Customize This Route →</a>:null}</div></div>
-    </article>)}</div>
+    <div className="journeys-card-grid preview-reused-journeys">{routes.map(r => <div className="preview-reused-journey" key={r.num}>
+      <JourneyCard journey={{ title: r.title, subtitle: r.description, href: r.href, image: r.image, imageAlt: r.alt, duration: r.duration, destination: r.places, fromPrice: r.price, features: [`Best for: ${r.best}`], ctaLabel: r.num==="01" ? "View the 6-Day Journey" : r.num==="02" ? "View the 8-Day Journey" : "Design a Longer Journey", trackingLocation: "preview_route_"+r.num }} />
+      {r.num!=="03" ? <a className="preview-customize-route" href="#plan">Customize This Route →</a> : null}
+    </div>)}</div>
     <p className="preview-price-note">The sample 6-day price is based on two adults sharing one room. Final prices depend on season, route, group size, selected hotels and included services. The written proposal confirms exactly what is included.</p>
     <div className="preview-route-help"><h3>Not sure which route fits your trip?</h3><p>Tell us your approximate duration and group size. Joy will suggest a realistic route for your season and interests.</p><a className="button button-blue" href="#plan">Help Me Choose</a></div>
     </div></section>
@@ -66,13 +67,13 @@ export default async function TailorMadePreview({ params }: Props) {
     <article><h3>Route & Pace</h3><ul><li>Add or remove destinations</li><li>Spend longer in fewer places</li><li>Choose gentler starts or fuller days</li><li>Adjust hiking and altitude exposure</li></ul></article>
     <article><h3>Hotels & Experiences</h3><ul><li>Comfortable, premium or character hotels</li><li>Food, photography and cultural experiences</li><li>Family-friendly arrangements</li><li>Dietary and mobility requirements</li></ul></article>
     </div></div></section>
-    <section className="section preview-trust"><div className="shell"><div className="preview-heading"><p className="kicker">LOCAL KNOWLEDGE, CLEAR ARRANGEMENTS</p><h2>Why travel with us</h2></div><div className="preview-trust-grid">
-      <article><span>01</span><h3>Planned by a Yunnan local</h3><p>Born in Yunnan, Joy plans routes with practical advice on season, travel time and pace.</p></article>
-      <article><span>02</span><h3>One contact throughout</h3><p>Speak with Joy from your first enquiry through planning and your journey.</p></article>
-      <article><span>03</span><h3>Licensed local operator</h3><p>Your contract and payment are handled by Yunnan Meizhen International Travel Agency, permit L-YN-1017500.</p></article>
-      <article><span>04</span><h3>Everything in writing</h3><p>Route, hotels, inclusions, exclusions and total price before you decide.</p></article>
-    </div><p className="preview-trust-link"><Link href="/licensed-operator">View licence and booking protection →</Link></p></div></section>
-    <section className="section preview-process"><div className="shell"><div className="preview-heading"><p className="kicker">THREE SIMPLE STEPS</p><h2>How planning works</h2></div><div className="preview-steps">
+    <JourneyFactCards id="why-travel" title="Why travel with us" cards={[
+      { icon:"person", title:"Planned by a Yunnan local", lines:["Born in Yunnan, Joy plans routes with practical advice on seasons, travel time and pace"] },
+      { icon:"party", title:"One contact throughout", lines:["Speak with Joy from your first enquiry through planning and your journey"] },
+      { icon:"licence", title:"Licensed local operator", lines:["Contract and payment through Yunnan Meizhen International Travel Agency","Permit L-YN-1017500"] },
+      { icon:"note", title:"Everything in writing", lines:["Route, hotels, inclusions, exclusions and total price before you decide"] },
+    ]} action={{href:"/licensed-operator",label:"View licence and booking protection"}} />
+    <section className="section preview-process"><div className="shell"><div className="preview-heading"><p className="kicker">THREE SIMPLE STEPS</p><h2>How planning works</h2></div><div className="journey-support-grid preview-steps">
       <article><span>01</span><h3>Share the basics</h3><p>Approximate month, trip length, group size and places that interest you.</p></article>
       <article><span>02</span><h3>Receive a route and price</h3><p>Joy suggests a realistic route and an initial price range based on your travel month, trip length and group size.</p></article>
       <article><span>03</span><h3>Adjust before booking</h3><p>Change the route, hotels, pace or experiences until the plan fits.</p></article>
