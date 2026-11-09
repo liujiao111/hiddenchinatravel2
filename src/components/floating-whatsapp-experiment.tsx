@@ -37,6 +37,7 @@ export function FloatingWhatsAppExperiment() {
   const eligible = eligiblePath(pathname);
   const [mounted, setMounted] = useState(false);
   const [bubbleOpen, setBubbleOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   /* Compute WhatsApp URL directly — tracking layer (whatsapp-tracking.ts)
      intercepts the click, injects leadId, and fires GA4 events. */
@@ -59,6 +60,17 @@ export function FloatingWhatsAppExperiment() {
       clearTimeout(dismissTimer);
     };
   }, [mounted, eligible, pathname, locale]);
+
+  useEffect(() => {
+    const checkScroll = () => setShowBackToTop(window.scrollY > 360);
+    checkScroll();
+    window.addEventListener("scroll", checkScroll, { passive: true });
+    return () => window.removeEventListener("scroll", checkScroll);
+  }, [pathname]);
+
+  const handleBackToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  }, []);
 
   const handleMouseEnter = useCallback(() => {
     setBubbleOpen(true);
@@ -110,6 +122,14 @@ export function FloatingWhatsAppExperiment() {
           </svg>
         </a>
       </div>
+      {showBackToTop && (
+        <button className="wa-back-to-top" type="button" onClick={handleBackToTop} aria-label={locale === "zh" ? "返回顶部" : "Back to top"} title={locale === "zh" ? "返回顶部" : "Back to top"}>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="m6 14 6-6 6 6" />
+            <path d="M12 8v12" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
