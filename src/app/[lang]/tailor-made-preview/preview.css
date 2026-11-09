@@ -133,3 +133,49 @@ body.preview-form-visible .preview-sticky-cta{display:none}
   font-size: .9rem;
 }
 .tailor-preview .preview-support-note strong { color: #294b45; }
+
+/* Quiet editorial planning timeline: no floating boxes or card backgrounds. */
+.tailor-preview .preview-process { background: #f5f7f4; }
+.tailor-preview .preview-process .preview-heading { margin-bottom: 28px; }
+.tailor-preview .preview-steps {
+  display: block;
+  max-width: 940px;
+  margin: 0 auto;
+  border-top: 1px solid #cdd6d0;
+}
+.tailor-preview .preview-steps article {
+  display: grid;
+  grid-template-columns: 54px minmax(200px, .8fr) minmax(250px, 1.4fr);
+  gap: 24px;
+  align-items: baseline;
+  padding: 23px 2px;
+  border-bottom: 1px solid #cdd6d0;
+  background: transparent;
+}
+.tailor-preview .preview-steps article > span {
+  font-size: .88rem;
+  font-weight: 600;
+  color: #678378;
+}
+.tailor-preview .preview-steps article > h3 {
+  margin: 0;
+  font-size: 1.13rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+.tailor-preview .preview-steps article > p {
+  margin: 0;
+  color: #56615c;
+  font-size: .9rem;
+  line-height: 1.7;
+}
+@media(max-width:700px) {
+  .tailor-preview .preview-steps article {
+    grid-template-columns: 35px minmax(0, 1fr);
+    gap: 6px 12px;
+    padding: 20px 0;
+  }
+  .tailor-preview .preview-steps article > span { grid-row: 1 / 3; }
+  .tailor-preview .preview-steps article > p { grid-column: 2; }
+  .tailor-preview .preview-enquiry .contact-field-row { grid-template-columns: 1fr; }
+}
