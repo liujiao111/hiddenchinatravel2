@@ -192,14 +192,14 @@ const faqs = [
   [L("How does booking and payment work?"), L("Review the written itinerary and quotation first, then sign the licensed agency's travel contract. The usual arrangement is a 20% deposit and the remaining balance after your first pickup, subject to your agreed written terms.")],
 ];
 
-const cta = L(L("Get a Suggested Route & Price"));
+const cta = L("Get a Suggested Route & Price"));
 
   const whatsapp = buildWhatsAppUrl(undefined, lang);
 
   return <main className="tailor-preview">
     <SiteHeader conversion cta={{ href: "#plan", label: cta }} />
-    <JourneyHero title={L(L("Private Yunnan Tours, Designed Around You"))} eyebrow={L(L("TAILOR-MADE YUNNAN"))} image="/home/hero.webp" imageAlt={L(L("Yunnan's Jade Dragon Snow Mountain"))} description={L(L("Explore Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La on a private journey shaped around your dates, interests and pace."))} primary={{href:"#plan",label:cta}} secondary={{href:"#routes",label:L("Explore Route Ideas")}} price={L(L("6-Day Private Yunnan Tour · From US$680 per person"))} note={L(L("Based on two adults sharing one room. Final prices depend on travel dates, group size, hotels and confirmed services."))}/>
-    <JourneyFactCards id="glance" title={L(L("At a glance"))} cards={[
+    <JourneyHero title={L("Private Yunnan Tours, Designed Around You)} eyebrow={L("TAILOR-MADE YUNNAN)} image="/home/hero.webp" imageAlt={L("Yunnan's Jade Dragon Snow Mountain)} description={L("Explore Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La on a private journey shaped around your dates, interests and pace.)} primary={{href:"#plan",label:cta}} secondary={{href:"#routes",label:L("Explore Route Ideas")}} price={L("6-Day Private Yunnan Tour · From US$680 per person)} note={L("Based on two adults sharing one room. Final prices depend on travel dates, group size, hotels and confirmed services.)}/>
+    <JourneyFactCards id="glance" title={L("At a glance)} cards={[
       { icon:"calendar", title:L("Flexible Duration"), lines:[L("6–12 Days"),L("A route shaped around your available time, interests and preferred pace.")] },
       { icon:"route", title:L("100% Tailor-Made & No Shopping"), lines:[L("Just Your Group"),L("Private travel shaped to your group, with no shared departures or compulsory shopping stops.")] },
       { icon:"star", title:L("One Guide, Your Language"), lines:[L("Chinese or English Included"),L("Choose your guide language at no extra charge; one dedicated driver-guide throughout.")] },
@@ -239,7 +239,7 @@ const cta = L(L("Get a Suggested Route & Price"));
       </div>
     </div>
     </section>
-    <RealJourneyEvidence />
+    <RealJourneyEvidence locale={lang} />
     <section className="section preview-inclusions" id="included-excluded"><div className="shell">
       <div className="preview-heading"><p className="kicker">{L("THE 6-DAY REFERENCE JOURNEY")}</p><h2>{L("What’s Included — and What’s Not")}</h2><p>{L("The same inclusions and exclusions listed on our 6-day journey page. For the 8-day route or custom plans, your written proposal confirms the exact services.")}</p></div>
       <div className="preview-inclusion-grid">
@@ -261,7 +261,7 @@ const cta = L(L("Get a Suggested Route & Price"));
     <article><h3>{L("Hotels & Experiences")}</h3><ul><li>{L("Comfortable, premium or characterful hotels, confirmed by name")}</li><li>{L("Bai tie-dye workshops in Zhoucheng and a night in Shaxi")}</li><li>{L("Local food, photography and countryside walks")}</li><li>{L("Family-friendly arrangements")}</li><li>{L("Dietary and mobility requirements")}</li></ul></article>
     </div></div></section>
     
-    <JourneyFactCards id="why-travel" title={L(L("Local Planning. Licensed Delivery."))} cards={[
+    <JourneyFactCards id="why-travel" title={L("Local Planning. Licensed Delivery.)} cards={[
       { icon:"person", title:L("Yunnan-rooted route planning"), lines:[L("Route advice informed by local knowledge of seasons, travel times and the real pace between stops")] },
       { icon:"party", title:L("Planning backed by local operations"), lines:[L("Joy helps with the initial route; Yunnan Meizhen’s licensed team coordinates booking and delivery")] },
       { icon:"licence", title:L("Licensed tour operator"), lines:[L("Travel contract and payment with Yunnan Meizhen International Travel Agency"),L("Permit L-YN-1017500")] },
@@ -274,8 +274,8 @@ const cta = L(L("Get a Suggested Route & Price"));
     </div><p className="preview-centered">{L("There is no payment or booking commitment when requesting an initial proposal.")}</p></div></section>
     {/* Traveler testimonials are withheld on this preview until original sources and permission are verified. */}
     <section className="section preview-plan" id="plan"><div className="shell preview-plan-grid">
-      <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt={L(L("Joy, founder of Hidden China Travel"))} fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">{L("LOCAL PLANNING, LICENSED DELIVERY")}</p><h2>{L("Get a Suggested Yunnan Route & Price")}</h2><p>{L("You do not need a finished itinerary. Share your approximate number of days and group size, and we will suggest a realistic starting route and price range based on your interests, with bookings and on-the-ground arrangements coordinated by our licensed local team.")}</p><p><strong>{L("Yunnan-based operations team")}</strong> · Chinese- or English-speaking service · Licensed local delivery</p><p className="preview-quiet">Prefer WhatsApp? <Link href={whatsapp} data-cta-location="preview_form_whatsapp">{L("Chat with Joy →")}</Link></p></div>
-      <PreviewEnquiryForm />
+      <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt={L("Joy, founder of Hidden China Travel)} fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">{L("LOCAL PLANNING, LICENSED DELIVERY")}</p><h2>{L("Get a Suggested Yunnan Route & Price")}</h2><p>{L("You do not need a finished itinerary. Share your approximate number of days and group size, and we will suggest a realistic starting route and price range based on your interests, with bookings and on-the-ground arrangements coordinated by our licensed local team.")}</p><p><strong>{L("Yunnan-based operations team")}</strong> · Chinese- or English-speaking service · Licensed local delivery</p><p className="preview-quiet">{L("Prefer WhatsApp?")} <Link href={whatsapp} data-cta-location="preview_form_whatsapp">{L("Chat with Joy →")}</Link></p></div>
+      <PreviewEnquiryForm locale={lang} />
     </div></section>
     <section className="section preview-payment journey-support-flow"><div className="shell journey-section-layout">
       <header className="preview-heading"><p className="kicker">{L("CLEAR TERMS, NO SURPRISES")}</p><h2>{L("Clear Booking and Payment")}</h2></header>
@@ -288,7 +288,7 @@ const cta = L(L("Get a Suggested Route & Price"));
     </div></section>
     <section className="section journey-faq" id="questions"><div className="narrow"><h2>{L("Frequently Asked Questions")}</h2>{faqs.map(([q,a])=><details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
     <section className="journey-final-cta"><div><h2>{L("Your Yunnan journey starts with a conversation.")}</h2><span>{L("Tell us about your party and interests. Get a suggested route and initial price range, with no commitment to book.")}</span><a className="button button-light" href="#plan">{L("Get a Suggested Route & Price")}</a></div></section>
-    <MobileCtaBar whatsappHref={whatsapp} formHref="#plan" whatsappLabel="" formLabel={L(L("Get a Suggested Route & Price"))} formOnly formCtaLocation="preview_mobile_route_price" />
+    <MobileCtaBar whatsappHref={whatsapp} formHref="#plan" whatsappLabel="" formLabel={L("Get a Suggested Route & Price)} formOnly formCtaLocation="preview_mobile_route_price" />
     <ContentFooter />
   </main>;
 }
