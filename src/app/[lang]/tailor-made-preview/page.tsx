@@ -112,7 +112,15 @@ export default async function TailorMadePreview({ params }: Props) {
       <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt="Joy, founder of Hidden China Travel" fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">PLAN DIRECTLY WITH JOY</p><h2>Get a Suggested Yunnan Route & Price</h2><p>You do not need a finished itinerary. Share your approximate number of days and group size, and Joy will suggest a realistic starting route and price range based on your interests.</p><p><strong>Based in Kunming</strong> · English-language planning and local support</p><p className="preview-quiet">Prefer WhatsApp? <Link href={whatsapp} data-cta-location="preview_form_whatsapp">Chat with Joy →</Link></p></div>
       <PreviewEnquiryForm />
     </div></section>
-    <section className="section preview-payment"><div className="shell"><h2>Clear Booking and Payment</h2><div className="preview-payment-grid"><p>Review the written itinerary and quotation before booking.</p><p>Sign a travel contract with the licensed agency.</p><p>Pay a 20% deposit to confirm arrangements.</p><p>Pay the remaining balance after your first pickup.</p></div><small>Booking and refund terms are confirmed in your written contract.</small></div></section>
+    <section className="section preview-payment journey-support-flow"><div className="shell journey-section-layout">
+      <header className="preview-heading"><p className="kicker">CLEAR TERMS, NO SURPRISES</p><h2>Clear Booking and Payment</h2></header>
+      <div className="journey-support-grid">
+        <article><span>01</span><h3>Review your proposal</h3><p>Check the written route, named hotels, inclusions, exclusions and total price before you commit.</p></article>
+        <article><span>02</span><h3>Sign and confirm</h3><p>Sign the licensed travel agency’s contract. A 20% deposit is our usual arrangement, subject to the agreed written terms.</p></article>
+        <article><span>03</span><h3>Complete the balance</h3><p>The remaining balance is normally paid after your first pickup, as specified in your travel contract.</p></article>
+      </div>
+      <p className="preview-centered">Your signed contract controls the payment schedule, cancellation terms and refunds.</p>
+    </div></section>
     <section className="section journey-faq" id="questions"><div className="narrow"><h2>Frequently Asked Questions</h2>{faqs.map(([q,a])=><details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
     <section className="journey-final-cta"><div><h2>Your Yunnan journey starts with a conversation.</h2><span>Share your trip length and ideas. Joy will suggest a route and initial price.</span><a className="button button-light" href="#plan">Get a Suggested Route & Price</a></div></section>
     <MobileCtaBar whatsappHref={whatsapp} formHref="#plan" whatsappLabel="" formLabel="Get a Suggested Route & Price" formOnly formCtaLocation="preview_mobile_route_price" />
