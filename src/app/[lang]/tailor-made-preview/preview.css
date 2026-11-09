@@ -70,10 +70,11 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .journey-card-actions a:last-child{text-decoration:underline;text-underline-offset:4px;font-weight:500}
 .tailor-preview .journey-card-actions a:hover{text-decoration:underline}
 .tailor-preview .journey-card-actions a:focus-visible{outline:3px solid #fff;outline-offset:4px}
-.tailor-preview .preview-longer-journey{position:relative;min-height:330px;overflow:hidden;margin-top:12px;color:#fff;display:flex;align-items:center}
+.tailor-preview .preview-longer-journey{position:relative;min-height:clamp(460px,45vw,640px);width:100%;overflow:hidden;margin-top:64px;color:#fff;display:flex;align-items:center}
 .tailor-preview .preview-longer-journey>img{object-fit:cover;object-position:center 54%}
-.tailor-preview .preview-longer-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,40,34,.95) 0%,rgba(16,40,34,.87) 55%,rgba(16,40,34,.48) 100%)}
-.tailor-preview .preview-longer-copy{position:relative;z-index:1;max-width:840px;padding:38px 44px}
+.tailor-preview .preview-longer-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,40,34,.94) 0%,rgba(16,40,34,.78) 42%,rgba(16,40,34,.20) 100%)}
+.tailor-preview .preview-longer-shell{position:relative;z-index:1;width:100%;display:flex;align-items:center;padding-top:68px;padding-bottom:68px}
+.tailor-preview .preview-longer-copy{position:relative;z-index:1;max-width:770px;padding:0}
 .tailor-preview .preview-longer-copy .kicker{color:#e1cda1}
 .tailor-preview .preview-longer-copy h3{font-size:clamp(1.75rem,3vw,2.6rem);color:#fff;margin:12px 0 18px}
 .tailor-preview .preview-longer-copy p:not(.kicker){color:rgba(255,255,255,.92);font-size:1rem;line-height:1.55}
@@ -94,8 +95,10 @@ body.preview-form-visible .preview-sticky-cta{display:none}
   .tailor-preview .preview-reused-journeys{grid-template-columns:1fr;gap:16px}
   .tailor-preview .preview-reused-journeys .journey-card{min-height:570px}
   .tailor-preview .preview-reused-journeys .journey-card-copy{padding:28px 24px}
-  .tailor-preview .preview-longer-copy{padding:32px 24px}
-  .tailor-preview .preview-longer-journey{min-height:410px}
+  .tailor-preview .preview-longer-shell{padding-top:50px;padding-bottom:50px}
+  .tailor-preview .preview-longer-copy{padding:0}
+  .tailor-preview .preview-longer-journey{min-height:520px;margin-top:48px}
+  .tailor-preview .preview-longer-shade{background:linear-gradient(90deg,rgba(16,40,34,.87),rgba(16,40,34,.45)),linear-gradient(0deg,rgba(16,40,34,.55),transparent 75%)}
   .tailor-preview .preview-joy-photo{aspect-ratio:1.5}
 }
 
