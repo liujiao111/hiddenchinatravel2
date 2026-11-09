@@ -38,7 +38,7 @@ heroEyebrow: "THE ESSENCE OF YUNNAN"
 heroSecondaryLabel: "EXPLORE THE 8-DAY ITINERARY"
 heroPrimaryLabel: "GET YOUR FREE CUSTOM ITINERARY VIA WHATSAPP"
 heroDescription: "A reference route through Erhai Lake, Lijiang, Tiger Leaping Gorge and Shangri-La. We tailor the final itinerary to your interests, pace and dates."
-heroNote: "Request an initial price for your dates and party size. Inclusions and booking terms are detailed below; other lunches and dinners are not included."
+heroNote: "From US$799 per person for the complete 8 days, based on two adults sharing a room. Final pricing depends on dates, hotels and party size; other lunches and dinners are not included."
 heroIncludes:
   - "Tailor-made to your pace and interests"
   - "Private party · no shopping stops"
@@ -203,7 +203,7 @@ faqs:
   - question: "When are the hotels and trains confirmed?"
     answer: "Hotel names, room types, train times and the final services are listed in the formal quotation and booking confirmation. Example photographs by city are in the hotels section on this page."
   - question: "What language is the service in?"
-    answer: "Chinese- and English-speaking driver-guide service is included. The assigned driver-guide may change between destinations. Other languages need to be confirmed in advance."
+    answer: "Chinese- and English-speaking driver-guide service is included. One dedicated driver-guide serves your group throughout; choose Chinese- or English-speaking service at the same price. Other languages need to be confirmed in advance."
   - question: "Who provides the contract and operates the trip?"
     answer: "Hidden China Travel is the English-language site of Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司), a licensed travel agency in Kunming. Joy Liu is your travel consultant. The travel contract and all payments are with that agency, to its corporate account. Its travel agency permit number is L-YN-1017500."
 ---
@@ -216,4 +216,4 @@ It is a starting point, not a fixed package. We will tailor the route, pace, hot
 
 ## How the service works
 
-A driver-guide looks after the listed pickups, private vehicle and route coordination. A specialist attraction guide is not included unless it is arranged separately. Vehicles are matched to your party and the route; a specific model cannot be promised. Drivers and vehicles may change between destinations.
+A driver-guide looks after the listed pickups, private vehicle and route coordination. A specialist attraction guide is not included unless it is arranged separately. Vehicles are matched to your party and the route; a specific model cannot be promised. Vehicles may change around train transfers, but your dedicated driver-guide remains with the group throughout.
