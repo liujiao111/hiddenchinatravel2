@@ -2288,9 +2288,9 @@ a.utility-card { color:inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 48px;
-  margin-top: 2px;
+  width: 60px;
+  height: 60px;
+  margin-top: 8px;
   border: 1px solid #d6e0dc;
   border-radius: 999px;
   background: #fff;
@@ -2301,7 +2301,7 @@ a.utility-card { color:inherit; }
 }
 .wa-back-to-top:hover { background: #eef5f3; transform: translateY(-2px); }
 .wa-back-to-top:focus-visible { outline: 3px solid #e1cda1; outline-offset: 3px; }
-@media (max-width:700px) { .wa-back-to-top { width: 50px; height: 44px; } }
+@media (max-width:700px) { .wa-back-to-top { width: 56px; height: 56px; } }
 
 
 /* Subtle pulse ring — slow and tasteful */
