@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { driverGuideProof, hotelProof, vehicleProof } from "@/lib/journey-trust";
 
-type Category = "travelers" | "vehicles" | "hotels" | "guides" | "planning";
+type Category = "travelers" | "vehicles-guides" | "hotels" | "planning";
 type Evidence = {
   src: string;
   alt: string;
@@ -13,11 +13,10 @@ type Evidence = {
   copy: string;
 };
 const categories: { id: Category; label: string }[] = [
-  { id: "travelers", label: "Travelers" },
-  { id: "vehicles", label: "Vehicles" },
+  { id: "travelers", label: "Guest Journeys" },
+  { id: "vehicles-guides", label: "Vehicles & Guides" },
   { id: "hotels", label: "Hotels" },
-  { id: "guides", label: "Driver-Guides" },
-  { id: "planning", label: "Trip Planning" },
+  { id: "planning", label: "Planning" },
 ];
 
 // These six photos are already present in the site's guest-photo directory.
@@ -53,16 +52,22 @@ const guidePhotos: Evidence[] = driverGuideProof.slides.map(slide => ({
   detail: slide.detail,
   copy: slide.copy || "A local team member; assignments are confirmed for your dates.",
 }));
+// Combine vehicles and team members in one evidence category rather than
+// treating them as separate products. Interleave initial items so both types
+// appear even before the visitor selects "View more".
+const transportAndGuides: Evidence[] = [];
+for (let index = 0; index < Math.max(vehiclePhotos.length, guidePhotos.length); index++) {
+  if (vehiclePhotos[index]) transportAndGuides.push(vehiclePhotos[index]);
+  if (guidePhotos[index]) transportAndGuides.push(guidePhotos[index]);
+}
 const records: Record<Category, Evidence[]> = {
-  travelers, vehicles: vehiclePhotos, hotels: hotelPhotos,
-  guides: guidePhotos, planning: [],
+  travelers, "vehicles-guides": transportAndGuides, hotels: hotelPhotos, planning: [],
 };
 
 const notes: Record<Category, string> = {
   travelers: "Guest photos are shown independently of the written reviews; a photo does not identify any reviewer.",
-  vehicles: "Vehicle class and seating are selected according to your party, route and luggage. The final arrangement is confirmed in writing.",
+  "vehicles-guides": "The vehicle and English-speaking driver-guide shown are examples from our local arrangements. Vehicle size, assigned team members and language support are confirmed for your dates, route and luggage.",
   hotels: "These are existing hotel examples, not guaranteed properties. Your quotation names the hotels, room types and included breakfasts.",
-  guides: "Team profiles are examples. The assigned driver-guide, language and route arrangements are confirmed before departure.",
   planning: "We will add anonymized enquiry, route revision and proposal records only after the original materials and permission to publish have been verified.",
 };
 
@@ -122,7 +127,7 @@ export function RealJourneyEvidence() {
 
     <dialog ref={dialogRef} className="real-evidence-dialog" onClose={close} onCancel={close} aria-label={selected?.title || "Journey photo"}>
       {selected ? <div className="real-evidence-modal">
-        <div className="real-evidence-modal-head"><span>{active === "travelers" ? "TRAVELERS" : categories.find(c=>c.id===active)?.label.toUpperCase()}</span><button type="button" className="real-evidence-close" onClick={close} aria-label="Close image">×</button></div>
+        <div className="real-evidence-modal-head"><span>{categories.find(c=>c.id===active)?.label.toUpperCase()}</span><button type="button" className="real-evidence-close" onClick={close} aria-label="Close image">×</button></div>
         <div className="real-evidence-modal-image"><Image src={encodeURI(selected.src)} alt={selected.alt} fill sizes="(max-width: 800px) 90vw, 900px" /></div>
         <div className="real-evidence-modal-info"><div><small>{selected.detail}</small><h3>{selected.title}</h3><p>{selected.copy}</p></div><div className="proof-carousel-controls"><span>{String(viewing!+1).padStart(2,"0")} / {String(items.length).padStart(2,"0")}</span><div><button type="button" aria-label="Previous image" onClick={() => move(-1)}>←</button><button type="button" aria-label="Next image" onClick={() => move(1)}>→</button></div></div></div>
       </div> : null}
