@@ -31,7 +31,7 @@ export async function POST(request: Request) {
   const to = process.env.CUSTOM_JOURNEY_TO_EMAIL || "joy.liu@hiddenchinatravel.com";
   if (!apiKey || !from) return Response.json({ error: "The enquiry form is temporarily unavailable. Your details have been kept here; please try WhatsApp or email Joy below." }, { status: 503 });
   try {
-    const body = { from, to: [to], reply_to: enquiry.email, subject: `Custom journey enquiry — ${enquiry.name}`, text: enquiryEmailText(enquiry) };
+    const body = { from, to: [to], ...(enquiry.email ? { reply_to: enquiry.email } : {}), subject: `Custom journey enquiry — ${enquiry.name}`, text: enquiryEmailText(enquiry) };
     const digest = createHash("sha256").update(JSON.stringify(body)).digest("hex").slice(0,32);
     const result = await fetch("https://api.resend.com/emails", {
       method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": `custom-journey-${enquiry.requestId}-${digest}` },
