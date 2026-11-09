@@ -7,6 +7,7 @@ import { ContentFooter } from "@/components/content-footer";
 import { JourneyHero, JourneyFactCards } from "@/components/journey-landing";
 import { Testimonials } from "@/components/testimonials";
 import { JourneyCard } from "@/components/journey-card";
+import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { PreviewEnquiryForm } from "@/components/preview-enquiry-form";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { getSelectedTestimonials } from "@/lib/testimonials";
@@ -86,7 +87,7 @@ export default async function TailorMadePreview({ params }: Props) {
     <section className="section preview-payment"><div className="shell"><h2>Clear Booking and Payment</h2><div className="preview-payment-grid"><p>Review the written itinerary and quotation before booking.</p><p>Sign a travel contract with the licensed agency.</p><p>Pay a 20% deposit to confirm arrangements.</p><p>Pay the remaining balance after your first pickup.</p></div><small>Booking and refund terms are confirmed in your written contract.</small></div></section>
     <section className="section journey-faq" id="questions"><div className="narrow"><h2>Frequently Asked Questions</h2>{faqs.map(([q,a])=><details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
     <section className="journey-final-cta"><div><h2>Your Yunnan journey starts with a conversation.</h2><span>Share your dates and ideas. Joy will suggest a route and initial price.</span><a className="button button-light" href="#plan">Get a Suggested Route & Price</a></div></section>
-    <a className="preview-sticky-cta" href="#plan">Get a Suggested Route & Price →</a>
+    <MobileCtaBar whatsappHref={whatsapp} formHref="#plan" whatsappLabel="" formLabel="Get a Suggested Route & Price" formOnly formCtaLocation="preview_mobile_route_price" />
     <ContentFooter />
   </main>;
 }
