@@ -1454,16 +1454,16 @@
     }
   },
   "floatingChat": {
-    "bubbleText": "计划去云南旅行？和 Joy 聊聊，免费获取行程建议。",
+    "bubbleText": "正在计划云南旅行？联系 Joy，免费获取初步路线建议。",
     "bubbleClose": "关闭",
     "ariaLabel": "在 WhatsApp 上与 Joy 聊天",
-    "tooltip": "通常 15 分钟内回复",
+    "tooltip": "云南本地团队提供中文或英文旅行建议。 ",
     "badge": "和 Joy 聊聊"
   },
   "mobileCta": {
     "whatsappLabel": "WhatsApp 咨询",
     "formLabel": "获取行程",
-    "statusLabel": "通常 15 分钟内回复",
+    "statusLabel": "云南本地旅行咨询",
     "whatsappAria": "在 WhatsApp 上与 Joy 聊天",
     "formAria": "向 Joy 发送咨询"
   },
