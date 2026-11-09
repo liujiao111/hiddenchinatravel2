@@ -147,7 +147,7 @@ export default async function Home({ params }: Props) {
             image: classic.frontmatter.coverImage,
             imageAlt: t("card2ImageAlt"),
             duration: t("card2Duration"),
-            fromPrice: fromPrice(classic.frontmatter.fromPrice, classic.frontmatter.currency, classic.frontmatter.priceBasis),
+            fromPrice: classic.frontmatter.fromPrice > 0 ? fromPrice(classic.frontmatter.fromPrice, classic.frontmatter.currency, classic.frontmatter.priceBasis) : (lang === "zh" ? "获取初步报价" : "Request an initial price"),
             features: t.raw("card2Features") as string[],
             ctaLabel: t("cardCta"),
             trackingLocation: "home_featured_classic",
