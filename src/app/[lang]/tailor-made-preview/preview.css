@@ -12,24 +12,7 @@
 .tailor-preview .preview-fit{background:#f0f6f4}
 .tailor-preview .preview-fit article{padding:36px}
 .tailor-preview .preview-routes{background:#fff}
-.tailor-preview .preview-route-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.tailor-preview .preview-route{border:1px solid #e1e4df;background:#fff;min-width:0;display:flex;flex-direction:column}
-.tailor-preview .preview-route-image{position:relative;aspect-ratio:1.48;overflow:hidden}
-.tailor-preview .preview-route-image img{object-fit:cover}
-.tailor-preview .preview-route-image>span{position:absolute;left:18px;bottom:18px;background:#fff;padding:8px 12px;font-weight:800;font-size:.7rem;letter-spacing:.1em}
-.tailor-preview .preview-route-body{padding:25px;display:flex;flex:1;flex-direction:column}
-.tailor-preview .preview-route-body>small{font-size:.65rem;letter-spacing:.14em;color:#637d76;font-weight:800}
-.tailor-preview .preview-route-body h3{font-size:1.6rem;line-height:1.2;margin:10px 0}
-.tailor-preview .preview-route-body p{font-size:.9rem;color:#525b58}
-.tailor-preview .preview-route-body .preview-places{color:#31675e;font-weight:700}
-.tailor-preview .preview-route-body .preview-best{margin-top:auto;border-top:1px solid #e6ebe7;padding-top:16px}
-.tailor-preview .preview-price{display:block;margin:10px 0 16px;font-size:1rem}
-.tailor-preview .preview-route-actions{display:flex;flex-direction:column;align-items:flex-start;gap:15px}
-.tailor-preview .preview-route-actions>a:not(.button){color:#225c56;text-decoration:underline;font-size:.85rem;font-weight:700}
-.tailor-preview .preview-route-actions .button{max-width:100%;text-align:center}
-.tailor-preview .preview-price-note{text-align:center;font-size:.75rem;color:#737873;margin:24px auto;max-width:800px}
-.tailor-preview .preview-route-help{text-align:center;margin-top:36px;padding:30px;background:#edf5f2}
-.tailor-preview .preview-route-help h3{font-size:1.6rem;margin:0}
+.tailor-preview .preview-price-note{text-align:center;font-size:.78rem;color:#646f67;margin:22px auto 26px;max-width:830px;line-height:1.65}
 .tailor-preview .preview-custom{background:#f2f6f4}
 .tailor-preview .preview-custom ul{padding-left:22px;line-height:2;color:#394e49}
 .tailor-preview .preview-trust-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
@@ -56,7 +39,6 @@
 .tailor-preview .preview-payment small{display:block;margin-top:14px;color:#65746d}
 .tailor-preview .preview-sticky-cta{display:none}
 @media(max-width:900px){
-.tailor-preview .preview-route-grid{grid-template-columns:1fr 1fr}
 .tailor-preview .preview-trust-grid,.tailor-preview .preview-payment-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .tailor-preview .preview-plan-grid{grid-template-columns:1fr;gap:20px}
 }
@@ -73,10 +55,30 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 }
 
 /* Reuse the existing six-day journey-card presentation instead of a parallel card system. */
-.tailor-preview .preview-reused-journeys{align-items:stretch}
-.tailor-preview .preview-reused-journey{min-width:0;display:flex;flex-direction:column;gap:12px}
-.tailor-preview .preview-reused-journey .journey-card{flex:1;min-height:470px}
-.tailor-preview .preview-customize-route{font-size:.82rem;font-weight:750;color:#27645b;text-decoration:underline;text-align:center;padding:8px}
+.tailor-preview .preview-reused-journeys{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch;margin-top:38px}
+.tailor-preview .preview-reused-journeys .journey-card{height:100%;min-height:590px;display:block;width:100%;min-width:0}
+.tailor-preview .preview-reused-journeys .journey-card-shade{background:linear-gradient(180deg,rgba(9,22,19,.12) 0%,rgba(9,22,19,.55) 35%,rgba(9,22,19,.95) 100%)}
+.tailor-preview .preview-reused-journeys .journey-card-copy{padding:36px 32px;display:flex;flex-direction:column;justify-content:flex-end;min-height:100%;box-sizing:border-box;position:relative}
+.tailor-preview .preview-reused-journeys .journey-card-copy h3{font-size:clamp(1.8rem,2.8vw,2.35rem);margin-top:6px}
+.tailor-preview .preview-reused-journeys .journey-card-copy>p{font-size:1rem;line-height:1.65;max-width:570px}
+.tailor-preview .preview-reused-journeys .journey-card-copy ul{display:block;margin-top:18px;font-size:.95rem;line-height:1.6}
+.tailor-preview .preview-reused-journeys .journey-card-copy>span{font-size:.72rem;line-height:1.6}
+.tailor-preview .preview-reused-journeys .journey-card-price{font-size:1.2rem;margin-top:17px}
+.tailor-preview .journey-card-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;border-top:1px solid rgba(255,255,255,.5);margin-top:24px;padding-top:19px}
+.tailor-preview .journey-card-actions a{color:#fff;font-size:.88rem;font-weight:750;text-decoration:none;line-height:1.5}
+.tailor-preview .journey-card-actions a:first-child{text-transform:uppercase;letter-spacing:.03em}
+.tailor-preview .journey-card-actions a:last-child{text-decoration:underline;text-underline-offset:4px;font-weight:500}
+.tailor-preview .journey-card-actions a:hover{text-decoration:underline}
+.tailor-preview .journey-card-actions a:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.tailor-preview .preview-longer-journey{position:relative;min-height:330px;overflow:hidden;margin-top:12px;color:#fff;display:flex;align-items:center}
+.tailor-preview .preview-longer-journey>img{object-fit:cover;object-position:center 54%}
+.tailor-preview .preview-longer-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,40,34,.95) 0%,rgba(16,40,34,.87) 55%,rgba(16,40,34,.48) 100%)}
+.tailor-preview .preview-longer-copy{position:relative;z-index:1;max-width:840px;padding:38px 44px}
+.tailor-preview .preview-longer-copy .kicker{color:#e1cda1}
+.tailor-preview .preview-longer-copy h3{font-size:clamp(1.75rem,3vw,2.6rem);color:#fff;margin:12px 0 18px}
+.tailor-preview .preview-longer-copy p:not(.kicker){color:rgba(255,255,255,.92);font-size:1rem;line-height:1.55}
+.tailor-preview .preview-longer-copy .button{margin-top:12px}
+
 .tailor-preview .journey-fact-cards .shell>a{display:block;margin:30px auto 0;text-align:center;text-decoration:underline;font-weight:700;color:#28675d}
 .tailor-preview .preview-plan-joy{padding-top:0!important}
 .tailor-preview .preview-joy-photo{position:relative;aspect-ratio:1.6;max-height:290px;margin-bottom:24px;overflow:hidden}
@@ -89,8 +91,11 @@ body.preview-form-visible .preview-sticky-cta{display:none}
   .tailor-preview .preview-reused-journeys{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:700px){
-  .tailor-preview .preview-reused-journeys{grid-template-columns:1fr}
-  .tailor-preview .preview-reused-journey .journey-card{min-height:430px}
+  .tailor-preview .preview-reused-journeys{grid-template-columns:1fr;gap:16px}
+  .tailor-preview .preview-reused-journeys .journey-card{min-height:570px}
+  .tailor-preview .preview-reused-journeys .journey-card-copy{padding:28px 24px}
+  .tailor-preview .preview-longer-copy{padding:32px 24px}
+  .tailor-preview .preview-longer-journey{min-height:410px}
   .tailor-preview .preview-joy-photo{aspect-ratio:1.5}
 }
 
