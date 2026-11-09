@@ -120,3 +120,16 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .preview-proof-caveat{max-width:830px;margin:24px auto 0;text-align:center;color:#5a665f;font-size:.8rem}
 @media(max-width:800px){.tailor-preview .preview-proof-grid{grid-template-columns:1fr}.tailor-preview .preview-proof-photo{aspect-ratio:1.85}}
 @media(max-width:700px){.tailor-preview .preview-proof-photo{aspect-ratio:1.55}}
+
+/* Small operational reassurance using the established journey palette; not another card grid. */
+.tailor-preview .preview-support-note {
+  max-width: 890px;
+  margin: 24px auto 0;
+  padding: 20px 24px;
+  border-left: 3px solid #52796f;
+  background: #fff;
+  color: #475750;
+  line-height: 1.7;
+  font-size: .9rem;
+}
+.tailor-preview .preview-support-note strong { color: #294b45; }
