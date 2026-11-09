@@ -23,7 +23,7 @@ heroSecondaryLabel: "SEE THE DAYS"
 heroDescription: "A private journey from Kunming through Dali and Shaxi to Lijiang."
 heroNote: "Two adults sharing one room. Not a daily rate."
 heroIncludes:
-  - "Private driver-guide · no shopping stops"
+  - "One dedicated Chinese- or English-speaking driver-guide · no shopping stops"
   - "One night in Shaxi · between Dali and Lijiang"
   - "Jade Dragon as its own day · not departure day"
   - "20% after you sign · 80% after pickup"
@@ -35,7 +35,7 @@ overviewItems:
   - label: "6 Days / 5 Nights"
     value: "Kunming → Dali → Shaxi → Lijiang · 2 nights in Dali · 1 night in Shaxi · 2 nights in Lijiang"
   - label: "Your Journey"
-    value: "Private journey · English-speaking driver-guide · No shopping stops · Fully customizable"
+    value: "Private journey · Chinese- or English-speaking driver-guide included · One guide throughout · No shopping stops"
   - label: "Meals"
     value: "Daily hotel breakfast · Local dining recommendations · Flexible lunch & dinner choices"
   - label: "From US$680 per person"
@@ -127,7 +127,7 @@ itinerary:
 tiers: []
 inclusions:
   - "A private vehicle throughout the journey, including fuel, tolls, parking, and your driver’s meals and accommodation"
-  - "A driver-guide for the whole journey"
+  - "One Chinese- or English-speaking driver-guide for the whole journey, included at the same price"
   - "Premium hotels throughout, with breakfast included"
   - "High-speed rail tickets during the journey, in second class"
   - "Entrance tickets for the sights listed in the itinerary"
