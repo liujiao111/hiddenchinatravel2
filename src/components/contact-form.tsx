@@ -7,6 +7,7 @@ import { scheduleScrollToEnquire, scrollToEnquire } from "@/components/enquire-l
 import { parseEnquiry, partySizes, type Enquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
 import { trackEvent } from "@/lib/analytics";
+import { clearContactOrigin, readContactOrigin } from "@/lib/contact-origin";
 
 export function ContactForm() {
   const t = useTranslations("contactForm");
@@ -27,7 +28,8 @@ export function ContactForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(event.currentTarget).entries());
-    const parsed = parseEnquiry({ ...data, source: window.location.href, allowEmptyPlans: true });
+    const origin = readContactOrigin();
+    const parsed = parseEnquiry({ ...data, source: window.location.href, originPage: origin?.page || "", originCta: origin?.cta || "", allowEmptyPlans: true });
     if ("error" in parsed) {
       setStatus("error");
       setError(parsed.error);
@@ -44,6 +46,8 @@ export function ContactForm() {
       travel_window: parsed.travelWindow,
       interest: parsed.interest,
       page_path: window.location.pathname,
+      enquiry_origin_page: parsed.originPage || "direct_or_unknown",
+      enquiry_origin_cta: parsed.originCta || "unknown",
     };
     trackEvent("form_submit_attempt", analyticsParams);
 
@@ -63,6 +67,7 @@ export function ContactForm() {
 
       // Count a lead only after the enquiry API confirms successful submission.
       trackEvent("generate_lead", analyticsParams);
+      clearContactOrigin();
       setSent(parsed);
       setStatus("success");
     } catch {
