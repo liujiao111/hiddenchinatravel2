@@ -137,8 +137,8 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .real-evidence-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:30px}
 .tailor-preview .real-evidence-item{display:flex;flex-direction:column;min-width:0;padding:0;border:0;background:#fff;color:inherit;text-align:left;cursor:zoom-in;overflow:hidden}
 .tailor-preview .real-evidence-item:focus-visible{outline:3px solid #087eb8;outline-offset:3px}
-.tailor-preview .real-evidence-image{display:block;position:relative;width:100%;aspect-ratio:4/3;background:#dce8e4;overflow:hidden}
-.tailor-preview .real-evidence-image img{object-fit:cover}
+.tailor-preview .real-evidence-image{display:block;position:relative;width:100%;aspect-ratio:4/3;background:#e9efec;overflow:hidden}
+.tailor-preview .real-evidence-image img{object-fit:contain;object-position:center}
 .tailor-preview .real-evidence-caption{padding:13px 14px 17px;display:flex;flex-direction:column;gap:5px}
 .tailor-preview .real-evidence-caption small{font-size:.67rem;color:#59736b;letter-spacing:.04em}
 .tailor-preview .real-evidence-caption strong{font-size:.87rem;line-height:1.4;font-weight:650}
@@ -192,3 +192,6 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 @media(max-width:700px){
   .tailor-preview .real-evidence-heading h2{font-size:clamp(1.9rem,7vw,2.65rem);line-height:1.15}
 }
+
+/* Preserve the original frame for every evidence photo and document. */
+.tailor-preview .real-evidence-image img,.real-evidence-dialog .real-evidence-modal-image img{object-fit:contain!important;object-position:center!important}
