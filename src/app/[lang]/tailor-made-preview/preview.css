@@ -264,3 +264,27 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 }
 
 
+
+
+/* Eight-day sample: independent responsive layout, never inherits preview-two columns. */
+.tailor-preview .sample-itinerary-section{background:#e6eef1}
+.tailor-preview .sample-itinerary-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);max-width:1050px;margin:32px auto 0;background:#fff;overflow:hidden;border-radius:16px;box-shadow:0 12px 38px rgba(23,48,53,.07)}
+.tailor-preview .sample-itinerary-photo{position:relative;min-height:390px;overflow:hidden}
+.tailor-preview .sample-itinerary-photo img{object-fit:cover!important;object-position:center}
+.tailor-preview .sample-itinerary-content{padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;justify-content:center;min-width:0}
+.tailor-preview .sample-itinerary-label{font-size:.73rem;font-weight:750;letter-spacing:.12em;color:#3f6b72}
+.tailor-preview .sample-itinerary-content h3{font-family:Georgia,serif;font-size:clamp(1.65rem,2.6vw,2.5rem);line-height:1.16;font-weight:400;margin:14px 0}
+.tailor-preview .sample-itinerary-content p{font-size:.96rem;line-height:1.7;color:#475a5e;margin:0 0 12px}
+.tailor-preview .sample-itinerary-content .sample-itinerary-note{font-size:.8rem;color:#697a7e}
+.tailor-preview .sample-itinerary-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px}
+.tailor-preview .sample-itinerary-actions .button{max-width:100%;white-space:normal;text-align:center}
+.tailor-preview .sample-itinerary-plan{font-weight:700;color:#08679c;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:760px){
+.tailor-preview .sample-itinerary-card{grid-template-columns:minmax(0,1fr);margin-top:24px;border-radius:12px}
+.tailor-preview .sample-itinerary-photo{min-height:0;aspect-ratio:16/10}
+.tailor-preview .sample-itinerary-content{padding:24px 22px 28px}
+.tailor-preview .sample-itinerary-content h3{font-size:1.7rem;line-height:1.2}
+.tailor-preview .sample-itinerary-actions{align-items:stretch;flex-direction:column;gap:14px}
+.tailor-preview .sample-itinerary-actions .button{width:100%;justify-content:center}
+.tailor-preview .sample-itinerary-plan{text-align:center;padding:5px}
+}
