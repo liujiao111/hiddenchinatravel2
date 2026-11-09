@@ -77,3 +77,25 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview{padding-bottom:58px}
 .tailor-preview .journey-mobile-cta,.tailor-preview .mobile-cta-bar{display:none!important}
 }
+
+/* Reuse the existing six-day journey-card presentation instead of a parallel card system. */
+.tailor-preview .preview-reused-journeys{align-items:stretch}
+.tailor-preview .preview-reused-journey{min-width:0;display:flex;flex-direction:column;gap:12px}
+.tailor-preview .preview-reused-journey .journey-card{flex:1;min-height:470px}
+.tailor-preview .preview-customize-route{font-size:.82rem;font-weight:750;color:#27645b;text-decoration:underline;text-align:center;padding:8px}
+.tailor-preview .journey-fact-cards .shell>a{display:block;margin:30px auto 0;text-align:center;text-decoration:underline;font-weight:700;color:#28675d}
+.tailor-preview .preview-plan-joy{padding-top:0!important}
+.tailor-preview .preview-joy-photo{position:relative;aspect-ratio:1.6;max-height:290px;margin-bottom:24px;overflow:hidden}
+.tailor-preview .preview-joy-photo img{object-fit:cover;object-position:center 30%}
+.tailor-preview .preview-plan-grid{grid-template-columns: .9fr 1.1fr;gap:48px}
+.tailor-preview .preview-plan{scroll-margin-top:24px}
+.tailor-preview .preview-sticky-cta{display:none}
+@media(max-width:900px){
+  .tailor-preview .preview-plan-grid{grid-template-columns:1fr}
+  .tailor-preview .preview-reused-journeys{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .tailor-preview .preview-reused-journeys{grid-template-columns:1fr}
+  .tailor-preview .preview-reused-journey .journey-card{min-height:430px}
+  .tailor-preview .preview-joy-photo{aspect-ratio:1.5}
+}
