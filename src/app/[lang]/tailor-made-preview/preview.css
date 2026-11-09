@@ -106,3 +106,17 @@ body.preview-form-visible .preview-sticky-cta{display:none}
   .tailor-preview .mobile-cta-form-only .mobile-cta-form{flex:1 1 100%;background:#087eb8}
   .tailor-preview .mobile-cta-form-only .mobile-cta-label{font-size:.76rem;white-space:normal;letter-spacing:0;text-transform:none}
 }
+
+/* Compact proof reuses the existing catalogue of real guide, vehicle and hotel assets. */
+.tailor-preview .preview-real-proof{background:#f2f7f5}
+.tailor-preview .preview-proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.tailor-preview .preview-proof-item{background:white;border:1px solid #dae5df;min-width:0}
+.tailor-preview .preview-proof-photo{position:relative;aspect-ratio:1.45;overflow:hidden}
+.tailor-preview .preview-proof-photo img{object-fit:cover}
+.tailor-preview .preview-proof-copy{padding:20px}
+.tailor-preview .preview-proof-copy>span{font-size:.65rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#53796f}
+.tailor-preview .preview-proof-copy h3{font-size:1.42rem;line-height:1.2;margin:12px 0}
+.tailor-preview .preview-proof-copy p{font-size:.85rem;color:#505b56;margin-bottom:0}
+.tailor-preview .preview-proof-caveat{max-width:830px;margin:24px auto 0;text-align:center;color:#5a665f;font-size:.8rem}
+@media(max-width:800px){.tailor-preview .preview-proof-grid{grid-template-columns:1fr}.tailor-preview .preview-proof-photo{aspect-ratio:1.85}}
+@media(max-width:700px){.tailor-preview .preview-proof-photo{aspect-ratio:1.55}}
