@@ -8,8 +8,10 @@ import { useLocale, useTranslations } from "next-intl";
 /* ------------------------------------------------------------------ */
 /*  Configuration                                                      */
 /* ------------------------------------------------------------------ */
-const BUBBLE_DELAY = 3000;           // chat bubble pops after 3s
-const BUBBLE_AUTO_DISMISS = 8000;    // auto-dismiss bubble after 8s
+const BUBBLE_DELAY = 20_000;        // desktop: at least 20 seconds on this page
+const BUBBLE_SCROLL_PROGRESS = 0.4; // and at least 40% page reading progress
+const BUBBLE_AUTO_DISMISS = 5_000;
+const SESSION_NOTICE_KEY = "hct_whatsapp_nudge_seen_v1";
 
 function basePath(path: string) {
   return (path.replace(/^\/zh(?=\/|$)/, "") || "/").replace(/\/+$/, "") || "/";
@@ -38,6 +40,7 @@ export function FloatingWhatsAppExperiment() {
   const [mounted, setMounted] = useState(false);
   const [bubbleOpen, setBubbleOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [suppressed, setSuppressed] = useState(false);
 
   /* Compute WhatsApp URL directly — tracking layer (whatsapp-tracking.ts)
      intercepts the click, injects leadId, and fires GA4 events. */
@@ -47,19 +50,93 @@ export function FloatingWhatsAppExperiment() {
      This is the canonical "mounted" idiom; the lint rule is overly strict here. */
   useEffect(() => { setMounted(true); }, []); // eslint-disable-line react-hooks/set-state-in-effect
 
-  /* Bubble schedule — only timers, no synchronous setState except
-     inside setTimeout callbacks (which is fine) */
+  /* A small desktop-only, one-time nudge after BOTH time and reading progress.
+     The session flag is set at display time, so a route change or dismissal
+     cannot re-trigger it in the same tab/session. */
   useEffect(() => {
     if (!mounted || !eligible) return;
+    const desktop = window.matchMedia("(min-width: 701px) and (hover: hover)");
+    if (!desktop.matches) return;
+    try { if (sessionStorage.getItem(SESSION_NOTICE_KEY)) return; } catch { /* storage can be unavailable */ }
 
-    const bubbleTimer = setTimeout(() => setBubbleOpen(true), BUBBLE_DELAY);
-    const dismissTimer = setTimeout(() => setBubbleOpen(false), BUBBLE_DELAY + BUBBLE_AUTO_DISMISS);
-
-    return () => {
-      clearTimeout(bubbleTimer);
-      clearTimeout(dismissTimer);
+    let ready = false;
+    let finished = false;
+    let dismissTimer: ReturnType<typeof setTimeout> | undefined;
+    const readProgress = () => {
+      if (!ready || finished || !desktop.matches || document.hidden) return;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = total > 0 ? window.scrollY / total : 0;
+      if (progress < BUBBLE_SCROLL_PROGRESS) return;
+      // A dialog, visible form or mobile bar should never be covered.
+      if (document.querySelector("dialog[open], [role='dialog'][aria-modal='true']")) return;
+      if (document.activeElement instanceof HTMLElement && document.activeElement.closest("form")) return;
+      if (Array.from(document.querySelectorAll("form.contact-form, form.preview-enquiry, form.custom-journey-form")).some(form => {
+        const rect = form.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom > 0;
+      })) return;
+      finished = true;
+      try { sessionStorage.setItem(SESSION_NOTICE_KEY, "1"); } catch { /* ignore unavailable storage */ }
+      setBubbleOpen(true);
+      dismissTimer = setTimeout(() => setBubbleOpen(false), BUBBLE_AUTO_DISMISS);
     };
-  }, [mounted, eligible, pathname, locale]);
+    const timer = setTimeout(() => { ready = true; readProgress(); }, BUBBLE_DELAY);
+    window.addEventListener("scroll", readProgress, { passive: true });
+    window.addEventListener("resize", readProgress);
+    const mediaChanged = () => { if (!desktop.matches) setBubbleOpen(false); else readProgress(); };
+    desktop.addEventListener("change", mediaChanged);
+    document.addEventListener("visibilitychange", readProgress);
+    return () => {
+      clearTimeout(timer);
+      if (dismissTimer) clearTimeout(dismissTimer);
+      window.removeEventListener("scroll", readProgress);
+      window.removeEventListener("resize", readProgress);
+      desktop.removeEventListener("change", mediaChanged);
+      document.removeEventListener("visibilitychange", readProgress);
+      setBubbleOpen(false);
+    };
+  }, [mounted, eligible, pathname]);
+
+  /* Suppress the entire floating widget when a real enquiry form, focused form
+     field, or photo/modal dialog is in use. Keep observation independent of the
+     popup timer so the small button also stays out of the way. */
+  useEffect(() => {
+    if (!mounted || !eligible) return;
+    const formSelector = "form.contact-form, form.preview-enquiry, form.custom-journey-form, #plan form";
+    const visibleForms = new Set<Element>();
+    const sync = () => {
+      const focusedForm = document.activeElement instanceof HTMLElement && Boolean(document.activeElement.closest("form"));
+      const dialogOpen = Boolean(document.querySelector("dialog[open], [role='dialog'][aria-modal='true']"));
+      const isSuppressed = Boolean(visibleForms.size || focusedForm || dialogOpen);
+      setSuppressed(isSuppressed);
+      if (isSuppressed) setBubbleOpen(false);
+    };
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) visibleForms.add(entry.target);
+        else visibleForms.delete(entry.target);
+      }
+      sync();
+    }, { threshold: 0.01 });
+    const observed = new Set<Element>();
+    const discover = () => {
+      for (const form of document.querySelectorAll(formSelector)) {
+        if (observed.has(form)) continue;
+        observed.add(form);
+        observer.observe(form);
+      }
+      sync();
+    };
+    const mutation = new MutationObserver(discover);
+    mutation.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["open", "aria-modal"] });
+    document.addEventListener("focusin", sync);
+    document.addEventListener("focusout", sync);
+    discover();
+    return () => {
+      observer.disconnect(); mutation.disconnect();
+      document.removeEventListener("focusin", sync);
+      document.removeEventListener("focusout", sync);
+    };
+  }, [mounted, eligible, pathname]);
 
   useEffect(() => {
     const checkScroll = () => setShowBackToTop(window.scrollY > 360);
@@ -72,17 +149,14 @@ export function FloatingWhatsAppExperiment() {
     window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   }, []);
 
-  const handleMouseEnter = useCallback(() => {
-    setBubbleOpen(true);
-  }, []);
-
   const handleBubbleClose = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setBubbleOpen(false);
+    try { sessionStorage.setItem(SESSION_NOTICE_KEY, "1"); } catch { /* ignore */ }
   }, []);
 
-  if (!mounted || !eligible) return null;
+  if (!mounted || !eligible || suppressed) return null;
 
   return (
     <div className="wa-float">
@@ -105,7 +179,7 @@ export function FloatingWhatsAppExperiment() {
       )}
 
       {/* Floating button with persistent badge label */}
-      <div className="wa-float-action" onMouseEnter={handleMouseEnter}>
+      <div className="wa-float-action">
         <span className="wa-float-badge" aria-hidden="true">{t("badge")}</span>
         <a
           className="wa-float-btn"
