@@ -89,7 +89,7 @@ const records: Record<Category, Evidence[]> = {
 
 const notes: Record<Category, string> = {
   travelers: "Guest photos are shown independently of the written reviews; a photo does not identify any reviewer.",
-  "vehicles-guides": "The vehicle and English-speaking driver-guide shown are examples from our local arrangements. Vehicle size, assigned team members and language support are confirmed for your dates, route and luggage.",
+  "vehicles-guides": "These photos show example vehicles and team members, including both Chinese- and English-speaking driver-guides. Your vehicle, assigned team and language arrangements are confirmed for your dates, route and luggage.",
   hotels: "These are existing hotel examples, not guaranteed properties. Your quotation names the hotels, room types and included breakfasts.",
   planning: "These are cropped, privacy-checked excerpts from a real travel contract. Customer enquiries and planning conversations will be added only after their original records and publication permissions are verified.",
 };
