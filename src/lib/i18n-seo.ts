@@ -36,6 +36,7 @@ export const zhLivePaths = new Set<string>([
   "/journeys/kunming-dali-shaxi-lijiang-6-days",
   "/journeys/kunming-dali-lijiang-shangri-la-private-tour",
   "/custom-china-tour",
+  "/private-yunnan-tours",
   "/contact",
   "/about-us",
   "/survival-kit",
