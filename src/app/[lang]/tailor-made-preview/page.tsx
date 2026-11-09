@@ -5,7 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
 import { JourneyHero, JourneyFactCards } from "@/components/journey-landing";
-import { CompactJourneyServiceProof } from "@/components/compact-journey-service-proof";
+import { RealJourneyEvidence } from "@/components/real-journey-evidence";
 import { JourneyCard } from "@/components/journey-card";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { PreviewEnquiryForm } from "@/components/preview-enquiry-form";
@@ -65,6 +65,7 @@ export default async function TailorMadePreview({ params }: Props) {
     <p className="preview-price-note">The sample 6-day price is based on two adults sharing one room. Final prices depend on season, route, group size, selected hotels and included services. The written proposal confirms exactly what is included.</p>
     <div className="preview-route-help"><h3>Not sure which route fits your trip?</h3><p>Tell us your approximate duration and group size. Joy will suggest a realistic route for your season and interests.</p><a className="button button-blue" href="#plan">Help Me Choose</a></div>
     </div></section>
+    <RealJourneyEvidence />
     <JourneyFactCards id="what-to-expect" title="A Private Journey, Thoughtfully Arranged" cards={[
       { icon: "route", title: "Your route, professionally planned", lines: ["A realistic day-by-day plan for your dates", "Travel time, altitude and sightseeing pace considered"] },
       { icon: "person", title: "Private driver-guide service", lines: ["English-speaking service confirmed for your dates", "Driving, pickups, local context and itinerary coordination", "Specialist attraction guides quoted separately if needed"] },
@@ -75,7 +76,7 @@ export default async function TailorMadePreview({ params }: Props) {
     <article><h3>Route & Pace</h3><ul><li>Add or remove destinations</li><li>Spend longer in fewer places, such as an extra night in Dali or Lijiang</li><li>Choose gentler starts or fuller days</li><li>Adjust hiking and altitude exposure</li></ul></article>
     <article><h3>Hotels & Experiences</h3><ul><li>Comfortable, premium or characterful hotels, confirmed by name</li><li>Bai tie-dye workshops in Zhoucheng and a night in Shaxi</li><li>Local food, photography and countryside walks</li><li>Family-friendly arrangements</li><li>Dietary and mobility requirements</li></ul></article>
     </div></div></section>
-    <CompactJourneyServiceProof />
+    
     <JourneyFactCards id="why-travel" title="Why travel with us" cards={[
       { icon:"person", title:"Planned by a Yunnan local", lines:["Born in Yunnan, Joy plans routes with practical advice on seasons, travel time and pace"] },
       { icon:"party", title:"One contact throughout", lines:["Speak with Joy from your first enquiry through planning and your journey"] },
