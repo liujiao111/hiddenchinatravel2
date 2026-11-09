@@ -33,10 +33,16 @@ export function PreviewEnquiryForm() {
     const partyLabel = String(form.get("partyRange") || "");
     const days = String(form.get("tripLength") || "");
     const travelers = partyOptions.find(x => x.label === partyLabel)?.count ?? 2;
+    const whatsapp = String(form.get("whatsapp") || "").trim();
+    if (!/^\+[0-9\s().-]{7,24}$/.test(whatsapp) || whatsapp.replace(/\D/g, "").length < 8) {
+      setError("Please enter your WhatsApp number with its country code, such as +65 1234 5678.");
+      setStatus("error");
+      return;
+    }
     const payload = {
       name: String(form.get("name") || ""),
       email: String(form.get("email") || ""),
-      whatsapp: String(form.get("whatsapp") || "").trim(),
+      whatsapp,
       travelTiming: "",
       tripLength: days,
       adults: travelers,
@@ -47,7 +53,7 @@ export function PreviewEnquiryForm() {
       interests: [] as string[],
       notes: ("Travelers selected: " + partyLabel + "\n\n" + String(form.get("notes") || "") + "\n\nEnquiry page: " + window.location.href).slice(0, 3000),
       website: String(form.get("website") || ""),
-      consent: true,
+      consent: form.get("consent") === "yes",
       requestId: idRef.current,
     };
     setStatus("sending");
@@ -71,7 +77,7 @@ export function PreviewEnquiryForm() {
     }
   }
 
-  if (status === "success") return <div className="preview-success" role="status"><h3>Thank you — your enquiry is on its way to Joy.</h3><p>We'll use your trip length, group size and interests to suggest a Yunnan route and initial price. No booking commitment.</p></div>;
+  if (status === "success") return <div className="preview-success" role="status"><h3>Thank you — we received your enquiry.</h3><p>We’ll follow up using your WhatsApp number about a suitable Yunnan route and an initial price. No booking commitment.</p></div>;
 
   return <form className="contact-form preview-enquiry" onSubmit={submit} onFocus={() => {
     if (!startedRef.current) {
@@ -81,17 +87,18 @@ export function PreviewEnquiryForm() {
   }}>
     <div className="contact-field-row">
       <label><span>Name *</span><input required name="name" type="text" autoComplete="name" maxLength={100} placeholder="Your name" /></label>
-      <label><span>Email *</span><input required name="email" type="email" autoComplete="email" maxLength={254} placeholder="you@example.com" /></label>
+      <label><span>Email <small>(optional)</small></span><input name="email" type="email" autoComplete="email" maxLength={254} placeholder="you@example.com" /></label>
     </div>
     <div className="contact-field-row">
-      <label><span>WhatsApp <small>(optional)</small></span><input name="whatsapp" type="tel" autoComplete="tel" maxLength={40} placeholder="+65 1234 5678" /></label>
+      <label><span>WhatsApp *</span><input required name="whatsapp" type="tel" inputMode="tel" autoComplete="tel" maxLength={40} placeholder="+65 1234 5678 (with country code)" /></label>
       <label><span>Number of travelers *</span><select name="partyRange" defaultValue="2" required>{partyOptions.map(p => <option key={p.label} value={p.label}>{p.label}</option>)}</select></label>
     </div>
     <label><span>Approximate trip length *</span><select name="tripLength" required defaultValue=""><option value="" disabled>How many days?</option>{["5–6 days","7–8 days","9–12 days","More than 12 days","Not decided yet"].map(x => <option value={x} key={x}>{x}</option>)}</select></label>
     <label><span>Places, interests or questions <small>(optional)</small></span><textarea name="notes" rows={4} maxLength={2500} placeholder="Tell us anything you'd like Joy to consider…" /></label>
     <label className="contact-honeypot" aria-hidden="true"><span>Website</span><input name="website" tabIndex={-1} autoComplete="off" /></label>
     {status === "error" ? <p className="contact-form-error" role="alert">{error}</p> : null}
+    <label className="preview-consent"><input type="checkbox" name="consent" value="yes" required /><span>I agree to be contacted about this trip enquiry. My details will only be used to respond to my request. <a href="/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</span></label>
     <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send Me a Suggested Route & Price"}</button>
-    <p className="contact-form-note">No payment or booking commitment. Your details are used only to reply to your enquiry.</p>
+    <p className="contact-form-note">No payment to enquire. Final prices depend on your travel dates and confirmed services. You can add an email for a written copy of your proposal.</p>
   </form>;
 }
