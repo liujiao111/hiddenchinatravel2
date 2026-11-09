@@ -164,8 +164,13 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .real-evidence-note{font-size:.8rem;color:#55615c;margin:24px 0 0;line-height:1.6}
 .tailor-preview .real-evidence-pending{margin-top:26px;padding:32px;background:white;max-width:760px}
 .tailor-preview .real-evidence-pending h3{font-size:1.4rem}
-.tailor-preview .real-evidence-cta{margin-top:42px;border-top:1px solid #ccd8d1;padding-top:28px;text-align:center}
-.tailor-preview .real-evidence-cta h3{font-size:clamp(1.3rem,2.4vw,1.8rem);margin:0 0 20px}
+.tailor-preview .real-journey-evidence{padding-bottom:0}
+.tailor-preview .real-evidence-cta{width:100%;margin-top:44px;min-height:0;padding:66px 24px;background:linear-gradient(rgba(26,51,46,.90),rgba(26,51,46,.90)),url('/home/plan-journey.webp') center/cover;border:0;color:#fff;text-align:center}
+.tailor-preview .real-evidence-cta>div{width:100%;max-width:820px;margin:0 auto}
+.tailor-preview .real-evidence-cta h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,4vw,3.3rem);line-height:1.17;font-weight:400;color:#fff;margin:0 auto 18px}
+.tailor-preview .real-evidence-cta span{display:block;color:rgba(255,255,255,.9);font-size:1rem;line-height:1.6;max-width:620px;margin:0 auto 26px}
+@media(max-width:700px){.tailor-preview .real-evidence-cta{margin-top:30px;padding:54px 20px}.tailor-preview .real-evidence-cta h2{font-size:clamp(1.85rem,7vw,2.4rem)}}
+
 .real-evidence-dialog{max-width:min(960px,calc(100vw - 28px));width:100%;max-height:calc(100dvh - 30px);padding:0;border:0;background:#fff;color:#282821;box-shadow:0 20px 70px #0006;overflow:auto}
 .real-evidence-dialog::backdrop{background:rgba(15,29,27,.76)}
 .real-evidence-modal-head{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;font-size:.72rem;letter-spacing:.12em;color:#4d6a60}
@@ -228,7 +233,7 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .real-journey-evidence {background:#f7f5ee}
 .tailor-preview .real-evidence-item {background:#fff}
 .tailor-preview .real-evidence-image {background:#efede6}
-.tailor-preview .real-evidence-cta {border-color:#d8d1bf}
+
 .tailor-preview .journey-fact-cards {background:#f3f1e8}
 .tailor-preview .preview-plan {background:#f7f7f0}
 .tailor-preview .preview-payment {background:#fff}
