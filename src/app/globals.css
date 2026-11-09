@@ -2451,3 +2451,17 @@ body:has(.article-mobile-ask:not(.ask-bar-hidden)) .wa-float {
   .booking-page .booking-close { padding:64px 20px 68px; }
   .booking-page .booking-close-button { width:min(100%,340px); }
 }
+
+/* WhatsApp nudge: desktop one-time only (behavior lives in the component).
+   Mobile uses the compact icon and the existing sticky CTA rather than
+   competing with page content or covering image galleries. */
+body:has(dialog[open]) .wa-float,
+body:has([role="dialog"][aria-modal="true"]) .wa-float {display:none!important}
+@media(max-width:700px){
+  .wa-bubble,.wa-float-badge{display:none!important}
+  .wa-float-pulse{animation:none!important;display:none!important}
+  .wa-back-to-top{display:none}
+  body:has(.mobile-cta-bar:not(.ask-bar-hidden)) .wa-float,
+  body:has(.journey-mobile-cta:not(.ask-bar-hidden)) .wa-float,
+  body:has(.article-mobile-ask:not(.ask-bar-hidden)) .wa-float {display:none!important}
+}
