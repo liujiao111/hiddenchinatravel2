@@ -225,16 +225,20 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .real-evidence-grid-vehicles-guides .real-evidence-image img,
 .tailor-preview .real-evidence-grid-hotels .real-evidence-image img{object-fit:contain!important}
 
-/* Preview palette: alternate white and warm neutrals, not repeated blue-green panels. */
-.tailor-preview .preview-fit {background:#f7f7f0}
-.tailor-preview .preview-fit article {background:#fff;border-color:#e8e5da}
-.tailor-preview .preview-custom {background:#faf9f4}
-.tailor-preview .preview-custom .preview-two article {background:#fff;border-color:#e3dfd3}
-.tailor-preview .real-journey-evidence {background:#f7f5ee}
+/* Preview section backgrounds: pure white and the site's pale blue, alternating.
+   Deep green is reserved for full-width CTA bands. */
+.tailor-preview #glance.journey-fact-cards {background:#e6eef1}
+.tailor-preview .preview-fit {background:#fff}
+.tailor-preview .preview-fit article {background:#fff;border-color:#dbe3e7}
+.tailor-preview .preview-routes {background:#e6eef1}
+.tailor-preview .real-journey-evidence {background:#fff}
 .tailor-preview .real-evidence-item {background:#fff}
-.tailor-preview .real-evidence-image {background:#efede6}
-
-.tailor-preview .journey-fact-cards {background:#f3f1e8}
-.tailor-preview .preview-plan {background:#f7f7f0}
-.tailor-preview .preview-payment {background:#fff}
-.tailor-preview .preview-process {background:#f7f7f0}
+.tailor-preview .real-evidence-image {background:#edf3f6}
+.tailor-preview #what-to-expect.journey-fact-cards {background:#e6eef1}
+.tailor-preview .preview-custom {background:#fff}
+.tailor-preview .preview-custom .preview-two article {background:#fff;border-color:#dbe3e7}
+.tailor-preview #why-travel.journey-fact-cards {background:#e6eef1}
+.tailor-preview .preview-process.journey-support-flow {background:#fff}
+.tailor-preview .preview-plan {background:#e6eef1}
+.tailor-preview .preview-payment.journey-support-flow {background:#fff}
+.tailor-preview .journey-faq {background:#e6eef1}
