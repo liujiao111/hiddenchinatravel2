@@ -13,7 +13,6 @@ import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { SiteHeader } from "@/components/site-header";
 import { TopicNavigation } from "@/components/topic-navigation";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
-import { getAllJourneys } from "@/lib/journeys";
 import { breadcrumbList } from "@/components/json-ld";
 
 function formatDate(value: string, locale: AppLocale) {
@@ -31,8 +30,6 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
   const tMobile = await getTranslations({ locale: lang, namespace: "mobileCta" });
   const whatsapp = buildWhatsAppUrl(undefined, lang === "zh" ? "zh" : "en");
   const related = getRelatedArticles(item, 6, lang);
-  const journeys = getAllJourneys(lang);
-  const featuredJourney = journeys.find((journey) => journey.frontmatter.featured) || journeys[0];
   const articleJsonLd = {
     "@type": "Article",
     headline: frontmatter.title,
@@ -80,11 +77,11 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
       {frontmatter.excerpt && <div className="article-intro shell"><p>{frontmatter.excerpt}</p></div>}
       <div className="article-layout shell">
         <div className="article-body"><MarkdownContent>{item.body}</MarkdownContent></div>
-        <ArticleGuideAside section={frontmatter.section} lang={lang} journey={featuredJourney} />
+        <ArticleGuideAside section={frontmatter.section} lang={lang} />
       </div>
     </article>
     {frontmatter.faqs?.length ? <section className="article-faq"><div className="narrow"><p className="article-section">{t("faqKicker")}</p><h2>{t("faqHeading")}</h2>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><MarkdownContent compact>{faq.answer}</MarkdownContent></details>)}</div></section> : null}
-    <ArticleDiscoveryFlow related={related} journey={featuredJourney} sourceTitle={frontmatter.title} sourceSection={frontmatter.section} sourcePath={`/${item.slug}`} lang={lang} />
+    <ArticleDiscoveryFlow related={related} sourceTitle={frontmatter.title} sourcePath={`/${item.slug}`} lang={lang} />
     <MobileCtaBar
       whatsappHref={whatsapp}
       formHref="#ask-joy"

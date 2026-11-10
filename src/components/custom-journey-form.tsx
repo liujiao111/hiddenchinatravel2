@@ -35,7 +35,7 @@ export function CustomJourneyForm() {
       const result = await response.json();
       if (!response.ok || result.success !== true) throw new Error(result.error || t("sendError"));
       setStatus("success");
-      trackEvent("generate_lead", { form_name: "custom_journey_enquiry", page_path: "/custom-china-tour", lead_type: "tailor_made_journey", event_id: requestId.current || undefined });
+      trackEvent("generate_lead", { form_name: "custom_journey_enquiry", page_path: window.location.pathname, lead_type: "tailor_made_journey", event_id: requestId.current || undefined });
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : t("sendErrorAlt"));
@@ -44,7 +44,7 @@ export function CustomJourneyForm() {
 
   if (status === "success") return <div className="custom-enquiry-success" role="status" tabIndex={-1} style={{ scrollMarginTop: 90 }} ref={(confirmation) => { if (!confirmation) return; confirmation.focus({ preventScroll: true }); confirmation.scrollIntoView({ behavior: "instant", block: "start" }); }}><h3>{t("successTitle")}</h3><p>{t("successText", { replyTime: tq("replyTime") })}</p><p><a href={siteConfig.sampleItineraryPdf} download>{t("successSample")}</a></p><p>{t("successNote")}</p><Link href="/private-yunnan-tours#routes">{t("successLink")}</Link></div>;
 
-  return <form className="contact-form custom-enquiry-form" onSubmit={submit} onFocus={() => { if (!started.current) { started.current = true; trackEvent("custom_journey_form_start", { form_name: "custom_journey_enquiry", page_path: "/custom-china-tour" }); } }}>
+  return <form className="contact-form custom-enquiry-form" onSubmit={submit} onFocus={() => { if (!started.current) { started.current = true; trackEvent("custom_journey_form_start", { form_name: "custom_journey_enquiry", page_path: window.location.pathname }); } }}>
     <div className="contact-field-row"><label><span>{t("name")}</span><input name="name" autoComplete="name" type="text" maxLength={100} required /></label><label><span>{t("email")}</span><input name="email" autoComplete="email" type="email" maxLength={254} required /></label></div>
     <label><span>{t("travelTiming")}</span><input name="travelTiming" type="text" placeholder={t("travelTimingPlaceholder")} maxLength={100} /></label>
     <fieldset><legend>{t("travelersLegend")}</legend><div className="contact-field-row"><label><span>{t("adults")}</span><input name="adults" type="number" min={1} max={30} defaultValue={2} required /></label><label><span>{t("children")}</span><input name="children" type="number" min={0} max={20} defaultValue={0} required /></label></div></fieldset>

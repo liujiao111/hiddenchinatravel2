@@ -2,10 +2,8 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { AppLocale } from "@/lib/i18n-seo";
-import type { Journey } from "@/lib/journeys";
-import { formatPriceLabel } from "@/lib/format-price";
 
-export async function ArticleGuideAside({ section, lang, journey }: { section?: string; lang: AppLocale; journey?: Journey }) {
+export async function ArticleGuideAside({ section, lang }: { section?: string; lang: AppLocale }) {
   const t = await getTranslations({ locale: lang, namespace: "article" });
 
   const hubs = [
@@ -25,21 +23,20 @@ export async function ArticleGuideAside({ section, lang, journey }: { section?: 
   };
 
   return <aside className="article-aside" aria-label={t("asideAria")}>
-    {journey ? <article className="article-aside-journey">
-      <Link className="article-aside-image" href={`/journeys/${journey.slug}`} data-cta-location="article_aside_featured_journey" tabIndex={-1} aria-hidden="true">
-        <Image src={journey.frontmatter.coverImage} alt="" fill sizes="(max-width: 900px) 100vw, 276px" />
+    <article className="article-aside-journey">
+      <Link className="article-aside-image" href="/private-yunnan-tours" data-cta-location="article_aside_featured_journey" tabIndex={-1} aria-hidden="true">
+        <Image src="/home/hero.webp" alt="" fill sizes="(max-width: 900px) 100vw, 276px" />
       </Link>
       <div className="article-aside-journey-copy">
-        <p>{t("asideJourneyKicker")}</p>
-        <h2>{journey.frontmatter.title}</h2>
-        <span className="article-aside-route">{journey.frontmatter.route.replaceAll(" → ", " · ")}</span>
-        <span className="article-aside-duration">{journey.frontmatter.duration}</span>
-        {journey.frontmatter.fromPrice > 0 ? <strong className="article-aside-price">{t("asidePriceFrom", { price: formatPriceLabel(journey.frontmatter.fromPrice, journey.frontmatter.currency), basis: journey.frontmatter.priceBasis })}</strong> : null}
-        {journey.frontmatter.heroNote ? <small className="article-aside-price-note">{journey.frontmatter.heroNote}</small> : null}
-        <Link className="article-aside-primary" href={`/journeys/${journey.slug}`} data-cta-location="article_aside_featured_journey">{t("asideJourneyCta")} <span aria-hidden="true">→</span></Link>
-        <Link className="article-aside-all-journeys" href="/private-yunnan-tours#routes" data-cta-location="article_aside_all_journeys">{t("asideAllJourneys")} →</Link>
+        <p>{t("privateKicker")}</p>
+        <h2>{t("privateTitle")}</h2>
+        <span className="article-aside-route">{t("privatePlaces")}</span>
+        <span className="article-aside-duration">{t("privateDuration")}</span>
+        <small className="article-aside-price-note">{t("privateSummary")}</small>
+        <Link className="article-aside-primary" href="/private-yunnan-tours" data-cta-location="article_aside_featured_journey">{t("privateCta")} <span aria-hidden="true">→</span></Link>
+        <Link className="article-aside-all-journeys" href="/private-yunnan-tours#plan" data-cta-location="article_aside_all_journeys">{t("privatePlanCta")} →</Link>
       </div>
-    </article> : null}
+    </article>
     <div className="article-aside-related">
       <span>{t("asideRelatedLabel")}</span>
       <Link href={hub.href}>{hub.label} →</Link>

@@ -89,4 +89,4 @@ Use the [China Survival Kit](/survival-kit) for the full preparation checklist, 
 
 Explore our [Yunnan guides](/china-destinations/yunnan) for Dali, Lijiang and other destinations. Confirm that every planned stop is covered by your visa or exemption before adding it to a transit route. An ASEAN Xishuangbanna group exemption does not cover a wider Dali–Lijiang journey.
 
-Joy Liu can discuss your dates, preferred pace, hotels, private transport and English-speaking guide needs, then connect you with licensed local partners. [Plan a custom China journey](/custom-china-tour) or [explore Yunnan journeys](/private-yunnan-tours#routes). Travel planning support does not issue visas or guarantee immigration approval.
+Joy Liu can discuss your dates, preferred pace, hotels, private transport and English-speaking guide needs, then connect you with licensed local partners. [Plan a custom China journey](/private-yunnan-tours) or [explore Yunnan journeys](/private-yunnan-tours#routes). Travel planning support does not issue visas or guarantee immigration approval.

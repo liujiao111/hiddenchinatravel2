@@ -1,9 +1,7 @@
 import { getTranslations } from "next-intl/server";
-import { CustomJourneyLink } from "@/components/custom-journey-link";
 import { Link } from "@/i18n/navigation";
 import { PlanJourneyClose } from "@/components/plan-journey-close";
 import type { ContentItem } from "@/lib/content";
-import type { Journey } from "@/lib/journeys";
 import type { AppLocale } from "@/lib/i18n-seo";
 import { GuideCard } from "@/components/guide-card";
 import { JourneyCard } from "@/components/journey-card";
@@ -14,24 +12,14 @@ function wordCount(body: string) {
   return body.trim().split(/\s+/).filter(Boolean).length;
 }
 
-function journeyPrice(journey: Journey, fromLabel: (price: string) => string) {
-  const value = new Intl.NumberFormat("en-US").format(journey.frontmatter.fromPrice);
-  const currency = journey.frontmatter.currency === "USD" ? "US$" : journey.frontmatter.currency === "CNY" ? "¥" : `${journey.frontmatter.currency} `;
-  return fromLabel(`${currency}${value} ${journey.frontmatter.priceBasis}`);
-}
-
 export async function ArticleDiscoveryFlow({
   related,
-  journey,
   sourceTitle,
-  sourceSection,
   sourcePath,
   lang,
 }: {
   related: ContentItem[];
-  journey?: Journey;
   sourceTitle: string;
-  sourceSection?: string;
   sourcePath: string;
   lang: AppLocale;
 }) {
@@ -49,32 +37,31 @@ export async function ArticleDiscoveryFlow({
   };
 
   return <>
-    {journey ? <section className="article-discovery article-yunnan">
+    <section className="article-discovery article-yunnan">
       <div className="shell article-yunnan-layout">
         <div className="article-yunnan-copy">
-          <span>{t("yunnanKicker")}</span>
-          <h2>{sourceSection === "China Itinerary Planning" || sourceSection === "中国行程规划" ? t("yunnanHeadingPlanning") : t("yunnanHeadingDefault")}</h2>
-          <p>{t("yunnanBody", { route: journey.frontmatter.route.replaceAll(" → ", ", ") })}</p>
-          <Link className="button" data-cta-location="article_yunnan" href={`/journeys/${journey.slug}`}>{t("yunnanCta")}</Link>
-          <CustomJourneyLink prompt={t("yunnanCustomPrompt")} label={t("yunnanCustomLink")} location="article_custom_alternative" />
+          <span>{t("privateKicker")}</span>
+          <h2>{t("privateHeading")}</h2>
+          <p>{t("privateSummary")}</p>
+          <Link className="button" data-cta-location="article_yunnan" href="/private-yunnan-tours">{t("privateCta")}</Link>
+          <p className="custom-journey-link"><Link href="/private-yunnan-tours#routes" data-cta-location="article_custom_alternative">{t("privateRoutesCta")}</Link></p>
           <Link className="article-yunnan-guide-link" href="/china-destinations/yunnan">{t("yunnanGuideLink")}</Link>
         </div>
         <div className="article-featured-journey">
           <JourneyCard journey={{
-            title: journey.frontmatter.title,
-            subtitle: t("journeySubtitle"),
-            href: `/journeys/${journey.slug}`,
-            image: journey.frontmatter.coverImage,
-            imageAlt: journey.frontmatter.title,
-            duration: journey.frontmatter.duration,
-            fromPrice: journey.frontmatter.fromPrice > 0 ? journeyPrice(journey, (price) => t("priceFrom", { price })) : t("tailoredQuote"),
+            title: t("privateTitle"),
+            subtitle: t("privateCardSubtitle"),
+            href: "/private-yunnan-tours",
+            image: "/home/hero.webp",
+            imageAlt: t("privateImageAlt"),
+            duration: t("privateDuration"),
             features: journeyFeatures,
-            ctaLabel: t("journeyCta"),
+            ctaLabel: t("privateCta"),
             trackingLocation: "article_yunnan",
           }} />
         </div>
       </div>
-    </section> : null}
+    </section>
 
     <JourneyQuoteBand id="ask-joy" source={sourcePath} sourceTitle={sourceTitle} whatsapp={whatsapp} />
 

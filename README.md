@@ -48,7 +48,7 @@ public/                  Static assets
 - [Booking & service](https://hiddenchinatravel.com/booking) — current journeys, shared service standard, process, payment and refunds
 - [First Encounter Yunnan](https://hiddenchinatravel.com/journeys/kunming-dali-shaxi-lijiang-6-days)
 - [The Essence of Yunnan](https://hiddenchinatravel.com/journeys/kunming-dali-lijiang-shangri-la-private-tour)
-- [Tailor-Made Yunnan](https://hiddenchinatravel.com/custom-china-tour)
+- [Tailor-Made Yunnan](https://hiddenchinatravel.com/private-yunnan-tours)
 
 ## Commands
 

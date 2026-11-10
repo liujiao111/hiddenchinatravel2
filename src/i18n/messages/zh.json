@@ -1195,6 +1195,17 @@
     "ctaNote": "直接与 Joy 沟通，没有预订义务。"
   },
   "article": {
+    "privateKicker": "云南私人定制",
+    "privateTitle": "云南私人定制旅行",
+    "privateHeading": "按你的想法，规划一趟云南之旅。",
+    "privatePlaces": "大理 · 沙溪 · 丽江 · 香格里拉",
+    "privateDuration": "6–12天灵活定制",
+    "privateSummary": "围绕你的日期、兴趣和节奏，设计只属于你们的云南行程。可以从参考路线开始，也可以请 Joy 为同行伙伴重新规划。",
+    "privateCardSubtitle": "你的时间，你的同行伙伴，你的旅行节奏。",
+    "privateCta": "了解云南私人定制旅行",
+    "privatePlanCta": "获取定制路线与报价",
+    "privateRoutesCta": "浏览云南参考路线 →",
+    "privateImageAlt": "云南玉龙雪山",
     "breadcrumbHome": "首页",
     "breadcrumbGuides": "旅行攻略",
     "by": "作者：{name}",
