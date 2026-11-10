@@ -55,7 +55,9 @@ export function AnalyticsTracker() {
 
       if (url.origin !== window.location.origin) return;
 
-      if (linkPath === "/private-yunnan-tours" || linkPath === "/custom-china-tour") {
+      if (linkPath === "/private-yunnan-tours" && url.hash === "#routes") {
+        trackEvent("explore_journeys_click", common);
+      } else if (linkPath === "/private-yunnan-tours" || linkPath === "/custom-china-tour") {
         trackEvent(url.hash === "#plan" ? "custom_journey_plan_click" : "custom_journey_click", {
           ...common,
           cta_location: link.dataset.ctaLocation || "page_content",

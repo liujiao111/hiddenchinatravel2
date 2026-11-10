@@ -90,4 +90,4 @@ Keep the [China Survival Kit](/survival-kit) handy as your preparation checklist
 
 If your trip includes Dali, Lijiang or other parts of Yunnan, start with our [Yunnan travel guides](/china-destinations/yunnan). Confirm the immigration basis for your exact route before adding destinations to a transit itinerary.
 
-For help shaping the journey, Joy Liu can discuss your dates, hotel preferences, private transport and English-speaking guide needs, then connect you with licensed local partners. [Plan a custom China journey](/custom-china-tour) or [explore Yunnan journeys](/journeys). Travel planning support does not replace an official visa application or immigration decision.
+For help shaping the journey, Joy Liu can discuss your dates, hotel preferences, private transport and English-speaking guide needs, then connect you with licensed local partners. [Plan a custom China journey](/custom-china-tour) or [explore Yunnan journeys](/private-yunnan-tours#routes). Travel planning support does not replace an official visa application or immigration decision.

@@ -48,7 +48,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ),
     localizedEntry("/contact", isZhLive("/contact"), { lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.7 }),
     localizedEntry("/china-destinations/yunnan", isZhLive("/china-destinations/yunnan"), { lastModified: coreUpdated, changeFrequency: "weekly", priority: 0.9 }),
-    localizedEntry("/journeys", isZhLive("/journeys"), { lastModified: coreUpdated, changeFrequency: "weekly", priority: 0.9 }),
     localizedEntry("/survival-kit", isZhLive("/survival-kit"), { lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.8 }),
     localizedEntry("/china-visa-checker", isZhLive("/china-visa-checker"), { lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.8 }),
     localizedEntry("/china-currency-converter", isZhLive("/china-currency-converter"), { lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.8 }),

@@ -101,7 +101,7 @@ export function BookingPage({ item, alternate }: { item: ContentItem; alternate?
           <Link href="/contact" className="button booking-close-button" data-cta-location="booking_final_contact">
             {ui.cta} <span aria-hidden="true">→</span>
           </Link>
-          <Link href="/journeys" className="booking-close-link">{ui.explore}</Link>
+          <Link href="/private-yunnan-tours#routes" className="booking-close-link">{ui.explore}</Link>
         </div>
       </section>
       <ContentFooter />

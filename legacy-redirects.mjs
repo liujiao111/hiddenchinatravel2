@@ -20,15 +20,15 @@ const pages = {
   "/china-itinerary-planner": "/private-yunnan-tours",
   "/travel-china-guide": "/china-travel-essentials",
   "/china-sim-card-vs-esim": "/internet-in-china",
-  "/explore-china-next": "/journeys",
+  "/explore-china-next": "/private-yunnan-tours",
   "/yunnan-itinerary": "/china-destinations/yunnan",
   "/china-l-visa-tourist-guide": "/do-i-need-a-visa-for-china",
   "/china-240-hour-transit-visa-free": "/do-i-need-a-visa-for-china",
   "/lijiang": "/lijiang-travel-guide",
   "/shangri-la": "/shangri-la-travel-guide",
   "/shuhe-ancient-town-the-quiet-retreat-youre-actually-looking-for-in-lijiang": "/lijiang-travel-guide",
-  "/journeys/dali-lijiang-lugu-lake-private-tour": "/journeys",
-  "/journeys/dali-lijiang-lugu-lake-6-days": "/journeys",
+  "/journeys/dali-lijiang-lugu-lake-private-tour": "/private-yunnan-tours",
+  "/journeys/dali-lijiang-lugu-lake-6-days": "/private-yunnan-tours",
   "/sitemap_index.xml": "/sitemap.xml",
 };
 

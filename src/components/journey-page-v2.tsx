@@ -87,7 +87,7 @@ export function JourneyPageV2({ journey, alternate }: { journey: Journey; altern
       },
       breadcrumbList([
         { name: t("breadcrumbHome"), href: "/" },
-        { name: t("breadcrumbJourneys"), href: "/journeys" },
+        { name: t("breadcrumbJourneys"), href: "/private-yunnan-tours#routes" },
         { name: frontmatter.title, href: `/journeys/${journey.slug}` },
       ]),
     ],

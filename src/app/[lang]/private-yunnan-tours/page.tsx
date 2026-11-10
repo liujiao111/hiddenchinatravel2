@@ -303,7 +303,7 @@ const cta = L("Get a Suggested Route & Price");
       <article><span>03</span><h3>{L("Adjust before booking")}</h3><p>{L("Review changes to hotels, pace and experiences before booking; any change to included services or price is confirmed in writing.")}</p></article>
     </div><p className="preview-centered">{L("There is no payment or booking commitment when requesting an initial proposal.")}</p></div></section>
     {/* Traveler testimonials are withheld on this preview until original sources and permission are verified. */}
-    <section className="section preview-plan" id="plan"><div className="shell preview-plan-grid">
+    <section className="section preview-plan" id="plan"><span id="ask-joy" /><div className="shell preview-plan-grid">
       <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt={L("Joy, founder of Hidden China Travel")} fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">{L("LOCAL PLANNING, LICENSED DELIVERY")}</p><h2>{L("Get a Suggested Yunnan Route & Price")}</h2><p>{L("You do not need a finished itinerary. Share your approximate number of days and group size, and we will suggest a realistic starting route and price range based on your interests, with bookings and on-the-ground arrangements coordinated by our licensed local team.")}</p><p><strong>{L("Yunnan-based operations team")}</strong> · Chinese- or English-speaking service · Licensed local delivery</p><p className="preview-quiet">{L("Prefer WhatsApp?")} <Link href={whatsapp} data-cta-location="preview_form_whatsapp">{L("Chat with Joy →")}</Link></p></div>
       <PreviewEnquiryForm locale={lang} />
     </div></section>

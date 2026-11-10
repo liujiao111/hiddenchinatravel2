@@ -32,7 +32,6 @@ export const htmlLang: Record<AppLocale, string> = {
 export const zhLivePaths = new Set<string>([
   // — Static pages (translated via i18n messages) —
   "/", // 中文首页已翻译上线
-  "/journeys",
   "/journeys/kunming-dali-shaxi-lijiang-6-days",
   "/journeys/kunming-dali-lijiang-shangri-la-private-tour",
   "/private-yunnan-tours",

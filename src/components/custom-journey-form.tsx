@@ -42,7 +42,7 @@ export function CustomJourneyForm() {
     }
   }
 
-  if (status === "success") return <div className="custom-enquiry-success" role="status" tabIndex={-1} style={{ scrollMarginTop: 90 }} ref={(confirmation) => { if (!confirmation) return; confirmation.focus({ preventScroll: true }); confirmation.scrollIntoView({ behavior: "instant", block: "start" }); }}><h3>{t("successTitle")}</h3><p>{t("successText", { replyTime: tq("replyTime") })}</p><p><a href={siteConfig.sampleItineraryPdf} download>{t("successSample")}</a></p><p>{t("successNote")}</p><Link href="/journeys">{t("successLink")}</Link></div>;
+  if (status === "success") return <div className="custom-enquiry-success" role="status" tabIndex={-1} style={{ scrollMarginTop: 90 }} ref={(confirmation) => { if (!confirmation) return; confirmation.focus({ preventScroll: true }); confirmation.scrollIntoView({ behavior: "instant", block: "start" }); }}><h3>{t("successTitle")}</h3><p>{t("successText", { replyTime: tq("replyTime") })}</p><p><a href={siteConfig.sampleItineraryPdf} download>{t("successSample")}</a></p><p>{t("successNote")}</p><Link href="/private-yunnan-tours#routes">{t("successLink")}</Link></div>;
 
   return <form className="contact-form custom-enquiry-form" onSubmit={submit} onFocus={() => { if (!started.current) { started.current = true; trackEvent("custom_journey_form_start", { form_name: "custom_journey_enquiry", page_path: "/custom-china-tour" }); } }}>
     <div className="contact-field-row"><label><span>{t("name")}</span><input name="name" autoComplete="name" type="text" maxLength={100} required /></label><label><span>{t("email")}</span><input name="email" autoComplete="email" type="email" maxLength={254} required /></label></div>

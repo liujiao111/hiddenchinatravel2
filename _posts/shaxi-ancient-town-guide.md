@@ -271,6 +271,6 @@ Shaxi does not need a long list of blockbuster attractions to justify a visit. I
 
 If you are travelling between Dali and Lijiang, one overnight stop is a satisfying introduction. For a slower journey, two nights may suit you better. And if your priority lies elsewhere in Yunnan, it is fine to leave Shaxi off the route.
 
-If you would like help deciding, **[explore our private Yunnan journeys](/journeys)** or **[plan a custom trip with Joy](/private-yunnan-tours)**. Tell us your dates, group size and what you enjoy; we can suggest a realistic route before you decide to book.
+If you would like help deciding, **[explore our private Yunnan journeys](/private-yunnan-tours#routes)** or **[plan a custom trip with Joy](/private-yunnan-tours)**. Tell us your dates, group size and what you enjoy; we can suggest a realistic route before you decide to book.
 
 *Born in Yunnan. Shaped by experiences abroad.*

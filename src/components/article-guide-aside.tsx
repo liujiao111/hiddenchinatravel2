@@ -37,7 +37,7 @@ export async function ArticleGuideAside({ section, lang, journey }: { section?: 
         {journey.frontmatter.fromPrice > 0 ? <strong className="article-aside-price">{t("asidePriceFrom", { price: formatPriceLabel(journey.frontmatter.fromPrice, journey.frontmatter.currency), basis: journey.frontmatter.priceBasis })}</strong> : null}
         {journey.frontmatter.heroNote ? <small className="article-aside-price-note">{journey.frontmatter.heroNote}</small> : null}
         <Link className="article-aside-primary" href={`/journeys/${journey.slug}`} data-cta-location="article_aside_featured_journey">{t("asideJourneyCta")} <span aria-hidden="true">→</span></Link>
-        <Link className="article-aside-all-journeys" href="/journeys" data-cta-location="article_aside_all_journeys">{t("asideAllJourneys")} →</Link>
+        <Link className="article-aside-all-journeys" href="/private-yunnan-tours#routes" data-cta-location="article_aside_all_journeys">{t("asideAllJourneys")} →</Link>
       </div>
     </article> : null}
     <div className="article-aside-related">
