@@ -1127,8 +1127,8 @@ a.utility-card { color:inherit; }
 .contact-field-row { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
 .contact-form label>span,.contact-form legend { display:block; margin-bottom:10px; color:#294b45; font-size:.78rem; font-weight:750; }
 .contact-form label>span small { color:#74776f; font-weight:500; }
-.contact-form input[type="text"],.contact-form input[type="email"],.contact-form input[type="tel"],.contact-form textarea,.contact-form select { width:100%; border:1px solid #cbc7b8; border-radius:0; outline:0; background:#fff; color:#2b2f2b; font:inherit; }
-.contact-form input[type="text"],.contact-form input[type="email"],.contact-form input[type="tel"],.contact-form select { height:50px; padding:0 14px; }
+.contact-form input[type="text"],.contact-form input[type="email"],.contact-form input[type="tel"],.contact-form input[type="month"],.contact-form textarea,.contact-form select { width:100%; border:1px solid #cbc7b8; border-radius:0; outline:0; background:#fff; color:#2b2f2b; font:inherit; }
+.contact-form input[type="text"],.contact-form input[type="email"],.contact-form input[type="tel"],.contact-form input[type="month"],.contact-form select { height:50px; padding:0 14px; }
 .contact-form textarea { resize:vertical; padding:14px; line-height:1.6; }
 .contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus { border-color:#4e7671; box-shadow:0 0 0 2px rgba(78,118,113,.13); }
 .contact-form fieldset { margin:0; border:0; padding:0; }
@@ -1918,7 +1918,7 @@ a.utility-card { color:inherit; }
   .journey-support-flow .journey-support-grid:before { top:0; bottom:0; left:22px; width:1px; height:auto; }
   .journey-support-flow .journey-support-grid article { display:grid; grid-template-columns:44px 1fr; column-gap:20px; padding:0; text-align:left; }
   .journey-support-flow .journey-support-grid article>span { grid-row:span 2; margin:0; }
-  .journey-support-flow .journey-support-grid h3,.journey-support-flow .journey-support-grid p { max-width:none; margin:0; }
+  .journey-support-flow .journey-support-grid h3,.journey-support-flow .journey-support-grid p { grid-column:2; min-width:0; max-width:none; margin:0; }
 }
 .journey-inclusions-compact { padding-top:72px; padding-bottom:64px; }
 .journey-inclusions-compact .journey-inclusion-grid { gap:20px; }
