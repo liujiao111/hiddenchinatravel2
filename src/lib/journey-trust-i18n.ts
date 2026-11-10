@@ -127,7 +127,7 @@ export function getOperatorCredentials(lang: Lang) {
     ...operatorCredentials,
     kicker: "持牌旅行社",
     title: "可供查验的公司资质",
-    copy: `${licensedOperator.nameZh}（${licensedOperator.nameEn}）是 Hidden China Travel 背后的持牌旅行社。办公地址：${licensedOperator.addressZh}。该旅行社出具旅游合同、以对公账户收款并执行行程。旅行社业务经营许可证号：${licensedOperator.permitNumber}，统一社会信用代码：${licensedOperator.unifiedSocialCreditCode}。`,
+    copy: `${licensedOperator.nameZh}（${licensedOperator.nameEn}）负责 Hidden China Travel 云南私人行程的后续报价、签约和当地接待。办公地址：${licensedOperator.addressZh}。该旅行社出具旅游合同、以对公账户收款并执行行程。旅行社业务经营许可证号：${licensedOperator.permitNumber}，统一社会信用代码：${licensedOperator.unifiedSocialCreditCode}。`,
     documents: operatorCredentials.documents.map((document) => ({
       ...document,
       alt: document.href.includes("business-license") ? `${licensedOperator.nameZh}营业执照` : `${licensedOperator.nameZh}旅行社业务经营许可证 ${licensedOperator.permitNumber}`,
