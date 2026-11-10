@@ -1,7 +1,7 @@
 "use client";
 
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -41,6 +41,7 @@ export function FloatingWhatsAppExperiment() {
   const [bubbleOpen, setBubbleOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [suppressed, setSuppressed] = useState(false);
+  const widgetRef = useRef<HTMLDivElement>(null);
 
   /* Compute WhatsApp URL directly — tracking layer (whatsapp-tracking.ts)
      intercepts the click, injects leadId, and fires GA4 events. */
@@ -96,45 +97,48 @@ export function FloatingWhatsAppExperiment() {
     };
   }, [mounted, eligible, pathname]);
 
-  /* Suppress the entire floating widget when a real enquiry form, focused form
-     field, or photo/modal dialog is in use. Keep observation independent of the
-     popup timer so the small button also stays out of the way. */
+  /* Keep the footprint mounted while hidden so overlap checks can restore it.
+     A form elsewhere in the viewport (or retaining focus offscreen) is not
+     a reason to remove the consultation shortcut. */
   useEffect(() => {
     if (!mounted || !eligible) return;
     const formSelector = "form.contact-form, form.preview-enquiry, form.custom-journey-form, #plan form";
-    const visibleForms = new Set<Element>();
+    let frame = 0;
     const sync = () => {
-      const focusedForm = document.activeElement instanceof HTMLElement && Boolean(document.activeElement.closest("form"));
+      frame = 0;
+      const action = widgetRef.current?.querySelector(".wa-float-action");
+      if (!action) return;
+      const button = action.getBoundingClientRect();
       const dialogOpen = Boolean(document.querySelector("dialog[open], [role='dialog'][aria-modal='true']"));
-      const isSuppressed = Boolean(visibleForms.size || focusedForm || dialogOpen);
-      setSuppressed(isSuppressed);
-      if (isSuppressed) setBubbleOpen(false);
+      const overlapsForm = Array.from(document.querySelectorAll(formSelector)).some(form => {
+        const rect = form.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0 &&
+          rect.left < button.right + 8 && rect.right > button.left - 8 &&
+          rect.top < button.bottom + 8 && rect.bottom > button.top - 8;
+      });
+      const hide = dialogOpen || overlapsForm;
+      setSuppressed(hide);
+      if (hide) setBubbleOpen(false);
     };
-    const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) visibleForms.add(entry.target);
-        else visibleForms.delete(entry.target);
-      }
-      sync();
-    }, { threshold: 0.01 });
-    const observed = new Set<Element>();
-    const discover = () => {
-      for (const form of document.querySelectorAll(formSelector)) {
-        if (observed.has(form)) continue;
-        observed.add(form);
-        observer.observe(form);
-      }
-      sync();
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(sync);
     };
-    const mutation = new MutationObserver(discover);
+    const resize = new ResizeObserver(schedule);
+    resize.observe(document.body);
+    if (widgetRef.current) resize.observe(widgetRef.current);
+    const mutation = new MutationObserver(schedule);
     mutation.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["open", "aria-modal"] });
-    document.addEventListener("focusin", sync);
-    document.addEventListener("focusout", sync);
-    discover();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.visualViewport?.addEventListener("resize", schedule);
+    sync();
     return () => {
-      observer.disconnect(); mutation.disconnect();
-      document.removeEventListener("focusin", sync);
-      document.removeEventListener("focusout", sync);
+      cancelAnimationFrame(frame);
+      resize.disconnect();
+      mutation.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.visualViewport?.removeEventListener("resize", schedule);
     };
   }, [mounted, eligible, pathname]);
 
@@ -156,10 +160,10 @@ export function FloatingWhatsAppExperiment() {
     try { sessionStorage.setItem(SESSION_NOTICE_KEY, "1"); } catch { /* ignore */ }
   }, []);
 
-  if (!mounted || !eligible || suppressed) return null;
+  if (!mounted || !eligible) return null;
 
   return (
-    <div className="wa-float">
+    <div ref={widgetRef} className="wa-float" aria-hidden={suppressed || undefined} style={suppressed ? { visibility: "hidden", pointerEvents: "none" } : undefined}>
       {/* Chat bubble popup */}
       {bubbleOpen && (
         <div className="wa-bubble" role="dialog" aria-label={t("ariaLabel")}>
