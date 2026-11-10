@@ -152,13 +152,13 @@ Shangri-La and Jade Dragon Snow Mountain need warmer clothing even in summer. If
 
 The [6-Day Private Yunnan Tour through Dali, Shaxi and Lijiang](/journeys/kunming-dali-shaxi-lijiang-6-days) is a useful starting point for winter or early spring, or whenever you prefer to leave out Shangri-La’s higher-altitude nights. It includes road transfers through Shaxi, so summer dates still call for weather flexibility.
 
-If Shangri-La is a priority, look at the [8-Day Private Yunnan Tour through Dali, Lijiang and Shangri-La](/journeys/kunming-dali-lijiang-shangri-la-private-tour), particularly for late spring or autumn. For Yuanyang, Xishuangbanna or a different balance of destinations, a [tailor-made Yunnan journey](/custom-china-tour) lets the route follow your season and interests.
+If Shangri-La is a priority, look at the [8-Day Private Yunnan Tour through Dali, Lijiang and Shangri-La](/journeys/kunming-dali-lijiang-shangri-la-private-tour), particularly for late spring or autumn. For Yuanyang, Xishuangbanna or a different balance of destinations, a [tailor-made Yunnan journey](/private-yunnan-tours) lets the route follow your season and interests.
 
 Tell Joy your travel month, the number of days available and the places you most want to see. Those details are enough to start discussing which route fits, where an extra night would help and which seasonal trade-offs you would prefer to make.
 
 [**Start Planning My Journey**](https://wa.me/8618880441791?text=Hi%20Joy%2C%20I%20read%20your%20Best%20Time%20to%20Visit%20Yunnan%20guide.%20We%20plan%20to%20travel%20in%20__%20for%20__%20days%20with%20__%20people.%20Can%20you%20suggest%20a%20private%20route%20for%20that%20season%3F)
 
-Prefer email? [**Get My Trip Plan**](/custom-china-tour#plan)
+Prefer email? [**Get My Trip Plan**](/private-yunnan-tours#plan)
 
 No commitment required. Tell Joy your travel month, party size and interests to discuss a suitable starting route.
 

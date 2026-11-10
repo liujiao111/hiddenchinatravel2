@@ -132,7 +132,7 @@ Still deciding where to spend extra nights? Read the [Dali travel guide](/dali-t
 
 _Some booking links above are affiliate links. If you book through them, we may earn a commission at no extra cost to you._
 
-Have more than a week, or prefer fewer stops? We can [design a private Yunnan tour around your dates and pace](/custom-china-tour), starting with the flights you already have.
+Have more than a week, or prefer fewer stops? We can [design a private Yunnan tour around your dates and pace](/private-yunnan-tours), starting with the flights you already have.
 
 ## Practical China preparation
 

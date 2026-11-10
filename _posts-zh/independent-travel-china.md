@@ -184,7 +184,7 @@ sourceUrl: "https://hiddenchinatravel.com/independent-travel-china"
 
 云南通常是第一个自由行环线：昆明，然后坐快车向西到大理和丽江，不需要旅游大巴。[云南自由行指南](/china-destinations/yunnan)有一个7天概要、最佳出行时间以及香格里拉或西双版纳实际何时适合。关于大理古城以外的日子，见[大理隐藏景点](/dali-hidden-gems-off-the-beaten-path)。
 
-如果你有关于在中国旅行的问题，[给我们留言](/contact)——我们通常在工作时间回复。如需定制路线，[规划你的中国之旅](/custom-china-tour)。
+如果你有关于在中国旅行的问题，[给我们留言](/contact)——我们通常在工作时间回复。如需定制路线，[规划你的中国之旅](/private-yunnan-tours)。
 
 ## 相关指南
 

@@ -32,7 +32,7 @@ subtopics:
         badge: "Orientation"
         status: published
       - title: "Custom itinerary planning"
-        href: /custom-china-tour
+        href: /private-yunnan-tours
         excerpt: "A private Yunnan journey shaped around your dates, interests and pace — not a fixed package."
         badge: "Service"
         status: published
@@ -124,7 +124,7 @@ subtopics:
         badge: "Shangri-La"
         status: published
       - title: "Tailor-made private Yunnan tours"
-        href: /custom-china-tour
+        href: /private-yunnan-tours
         excerpt: "A private tour with local arrangements, shaped around your dates, interests and pace."
         badge: "Private Tour"
         status: published
@@ -135,9 +135,9 @@ subtopics:
         status: published
 toolCTA:
   - label: "Plan my China trip"
-    href: /custom-china-tour#plan
+    href: /private-yunnan-tours#plan
   - label: "See custom itinerary details"
-    href: /custom-china-tour
+    href: /private-yunnan-tours
 faqHeading: "Quick answers about planning a China itinerary"
 toolsHeading: "Want a route that matches your pace?"
 toolsIntro: "Use the planner to share cities, days, and style. Or read the how-to guide first if you prefer to sketch the skeleton yourself."
@@ -149,7 +149,7 @@ faqs:
   - question: "Do I need a tour to travel China independently?"
     answer: "No. Many foreigners travel without a group. You do need practical prep (apps, real-name bookings, tickets). See [independent travel in China](/independent-travel-china)."
   - question: "When is a custom itinerary worth paying for?"
-    answer: "When you have a time window, mixed interests (cities plus countryside), or you want a local to sanity-check pacing and trains. We plan a private route around your dates — details on the [tailor-made Yunnan page](/custom-china-tour)."
+    answer: "When you have a time window, mixed interests (cities plus countryside), or you want a local to sanity-check pacing and trains. We plan a private route around your dates — details on the [tailor-made Yunnan page](/private-yunnan-tours)."
   - question: "What is the backbone of most independent China routes?"
     answer: "Overnight cities connected by high-speed rail, with one buffer day. Start with the [transport hub](/transport-in-china) and [rail booking guide](/book-china-high-speed-rail-foreigners)."
   - question: "How do I plan a Yunnan itinerary independently?"
@@ -164,7 +164,7 @@ decisionGuide:
     - "Ask for a custom PDF if pacing, countryside days, or train connections feel fuzzy."
     - "Do not buy a group tour just because planning feels hard — that is a different product."
     - "Never treat sample routes on this site as a guaranteed client trip."
-  recommendation: "Read the [how-to guide](/how-to-plan-china-itinerary), then either [plan the trip](/custom-china-tour#plan) or keep building from the [essentials hub](/china-travel-essentials)."
+  recommendation: "Read the [how-to guide](/how-to-plan-china-itinerary), then either [plan the trip](/private-yunnan-tours#plan) or keep building from the [essentials hub](/china-travel-essentials)."
 mistakes:
   title: "Common itinerary mistakes first-time visitors make"
   items:
@@ -176,7 +176,7 @@ mistakes:
       href: /china-travel-essentials
     - title: "Treating a sample loop as your booked trip"
       body: "Samples show how we think about pace. Your dates and energy are different."
-      href: /custom-china-tour
+      href: /private-yunnan-tours
 relatedHubs:
   - title: "China Travel Essentials"
     href: /china-travel-essentials

@@ -228,7 +228,7 @@ export function JourneyPageV2({ journey, alternate }: { journey: Journey; altern
     {frontmatter.bookingNotes?.length ? null : <YunnanTravelNotes />}
 
     {/* Final CTA — same as 6-day: PlanJourneyClose */}
-    <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/custom-china-tour" showForm={false} />
+    <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/private-yunnan-tours" showForm={false} />
 
     <MobileCtaBar
       whatsappHref={whatsapp}

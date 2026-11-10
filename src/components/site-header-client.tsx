@@ -22,7 +22,7 @@ export type HeaderJourney = {
 };
 
 const tailorMadeBase = {
-  href: "/custom-china-tour",
+  href: "/private-yunnan-tours",
   image: "/home/local-support.webp",
 };
 

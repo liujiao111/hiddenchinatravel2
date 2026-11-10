@@ -109,7 +109,7 @@ export function YunnanGuidePage({ journey }: { journey: Journey }) {
       formLabel={tMobile("formLabel")}
       statusLabel={tMobile("statusLabel")}
     />
-    <section className="yunnan-final-cta"><div><span>{copy.finalKicker}</span><h2>{copy.finalTitle}</h2><p>{copy.finalText}</p><div><Link href="/custom-china-tour#plan" data-cta-location="yunnan_hub_final" className="button button-light">{copy.finalCta}</Link><Link href={whatsapp}>{copy.whatsappCta}</Link><Link href={journeyHref}>{copy.viewJourney}</Link></div></div></section>
+    <section className="yunnan-final-cta"><div><span>{copy.finalKicker}</span><h2>{copy.finalTitle}</h2><p>{copy.finalText}</p><div><Link href="/private-yunnan-tours#plan" data-cta-location="yunnan_hub_final" className="button button-light">{copy.finalCta}</Link><Link href={whatsapp}>{copy.whatsappCta}</Link><Link href={journeyHref}>{copy.viewJourney}</Link></div></div></section>
 
     <ContentFooter />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />

@@ -49,7 +49,7 @@ export function ContentFooter() {
           <Link href="/journeys/kunming-dali-shaxi-lijiang-6-days">{t("journeyFirst")}</Link>
           <Link href="/journeys/kunming-dali-lijiang-shangri-la-private-tour">{t("journeyEssence")}</Link>
           <Link href="/journeys">{t("journeyAll")}</Link>
-          <Link href="/custom-china-tour">{t("journeyCustom")}</Link>
+          <Link href="/private-yunnan-tours">{t("journeyCustom")}</Link>
         </nav>
 
         <nav className="footer-nav footer-resources" aria-label={t("resourcesHeading")}>

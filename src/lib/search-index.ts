@@ -15,7 +15,7 @@ function getZhSearchIndex(): SearchItem[] {
     { id: "visa-checker", title: "中国签证查询工具", href: "/china-visa-checker", description: "根据护照、停留时间和行程路线查询适用的中国入境方案。", type: "page", keywords: ["中国签证", "免签", "过境免签", "签证查询"] },
     { id: "about", title: "认识 Joy 与 Hidden China Travel", href: "/about-us", description: "认识在云南长大的旅行顾问 Joy，了解我们的规划方式与持牌旅行社履约安排。", type: "page", keywords: ["Joy Liu", "关于我们", "云南本地", "旅行社"] },
     { id: "contact", title: "联系 Hidden China Travel", href: "/contact", description: "直接与 Joy 沟通云南旅行、首次来华准备和私家行程规划。", type: "page", keywords: ["联系我们", "Joy Liu", "WhatsApp", "行程咨询"] },
-    { id: "custom-tour", title: "云南定制旅行", href: "/custom-china-tour", description: "围绕你的日期、兴趣和节奏，设计一趟云南私家之旅。", type: "page", keywords: ["云南定制", "私人定制", "私家行程", "路线规划"] },
+    { id: "custom-tour", title: "云南定制旅行", href: "/private-yunnan-tours", description: "围绕你的日期、兴趣和节奏，设计一趟云南私家之旅。", type: "page", keywords: ["云南定制", "私人定制", "私家行程", "路线规划"] },
   ];
 
   const journals = getTravelJournals("zh").map<SearchItem>((journal) => ({
@@ -70,7 +70,7 @@ export function getSearchIndex(locale: AppLocale = "en"): SearchItem[] {
     })),
     { id: "contact", title: "Contact Hidden China Travel", href: "/contact", description: "Talk directly with Joy Liu about Yunnan, China travel and trip planning.", type: "page", keywords: ["contact", "Joy Liu", "WhatsApp", "China travel planning"] },
     { id: "yunnan-guide", title: "Yunnan Travel Guide", href: "/china-destinations/yunnan", description: "Plan a first Yunnan journey through Kunming, Dali, Shaxi and Lijiang.", type: "hub", keywords: ["Yunnan travel guide", "Yunnan itinerary", "Kunming", "Dali", "Shaxi", "Lijiang"] },
-    { id: "custom-tour", title: "Tailor-Made Yunnan", href: "/custom-china-tour", description: "Private Journey Designed Around You", type: "page", keywords: ["Tailor-Made Yunnan", "custom Yunnan", "private itinerary"] },
+    { id: "custom-tour", title: "Tailor-Made Yunnan", href: "/private-yunnan-tours", description: "Private Journey Designed Around You", type: "page", keywords: ["Tailor-Made Yunnan", "custom Yunnan", "private itinerary"] },
   ];
 
   const content = getAllContent().map<SearchItem>((item) => ({

@@ -88,7 +88,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: Ap
     <section className={styles.philosophy} id="philosophy"><div className={styles.landscape}><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt={t("philosophyImageAlt")} fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className={styles.philosophyCopy}>
       <h2>{t("philosophyHeadingA")}<br />{t("philosophyHeadingB")}</h2>
       {philosophyParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-      <Link className={styles.textLink} href="/journeys">{t("philosophyLink1")}</Link><p><Link className={styles.textLink} href="/custom-china-tour" data-cta-location="about_custom">{t("philosophyLink2")}</Link></p>
+      <Link className={styles.textLink} href="/journeys">{t("philosophyLink1")}</Link><p><Link className={styles.textLink} href="/private-yunnan-tours" data-cta-location="about_custom">{t("philosophyLink2")}</Link></p>
     </div></section>
     <section className={styles.quote}><blockquote>“{t("quoteA")}<br />{t("quoteB")}”</blockquote><p>{t("quoteBy")}</p></section>
 

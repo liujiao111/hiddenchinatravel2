@@ -242,7 +242,7 @@ Our **[6-Day Private Yunnan Tour: Kunming, Dali, Shaxi & Lijiang](/journeys/kunm
 
 **[See the day-by-day private journey →](/journeys/kunming-dali-shaxi-lijiang-6-days)**
 
-Not sure whether you need one night or two? You can [ask Joy to tailor your Yunnan route](/custom-china-tour) around your travel dates, group and pace. You do not need a finished itinerary before getting in touch.
+Not sure whether you need one night or two? You can [ask Joy to tailor your Yunnan route](/private-yunnan-tours) around your travel dates, group and pace. You do not need a finished itinerary before getting in touch.
 
 ## When is the best time to visit Shaxi?
 
@@ -271,6 +271,6 @@ Shaxi does not need a long list of blockbuster attractions to justify a visit. I
 
 If you are travelling between Dali and Lijiang, one overnight stop is a satisfying introduction. For a slower journey, two nights may suit you better. And if your priority lies elsewhere in Yunnan, it is fine to leave Shaxi off the route.
 
-If you would like help deciding, **[explore our private Yunnan journeys](/journeys)** or **[plan a custom trip with Joy](/custom-china-tour)**. Tell us your dates, group size and what you enjoy; we can suggest a realistic route before you decide to book.
+If you would like help deciding, **[explore our private Yunnan journeys](/journeys)** or **[plan a custom trip with Joy](/private-yunnan-tours)**. Tell us your dates, group size and what you enjoy; we can suggest a realistic route before you decide to book.
 
 *Born in Yunnan. Shaped by experiences abroad.*

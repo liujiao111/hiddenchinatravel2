@@ -52,8 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     localizedEntry("/survival-kit", isZhLive("/survival-kit"), { lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.8 }),
     localizedEntry("/china-visa-checker", isZhLive("/china-visa-checker"), { lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.8 }),
     localizedEntry("/china-currency-converter", isZhLive("/china-currency-converter"), { lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.8 }),
-    localizedEntry("/custom-china-tour", isZhLive("/custom-china-tour"), { lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.9 }),
-    localizedEntry("/private-yunnan-tours", true, { lastModified: new Date("2026-11-09"), changeFrequency: "monthly", priority: 0.9 }),
+    localizedEntry("/private-yunnan-tours", true, { lastModified: new Date("2026-11-10"), changeFrequency: "monthly", priority: 0.9 }),
     // Country visa pages stay English-only (plan §5).
     ...getPhase1CountryEditorials().map((country) =>
       localizedEntry(`/china-visa-checker/${country.slug}`, false, {

@@ -186,7 +186,7 @@ The main **Upper Tiger Leaping Gorge** scenic visit is different from a high-tra
 
 Shangri-La's town is around 3,200 metres above sea level. Keep the first day easy and account for altitude; travellers with medical concerns should seek advice before committing. The [Lijiang–Shangri-La railway](https://jtyst.yn.gov.cn/xyxw/202608/t20260820_3635852.html) provides another transport option, but it does not remove the need for time to rest and explore. An eight-day Dali–Lijiang–Shangri-La holiday can be possible if you replace Shaxi or Kunming sightseeing; it is the **unchanged four-stop route plus Shangri-La** that becomes crowded.
 
-Lugu Lake lies east of Lijiang and requires substantial road travel. It is better treated as a different itinerary than a quick extra on this one. If you want time at the lake, [ask us to design a tailor-made route](/custom-china-tour) rather than adding it to the Shaxi journey.
+Lugu Lake lies east of Lijiang and requires substantial road travel. It is better treated as a different itinerary than a quick extra on this one. If you want time at the lake, [ask us to design a tailor-made route](/private-yunnan-tours) rather than adding it to the Shaxi journey.
 
 ## When to Go and What to Budget
 

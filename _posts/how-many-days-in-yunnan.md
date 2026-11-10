@@ -124,7 +124,7 @@ One way to distribute the time is:
 
 In this outline, day eight leaves room around the gorge visit before continuing to Shangri-La, while day ten still needs to accommodate departure. Confirm the overnight stops and onward connections before treating it as a finished itinerary. If you do not need two days at the Kunming end, move that time to Dali or Shangri-La according to your interests.
 
-Families, travelers arriving after a long flight and anyone who prefers shorter sightseeing days may find this extra room more useful than another distant stop. Lugu Lake, Yuanyang, Xishuangbanna and Meili Snow Mountain each change the route substantially; choose one only if it matters enough to replace part of the plan. [Ask Joy to shape a ten-day Yunnan journey](/custom-china-tour) around the places you want to spend time in.
+Families, travelers arriving after a long flight and anyone who prefers shorter sightseeing days may find this extra room more useful than another distant stop. Lugu Lake, Yuanyang, Xishuangbanna and Meili Snow Mountain each change the route substantially; choose one only if it matters enough to replace part of the plan. [Ask Joy to shape a ten-day Yunnan journey](/private-yunnan-tours) around the places you want to spend time in.
 
 ## What Can You Do With Two Weeks?
 
@@ -150,7 +150,7 @@ If the water-filled terraces are your main interest, choose the season before fi
 
 If your two weeks cover the whole China trip, a focused Yunnan section can be paired with Chengdu or Chongqing. Chengdu adds food, pandas and city time; Chongqing offers a different urban setting. Choose the onward city according to your interests and available connections, then work backwards to decide where the Yunnan section should end.
 
-Trying to add both cities as well as distant corners of Yunnan would spend much of the extra time on transfers. [Share the places you most want to visit](/custom-china-tour#plan), and we can help decide which combination fits the days available.
+Trying to add both cities as well as distant corners of Yunnan would spend much of the extra time on transfers. [Share the places you most want to visit](/private-yunnan-tours#plan), and we can help decide which combination fits the days available.
 
 ## Where Would an Extra Night Make the Biggest Difference?
 
@@ -205,7 +205,7 @@ Weather matters most when a particular outdoor day is essential to the trip. Rai
 
 For costs, compare complete journeys rather than multiplying a headline daily price. Additional nights bring accommodation and meals, but private transport, guide arrangements, tickets and the final transfer also affect the total. The [6-day private journey](/journeys/kunming-dali-shaxi-lijiang-6-days) and [8-day private journey](/journeys/kunming-dali-lijiang-shangri-la-private-tour) show their current pricing and inclusions; because they follow different routes, the price difference is not simply the cost of two more days.
 
-If your budget is fixed, fewer overnight bases may leave more room for the accommodation or experiences you care about. [Send Joy your dates, party size and approximate budget](/custom-china-tour#plan) so the proposal can account for the whole route, including arrival and departure.
+If your budget is fixed, fewer overnight bases may leave more room for the accommodation or experiences you care about. [Send Joy your dates, party size and approximate budget](/private-yunnan-tours#plan) so the proposal can account for the whole route, including arrival and departure.
 
 ## Plan Your Yunnan Journey With Joy
 
@@ -213,6 +213,6 @@ You do not need a finished itinerary to start planning. Your available days, tra
 
 [**Start Planning My Journey**](https://wa.me/8618880441791?text=Hi%20Joy%2C%20I%20read%20your%20How%20Many%20Days%20in%20Yunnan%20guide.%20We%20have%20__%20days%2C%20travelling%20in%20__%20with%20__%20people.%20Can%20you%20help%20us%20choose%20a%20private%20route%3F)
 
-Prefer email? [**Get My Trip Plan**](/custom-china-tour#plan)
+Prefer email? [**Get My Trip Plan**](/private-yunnan-tours#plan)
 
 No commitment required. Share your dates and ideas to discuss a starting route.

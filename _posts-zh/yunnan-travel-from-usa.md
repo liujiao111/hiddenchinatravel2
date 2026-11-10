@@ -244,7 +244,7 @@ _火车预订链接为联盟链接；我们可能获得佣金，你无需额外�
 
 [**开始规划我的行程 →**](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20planning%20a%20Yunnan%20trip%20from%20the%20USA%20and%20would%20like%20help%20deciding%20on%20visa%20vs%20240-hour%20transit%20and%20shaping%20a%20route)
 
-如果你的长途行程需要在旅行天数和每个地方停留时间之间不同的平衡，[分享你的定制云南行程想法](/custom-china-tour)。我们可以在准备报价前讨论路线。
+如果你的长途行程需要在旅行天数和每个地方停留时间之间不同的平衡，[分享你的定制云南行程想法](/private-yunnan-tours)。我们可以在准备报价前讨论路线。
 
 ## 地图应用中保存的地名
 

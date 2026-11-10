@@ -8,6 +8,13 @@ const nextConfig = {
   skipTrailingSlashRedirect: true,
   async redirects() {
     return [
+      // Consolidate the former custom-tour page directly into the Yunnan service page.
+      // Query parameters pass through; legacy fragments have matching anchors there.
+      ...["", "/zh", "/en"].flatMap((prefix) => ["", "/"].map((slash) => ({
+        source: `${prefix}/custom-china-tour${slash}`,
+        destination: `${prefix === "/en" ? "" : prefix}/private-yunnan-tours`,
+        statusCode: 301,
+      }))),
       {
         source: "/traveler-stories/finding-another-side-of-china-in-yunnan",
         destination: "/traveler-stories/from-chinas-cities-to-yunnans-landscapes",

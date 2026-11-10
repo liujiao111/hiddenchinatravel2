@@ -297,7 +297,7 @@ Hidden China Travel是一家持牌昆明旅行社的英文网站。乔伊帮你�
 
 [**WhatsApp联系乔伊 →**](https://wa.me/8618880441791?text=Hi%2C%20I%27m%20planning%20a%20Yunnan%20trip%20from%20Australia.%20I%27d%20like%20help%20with%20the%20route.)
 
-想加香格里拉、在大理多待或以适合家庭的节奏旅行？[围绕你的团队规划私人云南行程](/custom-china-tour)，路线和报价根据你的日期定制。
+想加香格里拉、在大理多待或以适合家庭的节奏旅行？[围绕你的团队规划私人云南行程](/private-yunnan-tours)，路线和报价根据你的日期定制。
 
 ## 地名参考
 

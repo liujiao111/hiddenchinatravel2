@@ -60,7 +60,7 @@ export default async function JourneysPage({ params }: { params: Promise<{ lang:
     }} />)}</div>
       <aside className="journeys-tailor-made" aria-labelledby="journeys-tailor-made-title">
         <div><span>{t("customKicker")}</span><h2 id="journeys-tailor-made-title">{t("customTitle")}</h2></div>
-        <div><p>{t("customText")}</p><ul>{(t.raw("customPoints") as string[]).map((point) => <li key={point}>{point}</li>)}</ul><Link href="/custom-china-tour" data-cta-location="journeys_custom_service" className="button button-light">{t("customCta")}</Link></div>
+        <div><p>{t("customText")}</p><ul>{(t.raw("customPoints") as string[]).map((point) => <li key={point}>{point}</li>)}</ul><Link href="/private-yunnan-tours" data-cta-location="journeys_custom_service" className="button button-light">{t("customCta")}</Link></div>
       </aside>
     </div></section>
     <section className="journeys-philosophy section-sand"><div className="shell"><h2>{t("philosophyHeading")}</h2><div>{(t.raw("philosophyPoints") as string[]).map((item, index) => <p key={item}><span>0{index + 1}</span>{item}</p>)}</div></div></section>

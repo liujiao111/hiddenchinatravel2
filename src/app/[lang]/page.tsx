@@ -155,7 +155,7 @@ export default async function Home({ params }: Props) {
           <JourneyCard journey={{
             title: t("card3Title"),
             subtitle: t("card3Subtitle"),
-            href: "/custom-china-tour",
+            href: "/private-yunnan-tours",
             image: "/home/local-support.webp",
             imageAlt: t("card3ImageAlt"),
             destination: t("card3Destination"),

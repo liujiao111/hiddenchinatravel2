@@ -272,7 +272,7 @@ _值得注意的缺席者：捷克、立陶宛、乌克兰、白俄罗斯、塞�
 
 完整的抵达前清单，请使用[生存装备包](/survival-kit)。
 
-如果你还在规划城市和天数：[如何规划中国行程](/how-to-plan-china-itinerary)。只有在路线本身不明确时才寻求[定制路线](/custom-china-tour)。
+如果你还在规划城市和天数：[如何规划中国行程](/how-to-plan-china-itinerary)。只有在路线本身不明确时才寻求[定制路线](/private-yunnan-tours)。
 
 ## 按国籍浏览
 

@@ -228,7 +228,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
     />
     {frontmatter.bookingNotes?.length ? null : <YunnanTravelNotes />}
 
-    {isSixDayYunnanJourney ? <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/custom-china-tour" showForm={false} /> : <section className="journey-final-cta"><div><p>{t("finalKicker")}</p><h2>{t("finalHeading")}</h2><span>{t("finalText")}</span><HashLink href="#ask-joy" className="button button-light">{t("startPlanning")}</HashLink><Link href={whatsapp} className="journey-final-alt">{t("chatWhatsapp")}</Link><Link href="/custom-china-tour" className="journey-final-alt" data-cta-location="journey_custom_alternative">{t("customRouteLink")}</Link></div></section>}
+    {isSixDayYunnanJourney ? <PlanJourneyClose id="ask-joy-final" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} routeHref="/private-yunnan-tours" showForm={false} /> : <section className="journey-final-cta"><div><p>{t("finalKicker")}</p><h2>{t("finalHeading")}</h2><span>{t("finalText")}</span><HashLink href="#ask-joy" className="button button-light">{t("startPlanning")}</HashLink><Link href={whatsapp} className="journey-final-alt">{t("chatWhatsapp")}</Link><Link href="/private-yunnan-tours" className="journey-final-alt" data-cta-location="journey_custom_alternative">{t("customRouteLink")}</Link></div></section>}
     <MobileCtaBar
       whatsappHref={whatsapp}
       formHref={isSixDayYunnanJourney ? "#ask-joy-final" : "#ask-joy"}

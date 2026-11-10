@@ -31,7 +31,7 @@ export function JourneyQuoteBand({ id, source, sourceTitle, whatsapp, showRouteL
         <p className="journey-plan-switch">{t("emailSwitch")}</p>
         <QuickAsk layout="plain" id={id} source={source} sourceTitle={sourceTitle} intent="trip" />
       </>}
-      {showRouteLink ? <div className="journey-quote-links"><Link href="/custom-china-tour" data-cta-location="journey_custom_alternative">{t("customRouteLink")}</Link></div> : null}
+      {showRouteLink ? <div className="journey-quote-links"><Link href="/private-yunnan-tours" data-cta-location="journey_custom_alternative">{t("customRouteLink")}</Link></div> : null}
     </div>
   </section>;
 }

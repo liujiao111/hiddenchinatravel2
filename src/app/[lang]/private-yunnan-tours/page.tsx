@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/json-ld";
 import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
@@ -11,7 +12,7 @@ import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { PreviewEnquiryForm } from "@/components/preview-enquiry-form";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
-import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
+import { localizedStaticMetadata, localeUrl, type AppLocale } from "@/lib/i18n-seo";
 import "../tailor-made-preview/preview.css";
 
 type Props = { params: Promise<{ lang: AppLocale }> };
@@ -192,6 +193,13 @@ const faqs = [
   [L("How does booking and payment work?"), L("Review the written itinerary and quotation first, then sign the licensed agency's travel contract. The usual arrangement is a 20% deposit and the remaining balance after your first pickup, subject to your agreed written terms.")],
 ];
 
+faqs.push(
+  [lang === "zh" ? "可以安排家庭或行动便利方面的特殊需求吗？" : "Can you accommodate family or accessibility needs?",
+    lang === "zh" ? "请告诉我们孩子的年龄、行动便利需求和其他优先事项。我们会先核实相关酒店、车辆和活动能否满足，再在方案中确认。" : "Tell us your children's ages, mobility needs and other priorities. We check suitable hotels, vehicles and activities before confirming arrangements in your proposal."],
+  [lang === "zh" ? "可以安排清真友好的云南行程吗？" : "Can you arrange a halal-friendly Yunnan tour?",
+    lang === "zh" ? "可以在咨询时提出清真饮食和礼拜需求，我们会根据路线核实可用安排，并在方案中写明。酒店早餐可选择合适餐品或不使用；不承诺每家酒店都有清真认证厨房。" : "Tell us about halal meals and prayer requirements when you enquire. We check available arrangements along your route and confirm them in the proposal. You can choose suitable hotel breakfast items or skip breakfast; we do not promise certified-halal kitchens at every hotel."]
+);
+
 const cta = L("Get a Suggested Route & Price");
 
   const whatsapp = buildWhatsAppUrl(undefined, lang);
@@ -209,7 +217,7 @@ const cta = L("Get a Suggested Route & Price");
       <article><p className="kicker">{L("YOUR KIND OF TRIP")}</p><h2>{L("Who it's for")}</h2><p>{L("For couples, families, friends and small private groups who want local guidance without joining a scheduled tour.")}</p><p>{L("You do not need to know the exact route. A rough trip length and group size are enough.")}</p></article>
       <article><p className="kicker">{L("SEASONAL ADVICE")}</p><h2>{L("When to go")}</h2><p>{L("March to May and September to November are generally the most comfortable periods for classic Dali, Lijiang and Shangri-La routes.")}</p><p>{L("Summer is greener but wetter. Winter is quieter, with colder conditions at higher elevations.")}</p></article>
     </div></section>
-    <section className="section preview-routes" id="routes"><div className="shell"><div className="preview-heading">
+    <section className="section preview-routes" id="routes"><span id="ideas" /><span id="places" /><div className="shell"><div className="preview-heading">
       <p className="kicker">{L("A STARTING POINT, NOT A FIXED PACKAGE")}</p>
       <h2>{L("Start with a Ready-Planned Yunnan Route")}</h2>
       <p>{L("Explore two carefully planned journeys, then customize the route, pace and hotels around your trip.")}</p>
@@ -261,8 +269,8 @@ const cta = L("Get a Suggested Route & Price");
         </div>
       </div>
     </section>
-    <RealJourneyEvidence locale={lang} />
-    <section className="section preview-inclusions" id="included-excluded"><div className="shell">
+    <span id="stories" /><RealJourneyEvidence locale={lang} />
+    <section className="section preview-inclusions" id="included-excluded"><span id="quote" /><div className="shell">
       <div className="preview-heading"><p className="kicker">{L("THE 6-DAY REFERENCE JOURNEY")}</p><h2>{L("What’s Included — and What’s Not")}</h2><p>{L("The same inclusions and exclusions listed on our 6-day journey page. For the 8-day route or custom plans, your written proposal confirms the exact services.")}</p></div>
       <div className="preview-inclusion-grid">
         <article><span className="journey-detail-label">{L("INCLUDED IN THE 6-DAY TOUR")}</span><ul>
@@ -278,18 +286,18 @@ const cta = L("Get a Suggested Route & Price");
       </div>
       <p className="preview-inclusions-note">{L("Chinese- or English-speaking driver-guide service is included at the same price, with one dedicated guide for your journey. All tour details are confirmed in the written proposal.")}</p>
     </div></section>
-    <section className="section preview-custom"><div className="shell"><div className="preview-heading"><p className="kicker">{L("TAILORED TO YOU")}</p><h2>{L("Make the Journey Yours")}</h2></div><div className="preview-two">
+    <section className="section preview-custom" id="possibilities"><div className="shell"><div className="preview-heading"><p className="kicker">{L("TAILORED TO YOU")}</p><h2>{L("Make the Journey Yours")}</h2><p>{lang === "zh" ? "你可以修改现有参考路线，也可以从零设计一趟云南行程。6天和8天路线只是起点，不是固定出发的拼团，也不是我们仅能安排的行程。" : "You can adapt one of our sample routes or ask us to design a Yunnan itinerary from scratch. The 6- and 8-day journeys are starting points, rather than fixed departures or the only trips we arrange."}</p></div><div className="preview-two">
     <article><h3>{L("Route & Pace")}</h3><ul><li>{L("Add or remove destinations")}</li><li>{L("Spend longer in fewer places, such as an extra night in Dali or Lijiang")}</li><li>{L("Choose gentler starts or fuller days")}</li><li>{L("Adjust hiking and altitude exposure")}</li></ul></article>
     <article><h3>{L("Hotels & Experiences")}</h3><ul><li>{L("Comfortable, premium or characterful hotels, confirmed by name")}</li><li>{L("Bai tie-dye workshops in Zhoucheng and a night in Shaxi")}</li><li>{L("Local food, photography and countryside walks")}</li><li>{L("Family-friendly arrangements")}</li><li>{L("Dietary and mobility requirements")}</li></ul></article>
     </div></div></section>
     
-    <JourneyFactCards id="why-travel" title={L("Local Planning. Licensed Delivery.")} cards={[
+    <span id="local-team" /><JourneyFactCards id="why-travel" title={L("Local Planning. Licensed Delivery.")} cards={[
       { icon:"person", title:L("Yunnan-rooted route planning"), lines:[L("Route advice informed by local knowledge of seasons, travel times and the real pace between stops")] },
       { icon:"party", title:L("Planning backed by local operations"), lines:[L("Joy helps with the initial route; Yunnan Meizhen’s licensed team coordinates booking and delivery")] },
       { icon:"licence", title:L("Licensed tour operator"), lines:[L("Travel contract and payment with Yunnan Meizhen International Travel Agency"),L("Permit L-YN-1017500")] },
       { icon:"note", title:L("Confirmed before departure"), lines:[L("Named hotels, guide-language choice and vehicle class agreed in writing"),L("Local operations team coordinates pickups and logistics")] },
     ]} action={{href:"/licensed-operator",label:L("Check our licensed operator")}} />
-    <section className="section preview-process journey-support-flow"><div className="shell journey-section-layout"><header className="preview-heading"><p className="kicker">{L("THREE SIMPLE STEPS")}</p><h2>{L("How planning works")}</h2></header><div className="journey-support-grid">
+    <section className="section preview-process journey-support-flow" id="process"><div className="shell journey-section-layout"><header className="preview-heading"><p className="kicker">{L("THREE SIMPLE STEPS")}</p><h2>{L("How planning works")}</h2></header><div className="journey-support-grid">
       <article><span>01</span><h3>{L("Share the basics")}</h3><p>{L("Tell us your trip length, group size and places or experiences that interest you. Dates can follow later.")}</p></article>
       <article><span>02</span><h3>{L("Receive a route and price")}</h3><p>{L("Joy suggests a realistic route and an initial price range based on your trip length, group size and interests.")}</p></article>
       <article><span>03</span><h3>{L("Adjust before booking")}</h3><p>{L("Review changes to hotels, pace and experiences before booking; any change to included services or price is confirmed in writing.")}</p></article>
@@ -299,18 +307,22 @@ const cta = L("Get a Suggested Route & Price");
       <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt={L("Joy, founder of Hidden China Travel")} fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">{L("LOCAL PLANNING, LICENSED DELIVERY")}</p><h2>{L("Get a Suggested Yunnan Route & Price")}</h2><p>{L("You do not need a finished itinerary. Share your approximate number of days and group size, and we will suggest a realistic starting route and price range based on your interests, with bookings and on-the-ground arrangements coordinated by our licensed local team.")}</p><p><strong>{L("Yunnan-based operations team")}</strong> · Chinese- or English-speaking service · Licensed local delivery</p><p className="preview-quiet">{L("Prefer WhatsApp?")} <Link href={whatsapp} data-cta-location="preview_form_whatsapp">{L("Chat with Joy →")}</Link></p></div>
       <PreviewEnquiryForm locale={lang} />
     </div></section>
-    <section className="section preview-payment journey-support-flow"><div className="shell journey-section-layout">
+    <section className="section preview-payment journey-support-flow" id="booking-terms"><div className="shell journey-section-layout">
       <header className="preview-heading"><p className="kicker">{L("CLEAR TERMS, NO SURPRISES")}</p><h2>{L("Clear Booking and Payment")}</h2></header>
       <div className="journey-support-grid">
-        <article><span>01</span><h3>{L("Review your proposal")}</h3><p>{L("Check the written route, named hotels, inclusions, exclusions and total price before you commit.")}</p></article>
+        <article><span>01</span><h3>{L("Review your proposal")}</h3><p>{L("Check the written route, named hotels, inclusions, exclusions and total price before you commit.")}</p><p>{lang === "zh" ? "报价还会写明币种、可选项目及最终确认的服务范围。" : "Your quote also states the currency, optional extras and the final scope of confirmed services."}</p></article>
         <article><span>02</span><h3>{L("Sign and confirm")}</h3><p>{L("Sign the licensed travel agency’s contract. A 20% deposit is our usual arrangement, subject to the agreed written terms.")}</p></article>
         <article><span>03</span><h3>{L("Complete the balance")}</h3><p>{L("The remaining balance is normally paid after your first pickup, as specified in your travel contract.")}</p></article>
       </div>
-      <p className="preview-centered">{L("Your signed contract controls the payment schedule, cancellation terms and refunds.")}</p>
+      <p className="preview-centered">{L("Your signed contract controls the payment schedule, cancellation terms and refunds.")}</p><p className="preview-centered"><Link href="/booking">{lang === "zh" ? "查看完整预订、付款和取消政策 →" : "Read the full booking, payment and cancellation information →"}</Link></p>
     </div></section>
-    <section className="section journey-faq" id="questions"><div className="narrow"><h2>{L("Frequently Asked Questions")}</h2>{faqs.map(([q,a])=><details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
+    <section className="section journey-faq" id="questions"><div className="narrow"><h2>{L("Frequently Asked Questions")}</h2>{faqs.map(([q,a])=><details key={q} id={q === faqs[faqs.length - 1][0] ? "muslim-friendly" : undefined}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
     <section className="journey-final-cta"><div><h2>{L("Your Yunnan journey starts with a conversation.")}</h2><span>{L("Tell us about your party and interests. Get a suggested route and initial price range, with no commitment to book.")}</span><a className="button button-light" href="#plan">{L("Get a Suggested Route & Price")}</a></div></section>
     <MobileCtaBar whatsappHref={whatsapp} formHref="#plan" whatsappLabel="" formLabel={L("Get a Suggested Route & Price")} formOnly formCtaLocation="preview_mobile_route_price" />
+    <JsonLd data={{ "@context": "https://schema.org", "@graph": [
+      { "@type": "Service", name: lang === "zh" ? "云南私人定制旅行" : "Private and Tailor-Made Yunnan Tours", url: localeUrl(lang, "/private-yunnan-tours"), areaServed: { "@type": "Place", name: "Yunnan, China" }, provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" } },
+      { "@type": "FAQPage", mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
+    ] }} />
     <ContentFooter />
   </main>;
 }

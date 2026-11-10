@@ -182,7 +182,7 @@ faqs:
 
 [**询问乔伊我的云南路线 →**](https://wa.me/8618880441791?text=Hi%20Joy%2C%20I%20read%20your%20UK-to-Yunnan%20guide.%20Dates%3A%20__.%20Departure%20airport%3A%20__.%20Travellers%3A%20__.%20Preferred%20pace%3A%20__.%20Flights%20booked%3A%20yes%2Fno.%20I%27d%20like%20to%20discuss%20local%20support.)
 
-如果你希望接送和本地安排由人处理，[探索定制私人云南行程](/custom-china-tour)。从你的可用天数和最感兴趣的地方开始。
+如果你希望接送和本地安排由人处理，[探索定制私人云南行程](/private-yunnan-tours)。从你的可用天数和最感兴趣的地方开始。
 
 ## 保存的地名
 

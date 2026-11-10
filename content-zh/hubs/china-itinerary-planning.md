@@ -35,7 +35,7 @@ subtopics:
         badge: "入门导读"
         status: published
       - title: "定制行程规划"
-        href: /custom-china-tour
+        href: /private-yunnan-tours
         excerpt: "围绕你的日期、兴趣和节奏量身定制的云南私享之旅——不是固定套餐。"
         badge: "服务"
         status: published
@@ -117,7 +117,7 @@ subtopics:
         badge: "香格里拉"
         status: published
       - title: "云南定制私享游"
-        href: /custom-china-tour
+        href: /private-yunnan-tours
         excerpt: "由当地人安排的私享之旅，围绕你的日期、兴趣和节奏量身定制。"
         badge: "私享游"
         status: published
@@ -128,9 +128,9 @@ subtopics:
         status: published
 toolCTA:
   - label: "规划我的中国之旅"
-    href: /custom-china-tour#plan
+    href: /private-yunnan-tours#plan
   - label: "查看定制行程详情"
-    href: /custom-china-tour
+    href: /private-yunnan-tours
 faqHeading: "中国行程规划常见问题快速解答"
 toolsHeading: "想要一个匹配你节奏的路线？"
 toolsIntro: "用规划工具分享你的城市、天数和风格。如果你更想自己先搭骨架，也可以先读攻略指南。"
@@ -142,7 +142,7 @@ faqs:
   - question: "在中国自由行需要跟团吗？"
     answer: "不需要。许多外国游客不跟团旅行。你需要的是实用准备（应用、实名预订、门票）。参见[中国自由行](/independent-travel-china)。"
   - question: "什么时候值得花钱定制行程？"
-    answer: "当你有时间窗口、兴趣多元（城市加乡村），或者想让当地人帮你把关节奏和火车时。我们围绕你的日期规划私享路线——详情见[云南定制页面](/custom-china-tour)。"
+    answer: "当你有时间窗口、兴趣多元（城市加乡村），或者想让当地人帮你把关节奏和火车时。我们围绕你的日期规划私享路线——详情见[云南定制页面](/private-yunnan-tours)。"
   - question: "大多数自由行中国路线的 backbone 是什么？"
     answer: "高铁连接的过夜城市，加一个缓冲日。从[交通专题](/transport-in-china)和[火车票预订指南](/book-china-high-speed-rail-foreigners)开始。"
   - question: "如何独立规划云南行程？"
@@ -157,7 +157,7 @@ decisionGuide:
     - "如果节奏、乡村天数或火车衔接不太清楚，可以要一份定制 PDF。"
     - "不要因为觉得规划困难就买跟团游——那是不同的产品。"
     - "不要把本站的示例路线当作已确认的行程。"
-  recommendation: "阅读[攻略指南](/how-to-plan-china-itinerary)，然后[规划行程](/custom-china-tour#plan)或从[旅行必备专题](/china-travel-essentials)继续搭建。"
+  recommendation: "阅读[攻略指南](/how-to-plan-china-itinerary)，然后[规划行程](/private-yunnan-tours#plan)或从[旅行必备专题](/china-travel-essentials)继续搭建。"
 mistakes:
   title: "初次游客常见的行程错误"
   items:
@@ -169,7 +169,7 @@ mistakes:
       href: /china-travel-essentials
     - title: "把示例路线当作已预订的行程"
       body: "示例展示的是我们对节奏的思考。你的日期和体力是不同的。"
-      href: /custom-china-tour
+      href: /private-yunnan-tours
 relatedHubs:
   - title: "中国旅行必备"
     href: /china-travel-essentials
