@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, type FormEvent } from "react";
+import { EnquirySelect } from "@/components/enquiry-select";
 import { getAttribution } from "@/lib/attribution";
 import { trackEvent } from "@/lib/analytics";
 
@@ -12,6 +13,14 @@ const partyOptions = [
 
 export function PreviewEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) {
   const zh = locale === "zh";
+  const today = new Date();
+  const monthOptions = Array.from({ length: 36 }, (_, index) => {
+    const date = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() + index, 1));
+    return {
+      value: date.toISOString().slice(0, 7),
+      label: new Intl.DateTimeFormat(zh ? "zh-CN" : "en-GB", { year: "numeric", month: "long", timeZone: "UTC" }).format(date),
+    };
+  });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const [replyChannel, setReplyChannel] = useState<"whatsapp" | "email">("whatsapp");
@@ -105,10 +114,10 @@ export function PreviewEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
     </div>
     <div className="contact-field-row">
       <label><span>WhatsApp *</span><input name="whatsapp" type="tel" inputMode="tel" autoComplete="tel" maxLength={40} placeholder={zh ? "+65 1234 5678（含国际区号）" : "+65 1234 5678 (with country code)"} /></label>
-      <label><span>{zh ? "出行人数 *" : "Number of travelers *"}</span><select name="partyRange" defaultValue="" required><option value="" disabled>{zh ? "请选择人数" : "Select travelers"}</option>{partyOptions.map(p => <option key={p.label} value={p.label}>{p.label}</option>)}</select></label>
+      <EnquirySelect name="partyRange" label={zh ? "出行人数 *" : "Number of travelers *"} placeholder={zh ? "请选择人数" : "Select travelers"} required options={partyOptions.map(p => ({ value: p.label, label: p.label === "More than 10" && zh ? "超过10人" : p.label }))} />
     </div>
-    <label><span>{zh ? "大致出行月份（选填）" : "Approximate travel month (optional)"}</span><input name="travelTiming" type="month" /></label>
-    <label><span>{zh ? "预计出行天数 *" : "Approximate trip length *"}</span><select name="tripLength" required defaultValue=""><option value="" disabled>{zh ? "计划玩几天？" : "How many days?"}</option>{["5–6 days","7–8 days","9–12 days","More than 12 days","Not decided yet"].map((x,i) => <option value={x} key={x}>{zh ? ["5–6天","7–8天","9–12天","超过12天","还没决定"][i] : x}</option>)}</select></label>
+    <EnquirySelect name="travelTiming" label={zh ? "大致出行月份（选填）" : "Approximate travel month (optional)"} placeholder={zh ? "请选择具体月份" : "Select a month"} options={[{ value: "", label: zh ? "尚未决定" : "Not decided yet" }, ...monthOptions]} />
+    <EnquirySelect name="tripLength" label={zh ? "预计出行天数 *" : "Approximate trip length *"} placeholder={zh ? "计划玩几天？" : "How many days?"} required options={["5–6 days", "7–8 days", "9–12 days", "More than 12 days", "Not decided yet"].map((value, i) => ({ value, label: zh ? ["5–6天", "7–8天", "9–12天", "超过12天", "还没决定"][i] : value }))} />
     <label><span>{zh ? "目的地、兴趣或问题" : "Places, interests or questions"} <small>{zh ? "（选填）" : "(optional)"}</small></span><textarea name="notes" rows={4} maxLength={2500} placeholder={zh ? "告诉 Joy 你想去哪里、喜欢什么体验，或者其他旅行需求……" : "Tell us anything you'd like Joy to consider…"} /></label>
     <label className="contact-honeypot" aria-hidden="true"><span>Website</span><input name="website" tabIndex={-1} autoComplete="off" /></label>
     {status === "error" ? <p className="contact-form-error" role="alert">{error}</p> : null}
