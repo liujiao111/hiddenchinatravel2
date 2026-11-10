@@ -114,11 +114,18 @@ export function ContactForm() {
       <div className="contact-field-row contact-trip-row">
         <label>
           <span>{t("when")}</span>
-          <select name="travelWindow" defaultValue="Within 1 month" required>\n            <option value="Within 1 month">{t("whenNextMonth")}</option>\n            <option value="In 1–2 months">{t("whenInOneMonth")}</option>\n            <option value="In 3+ months">{t("whenInTwoMonths")}</option>\n          </select>
+          <select name="travelWindow" defaultValue="" required>
+            <option value="" disabled>{t("chooseTiming")}</option>
+            <option value="Within 1 month">{t("whenNextMonth")}</option>
+            <option value="In 1–2 months">{t("whenInOneMonth")}</option>
+            <option value="In 3+ months">{t("whenInTwoMonths")}</option>
+            <option value="Not decided yet">{t("notDecided")}</option>
+          </select>
         </label>
         <label>
           <span>{t("travelers")}</span>
-          <select name="travelers" defaultValue="2 travelers" required>
+          <select name="travelers" defaultValue="" required>
+            <option value="" disabled>{t("chooseTravelers")}</option>
             {partySizes.map((option) => <option key={option} value={option}>{partySizeLabels[option] ?? option}</option>)}
           </select>
         </label>

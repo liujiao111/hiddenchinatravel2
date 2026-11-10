@@ -138,7 +138,7 @@
     "tagline": "China, at Your Pace.",
     "intro": "Thoughtfully designed journeys, practical guidance, and local insight for travelers exploring China.",
     "origin": "Born in Yunnan. Shaped by experiences abroad.",
-    "companyLine": "{agencyEn} · Permit {permit} · {credit}",
+    "companyLine": "Yunnan tour operator: {agencyEn} · Permit {permit} · {credit}",
     "address": "{addressEn} · {addressZh}",
     "registry": "Look up the company on gsxt.gov.cn",
     "journeysHeading": "Journeys",
@@ -269,7 +269,7 @@
       [
         "03",
         "Licensed local operation",
-        "Hidden China Travel is the English-language site of {agency} in Kunming. The contract and payments go to that company’s account: 20% after you sign, 80% after your driver meets you."
+        "Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning; Yunnan Meizhen handles subsequent quotations, contracting and local arrangements for Yunnan journeys. The written proposal and contract confirm the services."
       ],
       [
         "04",
@@ -402,7 +402,7 @@
       ],
       [
         "Who operates the journey in Yunnan?",
-        "Hidden China Travel is the English-language site of {agencyEn} ({agencyZh}), a licensed travel agency in Kunming. Joy Liu is your travel consultant. You speak with Joy from the first enquiry through the journey."
+        "Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning; Yunnan Meizhen handles subsequent quotations, contracting and local arrangements for Yunnan journeys. The written proposal and contract confirm the services."
       ],
       [
         "How do payment and cancellation work?",
@@ -534,7 +534,7 @@
     "factJoyTitle": "Planned with Joy",
     "factJoyLines": [
       "Joy Liu plans from Kunming",
-      "You speak with him from the first enquiry through the trip",
+      "Joy handles initial planning; Yunnan Meizhen handles the subsequent quotation, contract and local arrangements",
       "He was born in Yunnan"
     ],
     "factAgencyTitle": "Licensed agency",
@@ -555,12 +555,12 @@
     ],
     "whyHeading": "Planned with Joy. Contracted with a licensed Kunming agency.",
     "whyJoyTitle": "You’ll be planning with Joy.",
-    "whyJoyCopy": "Joy Liu was born in Yunnan and plans from Kunming. You speak with him from the first enquiry through the trip.",
+    "whyJoyCopy": "Joy Liu was born in Yunnan and plans from Kunming. Joy handles initial planning; Yunnan Meizhen handles the subsequent quotation, contract and local arrangements.",
     "whyJoyAlt": "Joy Liu, travel consultant at Hidden China Travel",
     "whyMeetJoy": "Meet Joy →",
     "whyAgencyTitle": "Licensed agency",
     "whyAgencyCopy": "{agencyEn} ({agencyZh}). Permit {permit}. Office: {address}. The contract and payments are with this agency: 20% after you sign, 80% after your first pickup.",
-    "whyInsurance": "Liability insurance →",
+    "whyInsurance": "Operator documents →",
     "experiencesHeading": "Signature experiences",
     "experiencesIntroSixDay": "The moments this route is built around: Erhai's west shore, indigo in Zhoucheng, one night in Shaxi, and a full day on Jade Dragon Snow Mountain.",
     "experiencesIntroDefault": "A journey built around moments, local people and enough time to take them in.",
@@ -651,6 +651,7 @@
     ]
   },
   "quickAsk": {
+    "selectTravelers": "Select travelers",
     "name": "Your name",
     "plainName": "Name",
     "namePlaceholder": "Your name",
@@ -878,7 +879,7 @@
       [
         "02",
         "We’ll review everything personally",
-        "Every inquiry is reviewed by Joy Liu.\n\nNo automated travel templates.\n\nNo outsourced sales teams."
+        "Joy handles initial enquiries and route planning. The Yunnan Meizhen team handles subsequent quotations, contracting and local arrangements for Yunnan journeys."
       ],
       [
         "03",
@@ -1003,6 +1004,9 @@
     "trapLabel": "Leave this field empty"
   },
   "contactForm": {
+    "chooseTravelers": "Select travelers",
+    "notDecided": "Not decided yet",
+    "chooseTiming": "Select travel timing",
     "name": "Your name",
     "namePlaceholder": "Your name",
     "email": "Email",
@@ -1032,7 +1036,7 @@
     "headingDefault": "Booking, payment and cancellation",
     "introDefault": "The same terms apply to First Encounter Yunnan, The Essence of Yunnan and Tailor-Made Yunnan.",
     "fullNoteLink": "Read the full booking and service note →",
-    "licenceLink": "Licence and liability insurance →"
+    "licenceLink": "Travel-agency licence →"
   },
   "inspiration": {
     "heading": "Which side of Yunnan draws you in?",
@@ -1167,10 +1171,10 @@
     "bookingHeadingB": "Clear responsibilities.",
     "bookingSub": "Trust means knowing who you are speaking to, what you are paying for and who will welcome you on the ground.",
     "bookingRoleJoyTitle": "Your travel consultant: Joy",
-    "bookingRoleJoyText": "I listen to what matters to you and help shape the route. You speak with me from the first enquiry through the journey, not a booking queue.",
+    "bookingRoleJoyText": "I listen to your interests and help shape the route during the initial enquiry and planning stage. For Yunnan journeys, the Yunnan Meizhen team handles the subsequent quotation, contract and local arrangements.",
     "bookingAgencyTitle": "Your licensed agency: {agency}",
-    "bookingAgencyText": "Hidden China Travel is the English-language site of {agencyEn} ({agencyZh}). The office is {address}. The travel contract and all payments go to that agency’s corporate account, in the company’s name. Its travel agency permit number is {permit}.",
-    "bookingAgencyLink": "Company documents and 2026 liability insurance →",
+    "bookingAgencyText": "For Yunnan private journeys, {agencyEn} ({agencyZh}) handles subsequent quotations, travel contracts, payments and on-the-ground arrangements. Its office is {address}; its travel agency permit number is {permit}. Confirmed services follow the written proposal and contract.",
+    "bookingAgencyLink": "View the Yunnan operator’s company documents →",
     "checklistHeading": "Before you commit, we work through:",
     "checklist": [
       "Your route, pace and hotel arrangements",
@@ -1183,7 +1187,7 @@
     "faqHeading": "A few things you might be wondering",
     "faqSub": "Good journeys begin with clear answers.",
     "faqDirectQ": "Will I speak with Joy directly?",
-    "faqDirectA": "Yes. Joy Liu is your travel consultant at the licensed agency. He helps you clarify your ideas and stays with you from the first enquiry through the journey.",
+    "faqDirectA": "Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen handles subsequent quotations, contracting and on-the-ground arrangements, as agreed in the written proposal and contract.",
     "faqOperatorQ": "Who operates the trip and handles payment?",
     "faqItineraryQ": "Do I need a finished itinerary?",
     "faqItineraryA": "No. Tell Joy roughly when you want to travel, who is coming and what you enjoy. You can start with an existing journey or discuss adjustments to the route, hotels and pace.",

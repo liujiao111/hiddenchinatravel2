@@ -174,7 +174,8 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
             </label>
             <label>
               <span>{t("travelers")}</span>
-              <select name="travelers" defaultValue="2 travelers" aria-label={t("travelers")}>
+              <select name="travelers" defaultValue="" aria-label={t("travelers")}>
+                <option value="">{t("selectTravelers")}</option>
                 {partySizes.map((option) => <option key={option} value={option}>{partySizeLabels[option] ?? option}</option>)}
               </select>
             </label>

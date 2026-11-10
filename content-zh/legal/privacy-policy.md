@@ -18,7 +18,7 @@ Hidden China Travel（下称“我们”）尊重你的隐私，并致力于保�
 
 ## 我们是谁
 
-Hidden China Travel 是云南美珍国际旅行社有限公司（Yunnan Meizhen International Travel Agency Co., Ltd.）的英文服务网站，为来中国的游客提供旅行指南、规划资源、目的地信息和私家行程规划服务。
+Hidden China Travel 是 Joy Liu 创立的旅行规划品牌。Joy 负责初步沟通与路线规划；云南私人行程的后续报价、签约和接待由云南美珍国际旅行社有限公司负责，具体服务以书面方案和合同为准。
 
 如对本政策有任何疑问，请联系：
 

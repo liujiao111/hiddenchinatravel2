@@ -287,7 +287,7 @@ Independent travel through Yunnan is entirely doable. A private journey tends to
 - people who prefer a flexible pace rather than a fixed group schedule
 - travellers who'd rather not navigate language, transfers and digital payment systems solo
 
-Hidden China Travel is the English-language site of a licensed Kunming travel agency. Joy helps you design the route; the agency issues the contract and operates the journey. We won't tell you we're the "best" or "exclusive" option. We help you plan it properly.
+Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) handles subsequent quotations, contracting and on-the-ground arrangements. Confirmed services follow the written proposal and contract.
 
 ## Plan Your Yunnan Journey from Australia
 

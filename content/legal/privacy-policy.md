@@ -16,7 +16,7 @@ This Privacy Policy explains what information we collect, how we use it, and the
 
 ## Who We Are
 
-Hidden China Travel is the English-language site of Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司). It provides travel guides, planning resources, destination information, and private journey planning for visitors exploring China.
+Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) handles subsequent quotations, contracting and on-the-ground arrangements. Confirmed services follow the written proposal and contract.
 
 If you have any questions regarding this policy, please contact:
 

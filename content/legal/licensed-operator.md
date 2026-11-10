@@ -11,7 +11,7 @@ ogImage:
 lastUpdated: "October 2026"
 ---
 
-Hidden China Travel is the English-language site of **Yunnan Meizhen International Travel Agency Co., Ltd.** (云南美珍国际旅行社有限公司). The travel contract and all payments are with that company. This page is the company record: the office, the licence, and the liability insurance held for 2026.
+Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) handles subsequent quotations, contracting and on-the-ground arrangements. Confirmed services follow the written proposal and contract.
 
 ---
 
@@ -21,7 +21,7 @@ Hidden China Travel is the English-language site of **Yunnan Meizhen Internation
 - Travel agency permit: **L-YN-1017500**
 - Unified social credit code: **91530111MACHXW95XT**. Look it up on the [National Enterprise Credit Information Publicity System](https://www.gsxt.gov.cn/).
 - Office: Room 1915, Floor 19, Building 4, Dadu Motian Shopping Center, Xiaobanqiao Subdistrict, Guandu District, Kunming, Yunnan (云南省昆明市官渡区小板桥街道大都摩天购物中心四栋19楼1915室)
-- Travel consultant: **Joy Liu**. You speak with Joy from the first enquiry through the journey.
+- Travel consultant: **Joy Liu**. Joy handles initial enquiries and route planning; the Yunnan Meizhen team handles subsequent quotations, contracting and on-the-ground arrangements.
 - Payments go to the company’s own account. The account name matches the legal name above. How the 20% deposit and the later 80% are timed is on the [booking and service](/booking) page.
 
 ---

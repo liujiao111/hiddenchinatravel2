@@ -13,7 +13,7 @@ import { PreviewEnquiryForm } from "@/components/preview-enquiry-form";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 import { localizedStaticMetadata, localeUrl, type AppLocale } from "@/lib/i18n-seo";
-import "../tailor-made-preview/preview.css";
+import "./private-yunnan-tours.css";
 
 type Props = { params: Promise<{ lang: AppLocale }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

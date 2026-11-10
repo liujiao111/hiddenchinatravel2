@@ -99,9 +99,9 @@ The lakeside ecological corridor near Caicun is closed to private cars and to or
 
 ## Foreign-passport check-in: what to confirm before booking
 
-Every hotel in China needs a specific permit to register foreign guests with the local police system. Smaller, family-run guesthouses sometimes do not have it — this is a licensing and paperwork issue, not a judgment about you.
+Hotels must register guests with valid identity documents. [Chinese government guidance](https://www.mofcom.gov.cn/zwgk/zcfb/art/2024/art_10ddb29858c24ece86b3f575bda1d9c4.html) says accommodation providers should not be restricted from receiving foreign guests by special qualification requirements. In practice, some small guesthouses may be unfamiliar with foreign-passport registration, so confirm the check-in arrangements before booking.
 
-- Filter for foreign-guest acceptance on [Trip.com](/go/trip-hotels) rather than assuming any listing works. Booking.com often cannot confirm this until you are standing at the desk.
+- Check the property’s check-in information on [Trip.com](/go/trip-hotels) or your chosen booking platform, then contact the property if foreign-passport registration arrangements are unclear.
 - Message the property before you pay if the listing is not explicit about foreign-passport check-in.
 - Bring your passport to check-in; registering it with the local police system is standard procedure, not something unusual, and not specific to you.
 

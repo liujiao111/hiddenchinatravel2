@@ -1,3 +1,5 @@
+import { cleanTracking, parseAttribution, type Attribution } from "./attribution";
+
 export const journeyInterests = ["Local culture", "Food & markets", "Photography", "Nature & walking", "Family time", "A slower pace", "Tea & crafts", "Halal / Muslim-friendly", "Not sure yet"] as const;
 export const journeyBudgets = ["Please advise", "Under US$1,500", "US$1,500–2,500", "US$2,500–4,000", "US$4,000+"] as const;
 export const journeyComfort = ["Please advise", "Comfortable hotels", "Boutique stays", "Luxury stays", "A mix"] as const;
@@ -6,6 +8,7 @@ export type CustomJourneyEnquiry = {
   name: string; email: string; whatsapp: string; travelTiming: string; tripLength: string;
   adults: number; children: number; destinations: string; budget: string; comfort: string;
   interests: string[]; notes: string; consent: boolean; website: string; requestId: string;
+  attribution?: Attribution; conversionPage?: string;
 };
 
 export function parseCustomJourneyEnquiry(value: unknown): CustomJourneyEnquiry | null {
@@ -24,10 +27,17 @@ export function parseCustomJourneyEnquiry(value: unknown): CustomJourneyEnquiry 
   if (!Number.isInteger(input.adults) || Number(input.adults) < 1 || Number(input.adults) > 30 || !Number.isInteger(input.children) || Number(input.children) < 0 || Number(input.children) > 20) return null;
   if (!journeyBudgets.includes(fields.budget as typeof journeyBudgets[number]) || !journeyComfort.includes(fields.comfort as typeof journeyComfort[number])) return null;
   if (!Array.isArray(input.interests) || input.interests.length > journeyInterests.length || input.interests.some(item => typeof item !== "string" || !journeyInterests.includes(item as typeof journeyInterests[number]))) return null;
-  return { ...fields, adults: Number(input.adults), children: Number(input.children), interests: [...new Set(input.interests)] as string[], consent: true } as CustomJourneyEnquiry;
+  const attribution = parseAttribution(input.attribution) ?? undefined;
+  const conversionPage = typeof input.conversionPage === "string" && /^\/(?!\/)[^?#\s<>]{0,499}$/.test(input.conversionPage) ? input.conversionPage : undefined;
+  return { ...fields, attribution, conversionPage, adults: Number(input.adults), children: Number(input.children), interests: [...new Set(input.interests)] as string[], consent: true } as CustomJourneyEnquiry;
 }
 
 export function enquiryEmailText(enquiry: CustomJourneyEnquiry) {
   const approximateTravelers = enquiry.notes.match(/^Travelers selected: ([^\n]+)/)?.[1];
-  return ["New tailor-made Yunnan journey enquiry", "", `Name: ${enquiry.name}`, `Email: ${enquiry.email}`, `WhatsApp: ${enquiry.whatsapp || "Not provided"}`, `Travel dates: ${enquiry.travelTiming || "Flexible / not decided"}`, `Trip length: ${enquiry.tripLength || "Not decided"}`, `Travelers: ${approximateTravelers ? `${approximateTravelers} (approximate)` : `${enquiry.adults} adults, ${enquiry.children} children`}`, `Destinations: ${enquiry.destinations || "Please suggest"}`, `Budget per person (USD, excluding international flights): ${enquiry.budget}`, `Hotels: ${enquiry.comfort}`, `Interests: ${enquiry.interests.join(", ") || "Not specified"}`, "", "Additional notes:", enquiry.notes || "None", "", "Consent: enquiry follow-up only; no marketing subscription."].join("\n");
+  const attributionLines = enquiry.attribution ? ["", "Attribution (browser-reported)", ...(["first", "last"] as const).flatMap(kind => {
+    const touch = enquiry.attribution![kind];
+    const label = kind === "first" ? "First" : "Last";
+    return [`${label} source: ${cleanTracking(touch.source)}`, `${label} medium: ${cleanTracking(touch.medium)}`, `${label} landing page: ${cleanTracking(touch.landing_page, 500)}`, `${label} campaign parameters: ${Object.entries(touch.params).map(([key, value]) => `${key}=${cleanTracking(value)}`).join("; ") || "None"}`];
+  })] : ["", "Attribution: unavailable"];
+  return ["New tailor-made Yunnan journey enquiry", "", `Enquiry ID: ${enquiry.requestId}`, `Submission page: ${enquiry.conversionPage || "Not provided"}`, `Name: ${enquiry.name}`, `Email: ${enquiry.email}`, `WhatsApp: ${enquiry.whatsapp || "Not provided"}`, `Travel dates: ${enquiry.travelTiming || "Not provided"}`, `Trip length: ${enquiry.tripLength || "Not decided"}`, `Travelers: ${approximateTravelers ? `${approximateTravelers} (approximate)` : `${enquiry.adults} adults, ${enquiry.children} children`}`, `Destinations: ${enquiry.destinations || "Please suggest"}`, `Budget per person (USD, excluding international flights): ${enquiry.budget}`, `Hotels: ${enquiry.comfort}`, `Interests: ${enquiry.interests.join(", ") || "Not specified"}`, "", "Additional notes:", enquiry.notes || "None", "", "Consent: enquiry follow-up only; no marketing subscription.", ...attributionLines].join("\n");
 }

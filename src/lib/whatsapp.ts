@@ -8,6 +8,14 @@ export function buildWhatsAppUrl(leadId?: string, locale: "en" | "zh" = "en") {
   const message = leadId ? `${base}\n\nRef: ${leadId}` : base;
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
+// Preserve page-specific requests while replacing only our previous tracking reference.
+export function withWhatsAppRef(raw: string, leadId: string, locale: "en" | "zh" = "en") {
+  const url = new URL(raw);
+  const original = (url.searchParams.get("text") || "").replace(/(?:\r?\n)*Ref: HCT-\d{8}-[A-F0-9]{16}\s*$/i, "").trim();
+  const fallback = locale === "zh" ? WHATSAPP_MESSAGE_ZH : WHATSAPP_MESSAGE;
+  url.searchParams.set("text", `${original || fallback}\n\nRef: ${leadId}`);
+  return url.toString();
+}
 export function isConsultationWhatsApp(raw: string) {
   try {
     const url = new URL(raw);

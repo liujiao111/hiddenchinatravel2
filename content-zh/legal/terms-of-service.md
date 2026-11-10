@@ -18,7 +18,7 @@ lastUpdated: "2026 年 10 月"
 
 ## 关于 Hidden China Travel
 
-Hidden China Travel 是云南美珍国际旅行社有限公司（Yunnan Meizhen International Travel Agency Co., Ltd.）的英文服务网站。这是一家位于昆明的持牌旅行社，旅行社业务经营许可证号为 L-YN-1017500。
+Hidden China Travel 是 Joy Liu 创立的旅行规划品牌。Joy 负责初步沟通与路线规划；云南私人行程的后续报价、签约和接待由云南美珍国际旅行社有限公司负责，具体服务以书面方案和合同为准。
 
 本网站提供：
 

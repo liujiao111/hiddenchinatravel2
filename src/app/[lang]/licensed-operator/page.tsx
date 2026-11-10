@@ -22,9 +22,10 @@ export default async function LicensedOperatorPage({ params }: { params: Promise
       <div className="shell" style={{maxWidth:950}}>
         <p className="kicker">{zh ? "签约资质与预订保障" : "VERIFIED BUSINESS INFORMATION"}</p>
         <h1 style={{fontSize:"clamp(2.1rem,4vw,3.6rem)",lineHeight:1.15}}>{zh ? "持证旅行社与预订信息" : "Licensed Operator & Booking Protection"}</h1>
-        <p>{zh ? "Hidden China Travel 的旅行合同与付款由云南美珍国际旅行社有限公司办理。实际服务、酒店、车辆、费用及退改条款以双方确认的书面报价和合同为准。" : "Hidden China Travel's tour contracts and payments are handled by Yunnan Meizhen International Travel Agency Co., Ltd. Your named hotels, vehicle and guide arrangements, included services, total price and cancellation terms are confirmed in writing."}</p>
+        <p>{zh ? "Joy 负责初步沟通与规划；云南私人行程的后续报价、签约、收付款和接待由云南美珍国际旅行社有限公司负责。实际服务、酒店、车辆、费用及退改条款以双方确认的书面报价和合同为准。" : "Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen International Travel Agency Co., Ltd. handles subsequent quotations, contracts, payments and on-the-ground arrangements. Your named hotels, vehicle and guide arrangements, included services, total price and cancellation terms are confirmed in writing."}</p>
         <p><strong>{zh ? licensedOperator.nameZh : licensedOperator.nameEn}</strong> · {zh ? "旅行社业务经营许可证" : "Travel-agency operating permit"}: {licensedOperator.permitNumber}</p>
         <p>{zh ? "统一社会信用代码" : "Unified social credit code"}: {licensedOperator.unifiedSocialCreditCode}</p>
+        <p>{zh ? "本页公开营业执照与经营许可证，未公开保单文件。当期旅行社责任险的有效期、适用条件及证明资料，请在书面报价阶段向云南美珍索取。个人旅游、医疗与救援保险需自行购买。" : "This page publishes the business licence and travel-agency permit; policy documents are not published here. Ask Yunnan Meizhen for current agency liability insurance dates, applicable conditions and supporting documents with your quotation. Arrange your own travel, medical and evacuation insurance."}</p>
         <p>{zh ? "联系 Joy 讨论私人路线：" : "Start with a suggested private route:"} <Link href="/private-yunnan-tours" style={{textDecoration:"underline"}}>{zh ? "查看云南私人定制" : "Tailor-Made Yunnan"}</Link></p>
       </div>
     </section>

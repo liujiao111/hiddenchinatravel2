@@ -1,10 +1,10 @@
 import { licensedOperator } from "@/lib/journey-trust";
 
 export const brandIdentity = {
-  short: `Hidden China Travel is the English-language site of ${licensedOperator.nameEn} (${licensedOperator.nameZh}), a licensed travel agency in Kunming.`,
-  consultant: "Joy Liu is your travel consultant. You speak with Joy from the first enquiry through the journey.",
-  footer: `${licensedOperator.nameEn} · Permit ${licensedOperator.permitNumber} · ${licensedOperator.unifiedSocialCreditCode}`,
-  address: `${licensedOperator.addressEn} · ${licensedOperator.addressZh}`,
+  short: "Hidden China Travel is a travel-planning brand founded by Joy Liu.",
+  consultant: `Joy handles initial enquiries and route planning. For Yunnan private journeys, ${licensedOperator.nameEn} handles subsequent quotations, contracting and on-the-ground arrangements, as agreed in the written proposal and contract.`,
+  footer: `Yunnan tour operator: ${licensedOperator.nameEn} · Permit ${licensedOperator.permitNumber} · ${licensedOperator.unifiedSocialCreditCode}`,
+  address: `Yunnan operator’s office: ${licensedOperator.addressEn} · ${licensedOperator.addressZh}`,
   registryHref: licensedOperator.creditRegistryUrl,
 } as const;
 
@@ -47,7 +47,7 @@ export const operatorFaq = {
 
 export const bookingSteps = [
   ["01", "Share your plans", "Send your dates, group size and what you would like the journey to feel like."],
-  ["02", "Review the written proposal", "Joy sends an itinerary, inclusions and a quote you can adjust before anything is booked."],
+  ["02", "Review the written proposal", "Joy helps shape the route. Yunnan Meizhen prepares the written itinerary, inclusions and quotation for you to review before booking."],
   ["03", "Confirm and pay the deposit", "Sign the travel contract with the licensed agency and pay a 20% deposit to its corporate account."],
   ["04", "Travel, then settle the balance", "Hotels, tickets and the vehicle are arranged after the deposit. The remaining 80% is due after your first pickup."],
 ] as const;

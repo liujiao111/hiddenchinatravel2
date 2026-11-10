@@ -138,7 +138,7 @@
     "tagline": "中国，按你的节奏走。",
     "intro": "为探索中国的旅行者，提供用心设计的行程、实用的行前指南和本地人的真实经验。",
     "origin": "生于云南，也走过世界。",
-    "companyLine": "{agencyZh} · 经营许可证 {permit} · 统一社会信用代码 {credit}",
+    "companyLine": "云南行程签约与接待：{agencyZh} · 经营许可证 {permit} · 统一社会信用代码 {credit}",
     "address": "{addressZh}",
     "registry": "在国家企业信用信息公示系统查询公司信息",
     "journeysHeading": "行程",
@@ -269,7 +269,7 @@
       [
         "03",
         "本地持牌旅行社履约",
-        "Hidden China Travel 是云南美珍国际旅行社有限公司（昆明）的英文服务网站，旅游合同与付款由这家持牌旅行社办理。"
+        "Hidden China Travel 是 Joy Liu 创立的旅行规划品牌。Joy 负责初步沟通与路线规划；云南私人行程的后续报价、签约和接待由云南美珍国际旅行社有限公司负责，具体服务以书面方案和合同为准。"
       ],
       [
         "04",
@@ -402,7 +402,7 @@
       ],
       [
         "在云南，实际执行行程的是谁？",
-        "Hidden China Travel 是云南美珍国际旅行社有限公司的英文服务网站，这是一家位于昆明的持牌旅行社。Joy Liu 是你的旅行顾问——从第一次咨询到行程结束，你都直接和 Joy 沟通。旅游合同与付款均与该旅行社办理，进入公司账户。"
+        "Hidden China Travel 是 Joy Liu 创立的旅行规划品牌。Joy 负责初步沟通与路线规划；云南私人行程的后续报价、签约和接待由云南美珍国际旅行社有限公司负责，具体服务以书面方案和合同为准。"
       ],
       [
         "付款和取消规则是怎样的？",
@@ -534,7 +534,7 @@
     "factJoyTitle": "Joy 为你规划",
     "factJoyLines": [
       "Joy 在昆明为你做方案",
-      "从第一次咨询到行程结束都由他对接",
+      "Joy 负责初步规划，云南美珍负责后续报价、签约与接待",
       "他是土生土长的云南人"
     ],
     "factAgencyTitle": "持牌旅行社",
@@ -560,7 +560,7 @@
     "whyMeetJoy": "认识 Joy →",
     "whyAgencyTitle": "持牌旅行社",
     "whyAgencyCopy": "{agencyZh}（{agencyEn}），旅行社业务经营许可证号 {permit}，办公地址：{address}。合同与付款均与该旅行社办理：签约后支付 20% 定金，首次接站后支付剩余 80%。",
-    "whyInsurance": "旅行社责任险 →",
+    "whyInsurance": "旅行社资质 →",
     "experiencesHeading": "这条路线值得记住的体验",
     "experiencesIntroSixDay": "这条路线围绕这些时刻设计：洱海西岸、周城的蓝染、沙溪的一夜，以及留给玉龙雪山的完整一天。",
     "experiencesIntroDefault": "一趟围绕体验、当地人和充足时间展开的旅行。",
@@ -651,6 +651,7 @@
     ]
   },
   "quickAsk": {
+    "selectTravelers": "请选择人数",
     "name": "你的称呼",
     "plainName": "称呼",
     "namePlaceholder": "怎么称呼你",
@@ -878,7 +879,7 @@
       [
         "02",
         "我们逐条亲自查看",
-        "每条咨询都由 Joy 本人查看。\n\n没有自动套模板。\n\n没有外包销售团队。"
+        "Joy 负责初步沟通与路线规划，云南美珍负责云南行程的后续报价、签约和接待。"
       ],
       [
         "03",
@@ -1003,6 +1004,9 @@
     "trapLabel": "请留空此项"
   },
   "contactForm": {
+    "chooseTravelers": "请选择人数",
+    "notDecided": "尚未决定",
+    "chooseTiming": "请选择出行时间",
     "name": "你的称呼",
     "namePlaceholder": "怎么称呼你",
     "email": "邮箱",
@@ -1167,10 +1171,10 @@
     "bookingHeadingB": "清楚明白的责任。",
     "bookingSub": "信任意味着：你知道自己在和谁沟通、在为什么付费，以及落地后谁来迎接你。",
     "bookingRoleJoyTitle": "你的旅行顾问：Joy",
-    "bookingRoleJoyText": "我倾听你在意的事，帮你打磨路线。从第一次咨询到行程结束，你都直接和我沟通，没有排队和转接。",
+    "bookingRoleJoyText": "我负责初步沟通，了解你的兴趣并协助规划路线。云南行程后续由云南美珍团队负责报价、签约和当地接待。",
     "bookingAgencyTitle": "你的签约旅行社：{agency}",
-    "bookingAgencyText": "Hidden China Travel 是{agencyZh}（{agencyEn}）的英文服务网站。办公地址：{address}。旅游合同与所有付款均进入该旅行社的对公账户，账户名与公司名一致。旅行社业务经营许可证号：{permit}。",
-    "bookingAgencyLink": "公司资质与 2026 年度责任险 →",
+    "bookingAgencyText": "云南私人行程的后续报价、旅游合同、收付款和当地接待由{agencyZh}（{agencyEn}）负责。旅行社办公地址：{address}；旅行社业务经营许可证号：{permit}。具体服务以书面方案和合同为准。",
+    "bookingAgencyLink": "查看云南签约旅行社资质 →",
     "checklistHeading": "在你决定之前，我们会先理清：",
     "checklist": [
       "你的路线、节奏与酒店安排",
@@ -1183,7 +1187,7 @@
     "faqHeading": "你可能想问的几件事",
     "faqSub": "好的旅行，从清楚的答案开始。",
     "faqDirectQ": "我能直接和 Joy 沟通吗？",
-    "faqDirectA": "可以。Joy 是你在持牌旅行社的旅行顾问，帮你理清想法，并从第一次咨询一直陪你到行程结束。",
+    "faqDirectA": "Joy 负责初步沟通与路线规划。云南私人行程的后续报价、签约和接待由云南美珍负责，具体服务以书面方案和合同为准。",
     "faqOperatorQ": "谁执行行程并收款？",
     "faqItineraryQ": "我需要先有一份完整的行程吗？",
     "faqItineraryA": "不需要。告诉 Joy 大概什么时候出发、谁同行、喜欢什么就好。你可以从一条现有路线开始，也可以讨论调整路线、酒店和节奏。",

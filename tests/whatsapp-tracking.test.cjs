@@ -144,7 +144,7 @@ test('Strict Mode cleanup/remount and SPA dynamic links cannot duplicate click h
   const cleanup = tracking.installWhatsAppTracking();
   const link = anchor(document.body, 'https://api.whatsapp.com/send?phone=8618880441791&text=old');
   await new Promise(resolve => setImmediate(resolve));
-  assert.equal(new URL(link.href).searchParams.get('text'), w.WHATSAPP_MESSAGE);
+  assert.equal(new URL(link.href).searchParams.get('text'), 'old');
   click(link); assert.equal(events.length, 1); cleanup();
 });
 test('Contact page location and failed click receiver never block normal activation', async () => {
@@ -216,4 +216,44 @@ test('Microsoft UET respects explicit analytics denial and works after queue rep
   window.dataLayer.push(['consent', 'update', { analytics_storage: 'granted' }]);
   trackEvent('generate_lead');
   assert.deepEqual(events, [['event', 'generate_lead', {}]]);
+});
+
+// Context must survive tracking: guide downloads and article requests are distinct enquiries.
+test('Page-specific WhatsApp context survives normalization, click and reference replacement', async () => {
+  const { events } = browser();
+  const cleanup = tracking.installWhatsAppTracking();
+  const message = 'Hi Joy, I read the Shaxi guide. Please send the Dali PDF.';
+  const link = anchor(document.body, 'https://wa.me/8618880441791?text=' + encodeURIComponent(message));
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(new URL(link.href).searchParams.get('text'), message);
+  click(link);
+  assert.equal(events.length, 1);
+  assert.equal(new URL(link.href).searchParams.get('text'), `${message}\n\nRef: ${events[0][2].lead_id}`);
+  const replaced = new URL(w.withWhatsAppRef(link.href, 'HCT-20261110-AAAAAAAAAAAAAAAA')).searchParams.get('text');
+  assert.equal(replaced, `${message}\n\nRef: HCT-20261110-AAAAAAAAAAAAAAAA`);
+  cleanup();
+});
+
+test('Custom enquiry email preserves optional timing, reference and first/last attribution without breaking legacy clients', () => {
+  const custom = require(path.join(root, 'src/lib/custom-journey-enquiry.ts'));
+  const payload = {name:'Test Traveler',email:'traveler@example.test',whatsapp:'',travelTiming:'',tripLength:'7–8 days',adults:2,children:0,destinations:'',budget:'Please advise',comfort:'Please advise',interests:[],notes:'',website:'',consent:true,requestId:'12345678-1234-1234-1234-123456789abc'};
+  const legacy = custom.parseCustomJourneyEnquiry(payload);
+  assert.ok(legacy);
+  assert.match(custom.enquiryEmailText(legacy), /Travel dates: Not provided/);
+  assert.match(custom.enquiryEmailText(legacy), /Enquiry ID: 12345678-1234/);
+  const first = touch('https://hiddenchinatravel.com/shaxi-ancient-town-guide?utm_source=google&utm_medium=cpc&gclid=test-id');
+  const last = touch('https://hiddenchinatravel.com/private-yunnan-tours?utm_source=newsletter&utm_medium=email');
+  const attribution = {version:1,first,last,session:last,expires:Date.now()+1000};
+  const parsed = custom.parseCustomJourneyEnquiry({...payload, travelTiming:'2027-01',conversionPage:'/private-yunnan-tours',attribution});
+  assert.ok(parsed);
+  const email = custom.enquiryEmailText(parsed);
+  assert.match(email,/Travel dates: 2027-01/);
+  assert.match(email,/First source: google/);
+  assert.match(email,/Last source: newsletter/);
+  assert.match(email,/gclid=test-id/);
+  assert.match(email,/Submission page: \/private-yunnan-tours/);
+  const invalid = custom.parseCustomJourneyEnquiry({...payload,conversionPage:'https://evil.test',attribution:{version:1}});
+  assert.ok(invalid);
+  assert.equal(invalid.conversionPage,undefined);
+  assert.equal(invalid.attribution,undefined);
 });

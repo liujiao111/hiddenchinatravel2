@@ -1,6 +1,6 @@
 import { trackEvent } from "./analytics";
 import { analyticsDenied, getAttribution } from "./attribution";
-import { buildWhatsAppUrl, generateLeadId, isConsultationWhatsApp } from "./whatsapp";
+import { buildWhatsAppUrl, generateLeadId, isConsultationWhatsApp, withWhatsAppRef } from "./whatsapp";
 
 export function whatsappLocation(link: HTMLAnchorElement) {
   if (link.dataset.ctaLocation === "floating_whatsapp") return "floating_button";
@@ -18,7 +18,7 @@ export function installWhatsAppTracking() {
   const recent = new WeakMap<HTMLAnchorElement, number>();
   function normalize(link: HTMLAnchorElement) {
     if (isConsultationWhatsApp(link.href)) {
-      if (!link.href.includes("Ref%3A")) link.href = buildWhatsAppUrl(undefined, window.location.pathname.startsWith("/zh") ? "zh" : "en");
+      if (!new URL(link.href).searchParams.get("text")) link.href = buildWhatsAppUrl(undefined, window.location.pathname.startsWith("/zh") ? "zh" : "en");
     }
   }
   document.querySelectorAll<HTMLAnchorElement>("a[href]").forEach(normalize);
@@ -45,7 +45,7 @@ export function installWhatsAppTracking() {
     const leadId = generateLeadId();
     // Update synchronously and let the native anchor open with its original target.
     // No window.open, awaited request, extra screen or popup-blocker dependency.
-    link.href = buildWhatsAppUrl(leadId, window.location.pathname.startsWith("/zh") ? "zh" : "en");
+    link.href = withWhatsAppRef(link.href, leadId, window.location.pathname.startsWith("/zh") ? "zh" : "en");
     const attribution = getAttribution();
     if (analyticsDenied()) return;
     const conversionPage = window.location.pathname.slice(0, 500);

@@ -16,7 +16,7 @@ By accessing or using this website, you agree to the following Terms of Service.
 
 ## About Hidden China Travel
 
-Hidden China Travel is the English-language site of Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司), a licensed travel agency in Kunming. Its travel agency permit number is L-YN-1017500.
+Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) handles subsequent quotations, contracting and on-the-ground arrangements. Confirmed services follow the written proposal and contract.
 
 The site provides:
 

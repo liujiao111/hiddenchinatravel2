@@ -38,8 +38,8 @@ Weather, ticket availability and transport may require changes after booking. We
 
 ## Your licensed travel operator
 
-Hidden China Travel is the English-language service site of **Yunnan Meizhen International Travel Agency Co., Ltd.** (云南美珍国际旅行社有限公司). This licensed Kunming travel agency issues your travel contract, receives your payment and operates your journey.
+Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) handles subsequent quotations, contracting and on-the-ground arrangements. Confirmed services follow the written proposal and contract.
 
-Its travel agency permit is **L-YN-1017500**. You can inspect the business license, travel agency permit and insurance documentation on our [Licensed Operator page](/licensed-operator).
+Its travel agency permit is **L-YN-1017500**. You can inspect the business license and travel agency permit on our [Licensed Operator page](/licensed-operator).
 
 The agency holds travel-agency liability insurance for 2026. This covers the agency's legal liability, not your personal travel or medical insurance. Cover for a guest applies only after that guest has been registered. Please arrange your own international medical and evacuation insurance before travel.
