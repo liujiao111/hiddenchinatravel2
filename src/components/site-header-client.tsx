@@ -120,7 +120,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate, searchI
         <Image src="/brand/logo-light.png" alt="" width={160} height={80} className="brand-logo-light" unoptimized />
       </Link>
       <div className="header-contact">
-        {conversion ? <Link href="/private-yunnan-tours#routes" className="header-quiet-link">{t("journeys")}</Link> : <span>{t("tagline")}</span>}
+        {conversion ? <Link href="/yunnan-tour-packages" className="header-quiet-link">{t("journeys")}</Link> : <span>{t("tagline")}</span>}
         {cta ? (cta.href.startsWith("#") ? <HashLink className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</HashLink> : <a className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</a>) : <EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">{t("cta")}</span><span className="header-cta-short">{t("cta")}</span></EnquireLink>}
       </div>
       <LocaleSwitcher alternate={alternate} />
@@ -140,7 +140,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate, searchI
         <b>{tailorMade.title}</b>
         <small>{tailorMade.sellingPoint}</small>
       </Link>
-      <Link href="/private-yunnan-tours#routes" className="mobile-nav-all" onClick={() => setMobileOpen(false)}>{t("viewAllJourneys")}</Link>
+      <Link href="/yunnan-tour-packages" className="mobile-nav-all" onClick={() => setMobileOpen(false)}>{t("viewAllJourneys")}</Link>
       <Link href="/survival-kit" onClick={() => setMobileOpen(false)}>{t("travelGuides")}</Link>
       <Link href="/about-us" onClick={() => setMobileOpen(false)}>{t("aboutUs")}</Link>
       <Link href="/traveler-stories" onClick={() => setMobileOpen(false)}>{t("travelerStories")}</Link>
@@ -191,7 +191,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate, searchI
               </span>
             </Link>
           </div>
-          <Link href="/private-yunnan-tours#routes" className="mega-text-link">{t("mega.viewAllJourneys")}</Link>
+          <Link href="/yunnan-tour-packages" className="mega-text-link">{t("mega.viewAllJourneys")}</Link>
         </section>
       </div> : open === "guides" ? <div className="shell mega-groups mega-guides">
         <section className="mega-survival-feature"><Image src="/assets/blog/independent-travel-china/cover.webp" alt={t("mega.survivalAlt")} fill sizes="(max-width: 700px) 100vw, 30vw" unoptimized /><div><p>{t("mega.startHere")}</p><h2>{t("mega.survivalTitle")}</h2><span>{t("mega.survivalText")}</span><Link className="button button-light" href="/survival-kit">{t("mega.openSurvival")}</Link></div></section>
