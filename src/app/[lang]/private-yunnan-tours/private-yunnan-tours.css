@@ -312,3 +312,15 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .enquiry-select-options input{position:absolute;opacity:0;width:1px;height:1px;min-width:0;margin:0;padding:0}
 .tailor-preview .enquiry-select-options label:focus-within{outline:2px solid #4e7671;outline-offset:-2px}
 .tailor-preview .enquiry-select-check{margin-left:auto!important;font-weight:750!important}
+
+/* Package comparison uses the existing JourneyCard visuals, only more compact. */
+.tailor-preview .package-compare-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tailor-preview .package-compare-cards .journey-card{min-height:455px}
+.tailor-preview .package-compare-cards .journey-card-copy{padding:24px 20px}
+.tailor-preview .package-compare-cards .journey-card-copy h3{font-size:clamp(1.35rem,1.9vw,1.8rem);line-height:1.2}
+.tailor-preview .package-compare-cards .journey-card-copy ul{font-size:.83rem;margin-top:10px;line-height:1.45}
+.tailor-preview .package-compare-cards .journey-card-copy li+li{margin-top:6px}
+.tailor-preview .package-compare-cards .journey-card-price{font-size:1rem;margin-top:10px}
+.tailor-preview .package-compare-cards .journey-card-copy>span{font-size:.68rem}
+@media(max-width:900px){.tailor-preview .package-compare-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.tailor-preview .package-compare-cards{grid-template-columns:1fr}.tailor-preview .package-compare-cards .journey-card{min-height:390px}.tailor-preview .package-compare-cards .journey-card-copy{padding:24px}}
