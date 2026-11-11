@@ -51,7 +51,7 @@ export function ContentFooter() {
           <h3>{t("journeysHeading")}</h3>
           <Link href="/journeys/kunming-dali-shaxi-lijiang-6-days">{t("journeyFirst")}</Link>
           <Link href="/journeys/kunming-dali-lijiang-shangri-la-private-tour">{t("journeyEssence")}</Link>
-          <Link href="/private-yunnan-tours#routes">{t("journeyAll")}</Link>
+          <Link href="/yunnan-tour-packages">{t("journeyAll")}</Link>
           <Link href="/private-yunnan-tours">{t("journeyCustom")}</Link>
         </nav>
 
