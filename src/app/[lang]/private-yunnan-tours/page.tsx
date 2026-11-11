@@ -232,6 +232,7 @@ const cta = L("Get a Suggested Route & Price");
       }} />
     )}</div>
     <p className="preview-price-note">{L("Starting prices are per person, based on two adults sharing a room. Final prices vary by travel dates, group size, hotel selection and confirmed services.")}</p>
+    <p className="preview-centered"><Link href="/yunnan-tour-packages">{lang === "zh" ? "比较全部云南旅游套餐 →" : "Compare all Yunnan tour packages →"}</Link></p>
     </div>
     <div className="preview-longer-journey">
       <div className="shell preview-longer-inner">
