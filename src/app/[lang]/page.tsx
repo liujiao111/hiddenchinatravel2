@@ -111,7 +111,7 @@ export default async function Home({ params }: Props) {
         <p className="hero-brand hero-desktop-only">{t("heroBrand")}</p>
         <div className="hero-actions">
           <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">{t("cta")}</EnquireLink>
-          <Link href="/private-yunnan-tours#routes" className="button button-light">{t("exploreJourneys")}</Link>
+          <Link href="/yunnan-tour-packages" className="button button-light">{t("exploreJourneys")}</Link>
         </div>
         <ul className="hero-trust-badges">
           {trustBadges.map((badge) => <li key={badge}><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" /></svg>{badge}</li>)}
