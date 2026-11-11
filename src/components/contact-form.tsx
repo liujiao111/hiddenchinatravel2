@@ -83,7 +83,7 @@ export function ContactForm() {
         <p>{t("successText", { replyTime: tq("replyTime") })}</p>
         {sent ? <p><a href={siteConfig.sampleItineraryPdf} download>{t("successSample")}</a></p> : null}
         <p>{t("successWhatsappNote")}</p>
-        <a className="button button-blue" href={whatsappHref}>{t("successWhatsapp")}</a>
+        <a className="button button-primary" href={whatsappHref}>{t("successWhatsapp")}</a>
       </div>
     );
   }
@@ -141,7 +141,7 @@ export function ContactForm() {
         />
       </label>
 
-      <button className="button button-blue" type="submit" disabled={status === "sending"}>
+      <button className="button button-primary" type="submit" disabled={status === "sending"}>
         {status === "sending" ? t("sending") : t("submit")}
       </button>
       {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>{t("sendOnWhatsapp")}</a> : null}</p> : null}

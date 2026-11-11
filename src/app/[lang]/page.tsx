@@ -99,7 +99,7 @@ export default async function Home({ params }: Props) {
     ],
   };
 
-  return <main><SiteHeader searchInitialQuery="6 days yunnan private tour" />
+  return <main><SiteHeader searchPlaceholder="6 days yunnan private tour" />
     <section className="hero">
       <Image src="/home/hero.webp" alt={t("heroAlt")} fill preload sizes="100vw" />
       <div className="hero-shade" />
@@ -177,7 +177,7 @@ export default async function Home({ params }: Props) {
 
     <section className="section why" id="why-us">
       <div className="shell">
-        <div className="section-heading light">
+        <div className="section-heading">
           <p className="kicker">{t("whyKicker")}</p>
           <h2>{t("whyHeading")}</h2>
           <p>{t("whyIntro")}</p>
@@ -205,7 +205,7 @@ export default async function Home({ params }: Props) {
       <div className="shell">
         <div className="process-grid">{howItWorks.map(([number, title, text]) => <div key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></div>)}</div>
         <div className="center">
-          <EnquireLink data-cta-location="home_how_it_works" className="button button-blue">{t("cta")}</EnquireLink>
+          <EnquireLink data-cta-location="home_how_it_works" className="button button-primary">{t("cta")}</EnquireLink>
           <p className="home-helper">{t("howHelper")}</p>
         </div>
       </div>
@@ -283,7 +283,7 @@ export default async function Home({ params }: Props) {
         <h2>{t("finalHeading")}</h2>
         <p>{t("finalText")}</p>
         <div className="hero-actions">
-          <EnquireLink data-cta-location="home_final_custom" className="button button-blue">{t("cta")}</EnquireLink>
+          <EnquireLink data-cta-location="home_final_custom" className="button button-primary">{t("cta")}</EnquireLink>
           <Link href={whatsapp} data-cta-location="home_final_whatsapp" className="button button-light">{t("finalWhatsapp")}</Link>
         </div>
         <p className="final-cta-trust">{t("finalTrust")}</p>

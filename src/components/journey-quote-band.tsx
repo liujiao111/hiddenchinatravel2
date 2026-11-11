@@ -24,12 +24,12 @@ export function JourneyQuoteBand({ id, source, sourceTitle, whatsapp, showRouteL
           <h2>{t("quoteHeading")}</h2>
           <p>{t("quotePayment")}</p>
         </div>
-        <a className="button journey-plan-whatsapp" href={whatsappHref} data-cta-location={`journey_plan_whatsapp_${id}`}>{t("startPlanning")}</a>
+        {compact ? <a className="button journey-plan-whatsapp" href={whatsappHref} data-cta-location={`journey_plan_whatsapp_${id}`}>{t("startPlanning")}</a> : null}
       </div>
       {compact ? null : <>
         <ul className="journey-plan-points">{planPoints.map((point) => <li key={point}><span>✓</span>{point}</li>)}</ul>
-        <p className="journey-plan-switch">{t("emailSwitch")}</p>
         <QuickAsk layout="plain" id={id} source={source} sourceTitle={sourceTitle} intent="trip" />
+        <a className="journey-plan-alternative" href={whatsappHref} data-cta-location={`journey_plan_whatsapp_${id}`}>{t("chatWhatsapp")} <span aria-hidden="true">↗</span></a>
       </>}
       {showRouteLink ? <div className="journey-quote-links"><Link href="/private-yunnan-tours" data-cta-location="journey_custom_alternative">{t("customRouteLink")}</Link></div> : null}
     </div>

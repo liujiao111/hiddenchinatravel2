@@ -148,7 +148,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
         {t("replyTime")}
       </p>
       {sent.interest === "Yunnan Journey" ? <p><a href={siteConfig.sampleItineraryPdf} download>{t("downloadSample")}</a></p> : null}
-      <a className="button button-blue" href={whatsappHref}>{t("continueWhatsapp")}</a>
+      <a className="button button-outline" href={whatsappHref}>{t("continueWhatsapp")}</a>
     </div>
   ) : (
     <form className={`contact-form quick-ask-form${plain ? " quick-ask-plain-form" : ""}`} method="post" action="/api/enquiry" onSubmit={handleSubmit}>
@@ -183,7 +183,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
               <span>Company</span>
               <input name="company" type="text" tabIndex={-1} autoComplete="off" />
             </label>
-            <button className="button" type="submit" disabled={status === "sending"}>{status === "sending" ? t("sending") : t("submitTrip")}</button>
+            <button className="button button-primary" type="submit" disabled={status === "sending"}>{status === "sending" ? t("sending") : t("submitTrip")}</button>
           </div>
         </>
       ) : <div className="contact-field-row">
@@ -237,7 +237,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
         <textarea name="plans" rows={intent === "trip" ? 3 : 4} required={intent === "advice" && !quoteRequested} placeholder={intent === "trip" || quoteRequested ? t("plansPlaceholderTrip") : t("plansPlaceholderAdvice")} />
       </label>
       <div className="quick-ask-actions">
-        <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? t("sending") : intent === "trip" || quoteRequested ? t("submitTrip") : t("submitAdvice")}</button>
+        <button className="button button-primary" type="submit" disabled={status === "sending"}>{status === "sending" ? t("sending") : intent === "trip" || quoteRequested ? t("submitTrip") : t("submitAdvice")}</button>
         <a href={standbyWhatsapp}>{t("whatsappAlt")}</a>
       </div>
       {status === "error" ? <p className="contact-form-error">{error} {whatsappHref ? <a href={whatsappHref}>{t("sendOnWhatsapp")}</a> : null}</p> : null}

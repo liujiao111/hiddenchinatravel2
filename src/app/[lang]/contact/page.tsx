@@ -23,13 +23,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: App
       description,
       url: "/contact",
       type: "website",
-      images: [{ url: "/brand/founder/portrait.webp", alt: t("ogImageAlt") }],
+      images: [{ url: "/contact/contact-hero.webp", width: 1800, height: 1350, alt: t("ogImageAlt") }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/brand/founder/portrait.webp"],
+      images: ["/contact/contact-hero.webp"],
     },
   });
 }
@@ -53,12 +53,14 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
       <SiteHeader />
 
       <section className="contact-hero">
+        <Image src="/contact/contact-hero.webp" alt={t("heroImageAlt")} fill preload sizes="100vw" />
+        <div className="contact-hero-shade" aria-hidden="true" />
         <div className="shell contact-hero-copy">
           <p className="contact-kicker">{t("heroKicker")}</p>
           <h1>{t("heroTitle")}</h1>
           <p>{t("heroText")}</p>
           <div className="contact-hero-emphasis"><span>{emphasis[0]}</span><span>{emphasis[1]}</span><strong>{emphasis[2]}</strong></div>
-          <Link className="button button-blue" href={whatsapp}>{tj("startPlanning")}</Link>
+          <Link className="button button-light" href={whatsapp}>{tj("startPlanning")}</Link>
           <small>{tq("replyTime")}</small>
         </div>
       </section>

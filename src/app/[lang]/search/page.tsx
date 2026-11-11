@@ -40,7 +40,7 @@ export default async function SearchPage({ params, searchParams }: Props) {
       {results.length ? <div className="search-result-grid">{results.map((item) => <Link href={item.href} key={item.id} className="search-result-card">
         <div className="search-result-image">{item.image ? <Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 33vw" unoptimized /> : <span>H</span>}</div>
         <div><span>{t(`types.${item.type}`)}</span><h3>{item.title}</h3><p>{item.description}</p><b>{t(`view.${item.type}`)} →</b></div>
-      </Link>)}</div> : query ? <div className="search-empty"><h3>{t("emptyTitle")}</h3><p>{t("emptyText")}</p><Link href="/#guides" className="button button-green">{t("browseGuides")}</Link></div> : null}
+      </Link>)}</div> : query ? <div className="search-empty"><h3>{t("emptyTitle")}</h3><p>{t("emptyText")}</p><Link href="/#guides" className="button button-primary">{t("browseGuides")}</Link></div> : null}
     </section>
     <ContentFooter />
   </main>;

@@ -68,7 +68,7 @@ const faqs = [
 ];
 
 function ActionLink({ action, primary = false }: { action: Action; primary?: boolean }) {
-  return <Link href={action.href} className={primary ? "button button-green" : "kit-text-link"} {...(action.affiliate ? { rel: "sponsored nofollow" } : {})}>{action.label}<span aria-hidden="true"> →</span></Link>;
+  return <Link href={action.href} className={primary ? "button button-primary" : "kit-text-link"} {...(action.affiliate ? { rel: "sponsored nofollow" } : {})}>{action.label}<span aria-hidden="true"> →</span></Link>;
 }
 
 export default function SurvivalKitPage() {

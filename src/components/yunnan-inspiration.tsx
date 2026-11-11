@@ -21,7 +21,7 @@ export function YunnanInspiration({ selectable = false }: { selectable?: boolean
       return <article key={place.id} className={chosen ? "is-selected" : ""}>
         <div className="yunnan-inspiration-image"><Image src={place.image} alt={placeCopy[place.id]?.alt ?? place.alt} fill unoptimized sizes="(max-width:700px) 50vw, (max-width:1000px) 50vw, 25vw" /></div>
         <div className="yunnan-inspiration-copy"><h3>{name}</h3><p>{placeCopy[place.id]?.description ?? place.description}</p><div className="yunnan-inspiration-actions">
-          {selectable && <button type="button" aria-pressed={chosen} aria-label={chosen ? t("removeAria", { name }) : t("addAria", { name })} onClick={() => toggle(name)}>{chosen ? t("added") : t("add")}</button>}
+          {selectable && <button type="button" className={`button button-outline${chosen ? " is-selected" : ""}`} aria-pressed={chosen} aria-label={chosen ? t("removeAria", { name }) : t("addAria", { name })} onClick={() => toggle(name)}>{chosen ? t("added") : t("add")}</button>}
           <Link href={guide} onClick={() => trackEvent("journey_place_guide_click", { destination: name, cta_location: "custom_inspiration" })}>{"guide" in place ? t("readGuide") : t("explore")}</Link>
         </div></div>
       </article>;

@@ -96,7 +96,7 @@ export function JourneyPageV2({ journey, alternate }: { journey: Journey; altern
   // Exactly the same structure as the 6-day journey in journey-page.tsx
   // when isSixDayYunnanJourney is true. No custom components invented.
   return <main className="journey-page journey-page-offer">
-    <SiteHeader conversion alternate={alternate} cta={{ href: whatsapp, mailHref: "#ask-joy", label: t("startPlanning"), location: "header_journey_price" }} />
+    <SiteHeader alternate={alternate} cta={{ href: whatsapp, mailHref: "#ask-joy", label: t("startPlanning"), location: "header_journey_price" }} />
 
     <JourneyHero
       title={frontmatter.heroTitle || frontmatter.title}

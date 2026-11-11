@@ -103,7 +103,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
   };
 
   return <main className={isSixDayYunnanJourney ? "journey-page journey-page-offer" : "journey-page"}>
-    <SiteHeader conversion alternate={alternate} cta={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", mailHref: "#ask-joy", label: t("startPlanning"), location: "header_journey_price" }} />
+    <SiteHeader alternate={alternate} cta={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", mailHref: "#ask-joy", label: t("startPlanning"), location: "header_journey_price" }} />
     <JourneyHero
       title={frontmatter.heroTitle || frontmatter.title}
       name={frontmatter.heroTitle ? frontmatter.title : undefined}

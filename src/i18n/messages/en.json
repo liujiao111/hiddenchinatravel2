@@ -419,7 +419,7 @@
     ],
     "finalHeading": "Ready to Start Planning Yunnan?",
     "finalText": "You do not need a finished itinerary. Tell us your travel dates or approximate month, number of travelers and the places or experiences that interest you. Joy will help turn those ideas into a practical private journey.",
-    "finalWhatsapp": "CHAT WITH JOY ON WHATSAPP",
+    "finalWhatsapp": "Chat with Joy on WhatsApp",
     "finalAlt": "Turquoise lake and snow mountains in Yunnan",
     "finalTrust": "No payment to start planning · 20% after the signed contract · 80% after your driver meets you"
   },
@@ -858,7 +858,8 @@
   "contact": {
     "metaTitle": "Contact Hidden China Travel | Talk With Joy Liu",
     "metaDescription": "Have questions about Yunnan, China travel, visas, payments, or trip planning? Contact Joy Liu directly and start the conversation.",
-    "ogImageAlt": "Joy Liu, founder of Hidden China Travel",
+    "ogImageAlt": "Autumn forest and turquoise lakes in Yunnan, China",
+    "heroImageAlt": "Turquoise lakes, autumn trees and forested hills in Yunnan, China",
     "whatsappMessage": "Hi Joy, I'd like to talk about my China journey.",
     "heroKicker": "A PERSONAL CONVERSATION",
     "heroTitle": "Let’s Talk About Your China Journey",
@@ -1098,9 +1099,9 @@
   "about": {
     "metaTitle": "Meet Joy Liu | About Hidden China Travel",
     "metaDescription": "Meet Joy Liu, Yunnan-born founder of Hidden China Travel, and discover the local insight and thoughtful planning behind our private Yunnan journeys.",
-    "ogImageAlt": "Joy Liu, founder of Hidden China Travel",
+    "ogImageAlt": "Golden ginkgo tree in an autumn field beneath forested mountains in Yunnan",
     "whatsappMessage": "Hi Joy, I read your story on the About page and would love to discuss a Yunnan trip.",
-    "heroImageAlt": "A traditional Bai courtyard in Xizhou, Yunnan",
+    "heroImageAlt": "A golden ginkgo tree in an autumn field beneath forested mountains in Yunnan",
     "breadcrumbAbout": "About us",
     "subnavAria": "About sections",
     "heroTitleA": "A local connection.",

@@ -7,12 +7,13 @@ import { matchSearchItems, type SearchItem } from "@/lib/search-types";
 
 type SiteSearchProps = {
   initialQuery?: string;
+  placeholderText?: string;
   items?: SearchItem[];
   autoOpen?: boolean;
   variant?: "header" | "page";
 };
 
-export function SiteSearch({ initialQuery = "", items: suppliedItems, autoOpen = false, variant = "header" }: SiteSearchProps) {
+export function SiteSearch({ initialQuery = "", placeholderText, items: suppliedItems, autoOpen = false, variant = "header" }: SiteSearchProps) {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("search");
@@ -85,7 +86,7 @@ export function SiteSearch({ initialQuery = "", items: suppliedItems, autoOpen =
         onChange={(event) => { setQuery(event.target.value); setActiveIndex(-1); setOpen(true); }}
         onFocus={() => { void ensureIndex(); setOpen(true); }}
         onKeyDown={handleKeyDown}
-        placeholder={t("placeholder")}
+        placeholder={placeholderText || t("placeholder")}
         autoComplete="off"
         role={variant === "header" ? "combobox" : undefined}
         aria-autocomplete={variant === "header" ? "list" : undefined}

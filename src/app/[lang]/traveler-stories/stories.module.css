@@ -4,7 +4,7 @@
 .page div[id] { scroll-margin-top: 72px; }
 
 .privacyNote { margin: 0; padding: 16px 24px; background: #efece2; color: #5c5950; text-align: center; font-size: 0.82rem; line-height: 1.5; }
-.page a:focus-visible { outline: 3px solid #8d7350; outline-offset: 4px; }
+.page a:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 4px; }
 
 .hero { position: relative; min-height: min(820px, 88vh); display: flex; align-items: flex-end; color: #fff; overflow: hidden; }
 .hero img { object-fit: cover; object-position: center 42%; }
@@ -20,7 +20,7 @@
 
 .subnav { position: sticky; top: 0; z-index: 8; display: flex; gap: 28px; overflow-x: auto; background: rgba(245, 245, 239, 0.94); border-bottom: 1px solid #e3dfd2; padding: 16px 20px; backdrop-filter: blur(8px); }
 .subnav a { flex: 0 0 auto; color: #3f3d36; font-size: 0.78rem; letter-spacing: 0.04em; }
-.subnav a:hover { color: #355e58; }
+.subnav a:hover { color: var(--color-ink); }
 
 .metrics { display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border-bottom: 1px solid #e3dfd2; }
 .metric { padding: 42px 28px 38px; text-align: center; }
@@ -40,7 +40,7 @@
 .journalBand p { margin: 0 0 14px; color: #7a6a48; font-size: 0.72rem; font-weight: 750; letter-spacing: 0.16em; text-transform: uppercase; }
 .journalBand h2 { margin: 0 0 16px; font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1.08; }
 .journalBand span { color: #4e4940; font-size: 1.02rem; line-height: 1.6; }
-.journalBand b { margin-top: 22px; color: #355e58; font-family: var(--font-geist-sans), Arial, sans-serif; font-size: 0.78rem; font-weight: 750; letter-spacing: 0.06em; }
+.journalBand b { margin-top: 22px; color: var(--color-ink); font-family: var(--font-geist-sans), Arial, sans-serif; font-size: 0.78rem; font-weight: 750; letter-spacing: 0.06em; }
 @media (max-width: 800px) {
   .journalBand { grid-template-columns: 1fr; }
   .journalBand figure { aspect-ratio: 4 / 3; min-height: 0; }
@@ -66,7 +66,7 @@
 .byline { display: flex; flex-direction: column; gap: 4px; margin-top: auto; }
 .byline b { font-family: Georgia, serif; font-size: 1.05rem; font-weight: 400; }
 .byline span { color: #6d695e; font-size: 0.84rem; }
-.routeLink { display: inline-block; margin-top: 18px; color: #355e58; font-size: 0.82rem; font-weight: 650; }
+.routeLink { display: inline-block; margin-top: 18px; color: var(--color-ink); font-size: 0.82rem; font-weight: 650; }
 .routeLink span { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 
 .notes { background: var(--cream); }
@@ -75,7 +75,7 @@
 .noteGrid blockquote { margin: 0 0 18px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.15rem, 1.4vw, 1.32rem); line-height: 1.5; }
 .noteGrid figcaption { display: flex; flex-direction: column; gap: 6px; color: #6d695e; font-size: 0.84rem; }
 .noteGrid figcaption b { color: var(--ink); font-family: Georgia, serif; font-weight: 400; font-size: 1rem; }
-.noteGrid a { width: fit-content; margin-top: 8px; color: #355e58; font-size: 0.78rem; font-weight: 650; border-bottom: 1px solid currentColor; }
+.noteGrid a { width: fit-content; margin-top: 8px; color: var(--color-ink); font-size: 0.78rem; font-weight: 650; border-bottom: 1px solid currentColor; }
 .colophon { max-width: 640px; margin: 36px auto 0; color: #7a776c; font-size: 0.78rem; text-align: center; line-height: 1.6; }
 
 .details { background: #fff; }
@@ -92,7 +92,7 @@
 .why { background: #efece2; }
 .reasons { display: grid; grid-template-columns: 1fr 1fr; gap: 42px 72px; }
 .reasons article { padding-top: 22px; border-top: 1px solid #cfc9b6; }
-.reasons span { display: block; margin-bottom: 14px; color: #355e58; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; }
+.reasons span { display: block; margin-bottom: 14px; color: var(--color-ink); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; }
 .reasons h3 { margin: 0 0 12px; font-size: 1.55rem; line-height: 1.25; }
 .reasons p { margin: 0; color: #525046; }
 
@@ -115,7 +115,7 @@
 .record h3 { margin: 0 0 12px; font-size: 1.45rem; line-height: 1.3; }
 .record p { margin: 0; color: #525046; }
 .recordLinks { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
-.recordLinks a { color: #355e58; font-weight: 650; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.recordLinks a { color: var(--color-ink); font-weight: 650; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 
 .cta { position: relative; min-height: 560px; display: grid; place-items: center; color: #fff; text-align: center; overflow: hidden; }
 .cta img { object-fit: cover; object-position: center 62%; }

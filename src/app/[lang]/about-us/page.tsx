@@ -27,13 +27,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: App
       description,
       url: "/about-us",
       type: "website",
-      images: [{ url: "/brand/founder/portrait.webp", alt: t("ogImageAlt") }],
+      images: [{ url: "/about/about-hero.webp", width: 2000, height: 1125, alt: t("ogImageAlt") }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/brand/founder/portrait.webp"],
+      images: ["/about/about-hero.webp"],
     },
   });
 }
@@ -61,7 +61,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: Ap
 
   return <><SiteHeader /><main className={styles.page}>
     <section className={styles.hero}>
-      <Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/xizhou-bai-courtyard.webp" alt={t("heroImageAlt")} fill preload sizes="100vw" />
+      <Image src="/about/about-hero.webp" alt={t("heroImageAlt")} fill preload sizes="100vw" />
       <div className={styles.shade} />
       <div className={styles.heroCopy}>
         <nav aria-label={tj("breadcrumbAria")}><Link href="/">{tj("breadcrumbHome")}</Link><span>/</span><span>{t("breadcrumbAbout")}</span></nav>
