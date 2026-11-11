@@ -62,7 +62,7 @@ export default async function YunnanTourPackages({params}:Props){
  image:p.image,imageAlt:zh?p.placesZh:p.places,
  destination:zh?p.placesZh:p.places,
  duration:T(p.days+" Days · "+p.nights+" Nights",p.days+"天"+p.nights+"晚"),
- fromPrice:zh?p.priceZh:p.priceZh===undefined?p.price:p.price,
+ fromPrice:zh?p.priceZh:p.price,
  features:[T("Best for: "+(p.days===6?"Limited time":p.days===8?"Classic highlights":"A gentler pace"),"适合："+(p.days===6?"假期有限":p.days===8?"经典景点":"希望慢游")),T(p.difference,p.differenceZh)],
  ctaLabel:p.days===10?T("Customize This Package","定制这个套餐"):T("View the Journey","查看行程"),
  trackingLocation:"packages_compare_"+p.days,
