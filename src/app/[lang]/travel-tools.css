@@ -20,7 +20,8 @@
 .tool-field input:focus,.tool-field select:focus { outline:2px solid #4e8273; outline-offset:2px; }
 .tool-field-wide,.tool-form-action,.tool-error { grid-column:1/-1; }
 .tool-form-action { display:flex; align-items:center; flex-wrap:wrap; gap:15px; margin-top:5px; }
-.tool-form-action>.button { cursor:pointer; background:#2c5d50; color:white; }
+.tool-form-action>.button { cursor:pointer; background:var(--blue); color:white; }
+.tool-form-action>.button:hover { background:var(--blue-hover); }
 .tool-form-action>.button:disabled { opacity:.55; cursor:wait; }
 .tool-form-action p { margin:0; color:#7b8077; font-size:.78rem; }
 .tool-error { margin:0; color:#9b3b2c; font-size:.86rem; }
