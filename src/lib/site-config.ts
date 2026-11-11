@@ -4,6 +4,7 @@ export const siteConfig = {
   locale: "en_US",
   whatsappNumber: "8618880441791",
   enquiryEmail: "joy.liu@hiddenchinatravel.com",
+  facebook: "https://www.facebook.com/hiddenchinatravel",
   instagram: "https://www.instagram.com/hiddenchina_travel",
   tiktok: "https://www.tiktok.com/@hiddenchinatravel",
   ogImage: "/home/hero.webp",
