@@ -1063,13 +1063,13 @@ a.utility-card { color:inherit; }
     align-items: center;
     justify-content: center;
     padding: 0 10px;
-    background: #282821;
+    background: var(--blue);
     color: #fff;
     text-decoration: none;
     text-align: center;
     -webkit-tap-highlight-color: transparent;
   }
-  .mobile-cta-form:active { background: #3a3a31; }
+  .mobile-cta-form:active { background: var(--blue-hover); }
   .mobile-cta-form .mobile-cta-label {
     font-size: .72rem;
     font-weight: 700;
