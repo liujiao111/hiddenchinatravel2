@@ -43,8 +43,15 @@ export function PackageEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
     const form = new FormData(event.currentTarget);
     idRef.current ??= crypto.randomUUID();
     const partyLabel = String(form.get("partyRange") || "");
-    const days = String(form.get("tripLength") || "");
     const packageChoice = String(form.get("preferredPackage") || "");
+    const daysByPackage: Record<string, string> = {
+      "6-Day First Encounter": "6 days",
+      "8-Day Mountains & Ancient Towns": "8 days",
+      "10-Day Yunnan in Depth": "10 days",
+      "More than 10 days": "More than 10 days",
+      "Not sure — please recommend": "Not decided yet",
+    };
+    const days = daysByPackage[packageChoice] || "Not decided yet";
     const travelers = partyOptions.find(x => x.label === partyLabel)?.count ?? 2;
     const whatsapp = String(form.get("whatsapp") || "").trim();
     const email = String(form.get("email") || "").trim();
@@ -100,26 +107,25 @@ export function PackageEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
     }
   }
 
-  if (status === "success") return <div className="preview-success" role="status"><h3>{zh ? "感谢咨询，我们已收到你的旅行需求。" : "Thank you — we received your enquiry."}</h3><p>{zh ? `我们会通过你留下的${replyChannel === "whatsapp" ? " WhatsApp" : "邮箱"}联系你，沟通云南私人路线和初步报价；提交咨询不代表预订。` : `We’ll follow up using your ${replyChannel === "whatsapp" ? "WhatsApp number" : "email address"} about a suitable Yunnan route and an initial price. No booking commitment.`}</p></div>;
+  if (status === "success") return <div className="preview-success" role="status"><h3>{zh ? "感谢咨询，我们已收到你的旅行需求。" : "Thank you — we received your enquiry."}</h3><p>{zh ? `我们会通过你留下的${replyChannel === "whatsapp" ? " WhatsApp" : "邮箱"}联系你，沟通云南私人路线和初步报价；提交咨询不代表预订。` : `We’ll follow up using your ${replyChannel === "whatsapp" ? "WhatsApp number" : "email address"} about your selected Yunnan package and an initial price. No booking commitment.`}</p></div>;
 
   return <form className="contact-form preview-enquiry" onSubmit={submit} onFocus={() => {
     if (!startedRef.current) {
       startedRef.current = true;
-      trackEvent("custom_journey_form_start", { form_name: "custom_journey_enquiry", page_path: window.location.pathname });
+      trackEvent("custom_journey_form_start", { form_name: "yunnan_package_enquiry", page_path: window.location.pathname });
     }
   }}>
     <p className="contact-form-note">{zh ? "* 联系方式请至少填写一项：WhatsApp 或邮箱均可。" : "* Please provide at least one contact method: WhatsApp or email."}</p>
     <div className="contact-field-row">
       <label><span>{zh ? "姓名 *" : "Name *"}</span><input required name="name" type="text" autoComplete="name" maxLength={100} placeholder={zh ? "你的姓名" : "Your name"} /></label>
-      <label><span>{zh ? "邮箱 *" : "Email *"}</span><input name="email" type="email" autoComplete="email" maxLength={254} placeholder="you@example.com" /></label>
+      <label><span>{zh ? "邮箱（填写邮箱或 WhatsApp 任意一项）" : "Email (or WhatsApp)"}</span><input name="email" type="email" autoComplete="email" maxLength={254} placeholder="you@example.com" /></label>
     </div>
     <div className="contact-field-row">
-      <label><span>WhatsApp *</span><input name="whatsapp" type="tel" inputMode="tel" autoComplete="tel" maxLength={40} placeholder={zh ? "+65 1234 5678（含国际区号）" : "+65 1234 5678 (with country code)"} /></label>
+      <label><span>{zh ? "WhatsApp（或邮箱）" : "WhatsApp (or email)"}</span><input name="whatsapp" type="tel" inputMode="tel" autoComplete="tel" maxLength={40} placeholder={zh ? "+65 1234 5678（含国际区号）" : "+65 1234 5678 (with country code)"} /></label>
       <EnquirySelect name="partyRange" label={zh ? "出行人数 *" : "Number of travelers *"} placeholder={zh ? "请选择人数" : "Select travelers"} required options={partyOptions.map(p => ({ value: p.label, label: p.label === "More than 10" && zh ? "超过10人" : p.label }))} />
     </div>
-    <EnquirySelect name="travelTiming" label={zh ? "大致出行月份 *" : "Approximate travel month *"} placeholder={zh ? "请选择具体月份" : "Select a month"} required options={monthOptions} />
+    <EnquirySelect name="travelTiming" label={zh ? "大致出行月份 *" : "Approximate travel month *"} placeholder={zh ? "请选择具体月份" : "Select a month"} required options={[...monthOptions, { value: "Not decided yet", label: zh ? "尚未确定月份" : "Not decided yet" }]} />
     <EnquirySelect name="preferredPackage" label={zh ? "意向套餐 *" : "Preferred package *"} placeholder={zh ? "选择套餐" : "Choose a package"} required options={[{value:"6-Day First Encounter",label:zh?"6天·初见云南":"6-Day First Encounter"},{value:"8-Day Mountains & Ancient Towns",label:zh?"8天·古城与雪山":"8-Day Mountains & Ancient Towns"},{value:"10-Day Yunnan in Depth",label:zh?"10天·云南深度游":"10-Day Yunnan in Depth"},{value:"More than 10 days",label:zh?"超过10天":"More than 10 days"},{value:"Not sure — please recommend",label:zh?"不确定，请推荐":"Not sure — please recommend"}]} />
-    <EnquirySelect name="tripLength" label={zh ? "预计出行天数 *" : "Approximate trip length *"} placeholder={zh ? "计划玩几天？" : "How many days?"} required options={["5–6 days", "7–8 days", "9–12 days", "More than 12 days", "Not decided yet"].map((value, i) => ({ value, label: zh ? ["5–6天", "7–8天", "9–12天", "超过12天", "还没决定"][i] : value }))} />
     <label><span>{zh ? "目的地、兴趣或问题" : "Places, interests or questions"} <small>{zh ? "（选填）" : "(optional)"}</small></span><textarea name="notes" rows={4} maxLength={2500} placeholder={zh ? "告诉 Joy 你想去哪里、喜欢什么体验，或者其他旅行需求……" : "Tell us anything you'd like Joy to consider…"} /></label>
     <label className="contact-honeypot" aria-hidden="true"><span>Website</span><input name="website" tabIndex={-1} autoComplete="off" /></label>
     {status === "error" ? <p className="contact-form-error" role="alert">{error}</p> : null}
