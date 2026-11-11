@@ -35,6 +35,9 @@ export function ContentFooter() {
           <p className="footer-origin">{t("address", agencyValues)}</p>
           <p className="footer-origin"><a href={licensedOperator.creditRegistryUrl} target="_blank" rel="noopener noreferrer">{t("registry")}</a></p>
           <nav className="footer-social" aria-label="Social media">
+            <a href={siteConfig.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8.2h2.8l.42-3.2H13.5V7.55c0-.93.26-1.56 1.6-1.56h1.72V3.13A23.7 23.7 0 0 0 14.3 3C11.8 3 10.1 4.52 10.1 7.32V9.6H7.3v3.2h2.8V21z"/></svg>
+            </a>
             <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5zm8 2H8a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3zm-4 3.2A4.8 4.8 0 1 1 7.2 13 4.8 4.8 0 0 1 12 8.2zm0 2A2.8 2.8 0 1 0 14.8 13 2.8 2.8 0 0 0 12 10.2zM17.35 6.4a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>
             </a>
