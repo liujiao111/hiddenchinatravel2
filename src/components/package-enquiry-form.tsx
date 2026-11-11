@@ -130,7 +130,7 @@ export function PackageEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
     <label className="contact-honeypot" aria-hidden="true"><span>Website</span><input name="website" tabIndex={-1} autoComplete="off" /></label>
     {status === "error" ? <p className="contact-form-error" role="alert">{error}</p> : null}
     <label className="preview-consent"><input type="checkbox" name="consent" value="yes" required /><span>{zh ? "我同意 Hidden China Travel 为回复本次旅行咨询而联系我；个人信息仅用于处理此次咨询。" : "I agree to be contacted about this trip enquiry. My details will only be used to respond to my request."} <a href={zh ? "/zh/privacy-policy" : "/privacy-policy"} target="_blank" rel="noopener noreferrer">{zh ? "隐私政策" : "Privacy Policy"}</a>.</span></label>
-    <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? (zh ? "正在发送……" : "Sending…") : (zh ? "提交需求，获取套餐报价" : "Send Me a Package Quote")}</button>
+    <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? (zh ? "正在发送……" : "Sending…") : (zh ? "获取套餐报价" : "Get a Package Quote")}</button>
     <p className="contact-form-note">{zh ? "免费咨询，无需预付款。最终报价取决于出行日期和确认服务；可选填邮箱以接收书面方案。" : "No payment to enquire. Final prices depend on your travel dates and confirmed services. You can add an email for a written copy of your proposal."}</p>
   </form>;
 }
