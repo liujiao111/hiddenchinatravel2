@@ -45,7 +45,7 @@ export default async function YunnanTourPackages({params}:Props){
  ];
  const heading=(eyebrow:string,title:string,intro?:string)=><div className="preview-heading"><p className="kicker">{eyebrow}</p><h2>{title}</h2>{intro?<p>{intro}</p>:null}</div>;
  return <main className="tailor-preview">
- <SiteHeader conversion cta={{href:"#plan",label:T("Get a Package Quote","获取套餐报价")}} />
+ <SiteHeader cta={{href:"#plan",label:T("Get a Package Quote","获取套餐报价")}} />
  <JourneyHero title={T("Yunnan Tour Packages: Compare 6, 8 & 10 Days","云南旅游套餐对比：6天、8天和10天")} eyebrow="YUNNAN TOUR PACKAGES" image="/home/hero.webp" imageAlt={T("Jade Dragon Snow Mountain in Yunnan","云南玉龙雪山")} description={T("Compare ready-planned private journeys through Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La. Choose a route, then adjust dates, hotels and pace.","比较大理、沙溪、丽江、虎跳峡和香格里拉的经典私人路线。先选择合适套餐，再调整日期、酒店和节奏。")} primary={{href:"#plan",label:T("Get a Package Quote","获取套餐报价")}} secondary={{href:"#compare",label:T("View the Journey","查看行程")}} price={T("6-day Yunnan package from US$680 per person","6天云南套餐每人 US$680 起")} note={T("Based on two adults sharing one room. Final prices depend on dates, group size, hotels and confirmed services.","按两位成人同住一间客房计算；最终价格以日期、人数、酒店和确定的服务为准。")}/>
  <JourneyFactCards id="glance" title={T("Choose Your Yunnan Journey","选择适合你的云南路线")} cards={[
  {icon:"calendar",title:T("Routes to Compare","路线选择"),lines:[T("6, 8 or 10 Days","6天、8天或10天"),T("Two published journeys and a 10-day planning idea.","两条已发布行程与一条10天规划参考。")]},

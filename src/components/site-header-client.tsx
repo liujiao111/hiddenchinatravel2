@@ -98,7 +98,7 @@ function HeaderMenuIcon({ open }: { open: boolean }) {
     : <svg viewBox="0 0 24 16" aria-hidden="true"><path d="M1 1.5h22M1 8h22M1 14.5h22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>;
 }
 
-export function SiteHeaderClient({ journeys, cta, conversion, alternate, searchInitialQuery, searchPlaceholder }: { journeys: HeaderJourney[]; cta?: { href: string; label: string; location?: string; mailHref?: string }; conversion?: boolean; alternate?: LocaleAlternate; searchInitialQuery?: string; searchPlaceholder?: string }) {
+export function SiteHeaderClient({ journeys, cta, alternate, searchInitialQuery, searchPlaceholder }: { journeys: HeaderJourney[]; cta?: { href: string; label: string; location?: string; mailHref?: string }; alternate?: LocaleAlternate; searchInitialQuery?: string; searchPlaceholder?: string }) {
   const [open, setOpen] = useState<MenuName | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = useTranslations("header");
@@ -112,7 +112,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate, searchI
   };
   const quoteHash = cta?.mailHref?.startsWith("#") ? cta.mailHref : cta?.href.startsWith("#") ? cta.href : null;
 
-  return <header className={conversion ? "site-header site-header-conversion" : "site-header"} onMouseLeave={() => setOpen(null)}>
+  return <header className="site-header" onMouseLeave={() => setOpen(null)}>
     <div className="topbar shell">
       {quoteHash ? <HashLink className="header-mail" href={quoteHash} aria-label={t("tripPlanAria")} data-cta-location={cta?.location || "header_mail"}><HeaderMailIcon /></HashLink> : <Link className="header-mail" href="/contact#enquire" scroll={false} aria-label={t("contactAria")}><HeaderMailIcon /></Link>}
       <Link href="/" className="brand" aria-label={t("homeAria")}>
@@ -120,7 +120,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate, searchI
         <Image src="/brand/logo-light.png" alt="" width={160} height={80} className="brand-logo-light" unoptimized />
       </Link>
       <div className="header-contact">
-        {conversion ? <Link href="/yunnan-tour-packages" className="header-quiet-link">{t("journeys")}</Link> : <span>{t("tagline")}</span>}
+        <span>{t("tagline")}</span>
         {cta ? (cta.href.startsWith("#") ? <HashLink className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</HashLink> : <a className="button button-blue" href={cta.href} data-cta-location={cta.location || "header_journey_price"}>{cta.label}</a>) : <EnquireLink className="button button-blue" data-cta-location="header_custom"><span className="header-cta-full">{t("cta")}</span><span className="header-cta-short">{t("cta")}</span></EnquireLink>}
       </div>
       <LocaleSwitcher alternate={alternate} />
@@ -148,7 +148,7 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate, searchI
       <Link href="/contact" onClick={() => setMobileOpen(false)}>{t("contactUs")}</Link>
       <LocaleSwitcher alternate={alternate} />
     </nav> : null}
-    {conversion ? null : <nav className="nav-row" aria-label={t("mainAria")}>
+    <nav className="nav-row" aria-label={t("mainAria")}>
       <div className="shell nav-inner">
         <div className="nav-links">
           <button className={open === "destinations" ? "active" : ""} onClick={() => setOpen("destinations")} onMouseEnter={() => setOpen("destinations")} aria-expanded={open === "destinations"}>{t("destinations")}<span className="nav-chevron" aria-hidden="true" /></button>
@@ -159,9 +159,9 @@ export function SiteHeaderClient({ journeys, cta, conversion, alternate, searchI
         </div>
         <SiteSearch initialQuery={searchInitialQuery} placeholderText={searchPlaceholder} autoOpen={Boolean(searchInitialQuery)} />
       </div>
-    </nav>}
+    </nav>
 
-    {!conversion && open && <div className="mega-menu">
+    {open && <div className="mega-menu">
       {open === "destinations" ? <div className="shell mega-destinations">
         <section><h2>{t("mega.mostPopular")}</h2><div className="mega-columns">{popular.map((item) => <Link key={item} href={destinationHref(item, label(item))}>{label(item)}</Link>)}</div><Link className="mega-outline" href="/china-destinations/yunnan">{t("mega.exploreYunnan")}</Link></section>
         <section><h2>{t("mega.exploreByRegion")}</h2><div className="mega-list">{regions.map((item) => <Link key={item} href={destinationHref(item, label(item))}>{label(item)}</Link>)}</div></section>

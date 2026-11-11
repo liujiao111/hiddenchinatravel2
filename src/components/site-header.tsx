@@ -9,7 +9,7 @@ function navSellingPoint(journey: Journey) {
   return excerpt.length > 0 && excerpt.length <= 72 ? excerpt : journey.frontmatter.route;
 }
 
-export async function SiteHeader({ cta, conversion, alternate, searchInitialQuery, searchPlaceholder }: { cta?: { href: string; label: string; location?: string; mailHref?: string }; conversion?: boolean; alternate?: LocaleAlternate; searchInitialQuery?: string; searchPlaceholder?: string } = {}) {
+export async function SiteHeader({ cta, alternate, searchInitialQuery, searchPlaceholder }: { cta?: { href: string; label: string; location?: string; mailHref?: string }; alternate?: LocaleAlternate; searchInitialQuery?: string; searchPlaceholder?: string } = {}) {
   const lang = await getLocale() as AppLocale;
   const t = await getTranslations({ locale: lang, namespace: "header" });
   const journeys: HeaderJourney[] = getAllJourneys(lang)
@@ -25,5 +25,5 @@ export async function SiteHeader({ cta, conversion, alternate, searchInitialQuer
         : t("tailoredQuote"),
     }));
 
-  return <SiteHeaderClient journeys={journeys} cta={cta} conversion={conversion} alternate={alternate} searchInitialQuery={searchInitialQuery} searchPlaceholder={searchPlaceholder} />;
+  return <SiteHeaderClient journeys={journeys} cta={cta} alternate={alternate} searchInitialQuery={searchInitialQuery} searchPlaceholder={searchPlaceholder} />;
 }

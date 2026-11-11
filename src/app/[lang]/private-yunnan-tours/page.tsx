@@ -205,7 +205,7 @@ const cta = L("Get a Suggested Route & Price");
   const whatsapp = buildWhatsAppUrl(undefined, lang);
 
   return <main className="tailor-preview">
-    <SiteHeader conversion cta={{ href: "#plan", label: cta }} />
+    <SiteHeader cta={{ href: "#plan", label: cta }} />
     <JourneyHero title={L("Private Yunnan Tours, Designed Around You")} eyebrow={L("TAILOR-MADE YUNNAN")} image="/home/hero.webp" imageAlt={L("Yunnan's Jade Dragon Snow Mountain")} description={L("Explore Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La on a private journey shaped around your dates, interests and pace.")} primary={{href:"#plan",label:cta}} secondary={{href:"#routes",label:L("Explore Route Ideas")}} price={L("6-Day Private Yunnan Tour · From US$680 per person")} note={L("Based on two adults sharing one room. Final prices depend on travel dates, group size, hotels and confirmed services.")}/>
     <JourneyFactCards id="glance" title={L("At a glance")} cards={[
       { icon:"calendar", title:L("Flexible Duration"), lines:[L("6–12 Days"),L("A route shaped around your available time, interests and preferred pace.")] },
