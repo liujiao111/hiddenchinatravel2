@@ -2,7 +2,7 @@
 status: published
 translationKey: dali-hidden-gems-off-the-beaten-path
 title: "大理古城之外的小众去处：沙溪、巍山、周城、喜洲与石宝山"
-seoTitle: "大理小众旅行地：沙溪、巍山、喜洲与石宝山（2026）"
+seoTitle: "大理小众景点推荐：沙溪、巍山、周城、喜洲与石宝山"
 excerpt: "走出大理古城的人群。2026 实用指南带你了解沙溪、巍山、周城、喜洲和石宝山，包含实际距离、参考价格与 1—3 天组合方式。"
 metaDescription: "大理周边小众地怎么选？沙溪、巍山、周城扎染、喜洲、石宝山和诺邓的交通、时间、门票与行程建议。"
 coverImage: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
@@ -14,7 +14,7 @@ author:
   picture: "/brand/founder/avatar-joy.webp"
 ogImage:
   url: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
-canonical: "https://hiddenchinatravel.com/dali-hidden-gems-off-the-beaten-path"
+canonical: "https://hiddenchinatravel.com/zh/dali-hidden-gems-off-the-beaten-path"
 keywords:
   - 大理小众景点
   - 大理到沙溪
@@ -26,7 +26,7 @@ keywords:
   - 大理周边游
   - 云南大理怎么玩
 section: "中国行程规划"
-sourceUrl: "https://hiddenchinatravel.com/dali-hidden-gems-off-the-beaten-path"
+sourceUrl: "https://hiddenchinatravel.com/zh/dali-hidden-gems-off-the-beaten-path"
 faqs:
   - question: "沙溪值得从大理一日往返吗？"
     answer: "可以，但公路单程通常约 2—3 小时，取决于接客地点。时间允许，住一晚更有收获。"
@@ -66,7 +66,7 @@ faqs:
 
 ![云南巍山古城中心的星拱楼](/assets/blog/dali-hidden-gems-off-the-beaten-path/weishan-xinggong-tower.webp "巍山星拱楼")
 
-整座古城都可免费步行，两座地标楼也免费：北门的拱辰楼和中心的星拱楼，均可登楼看瓦屋顶全景。街头小吃也是重点——试试“一根面”，一只碗里只有一整根面；想尝鲜，还有炸蚂蚱。
+整座古城都可免费步行，北门的拱辰楼和中心的星拱楼是两座地标；是否开放登楼、是否收费，以现场公告为准。街头小吃也是重点——试试“一根面”，一只碗里只有一整根面；想尝鲜，还有炸蚂蚱。
 
 巍山在大理古城以南约 63 公里。从现代市区下关出发，西南汽车站巴士约每 15 分钟一班，车程约一小时，这一趟不必请司机。
 
@@ -108,7 +108,7 @@ faqs:
 
 ![云南云龙县山谷中的诺邓村落](/assets/blog/dali-hidden-gems-off-the-beaten-path/nuodeng-mountain-village.webp)
 
-诺邓保留着古村风貌，如今已有商店、咖啡餐饮和多家特色民宿。村子位于坡上，中心不通车，最后一段无论怎样都得步行；骡子驮行李，不驮人。入村免费，但从大理古城乘车约 2.5 小时。
+诺邓保留着古村风貌，如今已有商店、咖啡餐饮和多家特色民宿。村子位于坡上，中心不通车，最后一段无论怎样都得步行；当地有时会用骡子驮运行李。入村免费，但从大理古城乘车约 2.5 小时。
 
 这不是轻松的第一次外出，更适合已在中国旅行找到节奏、想走得更深的人，而不是想轻松加个景点的初访者。去过的游客常请当地向导，正因为对方熟悉山路，也能安排从诺邓镇出发的最后一段交通。
 
