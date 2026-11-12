@@ -70,7 +70,7 @@ The [6-day First Encounter](/journeys/kunming-dali-shaxi-lijiang-6-days) finishe
 
 ## The road from Lijiang
 
-The usual transfer is a longer road day, not a high-speed train hop. Build it as a travel day with stops, not as lost time you try to recover with a packed evening.
+For direct transport, trains connect Lijiang and Shangri-La in around 1 hour 10 minutes to 1 hour 50 minutes. If you want to see Tiger Leaping Gorge on the way, keep a full day for a scenic road transfer. Our [Lijiang to Shangri-La transport guide](/lijiang-to-shangri-la) compares trains, buses and private cars. Keep the arrival evening relaxed rather than trying to recover travel time with extra sightseeing.
 
 Typical stops on the published 8-day route:
 

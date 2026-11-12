@@ -70,6 +70,7 @@ export const zhLivePaths = new Set<string>([
   "/independent-travel-china",
   "/kunming-travel-guide",
   "/lijiang-travel-guide",
+  "/lijiang-to-shangri-la",
   "/order-food-china-without-chinese-number",
   "/shangri-la-travel-guide",
   "/shaxi-ancient-town-guide",
