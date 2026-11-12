@@ -1,5 +1,6 @@
 "use client";
 
+import { YunnanContactWidget } from "./yunnan-contact-widget";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { usePathname } from "next/navigation";
@@ -29,6 +30,12 @@ function eligiblePath(path: string) {
 /*  Component                                                          */
 /* ------------------------------------------------------------------ */
 export function FloatingWhatsAppExperiment() {
+  const pathname = usePathname();
+  return pathname.replace(/\/+$/, "") === "/zh/dali-hidden-gems-off-the-beaten-path"
+    ? <YunnanContactWidget /> : <LegacyFloatingWhatsApp />;
+}
+
+function LegacyFloatingWhatsApp() {
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations("floatingChat");
