@@ -1410,6 +1410,9 @@ a.utility-card { color:inherit; }
 .article-image:has(img[src*="/credentials/"]) { aspect-ratio:2000/1454; }
 .article-image img[src*="/credentials/"] { object-fit:contain; background:#fff; }
 .article-image img { object-fit:cover; }
+.article-image:has(img[src*="/lijiang-shangri-la/"]) { aspect-ratio:4/3; }
+.article-image:has(img[src*="yangtze-first-bend-shigu.webp"]) { aspect-ratio:1200/842; }
+.article-image:has(img[src*="dukezong-old-town-shangri-la.webp"]) { aspect-ratio:1080/1089; }
 .article-image:has(img[src*="/wechat-pay-for-foreigners-china/"]),
 .article-image:has(img[src*="why-your-payment-fails-in-china/image-3.webp"]),
 .article-image:has(img[src*="why-your-payment-fails-in-china/image-4.webp"]) {

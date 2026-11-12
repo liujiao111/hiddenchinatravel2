@@ -89,6 +89,8 @@ Short version:
 
 ## Option 1: By Train
 
+![Entrance to Lijiang Railway Station, the departure point for direct trains to Shangri-La](/assets/destinations/yunnan/lijiang-shangri-la/lijiang-railway-station-entrance.webp)
+
 If you just want to get from one city to the other, the train is the easy default. It's quicker than the road, the price is fair, and it avoids road traffic. Severe weather or operational changes can still disrupt rail services, so leave room for connections.
 
 The Lijiang–Shangri-La railway opened in November 2023. There are multiple direct departures each day, with journeys landing somewhere between 1h10min and 1h50min depending on the specific service. Second class runs roughly ¥56–70, first class closer to ¥89–111. Treat both as planning figures, not gospel: the actual fare moves a little by train type and season, so check it for your date.
@@ -96,6 +98,8 @@ The Lijiang–Shangri-La railway opened in November 2023. There are multiple dir
 **Booking**: Foreign travelers can check and book through China Railway's official [12306 platform](/book-china-high-speed-rail-foreigners), through [Trip.com](/go/trip-trains), or via your hotel. Enter your name exactly as it appears on your passport. That passport is your ticket, and you'll need the same one to board.
 
 **Getting to the station**: Lijiang Railway Station sits outside Lijiang Old Town, and large parts of the Old Town are pedestrian-only, so a car may not reach your hotel's front door. Ask your hotel which gate or street is the nearest vehicle-accessible pickup point, and budget 20–50 minutes depending on where you're starting from and how traffic looks. On the Shangri-La side, the station is roughly 2–3 km from Dukezong Old Town. Close enough, though your exact hotel location still decides the last stretch.
+
+![Traditional buildings in Shangri-La near Dukezong Old Town, with snow-covered mountains beyond](/assets/destinations/yunnan/lijiang-shangri-la/dukezong-old-town-shangri-la.webp)
 
 **Who the train suits best**: solo travelers, light packers, anyone who just wants speed, and anyone who'd rather not spend a whole day on the road. It's a weaker fit with several large suitcases, young kids, or anyone with mobility limitations. Those situations usually go smoother door to door in a private car.
 
@@ -114,6 +118,8 @@ This is the straightforward version. Your driver picks you up at an accessible p
 
 Factor in station transfers, waiting time, and luggage handling, and the train's speed edge shrinks fast. A direct private car can end up fairly close in total door-to-door time.
 
+![Black seven-seat MPV with room for a private transfer group](/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp)
+
 ### Scenic Transfer via Tiger Leaping Gorge (~7–9 hours)
 
 For a lot of travelers, this is the actual reason to book a private car rather than the train. A typical route looks like:
@@ -126,6 +132,10 @@ Check current entrance fees and whether reservations are required before you go.
 
 ![The Jinsha River, cliffs and viewing paths at Upper Tiger Leaping Gorge](/assets/destinations/yunnan/tiger-leaping.webp)
 
+Shigu's First Bend of the Yangtze is another possible scenic stop, but it is a detour rather than part of the direct transfer or the standard Tiger Leaping Gorge stop. Ask for it specifically and allow extra time before combining it with other sights.
+
+![The Jinsha River curving around the valley at the First Bend of the Yangtze near Shigu, Lijiang](/assets/destinations/yunnan/lijiang-shangri-la/yangtze-first-bend-shigu.webp)
+
 ### Extended Scenic Route via Haba and Baishuitai (~8–10+ hours)
 
 For travelers with a full day to spend on the road:
@@ -133,6 +143,8 @@ For travelers with a full day to spend on the road:
 **Lijiang → Tiger Leaping Gorge → Haba Village or viewpoint → Baishuitai → Shangri-La**
 
 This is a long day. It suits photographers, repeat visitors, and anyone set on seeing Baishuitai's terraces specifically. It's a poor fit for anyone prone to motion sickness on long drives, young kids, travelers with limited walking stamina, or winter trips where daylight runs short. Trying to also fit in Dukezong Old Town, Songzanlin Monastery, and Napa Lake on the same day is how a good trip turns into an exhausting one. Pick one or two priorities and leave room for the driving itself.
+
+![White mineral terraces and turquoise pools at Baishuitai near Shangri-La](/assets/destinations/yunnan/lijiang-shangri-la/baishuitai-white-water-terraces.webp)
 
 ### What a Private Transfer Should Include
 
@@ -160,6 +172,8 @@ A private driver on this route isn't automatically fluent in English. Many are C
 | Bigger groups | Minibus | Availability for your specific dates |
 
 A 7-seat vehicle normally includes the driver in that seat count; it does not mean seven paying passengers plus luggage. Tell us the actual headcount plus bag count (strollers, wheelchairs, anything bulky included), and we'll check what's realistically available before you book, rather than promising a vehicle size and sorting out the luggage problem at pickup.
+
+![Reclining passenger seats inside a seven-seat MPV](/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-interior.webp)
 
 > **Want to add Tiger Leaping Gorge, or go further to Baishuitai?**
 > Tell us how much walking you're up for and how many hours you have in the day. We'll suggest a route that actually fits, instead of cramming in every stop on the map. [Message us on WhatsApp](https://wa.me/8618880441791?text=Hi%2C%20I%27d%20like%20a%20private%20car%20from%20Lijiang%20to%20Shangri-La%20with%20a%20Tiger%20Leaping%20Gorge%20stop) with your dates and group size.
