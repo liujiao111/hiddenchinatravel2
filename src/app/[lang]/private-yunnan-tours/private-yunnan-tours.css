@@ -223,12 +223,14 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 /* Preserve the original frame for every evidence photo and document. */
 .tailor-preview .real-evidence-image img,.real-evidence-dialog .real-evidence-modal-image img{object-fit:contain!important;object-position:center!important}
 
-/* Keep every frame visible, with a taller gallery layout for documentary evidence. */
-.tailor-preview .real-evidence-grid-planning .real-evidence-image{aspect-ratio:3/4}
+/* Keep every frame visible, with a taller gallery layout for phone screenshots. */
+.tailor-preview .real-evidence-grid-planning{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tailor-preview .real-evidence-grid-planning .real-evidence-image{aspect-ratio:1/1.55}
 .tailor-preview .real-evidence-grid-planning .real-evidence-image img{object-fit:contain!important}
 .tailor-preview .real-evidence-grid-travelers .real-evidence-image img,
-.tailor-preview .real-evidence-grid-vehicles-guides .real-evidence-image img,
+.tailor-preview .real-evidence-grid-vehicles .real-evidence-image img,
 .tailor-preview .real-evidence-grid-hotels .real-evidence-image img{object-fit:contain!important}
+@media(max-width:700px){.tailor-preview .real-evidence-grid-planning{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* Preview section backgrounds: pure white and the site's pale blue, alternating.
    Deep green is reserved for full-width CTA bands. */
