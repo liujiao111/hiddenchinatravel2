@@ -139,32 +139,39 @@ export function YunnanContactWidget() {
     {open && <section ref={panelRef} className={styles.panel} role="dialog" aria-label="咨询云南私人定制旅行">
       <div className={styles.grip} aria-hidden="true" />
       <header className={styles.head}>
-        <span className={styles.kicker}>HIDDEN CHINA TRAVEL · 云南本地经验</span>
-        <button type="button" className={styles.close} onClick={close} aria-label="关闭咨询面板">×</button>
-        <h2>咨询云南私人定制旅行</h2>
-        <p>大理 · 沙溪 · 丽江 · 香格里拉 · 泸沽湖<br/>选择联系方式，获取行程建议与报价。</p>
+        <span className={styles.kicker}>HIDDEN CHINA TRAVEL</span>
+        <button type="button" className={styles.close} onClick={close} aria-label="关闭咨询面板"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+        <h2>规划你的云南之旅</h2>
+        <p>联系 Joy，获取私人行程建议与报价。</p>
       </header>
+      <div className={styles.advisor}>
+        <span className={styles.advisorPortrait}><Image src="/brand/founder/avatar-joy.webp" alt="Joy Liu" width={56} height={64} unoptimized /></span>
+        <div><strong>Joy Liu</strong><span>创始人 · 云南本地旅行规划</span></div>
+        <span className={styles.advisorLanguages}>中文 / English</span>
+      </div>
       <div className={styles.tabs} role="tablist" aria-label="选择联系方式">
-        {(["whatsapp", "wechat"] as const).map(item => <button type="button" key={item} id={`contact-tab-${item}`} role="tab" aria-selected={channel === item} aria-controls={`contact-qr-${item}`} tabIndex={channel === item ? 0 : -1} onClick={() => changeChannel(item)} onKeyDown={e => { if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) { e.preventDefault(); changeChannel(e.key === "Home" ? "whatsapp" : e.key === "End" ? "wechat" : item === "whatsapp" ? "wechat" : "whatsapp", true); } }}>{item === "whatsapp" ? "WhatsApp" : "微信"}</button>)}
+        {(["whatsapp", "wechat"] as const).map(item => <button type="button" key={item} id={`contact-tab-${item}`} role="tab" aria-selected={channel === item} aria-controls={`contact-qr-${item}`} tabIndex={channel === item ? 0 : -1} onClick={() => changeChannel(item)} onKeyDown={e => { if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) { e.preventDefault(); changeChannel(e.key === "Home" ? "whatsapp" : e.key === "End" ? "wechat" : item === "whatsapp" ? "wechat" : "whatsapp", true); } }}>
+          {item === "whatsapp" ? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.4 7.5L3 20.5l1.5-4.8A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8 7.5c0 4 4 8 8 8l1-2.2-3-1-1 1c-1.5-.5-3-2-3.5-3.5l1-1-1-2.5Z"/></svg> : <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M13.5 15a7.7 7.7 0 0 1-5 .1L5 17l.8-3A5.5 5.5 0 0 1 3 9.3C3 6.4 6 4 9.7 4s6.8 2.4 6.8 5.3"/><path d="M21 14c0 2.3-2.4 4.2-5.4 4.2-.7 0-1.4-.1-2-.3L11 19l.6-2.2a3.8 3.8 0 0 1-1.4-2.8c0-2.4 2.4-4.3 5.4-4.3S21 11.6 21 14Z"/></svg>}
+          {item === "whatsapp" ? "WhatsApp" : "微信"}
+        </button>)}
       </div>
       {(["whatsapp", "wechat"] as const).map(item => <div key={item} id={`contact-qr-${item}`} role="tabpanel" aria-labelledby={`contact-tab-${item}`} className={styles.content} hidden={channel !== item}>
-        <div className={`${styles.qr} ${item === "whatsapp" ? styles.whatsappQr : styles.wechatQr}`}>
-          <Image src={`/assets/contact/joy-${item}-qr.jpeg`} alt={item === "whatsapp" ? "扫码与 Joy 在 WhatsApp 聊天" : "扫码添加 Joy 的微信"} width={item === "whatsapp" ? 1320 : 888} height={item === "whatsapp" ? 2868 : 1137} unoptimized />
+        <div className={styles.channelLayout}>
+          <div className={`${styles.qr} ${item === "whatsapp" ? styles.whatsappQr : styles.wechatQr}`}>
+            <Image src={`/assets/contact/joy-${item}-qr.jpeg`} alt={item === "whatsapp" ? "扫码与 Joy 在 WhatsApp 聊天" : "扫码添加 Joy 的微信"} width={item === "whatsapp" ? 1320 : 888} height={item === "whatsapp" ? 2868 : 1137} unoptimized />
+          </div>
+          <div className={styles.channelNotes}>
+            <strong>{item === "whatsapp" ? "扫码联系 Joy" : "添加 Joy 的微信"}</strong>
+            {item === "whatsapp" ? <><p className={styles.desktopHelp}>用手机相机扫一扫，<br/>在 WhatsApp 上沟通。</p><p className={styles.mobileHelp}>用手机浏览？<br/>点击下方直接聊天。</p></> : <><p className={styles.desktopHelp}>打开微信扫一扫，<br/>发送好友申请。</p><p className={styles.mobileHelp}>保存二维码后，<br/>在微信相册中识别。</p></>}
+            <a className={styles.save} href={`/assets/contact/joy-${item}-qr.jpeg`} download={`Joy-${item}-QR.jpeg`} onClick={() => record("contact_qr_download", item)}>保存二维码 <span aria-hidden="true">↓</span></a>
+          </div>
         </div>
-        {item === "whatsapp" ? <>
-          <p className={styles.desktopHelp}>用手机相机扫码，与 Joy 咨询云南行程。</p>
-          <p className={styles.mobileHelp}>正在用手机浏览？<br/>点击下方按钮，直接打开 WhatsApp 聊天。</p>
-          <a className={`button button-primary ${styles.direct}`} href={buildWhatsAppUrl(undefined, "zh")} target="_blank" rel="noopener noreferrer" data-cta-location="floating_whatsapp">直接打开 WhatsApp 聊天 <span aria-hidden="true">→</span></a>
-          <small className={styles.note}>无需先保存号码 · 发送消息后开始沟通</small>
-        </> : <>
-          <p className={styles.desktopHelp}>打开微信扫一扫，添加 Joy 咨询行程。</p>
-          <p className={styles.mobileHelp}>保存二维码 → 微信扫一扫 → 从相册识别<br/>也可以复制微信号，在微信中搜索。</p>
-          <div className={styles.idRow}><div><small>微信号</small><strong>{WECHAT_ID}</strong></div><button type="button" className={styles.copy} onClick={copyWechat}>复制微信号</button></div>
+        {item === "whatsapp" ? <a className={`button button-primary ${styles.direct}`} href={buildWhatsAppUrl(undefined, "zh")} target="_blank" rel="noopener noreferrer" data-cta-location="floating_whatsapp">打开 WhatsApp 聊天 <span aria-hidden="true">↗</span></a> : <>
+          <div className={styles.idRow}><div><small>微信号</small><strong>{WECHAT_ID}</strong></div><button type="button" className={`button button-text ${styles.copy}`} onClick={copyWechat}>{copyStatus === "已复制微信号" ? "已复制 ✓" : "复制微信号"}</button></div>
           <div className={styles.status} role="status">{copyStatus}</div>
         </>}
-        <a className={styles.save} href={`/assets/contact/joy-${item}-qr.jpeg`} download={`Joy-${item}-QR.jpeg`} onClick={() => record("contact_qr_download", item)}>保存二维码</a>
       </div>)}
-      <footer className={styles.footer}>✓ 免费初步咨询 · 看过方案与报价，再决定</footer>
+      <footer className={styles.footer}><p>免费初步咨询，无需立即预订。</p><span>大理 · 沙溪 · 丽江 · 香格里拉 · 泸沽湖</span></footer>
     </section>}
     {!open && nudge && !suppressed && <div className={styles.nudge}><button type="button" aria-label="关闭提示" onClick={() => setNudge(false)}>×</button>正在计划云南旅行？<br/>联系 Joy，获取行程建议与报价。</div>}
     <div ref={actionRef} className={styles.action} style={!open && suppressed ? { visibility: "hidden", pointerEvents: "none" } : undefined}>

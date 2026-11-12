@@ -27,6 +27,16 @@
   --space-6:24px;
   --space-8:32px;
   --section-space:96px;
+  /* Shared editorial/contact variant: human advisor cards and compact overlays. */
+  --font-editorial:Georgia,"Songti SC","STSong","Noto Serif CJK SC",serif;
+  --contact-panel-width:420px;
+  --contact-panel-padding:28px;
+  --contact-qr-size:168px;
+  --contact-overlay-shadow:0 12px 48px rgb(48 51 49 / 16%);
+  --contact-overlay-scrim:rgb(48 51 49 / 28%);
+  --contact-launch-shadow:0 4px 16px rgb(48 51 49 / 12%);
+  --contact-label-radius:24px;
+  --contact-avatar-radius:50%;
   --ink:var(--color-ink); --cream:var(--color-background);
   --sand:var(--color-sand); --green:var(--color-accent); --blue:var(--color-primary);
 }
