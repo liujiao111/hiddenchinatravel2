@@ -21,7 +21,7 @@ function eligiblePath(path: string) {
   const pathname = basePath(path);
   if (/^\/(?:go|api)(?:\/|$)/.test(pathname)) return false;
   if (/^\/(?:china-currency-converter|china-visa-checker|search)(?:\/|$)/.test(pathname)) return false;
-  if (["/booking", "/privacy-policy", "/terms-of-service", "/affiliate-disclosure", "/licensed-operator"].includes(pathname)) return false;
+  if (["/booking", "/whatsapp", "/privacy-policy", "/terms-of-service", "/affiliate-disclosure", "/licensed-operator"].includes(pathname)) return false;
   return true;
 }
 
