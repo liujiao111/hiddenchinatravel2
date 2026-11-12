@@ -30,6 +30,7 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
   const tMobile = await getTranslations({ locale: lang, namespace: "mobileCta" });
   const whatsapp = buildWhatsAppUrl(undefined, lang === "zh" ? "zh" : "en");
   const related = getRelatedArticles(item, 6, lang);
+  const localizedArticlePath = `${lang === "zh" ? "/zh" : ""}/${item.slug}`;
   const articleJsonLd = {
     "@type": "Article",
     headline: frontmatter.title,
@@ -39,16 +40,16 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
     dateModified: frontmatter.dateModified || frontmatter.date,
     author: { "@type": "Person", name: frontmatter.author?.name || "Joy Liu" },
     publisher: { "@type": "Organization", name: "Hidden China Travel", logo: { "@type": "ImageObject", url: "https://hiddenchinatravel.com/brand/logo.webp" } },
-    mainEntityOfPage: `https://hiddenchinatravel.com/${item.slug}`,
+    mainEntityOfPage: `https://hiddenchinatravel.com${localizedArticlePath}`,
   };
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       articleJsonLd,
       breadcrumbList([
-        { name: "Home", href: "/" },
-        { name: "Travel guides", href: "/china-travel-essentials" },
-        { name: frontmatter.title, href: `/${item.slug}` },
+        { name: t("breadcrumbHome"), href: lang === "zh" ? "/zh" : "/" },
+        { name: t("breadcrumbGuides"), href: lang === "zh" ? "/zh/china-travel-essentials" : "/china-travel-essentials" },
+        { name: frontmatter.title, href: localizedArticlePath },
       ]),
       ...(frontmatter.faqs?.length ? [{
         "@type": "FAQPage",
