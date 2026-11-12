@@ -9,6 +9,8 @@ excerpt: Compare direct trains, public buses and private cars from Lijiang to Sh
   luggage advice and altitude planning.
 coverImage: /assets/destinations/yunnan/tiger-leaping.webp
 coverAlt: The Jinsha River and viewing paths at Upper Tiger Leaping Gorge
+heroImage: /assets/destinations/yunnan/lijiang-shangri-la/baishuitai-white-water-terraces.webp
+heroAlt: White mineral terraces and turquoise pools at Baishuitai near Shangri-La
 ogImage:
   url: /assets/destinations/yunnan/tiger-leaping.webp
 date: '2026-11-12'

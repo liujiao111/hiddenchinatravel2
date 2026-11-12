@@ -1875,14 +1875,15 @@ a.utility-card { color:inherit; }
 .proof-carousel-image { position:relative; height:clamp(270px,31vw,390px); overflow:hidden; background:#e8e5de; }
 .proof-carousel-portrait .proof-carousel-image img { object-fit:contain; }
 .proof-carousel-poster .proof-carousel-image { height:clamp(460px,52vw,680px); }
-.vehicle-size-switch,.proof-group-switch { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+.proof-group-switch { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
 .proof-group-switch.journey-proof-tabs { gap:32px; margin-top:8px; margin-bottom:0; border-bottom:1px solid #cfcab8; }
 .proof-group-switch.journey-proof-tabs button { min-height:var(--control-height); padding:0 0 12px; border:0; border-bottom:2px solid transparent; background:transparent; letter-spacing:.14em; }
 .proof-group-switch.journey-proof-tabs button[aria-selected="true"] { background:transparent; color:var(--color-ink); border-bottom-color:var(--color-ink); }
 .journey-proof .journey-proof-grid { border-top:0; padding-top:20px; }
-.vehicle-size-switch button,.proof-group-switch button { min-height:42px; padding:0 16px; border:1px solid var(--color-ink); background:transparent; color:var(--color-ink); font:inherit; font-size:.68rem; font-weight:800; letter-spacing:.08em; cursor:pointer; }
-.vehicle-size-switch button[aria-selected="true"],.proof-group-switch button[aria-selected="true"] { background:var(--color-ink); color:#fff; }
+.proof-group-switch button { min-height:42px; padding:0 16px; border:1px solid var(--color-ink); background:transparent; color:var(--color-ink); font:inherit; font-size:.68rem; font-weight:800; letter-spacing:.08em; cursor:pointer; }
+.proof-group-switch button[aria-selected="true"] { background:var(--color-ink); color:#fff; }
 .proof-carousel-landscape .proof-carousel-image img { object-fit:cover; }
+.proof-carousel-vehicle .proof-carousel-image { height:auto; aspect-ratio:4/3; }
 .proof-carousel figcaption { min-height:110px; padding:20px 26px 12px; }
 .proof-carousel figcaption>span { color:#927647; font-size:.68rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
 .proof-carousel h4 { margin:7px 0; color:var(--color-ink); font-family:Georgia,serif; font-size:1.45rem; font-weight:400; }

@@ -9,7 +9,7 @@ const examples = [
   },
   {
     heading: "A vehicle matched to your party",
-    image: vehicleProof.groups[0].slides[1],
+    image: vehicleProof.groups[0].slides[0],
     description: "Five-seat and seven-seat options are available, selected around your group and luggage. A seven-seat MPV is shown as an example, not a guaranteed brand or model. Your proposal confirms the arranged vehicle and daily driving plan; vehicles or drivers may change between cities.",
   },
   {

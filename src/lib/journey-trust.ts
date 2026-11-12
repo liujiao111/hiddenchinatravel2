@@ -43,29 +43,21 @@ export const driverGuideProof: TrustCopy & { label: string; slides: ProofSlide[]
   slides: localTeamSlides,
 };
 
-export const vehicleProof: TrustCopy & { groups: { id: "five" | "seven"; label: string; carouselLabel: string; slides: ProofSlide[] }[] } = {
+export const vehicleProof: TrustCopy & { groups: { id: "seven"; label: string; carouselLabel: string; slides: ProofSlide[] }[] } = {
   kicker: "02 / YOUR VEHICLE",
   title: "Five or seven seats, matched to your party.",
-  copy: "A seven-seat vehicle gives more room for people and luggage. A five-seat vehicle suits a smaller party. These are examples from the private-vehicle catalog, not a promise of one exact model. The final vehicle is confirmed in your written proposal.",
+  copy: "A seven-seat vehicle gives more room for people and luggage; a five-seat vehicle may suit a smaller party. The photos show one seven-seat MPV example. Your actual vehicle is selected for your group and luggage, then confirmed in your written proposal.",
   groups: [
     {
       id: "seven",
-      label: "7 SEATS",
-      carouselLabel: "Seven-seat vehicle examples",
+      label: "7-SEAT MPV EXAMPLE",
+      carouselLabel: "Seven-seat MPV exterior and interior photos",
       slides: [
-        { src: `${vehicleRoot}/seven-seat-van.webp`, alt: "Example of a seven-seat passenger van, including its exterior and seating", title: "Seven-seat van", detail: "Example · passenger van", copy: "Exterior, captain seats and rear seating." },
-        { src: `${vehicleRoot}/seven-seat-maxus.webp`, alt: "Example of a seven-seat Maxus MPV, cabin and luggage space", title: "Seven-seat MPV", detail: "Example · Maxus", copy: "Cabin space and luggage room for a small private party." },
-        { src: `${vehicleRoot}/seven-seat-interiors.webp`, alt: "Examples of seven-seat MPV exteriors, seating and luggage areas", title: "Seven-seat interiors", detail: "Example · MPV seating", copy: "Additional interior examples. The final vehicle depends on your party and luggage." },
-      ],
-    },
-    {
-      id: "five",
-      label: "5 SEATS",
-      carouselLabel: "Five-seat vehicle examples",
-      slides: [
-        { src: `${vehicleRoot}/five-seat-hongqi.webp`, alt: "Example of a five-seat Hongqi sedan and its rear seats", title: "Five-seat sedan", detail: "Example · Hongqi", copy: "Exterior and rear seating for a smaller party." },
-        { src: `${vehicleRoot}/five-seat-aion.webp`, alt: "Example of a five-seat GAC Aion SUV, passenger seats and front cabin", title: "Five-seat SUV", detail: "Example · GAC Aion", copy: "Another five-seat option, shown outside and inside." },
-        { src: `${vehicleRoot}/five-seat-toyota.webp`, alt: "Example of a five-seat Toyota SUV and its passenger seating", title: "Five-seat SUV", detail: "Example · Toyota", copy: "A further five-seat example from the vehicle catalog." },
+        { src: `${vehicleRoot}/seven-seat-mpv-exterior-three-quarter.webp`, alt: "Black seven-seat MPV photographed from the front and side", title: "Seven-seat MPV · exterior", detail: "Example · three-quarter view", copy: "A full view of the example vehicle." },
+        { src: `${vehicleRoot}/seven-seat-mpv-exterior-front.webp`, alt: "Front view of the black seven-seat MPV", title: "Seven-seat MPV · front", detail: "Example · front view", copy: "A closer look at the same vehicle." },
+        { src: `${vehicleRoot}/seven-seat-mpv-front-seats.webp`, alt: "Driver's seat and front passenger seat inside the seven-seat MPV", title: "Front seats", detail: "Example · front cabin", copy: "Front cabin and seating layout." },
+        { src: `${vehicleRoot}/seven-seat-mpv-dashboard.webp`, alt: "Dashboard and front cabin of the seven-seat MPV", title: "Dashboard", detail: "Example · front cabin", copy: "Dashboard and center console." },
+        { src: `${vehicleRoot}/seven-seat-mpv-captain-seats.webp`, alt: "Two individual passenger seats in the seven-seat MPV", title: "Passenger seating", detail: "Example · second row", copy: "Individual seats in the second row." },
       ],
     },
   ],

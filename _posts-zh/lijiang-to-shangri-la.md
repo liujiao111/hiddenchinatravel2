@@ -7,6 +7,8 @@ metaDescription: 丽江到香格里拉怎么去最方便？火车、大巴、包
 excerpt: 对比丽江到香格里拉的直达火车、公共大巴和私人包车，了解经虎跳峡的观光路线、行李安排及高原行程提醒。
 coverImage: /assets/destinations/yunnan/tiger-leaping.webp
 coverAlt: 虎跳峡上段的金沙江与峡谷观景步道
+heroImage: /assets/destinations/yunnan/lijiang-shangri-la/baishuitai-white-water-terraces.webp
+heroAlt: 香格里拉白水台层叠的白色钙华池与蓝绿色池水
 ogImage:
   url: /assets/destinations/yunnan/tiger-leaping.webp
 date: '2026-11-12'

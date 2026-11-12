@@ -26,6 +26,8 @@ function formatDate(value: string, locale: AppLocale) {
 
 export async function ArticlePage({ item, alternate, lang }: { item: ContentItem; alternate?: LocaleAlternate; lang: AppLocale }) {
   const { frontmatter } = item;
+  const heroImage = frontmatter.heroImage || frontmatter.coverImage;
+  const heroAlt = frontmatter.heroAlt || frontmatter.coverAlt || frontmatter.title;
   const t = await getTranslations({ locale: lang, namespace: "article" });
   const tMobile = await getTranslations({ locale: lang, namespace: "mobileCta" });
   const whatsapp = buildWhatsAppUrl(undefined, lang === "zh" ? "zh" : "en");
@@ -35,7 +37,7 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
     "@type": "Article",
     headline: frontmatter.title,
     description: frontmatter.excerpt,
-    image: frontmatter.coverImage ? `https://hiddenchinatravel.com${frontmatter.coverImage}` : undefined,
+    image: heroImage ? `https://hiddenchinatravel.com${heroImage}` : undefined,
     datePublished: frontmatter.date,
     dateModified: frontmatter.dateModified || frontmatter.date,
     author: { "@type": "Person", name: frontmatter.author?.name || "Joy Liu" },
@@ -66,8 +68,8 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
     <SiteHeader alternate={alternate} />
     <TopicNavigation active={frontmatter.section} lang={lang} />
     <article>
-      <header className={frontmatter.coverImage ? "article-hero has-image" : "article-hero"}>
-        {frontmatter.coverImage && <Image src={frontmatter.coverImage} alt={frontmatter.coverAlt || frontmatter.title} fill priority unoptimized sizes="100vw" />}
+      <header className={heroImage ? "article-hero has-image" : "article-hero"}>
+        {heroImage && <Image src={heroImage} alt={heroAlt} fill priority unoptimized sizes="100vw" />}
         <div className="article-hero-shade" />
         <nav className="breadcrumbs article-breadcrumbs shell" aria-label="Breadcrumb"><Link href="/">{t("breadcrumbHome")}</Link><span>›</span><Link href="/china-travel-essentials">{t("breadcrumbGuides")}</Link><span>›</span><span>{frontmatter.title}</span></nav>
         <div className="article-hero-copy shell">

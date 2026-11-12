@@ -23,6 +23,8 @@ export type ContentFrontmatter = {
   eyebrow?: string;
   coverImage?: string;
   coverAlt?: string;
+  heroImage?: string;
+  heroAlt?: string;
   canonical?: string;
   date?: string;
   dateModified?: string;
