@@ -220,13 +220,14 @@ body.preview-form-visible .preview-sticky-cta{display:none}
   .tailor-preview .real-evidence-heading h2{font-size:clamp(1.9rem,7vw,2.65rem);line-height:1.15}
 }
 
-/* Preserve the original frame for every evidence photo and document. */
+/* Keep full images visible in the dialog and in the other evidence galleries. */
 .tailor-preview .real-evidence-image img,.real-evidence-dialog .real-evidence-modal-image img{object-fit:contain!important;object-position:center!important}
 
-/* Keep every frame visible, with a taller gallery layout for phone screenshots. */
+/* Short previews for phone screenshots; opening a card still shows the full image. */
 .tailor-preview .real-evidence-grid-planning{grid-template-columns:repeat(3,minmax(0,1fr))}
-.tailor-preview .real-evidence-grid-planning .real-evidence-image{aspect-ratio:1/1.55}
-.tailor-preview .real-evidence-grid-planning .real-evidence-image img{object-fit:contain!important}
+.tailor-preview .real-evidence-grid-planning .real-evidence-image{aspect-ratio:4/3}
+.tailor-preview .real-evidence-grid-planning .real-evidence-image img{object-fit:cover!important;object-position:center!important}
+.tailor-preview .real-evidence-grid-planning .real-evidence-item:nth-child(3) img{object-position:center 28%!important}
 .tailor-preview .real-evidence-grid-travelers .real-evidence-image img,
 .tailor-preview .real-evidence-grid-vehicles .real-evidence-image img,
 .tailor-preview .real-evidence-grid-hotels .real-evidence-image img{object-fit:contain!important}
