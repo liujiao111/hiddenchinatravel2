@@ -2557,3 +2557,29 @@ body:has([role="dialog"][aria-modal="true"]) .wa-float {display:none!important}
 .journey-page .journey-manifesto,.journey-page .journey-gallery { background:#e6eef1; }
 .journey-page .journey-practical,.journey-page .journey-proof,
 .journey-page .journey-muslim,.journey-page .journey-inclusions { background:#fff; }
+
+/* Content bands formerly using solid green/dark charcoal.
+   Keep the site's blue buttons, image hero scrims and footer unchanged. */
+.journey-fit,.journey-host,.journey-mid-cta,
+.journeys-tailor-made,.journey-quote-band,.journey-quote-plain,
+.contact-final { background:#e6eef1; color:var(--color-ink); }
+.journey-fit h2,.journey-fit-columns h3,.journey-fit-columns p,
+.journey-host-copy,.journey-host-copy h2,.journey-host-copy blockquote,
+.journey-host-copy p,.journey-host-copy a,.journey-mid-cta h2,
+.journeys-tailor-made h2,.journeys-tailor-made p,
+.journey-quote-plain h3,.journey-quote-plain>p,.journey-quote-plain .journey-quote-contract,
+.journey-quote-band h2,.journey-plan-head p,.journey-plan-points,
+.journey-plan-switch,.journey-quote-links a,
+.contact-final h2,.contact-final p {
+  color:var(--color-ink);
+}
+.journey-fit-columns,.journey-fit-columns>div,
+.journey-fit-columns>div:last-child { background:#fff; }
+.journey-fit-columns p { border-top-color:#dbe3e7; }
+.journey-fit-columns p span,.journey-fit header>span,
+.journey-host-copy>span,.journeys-tailor-made span { color:#376b8d; }
+.journey-host-copy blockquote { border-top-color:#b7cbd8; }
+.journey-host-copy a { border-bottom-color:#9fbfd2; }
+.journey-plan-points span { color:#376b8d; }
+.journey-quote-band .quick-ask-plain-row>label { color:var(--color-ink); }
+.journey-plan-whatsapp,.journey-plan-whatsapp:hover { background:var(--blue); color:#fff; }
