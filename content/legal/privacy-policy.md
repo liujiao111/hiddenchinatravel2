@@ -4,8 +4,8 @@ title: "Privacy Policy"
 seoTitle: "Privacy Policy"
 metaDescription: "Learn what personal information Hidden China Travel collects, how it is used, and the choices available to website visitors."
 canonical: "/privacy-policy"
-dateModified: "2026-10-22"
-lastUpdated: "October 2026"
+dateModified: "2026-11-13"
+lastUpdated: "November 2026"
 ---
 
 Hidden China Travel ("we", "our", or "us") respects your privacy and is committed to protecting your personal information.
@@ -16,7 +16,7 @@ This Privacy Policy explains what information we collect, how we use it, and the
 
 ## Who We Are
 
-Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) handles subsequent quotations, contracting and on-the-ground arrangements. Confirmed services follow the written proposal and contract.
+Hidden China Travel is an independently managed China travel brand founded by Joy Liu. For Yunnan inbound journeys, Hidden China Travel serves as the official international-facing brand and online enquiry channel of Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司). The licensed agency reviews quotations, signs travel contracts, receives tour payments and is responsible for arranging and operating its contracted journeys. Hidden China Travel's brand, website and digital channels remain independently managed.
 
 If you have any questions regarding this policy, please contact:
 
@@ -56,7 +56,7 @@ We use the information you provide to:
 - Improve our website and resources
 - Communicate regarding your request
 
-Enquiry and booking details are used by Yunnan Meizhen International Travel Agency Co., Ltd. to reply and, if you book, to deliver the journey. We do not sell your personal information to third parties.
+Where necessary for the enquiry and requested booking, information may be shared with Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司), the licensed Yunnan travel operator, for quotation, contractual arrangements and tour operation. We will provide appropriate notice and obtain any legally required separate consent before sharing with an independently responsible organization. We do not sell your personal information to third parties.
 
 ---
 
