@@ -190,9 +190,13 @@
     "cta": "Get a Free Route Plan & Quote",
     "exploreJourneys": "Browse Sample Journeys",
     "exploreJourneysMobile": "Explore journeys →",
-    "heroTrustDesktop": "No shopping stops · 20% after the signed contract · 80% after your driver meets you",
-    "heroTrustMobile": "20% after the contract · 80% when your driver meets you",
-    "trustBadges": ["100% Tailor-Made & No Shopping", "20% deposit; refunds follow cancellation policy", "Licensed Local Expert"],
+    "heroTrustDesktop": "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
+    "heroTrustMobile": "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
+    "trustBadges": [
+      "100% Tailor-Made & No Shopping",
+      "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
+      "Licensed Local Expert"
+    ],
     "replyTime": "Usually replies within 15 minutes.",
     "howKicker": "HOW IT WORKS",
     "howHeading": "Planning Your Yunnan Journey Is Simple",
@@ -224,7 +228,7 @@
     "card1Features": [
       "Private vehicle",
       "Driver-guide throughout",
-      "20% deposit, 80% after pickup",
+      "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
       "No shopping stops"
     ],
     "card1ImageAlt": "Boardwalk beside a turquoise lake beneath snow-covered mountains in Yunnan",
@@ -234,7 +238,7 @@
     "card2Features": [
       "Driver-guide throughout",
       "Handpicked hotels",
-      "20% deposit, 80% after pickup",
+      "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
       "No shopping stops"
     ],
     "card2ImageAlt": "Snow-covered mountain peaks beneath a clear blue sky in Yunnan",
@@ -269,7 +273,7 @@
       [
         "03",
         "Licensed local operation",
-        "Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning; Yunnan Meizhen handles subsequent quotations, contracting and local arrangements for Yunnan journeys. The written proposal and contract confirm the services."
+        "Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning; Kunming Dianguoguo International Travel Agency Co., Ltd. handles subsequent quotations, contracting and local arrangements for Yunnan journeys. The written proposal and contract confirm the services."
       ],
       [
         "04",
@@ -299,7 +303,7 @@
     "founderP2": "Living abroad meant becoming the foreign visitor myself. Everyday tasks that local people take for granted, such as making payments, using transportation or understanding unfamiliar systems, suddenly required more preparation and trusted local context.",
     "founderP3": "That experience changed the way I think about travel.",
     "founderP4": "I created Hidden China Travel to help international visitors experience Yunnan with fewer uncertainties, more personal support and enough time to appreciate the places between the famous landmarks.",
-    "founderP5": "I am your travel consultant at Yunnan Meizhen International Travel Agency. I help shape the route, then the agency confirms the contract, receives payment and operates the journey.",
+    "founderP5": "I founded Hidden China Travel and continue to lead the brand, website and international travel planning. For Yunnan bookings, our licensed local partner confirms contracts, payments and tour operations.",
     "founderRole": "Founder and Yunnan Travel Planner",
     "founderStoryLink": "Read Joy’s story →",
     "founderAskLink": "Ask Joy a question →",
@@ -402,15 +406,15 @@
       ],
       [
         "Who operates the journey in Yunnan?",
-        "Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning; Yunnan Meizhen handles subsequent quotations, contracting and local arrangements for Yunnan journeys. The written proposal and contract confirm the services."
+        "Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning; Kunming Dianguoguo International Travel Agency Co., Ltd. handles subsequent quotations, contracting and local arrangements for Yunnan journeys. The written proposal and contract confirm the services."
       ],
       [
         "How do payment and cancellation work?",
-        "After you confirm the written itinerary and travel contract, pay a 20% deposit to {agencyEn}’s corporate account by Alipay, WeChat, or bank transfer. The account name matches the company on the contract. We then book hotels, tickets and the vehicle. The remaining 80% is due after your first pickup, when the journey starts. Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit."
+        "The licensed operator confirms the written itinerary, payment schedule and cancellation policy before you sign. Pay only to the receiving account identified in the travel contract. Your contract and applicable law govern refunds."
       ],
       [
         "What is normally included?",
-        "Inclusions vary by journey but include private transport, a driver-guide throughout, accommodation and selected attraction tickets. Your proposal states what is included and what you pay for separately. The agency holds 2026 travel-agency liability insurance with China Pacific Property Insurance, policy AKUM0AC10625QAAA1R9T, up to RMB 1.8 million per person for injury it is legally responsible for. It applies to you only after your name and passport number are registered. Buy your own international medical and evacuation insurance. It is not included."
+        "Your confirmed proposal explains what is included, including transport, lodging and any attraction tickets. Liability insurance details must be verified with the licensed operator separately; the certificates displayed on the site do not prove insurance coverage. We recommend your own travel medical and evacuation insurance."
       ],
       [
         "How soon will I receive a reply?",
@@ -421,7 +425,7 @@
     "finalText": "You do not need a finished itinerary. Tell us your travel dates or approximate month, number of travelers and the places or experiences that interest you. Joy will help turn those ideas into a practical private journey.",
     "finalWhatsapp": "Chat with Joy on WhatsApp",
     "finalAlt": "Turquoise lake and snow mountains in Yunnan",
-    "finalTrust": "No payment to start planning · 20% after the signed contract · 80% after your driver meets you"
+    "finalTrust": "Payment and cancellation terms are confirmed in your written contract with the licensed operator."
   },
   "journeys": {
     "metaTitle": "Private Yunnan Journeys",
@@ -436,7 +440,7 @@
     "tailoredQuote": "Request a tailored quote",
     "customKicker": "PERSONAL PLANNING SERVICE",
     "customTitle": "Tailor-Made Yunnan",
-    "customText": "Private Journey Designed Around You. None of these routes quite fit? Start with your own dates, interests, preferred pace and comfort level. Joy will discuss the possibilities with you. For Yunnan journeys, quotations, travel contracts, payments and local arrangements are handled by Yunnan Meizhen.",
+    "customText": "Private Journey Designed Around You. None of these routes quite fit? Start with your own dates, interests, preferred pace and comfort level. Joy will discuss the possibilities with you. For Yunnan journeys, quotations, travel contracts, payments and local arrangements are handled by Kunming Dianguoguo International Travel Agency Co., Ltd..",
     "customPoints": [
       "Your preferred duration and route",
       "Private transport, guiding and accommodation",
@@ -462,7 +466,7 @@
     "startPlanning": "Start Planning My Journey",
     "seeDays": "SEE THE DAYS",
     "quoteHeading": "Get a quote for your dates.",
-    "quotePayment": "After you sign, the deposit is 20%. The other 80% is due after your first pickup.",
+    "quotePayment": "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
     "planPoints": [
       "Personalized itinerary",
       "Handpicked hotels",
@@ -522,7 +526,7 @@
       "Day 5": "Blue Moon Valley below Jade Dragon Snow Mountain",
       "Day 6": "A canal lane in Lijiang Old Town"
     },
-    "quoteFoldText": "{price}. A month, group size and hotel style are enough. Joy replies with a range for those dates — nothing is booked. After you sign, the deposit is 20%. The other 80% is due after your first pickup.",
+    "quoteFoldText": "{price}. A month, group size and hotel style are enough. Joy replies with a range for those dates — nothing is booked. Payment dates and cancellation rules are confirmed by the licensed operator in your written contract.",
     "joyReplies": "Joy replies to this note.",
     "whyTitle": "Why travel with us?",
     "factPartyTitle": "Private party",
@@ -534,7 +538,7 @@
     "factJoyTitle": "Planned with Joy",
     "factJoyLines": [
       "Joy Liu plans from Kunming",
-      "Joy handles initial planning; Yunnan Meizhen handles the subsequent quotation, contract and local arrangements",
+      "Joy handles initial planning; Kunming Dianguoguo International Travel Agency Co., Ltd. handles the subsequent quotation, contract and local arrangements",
       "He was born in Yunnan"
     ],
     "factAgencyTitle": "Licensed agency",
@@ -555,11 +559,11 @@
     ],
     "whyHeading": "Planned with Joy. Contracted with a licensed Kunming agency.",
     "whyJoyTitle": "You’ll be planning with Joy.",
-    "whyJoyCopy": "Joy Liu was born in Yunnan and plans from Kunming. Joy handles initial planning; Yunnan Meizhen handles the subsequent quotation, contract and local arrangements.",
+    "whyJoyCopy": "Joy Liu was born in Yunnan and plans from Kunming. Joy handles initial planning; Kunming Dianguoguo International Travel Agency Co., Ltd. handles the subsequent quotation, contract and local arrangements.",
     "whyJoyAlt": "Joy Liu, travel consultant at Hidden China Travel",
     "whyMeetJoy": "Meet Joy →",
     "whyAgencyTitle": "Licensed agency",
-    "whyAgencyCopy": "{agencyEn} ({agencyZh}). Permit {permit}. Office: {address}. The contract and payments are with this agency: 20% after you sign, 80% after your first pickup.",
+    "whyAgencyCopy": "{agencyEn} ({agencyZh}) is the licensed operator of our Yunnan journeys. Permit {permit}. Office: {address}. Contracts, tour payments and confirmed services are handled by the agency under your written agreement.",
     "whyInsurance": "Operator documents →",
     "experiencesHeading": "Signature experiences",
     "experiencesIntroSixDay": "The moments this route is built around: Erhai's west shore, indigo in Zhoucheng, one night in Shaxi, and a full day on Jade Dragon Snow Mountain.",
@@ -592,7 +596,7 @@
     "quoteThisStyle": "Quote this style",
     "priceNoteDefault": "Prices are a guide in USD. Final pricing depends on travel dates, group size, hotel availability and any route adjustments. Your licensed local travel partner confirms the quotation and contract before you decide.",
     "tierQuoteHeading": "Get a quote for the style you prefer.",
-    "tierQuoteText": "{price}. Pick Comfort, Premium or Luxury, then send a month and group size. Joy replies with a range for those dates — nothing is booked. After you sign, the deposit is 20%. The other 80% is due after your first pickup.",
+    "tierQuoteText": "{price}. Pick Comfort, Premium or Luxury, then send a month and group size. Joy replies with a range for those dates — nothing is booked. Payment dates and cancellation rules are confirmed by the licensed operator in your written contract.",
     "includedLabel": "INCLUDED",
     "includedHeading": "What’s included",
     "notIncludedLabel": "NOT INCLUDED",
@@ -802,13 +806,13 @@
       },
       {
         "title": "Your booking terms",
-        "text": "Contract with the licensed agency, 20% deposit, then the balance after your first pickup."
+        "text": "Payment and cancellation terms are confirmed in your written contract with the licensed operator."
       }
     ],
     "termsHeading": "The same booking terms as our other journeys.",
-    "termsIntro": "Confirm the written itinerary and travel contract, pay a 20% deposit, then settle the balance after your first pickup.",
+    "termsIntro": "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
     "plannerHeading": "Tell us what you have in mind.",
-    "plannerText": "A few details are enough to start. Joy helps with initial route planning; Yunnan Meizhen prepares the subsequent written quotation and contract for Yunnan journeys. {replyTime}",
+    "plannerText": "A few details are enough to start. Joy helps with initial route planning; Kunming Dianguoguo International Travel Agency Co., Ltd. prepares the subsequent written quotation and contract for Yunnan journeys. {replyTime}",
     "plannerSample": "Want a sense of how a private Yunnan route can look? After you send the form you can download a sample itinerary. It is an example, not a package you have to follow. First Encounter Yunnan and The Essence of Yunnan are starting points if you already like one of those shapes.",
     "plannerBeyond": "Yunnan is where we begin. If you’re considering other parts of China, add them below and we’ll discuss what is possible. Lugu Lake and other routes that are not listed as ready-made journeys can be designed here.",
     "plannerPrefer": "Prefer a conversation?",
@@ -879,7 +883,7 @@
       [
         "02",
         "We’ll review everything personally",
-        "Joy handles initial enquiries and route planning. The Yunnan Meizhen team handles subsequent quotations, contracting and local arrangements for Yunnan journeys."
+        "Joy handles initial enquiries and route planning. The Kunming Dianguoguo International Travel Agency Co., Ltd. team handles subsequent quotations, contracting and local arrangements for Yunnan journeys."
       ],
       [
         "03",
@@ -1171,7 +1175,7 @@
     "bookingHeadingB": "Clear responsibilities.",
     "bookingSub": "Trust means knowing who you are speaking to, what you are paying for and who will welcome you on the ground.",
     "bookingRoleJoyTitle": "Your travel consultant: Joy",
-    "bookingRoleJoyText": "I listen to your interests and help shape the route during the initial enquiry and planning stage. For Yunnan journeys, the Yunnan Meizhen team handles the subsequent quotation, contract and local arrangements.",
+    "bookingRoleJoyText": "I listen to your interests and help shape the route during the initial enquiry and planning stage. For Yunnan journeys, the Kunming Dianguoguo International Travel Agency Co., Ltd. team handles the subsequent quotation, contract and local arrangements.",
     "bookingAgencyTitle": "Your licensed agency: {agency}",
     "bookingAgencyText": "For Yunnan private journeys, {agencyEn} ({agencyZh}) handles subsequent quotations, travel contracts, payments and on-the-ground arrangements. Its office is {address}; its travel agency permit number is {permit}. Confirmed services follow the written proposal and contract.",
     "bookingAgencyLink": "View the Yunnan operator’s company documents →",
@@ -1187,7 +1191,7 @@
     "faqHeading": "A few things you might be wondering",
     "faqSub": "Good journeys begin with clear answers.",
     "faqDirectQ": "Will I speak with Joy directly?",
-    "faqDirectA": "Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen handles subsequent quotations, contracting and on-the-ground arrangements, as agreed in the written proposal and contract.",
+    "faqDirectA": "Joy handles initial enquiries and route planning. For Yunnan private journeys, Kunming Dianguoguo International Travel Agency Co., Ltd. handles subsequent quotations, contracting and on-the-ground arrangements, as agreed in the written proposal and contract.",
     "faqOperatorQ": "Who operates the trip and handles payment?",
     "faqItineraryQ": "Do I need a finished itinerary?",
     "faqItineraryA": "No. Tell Joy roughly when you want to travel, who is coming and what you enjoy. You can start with an existing journey or discuss adjustments to the route, hotels and pace.",
