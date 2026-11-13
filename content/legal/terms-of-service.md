@@ -4,8 +4,8 @@ title: "Terms of Service"
 seoTitle: "Terms of Service"
 metaDescription: "Review the terms governing use of Hidden China Travel, its travel information, recommendations, and planning services."
 canonical: "/terms-of-service"
-dateModified: "2026-10-22"
-lastUpdated: "October 2026"
+dateModified: "2026-11-13"
+lastUpdated: "November 2026"
 ---
 
 Welcome to Hidden China Travel.
@@ -16,7 +16,7 @@ By accessing or using this website, you agree to the following Terms of Service.
 
 ## About Hidden China Travel
 
-Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) handles subsequent quotations, contracting and on-the-ground arrangements. Confirmed services follow the written proposal and contract.
+Hidden China Travel is an independently managed China travel brand founded by Joy Liu. For Yunnan inbound journeys, Hidden China Travel serves as the official international-facing brand and online enquiry channel of Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司). The licensed agency reviews quotations, signs travel contracts, receives tour payments and is responsible for arranging and operating its contracted journeys. Hidden China Travel's brand, website and digital channels remain independently managed.
 
 The site provides:
 
@@ -74,15 +74,9 @@ Visa and entry information should always be confirmed directly with relevant gov
 
 ## Private Journey Bookings
 
-A website enquiry is not a booking. A booking starts only after you confirm the written itinerary and sign the travel contract with Yunnan Meizhen International Travel Agency Co., Ltd.
+Sending a website enquiry does not create a booking. For Yunnan journeys, the licensed operator is **Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司)**, business permit **L-YN-101848**. The licensed operator reviews and issues the confirmed quotation and signs the travel contract, which identifies the legal seller, payment recipient, services, prices, cancellation and refund conditions.
 
-After that confirmation, a 20% deposit is paid to the agency’s corporate account by Alipay, WeChat, or bank transfer. The account name matches Yunnan Meizhen International Travel Agency Co., Ltd. The remaining 80% is due after your first pickup, when the journey starts.
-
-Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit.
-
-The agency holds 2026 travel-agency liability insurance with China Pacific Property Insurance, policy AKUM0AC10625QAAA1R9T. The [licensed operator](/licensed-operator) page states the limits and the registration condition. Your own international medical and evacuation insurance is not included. Buy it before you travel.
-
-The confirmed proposal states the route, inclusions, exclusions, price and any optional extras. Weather, tickets and transport can still change after booking; alternatives are discussed before they are made.
+You should pay only the account identified by the licensed operator in your written contract. No standard deposit percentage, balance deadline or universal cancellation penalty is promised by this website; the applicable signed contract and mandatory law govern. Insurance coverage must be confirmed separately with the operator. Visit [licensed operator](/licensed-operator) and [booking information](/booking).
 
 ## Travel Information and Planning Advice
 
@@ -119,7 +113,7 @@ Hidden China Travel is not responsible for third-party products, services, prici
 
 ## Limitation of Liability
 
-To the fullest extent permitted by law, Hidden China Travel shall not be liable for:
+The website provides informational content and independent brand communications. Nothing in these terms excludes or limits a licensed tour operator’s statutory or contractual duties. Website information is not a guarantee concerning:
 
 - Travel interruptions
 - Delayed transportation
