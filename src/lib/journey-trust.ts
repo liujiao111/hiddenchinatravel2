@@ -35,7 +35,8 @@ export const licensedOperator = {
 const vehicleRoot = "/assets/partners/vehicles";
 // The previous agency certificate scans must not be shown as the new operator.
 
-// Previous partner guide photos are withheld until the new operator confirms its own team.\nconst localTeamSlides: ProofSlide[] = [];
+// Previous partner guide photos are withheld until the new operator confirms its own team.
+const localTeamSlides: ProofSlide[] = [];
 
 export const driverGuideProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
   kicker: "01 / YOUR DRIVER-GUIDE",
