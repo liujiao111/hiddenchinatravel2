@@ -34,7 +34,11 @@ Hidden China Travel 是该旅行社云南入境游业务的官方海外品牌及
 
 ## 营业执照和旅行社业务经营许可证
 
-旅行社已提供营业执照及旅行社业务经营许可证。网站正式发布证照图片前，可通过[联系我们](/contact)索取副本。证照本身不能证明当前责任险保单已生效。
+以下是云南持证经营方的营业执照与旅行社业务经营许可证。证照可以证明其中所列主体和经营许可信息，但不能据此推断旅行社责任险已生效。
+
+![昆明滇果果国际旅行社有限公司营业执照](/assets/partners/dianguoguo/credentials/business-license.webp)
+
+![昆明滇果果国际旅行社有限公司旅行社业务经营许可证 L-YN-101848](/assets/partners/dianguoguo/credentials/travel-agency-permit.webp)
 
 ## 签约、付款与保险
 
