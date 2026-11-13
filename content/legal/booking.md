@@ -42,6 +42,6 @@ Hidden China Travel is an independently managed China travel brand and the offic
 
 ## Travel insurance
 
-The standard travel agency liability insurance **process** includes registering each traveler using their real name and passport information through the required tourism safety system before departure; agency liability coverage is distinct from your own personal travel and medical insurance. Medical treatment for illness and altitude sickness, and international evacuation, should not be assumed covered by an agency liability policy. Buy your own suitable travel medical and emergency evacuation insurance.
+Travel-agency liability insurance is included in your Yunnan journey and arranged by the licensed tour operator. Applicable policy terms, insurer and coverage will be explained by the operator before booking confirmation. Travelers are registered using their real names and passport details as required.
 
-**The new operator's current policy number, insurer, benefit limits and effective dates have not yet been independently confirmed.** The previous operator's insurance documents are not used as proof of coverage for this operator. Ask the licensed agency for applicable insurance details before travel.
+Agency liability insurance is distinct from personal travel medical and emergency evacuation insurance. We recommend arranging your own suitable cover. The previously contracted operator's policy is not presented as evidence of the current operator's cover.
