@@ -16,7 +16,7 @@ export const driverGuideCopy = {
 
 export const insuranceCopy = {
   inclusion: "Your own international travel insurance, bought before you travel",
-  full: "Travel agency liability insurance is arranged by the licensed operator. Each traveler must be registered with their real name and passport details under applicable tourism safety requirements before coverage can apply. The new operator’s current insurance policy number, insurer and benefit limits are being verified; the former operator’s policy is not evidence of this operator’s coverage. Travelers should buy their own medical and evacuation insurance, as illness and altitude sickness are not automatically covered.",
+  full: "Travel-agency liability insurance is included in the Yunnan journey and arranged by the licensed operator. The operator will provide the applicable insurer, policy terms and coverage details before the booking is confirmed. Travelers are registered with their real name and passport information as required. Agency liability coverage is not a substitute for personal travel medical or emergency evacuation insurance.",
 } as const;
 
 export const paymentCopy = {
