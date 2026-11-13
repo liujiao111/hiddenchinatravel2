@@ -327,3 +327,11 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .package-compare-cards .journey-card-copy>span{font-size:.68rem}
 @media(max-width:900px){.tailor-preview .package-compare-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.tailor-preview .package-compare-cards{grid-template-columns:1fr}.tailor-preview .package-compare-cards .journey-card{min-height:390px}.tailor-preview .package-compare-cards .journey-card-copy{padding:24px}}
+
+/* Match the canonical private-tour section palette; keep image overlays intact. */
+.tailor-preview .preview-real-proof,
+.tailor-preview .preview-host { background:#e6eef1; }
+.tailor-preview .preview-payment-grid p { background:#fff; }
+.tailor-preview .preview-proof-item,
+.tailor-preview .preview-enquiry,
+.tailor-preview .preview-trust-grid article { background:#fff; }
