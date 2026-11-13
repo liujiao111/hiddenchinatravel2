@@ -189,9 +189,9 @@ faqs:
   - question: "Does the driver-guide come into the attractions with us?"
     answer: "The driver-guide looks after transport, route coordination and local context. This is not a separate attraction lecturer inside every site. A specialist site guide can be added in your proposal."
   - question: "How do payment and cancellation work?"
-    answer: "After you confirm the written itinerary and travel contract, pay a 20% deposit to Yunnan Meizhen International Travel Agency Co., Ltd. by Alipay, WeChat, or bank transfer. The account name matches the company on the contract. The deposit is refundable. The remaining 80% is due after your first pickup, when the journey starts."
+    answer: "After confirming the written itinerary and signing your travel contract with Kunming Dianguoguo International Travel Agency Co., Ltd., pay a 20% deposit to the named corporate account. The remaining 80% is due after the first pickup. Cancellations more than 7 days before departure qualify for a deposit refund minus unrecoverable hotel or ticket charges; cancellations within 7 days retain the deposit subject to the signed agreement and mandatory law."
   - question: "Is travel insurance included?"
-    answer: "Your own international medical and evacuation insurance is not included. Buy it before you travel. The agency holds a separate 2026 liability policy with China Pacific Property Insurance, number AKUM0AC10625QAAA1R9T, up to RMB 1.8 million per person for injury the agency is legally responsible for. It applies after your name and passport number are registered. Ask Yunnan Meizhen for the applicable policy details with your written quotation."
+    answer: "Your own international medical and evacuation insurance is not included. The licensed agency arranges applicable agency liability insurance; guests must be registered with their real name and passport information before coverage can apply. The new operator’s insurer, policy number, coverage limits and dates should be confirmed with your written quotation. The previous agency’s insurance policy is not evidence of this operator’s coverage."
   - question: "Can the itinerary be adjusted?"
     answer: "This is a reference itinerary, not a fixed package. We can redesign the route, visits, pace, hotel category and included services around your dates, interests, mobility and budget. Any price change is shown in the written quotation before you book."
   - question: "Is US$799 the price per day?"
@@ -205,7 +205,7 @@ faqs:
   - question: "What language is the service in?"
     answer: "Chinese- and English-speaking driver-guide service is included. One dedicated driver-guide serves your group throughout; choose Chinese- or English-speaking service at the same price. Other languages need to be confirmed in advance."
   - question: "Who provides the contract and operates the trip?"
-    answer: "Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) handles subsequent quotations, contracting and on-the-ground arrangements. Confirmed services follow the written proposal and contract."
+    answer: "Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning. For Yunnan private journeys, Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司) handles subsequent quotations, contracting and on-the-ground arrangements. Confirmed services follow the written proposal and contract."
 ---
 
 ## Why this journey
