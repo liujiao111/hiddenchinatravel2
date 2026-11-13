@@ -2533,3 +2533,27 @@ body:has([role="dialog"][aria-modal="true"]) .wa-float {display:none!important}
   body:has(.journey-mobile-cta:not(.ask-bar-hidden)) .wa-float,
   body:has(.article-mobile-ask:not(.ask-bar-hidden)) .wa-float {display:none!important}
 }
+
+
+/* 2026-11-13: Unified content-section palette.
+   Based on /zh/private-yunnan-tours: white or pale blue (#e6eef1).
+   Photo heroes, image overlays, buttons and semantic alerts retain contrast. */
+:root { --color-sand:#e6eef1; --color-surface-soft:#e6eef1; --journey-mist:#e6eef1; }
+.about-intro,.journey-manifesto,.journey-gallery,.contact-alternatives,.contact-method-grid,
+.contact-form-section,.journey-glance,.journey-assurance,.journey-faq,
+.journey-muslim,.journey-practical-tabs,.journey-private-points,
+.journey-support-grid,.journey-booking-notes-compact { background:#e6eef1; }
+.about-feature,.contact-founder,.contact-questions,.journey-practical,
+.journey-price-module,.journey-proof,.journey-overview,.journey-experiences,
+.journey-inclusions,.journey-itinerary,.journey-fold-ask { background:#fff; }
+.journey-practical-tabs button[aria-selected="true"],.journey-private-points article,
+.journey-support-grid article,.journey-muslim-grid article,.journey-inclusion-grid>div {
+  background:#fff;
+}
+.booking-page .booking-process,.booking-page .booking-cancellations { background:#e6eef1; }
+.booking-page .booking-payment,.booking-page .booking-operator { background:#fff; }
+.booking-page .booking-close { background:#e6eef1; color:var(--color-ink); }
+.booking-page .booking-close h2,.booking-page .booking-close p { color:var(--color-ink); }
+.journey-page .journey-manifesto,.journey-page .journey-gallery { background:#e6eef1; }
+.journey-page .journey-practical,.journey-page .journey-proof,
+.journey-page .journey-muslim,.journey-page .journey-inclusions { background:#fff; }
