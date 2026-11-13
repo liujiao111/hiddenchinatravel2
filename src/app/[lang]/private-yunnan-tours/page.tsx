@@ -133,7 +133,7 @@ const chineseCopy: Record<string,string> = {
   "Yunnan-rooted route planning": "来自云南的本地路线规划",
   "Route advice informed by local knowledge of seasons, travel times and the real pace between stops": "综合季节、车程和实际游览节奏提供本地路线建议",
   "Planning backed by local operations": "本地团队协调执行",
-  "Joy helps with the initial route; our licensed Yunnan operator’s team coordinates booking and delivery": "Joy 协助前期路线沟通，云南美珍国际旅行社的持证团队负责预订与履约安排",
+  "Joy helps with the initial route; our licensed Yunnan operator’s team coordinates booking and delivery": "Joy 协助前期路线沟通，昆明滇果果国际旅行社有限公司的持证团队负责预订与履约安排",
   "Licensed tour operator": "持证旅行社",
   "Travel contract and payment with Kunming Dianguoguo International Travel Agency Co., Ltd.": "由昆明滇果果国际旅行社有限公司签约及收款",
   "Permit L-YN-101848": "旅行社许可证 L-YN-101848",
