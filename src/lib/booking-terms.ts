@@ -1,7 +1,7 @@
 import { licensedOperator } from "@/lib/journey-trust";
 
 export const brandIdentity = {
-  short: "Hidden China Travel is a travel-planning brand founded by Joy Liu.",
+  short: "Hidden China Travel is an independent China travel brand founded by Joy Liu and the official international-facing brand for our licensed partner’s Yunnan inbound journeys.",
   consultant: `Joy handles initial enquiries and route planning. For Yunnan private journeys, ${licensedOperator.nameEn} handles subsequent quotations, contracting and on-the-ground arrangements, as agreed in the written proposal and contract.`,
   footer: `Yunnan tour operator: ${licensedOperator.nameEn} · Permit ${licensedOperator.permitNumber} · ${licensedOperator.unifiedSocialCreditCode}`,
   address: `Yunnan operator’s office: ${licensedOperator.addressEn} · ${licensedOperator.addressZh}`,
@@ -16,7 +16,7 @@ export const driverGuideCopy = {
 
 export const insuranceCopy = {
   inclusion: "Your own international travel insurance, bought before you travel",
-  full: "The agency holds 2026 travel-agency liability insurance with China Pacific Property Insurance, policy AKUM0AC10625QAAA1R9T, up to RMB 1.8 million per person for injury it is legally responsible for. It applies to you only after your name and passport number are registered. Buy your own international medical and evacuation insurance. It is not included.",
+  full: "Travel agency liability insurance is arranged by the licensed operator. Each traveler must be registered with their real name and passport details under applicable tourism safety requirements before coverage can apply. The new operator’s current insurance policy number, insurer and benefit limits are being verified; the former operator’s policy is not evidence of this operator’s coverage. Travelers should buy their own medical and evacuation insurance, as illness and altitude sickness are not automatically covered.",
 } as const;
 
 export const paymentCopy = {
@@ -28,7 +28,7 @@ export const paymentCopy = {
 } as const;
 
 export const cancellationCopy = {
-  full: "Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit.",
+  full: "Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit, subject to mandatory applicable law and the signed tour contract.",
 } as const;
 
 export const contractCopy = {
@@ -47,7 +47,7 @@ export const operatorFaq = {
 
 export const bookingSteps = [
   ["01", "Share your plans", "Send your dates, group size and what you would like the journey to feel like."],
-  ["02", "Review the written proposal", "Joy helps shape the route. Yunnan Meizhen prepares the written itinerary, inclusions and quotation for you to review before booking."],
+  ["02", "Review the written proposal", "Joy helps shape the route. The licensed Yunnan operator confirms the written itinerary, inclusions and quotation for you to review before booking."],
   ["03", "Confirm and pay the deposit", "Sign the travel contract with the licensed agency and pay a 20% deposit to its corporate account."],
   ["04", "Travel, then settle the balance", "Hotels, tickets and the vehicle are arranged after the deposit. The remaining 80% is due after your first pickup."],
 ] as const;
