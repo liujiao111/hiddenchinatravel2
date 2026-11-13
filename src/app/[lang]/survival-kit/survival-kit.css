@@ -94,3 +94,8 @@
   .kit-checklist { padding:20px; }
   .kit-journey-cta { padding:70px 20px; }
 }
+
+/* Alternate white and light-blue sections, not cream/olive. */
+.kit-stage { background:#fff; }
+.kit-stage:nth-of-type(even),.kit-guide-note,.kit-departure,.kit-faq { background:#e6eef1; }
+.kit-connection-card,.kit-option,.kit-checklist { background:#fff; }
