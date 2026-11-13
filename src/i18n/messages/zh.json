@@ -294,7 +294,7 @@
     "storiesEyebrow": "游客故事",
     "storiesHeading": "他们记住了什么",
     "storiesIntro": "来自私家团客人的真实反馈。你出行日期的司机兼向导，以书面方案中确认的人选为准。",
-    "storiesNote": "部分姓名做了缩写处理，部分反馈经翻译和编辑以便阅读。",
+    "storiesNote": "部分姓名做了缩写，部分反馈经过翻译和整理，以便阅读。",
     "storiesArchive": "阅读更多游客故事",
     "founderKicker": "认识你的旅行规划师",
     "founderHeading": "生于云南，也走过世界",
@@ -507,7 +507,7 @@
     "chatWhatsapp": "更方便用 WhatsApp？给 Joy 留言 →",
     "whatsappMessage": "你好 Joy，我对「{title}」这条路线感兴趣。出行日期是____，同行____人。",
     "guestProofKicker": "真实客人留影",
-    "guestProofCaption": "摄于海拔 4,506 米观景平台与蓝月谷。这些照片不与某条具名评价对应。",
+    "guestProofCaption": "照片摄于 4,506 米观景平台与蓝月谷，来自真实客人行程，不对应页面上某条具体的评价。",
     "guestProofSlides": [
       {
         "alt": "一行私家团客人在玉龙雪山冰川公园 4,506 米观景平台",
@@ -550,11 +550,11 @@
     "factGuestTitle": "客人怎么说",
     "factGuestWithStories": [
       "来自这条路线上的真实客人",
-      "你的司机兼向导会在方案中具名",
+      "你的司机兼向导会在方案里写明是谁",
       "评价见本页下方"
     ],
     "factGuestNoStories": [
-      "司机兼向导会在书面方案中具名",
+      "司机兼向导会在书面方案里写明",
       "你出行日期的具体人选在方案中确认"
     ],
     "whyHeading": "Joy 为你规划，昆明持牌旅行社签约。",
@@ -583,8 +583,8 @@
     "theDayLabel": "当日安排",
     "testimonialsEyebrow": "客人评价",
     "testimonialsHeading": "他们记住了什么",
-    "testimonialsIntro": "来自这条路线上客人的真实留言。你出行日期的司机兼向导，会在方案中具名。",
-    "testimonialsIntroGeneric": "来自云南私家之旅客人的真实留言。你出行日期的司机兼向导，会在方案中具名。",
+    "testimonialsIntro": "来自这条路线上客人的真实留言。你出行日期的司机兼向导，会在方案里写明是谁。",
+    "testimonialsIntroGeneric": "来自云南私家之旅客人的真实留言。你出行日期的司机兼向导，会在方案里写明是谁。",
     "testimonialsNote": "姓名可能经过简写，部分留言为便于阅读做了翻译与润色。",
     "priceKicker": "价格",
     "pricingHeadingDefault": "选择你喜欢的酒店档次",
@@ -1529,8 +1529,8 @@
     "companyDocuments": "查看公司文件",
     "registry": "在 gsxt.gov.cn 查询公司",
     "privacy": "我们如何处理隐私",
-    "tripadvisorText": "这些记录旁没有 Tripadvisor 评分。这些是真实行程中的真实记录。",
-    "googleText": "本页没有 Google 评分。若能完整读取到的档案，其链接会放在这里。",
+    "tripadvisorText": "这些记录旁没有 Tripadvisor 评分，都是真实行程里留下的记录。",
+    "googleText": "本页没有 Google 评分。如果我们能读取到完整的档案，链接会放在这里。",
     "ctaTitle": "告诉 Joy 谁在旅行。",
     "ctaText": "几个日期，或者只是你想让这趟旅行的感觉。你会先看到书面路线，再决定是否付款。",
     "ctaAlt": "洱海岸边一只系泊小船上的吉他手",
