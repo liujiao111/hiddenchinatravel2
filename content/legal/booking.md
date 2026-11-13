@@ -3,7 +3,7 @@ type: legal
 title: "Booking & Payment Information"
 eyebrow: "Booking & service"
 seoTitle: "Booking & Payment Information"
-metaDescription: "How to request, confirm and book a private Yunnan journey with the licensed travel operator behind Hidden China Travel."
+metaDescription: "Review private Yunnan journey booking terms: 20% deposit, 80% after pickup, written tour contract, cancellations and refunds."
 canonical: "/booking"
 dateModified: "2026-11-13"
 ogImage:
@@ -11,25 +11,37 @@ ogImage:
 lastUpdated: "November 2026"
 ---
 
-Plan a private Yunnan journey with Hidden China Travel. We first discuss your travel needs; you review the licensed operator's written itinerary and quotation before making a booking decision.
+You receive a written itinerary, included services and a confirmed quotation before deciding to book. Hidden China Travel is an independent international travel brand; Yunnan tours are contracted and operated by **Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司)**, travel agency permit **L-YN-101848**.
 
 ## How booking works
 
-1. **Share your plans.** Tell Joy your travel dates, party size and preferences through the website, email or WhatsApp.
-2. **Review the proposal.** The licensed agency reviews and confirms a written itinerary, inclusions, price and availability.
-3. **Sign your contract.** Book only after confirming the written terms with **Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司)**, travel agency permit **L-YN-101848**.
-4. **Receive confirmation.** The agency confirms required payments, supplier reservations, pickup details and any changes in writing.
+1. **Share your plans.** Tell Joy your dates, number of travelers and travel preferences.
+2. **Review your proposal.** The licensed operator confirms your written itinerary, inclusions and quotation. You may request adjustments before booking.
+3. **Confirm and pay the deposit.** Sign the travel contract with the licensed agency and pay the **20% deposit** to its corporate account. Hotels, tickets and the vehicle are arranged after the deposit.
+4. **Begin your journey.** Your private pickup starts the trip. The remaining **80% is paid after your first pickup** at the place set out in your proposal.
 
 ## Payment
 
-The agency named in your signed travel contract specifies its official receiving account, payment methods, deposit and balance deadlines. **Do not send payments to an account that does not match the agreed contractual payment recipient.** The deposit and balance schedule can differ depending on the confirmed itinerary and contract; no universal 20%/80% schedule is promised on this website.
+- **20% deposit** after you agree to the written itinerary and sign the tour contract.
+- **80% remaining balance** after your first pickup, when the journey starts.
+
+Pay by Alipay, WeChat or bank transfer to the licensed agency's designated corporate account. The receiving company name should match the agreed contractual payment recipient. The final price and inclusions are confirmed in writing.
 
 ## Changes & cancellations
 
-Cancellation, refunds, supplier non-refundable charges and any change fees are governed by the written tour contract and applicable mandatory law, not by an automatic site-wide 7-day penalty rule. Please review the policy before making any payment. If you already booked under a prior agency contract, that original contract still applies unless changed by a lawful agreement.
+The following seven-day period is measured against the journey's scheduled departure date:
+
+- **More than 7 days before departure:** refund the deposit minus hotel or ticket charges already booked that cannot be recovered.
+- **7 days or fewer before departure:** the deposit is retained, subject to the signed travel contract and any mandatory consumer protection or tourism law that overrides these standard terms.
+
+If weather, ticket availability or transport requires a change, the agency discusses alternatives before proceeding. The signed contract governs the confirmed booking and legally required refunds.
 
 ## Your licensed travel operator
 
-Hidden China Travel is an independent travel brand and the official international-facing brand and online enquiry channel for the Yunnan inbound travel business of **Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司)**. Joy assists with enquiries and route preferences; the licensed operator confirms quotations, contracts, payments and tour operations. [View the licensed operator's details](/licensed-operator).
+Hidden China Travel is an independently managed China travel brand and the official international-facing brand and online enquiry channel for the Yunnan inbound travel services of **Kunming Dianguoguo International Travel Agency Co., Ltd.** Joy helps with initial trip planning; the licensed agency confirms the quote, contracts, takes tour payments and operates the journey. [View agency credentials](/licensed-operator).
 
-The uploaded business and travel agency permits do not themselves establish the operator's liability insurance policy. The operator should provide applicable insurance details before departure. We recommend separate travel medical and evacuation insurance.
+## Travel insurance
+
+The standard travel agency liability insurance **process** includes registering each traveler using their real name and passport information through the required tourism safety system before departure; agency liability coverage is distinct from your own personal travel and medical insurance. Medical treatment for illness and altitude sickness, and international evacuation, should not be assumed covered by an agency liability policy. Buy your own suitable travel medical and emergency evacuation insurance.
+
+**The new operator's current policy number, insurer, benefit limits and effective dates have not yet been independently confirmed.** The previous operator's insurance documents are not used as proof of coverage for this operator. Ask the licensed agency for applicable insurance details before travel.
