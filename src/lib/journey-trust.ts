@@ -40,7 +40,7 @@ const vehicleRoot = "/assets/partners/vehicles";
 export const driverGuideProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
   kicker: "01 / YOUR DRIVER-GUIDE",
   title: "A person who knows the route",
-  copy: "A Chinese- or English-speaking driver-guide can be arranged as specified in the written proposal. The licensed operator will confirm the actual person, language and scope before booking. Previous partner guide portraits are not presented as the current operator’s staff.",
+  copy: "A Chinese- or English-speaking driver-guide can be arranged as specified in the written proposal. The licensed operator will confirm the actual person, language and scope before booking.",
   label: "Local team profiles",
   slides: localTeamSlides,
 };
