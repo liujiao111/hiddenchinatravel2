@@ -31,7 +31,7 @@ export const licensedOperator = {
 
 const teamRoot = "/assets/partners/meizhen";
 const vehicleRoot = "/assets/partners/vehicles";
-const credentialsRoot = "/assets/partners/meizhen";
+// The previous agency certificate scans must not be shown as the new operator.
 
 const localTeamSlides: ProofSlide[] = [
   { src: `${teamRoot}/guides/zhang-zihang.webp`, alt: "Portrait of Zhang Zihang", title: "Zhang Zihang (Jason)", detail: "English-speaking driver-guide · Final assignment depends on your dates", copy: "A profile from the local team. The person on your journey is confirmed in writing." },
@@ -149,10 +149,7 @@ export const muslimFriendly = {
 
 export const operatorCredentials: TrustCopy & { documents: CredentialDocument[] } = {
   kicker: "THE LICENSED AGENCY",
-  title: "Company documents you can inspect",
-  copy: `${licensedOperator.nameEn} (${licensedOperator.nameZh}) handles subsequent quotations, contracting and local arrangements for Hidden China Travel’s Yunnan private journeys. The office is ${licensedOperator.addressEn} (${licensedOperator.addressZh}). It issues the travel contract, receives payment to its corporate account and operates the journey. Its travel agency permit number is ${licensedOperator.permitNumber}. Its unified social credit code is ${licensedOperator.unifiedSocialCreditCode}.`,
-  documents: [
-    { href: `${credentialsRoot}/credentials/business-license.jpg`, src: `${credentialsRoot}/credentials/business-license.jpg`, alt: `Business license of ${licensedOperator.nameEn}`, label: "View business license ↗", width: 2000, height: 1454 },
-    { href: `${credentialsRoot}/credentials/travel-agency-permit.jpg`, src: `${credentialsRoot}/credentials/travel-agency-permit.jpg`, alt: `Travel agency business permit ${licensedOperator.permitNumber} for ${licensedOperator.nameEn}`, label: "View travel agency permit ↗", width: 2000, height: 1434 },
-  ],
+  title: "Licensed operator details",
+  copy: `${licensedOperator.nameEn} (${licensedOperator.nameZh}) is the licensed operator of Yunnan journeys. Permit ${licensedOperator.permitNumber}; unified social credit code ${licensedOperator.unifiedSocialCreditCode}. It confirms quotations, signs travel contracts, receives payments and organizes the contracted tours. Newly supplied certificate images will appear here after publication-ready files have been uploaded.`,
+  documents: [],
 };
