@@ -16,12 +16,16 @@ export type CredentialDocument = {
 };
 
 export const licensedOperator = {
-  nameEn: "Yunnan Meizhen International Travel Agency Co., Ltd.",
-  nameZh: "云南美珍国际旅行社有限公司",
-  permitNumber: "L-YN-1017500",
-  unifiedSocialCreditCode: "91530111MACHXW95XT",
-  addressEn: "Room 1915, Floor 19, Building 4, Dadu Motian Shopping Center, Xiaobanqiao Subdistrict, Guandu District, Kunming, Yunnan",
-  addressZh: "云南省昆明市官渡区小板桥街道大都摩天购物中心四栋19楼1915室",
+  nameEn: "Kunming Dianguoguo International Travel Agency Co., Ltd.",
+  nameZh: "昆明滇果果国际旅行社有限公司",
+  permitNumber: "L-YN-101848",
+  unifiedSocialCreditCode: "91530111MAE1HH0X2K",
+  addressEn: "Room 12-B-05, 12/F, Tower A, Yunnan Chengtou Building, No. 400 Minhang Road, Guanshang Subdistrict, Guandu District, Kunming, Yunnan, China",
+  addressZh: "云南省昆明市官渡区关上街道办事处民航路400号云南城投大厦A座12楼12-B-05",
+  legalRepresentativeZh: "段振涛",
+  businessScopeEn: "Domestic tourism; inbound tourism",
+  businessScopeZh: "境内旅游业务；入境旅游业务",
+  permitIssueDate: "2026-01-23",
   creditRegistryUrl: "https://www.gsxt.gov.cn/",
 } as const;
 
