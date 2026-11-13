@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { licensedOperator } from "@/lib/journey-trust";
 import { siteConfig } from "@/lib/site-config";
@@ -14,6 +14,7 @@ export function ContentCta() {
 
 export function ContentFooter() {
   const t = useTranslations("footer");
+  const isZh = useLocale() === "zh";
   const agencyValues = {
     agencyEn: licensedOperator.nameEn,
     agencyZh: licensedOperator.nameZh,
@@ -33,6 +34,8 @@ export function ContentFooter() {
           <p className="footer-origin">{t("origin")}</p>
           <p className="footer-origin">{t("companyLine", agencyValues)}</p>
           <p className="footer-origin">{t("address", agencyValues)}</p>
+          <p className="footer-origin">{isZh ? `法定代表人：${licensedOperator.legalRepresentativeZh} · 许可业务：${licensedOperator.businessScopeZh}` : `Legal representative: ${licensedOperator.legalRepresentativeZh} · Licensed scope: ${licensedOperator.businessScopeEn}`}</p>
+          <p className="footer-origin">{isZh ? "旅游投诉：" : "Tourism complaints: "}<a href="tel:087112345">{licensedOperator.tourismComplaintHotline}</a> · <a href="https://www.mct.gov.cn/hdjl/12318whscjb/" target="_blank" rel="noopener noreferrer">{isZh ? "文旅投诉平台" : "Official tourism complaint portal"}</a></p>
           <p className="footer-origin"><a href={licensedOperator.creditRegistryUrl} target="_blank" rel="noopener noreferrer">{t("registry")}</a></p>
           <nav className="footer-social" aria-label="Social media">
             <a href={siteConfig.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
