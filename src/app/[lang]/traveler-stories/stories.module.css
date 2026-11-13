@@ -157,3 +157,8 @@
 @media (prefers-reduced-motion: reduce) {
   .page :global(.button) { transition: none; }
 }
+
+/* Editorial sections follow the main private-tour blue/white rhythm. */
+.page,.places,.details,.trust { background:#fff; }
+.notes,.why,.privacyNote { background:#e6eef1; }
+.subnav { background:rgba(255,255,255,.96); }
