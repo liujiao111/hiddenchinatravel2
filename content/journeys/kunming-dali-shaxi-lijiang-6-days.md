@@ -227,4 +227,4 @@ It may not be the right fit if you want as many sights as possible, a fast coach
 
 ## Your own party, with the driving arranged
 
-You can visit Dali, Shaxi and Lijiang on your own. The difference is who arranges the train, the mountain tickets and the driving. On this journey that work sits with Yunnan Meizhen, the licensed agency in Kunming. You still travel only with your own party.
+You can visit Dali, Shaxi and Lijiang on your own. The difference is who arranges the train, the mountain tickets and the driving. On this journey that work sits with Kunming Dianguoguo International Travel Agency Co., Ltd., the licensed operator in Kunming. You still travel only with your own party.
