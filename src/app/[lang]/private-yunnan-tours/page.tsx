@@ -133,10 +133,10 @@ const chineseCopy: Record<string,string> = {
   "Yunnan-rooted route planning": "来自云南的本地路线规划",
   "Route advice informed by local knowledge of seasons, travel times and the real pace between stops": "综合季节、车程和实际游览节奏提供本地路线建议",
   "Planning backed by local operations": "本地团队协调执行",
-  "Joy helps with the initial route; Yunnan Meizhen’s licensed team coordinates booking and delivery": "Joy 协助前期路线沟通，云南美珍国际旅行社的持证团队负责预订与履约安排",
+  "Joy helps with the initial route; our licensed Yunnan operator’s team coordinates booking and delivery": "Joy 协助前期路线沟通，云南美珍国际旅行社的持证团队负责预订与履约安排",
   "Licensed tour operator": "持证旅行社",
-  "Travel contract and payment with Yunnan Meizhen International Travel Agency": "由云南美珍国际旅行社有限公司签约及收款",
-  "Permit L-YN-1017500": "旅行社许可证 L-YN-1017500",
+  "Travel contract and payment with Kunming Dianguoguo International Travel Agency Co., Ltd.": "由昆明滇果果国际旅行社有限公司签约及收款",
+  "Permit L-YN-101848": "旅行社许可证 L-YN-101848",
   "Confirmed before departure": "出发前逐项确认",
   "Named hotels, guide-language choice and vehicle class agreed in writing": "书面确认酒店名称、向导语言及车辆类型",
   "Local operations team coordinates pickups and logistics": "当地团队协调接送与旅行安排",
@@ -294,8 +294,8 @@ const cta = L("Get a Suggested Route & Price");
     
     <span id="local-team" /><JourneyFactCards id="why-travel" title={L("Local Planning. Licensed Delivery.")} cards={[
       { icon:"person", title:L("Yunnan-rooted route planning"), lines:[L("Route advice informed by local knowledge of seasons, travel times and the real pace between stops")] },
-      { icon:"party", title:L("Planning backed by local operations"), lines:[L("Joy helps with the initial route; Yunnan Meizhen’s licensed team coordinates booking and delivery")] },
-      { icon:"licence", title:L("Licensed tour operator"), lines:[L("Travel contract and payment with Yunnan Meizhen International Travel Agency"),L("Permit L-YN-1017500")] },
+      { icon:"party", title:L("Planning backed by local operations"), lines:[L("Joy helps with the initial route; our licensed Yunnan operator’s team coordinates booking and delivery")] },
+      { icon:"licence", title:L("Licensed tour operator"), lines:[L("Travel contract and payment with Kunming Dianguoguo International Travel Agency Co., Ltd."),L("Permit L-YN-101848")] },
       { icon:"note", title:L("Confirmed before departure"), lines:[L("Named hotels, guide-language choice and vehicle class agreed in writing"),L("Local operations team coordinates pickups and logistics")] },
     ]} action={{href:"/licensed-operator",label:L("Check our licensed operator")}} />
     <section className="section preview-process journey-support-flow" id="process"><div className="shell journey-section-layout"><header className="preview-heading"><p className="kicker">{L("THREE SIMPLE STEPS")}</p><h2>{L("How planning works")}</h2></header><div className="journey-support-grid">
