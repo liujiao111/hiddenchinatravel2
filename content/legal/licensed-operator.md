@@ -36,6 +36,6 @@ The operator has provided a Chinese business licence and a travel-agency busines
 
 ## Booking, payment and insurance
 
-Only send tour payments to the account identified in the written contract with the licensed operator. Payment milestones, cancellation and refund rights are determined by the confirmed proposal and applicable contract, not by a general website statement. Read [booking information](/booking).
+Only send tour payments to the account identified in the written contract with the licensed operator. Our standard policy is a 20% deposit after signing, 80% after the first pickup, and the published seven-day cancellation terms. The signed contract and mandatory law govern any booking-specific changes and refunds. Read [booking information](/booking).
 
 The documents currently published here **do not confirm a travel-agency liability insurance policy for this operator**. Request applicable policy details from the operator before relying on insurance statements. We recommend that travelers arrange their own suitable medical, evacuation and trip insurance.
