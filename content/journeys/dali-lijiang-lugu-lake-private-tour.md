@@ -115,7 +115,7 @@ faqs:
   - question: "Can you arrange a Muslim-friendly journey?"
     answer: "Yes. It is a standard feature on every private journey, not a special package. Tell Joy at enquiry. Hotel breakfast is generally included and you can choose suitable items or skip it. Lunch and dinner are not in this quote, so the driver-guide helps you find a halal restaurant or takeaway along the day’s route. Prayer-time reminders and a quiet place or mosque can be arranged when the route allows. We do not claim certified-halal hotel kitchens."
   - question: "Who provides the contract and operates the trip?"
-    answer: "Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) is the licensed local operator. It confirms the services, handles the contract and operates the trip. Its travel agency permit number is L-YN-1017500. The written proposal sets out the exact arrangements."
+    answer: "Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司) is the licensed local operator. It confirms the services, handles the contract and operates the trip. Its travel agency permit number is L-YN-101848. The written proposal sets out the exact arrangements."
 ---
 
 ## Why this journey
