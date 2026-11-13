@@ -190,11 +190,11 @@
     "cta": "Get a Free Route Plan & Quote",
     "exploreJourneys": "Browse Sample Journeys",
     "exploreJourneysMobile": "Explore journeys →",
-    "heroTrustDesktop": "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
-    "heroTrustMobile": "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
+    "heroTrustDesktop": "No shopping stops · Licensed Yunnan tour operator · Terms confirmed in writing",
+    "heroTrustMobile": "Private tours · Licensed operator · Clear booking terms",
     "trustBadges": [
       "100% Tailor-Made & No Shopping",
-      "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
+      "Clear booking terms in writing",
       "Licensed Local Expert"
     ],
     "replyTime": "Usually replies within 15 minutes.",
@@ -273,7 +273,7 @@
       [
         "03",
         "Licensed local operation",
-        "Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning; Kunming Dianguoguo International Travel Agency Co., Ltd. handles subsequent quotations, contracting and local arrangements for Yunnan journeys. The written proposal and contract confirm the services."
+        "Hidden China Travel is an independently managed China travel brand. For Yunnan inbound tours, we are the official international-facing brand and enquiry channel of Kunming Dianguoguo International Travel Agency Co., Ltd. The licensed agency confirms quotations, signs contracts, receives tour payments and operates the journeys. Our brand and digital channels remain independent."
       ],
       [
         "04",
@@ -406,7 +406,7 @@
       ],
       [
         "Who operates the journey in Yunnan?",
-        "Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning; Kunming Dianguoguo International Travel Agency Co., Ltd. handles subsequent quotations, contracting and local arrangements for Yunnan journeys. The written proposal and contract confirm the services."
+        "Hidden China Travel is an independently managed China travel brand. For Yunnan inbound tours, we are the official international-facing brand and enquiry channel of Kunming Dianguoguo International Travel Agency Co., Ltd. The licensed agency confirms quotations, signs contracts, receives tour payments and operates the journeys. Our brand and digital channels remain independent."
       ],
       [
         "How do payment and cancellation work?",
@@ -425,7 +425,7 @@
     "finalText": "You do not need a finished itinerary. Tell us your travel dates or approximate month, number of travelers and the places or experiences that interest you. Joy will help turn those ideas into a practical private journey.",
     "finalWhatsapp": "Chat with Joy on WhatsApp",
     "finalAlt": "Turquoise lake and snow mountains in Yunnan",
-    "finalTrust": "Payment and cancellation terms are confirmed in your written contract with the licensed operator."
+    "finalTrust": "No payment to start planning · Contract and payment terms confirmed in writing"
   },
   "journeys": {
     "metaTitle": "Private Yunnan Journeys",
@@ -466,7 +466,7 @@
     "startPlanning": "Start Planning My Journey",
     "seeDays": "SEE THE DAYS",
     "quoteHeading": "Get a quote for your dates.",
-    "quotePayment": "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
+    "quotePayment": "Payment and cancellation terms are set out in the signed contract with the licensed operator.",
     "planPoints": [
       "Personalized itinerary",
       "Handpicked hotels",
@@ -563,7 +563,7 @@
     "whyJoyAlt": "Joy Liu, travel consultant at Hidden China Travel",
     "whyMeetJoy": "Meet Joy →",
     "whyAgencyTitle": "Licensed agency",
-    "whyAgencyCopy": "{agencyEn} ({agencyZh}) is the licensed operator of our Yunnan journeys. Permit {permit}. Office: {address}. Contracts, tour payments and confirmed services are handled by the agency under your written agreement.",
+    "whyAgencyCopy": "{agencyEn} ({agencyZh}) is our licensed Yunnan tour operator. Permit {permit}. Office: {address}. Travel contracts, tour payments and operations are handled by the agency.",
     "whyInsurance": "Operator documents →",
     "experiencesHeading": "Signature experiences",
     "experiencesIntroSixDay": "The moments this route is built around: Erhai's west shore, indigo in Zhoucheng, one night in Shaxi, and a full day on Jade Dragon Snow Mountain.",
