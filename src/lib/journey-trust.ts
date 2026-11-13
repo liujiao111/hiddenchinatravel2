@@ -26,6 +26,9 @@ export const licensedOperator = {
   businessScopeEn: "Domestic tourism; inbound tourism",
   businessScopeZh: "境内旅游业务；入境旅游业务",
   permitIssueDate: "2026-01-23",
+  licensingAuthorityEn: "Kunming Municipal Bureau of Culture and Tourism",
+  licensingAuthorityZh: "昆明市文化和旅游局",
+  tourismComplaintHotline: "0871-12345",
   creditRegistryUrl: "https://www.gsxt.gov.cn/",
 } as const;
 
