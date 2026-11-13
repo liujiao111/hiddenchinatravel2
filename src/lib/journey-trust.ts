@@ -149,6 +149,23 @@ export const muslimFriendly = {
 export const operatorCredentials: TrustCopy & { documents: CredentialDocument[] } = {
   kicker: "THE LICENSED AGENCY",
   title: "Licensed operator details",
-  copy: `${licensedOperator.nameEn} (${licensedOperator.nameZh}) is the licensed operator of Yunnan journeys. Permit ${licensedOperator.permitNumber}; unified social credit code ${licensedOperator.unifiedSocialCreditCode}. It confirms quotations, signs travel contracts, receives payments and organizes the contracted tours. Newly supplied certificate images will appear here after publication-ready files have been uploaded.`,
-  documents: [],
+  copy: `${licensedOperator.nameEn} (${licensedOperator.nameZh}) is the licensed operator of Yunnan journeys. Permit ${licensedOperator.permitNumber}; unified social credit code ${licensedOperator.unifiedSocialCreditCode}. It confirms quotations, signs travel contracts, receives payments and organizes the contracted tours. View the operator's business licence and travel-agency permit below.`,
+  documents: [
+    {
+      href: "/assets/partners/dianguoguo/credentials/business-license.webp",
+      src: "/assets/partners/dianguoguo/credentials/business-license.webp",
+      alt: `Business licence of ${licensedOperator.nameEn} (${licensedOperator.nameZh})`,
+      label: "View business licence ↗",
+      width: 2000,
+      height: 1454,
+    },
+    {
+      href: "/assets/partners/dianguoguo/credentials/travel-agency-permit.webp",
+      src: "/assets/partners/dianguoguo/credentials/travel-agency-permit.webp",
+      alt: `Travel-agency business permit ${licensedOperator.permitNumber} of ${licensedOperator.nameEn}`,
+      label: "View travel-agency permit ↗",
+      width: 2000,
+      height: 1434,
+    },
+  ],
 };
