@@ -257,3 +257,32 @@ test('Custom enquiry email preserves optional timing, reference and first/last a
   assert.equal(invalid.conversionPage,undefined);
   assert.equal(invalid.attribution,undefined);
 });
+
+test('Contact panel interactions remain engagement events; only the direct chat link creates a goal on the current page', async () => {
+  const { events } = browser();
+  const { trackEvent } = require('../src/lib/analytics.ts');
+  const cleanup = tracking.installWhatsAppTracking();
+  for (const event of ['contact_panel_open', 'contact_qr_view', 'contact_qr_download', 'wechat_id_copy']) {
+    trackEvent(event, { cta_location: 'floating_contact', channel: 'wechat' });
+  }
+  assert.equal(window.uetq, undefined);
+  assert.equal(events.filter(e => e[1] === 'whatsapp_click' || e[1] === 'conversion').length, 0);
+  const download = anchor(document.body, '/assets/contact/joy-whatsapp-qr.jpeg');
+  download.download = 'Joy-whatsapp-QR.jpeg';
+  click(download);
+  assert.equal(events.length, 4);
+  a.getAttribution(); // Capture the landing campaign before SPA navigation.
+  window.history.pushState({}, '', '/zh/private-yunnan-tours');
+  const link = anchor(document.body, w.buildWhatsAppUrl(undefined, 'zh'));
+  link.dataset.ctaLocation = 'floating_whatsapp';
+  await new Promise(resolve => setImmediate(resolve));
+  click(link);
+  const goals = events.filter(e => e[1] === 'whatsapp_click');
+  assert.equal(goals.length, 1);
+  assert.equal(goals[0][2].conversion_page, '/zh/private-yunnan-tours');
+  assert.equal(goals[0][2].whatsapp_location, 'floating_button');
+  assert.equal(goals[0][2].first_source, 'google');
+  assert.match(new URL(link.href).searchParams.get('text'), /Ref: HCT-/);
+  assert.deepEqual(window.uetq, ['event', 'whatsapp_click', {}]);
+  cleanup();
+});

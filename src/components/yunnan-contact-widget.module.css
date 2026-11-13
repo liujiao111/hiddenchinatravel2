@@ -83,7 +83,7 @@
 .nudge button { position:absolute; right:var(--space-2); top:4px; border:0; background:none; color:var(--color-muted); cursor:pointer; }
 .scrim,.grip { display:none; }
 .root button:focus-visible,.root a:focus-visible { outline:2px solid var(--color-focus); outline-offset:3px; }
-:global(body):has(.root) :global(.mobile-cta-bar) { display:none!important; }
+:global(body):has(.root[data-open]) :global(:is(.mobile-cta-bar, .journey-mobile-cta, .article-mobile-ask)) { display:none!important; }
 @keyframes enter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 @media(max-width:700px) {
   .root { right:var(--space-4); bottom:calc(var(--space-4) + env(safe-area-inset-bottom)); }
