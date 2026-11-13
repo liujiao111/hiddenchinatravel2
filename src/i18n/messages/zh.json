@@ -190,11 +190,11 @@
     "cta": "免费获取路线建议与报价",
     "exploreJourneys": "浏览参考行程",
     "exploreJourneysMobile": "查看精选行程 →",
-    "heroTrustDesktop": "全程私家团 · 无购物点 · 免费咨询",
-    "heroTrustMobile": "全程私家团 · 无购物点 · 免费咨询",
+    "heroTrustDesktop": "全程私家团 · 无购物点 · 持证旅行社签约履约",
+    "heroTrustMobile": "私家团 · 无购物点 · 持证旅行社服务",
     "trustBadges": [
       "100% 定制且无购物",
-      "付款节点、定金和取消退款条款以持证旅行社确认的书面合同为准。",
+      "签约及付款规则书面确认",
       "持牌本地专家"
     ],
     "replyTime": "通常 15 分钟内回复。",
@@ -273,7 +273,7 @@
       [
         "03",
         "本地持牌旅行社履约",
-        "Hidden China Travel 是 Joy Liu 创立的旅行规划品牌。Joy 负责初步沟通与路线规划；云南私人行程的后续报价、签约和接待由昆明滇果果国际旅行社有限公司负责，具体服务以书面方案和合同为准。"
+        "Hidden China Travel 是 Joy Liu 独立运营的中国旅行品牌，也是昆明滇果果国际旅行社有限公司云南入境游业务的官方海外品牌及线上咨询渠道。持证旅行社负责正式报价审核、签约、团费收款与行程组织履约；Hidden China Travel 的品牌、网站及数字资产持续独立运营。"
       ],
       [
         "04",
@@ -406,7 +406,7 @@
       ],
       [
         "在云南，实际执行行程的是谁？",
-        "Hidden China Travel 是 Joy Liu 创立的旅行规划品牌。Joy 负责初步沟通与路线规划；云南私人行程的后续报价、签约和接待由昆明滇果果国际旅行社有限公司负责，具体服务以书面方案和合同为准。"
+        "Hidden China Travel 是 Joy Liu 独立运营的中国旅行品牌，也是昆明滇果果国际旅行社有限公司云南入境游业务的官方海外品牌及线上咨询渠道。持证旅行社负责正式报价审核、签约、团费收款与行程组织履约；Hidden China Travel 的品牌、网站及数字资产持续独立运营。"
       ],
       [
         "付款和取消规则是怎样的？",
@@ -425,7 +425,7 @@
     "finalText": "不需要现成的行程。告诉我们你的出行日期或大概月份、同行人数，以及感兴趣的地方或体验——Joy 会帮你把这些想法，变成一条切实可行的路线。",
     "finalWhatsapp": "在 WhatsApp 上联系 Joy",
     "finalAlt": "云南碧蓝的湖水与雪山",
-    "finalTrust": "免费咨询 · 无需立即预订 · 看过方案和报价再决定"
+    "finalTrust": "免费咨询 · 正式报价与付款条款书面确认"
   },
   "journeys": {
     "metaTitle": "云南私家定制行程",
@@ -466,7 +466,7 @@
     "startPlanning": "开始规划我的行程",
     "seeDays": "查看每日行程",
     "quoteHeading": "告诉我你的日期，获取报价。",
-    "quotePayment": "付款节点、定金和取消退款条款以持证旅行社确认的书面合同为准。",
+    "quotePayment": "签约和付款节点以持证旅行社确认的书面合同为准。",
     "planPoints": [
       "按你需求定制行程",
       "精挑细选的酒店",
@@ -563,7 +563,7 @@
     "whyJoyAlt": "Hidden China Travel 旅行顾问 Joy",
     "whyMeetJoy": "认识 Joy →",
     "whyAgencyTitle": "持牌旅行社",
-    "whyAgencyCopy": "{agencyZh}（{agencyEn}）是云南行程的持证经营方，许可证号 {permit}，办公地址：{address}。合同、团费收取与履约由该旅行社按照书面约定负责。",
+    "whyAgencyCopy": "{agencyZh}（{agencyEn}）负责云南旅游产品签约与履约，许可证号 {permit}，办公地址：{address}。付款和退款条款均以正式合同为准。",
     "whyInsurance": "旅行社资质 →",
     "experiencesHeading": "这条路线值得记住的体验",
     "experiencesIntroSixDay": "这条路线围绕这些时刻设计：洱海西岸、周城的蓝染、沙溪的一夜，以及留给玉龙雪山的完整一天。",
