@@ -1,12 +1,7 @@
 import Image from "next/image";
-import { driverGuideProof, vehicleProof, hotelProof } from "@/lib/journey-trust";
+import { vehicleProof, hotelProof } from "@/lib/journey-trust";
 
 const examples = [
-  {
-    heading: "A local driver-guide",
-    image: driverGuideProof.slides[0],
-    description: "Jason is one example of the team's English-speaking driver-guides. Your guide drives, coordinates pickups and the route, and shares local context. A separate licensed site specialist is not automatically included. The named person and language are confirmed for your dates.",
-  },
   {
     heading: "A vehicle matched to your party",
     image: vehicleProof.groups[0].slides[0],
@@ -24,8 +19,8 @@ export function CompactJourneyServiceProof() {
     <div className="shell">
       <div className="preview-heading">
         <p className="kicker">REAL LOCAL RESOURCES</p>
-        <h2 id="preview-real-proof-title">The People, Hotels &amp; Transport Behind Your Journey</h2>
-        <p>Examples from our existing local team and travel arrangements—not promises of a particular person, property or vehicle.</p>
+        <h2 id="preview-real-proof-title">Hotels &amp; Transport Examples for Your Journey</h2>
+        <p>Vehicle and hotel images are illustrative examples; the licensed operator confirms the actual guide, hotel and transport in your proposal.</p>
       </div>
       <div className="preview-proof-grid">
         {examples.map(({ heading, image, description }) => <article key={heading} className="preview-proof-item">
