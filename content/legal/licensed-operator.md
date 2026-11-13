@@ -32,7 +32,11 @@ Hidden China Travel is the international-facing brand and enquiry channel for th
 
 ## Business licence and travel-agency permit
 
-The operator has provided a Chinese business licence and a travel-agency business permit. Copies can be requested at [our contact page](/contact) while publication-ready images are being prepared. The documents identify the company and permits above; no insurance coverage is established by these documents alone.
+You can inspect the licensed operator's business licence and travel-agency operating permit below. These documents identify the business and travel-agency permit; they do not establish that any particular liability insurance policy is in force.
+
+![Business licence of Kunming Dianguoguo International Travel Agency Co., Ltd.](/assets/partners/dianguoguo/credentials/business-license.webp)
+
+![Travel-agency business permit L-YN-101848 of Kunming Dianguoguo International Travel Agency Co., Ltd.](/assets/partners/dianguoguo/credentials/travel-agency-permit.webp)
 
 ## Booking, payment and insurance
 
