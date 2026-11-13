@@ -90,3 +90,8 @@
 /* Long-form country guides reuse the article typography and scrollable tables. */
 .tool-country-copy .markdown-content h2 { font-size:clamp(1.65rem,2.5vw,2.15rem); scroll-margin-top:100px; }
 .tool-country-copy nav a { color:var(--color-action-text); text-decoration:underline; text-underline-offset:4px; }
+
+/* Shared tool pages: neutral white or the private-tour mist blue. */
+.tool-section { background:#fff; }
+.tool-sand,.tool-aside,.visa-result:not(.caution) { background:#e6eef1; }
+.tool-interactive,.tool-country-copy,.tool-info-card,.tool-country-grid>a { background:#fff; }
