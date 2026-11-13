@@ -190,11 +190,11 @@
     "cta": "Get a Free Route Plan & Quote",
     "exploreJourneys": "Browse Sample Journeys",
     "exploreJourneysMobile": "Explore journeys →",
-    "heroTrustDesktop": "No shopping stops · Licensed Yunnan tour operator · Terms confirmed in writing",
-    "heroTrustMobile": "Private tours · Licensed operator · Clear booking terms",
+    "heroTrustDesktop": "No shopping stops · 20% after the signed contract · 80% after your driver meets you",
+    "heroTrustMobile": "20% after the contract · 80% when your driver meets you",
     "trustBadges": [
       "100% Tailor-Made & No Shopping",
-      "Clear booking terms in writing",
+      "20% deposit; refunds follow cancellation policy",
       "Licensed Local Expert"
     ],
     "replyTime": "Usually replies within 15 minutes.",
@@ -228,7 +228,7 @@
     "card1Features": [
       "Private vehicle",
       "Driver-guide throughout",
-      "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
+      "20% deposit, 80% after pickup",
       "No shopping stops"
     ],
     "card1ImageAlt": "Boardwalk beside a turquoise lake beneath snow-covered mountains in Yunnan",
@@ -238,7 +238,7 @@
     "card2Features": [
       "Driver-guide throughout",
       "Handpicked hotels",
-      "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
+      "20% deposit, 80% after pickup",
       "No shopping stops"
     ],
     "card2ImageAlt": "Snow-covered mountain peaks beneath a clear blue sky in Yunnan",
@@ -410,7 +410,7 @@
       ],
       [
         "How do payment and cancellation work?",
-        "The licensed operator confirms the written itinerary, payment schedule and cancellation policy before you sign. Pay only to the receiving account identified in the travel contract. Your contract and applicable law govern refunds."
+        "After you confirm the written itinerary and travel contract, pay a 20% deposit to {agencyEn}’s corporate account by Alipay, WeChat, or bank transfer. The account name matches the company on the contract. We then book hotels, tickets and the vehicle. The remaining 80% is due after your first pickup, when the journey starts. Cancel more than 7 days before the journey starts and the deposit is refunded, minus hotel or ticket costs that have already been booked and cannot be recovered. Cancellations 7 days or fewer before departure keep the deposit. These standard terms do not override mandatory legal refund rights."
       ],
       [
         "What is normally included?",
@@ -425,7 +425,7 @@
     "finalText": "You do not need a finished itinerary. Tell us your travel dates or approximate month, number of travelers and the places or experiences that interest you. Joy will help turn those ideas into a practical private journey.",
     "finalWhatsapp": "Chat with Joy on WhatsApp",
     "finalAlt": "Turquoise lake and snow mountains in Yunnan",
-    "finalTrust": "No payment to start planning · Contract and payment terms confirmed in writing"
+    "finalTrust": "No payment to start planning · 20% after the signed contract · 80% after your driver meets you"
   },
   "journeys": {
     "metaTitle": "Private Yunnan Journeys",
@@ -466,7 +466,7 @@
     "startPlanning": "Start Planning My Journey",
     "seeDays": "SEE THE DAYS",
     "quoteHeading": "Get a quote for your dates.",
-    "quotePayment": "Payment and cancellation terms are set out in the signed contract with the licensed operator.",
+    "quotePayment": "After you sign, the deposit is 20%. The other 80% is due after your first pickup.",
     "planPoints": [
       "Personalized itinerary",
       "Handpicked hotels",
@@ -526,7 +526,7 @@
       "Day 5": "Blue Moon Valley below Jade Dragon Snow Mountain",
       "Day 6": "A canal lane in Lijiang Old Town"
     },
-    "quoteFoldText": "{price}. A month, group size and hotel style are enough. Joy replies with a range for those dates — nothing is booked. Payment dates and cancellation rules are confirmed by the licensed operator in your written contract.",
+    "quoteFoldText": "{price}. A month, group size and hotel style are enough. Joy replies with a range for those dates — nothing is booked. After you sign, the deposit is 20%. The other 80% is due after your first pickup.",
     "joyReplies": "Joy replies to this note.",
     "whyTitle": "Why travel with us?",
     "factPartyTitle": "Private party",
@@ -563,7 +563,7 @@
     "whyJoyAlt": "Joy Liu, travel consultant at Hidden China Travel",
     "whyMeetJoy": "Meet Joy →",
     "whyAgencyTitle": "Licensed agency",
-    "whyAgencyCopy": "{agencyEn} ({agencyZh}) is our licensed Yunnan tour operator. Permit {permit}. Office: {address}. Travel contracts, tour payments and operations are handled by the agency.",
+    "whyAgencyCopy": "{agencyEn} ({agencyZh}). Permit {permit}. Office: {address}. The contract and payments are with this agency: 20% after you sign, 80% after your first pickup.",
     "whyInsurance": "Operator documents →",
     "experiencesHeading": "Signature experiences",
     "experiencesIntroSixDay": "The moments this route is built around: Erhai's west shore, indigo in Zhoucheng, one night in Shaxi, and a full day on Jade Dragon Snow Mountain.",
@@ -596,7 +596,7 @@
     "quoteThisStyle": "Quote this style",
     "priceNoteDefault": "Prices are a guide in USD. Final pricing depends on travel dates, group size, hotel availability and any route adjustments. Your licensed local travel partner confirms the quotation and contract before you decide.",
     "tierQuoteHeading": "Get a quote for the style you prefer.",
-    "tierQuoteText": "{price}. Pick Comfort, Premium or Luxury, then send a month and group size. Joy replies with a range for those dates — nothing is booked. Payment dates and cancellation rules are confirmed by the licensed operator in your written contract.",
+    "tierQuoteText": "{price}. Pick Comfort, Premium or Luxury, then send a month and group size. Joy replies with a range for those dates — nothing is booked. After you sign, the deposit is 20%. The other 80% is due after your first pickup.",
     "includedLabel": "INCLUDED",
     "includedHeading": "What’s included",
     "notIncludedLabel": "NOT INCLUDED",
@@ -806,11 +806,11 @@
       },
       {
         "title": "Your booking terms",
-        "text": "Payment and cancellation terms are confirmed in your written contract with the licensed operator."
+        "text": "Contract with the licensed agency, 20% deposit, then the balance after your first pickup."
       }
     ],
     "termsHeading": "The same booking terms as our other journeys.",
-    "termsIntro": "Payment and cancellation terms are confirmed in your written contract with the licensed operator.",
+    "termsIntro": "Confirm the written itinerary and travel contract, pay a 20% deposit, then settle the balance after your first pickup.",
     "plannerHeading": "Tell us what you have in mind.",
     "plannerText": "A few details are enough to start. Joy helps with initial route planning; Kunming Dianguoguo International Travel Agency Co., Ltd. prepares the subsequent written quotation and contract for Yunnan journeys. {replyTime}",
     "plannerSample": "Want a sense of how a private Yunnan route can look? After you send the form you can download a sample itinerary. It is an example, not a package you have to follow. First Encounter Yunnan and The Essence of Yunnan are starting points if you already like one of those shapes.",
