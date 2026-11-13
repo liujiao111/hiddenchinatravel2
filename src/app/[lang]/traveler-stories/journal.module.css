@@ -71,3 +71,6 @@
 @media (prefers-reduced-motion: reduce) {
   .place img { transition: none; }
 }
+
+/* Editorial page surfaces follow the site-wide white/blue language. */
+.page { background:#fff; }
