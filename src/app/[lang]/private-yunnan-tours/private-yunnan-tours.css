@@ -335,3 +335,10 @@ body.preview-form-visible .preview-sticky-cta{display:none}
 .tailor-preview .preview-proof-item,
 .tailor-preview .preview-enquiry,
 .tailor-preview .preview-trust-grid article { background:#fff; }
+
+/* Longer-route comparison strip is a content section, not a dark hero. */
+.tailor-preview .preview-longer-journey { background:#e6eef1; color:#303331; }
+.tailor-preview .preview-longer-copy .kicker { color:#376b8d; }
+.tailor-preview .preview-longer-copy h3,
+.tailor-preview .preview-longer-copy p:not(.kicker) { color:#303331; }
+.tailor-preview .preview-longer-action .button { background:var(--blue); color:#fff; }
