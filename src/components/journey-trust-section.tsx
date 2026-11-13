@@ -15,8 +15,6 @@ export function JourneyTrustSection({
   kicker,
   heading,
   description,
-  guideTitle,
-  guideCopy,
   vehicleTitle,
   vehicleCopy,
   hotelTitle,
