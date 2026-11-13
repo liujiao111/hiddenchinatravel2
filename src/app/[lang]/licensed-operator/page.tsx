@@ -18,7 +18,7 @@ export default async function LicensedOperatorPage({ params }: { params: Promise
   const zh = lang === "zh";
   return <main>
     <SiteHeader />
-    <section className="section" style={{background:"#eff6f3"}}>
+    <section className="section" style={{background:"#e6eef1"}}>
       <div className="shell" style={{maxWidth:950}}>
         <p className="kicker">{zh ? "签约资质与预订保障" : "LICENSED YUNNAN OPERATOR"}</p>
         <h1 style={{fontSize:"clamp(2.1rem,4vw,3.6rem)",lineHeight:1.15}}>{zh ? "持证旅行社与预订信息" : "Licensed Operator & Booking Protection"}</h1>
