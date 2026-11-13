@@ -1,69 +1,41 @@
 ---
 type: legal
-title: "Licensed operator"
-eyebrow: "Company documents"
-seoTitle: "Licensed Operator and Liability Insurance"
-metaDescription: "Yunnan Meizhen International Travel Agency: Kunming office, travel-agency permit L-YN-1017500, and the 2026 liability policy with China Pacific Property Insurance."
+title: "Licensed Yunnan Travel Operator"
+eyebrow: "Company credentials"
+seoTitle: "Licensed Yunnan Tour Operator | Hidden China Travel"
+metaDescription: "Meet the licensed Yunnan tour operator working with Hidden China Travel: Kunming Dianguoguo International Travel Agency Co., Ltd., permit L-YN-101848."
 canonical: "/licensed-operator"
-dateModified: "2026-10-25"
+dateModified: "2026-11-13"
 ogImage:
   url: "/home/hero.webp"
-lastUpdated: "October 2026"
+lastUpdated: "November 2026"
 ---
 
-Hidden China Travel is a travel-planning brand founded by Joy Liu. Joy handles initial enquiries and route planning. For Yunnan private journeys, Yunnan Meizhen International Travel Agency Co., Ltd. (云南美珍国际旅行社有限公司) handles subsequent quotations, contracting and on-the-ground arrangements. Confirmed services follow the written proposal and contract.
+Hidden China Travel is an independently managed China travel brand founded by Joy Liu. For Yunnan inbound journeys, Hidden China Travel serves as the official international-facing brand and online enquiry channel of Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司). The licensed agency reviews quotations, signs travel contracts, receives tour payments and is responsible for arranging and operating its contracted journeys. Hidden China Travel's brand, website and digital channels remain independently managed.
 
----
+## Your licensed Yunnan tour operator
 
-## The company you contract with
+- Legal Chinese name: **昆明滇果果国际旅行社有限公司**
+- Registered English name on the travel agency permit: **Kunming Dianguoguo International Travel Agency Co., Ltd.**
+- Travel agency permit: **L-YN-101848**
+- Permitted services: **Domestic tourism and inbound tourism**
+- Unified social credit code: **91530111MAE1HH0X2K**
+- Legal representative: **Duan Zhentao (段振涛)**
+- Registered office and permitted business location: **Room 12-B-05, Floor 12, Building A, Yunnan Chengtou Building, No. 400 Minhang Road, Guanshang Subdistrict, Guandu District, Kunming, Yunnan, China**
+- Business established: **11 October 2024**. Travel agency business permit dated **23 January 2026**.
 
-- Legal name: **Yunnan Meizhen International Travel Agency Co., Ltd.** (云南美珍国际旅行社有限公司)
-- Travel agency permit: **L-YN-1017500**
-- Unified social credit code: **91530111MACHXW95XT**. Look it up on the [National Enterprise Credit Information Publicity System](https://www.gsxt.gov.cn/).
-- Office: Room 1915, Floor 19, Building 4, Dadu Motian Shopping Center, Xiaobanqiao Subdistrict, Guandu District, Kunming, Yunnan (云南省昆明市官渡区小板桥街道大都摩天购物中心四栋19楼1915室)
-- Travel consultant: **Joy Liu**. Joy handles initial enquiries and route planning; the Yunnan Meizhen team handles subsequent quotations, contracting and on-the-ground arrangements.
-- Payments go to the company’s own account. The account name matches the legal name above. How the 20% deposit and the later 80% are timed is on the [booking and service](/booking) page.
+You can look up the company on the [National Enterprise Credit Information Publicity System](https://www.gsxt.gov.cn/). The company's registration details and license numbers above are transcribed from the documents provided to us; public-registry verification is a separate step.
 
----
+## Our brand and the licensed operator
 
-## Documents you can inspect
+Hidden China Travel is the international-facing brand and enquiry channel for the agency's Yunnan inbound travel services, not a separate licensed travel agency. Joy coordinates initial enquiries and travel preferences; the agency confirms quotes, enters into the tourism contract, collects payments and organizes the tour. Any other destination may be served by a different licensed partner, identified before booking.
 
-The scans below are the business licence and the travel-agency business permit.
+## Business licence and travel-agency permit
 
-![Business license of Yunnan Meizhen International Travel Agency Co., Ltd.](/assets/partners/meizhen/credentials/business-license.jpg)
+The operator has provided a Chinese business licence and a travel-agency business permit. Copies can be requested at [our contact page](/contact) while publication-ready images are being prepared. The documents identify the company and permits above; no insurance coverage is established by these documents alone.
 
-![Travel agency business permit L-YN-1017500](/assets/partners/meizhen/credentials/travel-agency-permit.jpg)
+## Booking, payment and insurance
 
----
+Only send tour payments to the account identified in the written contract with the licensed operator. Payment milestones, cancellation and refund rights are determined by the confirmed proposal and applicable contract, not by a general website statement. Read [booking information](/booking).
 
-## Agency liability insurance
-
-For 2026 the agency holds **Yunnan travel-agency liability insurance** with China Pacific Property Insurance Company Limited, Kunming Central Branch. This is the agency’s own liability policy. It is not a travel insurance policy in your name.
-
-| | |
-|---|---|
-| Policy number | AKUM0AC10625QAAA1R9T |
-| Period | 1 January 2026, 00:00 to 31 December 2026, 24:00 |
-| Insured | Yunnan Meizhen International Travel Agency Co., Ltd. |
-| Territory | Mainland China |
-| Bodily-injury liability | RMB 1,800,000 per person per accident. RMB 55,000,000 per accident. |
-| Emergency rescue | RMB 1,200,000 per accident, under the rescue extension |
-| Lead insurer | China Pacific Property Insurance, Yunnan branch, 55% |
-| Co-insurers | Ping An Property Insurance, Yunnan branch, 30%. PICC Property Insurance, Yunnan branch, 15%. |
-
-The policy pays the agency’s legal liability for a traveler’s injury during a journey the agency operates, within those limits. It also lists smaller limits for property, delay where the agency is responsible, and some rescue costs.
-
-Two limits matter before you rely on it:
-
-- **You are covered only after you are registered.** For each guest, the agency must enter the real name and passport number on the Yunnan tourism safety platform and pay that guest’s premium into the designated account. A guest who is not registered is not covered. Registration is done before the journey, and Joy can confirm it in writing.
-- **Illness is outside this policy** unless the agency failed a safety duty the policy still covers. A pre-existing condition, a sudden illness, or altitude sickness is not a hospital bill this policy pays. It also does not fly you home.
-
-The full policy is 30 pages and includes a staff phone number, so it is not posted here. Joy can send the insurer’s schedule pages on request.
-
----
-
-## What you still buy yourself
-
-Buy your own international travel insurance before you fly, including medical treatment and evacuation. The price of a Hidden China journey does not include it. Bring the policy number with you.
-
-If something happens on the journey, tell Joy. The agency reports a liability claim. Your own insurer is the one you call for your medical costs.
+The documents currently published here **do not confirm a travel-agency liability insurance policy for this operator**. Request applicable policy details from the operator before relying on insurance statements. We recommend that travelers arrange their own suitable medical, evacuation and trip insurance.
