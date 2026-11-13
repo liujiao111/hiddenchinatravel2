@@ -32,20 +32,15 @@ export const licensedOperator = {
   creditRegistryUrl: "https://www.gsxt.gov.cn/",
 } as const;
 
-const teamRoot = "/assets/partners/meizhen";
 const vehicleRoot = "/assets/partners/vehicles";
 // The previous agency certificate scans must not be shown as the new operator.
 
-const localTeamSlides: ProofSlide[] = [
-  { src: `${teamRoot}/guides/zhang-zihang.webp`, alt: "Portrait of Zhang Zihang", title: "Zhang Zihang (Jason)", detail: "English-speaking driver-guide · Final assignment depends on your dates", copy: "A profile from the local team. The person on your journey is confirmed in writing." },
-  { src: `${teamRoot}/guides/kuang-jintao.webp`, alt: "Portrait of Kuang Jintao", title: "Kuang Jintao (Taozi)", detail: "Chinese-speaking driver-guide · 8 years of experience", copy: "Experienced with private and custom journeys." },
-  { src: `${teamRoot}/guides/huang-qun.webp`, alt: "Portrait of Huang Qun", title: "Huang Qun (Daxiang)", detail: "Chinese-speaking driver-guide · 7 years of experience", copy: "Experienced with private and educational journeys." },
-];
+// Previous partner guide photos are withheld until the new operator confirms its own team.\nconst localTeamSlides: ProofSlide[] = [];
 
 export const driverGuideProof: TrustCopy & { label: string; slides: ProofSlide[] } = {
   kicker: "01 / YOUR DRIVER-GUIDE",
   title: "A person who knows the route",
-  copy: "A Chinese- or English-speaking driver-guide is included throughout. One local host drives, coordinates the route and offers context. This is not a separate attraction lecturer inside every site. A specialist site guide can be added in your proposal. These profiles are examples from the team. The final assignment depends on your dates and is confirmed in writing.",
+  copy: "A Chinese- or English-speaking driver-guide can be arranged as specified in the written proposal. The licensed operator will confirm the actual person, language and scope before booking. Previous partner guide portraits are not presented as the current operator’s staff.",
   label: "Local team profiles",
   slides: localTeamSlides,
 };
