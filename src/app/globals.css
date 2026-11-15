@@ -51,6 +51,33 @@ p { line-height:1.7; }
 .narrow { width:min(790px,calc(100% - 40px)); margin-inline:auto; text-align:center; }
 .section { padding:var(--section-space) 0; }
 .section-sand { background:var(--color-sand); }
+/* Shared photographic season guide. Uses the editorial font and site surfaces. */
+.editorial-season-heading { max-width:790px; margin:0 auto var(--space-8); text-align:center; }
+.editorial-season-heading h2 { font-family:var(--font-editorial); font-size:clamp(2rem,3.2vw,3rem); line-height:1.3; text-wrap:balance; }
+.editorial-season-heading>p:last-child { margin:0; color:var(--color-muted); }
+.editorial-season-tabs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); max-width:790px; margin:0 auto var(--space-8); border-bottom:1px solid var(--color-border); }
+.editorial-season-tabs button { display:flex; min-width:0; min-height:var(--control-height); flex-direction:column; align-items:center; gap:var(--space-2); padding:var(--space-4) var(--space-2); border:0; border-bottom:2px solid transparent; background:transparent; color:var(--color-action-text); font:inherit; cursor:pointer; }
+.editorial-season-tabs button[aria-selected="true"] { border-bottom-color:var(--color-ink); }
+.editorial-season-tabs button:hover { background:var(--color-surface-soft); }
+.editorial-season-tabs span { font-family:var(--font-editorial); font-size:1.4rem; }
+.editorial-season-tabs small { font-size:.75rem; line-height:1.5; color:var(--color-muted); }
+.editorial-season-panel { display:grid; grid-template-columns:1.25fr 1fr; background:var(--color-surface-soft); border-radius:var(--radius-card); box-shadow:var(--shadow-card); overflow:hidden; }
+.editorial-season-panel[hidden] { display:none; }
+.editorial-season-photo { position:relative; min-height:480px; margin:0; background:var(--color-accent); }
+.editorial-season-photo img { object-fit:cover; }
+.editorial-season-photo figcaption { position:absolute; left:var(--space-4); bottom:var(--space-4); max-width:calc(100% - var(--space-8)); padding:var(--space-2) var(--space-3); background:var(--color-surface); color:var(--color-ink); font-size:.75rem; line-height:1.5; }
+.editorial-season-copy { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:clamp(24px,4vw,64px); }
+.editorial-season-copy .kicker { color:var(--color-muted); }
+.editorial-season-copy h3 { margin:var(--space-3) 0 var(--space-6); font-family:var(--font-editorial); font-size:clamp(1.8rem,2.8vw,2.6rem); line-height:1.35; text-wrap:balance; }
+.editorial-season-copy>p:not(.kicker) { margin:0 0 var(--space-8); color:var(--color-muted); font-size:1rem; line-height:1.8; }
+.editorial-season-panel:focus-visible { outline-offset:3px; }
+@media(max-width:760px) {
+  .editorial-season-panel { grid-template-columns:1fr; }
+  .editorial-season-photo { min-height:0; aspect-ratio:4/3; }
+  .editorial-season-copy { padding:var(--space-6); }
+  .editorial-season-tabs span { font-size:1.1rem; }
+  .editorial-season-tabs small { font-size:.75rem; }
+}
 .kicker { margin:0 0 14px; font-size:.72rem; font-weight:700; letter-spacing:.18em; }
 .button { display:inline-flex; min-height:var(--control-height); align-items:center; justify-content:center; gap:var(--space-2); padding:10px var(--space-6); border:1px solid transparent; border-radius:var(--radius-control); font-family:inherit; font-size:.8125rem; line-height:1.4; font-weight:700; letter-spacing:.06em; text-align:center; cursor:pointer; transition:background .2s,border-color .2s,color .2s; }
 .button-primary,.button-blue,.button-green,.journey-primary-action { background:var(--color-primary); color:#fff; }
@@ -1711,11 +1738,6 @@ a.utility-card { color:inherit; }
 .yunnan-country-grid h3 { margin:19px 0 10px; color:#26463d; font-family:Georgia,serif; font-size:clamp(1.7rem,2.8vw,2.4rem); font-weight:400; }
 .yunnan-country-grid p { max-width:480px; margin:0 0 26px; color:#5d625b; font-size:.9rem; line-height:1.65; }
 .yunnan-country-grid b { margin-top:auto; color:#2f6254; font-size:.69rem; letter-spacing:.08em; }
-.yunnan-season-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:#c9c6b8; }
-.yunnan-season-grid article { min-height:285px; padding:34px 30px; background:#f7f5ec; }
-.yunnan-season-grid span { color:#8f7446; font-size:.65rem; font-weight:800; letter-spacing:.1em; }
-.yunnan-season-grid h3 { margin:34px 0 15px; font-size:1.7rem; }
-.yunnan-season-grid p { margin:0; color:#5d625b; font-size:.86rem; }
 .yunnan-prepare { background:var(--color-accent); color:#fff; }
 .yunnan-prepare .yunnan-section-heading h2 { color:#fff; }
 .yunnan-prepare .yunnan-section-heading>p { color:#dce4df; }
@@ -1772,7 +1794,7 @@ a.utility-card { color:inherit; }
   .yunnan-featured-layout>div:first-child { max-width:760px; }
   .yunnan-guide-grid { grid-template-columns:repeat(2,1fr); }
   .yunnan-country-grid { grid-template-columns:1fr 1fr; }
-  .yunnan-season-grid,.yunnan-practical-grid { grid-template-columns:1fr 1fr; }
+.yunnan-practical-grid { grid-template-columns:1fr 1fr; }
   .home-arrival-layout { grid-template-columns:.8fr 1.2fr; gap:30px; }
   .home-arrival-visual { min-height:490px; }
 }
@@ -1793,7 +1815,7 @@ a.utility-card { color:inherit; }
   .yunnan-intro { padding-top:82px; padding-bottom:88px; text-align:left; }
   .yunnan-intro .narrow,.yunnan-section-heading { text-align:left; }
   .yunnan-intro h2 { font-size:2.8rem; }
-  .yunnan-route-stops,.yunnan-place-grid,.yunnan-guide-grid,.yunnan-country-grid,.yunnan-season-grid,.yunnan-practical-grid { grid-template-columns:1fr; }
+.yunnan-route-stops,.yunnan-place-grid,.yunnan-guide-grid,.yunnan-country-grid,.yunnan-practical-grid { grid-template-columns:1fr; }
   .home-arrival-layout { grid-template-columns:1fr; gap:34px; }
   .home-arrival-visual { min-height:320px; order:2; }
   .home-arrival-copy { order:1; }
@@ -1806,7 +1828,6 @@ a.utility-card { color:inherit; }
   .yunnan-route-stops article:last-child { border-bottom:0; }
   .yunnan-place-grid>a { min-height:440px; }
   .yunnan-featured .journey-card { min-height:560px; }
-  .yunnan-season-grid article { min-height:0; }
   .yunnan-practical-grid>a { min-height:260px; }
   .yunnan-final-cta { text-align:left; }
   .yunnan-final-cta>div>div { align-items:flex-start; justify-content:flex-start; flex-direction:column; }
@@ -2115,6 +2136,96 @@ a.utility-card { color:inherit; }
 @media(max-width:1000px) { .yunnan-inspiration-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media(max-width:700px) { .yunnan-inspiration-grid { gap: 14px; } .yunnan-inspiration-copy { padding: 14px; } .yunnan-inspiration-copy h3 { font-size: 1.1rem; } .yunnan-inspiration-copy p { font-size: .84rem; } .yunnan-inspiration-next .button { white-space: normal; } }
 @media(max-width:350px) { .yunnan-inspiration-grid { grid-template-columns: 1fr; } }
+
+/* Preparation cards. */
+
+.yunnan-practical-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: rgb(255 255 255 / 24%);
+}
+.yunnan-practical-grid > a {
+  position: relative;
+  min-height: 320px;
+  padding: 30px 28px 27px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  background: var(--color-accent);
+  transition: background .2s, transform .2s;
+}
+.yunnan-practical-grid > a:hover {
+  background: #405e6c;
+  transform: translateY(-3px);
+}
+.yunnan-practical-grid > a:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 3px solid var(--color-focus-on-dark);
+  outline-offset: -5px;
+}
+.yunnan-practical-grid span {
+  display: block;
+  color: #c7d9e4;
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  letter-spacing: .06em;
+}
+.yunnan-practical-grid h3 { margin: 54px 0 13px; color: #fff; font-size: 1.6rem; }
+.yunnan-practical-grid p { margin: 0; color: rgb(255 255 255 / 78%); font-size: .9rem; line-height: 1.7; }
+.yunnan-practical-grid b {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-top: 28px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgb(255 255 255 / 72%);
+  color: #fff;
+  font-size: .68rem;
+  letter-spacing: .09em;
+}
+.yunnan-practical-grid b::after { margin-left: 8px; content: "→"; font-size: 1rem; }
+
+@media(max-width:1000px) {
+.yunnan-practical-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media(max-width:700px) {
+.yunnan-practical-grid { grid-template-columns: 1fr; gap: 12px; }
+  .yunnan-practical-grid > a { min-height: 0; padding: 25px 22px 24px; }
+  .yunnan-practical-grid h3 { margin-top: 32px; }
+}
+
+/* Yunnan destination hub: align the destination story with the shared white / mist-blue system. */
+.yunnan-facts { border-color: var(--color-border); background: var(--color-surface-soft); }
+.yunnan-facts div div { border-color: var(--color-border); }
+.yunnan-facts span,.yunnan-intro>div>span,.yunnan-section-heading>span,.yunnan-featured-layout>div>span,.yunnan-final-cta>div>span,.yunnan-route-stops article>span,.yunnan-country-grid span { color: var(--color-primary); }
+.yunnan-anchor-nav { border-color: var(--color-border); background: rgb(255 255 255 / 94%); }
+.yunnan-anchor-nav a:hover { color: var(--color-primary-hover); }
+.yunnan-route-stops { border-color: var(--color-border); }
+.yunnan-route-stops article { border-color: var(--color-border); }
+.yunnan-place-grid>a>i { background: linear-gradient(180deg, rgb(16 29 38 / 8%), rgb(16 29 38 / 80%)); }
+.yunnan-featured { background: var(--color-surface-soft); }
+.yunnan-from-abroad { background: var(--color-surface); }
+.yunnan-country-grid>a { border-color: var(--color-border); background: var(--color-surface-soft); }
+.yunnan-country-grid>a:hover { background: var(--color-nav); }
+.yunnan-country-grid h3 { color: var(--color-ink); }
+.yunnan-country-grid b { color: var(--color-action-text); }
+.yunnan-prepare { background: var(--color-accent); }
+.yunnan-prepare .yunnan-section-heading>span,
+.yunnan-practical-grid span { color: #c7d9e4; }
+.yunnan-practical-grid { background: rgb(255 255 255 / 22%); }
+.yunnan-practical-grid>a { background: var(--color-accent); }
+.yunnan-practical-grid>a:hover { background: #405e6c; }
+.yunnan-faq details { border-color: var(--color-border); }
+.yunnan-final-cta { background: linear-gradient(rgb(25 47 59 / 88%), rgb(25 47 59 / 88%)), url('/home/plan-journey.webp') center/cover; }
+
+@media(max-width:1000px) {
+  .yunnan-route-stops article:nth-child(-n+2) { border-bottom-color: var(--color-border); }
+}
+
+@media(max-width:700px) {
+  .yunnan-route-stops article,
+  .yunnan-route-stops article:nth-child(2) { border-bottom-color: var(--color-border); }
+}
 
 .yunnan-inspiration .journey-editorial-heading, .custom-travel-preferences .journey-editorial-heading { display:block; max-width:850px; margin:0 auto 36px; text-align:center; }
 .yunnan-inspiration .journey-editorial-heading h2, .custom-travel-preferences .journey-editorial-heading h2 { font-size:clamp(2rem,3.2vw,3rem); line-height:1.15; margin:0 0 20px; }
