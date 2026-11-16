@@ -37,6 +37,7 @@ export const zhLivePaths = new Set<string>([
   "/private-yunnan-tours",
   "/yunnan-tour-packages",
   "/contact",
+  "/licensed-operator",
   "/about-us",
   "/survival-kit",
   "/china-destinations/yunnan",
@@ -104,7 +105,8 @@ export function isZhLive(path: string): boolean {
 /** Locale-prefixed path: "/journeys" for en, "/zh/journeys" for zh. */
 export function localePath(locale: AppLocale, path: string): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;
-  return locale === defaultLocale ? normalized : `/${locale}${normalized}`;
+  if (locale === defaultLocale) return normalized;
+  return normalized === "/" ? `/${locale}` : `/${locale}${normalized}`;
 }
 
 export function localeUrl(locale: AppLocale, path: string): string {
