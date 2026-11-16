@@ -5,12 +5,22 @@ import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
 import { OperatorCredentials } from "@/components/operator-credentials";
 import { licensedOperator } from "@/lib/journey-trust";
-import type { AppLocale } from "@/lib/i18n-seo";
+import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 
-export const metadata: Metadata = {
-  title: "Licensed Yunnan Tour Operator & Booking Information",
-  description: "Verify Hidden China Travel's licensed contracting travel agency, registered business information, travel agency permit and the written quotation process.",
-};
+export async function generateMetadata({ params }: { params: Promise<{lang: AppLocale}> }): Promise<Metadata> {
+  const { lang } = await params;
+  const zh = lang === "zh";
+  return localizedStaticMetadata(lang, "/licensed-operator", {
+    title: {
+      absolute: zh
+        ? "云南持牌旅行社与预订保障 | Hidden China Travel"
+        : "Licensed Yunnan Tour Operator & Booking Information | Hidden China Travel",
+    },
+    description: zh
+      ? "了解 Hidden China Travel 云南私人行程的签约旅行社资质、经营许可证、报价、付款及预订保障。"
+      : "Verify the licensed Yunnan travel agency responsible for quotations, booking contracts, payments and local arrangements for Hidden China Travel.",
+  });
+}
 
 export default async function LicensedOperatorPage({ params }: { params: Promise<{lang: AppLocale}> }) {
   const { lang } = await params;
