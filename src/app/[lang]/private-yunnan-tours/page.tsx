@@ -10,6 +10,7 @@ import { RealJourneyEvidence } from "@/components/real-journey-evidence";
 import { JourneyCard } from "@/components/journey-card";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { PreviewEnquiryForm } from "@/components/preview-enquiry-form";
+import { PaymentTrust } from "@/components/payment-trust";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 import { localizedStaticMetadata, localeUrl, type AppLocale } from "@/lib/i18n-seo";
@@ -58,7 +59,7 @@ const chineseCopy: Record<string,string> = {
   "Do I need confirmed dates before enquiring?": "咨询前一定要确定出行日期吗？",
   "No. Your group size and approximate trip length are enough to get started.": "不用。先告诉我们大致出行天数和人数，就可以开始讨论路线。",
   "How does booking and payment work?": "如何预订和付款？",
-  "Review the written itinerary and quotation first, then sign the licensed agency's travel contract. Pay a 20% refundable deposit; the balance is normally due after you arrive in Kunming and meet your guide.": "先查看书面行程和报价，再与持证旅行社签订旅游合同。支付20%可退定金，尾款通常在抵达昆明并与向导会合后支付。",
+  "Review the written itinerary and quotation first, then sign the licensed agency's travel contract. Pay a 20% deposit, fully refundable when cancelled more than 7 full days before departure; the balance is normally due after you arrive in Kunming and meet your guide.": "先查看书面行程和报价，再与持证旅行社签订旅游合同。支付 20% 定金；出发前超过 7 个完整自然日取消可全额退回。尾款通常在抵达昆明并与向导会合后支付。",
   "Get a Suggested Route & Price": "获取定制路线与报价",
   "Private Yunnan Tours, Designed Around You": "云南私人定制游，按你的想法出发",
   "TAILOR-MADE YUNNAN": "云南私人定制旅行",
@@ -78,7 +79,7 @@ const chineseCopy: Record<string,string> = {
   "Chinese or English Included": "中文或英文均已包含",
   "Choose your guide language at no extra charge; one dedicated driver-guide throughout.": "中文或英文可选，不加收语言服务费，全程安排一位司机兼向导。",
   "Transparent Booking": "预订条款透明",
-  "20% Refundable Deposit": "20%可退定金",
+  "20% Deposit": "20% 定金",
   "Full deposit refund when cancelled more than 7 days before departure.": "出发前超过7个完整自然日取消，定金全额退回。",
   "Get My Route & Price": "获取我的专属路线与报价",
   "YOUR KIND OF TRIP": "适合怎样的旅行者",
@@ -163,7 +164,7 @@ const chineseCopy: Record<string,string> = {
   "Review your proposal": "确认书面方案",
   "Check the written route, named hotels, inclusions, exclusions and total price before you commit.": "签约前查看路线、酒店名称、费用包含与不包含项目及总价。",
   "Sign and confirm": "签订合同并确认",
-  "Sign the licensed travel agency’s contract and pay a 20% refundable deposit to secure your vehicle and begin confirming hotels.": "与持证旅行社签订旅游合同，支付20%可退定金，用于锁定车辆并开始确认酒店。",
+  "Sign the licensed travel agency’s contract and pay a 20% deposit to secure your vehicle and begin confirming hotels. It is fully refundable when cancelled more than 7 full days before departure.": "与持证旅行社签订旅游合同，支付 20% 定金，用于锁定车辆并开始确认酒店；出发前超过 7 个完整自然日取消可全额退回。",
   "Complete the balance": "支付尾款",
   "The remaining balance is normally paid after you arrive in Kunming and meet your guide. Any earlier due date is disclosed before booking.": "尾款通常在抵达昆明并与向导会合后支付；如需提前付款，会在预订前书面说明。",
   "Your signed contract controls the payment schedule, cancellation terms and refunds.": "付款安排、取消及退款均以双方签署的旅游合同为准。",
@@ -190,7 +191,7 @@ const faqs = [
   [L("What is normally included in the quotation?"), L("The sample 6-day tour includes private transport, one driver-guide throughout, premium hotels with breakfast, second-class high-speed rail and listed attraction tickets. Lunches and dinners, international flights, travel insurance and personal expenses are not included. Your written quote specifies all services for your chosen route.")],
   [L("What happens if the weather or train times change?"), L("Joy and the local team coordinate changes to the agreed itinerary, including revised pickups or alternate visits where practical. Weather-sensitive sites and train tickets depend on availability. Proposed changes, charges and any refunds are discussed before confirmation.")],
   [L("Do I need confirmed dates before enquiring?"), L("No. Your group size and approximate trip length are enough to get started.")],
-  [L("How does booking and payment work?"), L("Review the written itinerary and quotation first, then sign the licensed agency's travel contract. Pay a 20% refundable deposit; the balance is normally due after you arrive in Kunming and meet your guide.")],
+  [L("How does booking and payment work?"), L("Review the written itinerary and quotation first, then sign the licensed agency's travel contract. Pay a 20% deposit, fully refundable when cancelled more than 7 full days before departure; the balance is normally due after you arrive in Kunming and meet your guide.")],
 ];
 
 faqs.push(
@@ -207,11 +208,12 @@ const cta = L("Get a Suggested Route & Price");
   return <main className="tailor-preview">
     <SiteHeader cta={{ href: "#plan", label: cta }} />
     <JourneyHero title={L("Private Yunnan Tours, Designed Around You")} eyebrow={L("TAILOR-MADE YUNNAN")} image="/home/hero.webp" imageAlt={L("Yunnan's Jade Dragon Snow Mountain")} description={L("Explore Dali, Shaxi, Lijiang, Tiger Leaping Gorge and Shangri-La on a private journey shaped around your dates, interests and pace.")} primary={{href:"#plan",label:cta}} secondary={{href:"#routes",label:L("Explore Route Ideas")}} price={L("6-Day Private Yunnan Tour · From US$680 per person")} note={L("Based on two adults sharing one room. Final prices depend on travel dates, group size, hotels and confirmed services.")}/>
+    <section className="payment-trust-band"><div className="shell"><PaymentTrust locale={lang} /></div></section>
     <JourneyFactCards id="glance" title={L("At a glance")} cards={[
       { icon:"calendar", title:L("Flexible Duration"), lines:[L("6–12 Days"),L("A route shaped around your available time, interests and preferred pace.")] },
       { icon:"route", title:L("100% Tailor-Made & No Shopping"), lines:[L("Just Your Group"),L("Private travel shaped to your group, with no shared departures or compulsory shopping stops.")] },
       { icon:"star", title:L("One Guide, Your Language"), lines:[L("Chinese or English Included"),L("Choose your guide language at no extra charge; one dedicated driver-guide throughout.")] },
-      { icon:"note", title:L("Transparent Booking"), lines:[L("20% Refundable Deposit"),L("Full deposit refund when cancelled more than 7 days before departure.")] },
+      { icon:"note", title:L("Transparent Booking"), lines:[L("20% Deposit"),L("Full deposit refund when cancelled more than 7 full days before departure.")] },
     ]} action={{href:"#plan",label:L("Get My Route & Price")}} />
     <section className="section preview-fit"><div className="shell preview-two">
       <article><p className="kicker">{L("YOUR KIND OF TRIP")}</p><h2>{L("Who it's for")}</h2><p>{L("For couples, families, friends and small private groups who want local guidance without joining a scheduled tour.")}</p><p>{L("You do not need to know the exact route. A rough trip length and group size are enough.")}</p></article>
@@ -312,7 +314,7 @@ const cta = L("Get a Suggested Route & Price");
       <header className="preview-heading"><p className="kicker">{L("CLEAR TERMS, NO SURPRISES")}</p><h2>{L("Clear Booking and Payment")}</h2></header>
       <div className="journey-support-grid">
         <article><span>01</span><h3>{L("Review your proposal")}</h3><p>{L("Check the written route, named hotels, inclusions, exclusions and total price before you commit.")}</p><p>{lang === "zh" ? "报价还会写明币种、可选项目及最终确认的服务范围。" : "Your quote also states the currency, optional extras and the final scope of confirmed services."}</p></article>
-        <article><span>02</span><h3>{L("Sign and confirm")}</h3><p>{L("Sign the licensed travel agency’s contract and pay a 20% refundable deposit to secure your vehicle and begin confirming hotels.")}</p></article>
+        <article><span>02</span><h3>{L("Sign and confirm")}</h3><p>{L("Sign the licensed travel agency’s contract and pay a 20% deposit to secure your vehicle and begin confirming hotels. It is fully refundable when cancelled more than 7 full days before departure.")}</p></article>
         <article><span>03</span><h3>{L("Complete the balance")}</h3><p>{L("The remaining balance is normally paid after you arrive in Kunming and meet your guide. Any earlier due date is disclosed before booking.")}</p></article>
       </div>
       <p className="preview-centered">{L("Your signed contract controls the payment schedule, cancellation terms and refunds.")}</p><p className="preview-centered"><Link href="/booking">{lang === "zh" ? "查看完整预订、付款和取消政策 →" : "Read the full booking, payment and cancellation information →"}</Link></p>

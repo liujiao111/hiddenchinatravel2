@@ -20,11 +20,11 @@ export const insuranceCopy = {
 } as const;
 
 export const paymentCopy = {
-  deposit: "20% refundable deposit after you confirm the written itinerary and travel contract",
+  deposit: "20% deposit after you confirm the written itinerary and travel contract; fully refundable more than 7 full days before departure",
   balance: "The remaining 80% is normally due after you arrive in Kunming and meet your guide; supplier-heavy itineraries may require payment 7–14 days before departure when disclosed in writing",
   methods: "Pay securely by Visa, Mastercard, Apple Pay or Google Pay through Stripe, or by Alipay or WeChat Pay. We add no payment-method surcharge.",
-  product: `After you confirm the written itinerary and travel contract, pay a 20% refundable deposit to secure your vehicle and begin confirming hotels. Pay securely by Visa, Mastercard, Apple Pay or Google Pay through Stripe, or by Alipay or WeChat Pay. The remaining 80% is normally due after you arrive in Kunming and meet your guide. If an itinerary requires advance supplier settlement, a date 7–14 days before departure is disclosed in writing before you pay.`,
-  full: `After you confirm the written itinerary and travel contract, pay a 20% refundable deposit to secure your vehicle and begin confirming hotels. Pay securely by Visa, Mastercard, Apple Pay or Google Pay through Stripe, or by Alipay or WeChat Pay. The remaining 80% is normally due after you arrive in Kunming and meet your guide. If an itinerary requires advance supplier settlement, a date 7–14 days before departure is disclosed in writing before you pay.`,
+  product: `After you confirm the written itinerary and travel contract, pay a 20% deposit to secure your vehicle and begin confirming hotels. It is fully refundable when you cancel more than 7 full days before departure. Pay securely by Visa, Mastercard, Apple Pay or Google Pay through Stripe, or by Alipay or WeChat Pay. The remaining 80% is normally due after you arrive in Kunming and meet your guide. If an itinerary requires advance supplier settlement, a date 7–14 days before departure is disclosed in writing before you pay.`,
+  full: `After you confirm the written itinerary and travel contract, pay a 20% deposit to secure your vehicle and begin confirming hotels. It is fully refundable when you cancel more than 7 full days before departure. Pay securely by Visa, Mastercard, Apple Pay or Google Pay through Stripe, or by Alipay or WeChat Pay. The remaining 80% is normally due after you arrive in Kunming and meet your guide. If an itinerary requires advance supplier settlement, a date 7–14 days before departure is disclosed in writing before you pay.`,
 } as const;
 
 export const cancellationCopy = {
@@ -48,7 +48,7 @@ export const operatorFaq = {
 export const bookingSteps = [
   ["01", "Share your plans", "Send your dates, group size and what you would like the journey to feel like."],
   ["02", "Review the written proposal", "Joy helps shape the route. The licensed Yunnan operator confirms the written itinerary, inclusions and quotation for you to review before booking."],
-  ["03", "Confirm and pay the deposit", "Sign the travel contract with the licensed agency and pay a 20% refundable deposit using your preferred supported payment method."],
+  ["03", "Confirm and pay the deposit", "Sign the travel contract with the licensed agency and pay a 20% deposit. It is fully refundable when cancelled more than 7 full days before departure."],
   ["04", "Travel, then settle the balance", "The remaining 80% is normally due after you arrive in Kunming and meet your guide; any earlier due date is disclosed before booking."],
 ] as const;
 

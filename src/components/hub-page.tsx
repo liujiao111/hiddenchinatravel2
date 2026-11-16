@@ -17,7 +17,8 @@ export async function HubPage({ item, alternate, lang }: { item: ContentItem; al
   const t = await getTranslations({ locale: lang, namespace: "hub" });
   const tMobile = await getTranslations({ locale: lang, namespace: "mobileCta" });
   const whatsapp = buildWhatsAppUrl(undefined, lang === "zh" ? "zh" : "en");
-  return <main>
+  const isInternetHub = item.slug === "internet-in-china";
+  return <main className={`hub-page${isInternetHub ? " hub-page-internet" : ""}`}>
     <SiteHeader alternate={alternate} />
     <TopicNavigation active={frontmatter.title} lang={lang} />
     <header className="hub-hero"><div className="narrow"><p>{frontmatter.eyebrow || t("eyebrowDefault")}</p><h1>{frontmatter.title}</h1><span>{frontmatter.description || frontmatter.metaDescription}</span></div></header>
@@ -37,7 +38,7 @@ export async function HubPage({ item, alternate, lang }: { item: ContentItem; al
       formLabel={tMobile("formLabel")}
       statusLabel={tMobile("statusLabel")}
     />
-    <ContentCta />
+    {!isInternetHub && <ContentCta />}
     <ContentFooter />
     <JsonLd data={{
       "@context": "https://schema.org",

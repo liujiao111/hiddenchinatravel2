@@ -3,7 +3,7 @@ type: legal
 title: "Payment & Refund Policy"
 eyebrow: "Clear terms · secure payment"
 seoTitle: "Payment & Refund Policy | Hidden China Travel"
-metaDescription: "Review secure payment methods, the 20% refundable deposit, final-payment timing, cancellation terms and free rescheduling for private Yunnan tours."
+metaDescription: "Review secure payment methods, the 20% deposit, final-payment timing, cancellation terms and free rescheduling for private Yunnan tours."
 canonical: "/booking"
 dateModified: "2026-11-16"
 ogImage:
@@ -16,7 +16,7 @@ We want the financial side of your journey to feel as considered as the itinerar
 ## Payment schedule
 
 1. **Review everything first.** Your proposal states the route, accommodation, vehicle, included services, exclusions, currency and total price. You may request changes before signing.
-2. **Pay a 20% deposit to confirm.** After you accept the proposal and sign the travel contract, a **20% refundable deposit** secures your dedicated vehicle and allows the operator to begin confirming the boutique hotels and other reserved services shown in your itinerary.
+2. **Pay a 20% deposit to confirm.** After you accept the proposal and sign the travel contract, a **20% deposit** secures your dedicated vehicle and allows the operator to begin confirming the boutique hotels and other reserved services shown in your itinerary. It is fully refundable when you cancel more than 7 full days before departure, as explained below.
 3. **Pay the remaining 80% on arrival.** For most private Yunnan journeys, the balance is due after you arrive in Kunming and meet your guide, at the time and place stated in your written proposal.
 4. **Earlier balance dates are disclosed in advance.** If your itinerary includes high-demand holiday dates, premium hotels, permits, flights or other services that require advance settlement, the remaining balance may be due **7–14 days before departure**. This will be stated clearly in your proposal and contract before you pay the deposit.
 

@@ -9,6 +9,7 @@ import { EnquireLink } from "@/components/enquire-link";
 import { JourneyCard } from "@/components/journey-card";
 import { JourneyQuoteBand } from "@/components/journey-quote-band";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
+import { PaymentTrust } from "@/components/payment-trust";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { licensedOperator } from "@/lib/journey-trust";
@@ -119,6 +120,8 @@ export default async function Home({ params }: Props) {
         <small>{t("replyTime")}</small>
       </div>
     </section>
+
+    <section className="payment-trust-band"><div className="shell"><PaymentTrust locale={lang} /></div></section>
 
     <section className="section section-sand home-journeys" id="journeys">
       <div className="shell">

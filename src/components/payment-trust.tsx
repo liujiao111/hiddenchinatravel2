@@ -3,22 +3,6 @@ type PaymentTrustProps = {
   compact?: boolean;
 };
 
-function MastercardMark() {
-  return (
-    <span className="payment-brand payment-brand-mastercard" aria-hidden="true">
-      <i /><i />
-    </span>
-  );
-}
-
-function WechatMark() {
-  return (
-    <span className="payment-brand payment-brand-wechat" aria-hidden="true">
-      <i /><i />
-    </span>
-  );
-}
-
 export function PaymentTrust({ locale = "en", compact = false }: PaymentTrustProps) {
   const zh = locale === "zh";
 
@@ -33,20 +17,20 @@ export function PaymentTrust({ locale = "en", compact = false }: PaymentTrustPro
 
       <div className="payment-trust-scroll">
         <div className="payment-trust-methods" role="list">
-          <span className="payment-method payment-method-visa" role="listitem" aria-label="Visa"><b>VISA</b></span>
-          <span className="payment-method payment-method-mastercard" role="listitem" aria-label="Mastercard"><MastercardMark /><small>mastercard</small></span>
-          <span className="payment-method payment-method-apple" role="listitem" aria-label="Apple Pay"><b aria-hidden="true">●</b><span>Pay</span></span>
-          <span className="payment-method payment-method-google" role="listitem" aria-label="Google Pay"><b aria-hidden="true"><i>G</i></b><span>Pay</span></span>
-          <span className="payment-method payment-method-stripe" role="listitem" aria-label="Stripe"><b>stripe</b></span>
-          <span className="payment-method payment-method-alipay" role="listitem" aria-label="Alipay"><b aria-hidden="true">支</b><span>Alipay</span></span>
-          <span className="payment-method payment-method-wechat" role="listitem" aria-label="WeChat Pay"><WechatMark /><span>WeChat Pay</span></span>
+          <span className="payment-method payment-method-visa" role="listitem">Visa</span>
+          <span className="payment-method payment-method-mastercard" role="listitem">Mastercard</span>
+          <span className="payment-method payment-method-apple" role="listitem">Apple Pay</span>
+          <span className="payment-method payment-method-google" role="listitem">Google Pay</span>
+          <span className="payment-method payment-method-stripe" role="listitem"><small>{zh ? "由" : "Processed by"}</small> Stripe</span>
+          <span className="payment-method payment-method-alipay" role="listitem">Alipay</span>
+          <span className="payment-method payment-method-wechat" role="listitem">WeChat Pay</span>
         </div>
       </div>
 
       <p className="payment-trust-copy">
         <span>{zh ? "SSL/TLS 加密结账" : "SSL/TLS-encrypted checkout"}</span>
-        <span>{zh ? "仅需支付 20% 可退定金" : "Only a 20% refundable deposit"}</span>
-        <span>{zh ? "尾款通常抵达云南后支付" : "Balance normally payable on arrival in Yunnan"}</span>
+        <span>{zh ? "20% 定金 · 出发前超过 7 个完整自然日取消可全额退回" : "20% deposit · fully refundable more than 7 full days before departure"}</span>
+        <span>{zh ? "尾款通常抵达昆明并与向导会合后支付" : "Balance normally payable after arrival in Kunming"}</span>
       </p>
       <p className="payment-trust-note">
         {zh
