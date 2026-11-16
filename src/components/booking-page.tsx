@@ -27,20 +27,20 @@ function bookingSections(markdown: string) {
 
 const copy = {
   en: {
-    breadcrumb: "Booking & payment",
-    kicker: "BOOKING & SERVICE",
+    breadcrumb: "Payment & refund policy",
+    kicker: "CLEAR TERMS · SECURE PAYMENT",
     updated: "Last updated",
-    sections: ["01 / THE PROCESS", "02 / PAYMENT", "03 / CANCELLATIONS", "04 / YOUR OPERATOR"],
+    sections: ["01 / PAYMENT SCHEDULE", "02 / PAYMENT METHODS", "03 / CANCELLATIONS & REFUNDS", "04 / PROTECTION & OPERATOR"],
     closingHeading: "Ready to plan your journey?",
     closingText: "Start with your dates and travel ideas. You can review the itinerary and quote before deciding to book.",
     cta: "Start Planning My Journey",
     explore: "Explore private journeys",
   },
   zh: {
-    breadcrumb: "预订与付款",
-    kicker: "预订与服务",
+    breadcrumb: "付款与退款政策",
+    kicker: "透明条款 · 安全付款",
     updated: "最近更新",
-    sections: ["01 / 预订流程", "02 / 付款方式", "03 / 取消与退款", "04 / 签约旅行社"],
+    sections: ["01 / 付款进度", "02 / 支付方式", "03 / 取消与退款", "04 / 保障与签约旅行社"],
     closingHeading: "准备规划你的旅程了吗？",
     closingText: "告诉我们你的出行日期和想法。先查看书面行程与报价，再决定是否预订。",
     cta: "开始规划我的行程",

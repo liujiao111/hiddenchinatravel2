@@ -40,6 +40,6 @@ You can inspect the licensed operator's business licence and travel-agency opera
 
 ## Booking, payment and insurance
 
-Only send tour payments to the account identified in the written contract with the licensed operator. Our standard policy is a 20% deposit after signing, 80% after the first pickup, and the published seven-day cancellation terms. The signed contract and mandatory law govern any booking-specific changes and refunds. Read [booking information](/booking).
+Only pay through the checkout or account identified in the written contract with the licensed operator. Our standard policy is a 20% refundable deposit, with the balance normally due after you arrive in Kunming and meet your guide. Any earlier date is disclosed before booking. The signed contract, mandatory law and published cancellation terms govern booking-specific changes and refunds. Read the [Payment & Refund Policy](/booking).
 
 Travel-agency liability insurance is included in Yunnan tour arrangements through the licensed operator. The applicable insurer, policy and coverage are confirmed by the operator before booking. The business and operating licences displayed here are separate from insurance documents. Travelers should arrange their own suitable medical and evacuation insurance.

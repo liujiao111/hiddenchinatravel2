@@ -1,47 +1,53 @@
 ---
 type: legal
-title: "Booking & Payment Information"
-eyebrow: "Booking & service"
-seoTitle: "Booking & Payment Information"
-metaDescription: "Review private Yunnan journey booking terms: 20% deposit, 80% after pickup, written tour contract, cancellations and refunds."
+title: "Payment & Refund Policy"
+eyebrow: "Clear terms · secure payment"
+seoTitle: "Payment & Refund Policy | Hidden China Travel"
+metaDescription: "Review secure payment methods, the 20% refundable deposit, final-payment timing, cancellation terms and free rescheduling for private Yunnan tours."
 canonical: "/booking"
-dateModified: "2026-11-13"
+dateModified: "2026-11-16"
 ogImage:
   url: "/home/hero.webp"
-lastUpdated: "November 2026"
+lastUpdated: "November 16, 2026"
 ---
 
-You receive a written itinerary, included services and a confirmed quotation before deciding to book. Hidden China Travel is an independent international travel brand; Yunnan tours are contracted and operated by **Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司)**, travel agency permit **L-YN-101848**.
+We want the financial side of your journey to feel as considered as the itinerary itself. You receive a written route, named services, total price and payment schedule before you commit. No payment is required to request or revise an initial proposal.
 
-## How booking works
+## Payment schedule
 
-1. **Share your plans.** Tell Joy your dates, number of travelers and travel preferences.
-2. **Review your proposal.** The licensed operator confirms your written itinerary, inclusions and quotation. You may request adjustments before booking.
-3. **Confirm and pay the deposit.** Sign the travel contract with the licensed agency and pay the **20% deposit** to its corporate account. Hotels, tickets and the vehicle are arranged after the deposit.
-4. **Begin your journey.** Your private pickup starts the trip. The remaining **80% is paid after your first pickup** at the place set out in your proposal.
+1. **Review everything first.** Your proposal states the route, accommodation, vehicle, included services, exclusions, currency and total price. You may request changes before signing.
+2. **Pay a 20% deposit to confirm.** After you accept the proposal and sign the travel contract, a **20% refundable deposit** secures your dedicated vehicle and allows the operator to begin confirming the boutique hotels and other reserved services shown in your itinerary.
+3. **Pay the remaining 80% on arrival.** For most private Yunnan journeys, the balance is due after you arrive in Kunming and meet your guide, at the time and place stated in your written proposal.
+4. **Earlier balance dates are disclosed in advance.** If your itinerary includes high-demand holiday dates, premium hotels, permits, flights or other services that require advance settlement, the remaining balance may be due **7–14 days before departure**. This will be stated clearly in your proposal and contract before you pay the deposit.
 
-## Payment
+## Accepted payment methods
 
-- **20% deposit** after you agree to the written itinerary and sign the tour contract.
-- **80% remaining balance** after your first pickup, when the journey starts.
+- **Visa and Mastercard.** Secure card checkout is processed by Stripe.
+- **Apple Pay and Google Pay.** Available through Stripe on supported devices, browsers and regions.
+- **Alipay and WeChat Pay.** Available for both the deposit and final balance when shown on your payment request.
+- **No hidden payment surcharge.** We do not add a card, wallet or platform fee to the confirmed tour price. Your bank or wallet provider may apply its own exchange-rate or cross-border charge; those external charges are outside our control.
 
-Pay by Alipay, WeChat or bank transfer to the licensed agency's designated corporate account. The receiving company name should match the agreed contractual payment recipient. The final price and inclusions are confirmed in writing.
+Card and digital-wallet details are entered on the payment provider's secure checkout rather than shared with us. A receipt is issued for every payment.
 
-## Changes & cancellations
+## Flexible cancellation & refund policy
 
-The following seven-day period is measured against the journey's scheduled departure date:
+The cancellation clock is measured in local Yunnan time against the scheduled start date in your confirmed itinerary.
 
-- **More than 7 days before departure:** refund the deposit minus hotel or ticket charges already booked that cannot be recovered.
-- **7 days or fewer before departure:** the deposit is retained, subject to the signed travel contract and any mandatory consumer protection or tourism law that overrides these standard terms.
+- **More than 7 full days before departure:** your 20% deposit is fully refundable. We return it to the original payment method.
+- **7 days or fewer before departure:** the 20% deposit is non-refundable because vehicle, accommodation and operational commitments have entered the final confirmation period. If you have already paid any part of the 80% balance, we refund the recoverable portion after deducting documented, non-refundable third-party costs.
+- **After departure or for a no-show:** services already provided, missed or committed to suppliers are non-refundable. We will still seek any recoverable amount from hotels or other suppliers on your behalf.
+- **Operator cancellation:** if the licensed operator cancels the journey and cannot provide an agreed alternative, you receive a full refund of tour payments made for the cancelled services.
 
-If weather, ticket availability or transport requires a change, the agency discusses alternatives before proceeding. The signed contract governs the confirmed booking and legally required refunds.
+### Free rescheduling for serious disruption
 
-## Your licensed travel operator
+If a documented flight cancellation, sudden serious illness, natural disaster, government restriction or comparable event outside your reasonable control prevents the journey, contact us as soon as possible. We offer **one change of travel dates without an administrative change fee**, subject to guide, vehicle and hotel availability. Any seasonal price difference and any supplier charge that cannot be moved or recovered will be explained before you approve the new dates.
 
-Hidden China Travel is an independently managed China travel brand and the official international-facing brand and online enquiry channel for the Yunnan inbound travel services of **Kunming Dianguoguo International Travel Agency Co., Ltd.** Joy helps with initial trip planning; the licensed agency confirms the quote, contracts, takes tour payments and operates the journey. [View agency credentials](/licensed-operator).
+To request a cancellation, refund or date change, reply to your booking email or contact Joy using the same WhatsApp conversation used for planning. We acknowledge the request and, once approved, initiate the refund promptly to the original payment method. Card refunds processed by Stripe usually take **5–10 business days** to appear after initiation; Alipay, WeChat Pay and issuing banks may use different posting times. We provide the refund reference if a payment needs to be traced.
 
-## Travel insurance
+## Booking protection & licensed operator
 
-Travel-agency liability insurance is included in your Yunnan journey and arranged by the licensed tour operator. Applicable policy terms, insurer and coverage will be explained by the operator before booking confirmation. Travelers are registered using their real names and passport details as required.
+Your Yunnan journey is contracted and operated by **Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司)**, a licensed inbound travel agency in Kunming, Yunnan. Travel agency permit: **L-YN-101848**. Hidden China Travel is its official international-facing brand and enquiry channel for these journeys; Joy assists with planning, while the licensed agency confirms the quotation, signs the contract, receives tour payments and operates the trip. [View the operator's licence and company credentials](/licensed-operator).
 
-Agency liability insurance is distinct from personal travel medical and emergency evacuation insurance. We recommend arranging your own suitable cover. The previously contracted operator's policy is not presented as evidence of the current operator's cover.
+Travel-agency liability insurance is arranged by the licensed operator as required and is not a substitute for personal travel insurance. We strongly recommend cover for medical treatment, emergency evacuation, trip interruption, flight disruption and circumstances that fall outside this policy.
+
+Your signed proposal and travel contract record the exact services and dates for your booking. If a booking-specific term differs from this general policy, it must be highlighted and agreed before payment. Nothing in this policy limits rights that cannot legally be excluded under applicable consumer or tourism law.

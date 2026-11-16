@@ -76,7 +76,7 @@ Visa and entry information should always be confirmed directly with relevant gov
 
 Sending a website enquiry does not create a booking. For Yunnan journeys, the licensed operator is **Kunming Dianguoguo International Travel Agency Co., Ltd. (昆明滇果果国际旅行社有限公司)**, business permit **L-YN-101848**. The licensed operator reviews and issues the confirmed quotation and signs the travel contract, which identifies the legal seller, payment recipient, services, prices, cancellation and refund conditions.
 
-You should pay only the account identified by the licensed operator in your written contract. No standard deposit percentage, balance deadline or universal cancellation penalty is promised by this website; the applicable signed contract and mandatory law govern. Insurance coverage must be confirmed separately with the operator. Visit [licensed operator](/licensed-operator) and [booking information](/booking).
+You should pay only through the checkout or account identified by the licensed operator in your written contract. Our published standard policy is a 20% refundable deposit, with the 80% balance normally due after arrival in Kunming and meeting your guide. Any earlier balance date is disclosed before booking. Cancellations made more than 7 full days before departure qualify for a full deposit refund; at 7 days or fewer, the deposit is non-refundable. Booking-specific terms, mandatory law and the full [Payment & Refund Policy](/booking) apply. Insurance coverage must be confirmed separately with the operator. Visit the [licensed operator page](/licensed-operator).
 
 ## Travel Information and Planning Advice
 

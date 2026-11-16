@@ -15,6 +15,14 @@ import type { Journey } from "@/lib/journeys";
 import { getPublishedYunnanCountryGuides } from "@/lib/yunnan-country-guides.server";
 import { getYunnanGuideContent } from "@/lib/yunnan-guide-content";
 import { getContentBySlug } from "@/lib/content";
+import { EditorialSeasonGuide } from "@/components/editorial-season-guide";
+
+const seasonImages = [
+  { image: "/assets/destinations/yunnan/dali-erhai-cover.webp", zh: ["把日子，留给洱海与村落。", "大理 · 洱海", "洱海岸边的座椅与远处苍山"], en: ["Slow days by the lake.", "Erhai Lake · Dali", "Lakeside seating overlooking Erhai and the Cangshan mountains"] },
+  { image: "/assets/blog/best-time-to-visit-yunnan/pudacuo-cloudy-lake.webp", zh: ["走进山野，也给天气留点余地。", "香格里拉 · 普达措", "云层下的普达措湖泊与绿色山林"], en: ["Green landscapes. Room to wander.", "Pudacuo · Shangri-La", "A wooden jetty beside a lake and green hills under clouds at Pudacuo"] },
+  { image: "/assets/blog/best-time-to-visit-yunnan/cover-pudacuo-autumn.webp", zh: ["天高云淡，去看远处的山。", "香格里拉 · 普达措", "普达措湖面映着蓝天与山林，岸边可见冰雪"], en: ["Clearer skies, further horizons.", "Pudacuo · Shangri-La", "Blue sky and forest reflected in a Pudacuo lake, with ice and snow along the shore"] },
+  { image: "/assets/destinations/yunnan/snow-mountain-8-day.webp", zh: ["向阳慢行，抬头是雪山。", "云南 · 高山风景", "蓝天下连绵的雪山与山谷"], en: ["Winter light and mountain air.", "Yunnan · Mountain landscapes", "Snow-covered peaks and a mountain valley beneath a blue sky"] },
+];
 
 const countryNames: Record<string, string> = {
   "the UK": "英国",
@@ -95,7 +103,24 @@ export function YunnanGuidePage({ journey }: { journey: Journey }) {
 
     <section className="yunnan-guides section section-sand" id="guides"><div className="shell"><div className="yunnan-section-heading"><span>{copy.guidesKicker}</span><h2>{copy.guidesTitle}</h2><p>{copy.guidesIntro}</p></div><div className="yunnan-guide-grid">{guides.map((guide) => <GuideCard key={guide.href} guide={guide} />)}</div></div></section>
 
-    <section className="yunnan-season section" id="season"><div className="shell"><div className="yunnan-section-heading"><span>{copy.seasonKicker}</span><h2>{copy.seasonTitle}</h2><p>{copy.seasonIntro}</p></div><div className="yunnan-season-grid">{seasons.map(([dates, name, text]) => <article key={name}><span>{dates}</span><h3>{name}</h3><p>{text}</p></article>)}</div></div></section>
+    <section className="yunnan-season section" id="season">
+      <div className="shell">
+        <div className="editorial-season-heading">
+          <p className="kicker">{copy.seasonKicker}</p>
+          <h2>{locale === "zh" ? "云南，四季各有风景。" : "Yunnan, through the seasons."}</h2>
+          <p>{copy.seasonIntro}</p>
+        </div>
+        <EditorialSeasonGuide
+          label={locale === "zh" ? "选择旅行季节" : "Choose a travel season"}
+          linkLabel={locale === "zh" ? "查看完整季节指南" : "Explore the seasonal guide"}
+          seasons={seasons.map(([dates, name, description], index) => {
+            const visual = seasonImages[index];
+            const [headline, caption, alt] = locale === "zh" ? visual.zh : visual.en;
+            return { dates, name, description, headline, caption, alt, image: visual.image };
+          })}
+        />
+      </div>
+    </section>
 
     <section className="yunnan-prepare section" id="prepare"><div className="shell"><div className="yunnan-section-heading light"><span>{copy.prepareKicker}</span><h2>{copy.prepareTitle}</h2><p>{copy.prepareIntro}</p></div><div className="yunnan-practical-grid">{practical.map(([title, text, href], index) => <Link href={href} key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p><b>{copy.readGuide}</b></Link>)}</div><div className="center"><Link href="/china-travel-essentials" className="button button-light">{copy.survivalKit}</Link></div></div></section>
 

@@ -26,7 +26,7 @@ heroIncludes:
   - "One dedicated Chinese- or English-speaking driver-guide · no shopping stops"
   - "One night in Shaxi · between Dali and Lijiang"
   - "Jade Dragon as its own day · not departure day"
-  - "20% after you sign · 80% after pickup"
+  - "20% refundable deposit · balance normally on arrival"
 whoFor: "Couples, friends and small private groups on a first Yunnan trip who would rather give Jade Dragon a full day than pack the glacier onto a departure."
 whenToGo: "March–May and September–November are the most comfortable. Summer is lush and busier; winter is quieter, with a colder mountain day."
 overviewTitle: "At a glance."

@@ -49,7 +49,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
   const questions = t.raw("questions") as string[];
 
   return (
-    <main>
+    <main className="contact-page">
       <SiteHeader />
 
       <section className="contact-hero">
@@ -149,7 +149,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
           <p>{t("finalP1")}</p>
           <p>{t("finalP2")}</p>
           <p>{t("finalP3a")}<br />{t("finalP3b")}</p>
-          <Link className="button button-light" href={whatsapp}>{tj("startPlanning")}</Link>
+          <Link className="button button-primary" href={whatsapp}>{tj("startPlanning")}</Link>
         </div>
       </section>
 

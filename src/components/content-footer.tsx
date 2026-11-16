@@ -90,6 +90,21 @@ export function ContentFooter() {
         </nav>
       </div>
 
+      <section className="shell footer-trust" aria-label={t("trustHeading")}>
+        <Link className="footer-trust-item" href="/licensed-operator">
+          <span className="footer-trust-index" aria-hidden="true">01</span>
+          <span className="footer-trust-copy"><strong>{t("trustLicenseLabel")}</strong><span>{t("trustLicense", { permit: licensedOperator.permitNumber })}</span></span>
+        </Link>
+        <Link className="footer-trust-item" href="/booking">
+          <span className="footer-trust-index" aria-hidden="true">02</span>
+          <span className="footer-trust-copy"><strong>{t("trustPaymentsLabel")}</strong><span>{t("trustPayments")}</span></span>
+        </Link>
+        <div className="footer-trust-item">
+          <span className="footer-trust-index" aria-hidden="true">03</span>
+          <span className="footer-trust-copy"><strong>{t("trustPrivateLabel")}</strong><span>{t("trustPrivate")}</span></span>
+        </div>
+      </section>
+
       <div className="shell footer-cta">
         <p>{t("ctaText")}</p>
         <Link href={whatsapp}>{t("ctaLink")} <span aria-hidden="true">→</span></Link>
