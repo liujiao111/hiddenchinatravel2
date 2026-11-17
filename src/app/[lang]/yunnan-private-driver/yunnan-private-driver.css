@@ -1,29 +1,46 @@
 /* Yunnan driver service page — uses shared site tokens and button/form conventions. */
 
-/* Shared journey components: same fact cards and planning steps used on the
-   established private-tour pages, rather than parallel card implementations. */
+/* Shared journey components, with a dedicated five-step process layout.
+   The general journey-support-flow is designed for THREE steps. Five steps
+   need a separate, page-scoped timeline to avoid orphaned grid items. */
 .driver-page .driver-why-shared.journey-fact-cards{background:var(--driver-soft);scroll-margin-top:58px}
 .driver-page .driver-why-shared .journey-fact-grid h3{font-size:1.22rem}
 .driver-page .driver-why-shared .journey-fact-grid li li{font-size:.88rem}
-.driver-page .driver-process .journey-section-layout{gap:clamp(34px,5vw,80px)}
+
+/* Five equal columns on desktop: no white boxes, no orphaned final card. */
+.driver-page .driver-process{background:var(--driver-soft);text-align:left}
+.driver-page .driver-process .journey-section-layout{display:block}
+.driver-page .driver-process .journey-section-layout>header{position:static;max-width:760px;margin:0 auto 48px;text-align:center}
 .driver-page .driver-flow-heading{min-width:0}
-.driver-page .driver-flow-heading h2{margin:0 0 16px;text-align:left}
-.driver-page .driver-flow-heading>p:not(.kicker){color:var(--color-muted);margin:0;max-width:370px;font-size:.9rem;line-height:1.7}
-.driver-page .driver-process .journey-support-grid{background:var(--color-border)}
-.driver-page .driver-process .journey-support-grid article{background:var(--color-surface)}
-.driver-page .driver-process .journey-support-grid article>span{color:var(--color-primary)}
-.driver-page .driver-process .journey-support-grid article:last-child:nth-child(odd){grid-column:1/-1}
-.driver-page .driver-process .driver-flow-note{grid-column:2;margin:14px 0 0;text-align:left;padding:0;color:var(--color-muted)}
+.driver-page .driver-flow-heading h2{margin:0 0 16px;text-align:center}
+.driver-page .driver-flow-heading>p:not(.kicker){color:var(--color-muted);margin:0 auto;max-width:670px;font-size:.91rem;line-height:1.7;text-align:center}
+.driver-page .driver-process .journey-support-grid{display:grid;position:relative;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;background:transparent;margin:0}
+.driver-page .driver-process .journey-support-grid::before{content:"";position:absolute;top:21px;left:10%;right:10%;height:1px;background:#bacbd7}
+.driver-page .driver-process .journey-support-grid article,
+.driver-page .driver-process .journey-support-grid article:last-child:nth-child(odd){display:block;position:relative;grid-column:auto;min-width:0;padding:0 9px;border:0;background:transparent;text-align:center;box-shadow:none}
+.driver-page .driver-process .journey-support-grid article:hover{transform:none}
+.driver-page .driver-process .journey-support-grid article>span{position:relative;z-index:1;display:grid;width:44px;height:44px;margin:0 auto 18px;place-items:center;border:1px solid #b4cede;border-radius:50%;background:var(--driver-soft);color:var(--color-primary);font-family:inherit;font-size:.76rem;font-weight:800}
+.driver-page .driver-process .journey-support-grid h3{max-width:none;margin:0 0 9px;text-align:center;font-size:clamp(1.03rem,1.3vw,1.22rem);line-height:1.35}
+.driver-page .driver-process .journey-support-grid p{max-width:208px;margin:0 auto;color:var(--color-muted);font-size:.8rem;line-height:1.65;text-align:center}
+.driver-page .driver-process .driver-flow-note{display:block;max-width:780px;grid-column:auto;margin:34px auto 0;padding:17px 10px 0;border-top:1px solid var(--color-border);text-align:center;font-size:.79rem;color:var(--color-muted)}
+
 .driver-page .driver-faq.journey-faq{background:#fff}
 .driver-page .driver-faq .driver-section-head{margin-bottom:34px}
 .driver-page .driver-faq .driver-section-head h2{margin-bottom:12px}
 .driver-page #payment-policy .driver-detail-note a{color:var(--color-action-text);text-decoration:underline;text-underline-offset:3px}
-@media(max-width:800px){
-  .driver-page .driver-process .journey-section-layout{gap:28px}
-  .driver-page .driver-process .driver-flow-note{grid-column:auto}
-}
-@media(max-width:700px){
-  .driver-page .driver-process .journey-support-grid article:last-child:nth-child(odd){grid-column:auto}
+
+/* At tablet and phone widths, use a compact vertical timeline instead of
+   squeezing five columns into narrow white cards. */
+@media(max-width:980px){
+  .driver-page .driver-process .journey-section-layout>header{margin-bottom:32px}
+  .driver-page .driver-process .journey-support-grid{grid-template-columns:minmax(0,1fr);gap:22px;max-width:660px;margin:0 auto}
+  .driver-page .driver-process .journey-support-grid::before{top:22px;bottom:24px;left:21px;right:auto;width:1px;height:auto}
+  .driver-page .driver-process .journey-support-grid article,
+  .driver-page .driver-process .journey-support-grid article:last-child:nth-child(odd){display:grid;grid-template-columns:44px minmax(0,1fr);gap:5px 18px;align-items:start;padding:0;text-align:left}
+  .driver-page .driver-process .journey-support-grid article>span{grid-column:1;grid-row:1/3;margin:0}
+  .driver-page .driver-process .journey-support-grid h3{grid-column:2;max-width:none;margin:0;text-align:left;font-size:1.12rem}
+  .driver-page .driver-process .journey-support-grid p{grid-column:2;max-width:none;margin:0;text-align:left;font-size:.85rem}
+  .driver-page .driver-process .driver-flow-note{max-width:660px;margin-top:28px}
   .driver-page .driver-why-shared .journey-fact-grid{grid-template-columns:1fr}
   .driver-page .driver-why-shared .journey-fact-grid>li{min-height:0;padding:68px 24px 27px}
 }
