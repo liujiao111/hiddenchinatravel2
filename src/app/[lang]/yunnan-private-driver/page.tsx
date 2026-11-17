@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const zh = lang === "zh";
   const title = zh ? "云南私人包车与司机服务｜大理丽江接送和定制路线" : "Yunnan Private Driver & Car Service | Transfers & Quotes";
   const description = zh
-    ? "云南包车服务：昆明、大理、丽江机场与车站接送，跨城直达、经沙溪与虎跳峡路线，以及9小时日包车、多日私人司机定制。"
-    : "Yunnan private driver services: Kunming, Dali and Lijiang airport or station transfers, intercity routes via Shaxi and Tiger Leaping Gorge, 9-hour day charters and custom multi-day drivers.";
+    ? "云南包车服务：昆明、大理、丽江、香格里拉机场与车站接送，跨城直达、经沙溪与虎跳峡路线，以及9小时日包车、多日私人司机定制。"
+    : "Yunnan private driver services: Kunming, Dali, Lijiang and Shangri-La airport or station transfers, intercity routes via Shaxi and Tiger Leaping Gorge, 9-hour day charters and custom multi-day drivers.";
   return localizedStaticMetadata(lang, "/yunnan-private-driver", {
     title, description,
     openGraph: { title, description, type: "website", images: [{ url: "/assets/partners/vehicles/five-seat-toyota.webp", alt: "Five-seat private driver vehicle in Yunnan service" }] },
@@ -115,7 +115,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <p className="kicker">{T("PRIVATE ROAD TRAVEL · YUNNAN", "云南 · 私人交通服务")}</p>
           <h1>{T("Private Driver and Car Service in Yunnan", "云南私人包车与司机服务")}</h1>
           <p className="driver-hero-intro">{T("Travel between Dali, Lijiang, Shaxi, Shangri-La, Kunming and surrounding destinations with a private vehicle, local driver and English-language support.", "提供大理、丽江、沙溪、香格里拉、昆明及周边地区的私人用车、当地司机与英文沟通协调。")}</p>
-          <p>{T("Choose from ten transfer and day-charter options, or tell us about a custom multi-day route. We confirm availability and price before arranging any deposit.", "从10个标准接送与包车产品中选择，或提交多日定制路线；确认车源与价格后再安排定金支付。")}</p>
+          <p>{T("Choose from eleven transfer and day-charter options, or tell us about a custom multi-day route. We confirm availability and price before arranging any deposit.", "从11个标准接送与包车产品中选择，或提交多日定制路线；确认车源与价格后再安排定金支付。")}</p>
           <ul className="driver-hero-tags">
             {[T("Private car and local driver","私人用车及当地司机"),T("Airport, station & hotel pickups","机场、车站和酒店接送"),T("1–3 travellers in standard car","标准车建议1–3人"),T("English support on WhatsApp","WhatsApp 英文支持")].map(x=><li key={x}>{x}</li>)}
           </ul>
@@ -146,7 +146,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <div>
             <p className="kicker">{T("04 / BESPOKE SERVICE", "04 / 定制服务")}</p>
             <h2>{T("Custom & Multi-Day Driver", "定制路线与多日包车")}</h2>
-            <p>{T("Need a route beyond the ten options above? We can arrange a private driver for multi-city journeys, family trips, longer stays, photography days or special sightseeing stops, with the vehicle and quote matched to your plan.", "没有找到合适的标准路线？昆明、大理、丽江、香格里拉多日用车，家庭旅行、摄影路线和特殊停靠都可以按实际行程匹配车辆与报价。")}</p>
+            <p>{T("Need a route beyond the eleven options above? We can arrange a private driver for multi-city journeys, family trips, longer stays, photography days or special sightseeing stops, with the vehicle and quote matched to your plan.", "没有找到合适的标准路线？昆明、大理、丽江、香格里拉多日用车，家庭旅行、摄影路线和特殊停靠都可以按实际行程匹配车辆与报价。")}</p>
             <p className="driver-custom-examples">{T("Multi-day routes · Larger groups · Flexible sightseeing · Non-standard pickups", "多日路线 · 更多乘客 · 灵活游览 · 特殊接送点")}</p>
             <div className="driver-action-row">
               <a className="button button-blue" href="#custom-quote">{T("Request a Custom Quote", "申请定制包车报价")}</a>

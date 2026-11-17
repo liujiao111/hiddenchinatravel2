@@ -9,7 +9,7 @@ import { LocaleLink as Link } from "@/components/locale-link";
 type Locale = "en" | "zh";
 type Category = "arrival" | "intercity" | "day";
 type ProductId =
-  | "kunming-arrival" | "dali-arrival" | "lijiang-arrival"
+  | "kunming-arrival" | "dali-arrival" | "lijiang-arrival" | "shangri-la-arrival"
   | "dali-lijiang-direct" | "dali-lijiang-shaxi" | "lijiang-shangri-la" | "lijiang-tlg-shangri-la"
   | "dali-day" | "lijiang-day" | "shangri-la-day";
 type FormKind = "standard" | "custom";
@@ -54,6 +54,17 @@ const products: Product[] = [
       { value: "Lijiang Sanyi International Airport", en: "Lijiang Sanyi Airport (LJG)", zh: "丽江三义国际机场（LJG）" },
       { value: "Lijiang Railway Station", en: "Lijiang Railway Station", zh: "丽江站" },
     ]
+  },
+  {
+    id: "shangri-la-arrival", category: "arrival",
+    en: "Shangri-La Arrival Transfers", zh: "香格里拉机场与车站接送",
+    detailEn: "Private transfers between the railway station or airport and hotels around Dukezong and beyond.",
+    detailZh: "提供香格里拉站、迪庆香格里拉机场与独克宗古城及周边酒店的接送。",
+    photo: "/assets/destinations/yunnan/shangri-la.webp",
+    hubs: [
+      { value: "Shangri-La Railway Station", en: "Shangri-La Railway Station", zh: "香格里拉站" },
+      { value: "Diqing Shangri-La Airport", en: "Diqing Shangri-La Airport (DIG)", zh: "迪庆香格里拉机场（DIG）" },
+    ],
   },
   {
     id: "dali-lijiang-direct", category: "intercity",
@@ -120,6 +131,11 @@ const products: Product[] = [
   },
 ];
 
+const shangriLaHotelAreas: NamedOption[] = [
+  { value: "Dukezong Old Town / City Centre", en: "Dukezong Old Town / City Centre", zh: "独克宗古城／市区" },
+  { value: "Other Area - Custom Quote", en: "Other Area — Custom Quote", zh: "其他区域 — 单独报价" },
+];
+
 const arrivalDirections: NamedOption[] = [
   { value: "Hub to hotel", en: "Airport / station → hotel", zh: "机场／车站 → 酒店（接机／接站）" },
   { value: "Hotel to hub", en: "Hotel → airport / station", zh: "酒店 → 机场／车站（送机／送站）" },
@@ -133,6 +149,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const startedRef = useRef(false);
   const service = products.find(p => p.id === serviceId);
   const isArrival = service?.category === "arrival";
+  const isShangriLaArrival = service?.id === "shangri-la-arrival";
   const isDay = service?.category === "day";
   const isIntercity = service?.category === "intercity";
   const title = kind === "custom" ? (zh ? "提交定制／多日包车需求" : "Request a Custom or Multi-Day Driver") : (zh ? "选择服务选项与日期" : "Select Your Transfer Details");
@@ -169,6 +186,11 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const hub = String(values.get("hub") || "");
     const direction = String(values.get("direction") || "");
     const hotel = String(values.get("hotel") || "");
+    const hotelArea = isShangriLaArrival ? String(values.get("hotelArea") || "") : "";
+    if (isShangriLaArrival && !shangriLaHotelAreas.some(area => area.value === hotelArea)) {
+      setError(zh ? "请选择有效的酒店区域。" : "Please select a valid hotel area.");
+      setStatus("error"); return;
+    }
     if (isArrival && (!service?.hubs?.some(h => h.value === hub) || !arrivalDirections.some(d => d.value === direction))) {
       setError(zh ? "请选择有效的机场／车站和接送方向。" : "Select a valid airport / station and transfer direction.");
       setStatus("error"); return;
@@ -191,6 +213,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       "Travel date: " + travelDate,
       "Direction / selected route: " + (direction || "Custom"),
       "Airport / railway station: " + (hub || "Not applicable"),
+      "Hotel service area: " + (hotelArea || "Not applicable"),
       "Arrival / departure flight or train: " + String(values.get("transportNumber") || "Not supplied"),
       "Pickup: " + pickup,
       "Drop-off: " + dropoff,
@@ -222,7 +245,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       trackEvent("generate_lead", {
         form_name: formName, lead_type: kind === "custom" ? "private_driver_custom" : "private_driver_product",
         product_id: service?.id || "custom-multi-day", service_category: service?.category || "custom",
-        service_direction: direction || undefined, vehicle_requested: vehicle,
+        service_direction: direction || undefined, hotel_area: hotelArea || undefined, vehicle_requested: vehicle,
         event_id: idRef.current, page_path: window.location.pathname,
       });
       setStatus("success");
@@ -264,6 +287,17 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         <label><span>{zh ? "酒店名称或详细地址 *" : "Hotel name / full address *"}</span><input name="hotel" required maxLength={150} placeholder={zh ? "例如：大理古城某酒店" : "Hotel and address"} /></label>
         <label><span>{zh ? "航班号／车次（选填）" : "Flight / train number (optional)"}</span><input name="transportNumber" maxLength={40} placeholder={zh ? "例如：MU1234" : "e.g. MU1234"} /></label>
       </div>
+      {isShangriLaArrival ? <>
+        <label><span>{zh ? "酒店所在区域 *" : "Hotel area *"}</span>
+          <select name="hotelArea" required defaultValue="">
+            <option value="" disabled>{zh ? "选择酒店区域" : "Select hotel area"}</option>
+            {shangriLaHotelAreas.map(area => <option key={area.value} value={area.value}>{zh ? area.zh : area.en}</option>)}
+          </select>
+        </label>
+        <p className="driver-area-hint">{zh
+          ? "独克宗古城／市区按常规服务区域核价；其他区域根据具体酒店位置另行报价。"
+          : "Dukezong and city-centre hotels are quoted within the regular service area. Other locations receive a custom quote."}</p>
+      </> : null}
     </> : null}
     {isIntercity ? <>
       <label><span>{zh ? "选择路线及方向 *" : "Route and direction *"}</span>
@@ -327,7 +361,7 @@ export function StandardTransferSection({ locale }: { locale: Locale }) {
       <div className="driver-section-head">
         <p className="kicker">{zh ? "私人交通服务目录" : "YUNNAN DRIVER SERVICES"}</p>
         <h2>{zh ? "选择合适的接送与包车服务" : "Find Your Private Car Service"}</h2>
-        <p>{zh ? "10个清晰的标准产品入口，按城市、线路或包车时长选择。提交日期和车辆信息后，我们会先核实车源与总价。" : "Ten straightforward service options, grouped by arrival transfer, intercity route and day hire. We confirm the car and total price before taking a deposit."}</p>
+        <p>{zh ? "11个清晰的标准产品入口，按城市、线路或包车时长选择。提交日期和车辆信息后，我们会先核实车源与总价。" : "Eleven straightforward service options, grouped by arrival transfer, intercity route and day hire. We confirm the car and total price before taking a deposit."}</p>
       </div>
       <nav className="driver-catalog-jump" aria-label={zh ? "服务类别" : "Service categories"}>
         <a href="#airport-station-transfers">{zh ? "机场／车站接送" : "Airport & Station"}</a>

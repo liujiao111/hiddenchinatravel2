@@ -221,7 +221,8 @@
 .driver-page .driver-group-heading h3{font-family:Georgia,serif;font-size:clamp(1.6rem,2.5vw,2.3rem);letter-spacing:-.02em;margin:0 0 8px}
 .driver-page .driver-group-heading p:not(.kicker){color:var(--color-muted);font-size:.85rem;margin:0;max-width:660px}
 .driver-page .driver-group-heading>span{flex:none;color:var(--color-muted);font-size:.7rem;white-space:nowrap;padding-bottom:4px}
-.driver-page .driver-product-grid--arrival,.driver-page .driver-product-grid--day{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.driver-page .driver-product-grid--arrival{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.driver-page .driver-product-grid--day{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .driver-page .driver-product-grid--intercity{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .driver-page .driver-catalog-group .driver-product{display:flex;flex-direction:column;min-width:0;min-height:100%;background:#fff;border:1px solid var(--color-border)}
 .driver-page .driver-catalog-group .driver-product-photo{height:175px;min-height:0;flex:none}
@@ -268,3 +269,6 @@
   .driver-page .driver-custom-entry-photo{min-height:170px}
   .driver-page .driver-form .contact-field-row{display:grid;grid-template-columns:1fr}
 }
+
+/* Shangri-La arrival hub, direction and hotel-area selector uses the same form styling. */
+.driver-page .driver-form .driver-area-hint{margin:-5px 0 17px;font-size:.77rem;line-height:1.65;color:var(--color-muted)}
