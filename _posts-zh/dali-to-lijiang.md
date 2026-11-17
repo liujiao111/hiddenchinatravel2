@@ -133,7 +133,9 @@ faqs:
 
 沙溪并不是只能包车到达。**大理古城—沙溪**站点巴士在[2026年1月开通](https://dali.yunnan.cn/system/2026/01/14/033827162.shtml)，公开报道参考车程约2.5–3小时；**沙溪—丽江**站点巴士则早在[2024年6月推出](https://www.lijiang.cn/article/131677.html)。不过这是两个独立的路段，务必提前确认当天各自是否运营、上车点、票价和中转时间。如果行李多，或不想赶车，沙溪住一晚或者提前包车更方便。具体可以继续看[大理到沙溪交通指南](/dali-to-shaxi)和[沙溪到丽江交通指南](/shaxi-to-lijiang)。
 
-![沙溪古镇保存完好的传统戏台与庭院](/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-theater-courtyard.webp)
+![云南沙溪风景：大理到丽江途中值得停留的古镇](/assets/destinations/yunnan/shaxi/38F5AAF2-AD1C-4D3D-B035-5B9109C589D9.png)
+
+![沙溪古镇另一处景致，适合安排在大理到丽江的中转游览日](/assets/destinations/yunnan/shaxi/AEA90834-C386-4023-84A9-B7E29C6569E7.png)
 
 ### 从喜洲或双廊接送（洱海沿线）
 
