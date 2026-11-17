@@ -207,3 +207,64 @@
 .driver-form .contact-field-row{display:grid;grid-template-columns:1fr;gap:0}
 .driver-terms-grid article{padding:22px}
 }
+
+
+/* Structured product catalogue: 3 arrival + 4 intercity + 3 day options.
+   Custom & multi-day enquiries are a single distinct banner, not product #11. */
+.driver-page .driver-catalog-jump{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:-6px 0 48px}
+.driver-page .driver-catalog-jump a{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid #d3e0e9;background:#fff;color:var(--color-action-text);padding:8px 14px;font-size:.73rem;font-weight:750;text-decoration:none;transition:border-color .2s,color .2s}
+.driver-page .driver-catalog-jump a:hover,.driver-page .driver-catalog-jump a:focus-visible{border-color:var(--color-primary);color:var(--color-primary)}
+.driver-page .driver-catalog-group{scroll-margin-top:35px}
+.driver-page .driver-catalog-group+.driver-catalog-group{border-top:1px solid #d5e1e9;margin-top:52px;padding-top:48px}
+.driver-page .driver-group-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:20px}
+.driver-page .driver-group-heading .kicker{margin-bottom:6px}
+.driver-page .driver-group-heading h3{font-family:Georgia,serif;font-size:clamp(1.6rem,2.5vw,2.3rem);letter-spacing:-.02em;margin:0 0 8px}
+.driver-page .driver-group-heading p:not(.kicker){color:var(--color-muted);font-size:.85rem;margin:0;max-width:660px}
+.driver-page .driver-group-heading>span{flex:none;color:var(--color-muted);font-size:.7rem;white-space:nowrap;padding-bottom:4px}
+.driver-page .driver-product-grid--arrival,.driver-page .driver-product-grid--day{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.driver-page .driver-product-grid--intercity{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.driver-page .driver-catalog-group .driver-product{display:flex;flex-direction:column;min-width:0;min-height:100%;background:#fff;border:1px solid var(--color-border)}
+.driver-page .driver-catalog-group .driver-product-photo{height:175px;min-height:0;flex:none}
+.driver-page .driver-catalog-group .driver-product-photo img{object-fit:cover}
+.driver-page .driver-catalog-group .driver-product-copy{padding:23px 24px 24px;display:flex;flex:1;flex-direction:column}
+.driver-page .driver-catalog-group .driver-product-copy h3{font-size:clamp(1.14rem,1.55vw,1.45rem);margin:0 0 9px;line-height:1.28}
+.driver-page .driver-catalog-group .driver-product-copy>p:not(.driver-product-price){font-size:.83rem;line-height:1.65;color:var(--color-muted);margin:0 0 20px}
+.driver-page .driver-catalog-group .driver-product-price{margin:auto 0 15px;padding-top:13px;font-size:.82rem}
+.driver-page .driver-catalog-group .driver-product-price small{font-size:.7rem}
+.driver-page .driver-catalog-group .driver-product-copy>button{min-height:44px;white-space:normal;letter-spacing:.02em}
+.driver-page .driver-catalog-group .driver-product-photo::after{content:"";position:absolute;inset:0;pointer-events:none;border-bottom:1px solid #e0e7eb}
+.driver-page .driver-booking-panel{max-width:900px}
+.driver-page .driver-form select{width:100%;min-width:0;max-width:100%;font:inherit;border:1px solid var(--color-border);background:#fff;color:var(--color-ink);border-radius:var(--radius-control);min-height:var(--control-height);padding:12px 13px}
+.driver-page .driver-form select:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
+.driver-page .driver-custom-entry{background:#fff}
+.driver-page .driver-custom-entry-layout{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);align-items:center;gap:clamp(26px,5vw,70px);border:1px solid var(--color-border);background:var(--color-surface-soft);padding:clamp(24px,4vw,44px)}
+.driver-page .driver-custom-entry-layout h2{font-size:clamp(2rem,3vw,3rem)}
+.driver-page .driver-custom-entry-layout p:not(.kicker){color:var(--color-muted);font-size:.88rem;max-width:670px}
+.driver-page .driver-custom-entry-layout .driver-custom-examples{font-weight:750!important;font-size:.77rem!important;color:var(--color-ink)!important;margin:16px 0 26px}
+.driver-page .driver-custom-entry-photo{margin:0;position:relative;min-height:295px;align-self:stretch;background:#e9eff3;overflow:hidden}
+.driver-page .driver-custom-entry-photo img{object-fit:cover}
+@media(max-width:1050px){
+  .driver-page .driver-product-grid--arrival,
+  .driver-page .driver-product-grid--day,
+  .driver-page .driver-product-grid--intercity{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .driver-page .driver-catalog-group .driver-product{display:flex;flex-direction:column}
+  .driver-page .driver-catalog-group .driver-product-photo{height:170px;min-height:0}
+}
+@media(max-width:750px){
+  .driver-page .driver-custom-entry-layout{grid-template-columns:1fr}
+  .driver-page .driver-custom-entry-photo{min-height:205px}
+  .driver-page .driver-catalog-jump{justify-content:flex-start;gap:7px;margin-bottom:36px}
+  .driver-page .driver-catalog-jump a{font-size:.72rem;padding:8px 11px}
+}
+@media(max-width:590px){
+  .driver-page .driver-product-grid--arrival,
+  .driver-page .driver-product-grid--day,
+  .driver-page .driver-product-grid--intercity{grid-template-columns:minmax(0,1fr)}
+  .driver-page .driver-group-heading{align-items:flex-start;flex-direction:column;gap:2px}
+  .driver-page .driver-catalog-group+.driver-catalog-group{margin-top:38px;padding-top:35px}
+  .driver-page .driver-catalog-group .driver-product-photo{height:180px}
+  .driver-page .driver-catalog-group .driver-product-copy{padding:22px}
+  .driver-page .driver-custom-entry-layout{padding:22px}
+  .driver-page .driver-custom-entry-photo{min-height:170px}
+  .driver-page .driver-form .contact-field-row{display:grid;grid-template-columns:1fr}
+}

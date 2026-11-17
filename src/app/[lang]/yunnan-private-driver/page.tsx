@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const zh = lang === "zh";
   const title = zh ? "云南私人包车与司机服务｜大理丽江接送和定制路线" : "Yunnan Private Driver & Car Service | Transfers & Quotes";
   const description = zh
-    ? "云南包车与私人接送：大理、丽江、沙溪、香格里拉和昆明。5座车接送、按天包车或多日路线，中文司机与英文协调支持。"
-    : "Private driver and car service in Yunnan. Arrange Dali–Lijiang transfers, Shaxi stops, Dali day trips and multi-day private routes with English-language coordination.";
+    ? "云南包车服务：昆明、大理、丽江机场与车站接送，跨城直达、经沙溪与虎跳峡路线，以及9小时日包车、多日私人司机定制。"
+    : "Yunnan private driver services: Kunming, Dali and Lijiang airport or station transfers, intercity routes via Shaxi and Tiger Leaping Gorge, 9-hour day charters and custom multi-day drivers.";
   return localizedStaticMetadata(lang, "/yunnan-private-driver", {
     title, description,
     openGraph: { title, description, type: "website", images: [{ url: "/assets/partners/vehicles/five-seat-toyota.webp", alt: "Five-seat private driver vehicle in Yunnan service" }] },
@@ -58,8 +58,8 @@ const faqAnswers: Pair[] = [
   ["No. A driver provides transport and agreed stops, not professional sightseeing commentary. Request an English-speaking guide separately if needed.", "不是。司机负责交通与约定停靠点，不默认包含专业景点讲解；可单独询价英文导游。"],
   ["A standard five-seat car is best for 1–3 travellers and up to three large cases, subject to suitcase dimensions. For more people or luggage, request a larger vehicle.", "标准5座车建议1–3人及最多3个大箱，但实际需按行李尺寸和后备箱核实。更多人数或行李请申请更大车型。"],
   ["For the standard offers on this page, expressway tolls are extra unless explicitly included in the final written quote.", "此页标准服务的高速过路费原则上另计，除非正式书面报价明确包含。"],
-  ["Direct transfers do not include sightseeing stops. For Shaxi, Tiger Leaping Gorge or other stops, request a custom route and revised price.", "直达接送不包含观光停靠。沙溪、虎跳峡等游览停靠需要按定制路线另行确认和报价。"],
-  ["A full-day Dali booking includes 9:00 AM–6:00 PM and 30 complimentary minutes if agreed. Thereafter RMB 200 per started hour applies to approved overtime.", "大理一日包车是09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时人民币200元计费。"],
+  ["Direct transfers do not include sightseeing stops. Choose one of our via-Shaxi or Tiger Leaping Gorge services for planned visits; additional changes are quoted separately.", "直达接送不包含观光停靠。可直接选择经沙溪、虎跳峡的跨城产品；其他加停需求另行核价。"],
+  ["A confirmed 9-hour day charter normally runs from 9:00 AM–6:00 PM and includes 30 complimentary minutes if agreed. Thereafter RMB 200 per started hour applies to approved overtime.", "确认的9小时日包车通常为09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时人民币200元计费。"],
   ["Changes can affect availability, tolls, time and price. We confirm any difference in writing before you proceed.", "变更路线可能影响车源、过路费、时长和价格，我们会先书面确认变更。"],
   ["For confirmed driver-only bookings, cancellation at least three full days before service returns the deposit. Later cancellations retain 30% of the deposit. The signed booking agreement states the exact terms; multi-day tour policies differ.", "已确认的单独包车服务：至少提前3个完整自然日取消可退还全部定金；更晚取消扣留定金的30%。具体以签订的预订协议为准；多日旅游套餐政策不同。"],
   ["We send the vehicle and pickup details after confirmation, with driver contact details before the journey.", "确认车源后提供车辆和接送安排，出发前提供司机联系方式。"],
@@ -83,7 +83,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     T("Fuel and standard parking charges", "燃油及常规停车费用"),
     T("Agreed hotel or station pickup and drop-off", "双方约定的酒店或车站接送"),
     T("English-language coordination through Hidden China Travel", "Hidden China Travel 英文沟通协调"),
-    T("9 AM–6 PM for confirmed full-day bookings", "确认的大理一日包车为 09:00–18:00"),
+    T("9 AM–6 PM for confirmed full-day bookings", "确认的一日包车为 09:00–18:00"),
     T("Up to 30 minutes of agreed complimentary overtime for day hire", "一日包车经约定可免费延时30分钟")
   ];
   const excluded = [
@@ -115,13 +115,13 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <p className="kicker">{T("PRIVATE ROAD TRAVEL · YUNNAN", "云南 · 私人交通服务")}</p>
           <h1>{T("Private Driver and Car Service in Yunnan", "云南私人包车与司机服务")}</h1>
           <p className="driver-hero-intro">{T("Travel between Dali, Lijiang, Shaxi, Shangri-La, Kunming and surrounding destinations with a private vehicle, local driver and English-language support.", "提供大理、丽江、沙溪、香格里拉、昆明及周边地区的私人用车、当地司机与英文沟通协调。")}</p>
-          <p>{T("Choose a standard transfer or send us your route for a custom quotation. We confirm availability and price before arranging any deposit.", "选择标准接送，或发送你的定制路线；确认车源与价格后再安排定金支付。")}</p>
+          <p>{T("Choose from ten transfer and day-charter options, or tell us about a custom multi-day route. We confirm availability and price before arranging any deposit.", "从10个标准接送与包车产品中选择，或提交多日定制路线；确认车源与价格后再安排定金支付。")}</p>
           <ul className="driver-hero-tags">
-            {[T("Private car and local driver","私人用车及当地司机"),T("Hotel-to-hotel pickup","酒店到酒店接送"),T("1–3 travellers in standard car","标准车建议1–3人"),T("English support on WhatsApp","WhatsApp 英文支持")].map(x=><li key={x}>{x}</li>)}
+            {[T("Private car and local driver","私人用车及当地司机"),T("Airport, station & hotel pickups","机场、车站和酒店接送"),T("1–3 travellers in standard car","标准车建议1–3人"),T("English support on WhatsApp","WhatsApp 英文支持")].map(x=><li key={x}>{x}</li>)}
           </ul>
           <div className="driver-action-row">
-            <a className="button button-blue" href="#standard-transfers">{T("View Standard Transfers", "查看标准接送")}</a>
-            <a className="button button-light" href="#custom-routes">{T("Plan a Custom Route", "规划定制路线")}</a>
+            <a className="button button-blue" href="#standard-transfers">{T("Explore Driver Services", "查看包车产品")}</a>
+            <a className="button button-light" href="#custom-routes">{T("Custom & Multi-Day", "定制与多日包车")}</a>
           </div>
           <a className="driver-text-link" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Prefer to talk first? Chat on WhatsApp", "想先沟通？在 WhatsApp 联系我们")}</a>
         </div>
@@ -138,42 +138,25 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </section>
 
-    <section className="driver-section" id="travel-choice">
-      <div className="shell">
-        {heading("01 / CHOOSE YOUR SERVICE","Choose How You Want to Travel","选择适合你的包车方式", "Two clear paths — a direct transfer or a route tailored to your day.", "两条清晰路径：标准接送，或按你的计划定制路线。")}
-        <div className="driver-choice-grid">
-          <article className="driver-choice-card">
-            <span className="driver-index">01</span>
-            <h3>{T("Book a Standard Transfer","标准接送服务")}</h3>
-            <p>{T("Choose a point-to-point route, check the date and send your pickup details. We confirm a total price and vehicle before requesting a deposit.", "选好点对点路线、日期与接送信息，待核实车源和总价后再安排定金。")}</p>
-            <p className="driver-choice-items">{T("Dali ↔ Lijiang · Airport or station pickup on request", "大理 ⇄ 丽江 · 机场及车站接送可另询")}</p>
-            <a href="#standard-transfers" className="button button-blue">{T("View Standard Transfers","查看标准接送")}</a>
-          </article>
-          <article className="driver-choice-card">
-            <span className="driver-index">02</span>
-            <h3>{T("Request a Custom Driver","定制包车路线")}</h3>
-            <p>{T("Need a full day, multiple days, extra stops or a different pickup town? We tailor the vehicle and quote to the actual route.", "需要一整天、多日包车、沿途观光或异地接送？我们根据实际路线匹配车辆并报价。")}</p>
-            <p className="driver-choice-items">{T("Dali → Shaxi → Lijiang · Shangri-La · Tiger Leaping Gorge", "大理 → 沙溪 → 丽江 · 香格里拉 · 虎跳峡")}</p>
-            <a href="#custom-routes" className="button button-light">{T("Explore Custom Routes","查看定制路线")}</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <StandardTransferSection locale={lang} />
 
-    <section className="driver-section" id="custom-routes">
-      <div className="shell driver-custom-grid">
-        <div>
-          <p className="kicker">03 / MADE FOR YOUR ROUTE</p>
-          <h2>{T("Need a Different Route?","有其他包车路线？")}</h2>
-          <p>{T("Not every Yunnan journey fits a fixed transfer. If you are staying in Xizhou or Shuanglang, stopping in Shaxi, visiting Tiger Leaping Gorge or travelling for several days, we quote for your exact route.", "并非所有云南行程都适合标准接送。如果从喜洲、双廊出发，打算在沙溪停留、游览虎跳峡，或需要多天包车，我们会按实际路线核实报价。")}</p>
-          <ul className="driver-route-list">
-            {[T("Dali → Shaxi → Lijiang","大理 → 沙溪 → 丽江"),T("Lijiang → Tiger Leaping Gorge → Shangri-La","丽江 → 虎跳峡 → 香格里拉"),T("Kunming → Dali → Lijiang","昆明 → 大理 → 丽江"),T("Multi-day Yunnan private driver","云南多日包车"),T("Custom family or photography route","家庭或摄影定制路线")].map(x=><li key={x}>{x}</li>)}
-          </ul>
-          <div className="driver-action-row"><a className="button button-blue" href="#custom-quote">{T("Send Us Your Route","提交包车路线")}</a><a className="driver-text-link" href={whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+    <section className="driver-section driver-custom-entry" id="custom-routes">
+      <div className="shell">
+        <div className="driver-custom-entry-layout">
+          <div>
+            <p className="kicker">{T("04 / BESPOKE SERVICE", "04 / 定制服务")}</p>
+            <h2>{T("Custom & Multi-Day Driver", "定制路线与多日包车")}</h2>
+            <p>{T("Need a route beyond the ten options above? We can arrange a private driver for multi-city journeys, family trips, longer stays, photography days or special sightseeing stops, with the vehicle and quote matched to your plan.", "没有找到合适的标准路线？昆明、大理、丽江、香格里拉多日用车，家庭旅行、摄影路线和特殊停靠都可以按实际行程匹配车辆与报价。")}</p>
+            <p className="driver-custom-examples">{T("Multi-day routes · Larger groups · Flexible sightseeing · Non-standard pickups", "多日路线 · 更多乘客 · 灵活游览 · 特殊接送点")}</p>
+            <div className="driver-action-row">
+              <a className="button button-blue" href="#custom-quote">{T("Request a Custom Quote", "申请定制包车报价")}</a>
+              <a className="driver-text-link" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp", "WhatsApp 咨询")}</a>
+            </div>
+          </div>
+          <figure className="driver-custom-entry-photo">
+            <Image src="/assets/destinations/yunnan/lijiang-shangri-la/yangtze-first-bend-shigu.webp" alt={T("Yunnan landscape on a scenic private driving route", "云南自驾路线上山地景观")} fill sizes="(max-width:800px) 100vw, 38vw" />
+          </figure>
         </div>
-        <figure className="driver-custom-photo"><Image src="/assets/destinations/yunnan/lijiang-shangri-la/yangtze-first-bend-shigu.webp" alt={T("Yunnan mountain landscape along the road toward Lijiang", "云南石鼓镇附近的山地公路沿线景观")} fill sizes="(max-width:760px) 100vw, 46vw" /><figcaption>{T("Every route is checked for realistic driving time.", "每条路线均需核实实际行驶时间。")}</figcaption></figure>
       </div>
     </section>
 
