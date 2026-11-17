@@ -2682,36 +2682,29 @@ body:has(.article-mobile-ask:not(.ask-bar-hidden)) .wa-float {
   .booking-page .booking-close-button { width:min(100%,340px); }
 }
 
-/* Shared payment-confidence strip. The standalone HTML version lives in
-   snippets/payment-trust-widget.html for third-party landing-page widgets. */
+/* Shared payment-confidence strip. Brand logos are local SVG assets.
+   Uses the site's existing surface, border, radius and text tokens. */
 .payment-trust-band { padding:22px 0 24px; border-bottom:1px solid var(--color-border); background:var(--color-surface); }
 .payment-trust-band .payment-trust { margin:0; padding:0; border:0; }
 .payment-trust { width:100%; margin:20px 0 0; padding-top:18px; border-top:1px solid var(--color-border); color:var(--color-ink); }
-.payment-trust-heading { display:flex; align-items:center; justify-content:center; gap:7px; margin:0 0 11px; color:#596762; font-size:.65rem; font-weight:800; letter-spacing:.09em; text-transform:uppercase; }
+.payment-trust-heading { display:flex; align-items:center; justify-content:center; gap:7px; margin:0 0 12px; color:var(--color-muted); font-size:.69rem; font-weight:750; letter-spacing:.06em; text-transform:uppercase; }
 .payment-trust-heading svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
-.payment-trust-scroll { overflow-x:auto; padding:1px 1px 5px; scrollbar-width:none; }
-.payment-trust-scroll::-webkit-scrollbar { display:none; }
-.payment-trust-methods { display:grid; grid-template-columns:repeat(7,minmax(70px,1fr)); gap:6px; min-width:548px; }
-.payment-method { display:flex; height:42px; min-width:0; align-items:center; justify-content:center; gap:4px; padding:0 10px; border:1px solid var(--color-border); border-radius:var(--radius-control); background:var(--color-surface); color:var(--color-ink); white-space:nowrap; font-size:.7rem; font-weight:700; letter-spacing:-.01em; }
-.payment-method small { color:var(--color-muted); font-size:.5rem; font-weight:600; letter-spacing:0; }
-.payment-method-visa { color:#1434cb; font-size:.82rem; font-style:italic; letter-spacing:-.04em; }
-.payment-method-stripe { color:#635bff; }
-.payment-method-alipay { color:#1677ff; }
-.payment-method-wechat { color:#078f4c; }
-.payment-trust-copy { display:flex; justify-content:center; flex-wrap:wrap; gap:4px 16px; margin:9px 0 0; color:#61706a; font-size:.65rem; line-height:1.55; }
-.payment-trust-copy span { position:relative; }
-.payment-trust-copy span+span::before { content:""; position:absolute; top:.55em; left:-9px; width:2px; height:2px; border-radius:50%; background:#899690; }
-.payment-trust-note { max-width:660px; margin:4px auto 0; color:#7a8580; font-size:.59rem; line-height:1.5; text-align:center; }
+.payment-trust-methods { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; max-width:730px; margin:0 auto; }
+.payment-method { display:flex; height:60px; min-width:0; align-items:center; justify-content:center; border:1px solid var(--color-border); border-radius:var(--radius-control); background:var(--color-surface); overflow:hidden; }
+.payment-method img { display:block; width:100%; max-width:120px; height:100%; object-fit:contain; }
+.payment-trust-details { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px 16px; margin:10px 0 0; color:var(--color-muted); font-size:.72rem; line-height:1.55; }
+.payment-trust-provider { display:inline-flex; align-items:center; gap:3px; white-space:nowrap; }
+.payment-trust-provider img { display:block; width:67px; height:37px; object-fit:contain; }
+.payment-trust-note { max-width:700px; margin:0 auto; color:var(--color-muted); font-size:.68rem; line-height:1.55; text-align:center; }
+.payment-trust-note a { color:inherit; text-decoration:underline; text-underline-offset:2px; }
 .payment-trust-compact { margin-top:18px; }
 
 @media (max-width:700px) {
   .payment-trust-band { padding:18px 0 20px; }
-  .payment-trust { text-align:left; }
-  .payment-trust-heading,.payment-trust-copy { justify-content:flex-start; }
-  .payment-trust-copy { display:grid; gap:2px; }
-  .payment-trust-copy span+span::before { display:none; }
-  .payment-trust-scroll { margin-right:-8px; }
-  .payment-trust-note { margin-left:0; text-align:left; }
+  .payment-trust-methods { grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; }
+  .payment-method { height:60px; }
+  .payment-trust-details { gap:0 12px; margin-top:9px; }
+  .payment-trust-note { padding:0 6px; }
   .footer-trust { grid-template-columns:1fr; gap:24px; margin-top:42px; padding-top:26px; }
   .footer-trust-item { grid-template-columns:34px minmax(0,1fr); gap:12px; }
 }
