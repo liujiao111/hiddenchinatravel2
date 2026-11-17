@@ -54,8 +54,20 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const pickup = String(values.get("pickup") || "");
     const dropoff = String(values.get("dropoff") || "");
     const luggage = String(values.get("luggage") || "");
+    if (kind === "standard" && Number(luggage) > 3) {
+      setError(zh ? "标准5座车最多参考3个大箱，超过请提交定制包车申请以核实后备箱空间。" : "For more than three large suitcases, please request a custom vehicle so we can check luggage capacity.");
+      setStatus("error");
+      return;
+    }
     const note = String(values.get("notes") || "");
     const travelDate = String(values.get("date") || "");
+    const todayLocal = new Date();
+    todayLocal.setHours(0, 0, 0, 0);
+    if (!travelDate || new Date(travelDate + "T00:00:00") < todayLocal) {
+      setError(zh ? "请选择今天或之后的服务日期。" : "Please choose today or a future service date.");
+      setStatus("error");
+      return;
+    }
     const travelDays = kind === "custom" ? String(values.get("days") || "") : (serviceId === "dali-day" ? "1 day" : "1 transfer");
     const serviceLabel = service ? service.en : "Custom Yunnan driver service";
     const detail = [

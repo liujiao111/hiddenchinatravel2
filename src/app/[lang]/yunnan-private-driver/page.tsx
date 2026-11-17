@@ -3,6 +3,7 @@ import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { SiteHeader } from "@/components/site-header";
+import { JourneyFactCards } from "@/components/journey-landing";
 import { ContentFooter } from "@/components/content-footer";
 import { JsonLd } from "@/components/json-ld";
 import { localizedStaticMetadata, localeUrl, type AppLocale } from "@/lib/i18n-seo";
@@ -50,8 +51,8 @@ const faqs: Pair[] = [
 
 const faqAnswers: Pair[] = [
   ["Rates depend on the exact route, vehicle, date, waiting time and tolls. We confirm a written total before asking you to pay; no fixed online fare has been published yet.", "费用取决于具体路线、车型、日期、等候时间与高速费。会先提供书面报价；目前没有上线固定在线支付价。"],
-  ["You can request a standard transfer date online today. We confirm availability and the total price before issuing a secure payment request; instant Stripe Checkout is not live yet.", "目前可在线提交标准路线的日期与接送信息；车源和总价确认后再提供安全付款方式，即时 Stripe 结账尚未开放。"],
-  ["The planned deposit for confirmed driver-only services is 20% of the agreed total, payable after vehicle and price confirmation.", "单独包车服务的计划定金为确认总价的 20%，在车源和报价确认后支付。"],
+  ["You can request a transfer date online. Once the route, vehicle and total price are confirmed, the licensed operator sends the agreed secure payment link. The request form does not collect payment.", "你可以在线提交接送日期与需求。核实路线、车源和总价后，持证经营方提供约定的安全付款链接；查询表单不会扣费。"],
+  ["For confirmed driver-only services, the deposit is 20% of the agreed total and is payable after vehicle and price confirmation.", "单独包车服务的定金为确认总价的20%，在车源和报价确认后支付。"],
   ["The remaining 80% is normally payable after the driver picks you up, as specified in your booking confirmation.", "尾款通常在司机接到旅客后支付 80%，以预订确认单约定为准。"],
   ["Not always. Many local drivers speak Chinese; English-language coordination is available via Hidden China Travel on WhatsApp.", "不一定，很多当地司机主要讲中文；Hidden China Travel 可以通过 WhatsApp 提供英文沟通协调。"],
   ["No. A driver provides transport and agreed stops, not professional sightseeing commentary. Request an English-speaking guide separately if needed.", "不是。司机负责交通与约定停靠点，不默认包含专业景点讲解；可单独询价英文导游。"],
@@ -60,7 +61,7 @@ const faqAnswers: Pair[] = [
   ["Direct transfers do not include sightseeing stops. For Shaxi, Tiger Leaping Gorge or other stops, request a custom route and revised price.", "直达接送不包含观光停靠。沙溪、虎跳峡等游览停靠需要按定制路线另行确认和报价。"],
   ["A full-day Dali booking includes 9:00 AM–6:00 PM and 30 complimentary minutes if agreed. Thereafter RMB 200 per started hour applies to approved overtime.", "大理一日包车是09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时人民币200元计费。"],
   ["Changes can affect availability, tolls, time and price. We confirm any difference in writing before you proceed.", "变更路线可能影响车源、过路费、时长和价格，我们会先书面确认变更。"],
-  ["For driver-only bookings, cancellation at least three full days ahead is planned to refund the entire deposit; later cancellations retain 30% of the deposit. Your written agreement controls the final terms.", "单独包车预订拟采用：至少提前3个完整自然日取消退全额定金；更晚取消扣留定金的30%。最终条款以预订书面协议为准。"],
+  ["For confirmed driver-only bookings, cancellation at least three full days before service returns the deposit. Later cancellations retain 30% of the deposit. The signed booking agreement states the exact terms; multi-day tour policies differ.", "已确认的单独包车服务：至少提前3个完整自然日取消可退还全部定金；更晚取消扣留定金的30%。具体以签订的预订协议为准；多日旅游套餐政策不同。"],
   ["We send the vehicle and pickup details after confirmation, with driver contact details before the journey.", "确认车源后提供车辆和接送安排，出发前提供司机联系方式。"],
   ["If the licensed operator cannot provide the confirmed service, all payments collected for that service are refunded in full.", "如持证经营方无法提供确认的服务，该服务已收款项全额退还。"]
 ];
@@ -222,17 +223,17 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </section>
 
-    <section className="driver-section driver-section-soft" id="booking-process">
-      <div className="shell">
-        {heading("08 / HOW BOOKING WORKS","From Route to Confirmed Pickup","从选线路到司机接送", "We do not treat a submitted enquiry or payment receipt as vehicle confirmation.", "提交需求不代表车源已经确认；付款回执也不能代替最终派车确认。")}
-        <div className="driver-steps">{[
+    <section className="driver-section driver-section-soft journey-support-flow driver-process" id="booking-process">
+      <div className="shell journey-section-layout">
+        <header className="driver-flow-heading"><p className="kicker">08 / HOW BOOKING WORKS</p><h2>{T("From Route to Confirmed Pickup","从选线路到司机接送")}</h2><p>{T("A request is not a confirmed booking. We check the driver, route and price before requesting any deposit.","提交咨询不代表预订成功。我们会先确认司机、路线与价格，再安排定金支付。")}</p></header>
+        <div className="journey-support-grid">{[
           [T("Choose a service","选服务"),T("Pick a standard transfer or describe your custom route.","选择标准接送，或发送定制路线。")],
           [T("Share your date","提交日期"),T("Tell us pickup, drop-off, passengers and luggage.","提供接送点、人数和行李情况。")],
           [T("Review the quote","核对报价"),T("We check the vehicle and send confirmed total and terms.","核实车源后发送完整报价和条款。")],
           [T("Pay the deposit","支付定金"),T("Pay 20% using the licensed operator's agreed secure channel.","通过持证经营方确认的安全渠道支付20%定金。")],
           [T("Receive confirmation","获取确认"),T("Get written booking confirmation and pickup information.","取得书面预订确认及接送安排。")]
         ].map(([h,p],i)=><article key={h}><span>{String(i+1).padStart(2,"0")}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
-        <p className="driver-detail-note">{T("Stripe instant checkout will be enabled only once fixed route prices, operator settlement and payment confirmation are configured. For now, there is no charge for submitting a request.", "只有在标准路线价格、持证经营方收款及订单确认流程配置完成后，才开放 Stripe 即时结账。目前提交查询不会扣费。")}</p>
+        <p className="driver-detail-note driver-flow-note">{T("Submitting your route is free. You only pay after you review a confirmed price, service terms and payment request.","提交路线免费。核实车源并确认完整报价、服务条款及付款通知后，才需要支付定金。")}</p>
       </div>
     </section>
 
@@ -245,21 +246,17 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <article><h3>{T("Operator cannot provide the car","经营方无法派车")}</h3><p>{T("If the licensed operator cannot confirm or provide the booked vehicle, all payments collected for the unavailable service are refunded in full.", "如果持证经营方无法确认或提供已预订车辆，应全额退回该服务所收款项。")}</p></article>
         </div>
         <p className="driver-detail-note">{T("Example only: for a RMB 1,300 service with a RMB 260 deposit, a late-cancellation fee of 30% of the deposit is RMB 78 and the deposit refund is RMB 182.", "举例说明：若服务总价为人民币1300元，定金260元，临近出发取消扣除定金30%即78元，剩余182元退回。")}</p>
+        <p className="driver-detail-note"><Link href="/private-yunnan-tours">{T("Need hotels, guides and a complete itinerary? Explore our private Yunnan tours.","需要包含酒店、向导和完整行程？查看云南私人定制游。")}</Link></p>
         <p className="driver-operator-note">{T("Contracts and payments are handled by", "旅游合同及收款由持证经营方负责：")} <strong>{zh ? licensedOperator.nameZh : licensedOperator.nameEn}</strong> · {T("Licence", "许可证")} {licensedOperator.permitNumber}. <Link href="/licensed-operator">{T("View operator details", "查看资质信息")}</Link>.</p>
       </div>
     </section>
 
-    <section className="driver-section driver-section-soft" id="why-us">
-      <div className="shell">
-        {heading("10 / WHY HIDDEN CHINA TRAVEL","Why Arrange Your Driver With Us?","为什么通过我们安排包车？")}
-        <div className="driver-why-grid">{whys.map(([en,cn],i)=><article key={en}><span>0{i+1}</span><h3>{T(en,cn)}</h3><p>{T(whyDescriptions[i][0],whyDescriptions[i][1])}</p></article>)}</div>
-      </div>
-    </section>
+    <JourneyFactCards id="why-us" className="driver-why-shared" title={T("Why Arrange Your Driver With Us?","为什么通过我们安排包车？")} cards={whys.map(([en,cn],i)=>({icon: (["person","route","note","party"] as const)[i],title:T(en,cn),lines:[T(whyDescriptions[i][0],whyDescriptions[i][1])]}))} action={{href:"/licensed-operator",label:T("Meet our licensed local operator","查看当地持证旅行社")}} />
 
-    <section className="driver-section" id="driver-faq">
-      <div className="shell driver-faq-layout">
-        <div className="driver-faq-heading"><p className="kicker">11 / YOUR QUESTIONS</p><h2>{T("Private Driver FAQs","云南包车常见问题")}</h2><p>{T("Practical answers before you send an enquiry.", "提交需求前，先看看常见的路线与费用问题。")}</p></div>
-        <div className="driver-faq-list">{questions.map((x,i)=><details key={x.question}><summary>{x.question}<span aria-hidden="true">+</span></summary><p>{x.answer}</p></details>)}</div>
+    <section className="driver-section driver-faq journey-faq" id="driver-faq">
+      <div className="narrow">
+        {heading("11 / YOUR QUESTIONS","Private Driver FAQs","云南包车常见问题", "Practical answers before you send an enquiry.", "提交需求前，先看看常见的路线与费用问题。")}
+        {questions.map(x=><details key={x.question}><summary>{x.question}<span aria-hidden="true">+</span></summary><p>{x.answer}</p></details>)}
       </div>
     </section>
 
