@@ -3,7 +3,7 @@
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import Image from "next/image";
 import { LocaleLink as Link } from "@/components/locale-link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { EnquireLink } from "@/components/enquire-link";
 import { HashLink } from "@/components/hash-link";
@@ -102,6 +102,7 @@ export function SiteHeaderClient({ journeys, cta, alternate, searchInitialQuery,
   const [open, setOpen] = useState<MenuName | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = useTranslations("header");
+  const isZh = useLocale() === "zh";
   const labels = t.raw("labels") as Record<string, string>;
   const label = (key: string) => labels[key] ?? key;
   const tailorMade = {
@@ -141,6 +142,7 @@ export function SiteHeaderClient({ journeys, cta, alternate, searchInitialQuery,
         <small>{tailorMade.sellingPoint}</small>
       </Link>
       <Link href="/yunnan-tour-packages" className="mobile-nav-all" onClick={() => setMobileOpen(false)}>{t("viewAllJourneys")}</Link>
+      <Link href="/yunnan-private-driver" onClick={() => setMobileOpen(false)}>{isZh ? "云南私人包车" : "Yunnan private driver"}</Link>
       <Link href="/survival-kit" onClick={() => setMobileOpen(false)}>{t("travelGuides")}</Link>
       <Link href="/about-us" onClick={() => setMobileOpen(false)}>{t("aboutUs")}</Link>
       <Link href="/traveler-stories" onClick={() => setMobileOpen(false)}>{t("travelerStories")}</Link>
@@ -192,6 +194,7 @@ export function SiteHeaderClient({ journeys, cta, alternate, searchInitialQuery,
             </Link>
           </div>
           <Link href="/yunnan-tour-packages" className="mega-text-link">{t("mega.viewAllJourneys")}</Link>
+          <Link href="/yunnan-private-driver" className="mega-text-link">{isZh ? "云南私人包车与接送" : "Yunnan private driver & transfers"}</Link>
         </section>
       </div> : open === "guides" ? <div className="shell mega-groups mega-guides">
         <section className="mega-survival-feature"><Image src="/assets/blog/independent-travel-china/cover.webp" alt={t("mega.survivalAlt")} fill sizes="(max-width: 700px) 100vw, 30vw" unoptimized /><div><p>{t("mega.startHere")}</p><h2>{t("mega.survivalTitle")}</h2><span>{t("mega.survivalText")}</span><Link className="button button-light" href="/survival-kit">{t("mega.openSurvival")}</Link></div></section>

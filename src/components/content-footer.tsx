@@ -56,6 +56,7 @@ export function ContentFooter() {
           <Link href="/journeys/kunming-dali-lijiang-shangri-la-private-tour">{t("journeyEssence")}</Link>
           <Link href="/yunnan-tour-packages">{t("journeyAll")}</Link>
           <Link href="/private-yunnan-tours">{t("journeyCustom")}</Link>
+          <Link href="/yunnan-private-driver">{isZh ? "云南私人包车服务" : "Yunnan private driver"}</Link>
         </nav>
 
         <nav className="footer-nav footer-resources" aria-label={t("resourcesHeading")}>
