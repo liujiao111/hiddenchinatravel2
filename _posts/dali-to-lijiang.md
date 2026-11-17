@@ -126,6 +126,8 @@ Factor in station transfers and taxi waits, and the train's speed edge shrinks f
 
 ### Scenic Route via Shaxi (usually most of a day)
 
+![Shaxi scenery, Yunnan: a stop on the Dali to Lijiang route](/assets/destinations/yunnan/shaxi/38F5AAF2-AD1C-4D3D-B035-5B9109C589D9.png)
+
 For a lot of travelers, this is the actual reason to book a private car instead of the train. Shaxi Ancient Town is not a quick highway rest stop; a route that includes it looks more like:
 
 ```
@@ -142,15 +144,13 @@ One thing worth flagging: don't try to cram Xizhou, Shuanglang, *and* Shaxi into
 
 A private car is not the only way to reach Shaxi. **Dali Ancient Town–Shaxi** station-to-station buses were [introduced in January 2026](https://dali.yunnan.cn/system/2026/01/14/033827162.shtml), with the operator quoting about 2.5–3 hours for that leg. **Shaxi–Lijiang** shuttles were [introduced in June 2024](https://www.lijiang.cn/article/131677.html). However, these are separate journeys; availability, exact stops, ticket prices and connection times for a specific date need checking. If you are carrying several suitcases or want a guaranteed smooth transfer, an overnight stay in Shaxi or a prearranged private car is usually simpler. Read our [Dali to Shaxi transport guide](/dali-to-shaxi) and [Shaxi to Lijiang guide](/shaxi-to-lijiang) for a closer look.
 
-![Shaxi scenery, Yunnan: a stop on the Dali to Lijiang route](/assets/destinations/yunnan/shaxi/38F5AAF2-AD1C-4D3D-B035-5B9109C589D9.png)
-
 ![Another view of Shaxi Ancient Town, a rewarding stop between Dali and Lijiang](/assets/destinations/yunnan/shaxi/AEA90834-C386-4023-84A9-B7E29C6569E7.png)
 
 ### Pickup from Xizhou or Shuanglang (Erhai Lake)
 
-![A traditional Bai courtyard in Xizhou, north of Dali Ancient Town](/assets/blog/dali-hidden-gems-off-the-beaten-path/xizhou-bai-courtyard.webp)
-
 If you are staying in Xizhou or Shuanglang on the northern side of Erhai Lake rather than in Dali Old Town, traveling all the way south to Dali Railway Station can create an unnecessary detour. A direct pickup from your Xizhou or Shuanglang hotel skips that detour entirely, and it's one of the clearest cases where booking a private car actually saves time, not just hassle.
+
+![A traditional Bai courtyard in Xizhou, north of Dali Ancient Town](/assets/blog/dali-hidden-gems-off-the-beaten-path/xizhou-bai-courtyard.webp)
 
 ### What a Private Transfer Should Include
 
