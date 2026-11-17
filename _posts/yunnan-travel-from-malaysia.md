@@ -5,10 +5,11 @@ excerpt: "Plan Yunnan from Malaysia: China visa-free rules, Kunming or Dali flig
 metaDescription: "Plan Yunnan from Malaysia: China visa-free rules, Kunming or Dali flights, and an 8-day route through Dali, Shaxi and Lijiang with time for the return."
 coverImage: "/assets/blog/yunnan-travel-from-malaysia/cover-lijiang-old-town.webp"
 coverAlt: "Traditional water wheels beside the entrance to Lijiang Old Town"
-status: "draft"
-# Add the actual publication date when this article is approved for release.
-dateModified: "2026-09-30T07:30:00Z"
-lastVerified: "2026-09-30"
+status: "published"
+translationKey: "yunnan-travel-from-malaysia"
+date: "2026-11-17"
+dateModified: "2026-11-17"
+lastVerified: "2026-11-17"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -30,7 +31,7 @@ faqs:
   - question: "Do Malaysians need a visa for a Yunnan holiday in 2026?"
     answer: "Eligible Malaysian ordinary passport holders can visit mainland China visa-free for up to 30 days per entry, with a cap of 90 visa-free days in any 180-day period. The passport must have at least six months of validity. Check the Chinese Embassy in Malaysia before booking."
   - question: "Does the Malaysia–China visa-free agreement expire in December 2026?"
-    answer: "It is a bilateral agreement effective from 17 July 2025. The embassy describes a five-year term with automatic five-year extensions, rather than the December 2026 deadline applying to some unilateral waivers. Check current official guidance for your travel dates."
+    answer: "It is a bilateral agreement effective from 17 July 2025. The embassy describes a five-year term with automatic five-year extensions, rather than a December 2026 expiry date for Malaysian passport holders. Check current official guidance for your travel dates."
   - question: "Are there direct flights from Malaysia to Yunnan?"
     answer: "Kuala Lumpur–Kunming is the first route to compare. AirAsia announced Johor Bahru–Kunming service from December 2025, and Tourism Malaysia confirmed Lucky Air's Kuala Lumpur–Dali launch in January 2025. Those announcements do not verify today's operating days; confirm an actual bookable flight for your dates."
   - question: "Is seven days enough for Yunnan from Malaysia?"
@@ -60,7 +61,7 @@ This guide helps you fit those choices into an actual eight-day holiday. For the
 | Sample route | Kunming → Dali → Shaxi → Lijiang → Kunming |
 | Most useful local-support leg | Dali → Shaxi → Lijiang by road |
 | Shangri-La in the same eight days? | Replace stops or extend the trip rather than simply adding it |
-| Entry rules checked | 30 September 2026; flight launch announcements are historical sources |
+| Entry rules checked | 17 November 2026; flight launch announcements are historical sources |
 
 ## Do Malaysian Citizens Need a Visa for China?
 
@@ -75,7 +76,7 @@ For an eligible holiday, no. The [Chinese Embassy in Malaysia's visa-exemption F
 | Work, study or residence | Not covered by this holiday exemption |
 | Agreement duration | Five years, automatically extended for further five-year periods |
 
-The 30-day count starts at midnight after arrival. For repeat visitors, the embassy explains the backward-looking 180-day calculation and the remaining allowance. This is different from China's time-limited unilateral waivers; do not apply another nationality's December 2026 deadline to Malaysia.
+The 30-day count starts at midnight after arrival. For repeat visitors, the embassy explains the backward-looking 180-day calculation and the remaining allowance. Malaysia is covered by a bilateral agreement; do not apply another nationality's unilateral visa-free deadline to Malaysian passport holders.
 
 Carry return or onward flight details and accommodation reservations. Border authorities decide admission. Check your own passport's rules if you live in Malaysia but hold a different nationality.
 
@@ -92,7 +93,7 @@ The separate **240-hour transit** scheme is unnecessary for an eligible Malaysia
 | Kuala Lumpur → Dali | Tourism Malaysia confirmed Lucky Air's launch on 10 January 2025 | Current operation, days and ticket availability; do not assume daily service |
 | Penang, Sabah or Sarawak → Yunnan | Compare complete connections through KUL or another suitable hub | Layover, terminal changes and who handles a missed connection |
 
-The [AirAsia announcement](https://newsroom.airasia.com/news/2025/11/11/airasia-strengthens-southern-hub-with-new-johor-bahru-kunming-route) describes the Johor Bahru launch. [Tourism Malaysia's Dali announcement](https://www.tourism.gov.my/media/view/lucky-air-launches-bi-weekly-flight-linking-dali-to-kuala-lumpur) describes a Monday/Friday schedule **at launch**, not a verified September 2026 timetable. Use airline booking systems to confirm departures for your actual travel dates; this guide does not promise current weekly frequencies.
+The [AirAsia announcement](https://newsroom.airasia.com/news/2025/11/11/airasia-strengthens-southern-hub-with-new-johor-bahru-kunming-route) describes the Johor Bahru launch. [Tourism Malaysia's Dali announcement](https://www.tourism.gov.my/media/view/lucky-air-launches-bi-weekly-flight-linking-dali-to-kuala-lumpur) describes a Monday/Friday schedule **at launch**, not a current timetable. Use airline booking systems to confirm departures for your actual travel dates; this guide does not promise current weekly frequencies.
 
 A cheap flight that arrives late at night may add a hotel night before you start travelling around Yunnan. Check baggage charges and whether connections are protected on one ticket. Separate tickets can leave you responsible for a replacement flight if the first leg runs late; even on a through-ticket, confirm baggage handling and the carrier's connection conditions.
 
@@ -121,7 +122,7 @@ If dates are your main constraint, [ask Joy to check the route around your fligh
 
 ## An 8-Day Yunnan Itinerary from Malaysia
 
-This is an **independent sample route**, rather than the fixed itinerary or service scope of either private-tour product. It assumes you fly into and out of Kunming, keep one night in Shaxi, and spend seven nights in Yunnan.
+This is an **independent sample route**, rather than the fixed itinerary or service scope of a private-tour product. It assumes you fly into and out of Kunming, keep one night in Shaxi, and spend seven nights in Yunnan.
 
 | Day | Where | What happens |
 |---|---|---|
@@ -136,7 +137,7 @@ This is an **independent sample route**, rather than the fixed itinerary or serv
 
 **The return train is not a two-hour hop.** Budget roughly **3.5–5 hours** for a daytime Lijiang–Kunming service, depending on the train and arrival station. [Current booking timetables](https://www.trip.com/trains/china/route/lijiang-to-kunming/) distinguish **Kunming** from **Kunming South**. Add the journey from Lijiang Old Town to the station and onward travel in Kunming. Choose the actual train before deciding how much sightseeing fits on Day 7.
 
-For Kunming–Dali, many faster trains take around two hours, but the full journey also includes station transfers. Dali's station is in Xiaguan, away from Dali Old Town. For the two Shaxi road legs, use roughly 2–3 hours each as a planning allowance, then check pickup points, stops and road conditions with the driver. Train time and road time are not hotel-to-hotel promises.
+For Kunming–Dali, many faster trains take around two hours, but the full journey also includes station transfers. Dali's station is in Xiaguan, away from Dali Old Town. Allow around 2–3 hours for [Dali to Shaxi](/dali-to-shaxi) and around 1.5–2.5 hours for [Shaxi to Lijiang](/shaxi-to-lijiang), depending on pickup points, stops and road conditions. Train time and road time are not hotel-to-hotel promises.
 
 ![Erhai Lake and the Cangshan mountain horizon in Dali](/assets/blog/yunnan-travel-from-malaysia/erhai-lake.webp)
 
@@ -184,7 +185,7 @@ The main **Upper Tiger Leaping Gorge** scenic visit is different from a high-tra
 
 ![The river running between steep cliffs at Tiger Leaping Gorge](/assets/blog/yunnan-travel-from-malaysia/tiger-leaping-gorge.webp)
 
-Shangri-La's town is around 3,200 metres above sea level. Keep the first day easy and account for altitude; travellers with medical concerns should seek advice before committing. The [Lijiang–Shangri-La railway](https://jtyst.yn.gov.cn/xyxw/202608/t20260820_3635852.html) provides another transport option, but it does not remove the need for time to rest and explore. An eight-day Dali–Lijiang–Shangri-La holiday can be possible if you replace Shaxi or Kunming sightseeing; it is the **unchanged four-stop route plus Shangri-La** that becomes crowded.
+Shangri-La's town is around 3,200–3,300 metres above sea level. Keep the first day easy and account for altitude; travellers with medical concerns should seek advice before committing. The [Lijiang–Shangri-La railway](https://www.nra.gov.cn/xwzx/tpsp/tpxx/202311/t20231127_343787.shtml) provides another transport option, but it does not remove the need for time to rest and explore. An eight-day Dali–Lijiang–Shangri-La holiday can be possible if you replace Shaxi or Kunming sightseeing; it is the **unchanged four-stop route plus Shangri-La** that becomes crowded.
 
 Lugu Lake lies east of Lijiang and requires substantial road travel. It is better treated as a different itinerary than a quick extra on this one. If you want time at the lake, [ask us to design a tailor-made route](/private-yunnan-tours) rather than adding it to the Shaxi journey.
 
@@ -234,7 +235,7 @@ Hidden China Travel is not a dedicated Muslim-tour specialist. Local partners ca
 
 Our [First Encounter Yunnan](/journeys/kunming-dali-shaxi-lijiang-6-days) journey is a starting point for an in-Yunnan proposal. Its current itinerary combines rail and private road transfers; it is not an all-road version of the eight-day table above. Confirm the day-by-day route, hotel nights, guide arrangements and airport transfers against the product page and written proposal. International flights and additional nights need separate planning.
 
-**Joy Liu discusses your route. The licensed agency behind Hidden China Travel confirms the proposal, price, contract, payment and operation.** If you are comparing a Malaysia-departure package with this option, check where the international flights and service responsibility sit in each quote.
+**Joy Liu discusses your route. Yunnan tours are quoted, contracted and operated by [Kunming Dianguoguo International Travel Agency Co., Ltd.](/licensed-operator), which also handles tour payments.** If you are comparing a Malaysia-departure package with this option, check where the international flights and service responsibility sit in each quote.
 
 ## Plan Your Yunnan Trip with Joy
 
