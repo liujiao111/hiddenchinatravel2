@@ -152,6 +152,8 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const [vehicle, setVehicle] = useState(fiveSeat);
   const [hotelArea, setHotelArea] = useState("");
   const idRef = useRef<string | null>(null);
+  const submissionKey = useRef<string | null>(null);
+  const [orderPath, setOrderPath] = useState("");
   const startedRef = useRef(false);
   const service = products.find(p => p.id === serviceId);
   const guidePrice = hotelArea === customHotelArea ? undefined
@@ -218,6 +220,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const days = kind === "custom" ? String(values.get("days") || "") : isDay ? "1 day / 9 hours" : "1 transfer";
     const serviceName = service?.en || "Custom & Multi-Day Driver";
     idRef.current ??= crypto.randomUUID();
+    submissionKey.current ??= crypto.randomUUID();
     const detail = [
       "PRODUCT ID: " + (service?.id || "custom-multi-day"),
       "CATEGORY: " + (service?.category || "custom"),
@@ -249,6 +252,12 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       consent: values.get("consent") === "yes",
       attribution: getAttribution(), conversionPage: window.location.pathname,
       requestId: idRef.current,
+      driverOrder: {
+        submissionKey: submissionKey.current, locale, service: service ? (zh ? service.zh : service.en) : title,
+        route: direction || route, pickup, dropoff, vehicle: zh
+          ? (vehicle === fiveSeat ? "5座车" : vehicle === sevenSeat ? "7座商务车" : "更大车型") : vehicle,
+        guideFen: guidePrice === undefined ? null : guidePrice * 100,
+      },
     };
     setStatus("sending"); setError("");
     try {
@@ -261,6 +270,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         service_direction: direction || undefined, hotel_area: hotelArea || undefined, vehicle_requested: vehicle,
         event_id: idRef.current, page_path: window.location.pathname,
       });
+      if (typeof data.orderPath === "string") setOrderPath(data.orderPath);
       setStatus("success");
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : (zh ? "发送失败，请重试。" : "Please try again."));
@@ -271,6 +281,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   if (status === "success") return <div className="driver-form-success" role="status">
     <h3>{zh ? "已收到包车需求" : "We received your driver request"}</h3>
     <p>{zh ? "我们会确认路线、车型、车源和价格，再联系你。尚未收取任何款项，预订也尚未确认。" : "We will verify the route, car and total price and contact you. No payment was taken and this is not yet a confirmed booking."}</p>
+    {orderPath ? <p><a href={orderPath}>{zh ? "查看我的包车申请" : "View my driver request"}</a></p> : null}
     <Link href="/licensed-operator">{zh ? "查看持证旅行社信息" : "View the licensed operator"}</Link>
   </div>;
 

@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { driverOrdersEnabled, updateDriverOrder } from "@/lib/driver-orders.mjs";
 import { isDriverProductId } from "@/lib/stripe-test";
 
 export const runtime = "nodejs";
@@ -64,6 +65,27 @@ export async function POST(request: Request) {
       || (type !== "full" && !metadata.balance_due?.trim())) {
       console.error("[stripe-driver] Quote payment needs reconciliation", { eventId: event.id });
       return new Response("Quote payment needs reconciliation.", { status: 422 });
+    }
+    if (metadata.linked_driver_order === "1") {
+      try {
+        if (!driverOrdersEnabled()) throw new Error("Order storage unavailable");
+        const stage = type === "balance" ? "balance" : "initial";
+        const updated = await updateDriverOrder(metadata.order_id, current => {
+          const payment = current.quote?.[stage];
+          if (current.quote?.totalFen !== total || payment?.id !== session.id || payment.dueFen !== due
+            || payment.type !== type || payment.live !== event.livemode) {
+            throw new Error("Payment does not match saved order");
+          }
+          if (current.paid?.[stage]) return current;
+          return { ...current, paid: { ...current.paid, [stage]: {
+            type, amount: due, eventId: event.id, paidAt: new Date(event.created * 1000).toISOString(),
+          } } };
+        });
+        if (!updated) throw new Error("Order not found");
+      } catch {
+        console.error("[stripe-driver] Could not record paid order", { eventId: event.id });
+        return new Response("Could not record order payment.", { status: 503 });
+      }
     }
     subject = `${event.livemode ? "[Stripe]" : "[Stripe sandbox]"} Driver payment received — ${metadata.order_id}`;
     details = [
