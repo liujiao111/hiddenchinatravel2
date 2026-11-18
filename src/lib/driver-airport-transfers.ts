@@ -13,9 +13,9 @@ const sameBothWays = (five: number, seven: number) => ({
 });
 const pending = { pickup: blank, dropoff: blank };
 
-const daliDirection = (five: number | null = null, seven: number | null = null, enabled = true, note = "") =>
+const configurableDirection = (five: number | null = null, seven: number | null = null, enabled = true, note = "") =>
   ({ five, seven, enabled, note });
-const daliRoute = (pickup = daliDirection(), dropoff = daliDirection()) => ({ pickup, dropoff });
+const configurableRoute = (pickup = configurableDirection(), dropoff = configurableDirection()) => ({ pickup, dropoff });
 
 type TransferCatalog = {
   hubs: Hub[];
@@ -45,16 +45,16 @@ export const airportTransferCatalog: Record<string, TransferCatalog | undefined>
     areas: [area("xiaguan", "Xiaguan / Dali city centre", "下关 / 大理市区"), area("oldtown", "Dali Old Town", "大理古城"), area("xizhou", "Xizhou", "喜洲"), area("shuanglang", "Shuanglang", "双廊"), other],
     routes: {
       dlu: {
-        xiaguan: daliRoute(daliDirection(150, 250, true, "Existing guide fares"), daliDirection(150, 250, true, "Existing guide fares")),
-        oldtown: daliRoute(),
-        xizhou: daliRoute(),
-        shuanglang: daliRoute(),
+        xiaguan: configurableRoute(configurableDirection(150, 250, true, "Existing guide fares"), configurableDirection(150, 250, true, "Existing guide fares")),
+        oldtown: configurableRoute(),
+        xizhou: configurableRoute(),
+        shuanglang: configurableRoute(),
       },
       railway: {
-        xiaguan: daliRoute(),
-        oldtown: daliRoute(),
-        xizhou: daliRoute(),
-        shuanglang: daliRoute(),
+        xiaguan: configurableRoute(),
+        oldtown: configurableRoute(),
+        xizhou: configurableRoute(),
+        shuanglang: configurableRoute(),
       },
     },
   },
@@ -63,10 +63,10 @@ export const airportTransferCatalog: Record<string, TransferCatalog | undefined>
       hub("ljg", "Lijiang Sanyi International Airport (LJG)", "丽江三义国际机场（LJG）", "airport"),
       hub("railway", "Lijiang Railway Station", "丽江站", "railway"),
     ],
-    areas: [area("oldtown", "Lijiang Old Town", "丽江古城"), area("shuhe", "Shuhe Old Town", "束河古镇"), area("baisha", "Baisha Old Town", "白沙古镇"), area("jade-dragon", "Jade Dragon Snow Mountain area", "玉龙雪山片区"), other],
+    areas: [area("oldtown", "Lijiang Old Town / city centre", "丽江古城 / 丽江市区"), area("shuhe", "Shuhe Old Town", "束河古镇"), area("baisha", "Baisha Old Town", "白沙古镇"), other],
     routes: {
-      ljg: { oldtown: sameBothWays(180, 280), shuhe: pending, baisha: pending },
-      railway: { oldtown: pending, shuhe: pending, baisha: pending },
+      ljg: { oldtown: configurableRoute(), shuhe: configurableRoute(), baisha: configurableRoute() },
+      railway: { oldtown: configurableRoute(), shuhe: configurableRoute(), baisha: configurableRoute() },
     },
   },
   "shangri-la-arrival": {
@@ -121,7 +121,9 @@ export function parseAirportTransfer(value: unknown, date: string, adults: numbe
   const direct = input.stationTransfer === true;
   const secondHub = direct && productId === "kunming-arrival" && selectedHub.value === "kmg"
     ? city.hubs.find(item => item.value === "south") : undefined;
-  const selectedArea = city.areas.find(item => item.value === input.hotelArea);
+  // A form opened before the catalog update may still submit the old snow-mountain option.
+  const areaId = productId === "lijiang-arrival" && input.hotelArea === "jade-dragon" ? "other" : input.hotelArea;
+  const selectedArea = city.areas.find(item => item.value === areaId);
   const hotel = field("hotel", 150);
   if (direct ? !secondHub : !selectedArea || !hotel) return null;
 
