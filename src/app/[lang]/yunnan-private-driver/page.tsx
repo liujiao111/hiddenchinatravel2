@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const faqs: Pair[] = [
   ["How much does a private driver in Yunnan cost?", "云南私人包车大概多少钱？"],
   ["Can I book and pay online?", "可以在线下单付款吗？"],
-  ["How much deposit do I pay?", "需要支付多少定金？"],
+  ["Do I pay in full or pay a deposit?", "需要付全款还是定金？"],
   ["When is the remaining balance due?", "什么时候支付尾款？"],
   ["Does my driver speak English?", "司机会讲英语吗？"],
   ["Is the driver also my tour guide?", "司机也负责讲解吗？"],
@@ -51,10 +51,10 @@ const faqs: Pair[] = [
 ];
 
 const faqAnswers: Pair[] = [
-  ["Rates depend on the exact route, vehicle, date, waiting time and tolls. We confirm a written total before asking you to pay; no fixed online fare has been published yet.", "费用取决于具体路线、车型、日期、等候时间与高速费。会先提供书面报价；目前没有上线固定在线支付价。"],
+  ["Rates depend on the exact route, vehicle, date, waiting time and tolls. The cards show guide prices. We confirm your written total before requesting payment.", "费用取决于具体路线、车型、日期、等候时间与高速费。卡片显示参考价，付款前会提供书面总价。"],
   ["You can request a transfer date online. Once the route, vehicle and total price are confirmed, the licensed operator sends the agreed secure payment link. The request form does not collect payment.", "你可以在线提交接送日期与需求。核实路线、车源和总价后，持证经营方提供约定的安全付款链接；查询表单不会扣费。"],
-  ["For confirmed driver-only services, the deposit is 20% of the agreed total and is payable after vehicle and price confirmation.", "单独包车服务的定金为确认总价的20%，在车源和报价确认后支付。"],
-  ["The remaining 80% is normally payable after the driver picks you up, as specified in your booking confirmation.", "尾款通常在司机接到旅客后支付 80%，以预订确认单约定为准。"],
+  ["Airport, station and fixed-route transfers are paid in full after we confirm availability, the total and the change and cancellation terms. A single-day charter with agreed route and hours can be paid in full. Multi-day or flexible bookings require a 20% deposit.", "机场、车站和固定线路接送在确认车源、总价及退改条款后付全款。单日包车在路线和时长明确后可付全款；多日包车或行程仍可能调整的订单付20%定金。"],
+  ["For deposit bookings, the written quote specifies the balance and when it is due.", "采用定金的订单会在书面报价中列明尾款金额和付款时间。"],
   ["Not always. Many local drivers speak Chinese; English-language coordination is available via Hidden China Travel on WhatsApp.", "不一定，很多当地司机主要讲中文；Hidden China Travel 可以通过 WhatsApp 提供英文沟通协调。"],
   ["No. A driver provides transport and agreed stops, not professional sightseeing commentary. Request an English-speaking guide separately if needed.", "不是。司机负责交通与约定停靠点，不默认包含专业景点讲解；可单独询价英文导游。"],
   ["A standard five-seat car is best for 1–3 travellers and up to three large cases, subject to suitcase dimensions. For more people or luggage, request a larger vehicle.", "标准5座车建议1–3人及最多3个大箱，但实际需按行李尺寸和后备箱核实。更多人数或行李请申请更大车型。"],
@@ -62,7 +62,7 @@ const faqAnswers: Pair[] = [
   ["Direct transfers do not include sightseeing stops. Choose one of our via-Shaxi or Tiger Leaping Gorge services for planned visits; additional changes are quoted separately.", "直达接送不包含观光停靠。可直接选择经沙溪、虎跳峡的跨城产品；其他加停需求另行核价。"],
   ["A confirmed 9-hour day charter normally runs from 9:00 AM–6:00 PM and includes 30 complimentary minutes if agreed. Thereafter RMB 200 per started hour applies to approved overtime.", "确认的9小时日包车通常为09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时人民币200元计费。"],
   ["Changes can affect availability, tolls, time and price. We confirm any difference in writing before you proceed.", "变更路线可能影响车源、过路费、时长和价格，我们会先书面确认变更。"],
-  ["For confirmed driver-only bookings, cancellation at least three full days before service returns the deposit. Later cancellations retain 30% of the deposit. The signed booking agreement states the exact terms; multi-day tour policies differ.", "已确认的单独包车服务：至少提前3个完整自然日取消可退还全部定金；更晚取消扣留定金的30%。具体以签订的预订协议为准；多日旅游套餐政策不同。"],
+  ["We confirm cancellation and refund terms in writing before payment. For deposit bookings under our standard driver terms, cancellation at least three full days ahead returns the deposit. Later cancellations retain 30% of the deposit.", "付款前会书面确认退改条款。适用标准定金条款的包车订单，至少提前3个完整自然日取消可全退定金；更晚取消扣留定金的30%。"],
   ["We send the vehicle and pickup details after confirmation, with driver contact details before the journey.", "确认车源后提供车辆和接送安排，出发前提供司机联系方式。"],
   ["If the licensed operator cannot provide the confirmed service, all payments collected for that service are refunded in full.", "如持证经营方无法提供确认的服务，该服务已收款项全额退还。"]
 ];
@@ -117,7 +117,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <p className="kicker">{T("PRIVATE ROAD TRAVEL · YUNNAN", "云南 · 私人交通服务")}</p>
           <h1>{T("Private Driver and Car Service in Yunnan", "云南私人包车与司机服务")}</h1>
           <p className="driver-hero-intro">{T("Travel between Dali, Lijiang, Shaxi, Shangri-La, Kunming and surrounding destinations with a private vehicle, local driver and English-language support.", "提供大理、丽江、沙溪、香格里拉、昆明及周边地区的私人用车、当地司机与英文沟通协调。")}</p>
-          <p>{T("Choose from eleven transfer and day-charter options, or tell us about a custom multi-day route. We confirm availability and price before arranging any deposit.", "从11个标准接送与包车产品中选择，或提交多日定制路线；确认车源与价格后再安排定金支付。")}</p>
+          <p>{T("Choose from eleven transfer and day-charter options, or tell us about a custom multi-day route. We confirm availability and price before arranging payment.", "从11个标准接送与包车产品中选择，或提交多日定制路线；确认车源与价格后再安排付款。")}</p>
           <ul className="driver-hero-tags">
             {[T("Private car and local driver","私人用车及当地司机"),T("Airport, station & hotel pickups","机场、车站和酒店接送"),T("1–3 travellers in standard car","标准车建议1–3人"),T("English support on WhatsApp","WhatsApp 英文支持")].map(x=><li key={x}>{x}</li>)}
           </ul>
@@ -135,7 +135,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
       <div className="shell driver-hero-trust">
         <span>{T("Written quote before payment", "付款前提供书面报价")}</span>
-        <span>{T("20% deposit after confirmation", "确认后支付20%定金")}</span>
+        <span>{T("Payment after confirmation", "确认后付款")}</span>
         <span>{T("Driver-only cancellation terms explained upfront", "包车取消规则提前告知")}</span>
       </div>
     </section>
@@ -210,15 +210,15 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <section className="driver-section driver-section-soft journey-support-flow driver-process" id="booking-process">
       <div className="shell journey-section-layout">
-        <header className="driver-flow-heading"><p className="kicker">08 / HOW BOOKING WORKS</p><h2>{T("From Route to Confirmed Pickup","从选线路到司机接送")}</h2><p>{T("A request is not a confirmed booking. We check the driver, route and price before requesting any deposit.","提交咨询不代表预订成功。我们会先确认司机、路线与价格，再安排定金支付。")}</p></header>
+        <header className="driver-flow-heading"><p className="kicker">08 / HOW BOOKING WORKS</p><h2>{T("From Route to Confirmed Pickup","从选线路到司机接送")}</h2><p>{T("A request is not a confirmed booking. We check the driver, route and price before requesting payment.","提交咨询不代表预订成功。我们会先确认司机、路线与价格，再安排付款。")}</p></header>
         <div className="journey-support-grid">{[
           [T("Choose a service","选服务"),T("Pick a standard transfer or describe your custom route.","选择标准接送，或发送定制路线。")],
           [T("Share your date","提交日期"),T("Tell us pickup, drop-off, passengers and luggage.","提供接送点、人数和行李情况。")],
           [T("Review the quote","核对报价"),T("We check the vehicle and send confirmed total and terms.","核实车源后发送完整报价和条款。")],
-          [T("Pay the deposit","支付定金"),T("Pay 20% using the licensed operator's agreed secure channel.","通过持证经营方确认的安全渠道支付20%定金。")],
+          [T("Pay the agreed amount","支付约定金额"),T("Use the licensed operator’s secure payment link for the agreed full amount or deposit.","通过持证经营方提供的安全链接支付约定的全款或定金。")],
           [T("Receive confirmation","获取确认"),T("Get written booking confirmation and pickup information.","取得书面预订确认及接送安排。")]
         ].map(([h,p],i)=><article key={h}><span>{String(i+1).padStart(2,"0")}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
-        <p className="driver-detail-note driver-flow-note">{T("Submitting your route is free. You only pay after you review a confirmed price, service terms and payment request.","提交路线免费。核实车源并确认完整报价、服务条款及付款通知后，才需要支付定金。")}</p>
+        <p className="driver-detail-note driver-flow-note">{T("Submitting your route is free. You only pay after you review a confirmed price, service terms and payment request.","提交路线免费。核实车源并确认完整报价、服务条款及付款通知后，才需要支付约定金额。")}</p>
       </div>
     </section>
 
@@ -226,8 +226,8 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       <div className="shell">
         {heading("09 / TERMS & PAYMENT","Payment and Cancellation Policy","付款与取消政策", "Driver-only service terms are separate from multi-day tour packages and are confirmed before payment.", "本页单独包车服务条款与多日旅游套餐不同，具体在付款前书面确认。")}
         <div className="driver-terms-grid">
-          <article><h3>{T("Payment","付款")}</h3><p>{T("The planned schedule is a 20% deposit once price and vehicle are confirmed, then the remaining 80% after pickup. Payment requests are issued by the licensed operator.", "计划付款安排：车源和总价确认后付20%定金，司机接客后付80%尾款。支付通知由持证经营方提供。")}</p></article>
-          <article><h3>{T("Cancellation","取消")}</h3><p>{T("For confirmed driver-only reservations, cancelling at least three full days ahead returns the full deposit. Within three days, 30% of the deposit is retained and 70% refunded, subject to the signed agreement.", "已确认的单独包车服务：至少提前3个完整自然日取消，全额退还定金；3天内取消，扣留定金的30%，退还70%，以双方签署的约定为准。")}</p></article>
+          <article><h3>{T("Payment","付款")}</h3><p>{T("Confirmed transfers are paid in full. A single-day charter with agreed route and hours can be paid in full. Multi-day and flexible bookings require a 20% deposit, with the balance and due date in the quote.", "固定接送确认后付全款。单日包车路线和时长明确后可付全款。多日或灵活包车付20%定金，尾款金额和付款时间以书面报价为准。")}</p></article>
+          <article><h3>{T("Cancellation","取消")}</h3><p>{T("Your written quote states the cancellation and refund terms for the agreed payment type before you pay.", "付款前，书面报价会列明对应付款方式的取消、改期和退款条件。")}</p></article>
           <article><h3>{T("Operator cannot provide the car","经营方无法派车")}</h3><p>{T("If the licensed operator cannot confirm or provide the booked vehicle, all payments collected for the unavailable service are refunded in full.", "如果持证经营方无法确认或提供已预订车辆，应全额退回该服务所收款项。")}</p></article>
         </div>
         <p className="driver-detail-note">{T("Example only: for a RMB 1,300 service with a RMB 260 deposit, a late-cancellation fee of 30% of the deposit is RMB 78 and the deposit refund is RMB 182.", "举例说明：若服务总价为人民币1300元，定金260元，临近出发取消扣除定金30%即78元，剩余182元退回。")}</p>

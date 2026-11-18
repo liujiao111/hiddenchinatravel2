@@ -16,13 +16,13 @@ type FormKind = "standard" | "custom";
 type NamedOption = { value: string; en: string; zh: string };
 type Product = {
   id: ProductId; category: Category; en: string; zh: string;
-  detailEn: string; detailZh: string; photo: string;
+  detailEn: string; detailZh: string; photo: string; guidePrice: number;
   routes?: NamedOption[]; hubs?: NamedOption[];
 };
 
 const products: Product[] = [
   {
-    id: "kunming-arrival", category: "arrival",
+    id: "kunming-arrival", guidePrice: 180, category: "arrival",
     en: "Kunming Arrival Transfers", zh: "昆明机场与车站接送",
     detailEn: "Choose an airport or railway station and your transfer direction.",
     detailZh: "选择机场或火车站及接送方向。",
@@ -34,7 +34,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "dali-arrival", category: "arrival",
+    id: "dali-arrival", guidePrice: 150, category: "arrival",
     en: "Dali Arrival Transfers", zh: "大理机场与车站接送",
     detailEn: "Travel between your Dali hotel and the selected airport or station.",
     detailZh: "选择大理机场／火车站与酒店之间的接送方向。",
@@ -45,7 +45,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-arrival", category: "arrival",
+    id: "lijiang-arrival", guidePrice: 180, category: "arrival",
     en: "Lijiang Arrival Transfers", zh: "丽江机场与车站接送",
     detailEn: "Private pickups and drop-offs for Lijiang, Shuhe and nearby hotels.",
     detailZh: "丽江古城、束河及周边酒店的私人接送服务。",
@@ -56,7 +56,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "shangri-la-arrival", category: "arrival",
+    id: "shangri-la-arrival", guidePrice: 150, category: "arrival",
     en: "Shangri-La Arrival Transfers", zh: "香格里拉机场与车站接送",
     detailEn: "Private transfers between the railway station or airport and hotels around Dukezong and beyond.",
     detailZh: "提供香格里拉站、迪庆香格里拉机场与独克宗古城及周边酒店的接送。",
@@ -67,7 +67,7 @@ const products: Product[] = [
     ],
   },
   {
-    id: "dali-lijiang-direct", category: "intercity",
+    id: "dali-lijiang-direct", guidePrice: 550, category: "intercity",
     en: "Dali ⇄ Lijiang Direct", zh: "大理 ⇄ 丽江 · 直达",
     detailEn: "Direct hotel-to-hotel service without sightseeing stops.",
     detailZh: "酒店到酒店直达，不含观光停靠。",
@@ -78,7 +78,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "dali-lijiang-shaxi", category: "intercity",
+    id: "dali-lijiang-shaxi", guidePrice: 780, category: "intercity",
     en: "Dali ⇄ Lijiang via Shaxi", zh: "大理 ⇄ 丽江 · 途经沙溪",
     detailEn: "A scenic transfer with an agreed stop in Shaxi Ancient Town.",
     detailZh: "在沙溪古镇停留，观光时间需提前约定。",
@@ -89,7 +89,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-shangri-la", category: "intercity",
+    id: "lijiang-shangri-la", guidePrice: 680, category: "intercity",
     en: "Lijiang ⇄ Shangri-La", zh: "丽江 ⇄ 香格里拉",
     detailEn: "Private transfer between Lijiang and Shangri-La.",
     detailZh: "丽江与香格里拉之间的私人接送。",
@@ -100,7 +100,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-tlg-shangri-la", category: "intercity",
+    id: "lijiang-tlg-shangri-la", guidePrice: 880, category: "intercity",
     en: "Lijiang → Tiger Leaping Gorge → Shangri-La",
     zh: "丽江 → 虎跳峡 → 香格里拉",
     detailEn: "One-way journey with a planned Tiger Leaping Gorge visit.",
@@ -109,21 +109,21 @@ const products: Product[] = [
     routes: [{ value: "Lijiang → Tiger Leaping Gorge → Shangri-La", en: "Lijiang → Tiger Leaping Gorge → Shangri-La", zh: "丽江 → 虎跳峡 → 香格里拉" }]
   },
   {
-    id: "dali-day", category: "day",
+    id: "dali-day", guidePrice: 750, category: "day",
     en: "Dali 9-Hour Car Charter", zh: "大理 9 小时包车",
     detailEn: "Private driver for a planned day within the confirmed Dali service area.",
     detailZh: "在已确认的大理服务范围内按路线安排用车。",
     photo: "/assets/partners/vehicles/five-seat-aion.webp",
   },
   {
-    id: "lijiang-day", category: "day",
+    id: "lijiang-day", guidePrice: 780, category: "day",
     en: "Lijiang 9-Hour Car Charter", zh: "丽江 9 小时包车",
     detailEn: "A flexible day of locally agreed stops around Lijiang.",
     detailZh: "在丽江周边约定服务范围内灵活安排停靠。",
     photo: "/assets/partners/vehicles/five-seat-hongqi.webp",
   },
   {
-    id: "shangri-la-day", category: "day",
+    id: "shangri-la-day", guidePrice: 850, category: "day",
     en: "Shangri-La 9-Hour Car Charter", zh: "香格里拉 9 小时包车",
     detailEn: "A local driver for a pre-agreed Shangri-La day route.",
     detailZh: "提前确认香格里拉当地路线和实际驾驶范围。",
@@ -257,7 +257,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
 
   if (status === "success") return <div className="driver-form-success" role="status">
     <h3>{zh ? "已收到包车需求" : "We received your driver request"}</h3>
-    <p>{zh ? "我们会确认路线、车型、车源和价格，再联系你。尚未收取任何定金，预订也尚未确认。" : "We will verify the route, car and total price and contact you. No deposit was taken and this is not yet a confirmed booking."}</p>
+    <p>{zh ? "我们会确认路线、车型、车源和价格，再联系你。尚未收取任何款项，预订也尚未确认。" : "We will verify the route, car and total price and contact you. No payment was taken and this is not yet a confirmed booking."}</p>
     <Link href="/licensed-operator">{zh ? "查看持证旅行社信息" : "View the licensed operator"}</Link>
   </div>;
 
@@ -399,7 +399,7 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
       <div className="driver-section-head">
         <p className="kicker">{zh ? "私人交通服务目录" : "YUNNAN DRIVER SERVICES"}</p>
         <h2>{zh ? "选择合适的接送与包车服务" : "Find Your Private Car Service"}</h2>
-        <p>{zh ? "11个清晰的标准产品入口，按城市、线路或包车时长选择。提交日期和车辆信息后，我们会先核实车源与总价。" : "Eleven straightforward service options, grouped by arrival transfer, intercity route and day hire. We confirm the car and total price before taking a deposit."}</p>
+        <p>{zh ? "11个清晰的标准产品入口，按城市、线路或包车时长选择。提交日期和车辆信息后，我们会先核实车源与总价。" : "Eleven straightforward service options, grouped by arrival transfer, intercity route and day hire. We confirm the car and total price before requesting payment."}</p>
       </div>
       <nav className="driver-catalog-jump" aria-label={zh ? "服务类别" : "Service categories"}>
         <a href="#airport-station-transfers">{zh ? "机场／车站接送" : "Airport & Station"}</a>
@@ -418,13 +418,13 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
             <div className="driver-product-copy">
               <h3>{zh ? product.zh : product.en}</h3>
               <p>{zh ? product.detailZh : product.detailEn}</p>
-              <p className="driver-product-price">{zh ? "具体价格按日期与车型报价" : "Price confirmed by date & vehicle"}<small>{zh ? "车源核实后安排20%定金" : "20% deposit after confirmation"}</small></p>
+              <p className="driver-product-price">{zh ? `参考价 ¥${product.guidePrice}／车` : `Guide price RMB ${product.guidePrice} per vehicle`}<small>{product.category === "day" ? (zh ? "路线与时长确认后可付全款" : "Full payment available once the route and hours are agreed") : (zh ? "确认后付全款" : "Full payment after confirmation")}</small></p>
               <button type="button" className="button button-blue" onClick={() => pick(product.id)}>{zh ? "选择选项并询价" : "Select Options & Check Price"}</button>
             </div>
           </article>)}
         </div>
       </div>)}
-      <p className="driver-product-footnote">{zh ? "标准5座车建议1–3位旅客；更多乘客和大件行李可申请更大车型。车辆照片仅为示例，实际车型以确认单为准。" : "A five-seat car is recommended for 1–3 travellers; larger vehicles can be quoted. Photos are category examples. Vehicle details are confirmed in writing."}</p>
+      <p className="driver-product-footnote">{zh ? "参考价按标准5座车估算，实际按日期、路线和车型报价。标准5座车建议1–3位旅客；更多乘客和大件行李可申请更大车型。车辆照片仅为示例，实际车型以确认单为准。" : "Guide prices assume a standard five-seat car. The written quote depends on date, route and vehicle. A five-seat car is recommended for 1–3 travellers; larger vehicles can be quoted. Photos are category examples. Vehicle details are confirmed in writing."}</p>
       {selected ? <div className="driver-booking-panel" id="driver-request" key={selected}>
         <DriverEnquiryForm locale={locale} kind="standard" serviceId={selected} />
         {stripeTestCheckoutEnabled ? <DriverStripeTestCheckout locale={locale} productId={selected} /> : null}

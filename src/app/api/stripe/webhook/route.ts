@@ -4,40 +4,86 @@ import { isDriverProductId } from "@/lib/stripe-test";
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-  if (process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED !== "true"
-    || !webhookSecret?.startsWith("whsec_")) {
-    return new Response("Stripe test webhook is disabled.", { status: 503 });
+  const testSecret = process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED === "true"
+    ? process.env.STRIPE_WEBHOOK_SECRET : undefined;
+  const liveSecret = process.env.STRIPE_DRIVER_LIVE_WEBHOOK_SECRET;
+  const signingKeys = [
+    { secret: liveSecret, live: true },
+    { secret: testSecret, live: false },
+  ];
+  if (!signingKeys.some(({ secret }) => secret?.startsWith("whsec_"))) {
+    return new Response("Stripe webhook is disabled.", { status: 503 });
   }
 
   const signature = request.headers.get("stripe-signature");
   if (!signature) return new Response("Missing Stripe signature.", { status: 400 });
 
-  let event: Stripe.Event;
-  try {
-    event = Stripe.webhooks.constructEvent(await request.text(), signature, webhookSecret);
-  } catch {
-    console.error("[stripe-test] Invalid webhook signature");
-    return new Response("Invalid Stripe signature.", { status: 400 });
+  const payload = await request.text();
+  let event: Stripe.Event | undefined;
+  for (const { secret, live } of signingKeys) {
+    if (!secret?.startsWith("whsec_")) continue;
+    try {
+      const verified = Stripe.webhooks.constructEvent(payload, signature, secret);
+      if (verified.livemode === live) {
+        event = verified;
+        break;
+      }
+    } catch {
+      // The other endpoint may be responsible for this event.
+    }
   }
-
-  if (event.livemode || (
-    event.type !== "checkout.session.completed"
-    && event.type !== "checkout.session.async_payment_succeeded"
-  )) {
+  if (!event) return new Response("Invalid Stripe signature.", { status: 400 });
+  if (event.type !== "checkout.session.completed"
+    && event.type !== "checkout.session.async_payment_succeeded") {
     return Response.json({ received: true });
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
-  const productId = session.metadata?.purpose === "driver_test_deposit"
-    ? session.metadata.product_id
+  if (session.payment_status !== "paid") return Response.json({ received: true });
+  const metadata = session.metadata;
+  const isQuote = metadata?.purpose === "driver_quote_payment";
+  const productId = metadata?.purpose === "driver_test_deposit"
+    ? metadata.product_id
     : session.payment_link
       ? session.client_reference_id?.match(/^driver_test_(.+)$/)?.[1]
       : undefined;
 
-  if (session.payment_status !== "paid" || session.amount_total !== 100
-    || session.currency !== "usd" || !isDriverProductId(productId)) {
-    return Response.json({ received: true });
+  let subject: string;
+  let details: string[];
+  if (isQuote && metadata) {
+    const total = Number(metadata.total_fen);
+    const due = Number(metadata.due_fen);
+    const deposit = Math.round(total / 5);
+    const type = metadata.payment_type;
+    const expected = type === "full" ? total : type === "deposit" ? deposit
+      : type === "balance" ? total - deposit : 0;
+    if (!/^[A-Za-z0-9_-]{1,64}$/.test(metadata.order_id ?? "")
+      || session.client_reference_id !== metadata.order_id
+      || !Number.isSafeInteger(total) || total < 5 || due <= 0 || due !== expected
+      || session.amount_total !== due || session.currency !== "cny"
+      || (type !== "full" && !metadata.balance_due?.trim())) {
+      console.error("[stripe-driver] Quote payment needs reconciliation", { eventId: event.id });
+      return new Response("Quote payment needs reconciliation.", { status: 422 });
+    }
+    subject = `${event.livemode ? "[Stripe]" : "[Stripe sandbox]"} Driver payment received — ${metadata.order_id}`;
+    details = [
+      `Order: ${metadata.order_id}`,
+      `Service: ${metadata.service}`,
+      `Payment: ${type} · CNY ${(due / 100).toFixed(2)}`,
+      `Quoted total: CNY ${(total / 100).toFixed(2)}`,
+      ...(type === "deposit" ? [`Balance: CNY ${((total - due) / 100).toFixed(2)} · Due: ${metadata.balance_due}`] : []),
+    ];
+  } else {
+    if (event.livemode || session.amount_total !== 100
+      || session.currency !== "usd" || !isDriverProductId(productId)) {
+      return Response.json({ received: true });
+    }
+    subject = `[Stripe sandbox] Driver payment received — ${productId}`;
+    details = [
+      "Stripe verified a USD 1.00 sandbox payment. This is not a paid booking.",
+      `Service: ${productId}`,
+      "The test checkout carries no order number or pickup details.",
+    ];
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -57,19 +103,17 @@ export async function POST(request: Request) {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        "Idempotency-Key": `driver-test-payment-${session.id}`,
+        "Idempotency-Key": `driver-${isQuote ? "quote" : "test"}-payment-${session.id}`,
       },
       body: JSON.stringify({
         from,
         to: [to],
-        subject: `[Stripe sandbox] Driver payment received — ${productId}`,
+        subject,
         text: [
-          "Stripe verified a USD 1.00 sandbox payment. This is not a paid booking.",
-          `Service: ${productId}`,
+          ...details,
           `Checkout session: ${session.id}`,
           `Payment intent: ${paymentIntentId || "Unavailable"}`,
           `Payer email: ${session.customer_details?.email || session.customer_email || "Unavailable"}`,
-          "The test checkout carries no order number or pickup details.",
         ].join("\n"),
       }),
       signal: AbortSignal.timeout(5_000),
