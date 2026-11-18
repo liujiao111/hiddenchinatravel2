@@ -46,7 +46,7 @@ const products: Product[] = [
   {
     id: "shangri-la-arrival", category: "arrival",
     en: "Shangri-La Airport & Railway Station Transfer", zh: "香格里拉机场与火车站接送",
-    detailEn: "Private transfers between Diqing Shangri-La Airport or Shangri-La Railway Station and Dukezong, the city centre or Songzanlin Monastery area.",
+    detailEn: "Private transfers between Diqing Shangri-La Airport, Shangri-La Railway Station, Dukezong Ancient Town, central Shangri-La and the Songzanlin area.",
     detailZh: "提供迪庆香格里拉机场、香格里拉站与独克宗古城、香格里拉市区及松赞林寺片区之间的私人接送服务。",
     photo: "/assets/destinations/yunnan/shangri-la.webp",
   },
@@ -135,6 +135,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const isArrival = service?.category === "arrival";
   const isDaliArrival = serviceId === "dali-arrival";
   const isLijiangArrival = serviceId === "lijiang-arrival";
+  const isShangriLaArrival = serviceId === "shangri-la-arrival";
   const hub = transfer?.hubs.find(option => option.value === hubId);
   const isStationTransfer = serviceId === "kunming-arrival" && hubId === "kmg" && stationTransfer;
   const secondHub = isStationTransfer ? transfer?.hubs.find(option => option.value === "south") : undefined;
@@ -188,7 +189,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       setError(isArrival
         ? (adults + children > 3
           ? (zh ? "标准5座车建议最多3位乘客，请选择7座商务车或提交人工确认。" : "For more than 3 passengers, select a seven-seat vehicle or request a manual quote.")
-          : (isDaliArrival || isLijiangArrival)
+          : (isDaliArrival || isLijiangArrival || isShangriLaArrival)
             ? (zh ? "超过3个大行李箱，请选择7座商务车或更大车型以便人工确认。" : "For more than 3 large suitcases, choose a seven-seat MPV or select a larger vehicle for a manual quote.")
             : (zh ? "标准5座车最多可放3个大行李箱，建议选择7座商务车。" : "A five-seat car fits up to 3 large suitcases. Please select a seven-seat vehicle."))
         : zh ? "标准5座车型建议最多3位乘客、3个大箱；请改选7座或更大车型。" : "For over 3 passengers or 3 large cases, select a seven-seat or larger vehicle.");
@@ -343,7 +344,13 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       {isLijiangArrival && hotelArea === "oldtown" ? <p className="driver-area-hint">{zh
         ? "丽江古城部分住宿位于步行区域，车辆可能无法直接到达酒店门口。请填写完整酒店名称和地址，并提前向酒店确认最近的可通车接送点。"
         : "Some accommodation inside Lijiang Old Town is located in pedestrian-only lanes. The vehicle may stop at the nearest accessible Old Town entrance rather than directly outside the hotel. Please provide the full hotel name and address."}</p> : null}
-      {outsideArea ? <p className="driver-area-hint">{isLijiangArrival
+      {isShangriLaArrival && hotelArea === "dukezong" ? <p className="driver-area-hint">{zh
+        ? "独克宗古城内部分住宿位于步行区域，车辆可能只能到达最近的可通车入口。请填写完整酒店名称和地址，并提前向酒店确认最近的接送点。"
+        : "Some accommodation inside Dukezong Ancient Town is located in pedestrian-only lanes. The vehicle may stop at the nearest accessible entrance rather than directly outside the hotel. Please provide the full hotel name and address."}</p> : null}
+      {outsideArea ? <p className="driver-area-hint">{isShangriLaArrival
+        ? (zh ? "该地址位于香格里拉标准接送区域之外，请填写完整酒店名称和地址，我们将在确认路线、路况与车源后提供报价。"
+          : "This location is outside our standard Shangri-La transfer zones. Please provide the full hotel name and address for a custom quotation.")
+        : isLijiangArrival
         ? (zh ? "该地址位于丽江标准接送区域之外，请填写完整酒店名称和地址，我们将在确认路线与车源后提供报价。"
           : "This location is outside our standard Lijiang transfer zones. Please provide the full hotel name and address for a custom quotation.")
         : isDaliArrival
@@ -353,8 +360,11 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       {isLijiangArrival && outsideArea ? <p className="driver-area-hint">{zh
         ? "玉龙雪山、玉湖村、拉市海、虎跳峡、泸沽湖、石鼓和长江第一湾均按其他区域询价。"
         : "Request a custom quote for Jade Dragon Snow Mountain, Yuhu Village, Lashihai, Tiger Leaping Gorge, Lugu Lake, Shigu and the First Bend of the Yangtze."}</p> : null}
+      {isShangriLaArrival && outsideArea ? <p className="driver-area-hint">{zh
+        ? "纳帕海及环湖区域、普达措、巴拉格宗、虎跳峡、白水台、梅里雪山／飞来寺、雨崩和哈巴雪山片区均按其他区域询价。"
+        : "Request a custom quote for Napa Lake, Pudacuo, Balagezong, Tiger Leaping Gorge, Baishuitai, Meili Snow Mountain / Feilai Temple, Yubeng and the Haba Snow Mountain area."}</p> : null}
       <label><span>{transportLabel}{requiresArrivalDetails ? " *" : (zh ? "（建议填写）" : " (recommended)")}</span>
-        <input name="transportNumber" required={requiresArrivalDetails} maxLength={40} placeholder={isAirport || !transportHub ? "MU1234" : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : "G2845"} key={transportHub?.kind ?? "unknown"} />
+        <input name="transportNumber" required={requiresArrivalDetails} maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
         {!requiresArrivalDetails ? <small>{zh ? "尚未确定时可填 Not confirmed yet。" : "Enter Not confirmed yet if your flight or train is undecided."}</small> : null}
       </label>
     </> : null}
@@ -380,8 +390,8 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       <label><span>{zh ? "服务日期 *" : "Travel date *"}</span><input type="date" required name="date" min={isArrival ? chinaServiceDate() : undefined} /></label>
       {isArrival ? <label><span>{timeLabel} *</span>
         <input type="time" name="serviceTime" required />
-        <small>{requiresArrivalDetails ? (zh ? ((isDaliArrival || isLijiangArrival) ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
-          : isLijiangArrival
+        <small>{requiresArrivalDetails ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
+          : (isLijiangArrival || isShangriLaArrival)
             ? (zh ? "请填写希望司机到酒店或约定古城入口接您的时间。" : "Enter the time you would like the driver to meet you at the hotel or agreed Old Town entrance.")
             : (zh ? "请填写希望司机到酒店接您的时间。" : "Enter the time you would like the driver to pick you up at the hotel.")}</small>
       </label> : null}
@@ -397,7 +407,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     <p className="driver-area-hint" aria-live="polite">{isArrival && (!hub || !arrivalDirection || !priceArea)
       ? (zh ? "请选择交通枢纽、接送方向和酒店区域以查看参考价。" : "Select a hub, direction and hotel area to see the guide price.")
       : guidePrice === undefined
-      ? (zh ? ((isDaliArrival || isLijiangArrival) ? "价格需人工确认" : isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
+      ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "价格需人工确认" : isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
       : (zh ? `当前参考报价 ¥${guidePrice}／车。确认车源和行程后提供正式报价。` : `Current guide quote: RMB ${guidePrice} per vehicle. We confirm the final price after checking availability and itinerary.`)}</p>
     <div className="contact-field-row">
       <label><span>{zh ? "成人数 *" : "Adults *"}</span><input required type="number" name="travelers" min="1" max="20" defaultValue="2" /></label>

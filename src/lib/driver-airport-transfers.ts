@@ -74,10 +74,10 @@ export const airportTransferCatalog: Record<string, TransferCatalog | undefined>
       hub("dig", "Diqing Shangri-La Airport (DIG)", "迪庆香格里拉机场（DIG）", "airport"),
       hub("railway", "Shangri-La Railway Station", "香格里拉站", "railway"),
     ],
-    areas: [area("dukezong", "Dukezong Old Town", "独克宗古城"), area("central", "Shangri-La city centre", "香格里拉市区"), area("songzanlin", "Songzanlin Monastery area", "松赞林寺片区"), other],
+    areas: [area("dukezong", "Dukezong Ancient Town / central Shangri-La", "独克宗古城 / 香格里拉市区"), area("songzanlin", "Songzanlin area", "松赞林寺片区"), other],
     routes: {
-      dig: { dukezong: sameBothWays(150, 250), central: pending, songzanlin: pending },
-      railway: { dukezong: pending, central: pending, songzanlin: pending },
+      dig: { dukezong: configurableRoute(), songzanlin: configurableRoute() },
+      railway: { dukezong: configurableRoute(), songzanlin: configurableRoute() },
     },
   },
 };
@@ -122,7 +122,8 @@ export function parseAirportTransfer(value: unknown, date: string, adults: numbe
   const secondHub = direct && productId === "kunming-arrival" && selectedHub.value === "kmg"
     ? city.hubs.find(item => item.value === "south") : undefined;
   // A form opened before the catalog update may still submit the old snow-mountain option.
-  const areaId = productId === "lijiang-arrival" && input.hotelArea === "jade-dragon" ? "other" : input.hotelArea;
+  const areaId = productId === "lijiang-arrival" && input.hotelArea === "jade-dragon" ? "other"
+    : productId === "shangri-la-arrival" && input.hotelArea === "central" ? "dukezong" : input.hotelArea;
   const selectedArea = city.areas.find(item => item.value === areaId);
   const hotel = field("hotel", 150);
   if (direct ? !secondHub : !selectedArea || !hotel) return null;
@@ -152,6 +153,7 @@ export function parseAirportTransfer(value: unknown, date: string, adults: numbe
   const transportLabel = travelHub.kind === "airport" ? (zh ? "航班号" : "Flight number") : (zh ? "车次" : "Train number");
   const timeLabel = arrival ? (zh ? "预计抵达时间" : "Scheduled arrival time") : (zh ? "期望接客时间" : "Preferred pickup time");
   return {
+    ...(productId === "shangri-la-arrival" ? { productId } : {}),
     hub: hubName,
     direction: zh ? (arrival ? (travelHub.kind === "airport" ? "接机" : "接站") : (travelHub.kind === "airport" ? "送机" : "送站"))
       : (arrival ? "Pickup" : "Drop-off"),

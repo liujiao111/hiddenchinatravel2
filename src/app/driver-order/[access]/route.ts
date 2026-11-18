@@ -23,6 +23,7 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
 
   const { summary, quote, paid, dispatch } = saved.order;
   const zh = summary.locale === "zh";
+  const isShangriLaTransfer = summary.productId === "shangri-la-arrival";
   const t = (zhText: string, enText: string) => zh ? zhText : enText;
   const money = (fen: number) => new Intl.NumberFormat(zh ? "zh-CN" : "en", { style: "currency", currency: "CNY" }).format(fen / 100);
   const paidFen = (paid?.initial?.amount ?? 0) + (paid?.balance?.amount ?? 0);
@@ -57,7 +58,9 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
     ${summary.hub ? row(t("人数", "Travellers"), t(`${summary.adults} 位成人、${summary.children} 位儿童`, `${summary.adults} adults, ${summary.children} children`)) : row(t("人数", "Travellers"), summary.party)}
     ${row(t("大行李箱", "Large suitcases"), summary.luggage === undefined ? null : String(summary.luggage))}
     ${row(t("额外要求", "Other requirements"), summary.notes)}
-    ${row(t("参考价", "Guide price"), summary.guideFen > 0 ? money(summary.guideFen) : summary.manualQuote ? t("需人工确认价格", "Manual quote required") : null)}</dl></section>
+    ${row(t(isShangriLaTransfer ? "参考价格" : "参考价", "Guide price"), summary.guideFen > 0 ? money(summary.guideFen) : summary.manualQuote ? t(isShangriLaTransfer ? "需人工确认" : "需人工确认价格", "Manual quote required") : null)}
+    ${isShangriLaTransfer ? row(t("报价状态", "Quote status"), quote ? t("报价已确认", "Quote confirmed")
+      : summary.manualQuote ? t("人工报价", "Manual quote") : t("待确认车源和最终价格", "Availability and final price to be confirmed")) : ""}</dl></section>
     ${quote ? `<section><h2>${t("正式报价与付款", "Quote and payment")}</h2><dl>
     ${row(t("已确认的服务", "Confirmed service"), quote.description)}
     ${row(t("总价", "Total"), money(quote.totalFen))}
