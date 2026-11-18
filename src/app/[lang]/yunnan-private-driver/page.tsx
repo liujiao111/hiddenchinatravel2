@@ -142,23 +142,12 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <StandardTransferSection locale={lang} stripeTestCheckoutEnabled={stripeTestCheckoutEnabled} />
 
-    <section className="driver-section driver-custom-entry" id="custom-routes">
-      <div className="shell">
-        <div className="driver-custom-entry-layout">
-          <div>
-            <p className="kicker">{T("04 / BESPOKE SERVICE", "04 / 定制服务")}</p>
-            <h2>{T("Custom & Multi-Day Driver", "定制路线与多日包车")}</h2>
-            <p>{T("Need a custom route? We can arrange a private driver for multi-city journeys, family trips, longer stays, photography days or special sightseeing stops, with the vehicle and quote matched to your plan.", "没有找到合适的标准路线？昆明、大理、丽江、香格里拉多日用车，家庭旅行、摄影路线和特殊停靠都可以按实际行程匹配车辆与报价。")}</p>
-            <p className="driver-custom-examples">{T("Multi-day routes · Larger groups · Flexible sightseeing · Non-standard pickups", "多日路线 · 更多乘客 · 灵活游览 · 特殊接送点")}</p>
-            <div className="driver-action-row">
-              <a className="button button-blue" href="#custom-quote">{T("Request a Custom Quote", "申请定制包车报价")}</a>
-              <a className="driver-text-link" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp", "WhatsApp 咨询")}</a>
-            </div>
-          </div>
-          <figure className="driver-custom-entry-photo">
-            <Image src="/assets/destinations/yunnan/lijiang-shangri-la/yangtze-first-bend-shigu.webp" alt={T("Yunnan landscape on a scenic private driving route", "云南自驾路线上山地景观")} fill sizes="(max-width:800px) 100vw, 38vw" />
-          </figure>
-        </div>
+    <section className="journey-final-cta journey-final-cta-ask driver-custom-entry" id="custom-routes">
+      <div>
+        <h2>{T("Custom Routes & Multi-Day Private Drivers", "定制路线与多日包车")}</h2>
+        <span>{T("Plan a multi-day trip at your own pace, with a private vehicle matched to your group, route and sightseeing stops.", "多日用车、家庭出游或摄影路线，按你想去的地方和停留节奏安排车辆。")}</span>
+        <a className="button journey-primary-action" href="#driver-quote-form">{T("Request a Custom Quote", "申请定制包车报价")}</a>
+        <a className="journey-final-alt" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp →", "WhatsApp 咨询 →")}</a>
       </div>
     </section>
 
@@ -245,17 +234,16 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </section>
 
-    <section className="driver-section driver-section-soft driver-final" id="custom-quote">
-      <div className="shell">
-        {heading("12 / START HERE","Ready to Arrange Your Private Driver?","准备安排云南私人包车了吗？", "Choose a standard transfer above, or share your own route below. You can also contact us directly on WhatsApp.", "可以在上方选择标准接送，也可以在下面提交定制路线，或直接通过 WhatsApp 沟通。")}
-        <div className="driver-final-grid"><div className="driver-final-copy">
-          <h3>{T("A route that fits your trip","安排真正适合你行程的车")}</h3>
-          <p>{T("We review pickup points, driving time, sightseeing stops, passenger count and luggage — then suggest a suitable vehicle and a written quote.", "我们会核实接送点、行驶时间、途中停留、人数和行李，再匹配合适车型并提供书面报价。")}</p>
-          <a className="button button-light" href="#standard-transfers">{T("View Standard Transfers","查看标准接送服务")}</a>
-          <p>{T("Prefer to talk first?", "想先咨询？")}</p>
-          <a className="driver-text-link" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat with us on WhatsApp","通过 WhatsApp 联系我们")}</a>
-          <p className="driver-final-muted">{T("No payment is required to request a quotation or check a route.", "路线查询与索取报价不需要支付任何费用。")}</p>
-        </div><CustomDriverForm locale={lang}/></div>
+    <section className="journey-final-cta journey-final-cta-ask driver-final" id="custom-quote">
+      <div>
+        <h2>{T("Ready to Arrange Your Yunnan Private Driver?", "准备安排云南私人包车了吗？")}</h2>
+        <span>{T("Share your route, travel dates and group size. We’ll check availability and send you a written quote.", "告诉我们你的路线、日期和人数，我们会核实车源并提供书面报价。")}</span>
+        <a className="button journey-primary-action" href="#driver-quote-form">{T("Request a Private Driver Quote", "开始询价")}</a>
+        <a className="journey-final-alt" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat with us on WhatsApp →", "通过 WhatsApp 联系我们 →")}</a>
+        <a className="journey-final-alt" href="#standard-transfers">{T("View Standard Transfers →", "查看标准接送服务 →")}</a>
+        <div className="driver-final-form" id="driver-quote-form">
+          <CustomDriverForm locale={lang} />
+        </div>
       </div>
     </section>
     <ContentFooter />

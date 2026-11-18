@@ -147,11 +147,12 @@
 .driver-terms-grid p{font-size:.82rem;color:var(--color-muted);margin:0}
 .driver-operator-note{border-top:1px solid var(--color-border);padding-top:17px;font-size:.77rem;color:var(--color-muted);text-align:center}
 .driver-operator-note a{text-decoration:underline;color:var(--color-action-text)}
-.driver-final-grid{display:grid;grid-template-columns:.76fr 1.24fr;gap:clamp(30px,6vw,80px);align-items:start}
-.driver-final-copy h3{font-size:1.55rem;margin:0 0 12px}
-.driver-final-copy>p{color:var(--color-muted);font-size:.88rem}
-.driver-final-copy>.button{margin:9px 0 21px}
-.driver-final-copy .driver-final-muted{margin-top:30px;font-size:.75rem}
+.driver-custom-entry{background-image:linear-gradient(rgba(26,51,46,.84),rgba(26,51,46,.84)),url('/assets/destinations/yunnan/lijiang-shangri-la/yangtze-first-bend-shigu.webp')}
+.driver-final .journey-final-alt,.driver-custom-entry .journey-final-alt{color:inherit}
+.driver-final-form{max-width:760px;margin:clamp(28px,5vw,52px) auto 0;color:var(--color-ink);text-align:left;scroll-margin-top:90px}
+.driver-final-form p{font-weight:400;letter-spacing:normal}
+.driver-final-form .driver-form-success{color:var(--color-ink)}
+.driver-final-form .driver-form-success p{color:var(--color-muted)}
 .driver-form{padding:clamp(23px,3.5vw,38px);border:1px solid var(--color-border);background:var(--color-surface);box-shadow:var(--shadow-card);min-width:0}
 .driver-form h3{margin:0 0 8px}
 .driver-form .driver-form-note{margin:0 0 22px;font-size:.76rem;color:var(--color-muted)}
@@ -176,7 +177,7 @@
 }
 @media(max-width:800px){
 .driver-hero{padding:48px 0 0}
-.driver-hero-grid,.driver-custom-grid,.driver-vehicle-grid,.driver-support-grid,.driver-final-grid{grid-template-columns:1fr;gap:30px}
+.driver-hero-grid,.driver-custom-grid,.driver-vehicle-grid,.driver-support-grid{grid-template-columns:1fr;gap:30px}
 .driver-hero-copy{padding-bottom:0}
 .driver-hero-visual{grid-template-rows:280px 140px auto;padding-bottom:15px}
 .driver-hero-trust{justify-content:flex-start}
@@ -237,13 +238,13 @@
 .driver-page .driver-booking-panel{max-width:900px}
 .driver-page .driver-form select{width:100%;min-width:0;max-width:100%;font:inherit;border:1px solid var(--color-border);background:#fff;color:var(--color-ink);border-radius:var(--radius-control);min-height:var(--control-height);padding:12px 13px}
 .driver-page .driver-form select:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
-.driver-page .driver-custom-entry{background:#fff}
-.driver-page .driver-custom-entry-layout{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);align-items:center;gap:clamp(26px,5vw,70px);border:1px solid var(--color-border);background:var(--color-surface-soft);padding:clamp(24px,4vw,44px)}
-.driver-page .driver-custom-entry-layout h2{font-size:clamp(2rem,3vw,3rem)}
-.driver-page .driver-custom-entry-layout p:not(.kicker){color:var(--color-muted);font-size:.88rem;max-width:670px}
-.driver-page .driver-custom-entry-layout .driver-custom-examples{font-weight:750!important;font-size:.77rem!important;color:var(--color-ink)!important;margin:16px 0 26px}
-.driver-page .driver-custom-entry-photo{margin:0;position:relative;min-height:295px;align-self:stretch;background:#e9eff3;overflow:hidden}
-.driver-page .driver-custom-entry-photo img{object-fit:cover}
+
+
+
+
+
+
+
 @media(max-width:1050px){
   .driver-page .driver-product-grid--arrival,
   .driver-page .driver-product-grid--day,
@@ -252,8 +253,8 @@
   .driver-page .driver-catalog-group .driver-product-photo{height:170px;min-height:0}
 }
 @media(max-width:750px){
-  .driver-page .driver-custom-entry-layout{grid-template-columns:1fr}
-  .driver-page .driver-custom-entry-photo{min-height:205px}
+
+
   .driver-page .driver-catalog-jump{justify-content:flex-start;gap:7px;margin-bottom:36px}
   .driver-page .driver-catalog-jump a{font-size:.72rem;padding:8px 11px}
 }
@@ -265,8 +266,8 @@
   .driver-page .driver-catalog-group+.driver-catalog-group{margin-top:38px;padding-top:35px}
   .driver-page .driver-catalog-group .driver-product-photo{height:180px}
   .driver-page .driver-catalog-group .driver-product-copy{padding:22px}
-  .driver-page .driver-custom-entry-layout{padding:22px}
-  .driver-page .driver-custom-entry-photo{min-height:170px}
+
+
   .driver-page .driver-form .contact-field-row{display:grid;grid-template-columns:1fr}
 }
 
