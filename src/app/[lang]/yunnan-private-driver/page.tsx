@@ -102,6 +102,12 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     ["Clear service conditions", "服务与费用透明"],
     ["Support during the journey", "旅途中协调支持"]
   ];
+  const whyIcons = [
+    "M4 5h16v11H9l-5 4V5Zm4 4h8m-8 3h5",
+    "M12 22s7-5.5 7-13a7 7 0 1 0-14 0c0 7.5 7 13 7 13Zm-3-13 2 2 4-4",
+    "M6 3h12v18H6V3Zm3 5h6m-6 4h6m-6 4h4",
+    "M4 13v-2a8 8 0 0 1 16 0v2m-16 0h4v5H4v-5Zm12 0h4v5h-4v-5Zm4 5c0 2-3 3-6 3",
+  ];
   const whyDescriptions: Pair[] = [
     ["Talk to us on WhatsApp instead of coordinating with several local drivers.", "通过 WhatsApp 沟通，不用自己反复联系多个当地司机。"],
     ["We review pickup points, suitcase size and planned stops before confirming.", "先核对上下车点、行李大小与沿途停靠。"],
@@ -212,7 +218,20 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </section>
 
-    <JourneyFactCards id="why-us" className="driver-why-shared" title={T("Why Arrange Your Driver With Us?","为什么通过我们安排包车？")} cards={whys.map(([en,cn],i)=>({icon: (["person","route","note","party"] as const)[i],title:T(en,cn),lines:[T(whyDescriptions[i][0],whyDescriptions[i][1])]}))} action={{href:"/licensed-operator",label:T("Meet our licensed local operator","查看当地持证旅行社")}} />
+    <JourneyFactCards
+      id="why-us"
+      className="driver-why-shared"
+      title={T("Why Arrange Your Driver With Us?", "为什么通过我们安排包车？")}
+      cards={whys.map(([en, cn], index) => ({
+        icon: (["person", "route", "note", "party"] as const)[index],
+        title: T(en, cn),
+        lines: [T(whyDescriptions[index][0], whyDescriptions[index][1])],
+        badge: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d={whyIcons[index]} />
+        </svg>,
+      }))}
+      action={{ href: "/licensed-operator", label: T("Meet our licensed local operator", "查看当地持证旅行社") }}
+    />
 
     <section className="driver-section driver-faq journey-faq" id="driver-faq">
       <div className="narrow">

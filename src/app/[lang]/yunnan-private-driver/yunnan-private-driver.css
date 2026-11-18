@@ -3,9 +3,6 @@
 /* Shared journey components, with a dedicated five-step process layout.
    The general journey-support-flow is designed for THREE steps. Five steps
    need a separate, page-scoped timeline to avoid orphaned grid items. */
-.driver-page .driver-why-shared.journey-fact-cards{background:var(--driver-soft);scroll-margin-top:58px}
-.driver-page .driver-why-shared .journey-fact-grid h3{font-size:1.22rem}
-.driver-page .driver-why-shared .journey-fact-grid li li{font-size:.88rem}
 
 /* Five equal columns on desktop: no white boxes, no orphaned final card. */
 .driver-page .driver-process{background:var(--driver-soft);text-align:left}
@@ -41,8 +38,6 @@
   .driver-page .driver-process .journey-support-grid h3{grid-column:2;max-width:none;margin:0;text-align:left;font-size:1.12rem}
   .driver-page .driver-process .journey-support-grid p{grid-column:2;max-width:none;margin:0;text-align:left;font-size:.85rem}
   .driver-page .driver-process .driver-flow-note{max-width:660px;margin-top:28px}
-  .driver-page .driver-why-shared .journey-fact-grid{grid-template-columns:1fr}
-  .driver-page .driver-why-shared .journey-fact-grid>li{min-height:0;padding:68px 24px 27px}
 }
 
 .driver-page{--driver-soft:#e6eef1;color:var(--color-ink);background:var(--color-background);overflow-x:clip}
@@ -68,21 +63,6 @@
 .driver-choice-card p{margin:0 0 18px;color:var(--color-muted);font-size:.91rem}
 .driver-choice-card .driver-choice-items{font-size:.77rem;font-weight:700;color:var(--color-ink);border-top:1px solid var(--color-border);padding-top:14px;width:100%;margin-top:auto}
 .driver-choice-card>.button{margin-top:5px}
-.driver-product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.driver-product{min-width:0;display:flex;flex-direction:column;background:var(--color-surface)}
-.driver-product-photo{height:210px;position:relative;background:#e9eff3}
-.driver-product-photo img{object-fit:cover}
-.driver-product-copy{padding:26px;display:flex;flex-direction:column;flex:1}
-.driver-product-kicker{font-size:.65rem!important;font-weight:800;letter-spacing:.11em;color:var(--color-primary)!important;margin:0 0 10px!important}
-.driver-product h3{font-size:1.48rem;margin:0 0 10px}
-.driver-product-copy>p:not(.driver-product-kicker):not(.driver-product-price){font-size:.83rem;color:var(--color-muted);margin:0 0 15px}
-.driver-product ul{padding:0;margin:0 0 22px;list-style:none}
-.driver-product li{position:relative;padding-left:17px;font-size:.78rem;line-height:1.6;margin:6px 0}
-.driver-product li:before{content:"";position:absolute;left:1px;top:.68em;width:5px;height:5px;border-radius:50%;background:var(--color-primary)}
-.driver-product-price{margin:auto 0 17px;padding-top:17px;border-top:1px solid var(--color-border);font-size:.92rem;font-weight:750;line-height:1.45!important}
-.driver-product-price small{display:block;color:var(--color-muted);font-size:.72rem;font-weight:500;margin-top:5px}
-.driver-product .button{width:100%;font-size:.78rem;letter-spacing:.015em}
-.driver-product-footnote{max-width:820px;margin:21px auto 0;text-align:center;color:var(--color-muted);font-size:.75rem}
 .driver-booking-panel{max-width:835px;margin:34px auto 0;scroll-margin-top:40px}
 .driver-custom-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,80px);align-items:center}
 .driver-custom-grid>div>p:not(.kicker){color:var(--color-muted);max-width:600px}
@@ -100,22 +80,6 @@
 .driver-list-card li:before{content:"✓";position:absolute;left:0;top:12px;color:var(--color-primary);font-weight:800}
 .driver-list-card:nth-child(2) li:before{content:"–";color:var(--color-muted)}
 .driver-detail-note{padding-top:18px;color:var(--color-muted);font-size:.81rem;max-width:970px;margin:12px auto 0;text-align:center}
-.driver-vehicle-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(25px,5vw,70px);align-items:center}
-.driver-vehicle-photo{position:relative;aspect-ratio:4/3;background:var(--color-surface-soft)}
-.driver-vehicle-photo img{object-fit:contain}
-.driver-vehicle-copy h3{margin:0 0 17px}
-.driver-vehicle-copy dl{margin:0 0 22px}
-.driver-vehicle-copy dl>div{display:grid;grid-template-columns:.9fr 1.2fr;gap:14px;padding:8px 0}
-.driver-vehicle-copy dt{color:var(--color-muted);font-size:.79rem}
-.driver-vehicle-copy dd{margin:0;font-size:.82rem;font-weight:700}
-.driver-vehicle-copy>p{color:var(--color-muted);font-size:.85rem}
-.driver-vehicle-gallery{margin:0;min-width:0}
-.driver-vehicle-switch,.driver-vehicle-controls{display:flex;align-items:center;gap:8px}
-.driver-vehicle-switch{margin-bottom:20px;flex-wrap:wrap}
-.driver-vehicle-switch button,.driver-vehicle-controls button{border:0;background:var(--color-surface-soft);color:var(--color-action-text);min-height:44px;padding:8px 14px;font:inherit;font-weight:650;cursor:pointer}
-.driver-vehicle-switch button[aria-pressed="true"]{background:var(--color-primary);color:white}
-.driver-vehicle-controls{justify-content:space-between;margin-top:8px;text-align:center;font-size:.82rem;color:var(--color-muted)}
-.driver-vehicle-controls button{min-width:44px}
 .driver-page .journey-final-cta-ask .journey-primary-action{min-width:min(240px,100%)}
 .driver-support-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,6vw,80px);align-items:center}
 .driver-support-grid>div:first-child>p:not(.kicker){color:var(--color-muted);max-width:680px}
@@ -155,16 +119,10 @@
 .driver-form-success a{color:var(--color-action-text);text-decoration:underline}
 #standard-transfers,#custom-quote,#custom-routes{scroll-margin-top:20px}
 @media(max-width:1080px){
-.driver-product-grid{gap:12px}
-.driver-product-copy{padding:21px}
 .driver-area-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:800px){
 .driver-choice-grid,.driver-inclusions-grid{grid-template-columns:1fr}
-.driver-product-grid{grid-template-columns:1fr}
-.driver-product{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr)}
-.driver-product-photo{height:auto;min-height:245px}
-.driver-product-copy{padding:25px}
 .driver-custom-photo{min-height:360px}
 .driver-terms-grid{grid-template-columns:1fr}
 }
@@ -172,9 +130,6 @@
 .driver-page .driver-section{padding:54px 0}
 .driver-page .driver-section-head{margin-bottom:26px}
 .driver-action-row .button{flex:1;min-width:170px}
-.driver-product{display:flex}
-.driver-product-photo{height:190px;min-height:unset}
-.driver-product-copy{padding:22px}
 .driver-route-list{grid-template-columns:1fr}
 .driver-area-grid{grid-template-columns:1fr}
 .driver-area-card>div{aspect-ratio:4/3}
@@ -184,56 +139,10 @@
 .driver-terms-grid article{padding:22px}
 }
 
-/* Structured product catalogue: 3 arrival + 4 intercity + 3 day options.
-   Custom & multi-day enquiries are a single distinct banner, not product #11. */
-.driver-page .driver-catalog-jump{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:-6px 0 48px}
-.driver-page .driver-catalog-jump a{display:inline-flex;align-items:center;justify-content:center;min-height:39px;background:#fff;color:var(--color-action-text);padding:8px 14px;font-size:.73rem;font-weight:750;text-decoration:none;transition:color .2s}
-.driver-page .driver-catalog-jump a:hover,.driver-page .driver-catalog-jump a:focus-visible{color:var(--color-primary)}
-.driver-page .driver-catalog-group{scroll-margin-top:35px}
-.driver-page .driver-catalog-group+.driver-catalog-group{border-top:1px solid #d5e1e9;margin-top:52px;padding-top:48px}
-.driver-page .driver-group-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:20px}
-.driver-page .driver-group-heading .kicker{margin-bottom:6px}
-.driver-page .driver-group-heading h3{font-family:Georgia,serif;font-size:clamp(1.6rem,2.5vw,2.3rem);letter-spacing:-.02em;margin:0 0 8px}
-.driver-page .driver-group-heading p:not(.kicker){color:var(--color-muted);font-size:.85rem;margin:0;max-width:660px}
-.driver-page .driver-group-heading>span{flex:none;color:var(--color-muted);font-size:.7rem;white-space:nowrap;padding-bottom:4px}
-.driver-page .driver-product-grid--arrival{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.driver-page .driver-product-grid--day{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.driver-page .driver-product-grid--intercity{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.driver-page .driver-catalog-group .driver-product{display:flex;flex-direction:column;min-width:0;min-height:100%;background:#fff;}
-.driver-page .driver-catalog-group .driver-product-photo{height:175px;min-height:0;flex:none}
-.driver-page .driver-catalog-group .driver-product-photo img{object-fit:cover}
-.driver-page .driver-catalog-group .driver-product-copy{padding:23px 24px 24px;display:flex;flex:1;flex-direction:column}
-.driver-page .driver-catalog-group .driver-product-copy h3{font-size:clamp(1.14rem,1.55vw,1.45rem);margin:0 0 9px;line-height:1.28}
-.driver-page .driver-catalog-group .driver-product-copy>p:not(.driver-product-price){font-size:.83rem;line-height:1.65;color:var(--color-muted);margin:0 0 20px}
-.driver-page .driver-catalog-group .driver-product-price{margin:auto 0 15px;padding-top:13px;font-size:.82rem}
-.driver-page .driver-catalog-group .driver-product-price small{font-size:.7rem}
-.driver-page .driver-catalog-group .driver-product-copy>button{min-height:44px;white-space:normal;letter-spacing:.02em}
-.driver-page .driver-catalog-group .driver-product-photo::after{content:"";position:absolute;inset:0;pointer-events:none;border-bottom:1px solid #e0e7eb}
-.driver-page .driver-booking-panel{max-width:900px}
 .driver-page .driver-form select{width:100%;min-width:0;max-width:100%;font:inherit;border:1px solid var(--color-border);background:#fff;color:var(--color-ink);border-radius:var(--radius-control);min-height:var(--control-height);padding:12px 13px}
 .driver-page .driver-form select:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
 
-@media(max-width:1050px){
-  .driver-page .driver-product-grid--arrival,
-  .driver-page .driver-product-grid--day,
-  .driver-page .driver-product-grid--intercity{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .driver-page .driver-catalog-group .driver-product{display:flex;flex-direction:column}
-  .driver-page .driver-catalog-group .driver-product-photo{height:170px;min-height:0}
-}
-@media(max-width:750px){
-
-  .driver-page .driver-catalog-jump{justify-content:flex-start;gap:7px;margin-bottom:36px}
-  .driver-page .driver-catalog-jump a{font-size:.72rem;padding:8px 11px}
-}
 @media(max-width:590px){
-  .driver-page .driver-product-grid--arrival,
-  .driver-page .driver-product-grid--day,
-  .driver-page .driver-product-grid--intercity{grid-template-columns:minmax(0,1fr)}
-  .driver-page .driver-group-heading{align-items:flex-start;flex-direction:column;gap:2px}
-  .driver-page .driver-catalog-group+.driver-catalog-group{margin-top:38px;padding-top:35px}
-  .driver-page .driver-catalog-group .driver-product-photo{height:180px}
-  .driver-page .driver-catalog-group .driver-product-copy{padding:22px}
-
   .driver-page .driver-form .contact-field-row{display:grid;grid-template-columns:1fr}
 }
 
@@ -316,17 +225,6 @@
 .driver-editorial-close-copy {position:relative;max-width:650px;padding:clamp(28px,6vw,78px)}
 .driver-editorial-close-copy h2 {margin:0;font-size:clamp(1.9rem,4vw,3.5rem);line-height:1.13}
 .driver-editorial-close-copy p {margin:14px 0 0;line-height:1.6}
-.driver-page #standard-transfers .driver-section-head {text-align:left;margin-inline:0}
-.driver-page .driver-catalog-jump {justify-content:flex-start}
-.driver-page .driver-catalog-jump a {color:var(--color-ink);text-decoration:underline;text-underline-offset:4px}
-.driver-page .driver-catalog-group .driver-product-photo {height:auto;aspect-ratio:4/3;overflow:hidden}
-.driver-page .driver-catalog-group .driver-product-photo::after {content:none}
-
-@media (min-width:1051px) {
-  .driver-page .driver-product-grid--arrival,
-  .driver-page .driver-product-grid--day,
-  .driver-page .driver-product-grid--intercity {grid-template-columns:repeat(4,minmax(0,1fr))}
-}
 @media (max-width:750px) {
   .driver-page .driver-editorial-hero {min-height:560px}
   .driver-editorial-facts {gap:12px;padding:18px 0 24px}
@@ -337,4 +235,172 @@
   .driver-editorial-lead {padding-block:42px}
   .driver-editorial-actions {gap:10px}
   .driver-editorial-actions .button {white-space:normal}
+}
+
+/* Service filters and borderless, image-led product cards. */
+.driver-page #standard-transfers,
+.driver-page #vehicles {background:var(--color-surface-soft)}
+.driver-page #standard-transfers .driver-section-head,
+.driver-page #vehicles .driver-section-head {text-align:left;margin-inline:0}
+.driver-page #standard-transfers h2,
+.driver-page #vehicles h2 {text-wrap:wrap}
+.driver-catalog-filters {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:var(--space-4);
+  margin-bottom:var(--space-6);
+  border-bottom:1px solid var(--color-border);
+}
+.driver-underlined-options {display:flex;flex-wrap:wrap;gap:0 var(--space-6)}
+.driver-underlined-options button {
+  min-height:var(--control-height);
+  padding:0;
+  border:0;
+  border-bottom:2px solid transparent;
+  background:transparent;
+  color:var(--color-muted);
+  font:inherit;
+  font-size:.84rem;
+  text-align:left;
+  cursor:pointer;
+  scroll-margin-top:96px;
+}
+.driver-underlined-options button[aria-pressed="true"] {
+  color:var(--color-ink);
+  border-bottom-color:var(--color-primary);
+  font-weight:650;
+}
+.driver-city-filter {display:flex;align-items:center;gap:var(--space-2);font-size:.8rem;color:var(--color-muted)}
+.driver-city-filter select {
+  min-height:var(--control-height);
+  border:none;
+  background:transparent;
+  color:var(--color-ink);
+  font:inherit;
+  cursor:pointer;
+}
+.driver-product-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-8) var(--space-6)}
+.driver-product {display:flex;min-width:0;flex-direction:column}
+.driver-product-photo {position:relative;aspect-ratio:1.85;background:var(--color-surface);overflow:hidden}
+.driver-product-photo img {object-fit:cover}
+.driver-product-copy {display:flex;flex:1;flex-direction:column;padding-top:var(--space-3)}
+.driver-product-copy p {margin:0 0 var(--space-4);color:var(--color-muted);font-size:.87rem;line-height:1.58}
+.driver-product-copy .driver-product-meta {margin-bottom:var(--space-2);font-size:.74rem}
+.driver-product-copy h3 {margin:0 0 var(--space-2);font-size:clamp(1.25rem,2.1vw,1.55rem)}
+.driver-product-price {margin-top:auto;padding-top:var(--space-3);border-top:1px solid var(--color-border)}
+.driver-product-price>span,.driver-product-price dt,.driver-product-price small {color:var(--color-muted);font-size:.75rem}
+.driver-product-price dl {display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-6);margin:var(--space-2) 0}
+.driver-product-price dd {margin:2px 0 0;font-size:.92rem;font-weight:650}
+.driver-product-price small {display:block}
+.driver-product-action,.driver-catalog-empty button {
+  align-self:flex-start;
+  min-height:44px;
+  border:0;
+  padding:0;
+  background:none;
+  cursor:pointer;
+}
+.driver-product-action {margin-top:var(--space-2)}
+.driver-product-action span {margin-inline-start:var(--space-2)}
+.driver-product-footnote {margin:var(--space-6) 0 0;color:var(--color-muted);font-size:.75rem}
+.driver-catalog-empty {padding:var(--space-4) 0;color:var(--color-muted)}
+.driver-page .driver-booking-panel {max-width:900px}
+
+/* Vehicle comparison places the controls beside the photo on wide screens. */
+.driver-vehicle-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);
+  grid-template-areas:"gallery switch" "gallery details";
+  grid-template-rows:auto 1fr;
+  gap:var(--space-6) clamp(24px,6vw,92px);
+}
+.driver-vehicle-switch {grid-area:switch;border-bottom:1px solid var(--color-border)}
+.driver-vehicle-gallery {grid-area:gallery;min-width:0}
+.driver-vehicle-copy {grid-area:details;min-width:0}
+.driver-vehicle-copy h3 {margin:0;font-size:clamp(1.5rem,2.3vw,2rem)}
+.driver-vehicle-copy dl {
+  display:grid;
+  gap:var(--space-3);
+  border-block:1px solid var(--color-border);
+  margin:var(--space-4) 0;
+  padding:var(--space-4) 0;
+}
+.driver-vehicle-copy dt,.driver-vehicle-copy>p {color:var(--color-muted);font-size:.83rem}
+.driver-vehicle-copy dd {margin:4px 0 0;font-weight:650;font-size:.88rem}
+.driver-vehicle-photo {position:relative;aspect-ratio:7/4;background:var(--color-surface)}
+.driver-vehicle-photo img {object-fit:cover}
+.driver-vehicle-photo-count {
+  position:absolute;
+  inset:auto auto var(--space-3) var(--space-3);
+  padding:3px 8px;
+  background:var(--color-ink);
+  color:var(--color-surface);
+  font-size:.75rem;
+}
+.driver-vehicle-controls {position:absolute;inset:auto var(--space-3) var(--space-3) auto;display:flex;gap:4px}
+.driver-vehicle-controls button {
+  width:44px;
+  height:44px;
+  padding:0;
+  border:0;
+  background:var(--color-surface);
+  color:var(--color-action-text);
+  font-size:1.4rem;
+  cursor:pointer;
+}
+.driver-vehicle-thumbnails {display:flex;gap:var(--space-2);padding:var(--space-2) 3px 3px}
+.driver-vehicle-thumbnails button {
+  position:relative;
+  width:clamp(64px,8vw,80px);
+  aspect-ratio:4/3;
+  border:0;
+  padding:0;
+  background:var(--color-surface);
+  opacity:.66;
+  cursor:pointer;
+}
+.driver-vehicle-thumbnails img {object-fit:cover}
+.driver-vehicle-thumbnails button[aria-pressed="true"] {opacity:1;outline:1px solid var(--color-ink);outline-offset:2px}
+.driver-vehicle-thumbnails button:focus-visible {outline:3px solid var(--color-focus);outline-offset:2px}
+
+/* Centered benefit cards with circular icon badges. */
+.driver-page .driver-why-shared.journey-fact-cards {background:var(--driver-soft);scroll-margin-top:58px}
+.driver-page .driver-why-shared .journey-fact-grid {gap:var(--space-8) var(--space-4);margin-top:44px;text-align:center}
+.driver-page .driver-why-shared .journey-fact-grid>li {min-height:0;padding:42px var(--space-6) var(--space-8)}
+.driver-page .driver-why-shared .journey-fact-grid h3 {margin:0 0 14px}
+.driver-page .driver-why-shared .journey-fact-grid li li {padding-top:14px;border-top:1px solid var(--color-border)}
+.driver-page .driver-why-shared:lang(en) h2,
+.driver-page .driver-why-shared:lang(en) h3 {font-style:italic}
+.driver-page .journey-fact-badge {
+  position:absolute;
+  top:0;
+  left:50%;
+  display:grid;
+  width:42px;
+  height:42px;
+  transform:translate(-50%,-50%);
+  place-items:center;
+  border-radius:50%;
+  background:var(--color-accent);
+  color:var(--color-surface);
+}
+.driver-page .journey-fact-badge svg {width:22px;height:22px}
+
+@media (max-width:900px) {
+  .driver-product-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:800px) {
+  .driver-vehicle-grid {
+    grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"switch" "gallery" "details";
+    grid-template-rows:auto;
+    gap:var(--space-4);
+  }
+}
+@media (max-width:590px) {
+  .driver-catalog-filters {align-items:flex-start;flex-direction:column;gap:0}
+  .driver-catalog-filters .driver-underlined-options {width:100%;gap:0 var(--space-3);border-bottom:1px solid var(--color-border)}
+  .driver-underlined-options button {font-size:.8rem}
+  .driver-product-grid {grid-template-columns:minmax(0,1fr)}
 }
