@@ -618,6 +618,7 @@ a.footer-trust-item:hover { color:#fff; }
 .journey-faq details>p { margin:0; padding:0 45px 26px 0; color:#595e57; text-align:left; }
 .journey-final-cta { display:grid; min-height:490px; place-items:center; padding:80px 20px; background:linear-gradient(rgba(26,51,46,.84),rgba(26,51,46,.84)),url('/home/plan-journey.webp') center/cover; color:white; text-align:center; }
 .journey-final-cta>div { max-width:760px; }
+.journey-final-title { color:inherit; }
 .journey-final-cta h2 { font-size:clamp(2.4rem,5vw,4.2rem); }
 .journey-final-cta>div>span { display:block; margin:0 auto 28px; font-size:1rem; line-height:1.7; }
 .journey-final-cta-ask { min-height:0; padding:72px 20px 56px; }

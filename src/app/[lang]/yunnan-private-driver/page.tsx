@@ -4,6 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { SiteHeader } from "@/components/site-header";
 import { JourneyFactCards } from "@/components/journey-landing";
+import { JourneyClosingBanner } from "@/components/plan-journey-close";
 import { ContentFooter } from "@/components/content-footer";
 import { JsonLd } from "@/components/json-ld";
 import { localizedStaticMetadata, localeUrl, type AppLocale } from "@/lib/i18n-seo";
@@ -142,14 +143,12 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <StandardTransferSection locale={lang} stripeTestCheckoutEnabled={stripeTestCheckoutEnabled} />
 
-    <section className="journey-final-cta journey-final-cta-ask driver-custom-entry" id="custom-routes">
-      <div>
-        <h2>{T("Custom Routes & Multi-Day Private Drivers", "定制路线与多日包车")}</h2>
-        <span>{T("Plan a multi-day trip at your own pace, with a private vehicle matched to your group, route and sightseeing stops.", "多日用车、家庭出游或摄影路线，按你想去的地方和停留节奏安排车辆。")}</span>
-        <a className="button journey-primary-action" href="#driver-quote-form">{T("Request a Custom Quote", "申请定制包车报价")}</a>
-        <a className="journey-final-alt" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp →", "WhatsApp 咨询 →")}</a>
-      </div>
-    </section>
+    <JourneyClosingBanner id="custom-routes"
+      heading={T("Custom Routes & Multi-Day Private Drivers", "定制路线与多日包车")}
+      description={T("Plan a multi-day trip at your own pace, with a private vehicle matched to your group, route and sightseeing stops.", "多日用车、家庭出游或摄影路线，按你想去的地方和停留节奏安排车辆。")}>
+      <a className="button journey-primary-action" href="#driver-quote-form">{T("Request a Custom Quote", "申请定制包车报价")}</a>
+      <a className="journey-final-alt" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp →", "WhatsApp 咨询 →")}</a>
+    </JourneyClosingBanner>
 
     <section className="driver-section driver-section-soft" id="inclusions">
       <div className="shell">
@@ -234,18 +233,16 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </section>
 
-    <section className="journey-final-cta journey-final-cta-ask driver-final" id="custom-quote">
-      <div>
-        <h2>{T("Ready to Arrange Your Yunnan Private Driver?", "准备安排云南私人包车了吗？")}</h2>
-        <span>{T("Share your route, travel dates and group size. We’ll check availability and send you a written quote.", "告诉我们你的路线、日期和人数，我们会核实车源并提供书面报价。")}</span>
-        <a className="button journey-primary-action" href="#driver-quote-form">{T("Request a Private Driver Quote", "开始询价")}</a>
-        <a className="journey-final-alt" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat with us on WhatsApp →", "通过 WhatsApp 联系我们 →")}</a>
-        <a className="journey-final-alt" href="#standard-transfers">{T("View Standard Transfers →", "查看标准接送服务 →")}</a>
-        <div className="driver-final-form" id="driver-quote-form">
-          <CustomDriverForm locale={lang} />
-        </div>
+    <JourneyClosingBanner id="custom-quote"
+      heading={T("Ready to Arrange Your Yunnan Private Driver?", "准备安排云南私人包车了吗？")}
+      description={T("Share your route, travel dates and group size. We’ll check availability and send you a written quote.", "告诉我们你的路线、日期和人数，我们会核实车源并提供书面报价。")}>
+      <a className="button journey-primary-action" href="#driver-quote-form">{T("Request a Private Driver Quote", "开始询价")}</a>
+      <a className="journey-final-alt" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat with us on WhatsApp →", "通过 WhatsApp 联系我们 →")}</a>
+      <a className="journey-final-alt" href="#standard-transfers">{T("View Standard Transfers →", "查看标准接送服务 →")}</a>
+      <div className="driver-final-form" id="driver-quote-form">
+        <CustomDriverForm locale={lang} />
       </div>
-    </section>
+    </JourneyClosingBanner>
     <ContentFooter />
     <JsonLd data={{
       "@context":"https://schema.org",
