@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { isDriverProductId } from "@/lib/stripe-test";
 
 export const runtime = "nodejs";
 
@@ -15,26 +16,71 @@ export async function POST(request: Request) {
   let event: Stripe.Event;
   try {
     event = Stripe.webhooks.constructEvent(await request.text(), signature, webhookSecret);
-  } catch (error) {
-    console.error("[stripe-test] Invalid webhook signature", error);
+  } catch {
+    console.error("[stripe-test] Invalid webhook signature");
     return new Response("Invalid Stripe signature.", { status: 400 });
   }
 
-  if (
-    event.type === "checkout.session.completed"
-    || event.type === "checkout.session.async_payment_succeeded"
-    || event.type === "checkout.session.async_payment_failed"
-  ) {
-    const session = event.data.object as Stripe.Checkout.Session;
-    if (session.metadata?.purpose === "driver_test_deposit") {
-      console.info("[stripe-test] Driver checkout event", {
-        eventId: event.id,
-        eventType: event.type,
-        sessionId: session.id,
-        paymentStatus: session.payment_status,
-        productId: session.metadata.product_id,
-      });
+  if (event.livemode || (
+    event.type !== "checkout.session.completed"
+    && event.type !== "checkout.session.async_payment_succeeded"
+  )) {
+    return Response.json({ received: true });
+  }
+
+  const session = event.data.object as Stripe.Checkout.Session;
+  const productId = session.metadata?.purpose === "driver_test_deposit"
+    ? session.metadata.product_id
+    : session.payment_link
+      ? session.client_reference_id?.match(/^driver_test_(.+)$/)?.[1]
+      : undefined;
+
+  if (session.payment_status !== "paid" || session.amount_total !== 100
+    || session.currency !== "usd" || !isDriverProductId(productId)) {
+    return Response.json({ received: true });
+  }
+
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.CUSTOM_JOURNEY_FROM_EMAIL || process.env.ENQUIRY_FROM_EMAIL;
+  const to = process.env.CUSTOM_JOURNEY_TO_EMAIL || "joy.liu@hiddenchinatravel.com";
+  if (!apiKey || !from) {
+    console.error("[stripe-test] Payment notification email is not configured");
+    return new Response("Payment notification email is not configured.", { status: 503 });
+  }
+
+  const paymentIntentId = typeof session.payment_intent === "string"
+    ? session.payment_intent
+    : session.payment_intent?.id;
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+        "Idempotency-Key": `driver-test-payment-${session.id}`,
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        subject: `[Stripe sandbox] Driver payment received — ${productId}`,
+        text: [
+          "Stripe verified a USD 1.00 sandbox payment. This is not a paid booking.",
+          `Service: ${productId}`,
+          `Checkout session: ${session.id}`,
+          `Payment intent: ${paymentIntentId || "Unavailable"}`,
+          `Payer email: ${session.customer_details?.email || session.customer_email || "Unavailable"}`,
+          "The test checkout carries no order number or pickup details.",
+        ].join("\n"),
+      }),
+      signal: AbortSignal.timeout(5_000),
+    });
+    if (!response.ok) {
+      console.error("[stripe-test] Payment notification rejected", { status: response.status });
+      return new Response("Could not send payment notification.", { status: 502 });
     }
+  } catch {
+    console.error("[stripe-test] Payment notification request failed");
+    return new Response("Could not send payment notification.", { status: 502 });
   }
 
   return Response.json({ received: true });
