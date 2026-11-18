@@ -147,10 +147,8 @@
 .driver-terms-grid p{font-size:.82rem;color:var(--color-muted);margin:0}
 .driver-operator-note{border-top:1px solid var(--color-border);padding-top:17px;font-size:.77rem;color:var(--color-muted);text-align:center}
 .driver-operator-note a{text-decoration:underline;color:var(--color-action-text)}
-.driver-final-form{max-width:760px;margin:clamp(28px,5vw,52px) auto 0;color:var(--color-ink);text-align:left;scroll-margin-top:90px}
-.driver-final-form p{font-weight:400;letter-spacing:normal}
-.driver-final-form .driver-form-success{color:var(--color-ink)}
-.driver-final-form .driver-form-success p{color:var(--color-muted)}
+#driver-quote-form{scroll-margin-top:90px}
+.driver-quote-form-inner{max-width:760px}
 .driver-form{padding:clamp(23px,3.5vw,38px);border:1px solid var(--color-border);background:var(--color-surface);box-shadow:var(--shadow-card);min-width:0}
 .driver-form h3{margin:0 0 8px}
 .driver-form .driver-form-note{margin:0 0 22px;font-size:.76rem;color:var(--color-muted)}

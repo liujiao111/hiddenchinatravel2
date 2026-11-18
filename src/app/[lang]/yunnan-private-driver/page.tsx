@@ -150,6 +150,12 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       <a className="journey-final-alt" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp →", "WhatsApp 咨询 →")}</a>
     </JourneyClosingBanner>
 
+    <section className="driver-section" id="driver-quote-form">
+      <div className="shell driver-quote-form-inner">
+        <CustomDriverForm locale={lang} />
+      </div>
+    </section>
+
     <section className="driver-section driver-section-soft" id="inclusions">
       <div className="shell">
         {heading("04 / SERVICE DETAILS","What the Service Includes","服务包含与不包含", "Clear boundaries are part of a good private transfer.", "正式报价应明确服务范围，避免临时争议。")}
@@ -171,7 +177,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
             <div><dt>{T("Recommended group","建议人数")}</dt><dd>{T("1–3 travellers","1–3人")}</dd></div>
             <div><dt>{T("Luggage guide","行李参考")}</dt><dd>{T("Up to 3 large cases · dimensions checked","最多3个大箱 · 需核实尺寸")}</dd></div>
             <div><dt>{T("Seven-seat MPV","7座商务车")}</dt><dd>{T("Up to 6 travellers · luggage checked","最多6位旅客 · 需核实行李空间")}</dd></div>
-          </dl><p>{T("We verify your suitcase sizes and vehicle boot space before confirming. The exact make, model and colour may vary from the photos.", "我们会核实箱子尺寸和后备箱空间后再确认车型。车辆品牌、型号与颜色可能和照片不同。")}</p><a href="#custom-quote" className="driver-text-link">{T("Need a larger vehicle? Request a quote","需要更大车型？提交需求")}</a></div>
+          </dl><p>{T("We verify your suitcase sizes and vehicle boot space before confirming. The exact make, model and colour may vary from the photos.", "我们会核实箱子尺寸和后备箱空间后再确认车型。车辆品牌、型号与颜色可能和照片不同。")}</p><a href="#driver-quote-form" className="driver-text-link">{T("Need a larger vehicle? Request a quote","需要更大车型？提交需求")}</a></div>
         </div>
         <div className="driver-vehicle-gallery">
           <figure><Image src="/assets/partners/vehicles/five-seat-toyota.webp" alt="Five-seat Toyota example" fill sizes="(max-width:760px) 50vw, 24vw" /></figure>
@@ -239,9 +245,6 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       <a className="button journey-primary-action" href="#driver-quote-form">{T("Request a Private Driver Quote", "开始询价")}</a>
       <a className="journey-final-alt" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat with us on WhatsApp →", "通过 WhatsApp 联系我们 →")}</a>
       <a className="journey-final-alt" href="#standard-transfers">{T("View Standard Transfers →", "查看标准接送服务 →")}</a>
-      <div className="driver-final-form" id="driver-quote-form">
-        <CustomDriverForm locale={lang} />
-      </div>
     </JourneyClosingBanner>
     <ContentFooter />
     <JsonLd data={{
