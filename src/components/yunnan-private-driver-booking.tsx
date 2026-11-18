@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { getAttribution } from "@/lib/attribution";
 import { trackEvent } from "@/lib/analytics";
 import { LocaleLink as Link } from "@/components/locale-link";
@@ -474,7 +474,29 @@ function DriverStripeTestCheckout({ locale, productId }: { locale: Locale; produ
 
 export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = false }: { locale: Locale; stripeTestCheckoutEnabled?: boolean }) {
   const zh = locale === "zh";
-  const [selected, setSelected] = useState<ProductId | null>(null);
+  const [selected, setSelected] = useState<ProductId | "custom" | null>(null);
+  const scrollToForm = () => requestAnimationFrame(() => document.getElementById("driver-quote-form")?.scrollIntoView({ behavior: "smooth", block: "start" }));
+
+  useEffect(() => {
+    const openFromHash = () => {
+      if (window.location.hash === "#driver-quote-form") setSelected(current => current ?? "custom");
+    };
+    const handleQuoteLink = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const link = event.target instanceof Element && event.target.closest('a[href="#driver-quote-form"]');
+      if (!link) return;
+      event.preventDefault();
+      setSelected(current => link.hasAttribute("data-custom-driver-quote") ? "custom" : current ?? "custom");
+      scrollToForm();
+    };
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    document.addEventListener("click", handleQuoteLink);
+    return () => {
+      window.removeEventListener("hashchange", openFromHash);
+      document.removeEventListener("click", handleQuoteLink);
+    };
+  }, []);
   const groups: { key: Category; en: string; zh: string; noteEn: string; noteZh: string }[] = [
     { key: "arrival", en: "Airport & Station Transfers", zh: "机场与火车站接送", noteEn: "Choose your city first, then select airport or train station and pickup direction.", noteZh: "先选城市，进入服务选项后选择机场／车站及接送方向。" },
     { key: "intercity", en: "Intercity Transfers", zh: "云南跨城私人接送", noteEn: "One card per route; select the direction and planned stops in the next step.", noteZh: "每条路线一张卡，随后选择出行方向与停靠计划。" },
@@ -496,7 +518,7 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
   const pick = (id: ProductId) => {
     setSelected(id);
     trackEvent("driver_product_select", { product_id: id, page_path: window.location.pathname });
-    requestAnimationFrame(() => document.getElementById("driver-request")?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    scrollToForm();
   };
 
   return <section className="driver-section driver-section-soft" id="standard-transfers">
@@ -530,14 +552,12 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
         </div>
       </div>)}
       <p className="driver-product-footnote">{zh ? "5座和7座显示每车参考价，更大车型需人工报价。正式价格按日期、路线和车型确认。标准5座车建议1–3位旅客；更多乘客和大件行李可申请更大车型。车辆照片仅为示例，实际车型以确认单为准。" : "Guide prices are per five-seat or seven-seat vehicle. Larger vehicles are quoted individually. The written quote depends on date, route and vehicle. A five-seat car is recommended for 1–3 travellers; larger vehicles can be quoted. Photos are category examples. Vehicle details are confirmed in writing."}</p>
-      {selected ? <div className="driver-booking-panel" id="driver-request" key={selected}>
-        <DriverEnquiryForm locale={locale} kind="standard" serviceId={selected} />
-        {stripeTestCheckoutEnabled && !airportTransferCatalog[selected] ? <DriverStripeTestCheckout locale={locale} productId={selected} /> : null}
-      </div> : null}
+      <div id="driver-quote-form">
+        {selected ? <div className="driver-booking-panel" key={selected}>
+          <DriverEnquiryForm locale={locale} kind={selected === "custom" ? "custom" : "standard"} serviceId={selected === "custom" ? undefined : selected} />
+          {selected !== "custom" && stripeTestCheckoutEnabled && !airportTransferCatalog[selected] ? <DriverStripeTestCheckout locale={locale} productId={selected} /> : null}
+        </div> : null}
+      </div>
     </div>
   </section>;
-}
-
-export function CustomDriverForm({ locale }: { locale: Locale }) {
-  return <DriverEnquiryForm locale={locale} kind="custom" />;
 }

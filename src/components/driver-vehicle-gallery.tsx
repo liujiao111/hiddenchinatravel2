@@ -55,7 +55,7 @@ export function DriverVehicleGallery({ zh }: { zh: boolean }) {
           <div><dt>{T("Luggage guide", "行李参考")}</dt><dd>{vehicle === "five" ? T("Up to 3 large cases · dimensions checked", "最多3个大箱 · 需核实尺寸") : T("Space confirmed based on your luggage", "根据实际行李确认空间")}</dd></div>
         </dl>
         <p>{T("Photos show examples from local partners. The assigned vehicle may vary. We check luggage space before confirming.", "图片为当地合作方的实车示例，实际派车可能不同。确认前我们会核实行李空间。")}</p>
-        <a href="#driver-quote-form" className="driver-text-link">{T("Need a larger vehicle? Request a quote", "需要更大车型？提交需求")}</a>
+        <a href="#driver-quote-form" data-custom-driver-quote className="driver-text-link">{T("Need a larger vehicle? Request a quote", "需要更大车型？提交需求")}</a>
       </div>
     </div>
   </>;
