@@ -4,8 +4,7 @@ import { DriverVehicleGallery } from "@/components/driver-vehicle-gallery";
 import { setRequestLocale } from "next-intl/server";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { SiteHeader } from "@/components/site-header";
-import { JourneyFactCards, JourneyHero } from "@/components/journey-landing";
-import { JourneyClosingBanner } from "@/components/plan-journey-close";
+import { JourneyFactCards } from "@/components/journey-landing";
 import { ContentFooter } from "@/components/content-footer";
 import { JsonLd } from "@/components/json-ld";
 import { localizedStaticMetadata, localeUrl, type AppLocale } from "@/lib/i18n-seo";
@@ -113,25 +112,45 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
   return <main className="driver-page">
     <SiteHeader cta={{href:"#standard-transfers",label:T("View Driver Services","查看包车服务"),location:"driver_header"}} searchPlaceholder="Yunnan private driver" />
-    <JourneyHero
-      title={T("Private Driver and Car Service in Yunnan", "云南私人包车与司机服务")}
-      eyebrow={T("PRIVATE ROAD TRAVEL · YUNNAN", "云南 · 私人交通服务")}
-      image="/assets/destinations/yunnan/dali-erhai-cover.webp"
-      imageAlt={T("Erhai Lake in Dali, Yunnan", "云南大理洱海风光")}
-      description={T("From airport pickups to day trips and multi-day routes, travel through Yunnan with a local driver and English-language support.", "从机场接送到周边一日游和多日包车，由当地司机带你走云南，旅途中可获得英文沟通支持。")}
-      primary={{ href: "#standard-transfers", label: T("Explore Driver Services", "查看包车产品") }}
-      secondary={{ href: "#custom-routes", label: T("Custom & Multi-Day", "定制与多日包车") }}
-      note={T("We confirm vehicle availability and send a written quote before payment.", "核实车源并提供书面报价后，再安排付款。")}
-    />
+    <header className="journey-hero driver-editorial-hero">
+      <Image src="/assets/destinations/yunnan/dali-erhai-cover.webp" alt={T("Erhai Lake in Dali, Yunnan", "云南大理洱海风光")} fill preload sizes="100vw" />
+      <div className="journey-hero-shade" />
+      <div className="shell driver-editorial-hero-inner">
+        <div className="driver-editorial-lead">
+          <p>{T("HIDDEN CHINA TRAVEL · YUNNAN", "HIDDEN CHINA TRAVEL · 云南")}</p>
+          <h1>{T("Explore Yunnan with a Private Driver", "云南私人包车与司机服务")}</h1>
+          <p>{T("Airport pickups, city-to-city transfers and private day trips with a local driver and English-language support.", "机场车站接送、跨城用车、周边一日游。由当地司机接送，我们协助英文沟通。")}</p>
+          <div className="driver-editorial-actions">
+            <a className="button button-light" href="#standard-transfers">{T("Explore Driver Services", "查看包车服务")} <span aria-hidden="true">→</span></a>
+            <a className="button button-outline-light" href="#custom-routes">{T("Custom & Multi-Day", "定制与多日包车")}</a>
+          </div>
+        </div>
+        <dl className="driver-editorial-facts">
+          <div><dt>{T("4 cities", "4 个城市")}</dt><dd>{T("Kunming, Dali, Lijiang and Shangri-La", "昆明、大理、丽江、香格里拉")}</dd></div>
+          <div><dt>{T("5 & 7 seats", "5 座 / 7 座")}</dt><dd>{T("Private cars and MPVs", "私人汽车及商务车")}</dd></div>
+          <div><dt>{T("Written quote", "书面报价")}</dt><dd>{T("Vehicle and price confirmed before payment", "核实车源与价格后付款")}</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <section className="driver-section" id="custom-routes">
+      <div className="shell driver-editorial-intro">
+        <div>
+          <h2>{T("Custom Routes & Multi-Day Private Drivers", "定制路线与多日包车")}</h2>
+          <p>{T("Stop in Shaxi between Dali and Lijiang, take time for photography, or arrange a car for several days. Tell us where you’d like to go, how many people are travelling and what luggage you’ll bring. We’ll confirm the route and match a vehicle to your group.", "从大理去丽江想在沙溪停一停？也可以安排多日用车或摄影路线。告诉我们想去的地方、同行人数和行李，我们会核实路线并安排合适的车辆。")}</p>
+          <div className="driver-editorial-actions">
+            <a className="button button-blue" href="#driver-quote-form" data-custom-driver-quote>{T("Request a Custom Quote", "申请定制包车报价")}</a>
+            <a className="driver-text-link" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp", "WhatsApp 咨询")}</a>
+          </div>
+        </div>
+        <div className="driver-editorial-pair">
+          <figure><Image src="/assets/destinations/yunnan/shaxi/shaxi-yujin-bridge.webp" alt={T("Yujin Bridge in Shaxi", "沙溪玉津桥")} fill sizes="(max-width:750px) 45vw, 24vw" /></figure>
+          <figure><Image src="/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp" alt={T("Example MPV for a private Yunnan transfer", "云南私人接送商务车示例")} fill sizes="(max-width:750px) 45vw, 24vw" /></figure>
+        </div>
+      </div>
+    </section>
 
     <StandardTransferSection locale={lang} stripeTestCheckoutEnabled={stripeTestCheckoutEnabled} />
-
-    <JourneyClosingBanner id="custom-routes"
-      heading={T("Custom Routes & Multi-Day Private Drivers", "定制路线与多日包车")}
-      description={T("Plan a multi-day trip at your own pace, with a private vehicle matched to your group, route and sightseeing stops.", "多日用车、家庭出游或摄影路线，按你想去的地方和停留节奏安排车辆。")}>
-      <a className="button journey-primary-action" href="#driver-quote-form" data-custom-driver-quote>{T("Request a Custom Quote", "申请定制包车报价")}</a>
-      <a className="journey-final-alt" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp →", "WhatsApp 咨询 →")}</a>
-    </JourneyClosingBanner>
 
     <section className="driver-section driver-section-soft" id="inclusions">
       <div className="shell">
@@ -202,13 +221,20 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </section>
 
-    <JourneyClosingBanner id="custom-quote"
-      heading={T("Ready to Arrange Your Yunnan Private Driver?", "准备安排云南私人包车了吗？")}
-      description={T("Share your route, travel dates and group size. We’ll check availability and send you a written quote.", "告诉我们你的路线、日期和人数，我们会核实车源并提供书面报价。")}>
-      <a className="button journey-primary-action" href="#driver-quote-form">{T("Request a Private Driver Quote", "开始询价")}</a>
-      <a className="journey-final-alt" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat with us on WhatsApp →", "通过 WhatsApp 联系我们 →")}</a>
-      <a className="journey-final-alt" href="#standard-transfers">{T("View Standard Transfers →", "查看标准接送服务 →")}</a>
-    </JourneyClosingBanner>
+    <section className="shell" id="custom-quote">
+      <div className="driver-editorial-close">
+        <Image src="/assets/destinations/yunnan/lijiang-shangri-la/yangtze-first-bend-shigu.webp" alt="" fill sizes="(max-width:1220px) 100vw, 1180px" />
+        <div className="journey-hero-shade" />
+        <div className="driver-editorial-close-copy">
+          <h2 className="journey-final-title">{T("Ready to Arrange Your Yunnan Private Driver?", "准备安排云南私人包车了吗？")}</h2>
+          <p>{T("Share your route, travel dates and group size. We’ll check availability and send you a written quote.", "告诉我们你的路线、日期和人数，我们会核实车源并提供书面报价。")}</p>
+          <div className="driver-editorial-actions">
+            <a className="button button-light" href="#driver-quote-form">{T("Request a Private Driver Quote", "开始询价")} <span aria-hidden="true">→</span></a>
+            <a className="button button-outline-light" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp", "WhatsApp 咨询")}</a>
+          </div>
+        </div>
+      </div>
+    </section>
     <ContentFooter />
     <JsonLd data={{
       "@context":"https://schema.org",
