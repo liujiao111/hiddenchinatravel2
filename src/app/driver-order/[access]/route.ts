@@ -45,11 +45,19 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
     ${row(t("服务", "Service"), summary.service)}
     ${row(t("日期", "Date"), summary.date)}
     ${row(t("路线", "Route"), summary.route)}
+    ${row(t("交通枢纽", "Airport or railway station"), summary.hub)}
+    ${row(t("接送方向", "Transfer direction"), summary.direction)}
+    ${row(t("酒店区域", "Hotel area"), summary.area)}
+    ${row(t("酒店名称或地址", "Hotel name or address"), summary.hotel)}
+    ${row(summary.transportLabel, summary.transportNumber || (summary.transportLabel ? t("未确认", "Not confirmed") : null))}
+    ${row(summary.timeLabel, summary.time ? `${summary.time} ${t("（中国时间）", "(China time)")}` : null)}
     ${row(t("上车地点", "Pickup"), summary.pickup)}
     ${row(t("送达地点", "Drop-off"), summary.dropoff)}
     ${row(t("车型", "Vehicle"), summary.vehicle)}
-    ${row(t("人数", "Travellers"), summary.party)}
-    ${row(t("参考价", "Guide price"), summary.guideFen > 0 ? money(summary.guideFen) : null)}</dl></section>
+    ${summary.hub ? row(t("人数", "Travellers"), t(`${summary.adults} 位成人、${summary.children} 位儿童`, `${summary.adults} adults, ${summary.children} children`)) : row(t("人数", "Travellers"), summary.party)}
+    ${row(t("大行李箱", "Large suitcases"), summary.luggage === undefined ? null : String(summary.luggage))}
+    ${row(t("额外要求", "Other requirements"), summary.notes)}
+    ${row(t("参考价", "Guide price"), summary.guideFen > 0 ? money(summary.guideFen) : summary.manualQuote ? t("需人工确认价格", "Manual quote required") : null)}</dl></section>
     ${quote ? `<section><h2>${t("正式报价与付款", "Quote and payment")}</h2><dl>
     ${row(t("已确认的服务", "Confirmed service"), quote.description)}
     ${row(t("总价", "Total"), money(quote.totalFen))}

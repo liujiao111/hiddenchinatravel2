@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { parseAirportTransfer } from "@/lib/driver-airport-transfers";
 import { driverOrderAccess, driverOrdersEnabled, saveDriverRequest } from "@/lib/driver-orders.mjs";
 import { enquiryEmailText, parseCustomJourneyEnquiry } from "@/lib/custom-journey-enquiry";
 
@@ -30,6 +31,12 @@ export async function POST(request: Request) {
     driverOrder = payload?.driverOrder;
   } catch { return Response.json({ error: "Please check your details and try again." }, { status: 400 }); }
   if (!enquiry) return Response.json({ error: "Please check your name, email, traveler numbers and consent." }, { status: 400 });
+  const locale = driverOrder?.locale === "zh" ? "zh" : "en";
+  const airportTransfer = driverOrder?.airportTransfer === undefined ? undefined
+    : parseAirportTransfer(driverOrder.airportTransfer, enquiry.travelTiming, enquiry.adults, enquiry.children, locale);
+  if (airportTransfer === null) {
+    return Response.json({ error: locale === "zh" ? "请核对接送日期、时间、交通信息、人数和行李。" : "Check your transfer date, time, transport details, passenger and luggage counts." }, { status: 400 });
+  }
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.CUSTOM_JOURNEY_FROM_EMAIL;
   const to = process.env.CUSTOM_JOURNEY_TO_EMAIL || "joy.liu@hiddenchinatravel.com";
@@ -50,6 +57,7 @@ export async function POST(request: Request) {
         guideFen: Number.isSafeInteger(driverOrder.guideFen) && driverOrder.guideFen > 0 && driverOrder.guideFen < 10000000
           ? driverOrder.guideFen : null,
         email: enquiry.email,
+        ...(airportTransfer || {}),
       }, driverOrder.submissionKey);
       if (!saved || saved.summary.email !== enquiry.email) {
         return Response.json({ error: "This request has already been submitted. Please start a new request." }, { status: 409 });
@@ -58,7 +66,7 @@ export async function POST(request: Request) {
       orderUrl = new URL(orderPath, origin).href;
     }
     const orderLine = orderUrl ? `\nGuest order link: ${orderUrl}` : "";
-    const body = { from, to: [to], ...(enquiry.email ? { reply_to: enquiry.email } : {}), subject: `Custom journey enquiry — ${enquiry.name}`, text: enquiryEmailText(enquiry) + orderLine };
+    const body = { from, to: [to], ...(enquiry.email ? { reply_to: enquiry.email } : {}), subject: `Custom journey enquiry — ${enquiry.name}`, text: enquiryEmailText(enquiry) + (airportTransfer ? `\nValidated transfer price: ${airportTransfer.manualQuote ? "manual quote required" : `CNY ${(airportTransfer.guideFen! / 100).toFixed(2)} per vehicle (reference only)`}` : "") + orderLine };
     const digest = createHash("sha256").update(JSON.stringify(body)).digest("hex").slice(0,32);
     const result = await fetch("https://api.resend.com/emails", {
       method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": `custom-journey-${enquiry.requestId}-${digest}` },
