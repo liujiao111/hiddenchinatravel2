@@ -272,3 +272,17 @@
 
 /* Shangri-La arrival hub, direction and hotel-area selector uses the same form styling. */
 .driver-page .driver-form .driver-area-hint{margin:-5px 0 17px;font-size:.77rem;line-height:1.65;color:var(--color-muted)}
+
+/* Test-only Stripe checkout. Rendered only when a test secret and explicit
+   server-side feature flag are both present. */
+.driver-page .driver-stripe-test{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:20px;margin-top:18px;padding:22px 24px;border:1px solid var(--color-border);background:var(--color-surface-soft)}
+.driver-page .driver-stripe-test .kicker{margin:0 0 5px;color:var(--color-muted)}
+.driver-page .driver-stripe-test h3{margin:0 0 6px;font-size:1.15rem}
+.driver-page .driver-stripe-test p:not(.kicker):not(.contact-form-error){max-width:620px;margin:0;color:var(--color-muted);font-size:.8rem;line-height:1.6}
+.driver-page .driver-stripe-test .button{min-width:210px}
+.driver-page .driver-stripe-test .contact-form-error{grid-column:1/-1;margin:0}
+
+@media(max-width:700px){
+  .driver-page .driver-stripe-test{grid-template-columns:1fr;padding:20px}
+  .driver-page .driver-stripe-test .button{width:100%;min-width:0}
+}

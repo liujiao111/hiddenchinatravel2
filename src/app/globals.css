@@ -2712,6 +2712,16 @@ body:has(.article-mobile-ask:not(.ask-bar-hidden)) .wa-float {
 /* Shared keyboard feedback for links, cards and standalone controls. */
 :where(a,button,input,select,textarea,summary):focus-visible { outline:3px solid var(--color-focus); outline-offset:3px; }
 .site-search:focus-within { outline:3px solid var(--color-focus); outline-offset:3px; }
+
+/* Stripe-hosted checkout return page. */
+.payment-result-section { min-height:62vh; padding:90px 20px; background:var(--color-surface-soft); }
+.payment-result-card { padding:clamp(28px,5vw,58px); border:1px solid var(--color-border); background:var(--color-surface); text-align:center; }
+.payment-result-card h1 { max-width:760px; margin:12px auto 18px; font-family:Georgia,serif; font-size:clamp(2rem,5vw,3.7rem); font-weight:400; line-height:1.08; }
+.payment-result-card>p:not(.kicker) { max-width:700px; margin:0 auto; color:var(--color-muted); line-height:1.75; }
+.payment-result-card small { display:block; margin:18px auto 0; color:var(--color-muted); overflow-wrap:anywhere; }
+.payment-result-card .button { margin-top:28px; }
+@media(max-width:700px) { .payment-result-section { padding:56px 16px; } }
+
 @media (prefers-reduced-motion:reduce) {
   .related-card,.search-result-card,.journeys-card-grid>a,.related-card img,.journeys-card-image img { transition:none; }
   .guide-card:hover,.journey-card:hover,.image-card:hover,.related-card:hover,.search-result-card:hover,.journeys-card-grid>a:hover { transform:none; }
