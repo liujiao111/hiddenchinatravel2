@@ -2,7 +2,7 @@ type Option = { value: string; en: string; zh: string };
 type Hub = Option & { kind: "airport" | "railway" };
 type Vehicle = "five" | "seven";
 export type TransferDirection = "pickup" | "dropoff";
-type Price = Record<Vehicle, number | null>;
+type Price = Record<Vehicle, number | null> & { enabled?: boolean; note?: string };
 
 const area = (value: string, en: string, zh: string): Option => ({ value, en, zh });
 const hub = (value: string, en: string, zh: string, kind: Hub["kind"]): Hub => ({ value, en, zh, kind });
@@ -12,6 +12,10 @@ const sameBothWays = (five: number, seven: number) => ({
   pickup: { five, seven }, dropoff: { five, seven },
 });
 const pending = { pickup: blank, dropoff: blank };
+
+const daliDirection = (five: number | null = null, seven: number | null = null, enabled = true, note = "") =>
+  ({ five, seven, enabled, note });
+const daliRoute = (pickup = daliDirection(), dropoff = daliDirection()) => ({ pickup, dropoff });
 
 type TransferCatalog = {
   hubs: Hub[];
@@ -40,8 +44,18 @@ export const airportTransferCatalog: Record<string, TransferCatalog | undefined>
     ],
     areas: [area("xiaguan", "Xiaguan / Dali city centre", "下关 / 大理市区"), area("oldtown", "Dali Old Town", "大理古城"), area("xizhou", "Xizhou", "喜洲"), area("shuanglang", "Shuanglang", "双廊"), other],
     routes: {
-      dlu: { xiaguan: sameBothWays(150, 250), oldtown: pending, xizhou: pending, shuanglang: pending },
-      railway: { oldtown: pending, xizhou: pending, shuanglang: pending },
+      dlu: {
+        xiaguan: daliRoute(daliDirection(150, 250, true, "Existing guide fares"), daliDirection(150, 250, true, "Existing guide fares")),
+        oldtown: daliRoute(),
+        xizhou: daliRoute(),
+        shuanglang: daliRoute(),
+      },
+      railway: {
+        xiaguan: daliRoute(),
+        oldtown: daliRoute(),
+        xizhou: daliRoute(),
+        shuanglang: daliRoute(),
+      },
     },
   },
   "lijiang-arrival": {
@@ -74,7 +88,9 @@ export function isOutsideTransferArea(areaId: string) {
 
 export function transferGuidePrice(productId: string, hubId: string, areaId: string, direction: string, vehicle: Vehicle | undefined) {
   if (!vehicle || (direction !== "pickup" && direction !== "dropoff") || isOutsideTransferArea(areaId)) return undefined;
-  const price = airportTransferCatalog[productId]?.routes[hubId]?.[areaId]?.[direction]?.[vehicle];
+  const configured = airportTransferCatalog[productId]?.routes[hubId]?.[areaId]?.[direction];
+  if (configured?.enabled === false) return undefined;
+  const price = configured?.[vehicle];
   return typeof price === "number" && Number.isFinite(price) && price > 0 ? price : undefined;
 }
 

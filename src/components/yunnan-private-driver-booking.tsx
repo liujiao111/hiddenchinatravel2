@@ -32,7 +32,7 @@ const products: Product[] = [
   {
     id: "dali-arrival", category: "arrival",
     en: "Dali Airport & Railway Station Transfer", zh: "大理机场与火车站接送",
-    detailEn: "Private transfers between Dali Fengyi Airport or Dali Railway Station and Xiaguan, Dali Old Town, Xizhou or Shuanglang.",
+    detailEn: "Private transfers between Dali Fengyi Airport, Dali Railway Station, Xiaguan, Dali Old Town, Xizhou and Shuanglang.",
     detailZh: "提供大理凤仪机场、大理站与下关、大理古城、喜洲及双廊之间的私人接送服务。",
     photo: "/assets/destinations/yunnan/dali-erhai-cover.webp",
   },
@@ -133,6 +133,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const service = products.find(p => p.id === serviceId);
   const transfer = airportTransferCatalog[serviceId ?? ""];
   const isArrival = service?.category === "arrival";
+  const isDaliArrival = serviceId === "dali-arrival";
   const hub = transfer?.hubs.find(option => option.value === hubId);
   const isStationTransfer = serviceId === "kunming-arrival" && hubId === "kmg" && stationTransfer;
   const secondHub = isStationTransfer ? transfer?.hubs.find(option => option.value === "south") : undefined;
@@ -186,7 +187,9 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       setError(isArrival
         ? (adults + children > 3
           ? (zh ? "标准5座车建议最多3位乘客，请选择7座商务车或提交人工确认。" : "For more than 3 passengers, select a seven-seat vehicle or request a manual quote.")
-          : (zh ? "标准5座车最多可放3个大行李箱，建议选择7座商务车。" : "A five-seat car fits up to 3 large suitcases. Please select a seven-seat vehicle."))
+          : isDaliArrival
+            ? (zh ? "超过3个大行李箱，请选择7座商务车或更大车型以便人工确认。" : "For more than 3 large suitcases, choose a seven-seat MPV or select a larger vehicle for a manual quote.")
+            : (zh ? "标准5座车最多可放3个大行李箱，建议选择7座商务车。" : "A five-seat car fits up to 3 large suitcases. Please select a seven-seat vehicle."))
         : zh ? "标准5座车型建议最多3位乘客、3个大箱；请改选7座或更大车型。" : "For over 3 passengers or 3 large cases, select a seven-seat or larger vehicle.");
       setStatus("error"); return;
     }
@@ -336,9 +339,12 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         </label>
         <label><span>{zh ? "酒店名称或详细地址 *" : "Hotel name / full address *"}</span><input name="hotel" required maxLength={150} placeholder={zh ? "填写酒店名称或完整地址" : "Hotel name or full address"} /></label>
       </div> : null}
-      {outsideArea ? <p className="driver-area-hint">{zh ? "该地址位于标准接送区域之外，我们将在确认具体地址和车源后提供报价。" : "This address is outside the standard transfer area. We will quote after confirming the exact address and vehicle availability."}</p> : null}
+      {outsideArea ? <p className="driver-area-hint">{isDaliArrival
+        ? (zh ? "该地址位于大理标准接送区域之外，请填写完整酒店名称和地址，我们将在确认路线与车源后提供报价。"
+          : "This address is outside Dali’s standard transfer area. Enter the full hotel name and address so we can confirm the route and vehicle availability before quoting.")
+        : (zh ? "该地址位于标准接送区域之外，我们将在确认具体地址和车源后提供报价。" : "This address is outside the standard transfer area. We will quote after confirming the exact address and vehicle availability.")}</p> : null}
       <label><span>{transportLabel}{requiresArrivalDetails ? " *" : (zh ? "（建议填写）" : " (recommended)")}</span>
-        <input name="transportNumber" required={requiresArrivalDetails} maxLength={40} placeholder={isAirport || !transportHub ? "MU1234" : "G2845"} key={transportHub?.kind ?? "unknown"} />
+        <input name="transportNumber" required={requiresArrivalDetails} maxLength={40} placeholder={isAirport || !transportHub ? "MU1234" : isDaliArrival ? "D3937" : "G2845"} key={transportHub?.kind ?? "unknown"} />
         {!requiresArrivalDetails ? <small>{zh ? "尚未确定时可填 Not confirmed yet。" : "Enter Not confirmed yet if your flight or train is undecided."}</small> : null}
       </label>
     </> : null}
@@ -364,7 +370,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       <label><span>{zh ? "服务日期 *" : "Travel date *"}</span><input type="date" required name="date" min={isArrival ? chinaServiceDate() : undefined} /></label>
       {isArrival ? <label><span>{timeLabel} *</span>
         <input type="time" name="serviceTime" required />
-        <small>{requiresArrivalDetails ? (zh ? "请填写航班或列车计划抵达时间。" : "Enter the scheduled arrival time of your flight or train.")
+        <small>{requiresArrivalDetails ? (zh ? (isDaliArrival ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
           : (zh ? "请填写希望司机到酒店接您的时间。" : "Enter the time you would like the driver to pick you up at the hotel.")}</small>
       </label> : null}
       <label><span>{zh ? "车型需求 *" : "Vehicle preference *"}</span><select required name="vehicle" value={vehicle} onChange={event => setVehicle(event.target.value)}>
@@ -379,7 +385,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     <p className="driver-area-hint" aria-live="polite">{isArrival && (!hub || !arrivalDirection || !priceArea)
       ? (zh ? "请选择交通枢纽、接送方向和酒店区域以查看参考价。" : "Select a hub, direction and hotel area to see the guide price.")
       : guidePrice === undefined
-      ? (zh ? (isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
+      ? (zh ? (isDaliArrival ? "价格需人工确认" : isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
       : (zh ? `当前参考报价 ¥${guidePrice}／车。确认车源和行程后提供正式报价。` : `Current guide quote: RMB ${guidePrice} per vehicle. We confirm the final price after checking availability and itinerary.`)}</p>
     <div className="contact-field-row">
       <label><span>{zh ? "成人数 *" : "Adults *"}</span><input required type="number" name="travelers" min="1" max="20" defaultValue="2" /></label>
