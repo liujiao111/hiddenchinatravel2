@@ -1,12 +1,11 @@
-import type Stripe from "stripe";
-import { getStripeTestClient } from "@/lib/stripe-test";
+import Stripe from "stripe";
 
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
-  const stripe = getStripeTestClient();
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-  if (!stripe || !webhookSecret?.startsWith("whsec_")) {
+  if (process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED !== "true"
+    || !webhookSecret?.startsWith("whsec_")) {
     return new Response("Stripe test webhook is disabled.", { status: 503 });
   }
 
@@ -15,7 +14,7 @@ export async function POST(request: Request) {
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(await request.text(), signature, webhookSecret);
+    event = Stripe.webhooks.constructEvent(await request.text(), signature, webhookSecret);
   } catch (error) {
     console.error("[stripe-test] Invalid webhook signature", error);
     return new Response("Invalid Stripe signature.", { status: 400 });
