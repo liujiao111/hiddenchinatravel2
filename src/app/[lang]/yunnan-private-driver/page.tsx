@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const zh = lang === "zh";
   const title = zh ? "云南私人包车与司机服务｜大理丽江接送和定制路线" : "Yunnan Private Driver & Car Service | Transfers & Quotes";
   const description = zh
-    ? "云南包车服务：昆明、大理、丽江、香格里拉机场与车站接送，跨城直达、经沙溪与虎跳峡路线，以及9小时日包车、多日私人司机定制。"
-    : "Yunnan private driver services: Kunming, Dali, Lijiang and Shangri-La airport or station transfers, intercity routes via Shaxi and Tiger Leaping Gorge, 9-hour day charters and custom multi-day drivers.";
+    ? "云南包车服务：昆明、大理、丽江、香格里拉机场与车站接送，跨城直达、经沙溪与虎跳峡路线，以及周边一日游包车、多日私人司机定制。"
+    : "Yunnan private driver services: Kunming, Dali, Lijiang and Shangri-La airport or station transfers, intercity routes via Shaxi and Tiger Leaping Gorge, private day trips with a driver and custom multi-day drivers.";
   return localizedStaticMetadata(lang, "/yunnan-private-driver", {
     title, description,
     openGraph: { title, description, type: "website", images: [{ url: "/assets/partners/vehicles/five-seat-toyota.webp", alt: "Five-seat private driver vehicle in Yunnan service" }] },
@@ -60,7 +60,7 @@ const faqAnswers: Pair[] = [
   ["A standard five-seat car is best for 1–3 travellers and up to three large cases, subject to suitcase dimensions. A seven-seat MPV seats up to six travellers, subject to luggage space. Larger vehicles are quoted individually.", "标准5座车建议1–3人及最多3个大箱，但实际需按行李尺寸和后备箱核实。7座商务车最多可坐6位旅客，仍需核实行李空间；更大车型另行报价。"],
   ["For the standard offers on this page, expressway tolls are extra unless explicitly included in the final written quote.", "此页标准服务的高速过路费原则上另计，除非正式书面报价明确包含。"],
   ["Direct transfers do not include sightseeing stops. Choose one of our via-Shaxi or Tiger Leaping Gorge services for planned visits; additional changes are quoted separately.", "直达接送不包含观光停靠。可直接选择经沙溪、虎跳峡的跨城产品；其他加停需求另行核价。"],
-  ["A confirmed 9-hour day charter normally runs from 9:00 AM–6:00 PM and includes 30 complimentary minutes if agreed. Thereafter RMB 200 per started hour applies to approved overtime.", "确认的9小时日包车通常为09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时人民币200元计费。"],
+  ["A private day trip normally runs from 9:00 AM–6:00 PM and includes 30 complimentary minutes if agreed. Thereafter RMB 200 per started hour applies to approved overtime.", "周边一日游包车通常为09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时人民币200元计费。"],
   ["Changes can affect availability, tolls, time and price. We confirm any difference in writing before you proceed.", "变更路线可能影响车源、过路费、时长和价格，我们会先书面确认变更。"],
   ["We confirm cancellation and refund terms in writing before payment. For deposit bookings under our standard driver terms, cancellation at least three full days ahead returns the deposit. Later cancellations retain 30% of the deposit.", "付款前会书面确认退改条款。适用标准定金条款的包车订单，至少提前3个完整自然日取消可全退定金；更晚取消扣留定金的30%。"],
   ["We send the vehicle and pickup details after confirmation, with driver contact details before the journey.", "确认车源后提供车辆和接送安排，出发前提供司机联系方式。"],
@@ -85,7 +85,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     T("Fuel and standard parking charges", "燃油及常规停车费用"),
     T("Agreed hotel or station pickup and drop-off", "双方约定的酒店或车站接送"),
     T("English-language coordination through Hidden China Travel", "Hidden China Travel 英文沟通协调"),
-    T("9 AM–6 PM for confirmed full-day bookings", "确认的一日包车为 09:00–18:00"),
+    T("Day trip times agreed before booking", "一日游用车时段提前确认"),
     T("Up to 30 minutes of agreed complimentary overtime for day hire", "一日包车经约定可免费延时30分钟")
   ];
   const excluded = [
@@ -117,7 +117,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <p className="kicker">{T("PRIVATE ROAD TRAVEL · YUNNAN", "云南 · 私人交通服务")}</p>
           <h1>{T("Private Driver and Car Service in Yunnan", "云南私人包车与司机服务")}</h1>
           <p className="driver-hero-intro">{T("Travel between Dali, Lijiang, Shaxi, Shangri-La, Kunming and surrounding destinations with a private vehicle, local driver and English-language support.", "提供大理、丽江、沙溪、香格里拉、昆明及周边地区的私人用车、当地司机与英文沟通协调。")}</p>
-          <p>{T("Choose from eleven transfer and day-charter options, or tell us about a custom multi-day route. We confirm availability and price before arranging payment.", "从11个标准接送与包车产品中选择，或提交多日定制路线；确认车源与价格后再安排付款。")}</p>
+          <p>{T("Choose a transfer, plan a private day trip to nearby sights, or tell us about a custom multi-day route. We confirm availability and price before arranging payment.", "可选机场车站接送、跨城接送、周边一日游包车，也可提交多日定制路线。确认车源与价格后再安排付款。")}</p>
           <ul className="driver-hero-tags">
             {[T("Private car and local driver","私人用车及当地司机"),T("Airport, station & hotel pickups","机场、车站和酒店接送"),T("1–3 travellers in standard car","标准车建议1–3人"),T("English support on WhatsApp","WhatsApp 英文支持")].map(x=><li key={x}>{x}</li>)}
           </ul>
@@ -148,7 +148,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <div>
             <p className="kicker">{T("04 / BESPOKE SERVICE", "04 / 定制服务")}</p>
             <h2>{T("Custom & Multi-Day Driver", "定制路线与多日包车")}</h2>
-            <p>{T("Need a route beyond the eleven options above? We can arrange a private driver for multi-city journeys, family trips, longer stays, photography days or special sightseeing stops, with the vehicle and quote matched to your plan.", "没有找到合适的标准路线？昆明、大理、丽江、香格里拉多日用车，家庭旅行、摄影路线和特殊停靠都可以按实际行程匹配车辆与报价。")}</p>
+            <p>{T("Need a custom route? We can arrange a private driver for multi-city journeys, family trips, longer stays, photography days or special sightseeing stops, with the vehicle and quote matched to your plan.", "没有找到合适的标准路线？昆明、大理、丽江、香格里拉多日用车，家庭旅行、摄影路线和特殊停靠都可以按实际行程匹配车辆与报价。")}</p>
             <p className="driver-custom-examples">{T("Multi-day routes · Larger groups · Flexible sightseeing · Non-standard pickups", "多日路线 · 更多乘客 · 灵活游览 · 特殊接送点")}</p>
             <div className="driver-action-row">
               <a className="button button-blue" href="#custom-quote">{T("Request a Custom Quote", "申请定制包车报价")}</a>

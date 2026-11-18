@@ -17,9 +17,10 @@ const productNames: Record<string, string> = {
   "dali-lijiang-shaxi": "Dali to Lijiang via Shaxi",
   "lijiang-shangri-la": "Lijiang to Shangri-La transfer",
   "lijiang-tlg-shangri-la": "Lijiang to Shangri-La via Tiger Leaping Gorge",
-  "dali-day": "Dali day charter",
-  "lijiang-day": "Lijiang day charter",
-  "shangri-la-day": "Shangri-La day charter",
+  "kunming-day": "Kunming private day trip",
+  "dali-day": "Dali private day trip",
+  "lijiang-day": "Lijiang private day trip",
+  "shangri-la-day": "Shangri-La private day trip",
 };
 
 export async function POST(request: NextRequest) {

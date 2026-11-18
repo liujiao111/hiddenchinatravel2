@@ -10,6 +10,7 @@ export const driverProductIds = [
   "dali-lijiang-shaxi",
   "lijiang-shangri-la",
   "lijiang-tlg-shangri-la",
+  "kunming-day",
   "dali-day",
   "lijiang-day",
   "shangri-la-day",
