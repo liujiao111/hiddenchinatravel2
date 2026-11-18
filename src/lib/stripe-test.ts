@@ -23,12 +23,29 @@ export function isDriverProductId(value: unknown): value is DriverProductId {
 
 export function isDriverStripeTestEnabled() {
   return process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED === "true"
-    && process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_") === true;
+    && (process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_") === true
+      || getDriverTestPaymentLink() !== null);
 }
 
 export function getStripeTestClient() {
-  if (!isDriverStripeTestEnabled()) return null;
+  if (process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED !== "true"
+    || process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_") !== true) return null;
   return new Stripe(process.env.STRIPE_SECRET_KEY as string);
+}
+
+export function getDriverTestPaymentLink() {
+  const configured = process.env.STRIPE_DRIVER_TEST_PAYMENT_LINK_URL?.trim();
+  if (!configured) return null;
+
+  try {
+    const url = new URL(configured);
+    if (url.protocol !== "https:"
+      || url.hostname !== "buy.stripe.com"
+      || !url.pathname.startsWith("/test_")) return null;
+    return url;
+  } catch {
+    return null;
+  }
 }
 
 export function getSiteUrl(fallbackOrigin?: string) {

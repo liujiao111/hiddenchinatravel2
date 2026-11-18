@@ -13,17 +13,18 @@ export const metadata: Metadata = {
 
 type Props = {
   params: Promise<{ lang: AppLocale }>;
-  searchParams: Promise<{ session_id?: string }>;
+  searchParams: Promise<{ payment_link?: string; session_id?: string }>;
 };
 
 export default async function PaymentSuccessPage({ params, searchParams }: Props) {
   const { lang } = await params;
-  const { session_id: sessionId } = await searchParams;
+  const { payment_link: paymentLink, session_id: sessionId } = await searchParams;
   setRequestLocale(lang);
   const zh = lang === "zh";
   const stripe = getStripeTestClient();
   let paid = false;
   let reference = "";
+  const submittedViaPaymentLink = paymentLink === "1" && sessionId?.startsWith("cs_test_") === true;
 
   if (stripe && sessionId?.startsWith("cs_test_")) {
     try {
@@ -39,12 +40,22 @@ export default async function PaymentSuccessPage({ params, searchParams }: Props
     <SiteHeader />
     <section className="payment-result-section">
       <div className="narrow payment-result-card">
-        <p className="kicker">{paid ? (zh ? "STRIPE 测试付款成功" : "STRIPE TEST PAYMENT COMPLETE") : (zh ? "付款状态" : "PAYMENT STATUS")}</p>
-        <h1>{paid ? (zh ? "USD 1 测试付款已验证" : "Your USD 1 test payment was verified") : (zh ? "暂时无法验证付款" : "We could not verify this payment")}</h1>
+        <p className="kicker">{paid
+          ? (zh ? "STRIPE 测试付款成功" : "STRIPE TEST PAYMENT COMPLETE")
+          : submittedViaPaymentLink
+            ? (zh ? "STRIPE 测试付款已提交" : "STRIPE TEST PAYMENT SUBMITTED")
+            : (zh ? "付款状态" : "PAYMENT STATUS")}</p>
+        <h1>{paid
+          ? (zh ? "USD 1 测试付款已验证" : "Your USD 1 test payment was verified")
+          : submittedViaPaymentLink
+            ? (zh ? "Stripe 已接收此次测试结账" : "Stripe received your test checkout")
+            : (zh ? "暂时无法验证付款" : "We could not verify this payment")}</h1>
         <p>{paid
           ? (zh ? "这是测试模式付款，不构成有效定金或包车预订。正式付款流程会在车源、价格和服务内容确认后启用。" : "This was a test-mode payment. It is not a valid deposit or driver booking. Live payment will only be enabled after the car, price and service details are confirmed.")
+          : submittedViaPaymentLink
+            ? (zh ? "这是 USD 1 沙盒测试，不构成有效定金或包车预订。付款结果将由 Stripe 签名 Webhook 在服务端处理。" : "This was a USD 1 sandbox test, not a valid deposit or driver booking. The result is processed server-side through Stripe's signed webhook.")
           : (zh ? "没有找到有效的 Stripe 测试付款。请返回包车页面重试，或通过 WhatsApp 联系我们。" : "No valid Stripe test payment was found. Return to the driver page to try again, or contact us on WhatsApp.")}</p>
-        {reference && <small>{zh ? "测试编号" : "Test reference"}: {reference}</small>}
+        {(reference || (submittedViaPaymentLink ? sessionId : "")) && <small>{zh ? "测试编号" : "Test reference"}: {reference || sessionId}</small>}
         <Link className="button button-primary" href="/yunnan-private-driver">{zh ? "返回云南包车页面" : "Return to Yunnan driver services"}</Link>
       </div>
     </section>

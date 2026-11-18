@@ -1,5 +1,10 @@
 import type { NextRequest } from "next/server";
-import { getSiteUrl, getStripeTestClient, isDriverProductId } from "@/lib/stripe-test";
+import {
+  getDriverTestPaymentLink,
+  getSiteUrl,
+  getStripeTestClient,
+  isDriverProductId,
+} from "@/lib/stripe-test";
 
 export const runtime = "nodejs";
 
@@ -19,7 +24,8 @@ const productNames: Record<string, string> = {
 
 export async function POST(request: NextRequest) {
   const stripe = getStripeTestClient();
-  if (!stripe) {
+  const paymentLink = getDriverTestPaymentLink();
+  if (process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED !== "true" || (!stripe && !paymentLink)) {
     return Response.json({ error: "Stripe test checkout is disabled." }, { status: 503 });
   }
 
@@ -42,6 +48,15 @@ export async function POST(request: NextRequest) {
     product_id: body.productId,
     environment: "test",
   };
+
+  if (!stripe && paymentLink) {
+    paymentLink.searchParams.set("client_reference_id", `driver_test_${body.productId}`);
+    return Response.json({ url: paymentLink.toString() });
+  }
+
+  if (!stripe) {
+    return Response.json({ error: "Stripe test checkout is disabled." }, { status: 503 });
+  }
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
