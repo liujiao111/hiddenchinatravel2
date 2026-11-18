@@ -16,13 +16,13 @@ type FormKind = "standard" | "custom";
 type NamedOption = { value: string; en: string; zh: string };
 type Product = {
   id: ProductId; category: Category; en: string; zh: string;
-  detailEn: string; detailZh: string; photo: string; guidePrice: number;
+  detailEn: string; detailZh: string; photo: string; guidePrices: { five: number; seven: number };
   routes?: NamedOption[]; hubs?: NamedOption[];
 };
 
 const products: Product[] = [
   {
-    id: "kunming-arrival", guidePrice: 180, category: "arrival",
+    id: "kunming-arrival", guidePrices: { five: 180, seven: 280 }, category: "arrival",
     en: "Kunming Arrival Transfers", zh: "昆明机场与车站接送",
     detailEn: "Choose an airport or railway station and your transfer direction.",
     detailZh: "选择机场或火车站及接送方向。",
@@ -34,7 +34,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "dali-arrival", guidePrice: 150, category: "arrival",
+    id: "dali-arrival", guidePrices: { five: 150, seven: 250 }, category: "arrival",
     en: "Dali Arrival Transfers", zh: "大理机场与车站接送",
     detailEn: "Travel between your Dali hotel and the selected airport or station.",
     detailZh: "选择大理机场／火车站与酒店之间的接送方向。",
@@ -45,7 +45,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-arrival", guidePrice: 180, category: "arrival",
+    id: "lijiang-arrival", guidePrices: { five: 180, seven: 280 }, category: "arrival",
     en: "Lijiang Arrival Transfers", zh: "丽江机场与车站接送",
     detailEn: "Private pickups and drop-offs for Lijiang, Shuhe and nearby hotels.",
     detailZh: "丽江古城、束河及周边酒店的私人接送服务。",
@@ -56,7 +56,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "shangri-la-arrival", guidePrice: 150, category: "arrival",
+    id: "shangri-la-arrival", guidePrices: { five: 150, seven: 250 }, category: "arrival",
     en: "Shangri-La Arrival Transfers", zh: "香格里拉机场与车站接送",
     detailEn: "Private transfers between the railway station or airport and hotels around Dukezong and beyond.",
     detailZh: "提供香格里拉站、迪庆香格里拉机场与独克宗古城及周边酒店的接送。",
@@ -67,7 +67,7 @@ const products: Product[] = [
     ],
   },
   {
-    id: "dali-lijiang-direct", guidePrice: 550, category: "intercity",
+    id: "dali-lijiang-direct", guidePrices: { five: 550, seven: 750 }, category: "intercity",
     en: "Dali ⇄ Lijiang Direct", zh: "大理 ⇄ 丽江 · 直达",
     detailEn: "Direct hotel-to-hotel service without sightseeing stops.",
     detailZh: "酒店到酒店直达，不含观光停靠。",
@@ -78,7 +78,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "dali-lijiang-shaxi", guidePrice: 780, category: "intercity",
+    id: "dali-lijiang-shaxi", guidePrices: { five: 780, seven: 980 }, category: "intercity",
     en: "Dali ⇄ Lijiang via Shaxi", zh: "大理 ⇄ 丽江 · 途经沙溪",
     detailEn: "A scenic transfer with an agreed stop in Shaxi Ancient Town.",
     detailZh: "在沙溪古镇停留，观光时间需提前约定。",
@@ -89,7 +89,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-shangri-la", guidePrice: 680, category: "intercity",
+    id: "lijiang-shangri-la", guidePrices: { five: 680, seven: 880 }, category: "intercity",
     en: "Lijiang ⇄ Shangri-La", zh: "丽江 ⇄ 香格里拉",
     detailEn: "Private transfer between Lijiang and Shangri-La.",
     detailZh: "丽江与香格里拉之间的私人接送。",
@@ -100,7 +100,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-tlg-shangri-la", guidePrice: 880, category: "intercity",
+    id: "lijiang-tlg-shangri-la", guidePrices: { five: 880, seven: 1080 }, category: "intercity",
     en: "Lijiang → Tiger Leaping Gorge → Shangri-La",
     zh: "丽江 → 虎跳峡 → 香格里拉",
     detailEn: "One-way journey with a planned Tiger Leaping Gorge visit.",
@@ -109,21 +109,21 @@ const products: Product[] = [
     routes: [{ value: "Lijiang → Tiger Leaping Gorge → Shangri-La", en: "Lijiang → Tiger Leaping Gorge → Shangri-La", zh: "丽江 → 虎跳峡 → 香格里拉" }]
   },
   {
-    id: "dali-day", guidePrice: 750, category: "day",
+    id: "dali-day", guidePrices: { five: 750, seven: 950 }, category: "day",
     en: "Dali 9-Hour Car Charter", zh: "大理 9 小时包车",
     detailEn: "Private driver for a planned day within the confirmed Dali service area.",
     detailZh: "在已确认的大理服务范围内按路线安排用车。",
     photo: "/assets/partners/vehicles/five-seat-aion.webp",
   },
   {
-    id: "lijiang-day", guidePrice: 780, category: "day",
+    id: "lijiang-day", guidePrices: { five: 780, seven: 980 }, category: "day",
     en: "Lijiang 9-Hour Car Charter", zh: "丽江 9 小时包车",
     detailEn: "A flexible day of locally agreed stops around Lijiang.",
     detailZh: "在丽江周边约定服务范围内灵活安排停靠。",
     photo: "/assets/partners/vehicles/five-seat-hongqi.webp",
   },
   {
-    id: "shangri-la-day", guidePrice: 850, category: "day",
+    id: "shangri-la-day", guidePrices: { five: 850, seven: 1050 }, category: "day",
     en: "Shangri-La 9-Hour Car Charter", zh: "香格里拉 9 小时包车",
     detailEn: "A local driver for a pre-agreed Shangri-La day route.",
     detailZh: "提前确认香格里拉当地路线和实际驾驶范围。",
@@ -131,9 +131,13 @@ const products: Product[] = [
   },
 ];
 
+const fiveSeat = "Five-seat car";
+const sevenSeat = "Seven-seat car";
+const customHotelArea = "Other Area - Custom Quote";
+
 const shangriLaHotelAreas: NamedOption[] = [
   { value: "Dukezong Old Town / City Centre", en: "Dukezong Old Town / City Centre", zh: "独克宗古城／市区" },
-  { value: "Other Area - Custom Quote", en: "Other Area — Custom Quote", zh: "其他区域 — 单独报价" },
+  { value: customHotelArea, en: "Other Area — Custom Quote", zh: "其他区域 — 单独报价" },
 ];
 
 const arrivalDirections: NamedOption[] = [
@@ -145,9 +149,15 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const zh = locale === "zh";
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
+  const [vehicle, setVehicle] = useState(fiveSeat);
+  const [hotelArea, setHotelArea] = useState("");
   const idRef = useRef<string | null>(null);
   const startedRef = useRef(false);
   const service = products.find(p => p.id === serviceId);
+  const guidePrice = hotelArea === customHotelArea ? undefined
+    : vehicle === fiveSeat ? service?.guidePrices.five
+    : vehicle === sevenSeat ? service?.guidePrices.seven
+    : undefined;
   const isArrival = service?.category === "arrival";
   const isShangriLaArrival = service?.id === "shangri-la-arrival";
   const isDay = service?.category === "day";
@@ -172,9 +182,12 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const adults = Number(values.get("travelers") || 0);
     const children = Number(values.get("children") || 0);
     const luggage = Number(values.get("luggage") || 0);
-    const vehicle = String(values.get("vehicle") || "Five-seat car");
-    if (kind === "standard" && vehicle === "Five-seat car" && (adults + children > 3 || luggage > 3)) {
-      setError(zh ? "标准5座车型建议最多3位乘客、3个大箱；请选择更大车型询价。" : "For over 3 passengers or 3 large cases, select a larger vehicle to request a quote.");
+    if (kind === "standard" && vehicle === fiveSeat && (adults + children > 3 || luggage > 3)) {
+      setError(zh ? "标准5座车型建议最多3位乘客、3个大箱；请改选7座或更大车型。" : "For over 3 passengers or 3 large cases, select a seven-seat or larger vehicle.");
+      setStatus("error"); return;
+    }
+    if (vehicle === sevenSeat && adults + children > 6) {
+      setError(zh ? "7座车最多可乘坐6位旅客，请改选更大车型。" : "Select a larger vehicle for more than six travellers.");
       setStatus("error"); return;
     }
     const travelDate = String(values.get("date") || "");
@@ -186,7 +199,6 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const hub = String(values.get("hub") || "");
     const direction = String(values.get("direction") || "");
     const hotel = String(values.get("hotel") || "");
-    const hotelArea = isShangriLaArrival ? String(values.get("hotelArea") || "") : "";
     if (isShangriLaArrival && !shangriLaHotelAreas.some(area => area.value === hotelArea)) {
       setError(zh ? "请选择有效的酒店区域。" : "Please select a valid hotel area.");
       setStatus("error"); return;
@@ -218,6 +230,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       "Pickup: " + pickup,
       "Drop-off: " + dropoff,
       "Vehicle requested: " + vehicle,
+      guidePrice === undefined ? "Price: manual quote" : "Online guide price: RMB " + guidePrice + " per vehicle",
       "Passengers: " + adults + " adults, " + children + " children",
       "Large suitcases: " + luggage,
       "Duration: " + days,
@@ -289,7 +302,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       </div>
       {isShangriLaArrival ? <>
         <label><span>{zh ? "酒店所在区域 *" : "Hotel area *"}</span>
-          <select name="hotelArea" required defaultValue="">
+          <select name="hotelArea" required value={hotelArea} onChange={event => setHotelArea(event.target.value)}>
             <option value="" disabled>{zh ? "选择酒店区域" : "Select hotel area"}</option>
             {shangriLaHotelAreas.map(area => <option key={area.value} value={area.value}>{zh ? area.zh : area.en}</option>)}
           </select>
@@ -319,11 +332,15 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     </div> : null}
     <div className="contact-field-row">
       <label><span>{zh ? "服务日期 *" : "Travel date *"}</span><input type="date" required name="date" /></label>
-      <label><span>{zh ? "车型需求 *" : "Vehicle preference *"}</span><select required name="vehicle" defaultValue="Five-seat car">
-        <option value="Five-seat car">{zh ? "标准5座车（建议1–3人）" : "Five-seat car (1–3 recommended)"}</option>
+      <label><span>{zh ? "车型需求 *" : "Vehicle preference *"}</span><select required name="vehicle" value={vehicle} onChange={event => setVehicle(event.target.value)}>
+        <option value={fiveSeat}>{zh ? "标准5座车（建议1–3人）" : "Five-seat car (1–3 recommended)"}</option>
+        <option value={sevenSeat}>{zh ? "7座商务车" : "Seven-seat MPV"}</option>
         <option value="Larger vehicle - quote required">{zh ? "更大车型（需另行报价）" : "Larger vehicle (custom quote)"}</option>
       </select></label>
     </div>
+    <p className="driver-area-hint" aria-live="polite">{guidePrice === undefined
+      ? (zh ? "此选项需人工报价。" : "Request a custom quote for this option.")
+      : (zh ? `当前参考报价 ¥${guidePrice}／车。确认车源和行程后提供正式报价。` : `Current guide quote: RMB ${guidePrice} per vehicle. We confirm the final price after checking availability and itinerary.`)}</p>
     <div className="contact-field-row">
       <label><span>{zh ? "成人数 *" : "Adults *"}</span><input required type="number" name="travelers" min="1" max="20" defaultValue="2" /></label>
       <label><span>{zh ? "儿童人数" : "Children"}</span><input type="number" name="children" min="0" max="20" defaultValue="0" /></label>
@@ -418,13 +435,13 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
             <div className="driver-product-copy">
               <h3>{zh ? product.zh : product.en}</h3>
               <p>{zh ? product.detailZh : product.detailEn}</p>
-              <p className="driver-product-price">{zh ? `参考价 ¥${product.guidePrice}／车` : `Guide price RMB ${product.guidePrice} per vehicle`}<small>{product.category === "day" ? (zh ? "路线与时长确认后可付全款" : "Full payment available once the route and hours are agreed") : (zh ? "确认后付全款" : "Full payment after confirmation")}</small></p>
+              <p className="driver-product-price">{zh ? `每车参考价 · 5座 ¥${product.guidePrices.five} · 7座 ¥${product.guidePrices.seven}` : `Guide prices per vehicle · 5-seat RMB ${product.guidePrices.five} · 7-seat RMB ${product.guidePrices.seven}`}<small>{product.category === "day" ? (zh ? "路线与时长确认后可付全款" : "Full payment available once the route and hours are agreed") : (zh ? "确认后付全款" : "Full payment after confirmation")}</small></p>
               <button type="button" className="button button-blue" onClick={() => pick(product.id)}>{zh ? "选择选项并询价" : "Select Options & Check Price"}</button>
             </div>
           </article>)}
         </div>
       </div>)}
-      <p className="driver-product-footnote">{zh ? "参考价按标准5座车估算，实际按日期、路线和车型报价。标准5座车建议1–3位旅客；更多乘客和大件行李可申请更大车型。车辆照片仅为示例，实际车型以确认单为准。" : "Guide prices assume a standard five-seat car. The written quote depends on date, route and vehicle. A five-seat car is recommended for 1–3 travellers; larger vehicles can be quoted. Photos are category examples. Vehicle details are confirmed in writing."}</p>
+      <p className="driver-product-footnote">{zh ? "5座和7座显示每车参考价，更大车型需人工报价。正式价格按日期、路线和车型确认。标准5座车建议1–3位旅客；更多乘客和大件行李可申请更大车型。车辆照片仅为示例，实际车型以确认单为准。" : "Guide prices are per five-seat or seven-seat vehicle. Larger vehicles are quoted individually. The written quote depends on date, route and vehicle. A five-seat car is recommended for 1–3 travellers; larger vehicles can be quoted. Photos are category examples. Vehicle details are confirmed in writing."}</p>
       {selected ? <div className="driver-booking-panel" id="driver-request" key={selected}>
         <DriverEnquiryForm locale={locale} kind="standard" serviceId={selected} />
         {stripeTestCheckoutEnabled ? <DriverStripeTestCheckout locale={locale} productId={selected} /> : null}

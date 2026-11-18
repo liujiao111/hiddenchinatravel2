@@ -51,13 +51,13 @@ const faqs: Pair[] = [
 ];
 
 const faqAnswers: Pair[] = [
-  ["Rates depend on the exact route, vehicle, date, waiting time and tolls. The cards show guide prices. We confirm your written total before requesting payment.", "费用取决于具体路线、车型、日期、等候时间与高速费。卡片显示参考价，付款前会提供书面总价。"],
+  ["Rates depend on the exact route, vehicle, date, waiting time and tolls. The cards show guide prices for five-seat and seven-seat vehicles. Larger vehicles are quoted individually. We confirm your written total before requesting payment.", "费用取决于具体路线、车型、日期、等候时间与高速费。卡片显示5座和7座每车参考价，更大车型需人工报价；付款前会提供书面总价。"],
   ["You can request a transfer date online. Once the route, vehicle and total price are confirmed, the licensed operator sends the agreed secure payment link. The request form does not collect payment.", "你可以在线提交接送日期与需求。核实路线、车源和总价后，持证经营方提供约定的安全付款链接；查询表单不会扣费。"],
   ["Airport, station and fixed-route transfers are paid in full after we confirm availability, the total and the change and cancellation terms. A single-day charter with agreed route and hours can be paid in full. Multi-day or flexible bookings require a 20% deposit.", "机场、车站和固定线路接送在确认车源、总价及退改条款后付全款。单日包车在路线和时长明确后可付全款；多日包车或行程仍可能调整的订单付20%定金。"],
   ["For deposit bookings, the written quote specifies the balance and when it is due.", "采用定金的订单会在书面报价中列明尾款金额和付款时间。"],
   ["Not always. Many local drivers speak Chinese; English-language coordination is available via Hidden China Travel on WhatsApp.", "不一定，很多当地司机主要讲中文；Hidden China Travel 可以通过 WhatsApp 提供英文沟通协调。"],
   ["No. A driver provides transport and agreed stops, not professional sightseeing commentary. Request an English-speaking guide separately if needed.", "不是。司机负责交通与约定停靠点，不默认包含专业景点讲解；可单独询价英文导游。"],
-  ["A standard five-seat car is best for 1–3 travellers and up to three large cases, subject to suitcase dimensions. For more people or luggage, request a larger vehicle.", "标准5座车建议1–3人及最多3个大箱，但实际需按行李尺寸和后备箱核实。更多人数或行李请申请更大车型。"],
+  ["A standard five-seat car is best for 1–3 travellers and up to three large cases, subject to suitcase dimensions. A seven-seat MPV seats up to six travellers, subject to luggage space. Larger vehicles are quoted individually.", "标准5座车建议1–3人及最多3个大箱，但实际需按行李尺寸和后备箱核实。7座商务车最多可坐6位旅客，仍需核实行李空间；更大车型另行报价。"],
   ["For the standard offers on this page, expressway tolls are extra unless explicitly included in the final written quote.", "此页标准服务的高速过路费原则上另计，除非正式书面报价明确包含。"],
   ["Direct transfers do not include sightseeing stops. Choose one of our via-Shaxi or Tiger Leaping Gorge services for planned visits; additional changes are quoted separately.", "直达接送不包含观光停靠。可直接选择经沙溪、虎跳峡的跨城产品；其他加停需求另行核价。"],
   ["A confirmed 9-hour day charter normally runs from 9:00 AM–6:00 PM and includes 30 complimentary minutes if agreed. Thereafter RMB 200 per started hour applies to approved overtime.", "确认的9小时日包车通常为09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时人民币200元计费。"],
@@ -81,7 +81,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     { name: T("Shangri-La", "香格里拉"), detail: T("Private road transfers, subject to road and weather conditions.", "山区私人接送，需视天气和道路状况安排。"), img: "/assets/destinations/yunnan/shangri-la.webp" }
   ];
   const included = [
-    T("Private five-seat vehicle and local driver", "5座私人用车和当地司机"),
+    T("Private vehicle and local driver", "私人用车和当地司机"),
     T("Fuel and standard parking charges", "燃油及常规停车费用"),
     T("Agreed hotel or station pickup and drop-off", "双方约定的酒店或车站接送"),
     T("English-language coordination through Hidden China Travel", "Hidden China Travel 英文沟通协调"),
@@ -175,14 +175,14 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <section className="driver-section" id="vehicles">
       <div className="shell">
-        {heading("05 / VEHICLE & LUGGAGE","Is This Vehicle Right for Your Group?","这辆车适合你们吗？", "Our starting category is a five-seat private car, with a larger vehicle arranged when needed.", "标准车型为5座私人汽车；如果人数和行李较多，可另行安排更大车型。")}
+        {heading("05 / VEHICLE & LUGGAGE","Is This Vehicle Right for Your Group?","这辆车适合你们吗？", "Five-seat cars and seven-seat MPVs have online guide prices. Request a custom quote for larger vehicles.", "5座车和7座商务车均可在线查看参考价，更大车型可提交需求后询价。")}
         <div className="driver-vehicle-grid">
           <div className="driver-vehicle-photo"><Image src="/assets/partners/vehicles/five-seat-hongqi.webp" alt={T("Actual five-seat car example", "真实5座车示例")} fill sizes="(max-width:760px) 100vw, 48vw" /></div>
           <div className="driver-vehicle-copy"><h3>{T("A realistic fit, not just a seat count","合适的乘坐空间，不只是座位数")}</h3><dl>
             <div><dt>{T("Vehicle category","车型")}</dt><dd>{T("Five-seat private car","5座私人汽车")}</dd></div>
             <div><dt>{T("Recommended group","建议人数")}</dt><dd>{T("1–3 travellers","1–3人")}</dd></div>
             <div><dt>{T("Luggage guide","行李参考")}</dt><dd>{T("Up to 3 large cases · dimensions checked","最多3个大箱 · 需核实尺寸")}</dd></div>
-            <div><dt>{T("Larger party","更多旅客")}</dt><dd>{T("Request a custom vehicle","单独匹配更大车型")}</dd></div>
+            <div><dt>{T("Seven-seat MPV","7座商务车")}</dt><dd>{T("Up to 6 travellers · luggage checked","最多6位旅客 · 需核实行李空间")}</dd></div>
           </dl><p>{T("We verify your suitcase sizes and vehicle boot space before confirming. The exact make, model and colour may vary from the photos.", "我们会核实箱子尺寸和后备箱空间后再确认车型。车辆品牌、型号与颜色可能和照片不同。")}</p><a href="#custom-quote" className="driver-text-link">{T("Need a larger vehicle? Request a quote","需要更大车型？提交需求")}</a></div>
         </div>
         <div className="driver-vehicle-gallery">
