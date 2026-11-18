@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { DriverVehicleGallery } from "@/components/driver-vehicle-gallery";
 import { setRequestLocale } from "next-intl/server";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { SiteHeader } from "@/components/site-header";
@@ -170,21 +171,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     <section className="driver-section" id="vehicles">
       <div className="shell">
         {heading("05 / VEHICLE & LUGGAGE","Is This Vehicle Right for Your Group?","这辆车适合你们吗？", "Five-seat cars and seven-seat MPVs have online guide prices. Request a custom quote for larger vehicles.", "5座车和7座商务车均可在线查看参考价，更大车型可提交需求后询价。")}
-        <div className="driver-vehicle-grid">
-          <div className="driver-vehicle-photo"><Image src="/assets/partners/vehicles/five-seat-hongqi.webp" alt={T("Actual five-seat car example", "真实5座车示例")} fill sizes="(max-width:760px) 100vw, 48vw" /></div>
-          <div className="driver-vehicle-copy"><h3>{T("A realistic fit, not just a seat count","合适的乘坐空间，不只是座位数")}</h3><dl>
-            <div><dt>{T("Vehicle category","车型")}</dt><dd>{T("Five-seat private car","5座私人汽车")}</dd></div>
-            <div><dt>{T("Recommended group","建议人数")}</dt><dd>{T("1–3 travellers","1–3人")}</dd></div>
-            <div><dt>{T("Luggage guide","行李参考")}</dt><dd>{T("Up to 3 large cases · dimensions checked","最多3个大箱 · 需核实尺寸")}</dd></div>
-            <div><dt>{T("Seven-seat MPV","7座商务车")}</dt><dd>{T("Up to 6 travellers · luggage checked","最多6位旅客 · 需核实行李空间")}</dd></div>
-          </dl><p>{T("We verify your suitcase sizes and vehicle boot space before confirming. The exact make, model and colour may vary from the photos.", "我们会核实箱子尺寸和后备箱空间后再确认车型。车辆品牌、型号与颜色可能和照片不同。")}</p><a href="#driver-quote-form" className="driver-text-link">{T("Need a larger vehicle? Request a quote","需要更大车型？提交需求")}</a></div>
-        </div>
-        <div className="driver-vehicle-gallery">
-          <figure><Image src="/assets/partners/vehicles/five-seat-toyota.webp" alt="Five-seat Toyota example" fill sizes="(max-width:760px) 50vw, 24vw" /></figure>
-          <figure><Image src="/assets/partners/vehicles/five-seat-aion.webp" alt="Five-seat Aion example" fill sizes="(max-width:760px) 50vw, 24vw" /></figure>
-          <figure><Image src="/assets/partners/vehicles/five-seat-hongqi.webp" alt="Five-seat Hongqi example" fill sizes="(max-width:760px) 50vw, 24vw" /></figure>
-        </div>
-        <p className="driver-image-note">{T("Real vehicle examples from local partners. Interior and loaded-luggage photos will be added after the assigned vehicle is verified; no particular model or capacity is guaranteed by the images.", "以上为当地合作方提供的真实车型示例。内饰及装箱照片待核实实际派车后补充；图片不保证具体车型或行李容量。")}</p>
+        <DriverVehicleGallery zh={zh} />
       </div>
     </section>
 
