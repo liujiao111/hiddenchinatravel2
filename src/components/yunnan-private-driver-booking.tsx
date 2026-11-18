@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { EnquirySelect } from "@/components/enquiry-select";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { getAttribution } from "@/lib/attribution";
 import { trackEvent } from "@/lib/analytics";
@@ -334,33 +335,15 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     <p className="driver-form-note">{zh ? "选择路线选项并发送需求。车辆和总价核实后才安排付款，此表单不收取费用。" : "Select your options and request a quote. We check vehicle availability and total cost before arranging payment; this form is free."}</p>
     {transfer ? <>
       <div className="contact-field-row">
-        <label><span>{zh ? "选择机场／火车站 *" : "Airport / railway station *"}</span>
-          <select name="hub" required value={hubId} onChange={event => {
-            setHubId(event.target.value);
-            setStationTransfer(false);
-          }}><option value="" disabled>{zh ? "请选择" : "Choose a hub"}</option>
-            {transfer.hubs.map(h => <option key={h.value} value={h.value}>{h[locale]}</option>)}
-          </select>
-        </label>
-        <label><span>{zh ? "接送方向 *" : "Transfer direction *"}</span>
-          <select name="direction" required value={arrivalDirection} onChange={event => setArrivalDirection(event.target.value)}>
-            <option value="" disabled>{zh ? "请选择方向" : "Choose direction"}</option>
-            <option value="pickup">{pickupLabel}</option>
-            <option value="dropoff">{dropoffLabel}</option>
-          </select>
-        </label>
+        <EnquirySelect name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { setHubId(value); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
+        <EnquirySelect name="direction" label={zh ? "接送方向 *" : "Transfer direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required value={arrivalDirection} onValueChange={setArrivalDirection} options={[{ value: "pickup", label: pickupLabel }, { value: "dropoff", label: dropoffLabel }]} />
       </div>
       {serviceId === "kunming-arrival" && hubId === "kmg" ? <label className="driver-form-consent">
         <input type="checkbox" checked={stationTransfer} onChange={event => setStationTransfer(event.target.checked)} />
         <span>{zh ? "长水机场与昆明南站直达" : "Direct transfer between Changshui Airport and Kunming South Railway Station"}</span>
       </label> : null}
       {!secondHub ? <div className="contact-field-row">
-        <label><span>{zh ? "酒店所在区域 *" : "Hotel area *"}</span>
-          <select name="hotelArea" required value={hotelArea} onChange={event => setHotelArea(event.target.value)}>
-            <option value="" disabled>{zh ? "选择酒店区域" : "Select hotel area"}</option>
-            {transfer.areas.map(area => <option key={area.value} value={area.value}>{area[locale]}</option>)}
-          </select>
-        </label>
+        <EnquirySelect name="hotelArea" label={zh ? "酒店所在区域 *" : "Hotel area *"} placeholder={zh ? "选择酒店区域" : "Select hotel area"} required value={hotelArea} onValueChange={setHotelArea} options={transfer.areas.map(area => ({ value: area.value, label: area[locale] }))} />
         <label><span>{zh ? "酒店名称或详细地址 *" : "Hotel name / full address *"}</span><input name="hotel" required maxLength={150} placeholder={zh ? "填写酒店名称或完整地址" : "Hotel name or full address"} /></label>
       </div> : null}
       {isLijiangArrival && hotelArea === "oldtown" ? <p className="driver-area-hint">{zh
@@ -391,12 +374,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       </label>
     </> : null}
     {isIntercity ? <>
-      <label><span>{zh ? "选择路线及方向 *" : "Route and direction *"}</span>
-        <select name="direction" required defaultValue={service.routes?.length === 1 ? service.routes[0].value : ""}>
-          {service.routes?.length !== 1 ? <option value="" disabled>{zh ? "请选择方向" : "Choose direction"}</option> : null}
-          {service.routes?.map(r => <option key={r.value} value={r.value}>{zh ? r.zh : r.en}</option>)}
-        </select>
-      </label>
+      <EnquirySelect name="direction" label={zh ? "选择路线及方向 *" : "Route and direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required defaultValue={service.routes?.length === 1 ? service.routes[0].value : ""} options={(service.routes ?? []).map(route => ({ value: route.value, label: route[locale] }))} />
       {service.id === "dali-lijiang-shaxi" || service.id === "lijiang-tlg-shangri-la" ? <label><span>{zh ? "途中停留／计划参观内容" : "Sightseeing stops / time on site"}</span><input name="route" maxLength={300} placeholder={zh ? "希望停留多久、计划游览什么？" : "Preferred stops and time at each"} /></label> : null}
     </> : null}
     {!isArrival ? <div className="contact-field-row">
@@ -417,11 +395,11 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
             ? (zh ? "请填写希望司机到酒店或约定古城入口接您的时间。" : "Enter the time you would like the driver to meet you at the hotel or agreed Old Town entrance.")
             : (zh ? "请填写希望司机到酒店接您的时间。" : "Enter the time you would like the driver to pick you up at the hotel.")}</small>
       </label> : null}
-      <label><span>{zh ? "车型需求 *" : "Vehicle preference *"}</span><select required name="vehicle" value={vehicle} onChange={event => setVehicle(event.target.value)}>
-        <option value={fiveSeat}>{zh ? "标准5座车（建议1–3人）" : "Five-seat car (1–3 recommended)"}</option>
-        <option value={sevenSeat}>{zh ? "7座商务车" : "Seven-seat MPV"}</option>
-        <option value="Larger vehicle - quote required">{zh ? "更大车型（需另行报价）" : "Larger vehicle (custom quote)"}</option>
-      </select></label>
+      <EnquirySelect name="vehicle" label={zh ? "车型需求 *" : "Vehicle preference *"} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={setVehicle} options={[
+        { value: fiveSeat, label: zh ? "标准5座车（建议1–3人）" : "Five-seat car (1–3 recommended)" },
+        { value: sevenSeat, label: zh ? "7座商务车" : "Seven-seat MPV" },
+        { value: "Larger vehicle - quote required", label: zh ? "更大车型（需另行报价）" : "Larger vehicle (custom quote)" },
+      ]} />
     </div>
     {isArrival ? <p className="driver-area-hint">{zh
       ? "标准5座车建议1至3位乘客，最多3个大行李箱。实际车辆品牌、型号和颜色可能根据当天车源调整，最终车型类别将在订单确认时说明。"
@@ -489,6 +467,13 @@ function DriverStripeTestCheckout({ locale, productId }: { locale: Locale; produ
 
 export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = false }: { locale: Locale; stripeTestCheckoutEnabled?: boolean }) {
   const zh = locale === "zh";
+  const catalog = useRef<HTMLDivElement>(null);
+  const resetCatalogScroll = () => {
+    const region = catalog.current;
+    if (region && window.matchMedia("(max-width: 800px)").matches && region.getBoundingClientRect().top < 0) {
+      requestAnimationFrame(() => region.scrollIntoView({ block: "start" }));
+    }
+  };
   const [category, setCategory] = useState<Category | "all">("all");
   const [city, setCity] = useState("");
   const visibleProducts = products.filter(product =>
@@ -543,53 +528,54 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
         <h2>{zh ? "选择合适的接送与包车服务" : "Find Your Private Car Service"}</h2>
         <p>{zh ? "按城市选机场或车站接送、跨城接送和周边一日游包车。提交日期和车型后，我们会核实车源与总价。" : "Choose airport and station transfers, intercity routes or a private day trip. We confirm the car and total price before requesting payment."}</p>
       </div>
-      <div className="driver-catalog-filters">
-        <div className="driver-underlined-options" role="group" aria-label={zh ? "服务类别" : "Service categories"}>
-          {serviceFilters.map(filter => <button id={filter.id} type="button" key={filter.key} aria-pressed={category === filter.key} onClick={() => setCategory(filter.key)}>
-            {zh ? filter.zh : filter.en}
-          </button>)}
+      <div ref={catalog}>
+        <div className="driver-catalog-filters">
+          <div className="driver-underlined-options" role="group" aria-label={zh ? "服务类别" : "Service categories"}>
+            {serviceFilters.map(filter => <button id={filter.id} type="button" key={filter.key} aria-pressed={category === filter.key} onClick={() => { setCategory(filter.key); resetCatalogScroll(); }}>
+              {zh ? filter.zh : filter.en}
+            </button>)}
+          </div>
+          <div className="driver-city-filter">
+            <EnquirySelect name="departure-city" label={zh ? "出发城市" : "Departure city"} placeholder={zh ? "全部城市" : "All cities"} value={city} onValueChange={value => { setCity(value); resetCatalogScroll(); }} options={[
+              { value: "", label: zh ? "全部城市" : "All cities" },
+              ...serviceCities.map(item => ({ value: item.value, label: item[locale] })),
+            ]} />
+          </div>
         </div>
-        <label className="driver-city-filter">
-          {zh ? "出发城市" : "Departure city"}
-          <select value={city} onChange={event => setCity(event.target.value)}>
-            <option value="">{zh ? "全部城市" : "All cities"}</option>
-            {serviceCities.map(item => <option key={item.value} value={item.value}>{zh ? item.zh : item.en}</option>)}
-          </select>
-        </label>
-      </div>
-      <p className="sr-only" role="status">{zh ? `显示 ${visibleProducts.length} 项服务` : `${visibleProducts.length} services shown`}</p>
-      {visibleProducts.length ? <div className="driver-product-grid">
-        {visibleProducts.map(product => {
-          const filter = serviceFilters.find(item => item.key === product.category);
-          const cities = product.cities.map(value => {
-            const item = serviceCities.find(entry => entry.value === value);
-            return item ? (zh ? item.zh : item.en) : "";
-          }).join(" / ");
-          return <article className="driver-product" key={product.id}>
-            <div className="driver-product-photo"><Image src={product.photo} alt="" fill sizes="(max-width:590px) 100vw, (max-width:900px) 50vw, 33vw" /></div>
-            <div className="driver-product-copy">
-              <p className="driver-product-meta">{cities} · {zh ? filter?.zh : filter?.en}</p>
-              <h3>{zh ? product.zh : product.en}</h3>
-              <p>{zh ? product.detailZh : product.detailEn}</p>
-              <div className="driver-product-price">
-                <span>{zh ? "每车参考价" : "Guide prices per vehicle"}</span>
-                <dl>
-                  <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
-                  <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
-                </dl>
-                <small>{product.category === "day" ? (zh ? "路线与时长确认后可付全款" : "Full payment available once the route and hours are agreed") : (zh ? "确认后付全款" : "Full payment after confirmation")}</small>
+        <p className="sr-only" role="status">{zh ? `显示 ${visibleProducts.length} 项服务` : `${visibleProducts.length} services shown`}</p>
+        {visibleProducts.length ? <div className="driver-product-grid">
+          {visibleProducts.map(product => {
+            const filter = serviceFilters.find(item => item.key === product.category);
+            const cities = product.cities.map(value => {
+              const item = serviceCities.find(entry => entry.value === value);
+              return item ? (zh ? item.zh : item.en) : "";
+            }).join(" / ");
+            return <article className="driver-product" key={product.id}>
+              <div className="driver-product-photo"><Image src={product.photo} alt="" fill sizes="(max-width:590px) 100vw, (max-width:900px) 50vw, 33vw" /></div>
+              <div className="driver-product-copy">
+                <p className="driver-product-meta">{cities} · {zh ? filter?.zh : filter?.en}</p>
+                <h3>{zh ? product.zh : product.en}</h3>
+                <p>{zh ? product.detailZh : product.detailEn}</p>
+                <div className="driver-product-price">
+                  <span>{zh ? "每车参考价" : "Guide prices per vehicle"}</span>
+                  <dl>
+                    <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
+                    <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
+                  </dl>
+                  <small>{product.category === "day" ? (zh ? "路线与时长确认后可付全款" : "Full payment available once the route and hours are agreed") : (zh ? "确认后付全款" : "Full payment after confirmation")}</small>
+                </div>
+                <button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>
+                  {zh ? "选择选项并询价" : "Select Options & Check Price"} <span aria-hidden="true">→</span>
+                </button>
               </div>
-              <button type="button" className="driver-text-link driver-product-action" onClick={() => pick(product.id)}>
-                {zh ? "选择选项并询价" : "Select Options & Check Price"} <span aria-hidden="true">→</span>
-              </button>
-            </div>
-          </article>;
-        })}
-      </div> : <div className="driver-catalog-empty">
-        <p>{zh ? "这个出发城市暂无此类标准服务。" : "There are no standard services in this category for the selected departure city."}</p>
-        <button type="button" className="driver-text-link" onClick={() => setCity("")}>{zh ? "查看全部城市" : "View all cities"}</button>
-      </div>}
-      <p className="driver-product-footnote">{zh ? "5座和7座显示每车参考价，更大车型需人工报价。正式价格按日期、路线和车型确认。标准5座车建议1–3位旅客；更多乘客和大件行李可申请更大车型。车辆照片仅为示例，实际车型以确认单为准。" : "Guide prices are per five-seat or seven-seat vehicle. Larger vehicles are quoted individually. The written quote depends on date, route and vehicle. A five-seat car is recommended for 1–3 travellers; larger vehicles can be quoted. Photos are category examples. Vehicle details are confirmed in writing."}</p>
+            </article>;
+          })}
+        </div> : <div className="driver-catalog-empty">
+          <p>{zh ? "这个出发城市暂无此类标准服务。" : "There are no standard services in this category for the selected departure city."}</p>
+          <button type="button" className="driver-text-link" onClick={() => setCity("")}>{zh ? "查看全部城市" : "View all cities"}</button>
+        </div>}
+        <p className="driver-product-footnote">{zh ? "5座和7座显示每车参考价，更大车型需人工报价。正式价格按日期、路线和车型确认。标准5座车建议1–3位旅客；更多乘客和大件行李可申请更大车型。车辆照片仅为示例，实际车型以确认单为准。" : "Guide prices are per five-seat or seven-seat vehicle. Larger vehicles are quoted individually. The written quote depends on date, route and vehicle. A five-seat car is recommended for 1–3 travellers; larger vehicles can be quoted. Photos are category examples. Vehicle details are confirmed in writing."}</p>
+      </div>
       <div id="driver-quote-form">
         {selected ? <div className="driver-booking-panel" key={selected}>
           <DriverEnquiryForm locale={locale} kind={selected === "custom" ? "custom" : "standard"} serviceId={selected === "custom" ? undefined : selected} />

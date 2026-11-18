@@ -127,7 +127,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <h1>{T("Explore Yunnan with a Private Driver", "云南私人包车与司机服务")}</h1>
           <p>{T("Airport pickups, city-to-city transfers and private day trips with a local driver and English-language support.", "机场车站接送、跨城用车、周边一日游。由当地司机接送，我们协助英文沟通。")}</p>
           <div className="driver-editorial-actions">
-            <a className="button button-light" href="#standard-transfers">{T("Explore Driver Services", "查看包车服务")} <span aria-hidden="true">→</span></a>
+            <a className="button button-blue" href="#standard-transfers">{T("Explore Driver Services", "查看包车服务")} <span aria-hidden="true">→</span></a>
             <a className="button button-outline-light" href="#custom-routes">{T("Custom & Multi-Day", "定制与多日包车")}</a>
           </div>
         </div>
@@ -171,7 +171,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <section className="driver-section" id="vehicles">
       <div className="shell">
-        {heading("05 / VEHICLE & LUGGAGE","Is This Vehicle Right for Your Group?","这辆车适合你们吗？", "Five-seat cars and seven-seat MPVs have online guide prices. Request a custom quote for larger vehicles.", "5座车和7座商务车均可在线查看参考价，更大车型可提交需求后询价。")}
+        {heading("05 / VEHICLE & LUGGAGE","How to Choose a Vehicle","如何选择车辆", "Five-seat cars and seven-seat MPVs have online guide prices. Request a custom quote for larger vehicles.", "5座车和7座商务车均可在线查看参考价，更大车型可提交需求后询价。")}
         <DriverVehicleGallery zh={zh} />
       </div>
     </section>
@@ -248,7 +248,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <h2 className="journey-final-title">{T("Ready to Arrange Your Yunnan Private Driver?", "准备安排云南私人包车了吗？")}</h2>
           <p>{T("Share your route, travel dates and group size. We’ll check availability and send you a written quote.", "告诉我们你的路线、日期和人数，我们会核实车源并提供书面报价。")}</p>
           <div className="driver-editorial-actions">
-            <a className="button button-light" href="#driver-quote-form">{T("Request a Private Driver Quote", "开始询价")} <span aria-hidden="true">→</span></a>
+            <a className="button button-blue" href="#driver-quote-form">{T("Request a Private Driver Quote", "开始询价")} <span aria-hidden="true">→</span></a>
             <a className="button button-outline-light" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp", "WhatsApp 咨询")}</a>
           </div>
         </div>
