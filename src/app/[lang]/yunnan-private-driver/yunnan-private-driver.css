@@ -161,79 +161,48 @@
   .driver-page .driver-stripe-test .button{width:100%;min-width:0}
 }
 
-/* Editorial landing layout, scoped to the driver page. */
-.driver-page .driver-editorial-hero {
-  min-height:clamp(580px,62vw,760px);
-  align-items:stretch;
-  text-align:left;
-}
-.driver-editorial-hero-inner {
-  position:relative;
-  display:grid;
-  grid-template-rows:1fr auto;
-  align-items:center;
-}
-.driver-editorial-lead {padding:clamp(54px,9vw,112px) 0;max-width:730px}
-.driver-page .driver-editorial-lead h1 {
-  margin:0;
-  color:inherit;
-  font-size:clamp(2.55rem,5.9vw,5rem);
-  font-weight:700;
-  line-height:1.08;
-  text-wrap:balance;
-}
-.driver-editorial-lead>p {max-width:39rem;margin:18px 0;line-height:1.65}
-.driver-editorial-lead>p:first-child {font-size:.74rem;font-weight:700;letter-spacing:.13em}
+/* This bar follows the shared hero and sticks only on larger screens. */
+.driver-desktop-nav {display:none}
 .driver-editorial-actions {display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;margin-top:24px}
-.driver-editorial-facts {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:24px;
-  margin:0;
-  padding:24px 0 32px;
-  border-top:1px solid currentColor;
-}
-.driver-editorial-facts dt {font-size:clamp(1.15rem,2.4vw,1.85rem);font-weight:650}
-.driver-editorial-facts dd {margin:4px 0 0;font-size:.83rem}
-.driver-editorial-intro {
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
-  gap:clamp(24px,6vw,80px);
-  align-items:center;
-}
-.driver-editorial-intro p {color:var(--color-muted);line-height:1.75}
-.driver-editorial-pair {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.driver-editorial-pair figure {
-  position:relative;
-  aspect-ratio:4/5;
-  margin:0;
-  overflow:hidden;
-  border-radius:var(--radius-card);
-}
-.driver-editorial-pair figure:first-child {margin-bottom:24px}
-.driver-editorial-pair figure:last-child {margin-top:24px}
-.driver-editorial-pair img,.driver-editorial-close img {object-fit:cover}
-.driver-editorial-close {
-  position:relative;
-  overflow:hidden;
-  border-radius:var(--radius-card);
-  margin-bottom:clamp(40px,7vw,var(--section-space));
-  color:white;
-}
-.driver-editorial-close-copy {position:relative;max-width:650px;padding:clamp(28px,6vw,78px)}
+.driver-editorial-close {position:relative;overflow:hidden;color:white}
+.driver-editorial-close>img {object-fit:cover}
+.driver-editorial-close-inner {position:relative}
+.driver-editorial-close-copy {max-width:650px;padding:clamp(48px,8vw,120px) 0}
 .driver-editorial-close-copy h2 {margin:0;font-size:clamp(1.9rem,4vw,3.5rem);line-height:1.13}
 .driver-editorial-close-copy p {margin:14px 0 0;line-height:1.6}
-@media (max-width:750px) {
-  .driver-page .driver-editorial-hero {min-height:560px}
-  .driver-editorial-facts {gap:12px;padding:18px 0 24px}
-  .driver-editorial-facts dd {font-size:.74rem}
-  .driver-editorial-intro {grid-template-columns:1fr}
+@media(min-width:901px) {
+  .driver-desktop-nav {
+    display:block;
+    position:sticky;
+    top:0;
+    z-index:18;
+    background:var(--color-surface);
+    border-bottom:1px solid var(--color-border);
+  }
+  .driver-desktop-nav-inner,.driver-desktop-nav-links {display:flex;align-items:center;justify-content:space-between;gap:var(--space-6)}
+  .driver-desktop-nav-inner {min-height:70px}
+  .driver-desktop-nav-inner img {display:block;width:92px;height:auto}
+  .driver-desktop-nav-links a {padding:12px 0;color:var(--color-action-text);text-decoration:none;font-size:.88rem}
+  .driver-desktop-nav-links a:hover {text-decoration:underline;text-underline-offset:4px}
+  .driver-page :is(#standard-transfers,#custom-routes,#vehicles,#service-areas,#driver-faq) {scroll-margin-top:90px}
+  .driver-area-grid {grid-template-columns:repeat(5,minmax(0,1fr))}
 }
-@media (max-width:400px) {
-  .driver-editorial-lead {padding-block:42px}
-  .driver-editorial-actions {gap:10px}
-  .driver-editorial-actions .button {white-space:normal}
+
+.driver-picker-field {min-width:0;margin:0 0 18px}
+.driver-picker-field>span {display:block;margin:0 0 8px;font-size:.84rem;font-weight:650}
+.driver-picker-field small {display:block;margin-top:6px;color:var(--color-muted);font-size:.76rem}
+.driver-picker {display:grid;grid-template-columns:minmax(0,1fr) var(--control-height)}
+.driver-form .driver-picker input {
+  min-width:0;
+  min-height:var(--control-height);
+  padding:0 10px;
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-control);
+  background:var(--color-surface);
+  color:var(--color-ink);
+  font:inherit;
 }
+.driver-picker button {display:grid;place-items:center;border:1px solid var(--color-border);border-left:0;background:var(--color-surface-soft);color:var(--color-action-text);cursor:pointer}
 
 /* Service filters and borderless, image-led product cards. */
 .driver-page #standard-transfers,
@@ -294,7 +263,7 @@
   background:none;
   cursor:pointer;
 }
-.driver-product-action {align-self:flex-start;margin-top:var(--space-3);white-space:normal}
+.driver-product-action {width:100%;align-self:stretch;margin-top:var(--space-3);white-space:normal}
 .driver-product-action span {margin-inline-start:var(--space-2)}
 .driver-product-footnote {margin:var(--space-6) 0 0;color:var(--color-muted);font-size:.75rem}
 .driver-catalog-empty {padding:var(--space-4) 0;color:var(--color-muted)}

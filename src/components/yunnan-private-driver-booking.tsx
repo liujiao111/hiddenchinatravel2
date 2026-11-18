@@ -140,6 +140,23 @@ const products: Product[] = [
 
 const fiveSeat = "Five-seat car";
 const sevenSeat = "Seven-seat car";
+function DriverPicker({ name, type, label, min }: { name: string; type: "date" | "time"; label: string; min?: string }) {
+  const input = useRef<HTMLInputElement>(null);
+  return <div className="driver-picker">
+    <input ref={input} type={type} name={name} required min={min} aria-label={label} />
+    <button type="button" aria-label={label} onClick={() => {
+      const field = input.current;
+      if (!field) return;
+      field.focus();
+      try { field.showPicker?.(); } catch { /* The focused input remains editable. */ }
+    }}>
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        {type === "date" ? <path d="M4 6h16v14H4zM4 10h16M8 4v4m8-4v4" /> : <><circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" /></>}
+      </svg>
+    </button>
+  </div>;
+}
+
 function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: FormKind; serviceId?: ProductId }) {
   const zh = locale === "zh";
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -344,7 +361,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       </label> : null}
       {!secondHub ? <div className="contact-field-row">
         <EnquirySelect name="hotelArea" label={zh ? "酒店所在区域 *" : "Hotel area *"} placeholder={zh ? "选择酒店区域" : "Select hotel area"} required value={hotelArea} onValueChange={setHotelArea} options={transfer.areas.map(area => ({ value: area.value, label: area[locale] }))} />
-        <label><span>{zh ? "酒店名称或详细地址 *" : "Hotel name / full address *"}</span><input name="hotel" required maxLength={150} placeholder={zh ? "填写酒店名称或完整地址" : "Hotel name or full address"} /></label>
+        <label><span>{zh ? "酒店名称或详细地址 *" : "Hotel name / full address *"}</span><input type="text" name="hotel" required maxLength={150} placeholder={zh ? "填写酒店名称或完整地址" : "Hotel name or full address"} /></label>
       </div> : null}
       {isLijiangArrival && hotelArea === "oldtown" ? <p className="driver-area-hint">{zh
         ? "丽江古城部分住宿位于步行区域，车辆可能无法直接到达酒店门口。请填写完整酒店名称和地址，并提前向酒店确认最近的可通车接送点。"
@@ -369,7 +386,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         ? "纳帕海及环湖区域、普达措、巴拉格宗、虎跳峡、白水台、梅里雪山／飞来寺、雨崩和哈巴雪山片区均按其他区域询价。"
         : "Request a custom quote for Napa Lake, Pudacuo, Balagezong, Tiger Leaping Gorge, Baishuitai, Meili Snow Mountain / Feilai Temple, Yubeng and the Haba Snow Mountain area."}</p> : null}
       <label><span>{transportLabel}{requiresArrivalDetails ? " *" : (zh ? "（建议填写）" : " (recommended)")}</span>
-        <input name="transportNumber" required={requiresArrivalDetails} maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
+        <input type="text" name="transportNumber" required={requiresArrivalDetails} maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
         {!requiresArrivalDetails ? <small>{zh ? "尚未确定时可填 Not confirmed yet。" : "Enter Not confirmed yet if your flight or train is undecided."}</small> : null}
       </label>
     </> : null}
@@ -387,14 +404,16 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       <label><span>{zh ? "计划路线及停靠点 *" : "Route and planned stops *"}</span><input required name="route" maxLength={300} placeholder={zh ? "例如：昆明－大理－沙溪－丽江" : "Kunming – Dali – Shaxi – Lijiang"} /></label>
     </div> : null}
     <div className="contact-field-row">
-      <label><span>{zh ? "服务日期 *" : "Travel date *"}</span><input type="date" required name="date" min={isArrival ? chinaServiceDate() : undefined} /></label>
-      {isArrival ? <label><span>{timeLabel} *</span>
-        <input type="time" name="serviceTime" required />
+      <div className="driver-picker-field"><span>{zh ? "服务日期 *" : "Travel date *"}</span>
+        <DriverPicker name="date" type="date" label={zh ? "选择服务日期" : "Choose travel date"} min={isArrival ? chinaServiceDate() : undefined} />
+      </div>
+      {isArrival ? <div className="driver-picker-field"><span>{timeLabel} *</span>
+        <DriverPicker name="serviceTime" type="time" label={timeLabel} />
         <small>{requiresArrivalDetails ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
           : (isLijiangArrival || isShangriLaArrival)
             ? (zh ? "请填写希望司机到酒店或约定古城入口接您的时间。" : "Enter the time you would like the driver to meet you at the hotel or agreed Old Town entrance.")
             : (zh ? "请填写希望司机到酒店接您的时间。" : "Enter the time you would like the driver to pick you up at the hotel.")}</small>
-      </label> : null}
+      </div> : null}
       <EnquirySelect name="vehicle" label={zh ? "车型需求 *" : "Vehicle preference *"} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={setVehicle} options={[
         { value: fiveSeat, label: zh ? "标准5座车（建议1–3人）" : "Five-seat car (1–3 recommended)" },
         { value: sevenSeat, label: zh ? "7座商务车" : "Seven-seat MPV" },

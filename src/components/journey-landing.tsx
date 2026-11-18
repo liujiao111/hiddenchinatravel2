@@ -34,8 +34,8 @@ export type FactIconName = "party" | "person" | "licence" | "star" | "calendar" 
 
 export type FactCard = { title: string; lines: string[]; icon: FactIconName; badge?: ReactNode };
 
-export function JourneyFactCards({ id, title, cards, action, className = "" }: {
-  id: string; title: string; cards: FactCard[]; action?: Action; className?: string;
+export function JourneyFactCards({ id, title, cards, action, children, className = "" }: {
+  id: string; title: string; cards: FactCard[]; action?: Action; children?: ReactNode; className?: string;
 }) {
   const headingId = `${id}-title`;
   return <section className={`journey-fact-cards ${className}`.trim()} id={id} aria-labelledby={headingId}>
@@ -50,6 +50,7 @@ export function JourneyFactCards({ id, title, cards, action, className = "" }: {
         </li>)}
       </ul>
       {action ? <HashLink href={action.href}>{action.label} →</HashLink> : null}
+      {children}
     </div>
   </section>;
 }
