@@ -1,6 +1,7 @@
 "use client";
 
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, generateLeadId } from "@/lib/whatsapp";
+import { createFormTracking } from "@/lib/lead-ref";
 import { useEffect, useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { budgetBands, isQuoteReady, parseEnquiry, partySizes, travelWindows, type Enquiry } from "@/lib/enquiry";
@@ -116,7 +117,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed),
+        body: JSON.stringify({ ...parsed, tracking: createFormTracking(generateLeadId(), "quick_ask") }),
       });
       const result = await response.json().catch(() => ({ error: t("sendError") }));
       if (!response.ok) {
