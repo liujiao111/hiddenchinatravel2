@@ -246,14 +246,19 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       setError(zh ? "请选择今天或之后的服务日期。" : "Please select today or a future date.");
       setStatus("error"); return;
     }
+    const endDate = String(values.get("endDate") || "");
+    if (kind === "custom" && endDate && endDate < travelDate) {
+      setError(zh ? "结束日期不能早于出发日期。" : "The end date cannot be before the start date.");
+      setStatus("error"); return;
+    }
     const hotel = String(values.get("hotel") || "").trim();
     const transportNumber = String(values.get("transportNumber") || "").trim();
     const serviceTime = String(values.get("serviceTime") || "");
     const direction = isArrival ? (isPickup ? pickupLabel : dropoffLabel) : String(values.get("direction") || "");
     if (isArrival && (!hub || !["pickup", "dropoff"].includes(arrivalDirection)
       || (!secondHub && (!selectedArea || !hotel)) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(serviceTime)
-      || (requiresArrivalDetails && (!transportNumber || transportNumber.toLowerCase() === "not confirmed yet")))) {
-      setError(zh ? "请确认枢纽、接送方向、地址、服务时间，以及接机或接站所需的航班号／车次。" : "Please confirm the hub, direction, address, service time and flight or train number for pickups.");
+      )) {
+      setError(zh ? "请确认交通枢纽、接送方向、地址和服务时间。" : "Please confirm the hub, direction, address and service time.");
       setStatus("error"); return;
     }
     if (isIntercity && !service?.routes?.some(r => r.value === direction)) {
@@ -275,6 +280,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       "CATEGORY: " + (service?.category || "custom"),
       "Service: " + serviceName,
       "Travel date: " + travelDate,
+      ...(kind === "custom" ? ["Travel end date: " + (String(values.get("endDate") || "") || "Not supplied")] : []),
       "Direction / selected route: " + (direction || "Custom"),
       "Airport / railway station: " + (hub?.en || "Not applicable"),
       "Hotel service area: " + (!secondHub && selectedArea ? selectedArea.en : "Not applicable"),
@@ -386,9 +392,9 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       {isShangriLaArrival && outsideArea ? <p className="driver-area-hint">{zh
         ? "纳帕海及环湖区域、普达措、巴拉格宗、虎跳峡、白水台、梅里雪山／飞来寺、雨崩和哈巴雪山片区均按其他区域询价。"
         : "Request a custom quote for Napa Lake, Pudacuo, Balagezong, Tiger Leaping Gorge, Baishuitai, Meili Snow Mountain / Feilai Temple, Yubeng and the Haba Snow Mountain area."}</p> : null}
-      <label><span>{transportLabel}{requiresArrivalDetails ? " *" : (zh ? "（建议填写）" : " (recommended)")}</span>
-        <input type="text" name="transportNumber" required={requiresArrivalDetails} maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
-        {!requiresArrivalDetails ? <small>{zh ? "尚未确定时可填 Not confirmed yet。" : "Enter Not confirmed yet if your flight or train is undecided."}</small> : null}
+      <label><span>{transportLabel}{zh ? "（选填，可稍后补充）" : " (optional; share later)"}</span>
+        <input type="text" name="transportNumber" maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
+        <small>{zh ? "还没订机票或火车票？可先询价，确认后再提供航班号或车次。" : "Not booked yet? Request a quote now and share your flight or train number later."}</small>
       </label>
     </> : null}
     {isIntercity ? <>
@@ -396,18 +402,19 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       {service.id === "dali-lijiang-shaxi" || service.id === "lijiang-tlg-shangri-la" ? <label><span>{zh ? "途中停留／计划参观内容" : "Sightseeing stops / time on site"}</span><input name="route" maxLength={300} placeholder={zh ? "希望停留多久、计划游览什么？" : "Preferred stops and time at each"} /></label> : null}
     </> : null}
     {!isArrival ? <div className="contact-field-row">
-      <label><span>{zh ? "出发酒店／地点 *" : "Pickup hotel / location *"}</span><input required name="pickup" maxLength={150} placeholder={zh ? "完整地点或酒店名" : "Hotel or pickup address"} /></label>
-      <label><span>{isDay ? (zh ? "结束地点（选填）" : "Drop-off location (optional)") : (zh ? "送达酒店／地点 *" : "Drop-off hotel / location *")}</span><input required={!isDay} name="dropoff" maxLength={150} placeholder={isDay ? (zh ? "留空则与出发地相同" : "Same as pickup if blank") : (zh ? "完整地点或酒店名" : "Hotel or destination address")} /></label>
+      <label><span>{zh ? "出发酒店／地点 *" : "Pickup city / location *"}</span><input required name="pickup" maxLength={150} placeholder={zh ? "完整地点或酒店名" : "City, station or hotel"} /></label>
+      <label><span>{isDay ? (zh ? "结束地点（选填）" : "Drop-off location (optional)") : (zh ? "送达酒店／地点 *" : "Drop-off city / location *")}</span><input required={!isDay} name="dropoff" maxLength={150} placeholder={isDay ? (zh ? "留空则与出发地相同" : "Same as pickup if blank") : (zh ? "完整地点或酒店名" : "City, station or hotel")} /></label>
     </div> : null}
     {isDay ? <label><span>{zh ? "当天计划路线及停靠点 *" : "Planned day route and stops *"}</span><input required name="route" maxLength={300} placeholder={zh ? "例如：酒店－周边景区－酒店" : "Hotel – sights – hotel"} /></label> : null}
     {kind === "custom" ? <div className="contact-field-row">
-      <label><span>{zh ? "包车天数 *" : "Number of days *"}</span><input required name="days" maxLength={60} placeholder={zh ? "例如：3天" : "e.g. 3 days"} /></label>
+      <label><span>{zh ? "包车天数 *" : "Number of days *"}</span><input required name="days" maxLength={60} placeholder={zh ? "例如：7天6晚" : "e.g. 7 days / 6 nights"} /></label>
       <label><span>{zh ? "计划路线及停靠点 *" : "Route and planned stops *"}</span><input required name="route" maxLength={300} placeholder={zh ? "例如：昆明－大理－沙溪－丽江" : "Kunming – Dali – Shaxi – Lijiang"} /></label>
     </div> : null}
     <div className="contact-field-row">
       <div className="driver-picker-field"><span>{zh ? "服务日期 *" : "Travel date *"}</span>
         <DriverPicker name="date" type="date" label={zh ? "选择服务日期" : "Choose travel date"} min={isArrival ? chinaServiceDate() : undefined} />
       </div>
+      {kind === "custom" ? <label><span>{zh ? "结束日期（选填）" : "End date (optional)"}</span><input type="date" name="endDate" min={chinaServiceDate()} /></label> : null}
       {isArrival ? <div className="driver-picker-field"><span>{timeLabel} *</span>
         <DriverPicker name="serviceTime" type="time" label={timeLabel} />
         <small>{requiresArrivalDetails ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
