@@ -108,7 +108,7 @@ export function chinaServiceDate() {
   return new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format();
 }
 
-export function parseAirportTransfer(value: unknown, date: string, adults: number, children: number, locale: "zh" | "en", options: { allowPendingArrivalDetails?: boolean } = {}) {
+export function parseAirportTransfer(value: unknown, date: string, adults: number, children: number, locale: "zh" | "en") {
   if (!value || typeof value !== "object") return null;
   const input = value as Record<string, unknown>;
   const field = (key: string, max: number) => typeof input[key] === "string"
@@ -132,9 +132,7 @@ export function parseAirportTransfer(value: unknown, date: string, adults: numbe
   const arrival = pickup || direct;
   const transportNumber = field("transportNumber", 40);
   const time = field("serviceTime", 5);
-  // Only the isolated Kunming sandbox checkout may proceed without finalized
-  // travel details. Real transfer enquiries retain their existing validation.
-  const allowPendingDetails = options.allowPendingArrivalDetails === true && productId === "kunming-arrival";
+  // The exact arrival time and flight/train number can be confirmed after the initial enquiry.
   const vehicle = input.vehicle;
   const luggage = Number(input.luggage);
   const vehicleType = vehicle === "Five-seat car" ? "five" : vehicle === "Seven-seat car" ? "seven" : undefined;
@@ -143,8 +141,7 @@ export function parseAirportTransfer(value: unknown, date: string, adults: numbe
     || (vehicleType === "five" && (adults + children > 3 || luggage > 3))
     || (vehicleType === "seven" && adults + children > 6)
     || !/^\d{4}-\d{2}-\d{2}$/.test(date) || date < chinaServiceDate()
-    || (time ? !/^([01]\d|2[0-3]):[0-5]\d$/.test(time) : !allowPendingDetails)
-    || (arrival && !allowPendingDetails && (!transportNumber || transportNumber.toLowerCase() === "not confirmed yet"))) return null;
+    || (time && !/^([01]\d|2[0-3]):[0-5]\d$/.test(time))) return null;
   const parsedDate = new Date(`${date}T00:00:00Z`);
   if (Number.isNaN(parsedDate.getTime()) || parsedDate.toISOString().slice(0, 10) !== date) return null;
 
