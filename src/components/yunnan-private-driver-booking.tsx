@@ -189,7 +189,29 @@ function DriverDropdown({ name, label, placeholder, options, required = false, v
   return <fieldset className="enquiry-select driver-dropdown">
     <legend id={id + "-label"}>{label}</legend>
     <div className="driver-dropdown-anchor" ref={field} onKeyDown={event => {
-      if (event.key === "Escape" && open) { event.preventDefault(); setOpen(false); }
+      if (event.key === "Escape" && open) {
+        event.preventDefault(); setOpen(false);
+        field.current?.querySelector<HTMLButtonElement>(".driver-dropdown-trigger")?.focus();
+        return;
+      }
+      if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Home" || event.key === "End") {
+        event.preventDefault();
+        if (!open) {
+          setOpen(true);
+          requestAnimationFrame(() => {
+            const all = field.current?.querySelectorAll<HTMLButtonElement>('[role="option"]');
+            all?.[event.key === "ArrowUp" || event.key === "End" ? all.length - 1 : 0]?.focus();
+          });
+          return;
+        }
+        const all = Array.from(field.current?.querySelectorAll<HTMLButtonElement>('[role="option"]') || []);
+        if (!all.length) return;
+        const current = all.findIndex(item => item === document.activeElement);
+        const index = event.key === "Home" ? 0 : event.key === "End" ? all.length - 1
+          : event.key === "ArrowUp" ? (current + all.length - 1) % all.length
+          : (current + 1) % all.length;
+        all[index]?.focus();
+      }
     }}>
       <button type="button" className="driver-dropdown-trigger" aria-haspopup="listbox"
         aria-expanded={open} aria-labelledby={id + "-label " + id + "-selected"}
