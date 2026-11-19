@@ -63,37 +63,98 @@ section{background:white;border:1px solid #dbe6f0;border-radius:16px;padding:24p
 form{display:grid;gap:16px}label{display:grid;gap:7px;font-weight:600}
 input{width:100%;padding:12px;border:1px solid #a9bbcb;border-radius:9px;font:inherit;min-width:0}
 button{background:#1468ad;border:0;color:white;font:inherit;font-weight:650;padding:13px;border-radius:10px;cursor:pointer}
-button:disabled{opacity:.55}#result{margin-top:20px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8}
-.row{border-top:1px solid #e6eef5;padding:8px 0}.key{color:#5f7080;font-size:13px;display:block}
-.value{font-weight:550}small{display:block;margin-top:20px;color:#698096}
+button:disabled{opacity:.55}#result{margin-top:20px;overflow-wrap:anywhere;line-height:1.7}
+.detail-section{margin-top:20px;padding-top:14px;border-top:1px solid #d8e6f2}
+.detail-section h2{font-size:17px;font-weight:700;margin:0 0 4px;color:#193d5a}
+.detail-section p{font-size:13px;margin:0 0 12px;color:#607c90}
+.row{border-top:1px solid #e6eef5;padding:10px 0}.key{color:#5f7080;font-size:13px;display:block}
+.value{font-weight:550;display:block;white-space:pre-wrap}small{display:block;margin-top:20px;color:#698096}
+.notice{background:#edf5fb;border-radius:9px;padding:12px;margin:14px 0;color:#335e7a;font-size:13px}
 </style></head><body><main><h1>WhatsApp 咨询来源查询</h1>
-<p>客户消息只保留 Ref。输入咨询编号和内部查询密钥，查看该 Ref 对应的点击来源；点击并不代表客户已经发送消息。</p>
+<p>先看客户这一次从哪里进入网站，再看首次与历史营销来源。客户 WhatsApp 消息只保留 Ref；点击不代表消息已发送。</p>
 <section>
 <form id="lookup"><label>咨询 Ref<input id="ref" required autocomplete="off" spellcheck="false" placeholder="HCT-20261118-..." /></label>
 <label>内部查询密钥<input id="secret" type="password" required autocomplete="off" placeholder="仅运营人员持有" /></label>
 <button type="submit" id="button">查询来源</button></form>
 <div id="result" role="status" aria-live="polite"></div>
 </section>
-<small>仅展示新系统上线后成功保存的记录；历史 Ref 无法自动补齐。</small>
+<small>历史归因在浏览器内最多保留 90 天。来源参数不等于来源真实性证明；仅展示新系统上线后成功保存的记录。</small>
 </main>
 <script>
 (function(){
 const form=document.getElementById('lookup'),result=document.getElementById('result'),button=document.getElementById('button');
-function line(k,v){const div=document.createElement('div');div.className='row';
-const a=document.createElement('span'),b=document.createElement('span');
-a.className='key';b.className='value';a.textContent=k;b.textContent=(v===undefined||v===null||v==='')?'—':String(v);div.append(a,b);result.append(div);}
-form.addEventListener('submit',async function(e){e.preventDefault();button.disabled=true;result.textContent='查询中…';
-try{const res=await fetch(location.pathname,{method:'POST',headers:{'content-type':'application/json','x-ref-lookup-secret':document.getElementById('secret').value},body:JSON.stringify({ref:document.getElementById('ref').value}),cache:'no-store'});
-const data=await res.json();result.textContent='';if(!res.ok){result.textContent=data.error||'查询失败';return;}
-line('Ref',data.ref);line('记录类型','WhatsApp 点击（未确认发送）');line('点击时间 UTC',data.captured_at);line('点击页面',data.conversion_url);
-line('点击位置',data.whatsapp_location);
-line('首次来源',data.first?.source_label);line('首次来源 / 媒介',(data.first?.source||'')+' / '+(data.first?.medium||''));
-line('首次进入页面',data.first?.landing_page);line('首次外部引荐',data.first?.referrer);
-line('首次广告参数',JSON.stringify(data.first?.params||{}));
-line('最近营销来源',data.last?.source_label);line('最近来源 / 媒介',(data.last?.source||'')+' / '+(data.last?.medium||''));
-line('最近落地页',data.last?.landing_page);line('最近广告参数',JSON.stringify(data.last?.params||{}));
-line('本次会话来源',data.session?.source_label);
-}catch(err){result.textContent='请求失败，请检查网络或配置';}finally{button.disabled=false;}
+let group;
+const aiNames={
+ 'chatgpt.com':'ChatGPT','chat.openai.com':'ChatGPT','chatgpt':'ChatGPT',
+ 'perplexity.ai':'Perplexity','perplexity':'Perplexity',
+ 'claude.ai':'Claude','claude':'Claude',
+ 'gemini.google.com':'Gemini','gemini':'Gemini',
+ 'copilot.microsoft.com':'Copilot','copilot':'Copilot',
+ 'poe.com':'Poe','poe':'Poe','grok.com':'Grok','grok':'Grok'
+};
+function aiName(raw){return aiNames[String(raw||'').trim().toLowerCase().replace(/^www\./,'')]||'';}
+function referrerHost(raw){
+ try{return new URL(raw).hostname.toLowerCase().replace(/^www\./,'');}
+ catch{return '';}
+}
+function sourceLabel(t){
+ if(!t)return '—';
+ const refHost=referrerHost(t.referrer);
+ const refAi=aiName(refHost),tagAi=aiName(t.params&&t.params.utm_source);
+ const paid=Boolean(t.params&&(t.params.gclid||t.params.gbraid||t.params.wbraid||t.params.msclkid));
+ if(refAi&&!paid&&(t.medium==='referral'||t.source===refHost))return refAi+' · 浏览器引荐来源（Referrer）';
+ if(tagAi&&!paid)return tagAi+' · 仅 UTM 来源标记（未核实实际引荐）';
+ return t.source_label||'未知';
+}
+function time(raw){
+ if(!raw)return '—';
+ const date=new Date(raw);
+ if(!Number.isFinite(date.getTime()))return raw;
+ return date.toLocaleString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',timeZoneName:'short'});
+}
+function section(title,description){
+ group=document.createElement('section');group.className='detail-section';
+ const h=document.createElement('h2');h.textContent=title;group.append(h);
+ if(description){const p=document.createElement('p');p.textContent=description;group.append(p);}
+ result.append(group);
+}
+function line(key,value){
+ const div=document.createElement('div');div.className='row';
+ const a=document.createElement('span'),b=document.createElement('span');
+ a.className='key';b.className='value';a.textContent=key;b.textContent=value===undefined||value===null||value===''?'—':String(value);
+ div.append(a,b);(group||result).append(div);
+}
+function sourceDetails(t,kind){
+ line(kind+'来源',sourceLabel(t));
+ line('来源 / 媒介',(t&&t.source||'未知')+' / '+(t&&t.medium||'未知'));
+ line('进入页面',t&&t.landing_page);
+ line('来源记录时间（本地）',time(t&&t.time));
+ line('浏览器外部引荐（Referrer）',t&&t.referrer);
+ const params=t&&t.params||{};
+ line('来源及广告参数',Object.keys(params).length?JSON.stringify(params):'无');
+}
+form.addEventListener('submit',async function(e){
+ e.preventDefault();button.disabled=true;group=null;result.textContent='查询中…';
+ try{
+  const res=await fetch(location.pathname,{method:'POST',headers:{'content-type':'application/json','x-ref-lookup-secret':document.getElementById('secret').value},body:JSON.stringify({ref:document.getElementById('ref').value}),cache:'no-store'});
+  const data=await res.json();result.textContent='';
+  if(!res.ok){result.textContent=data.error||'查询失败';return;}
+  const note=document.createElement('div');note.className='notice';
+  note.textContent='本次访问来源不一定等于首次获客来源。以下历史触点按浏览器记录展示，不应将 UTM 标签直接视为平台引荐证明。';
+  result.append(note);
+  section('本次访问与 WhatsApp 点击','当前会话来源优先；这是点击记录，不代表 WhatsApp 消息已发送');
+  line('Ref',data.ref);
+  line('记录类型','WhatsApp 点击（未确认发送）');
+  line('点击时间（本地）',time(data.captured_at));
+  line('点击页面',data.conversion_url);
+  line('WhatsApp 按钮位置',data.whatsapp_location);
+  sourceDetails(data.session,'本次会话');
+  section('历史：首次访问','首次进入网站时的来源，最多保留 90 天');
+  sourceDetails(data.first,'首次');
+  section('历史：最近一次可归因来源','新的 Direct 访问不会覆盖之前带营销参数或外部引荐的来源');
+  sourceDetails(data.last,'最近');
+ }catch(err){result.textContent='请求失败，请检查网络或配置';}
+ finally{button.disabled=false;}
 });
 })();
 </script></body></html>`;
