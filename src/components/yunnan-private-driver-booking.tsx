@@ -176,7 +176,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
   const startedRef = useRef(false);
   const [paymentReview, setPaymentReview] = useState<null | {
     payload: Record<string, unknown>; route: string; date: string; time: string;
-    vehicle: string; travelers: string; luggage: number; contact: string;
+    vehicle: string; travelers: string; luggage: number; contact: string; transportNumber: string; notes: string;
   }>(null);
   const [testTermsAccepted, setTestTermsAccepted] = useState(false);
   const isKunmingTest = stripeTestCheckoutEnabled && serviceId === "kunming-arrival";
@@ -337,7 +337,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       setPaymentReview({
         payload, route: `${pickup} → ${dropoff}`, date: travelDate, time: serviceTime,
         vehicle, travelers: `${adults} ${zh ? "成人" : "adults"}, ${children} ${zh ? "儿童" : "children"}`,
-        luggage, contact: email || whatsapp,
+        luggage, contact: email || whatsapp, transportNumber, notes,
       });
       setTestTermsAccepted(false); setError(""); setStatus("review");
       return;
@@ -508,6 +508,8 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       <p><strong>{zh ? "路线：" : "Route: "}</strong>{paymentReview.route}</p>
       <p><strong>{zh ? "日期与时间：" : "Date & time: "}</strong>{paymentReview.date} · {paymentReview.time} (China time)</p>
       <p><strong>{zh ? "车型：" : "Vehicle: "}</strong>{paymentReview.vehicle}</p>
+      {paymentReview.transportNumber && <p><strong>{transportLabel}: </strong>{paymentReview.transportNumber}</p>}
+      {paymentReview.notes && <p><strong>{zh ? "备注：" : "Notes: "}</strong>{paymentReview.notes}</p>}
       <p><strong>{zh ? "乘客：" : "Passengers: "}</strong>{paymentReview.travelers}</p>
       <p><strong>{zh ? "大行李箱：" : "Large suitcases: "}</strong>{paymentReview.luggage}</p>
       <p><strong>{zh ? "联系方式：" : "Contact: "}</strong>{paymentReview.contact}</p>
