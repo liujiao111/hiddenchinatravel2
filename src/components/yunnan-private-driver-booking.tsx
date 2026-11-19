@@ -234,6 +234,11 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
   }>(null);
   const [testTermsAccepted, setTestTermsAccepted] = useState(false);
   const isKunmingTest = stripeTestCheckoutEnabled && serviceId === "kunming-arrival";
+  const invalidateReview = () => {
+    if (status !== "review") return;
+    setStatus("idle"); setError(""); setPaymentReview(null); setTestTermsAccepted(false);
+    idRef.current = null; leadRef.current = null; submissionKey.current = null;
+  };
   const service = products.find(p => p.id === serviceId);
   const transfer = airportTransferCatalog[serviceId ?? ""];
   const isArrival = service?.category === "arrival";
@@ -319,9 +324,13 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
     const serviceTime = String(values.get("serviceTime") || "");
     const direction = isArrival ? (isPickup ? pickupLabel : dropoffLabel) : String(values.get("direction") || "");
     if (isArrival && (!hub || !["pickup", "dropoff"].includes(arrivalDirection)
-      || (!secondHub && (!selectedArea || !hotel)) || (!isKunmingTest && !/^([01]\d|2[0-3]):[0-5]\d$/.test(serviceTime))
+      || (!secondHub && (!selectedArea || !hotel)) || (serviceTime && !/^([01]\d|2[0-3]):[0-5]\d$/.test(serviceTime))
       )) {
       setError(zh ? "请确认交通枢纽、接送方向、地址和服务时间。" : "Please confirm the hub, direction, address and service time.");
+      setStatus("error"); return;
+    }
+    if (isKunmingTest && ![fiveSeat, sevenSeat].includes(vehicle)) {
+      setError(zh ? "US$1 测试只支持5座和7座；更大车型请单独询价。" : "The US$1 test only supports five-seat and seven-seat vehicles.");
       setStatus("error"); return;
     }
     if (isIntercity && !service?.routes?.some(r => r.value === direction)) {
@@ -356,13 +365,13 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       "Pickup: " + pickup,
       "Drop-off: " + dropoff,
       "Vehicle requested: " + vehicle,
-      guidePrice === undefined ? "Price: manual quote" : "Online guide price: RMB " + guidePrice + " per vehicle",
+      isKunmingTest ? "Sandbox test price: USD 1.00 (not a real quote)" : guidePrice === undefined ? "Price: manual quote" : "Online guide price: RMB " + guidePrice + " per vehicle",
       "Passengers: " + adults + " adults, " + children + " children",
       "Large suitcases: " + luggage,
       "Duration: " + days,
       "Stops / day plan: " + route,
       "Requirements: " + notes,
-      "Status: enquiry only; no price, vehicle or payment confirmed",
+      isKunmingTest ? "Status: PREVIEW sandbox US$1 checkout; no real booking" : "Status: enquiry only; no price, vehicle or payment confirmed",
       "Source page: " + window.location.href,
     ].join("\n").slice(0, 2900);
     const payload = {
@@ -443,10 +452,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
   </div>;
 
   return <form className="contact-form driver-form" onSubmit={submit} onChange={event => {
-    if (isKunmingTest && status === "review" && !(event.target instanceof Element && event.target.closest(".driver-form-success"))) {
-      setStatus("idle"); setPaymentReview(null); setTestTermsAccepted(false);
-      idRef.current = null; leadRef.current = null; submissionKey.current = null;
-    }
+    if (isKunmingTest && !(event.target instanceof Element && event.target.closest(".driver-form-success"))) invalidateReview();
   }} onFocus={() => {
     if (!startedRef.current) {
       startedRef.current = true;
@@ -460,15 +466,15 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       : (zh ? "选择路线选项并发送需求。车辆和总价核实后才安排付款，此表单不收取费用。" : "Select your options and request a quote. We check vehicle availability and total cost before arranging payment; this form is free.")}</p>
     {transfer ? <>
       <div className="contact-field-row">
-        <DriverDropdown name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { setHubId(value); setArrivalDirection(""); setHotelArea(""); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
-        <DriverDropdown name="direction" label={zh ? "接送方向 *" : "Transfer direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required value={arrivalDirection} onValueChange={setArrivalDirection} options={[{ value: "pickup", label: pickupLabel }, { value: "dropoff", label: dropoffLabel }]} />
+        <DriverDropdown name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { invalidateReview(); setHubId(value); setArrivalDirection(""); setHotelArea(""); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
+        <DriverDropdown name="direction" label={zh ? "接送方向 *" : "Transfer direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required value={arrivalDirection} onValueChange={value => { invalidateReview(); setArrivalDirection(value); }} options={[{ value: "pickup", label: pickupLabel }, { value: "dropoff", label: dropoffLabel }]} />
       </div>
       {serviceId === "kunming-arrival" && hubId === "kmg" ? <label className="driver-form-consent">
         <input type="checkbox" checked={stationTransfer} onChange={event => setStationTransfer(event.target.checked)} />
         <span>{zh ? "长水机场与昆明南站直达" : "Direct transfer between Changshui Airport and Kunming South Railway Station"}</span>
       </label> : null}
       {!secondHub ? <div className="contact-field-row">
-        <DriverDropdown name="hotelArea" label={zh ? "酒店所在区域 *" : "Hotel area *"} placeholder={zh ? "选择酒店区域" : "Select hotel area"} required value={hotelArea} onValueChange={setHotelArea} options={transfer.areas.map(area => ({ value: area.value, label: area[locale] }))} />
+        <DriverDropdown name="hotelArea" label={zh ? "酒店所在区域 *" : "Hotel area *"} placeholder={zh ? "选择酒店区域" : "Select hotel area"} required value={hotelArea} onValueChange={value => { invalidateReview(); setHotelArea(value); }} options={transfer.areas.map(area => ({ value: area.value, label: area[locale] }))} />
         <label><span>{zh ? "酒店名称或详细地址 *" : "Hotel name / full address *"}</span><input type="text" name="hotel" required maxLength={150} placeholder={zh ? "填写酒店名称或完整地址" : "Hotel name or full address"} /></label>
       </div> : null}
       {isLijiangArrival && hotelArea === "oldtown" ? <p className="driver-area-hint">{zh
@@ -523,10 +529,10 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
             ? (zh ? "请填写希望司机到酒店或约定古城入口接您的时间。" : "Enter the time you would like the driver to meet you at the hotel or agreed Old Town entrance.")
             : (zh ? "请填写希望司机到酒店接您的时间。" : "Enter the time you would like the driver to pick you up at the hotel.")}</small>
       </div> : null}
-      <DriverDropdown name="vehicle" label={zh ? "车型需求 *" : "Vehicle preference *"} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={setVehicle} options={[
+      <DriverDropdown name="vehicle" label={zh ? "车型需求 *" : "Vehicle preference *"} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={value => { invalidateReview(); setVehicle(value); }} options={[
         { value: fiveSeat, label: zh ? "标准5座车（建议1–3人）" : "Five-seat car (1–3 recommended)" },
         { value: sevenSeat, label: zh ? "7座商务车" : "Seven-seat MPV" },
-        { value: "Larger vehicle - quote required", label: zh ? "更大车型（需另行报价）" : "Larger vehicle (custom quote)" },
+        ...(!isKunmingTest ? [{ value: "Larger vehicle - quote required", label: zh ? "更大车型（需另行报价）" : "Larger vehicle (custom quote)" }] : []),
       ]} />
     </div>
     {isArrival ? <p className="driver-area-hint">{zh
@@ -560,7 +566,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       <p className="kicker">PREVIEW · STRIPE TEST MODE</p>
       <h3>{zh ? "确认接送信息与付款金额" : "Confirm Transfer Details & Amount"}</h3>
       <p><strong>{zh ? "路线：" : "Route: "}</strong>{paymentReview.route}</p>
-      <p><strong>{zh ? "日期与时间：" : "Date & time: "}</strong>{paymentReview.date} · {paymentReview.time} (China time)</p>
+      <p><strong>{zh ? "日期与时间：" : "Date & time: "}</strong>{paymentReview.date} · {paymentReview.time}{paymentReview.time === "To be confirmed" || paymentReview.time === "待补充" ? "" : " (China time)"}</p>
       <p><strong>{zh ? "车型：" : "Vehicle: "}</strong>{paymentReview.vehicle}</p>
       {paymentReview.transportNumber && <p><strong>{transportLabel}: </strong>{paymentReview.transportNumber}</p>}
       {paymentReview.notes && <p><strong>{zh ? "备注：" : "Notes: "}</strong>{paymentReview.notes}</p>}
@@ -610,7 +616,7 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
       const link = event.target instanceof Element && event.target.closest('a[href="#driver-quote-form"]');
       if (!link) return;
       event.preventDefault();
-      setSelected(current => link.hasAttribute("data-custom-driver-quote") ? "custom" : current ?? "custom");
+      setSelected("custom");
       scrollToForm();
     };
     openFromHash();
