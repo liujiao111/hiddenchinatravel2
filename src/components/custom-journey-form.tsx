@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { journeyBudgets, journeyComfort, journeyInterests } from "@/lib/custom-journey-enquiry";
 import { siteConfig } from "@/lib/site-config";
 import { generateLeadId } from "@/lib/whatsapp";
-import { createFormTracking } from "@/lib/lead-ref";
+import { createFormTracking } from "@/lib/lead-ref-client";
 import { JourneyPlaceSelection, useJourneyInspiration } from "@/components/journey-inspiration-context";
 import { trackEvent } from "@/lib/analytics";
 
