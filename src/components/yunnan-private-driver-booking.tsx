@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef, useState, type FormEvent } from "react";
 import { getAttribution } from "@/lib/attribution";
 import { generateLeadId } from "@/lib/whatsapp";
-import { createFormTracking } from "@/lib/lead-ref";
+import { createFormTracking } from "@/lib/lead-ref-client";
 import { trackEvent } from "@/lib/analytics";
 import { LocaleLink as Link } from "@/components/locale-link";
 
