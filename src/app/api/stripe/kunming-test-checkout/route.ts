@@ -3,7 +3,7 @@ import { parseCustomJourneyEnquiry } from "@/lib/custom-journey-enquiry";
 import { parseAirportTransfer } from "@/lib/driver-airport-transfers";
 import { driverOrderAccess, driverOrdersEnabled, saveDriverRequest, updateDriverOrder } from "@/lib/driver-orders.mjs";
 import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
-import { getStripeTestClient, isKunmingStripePreviewEnabled } from "@/lib/stripe-test";
+import { getStripeTestClient, getDriverTestPaymentLink, isKunmingStripePreviewEnabled } from "@/lib/stripe-test";
 
 export const runtime = "nodejs";
 
@@ -53,7 +53,10 @@ export async function POST(request: NextRequest) {
   if (!transfer) return Response.json({ error: "Check the route, date, pickup time, flight or train number, and luggage." }, { status: 400, headers: jsonHeaders });
 
   const stripe = getStripeTestClient();
-  if (!stripe) return Response.json({ error: "Stripe test key is missing." }, { status: 503, headers: jsonHeaders });
+  const paymentLink = getDriverTestPaymentLink();
+  if (!stripe && !paymentLink) {
+    return Response.json({ error: "Stripe sandbox Checkout is not configured for this Preview." }, { status: 503, headers: jsonHeaders });
+  }
 
   const source = prepareFormRecord(body.tracking, `https://hiddenchinatravel.com/${locale}/yunnan-private-driver`, "yunnan_driver_test_booking", enquiry.requestId, "kunming-arrival");
   const summary = {
@@ -75,6 +78,27 @@ export async function POST(request: NextRequest) {
     }
     if (checkout) return Response.json({ error: "The previous test checkout expired. Please start a new booking." }, { status: 409, headers: jsonHeaders });
 
+    if (!stripe && paymentLink) {
+      const url = new URL(paymentLink.toString());
+      url.searchParams.set("client_reference_id", enquiry.requestId);
+      const linked = await updateDriverOrder(enquiry.requestId, current => current.testCheckout ? current : ({
+        ...current, testCheckout: {
+          status: "pending_payment", amount: 100, currency: "usd",
+          paymentMethod: "test_payment_link", url: url.toString(),
+          expiresAt: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
+        },
+      }));
+      if (!linked?.testCheckout || linked.testCheckout.url !== url.toString()) {
+        return Response.json({ error: "Could not link this sandbox payment to the order." }, { status: 503, headers: jsonHeaders });
+      }
+      await saveFormRecord(source);
+      return Response.json({
+        url: url.toString(), orderPath: `/driver-order/${driverOrderAccess(enquiry.requestId)}`,
+        ref: source.ref, orderId: enquiry.requestId,
+      }, { headers: jsonHeaders });
+    }
+
+    if (!stripe) return Response.json({ error: "Stripe is not configured." }, { status: 503, headers: jsonHeaders });
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       client_reference_id: enquiry.requestId,
