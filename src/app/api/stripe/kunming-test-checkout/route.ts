@@ -112,8 +112,8 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Only Kunming airport and station transfers are enabled for this test." }, { status: 400, headers: jsonHeaders });
   }
   const locale = orderInput.locale;
-  const transfer = parseAirportTransfer(inputTransfer, enquiry.travelTiming, enquiry.adults, enquiry.children, locale);
-  if (!transfer) return Response.json({ error: "Check the route, date, pickup time, flight or train number, and luggage." }, { status: 400, headers: jsonHeaders });
+  const transfer = parseAirportTransfer(inputTransfer, enquiry.travelTiming, enquiry.adults, enquiry.children, locale, { allowPendingArrivalDetails: true });
+  if (!transfer) return Response.json({ error: "Check the route, date, passengers, vehicle and luggage." }, { status: 400, headers: jsonHeaders });
 
   const stripe = getStripeTestClient();
   const paymentLink = getDriverTestPaymentLink();
