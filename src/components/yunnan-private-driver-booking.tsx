@@ -613,6 +613,6 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
         </div> : null}
       </div>
     </div>
-  {selected !== "custom" && stripeTestCheckoutEnabled && !airportTransferCatalog[selected] ? <DriverStripeTestCheckout locale={locale} productId={selected} /> : null}
+  {selected && selected !== "custom" && stripeTestCheckoutEnabled && !airportTransferCatalog[selected] ? <DriverStripeTestCheckout locale={locale} productId={selected} /> : null}
 </section>;
 }
