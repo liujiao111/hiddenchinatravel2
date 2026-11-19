@@ -120,13 +120,13 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
   return <main className="driver-page">
     <SiteHeader cta={{href:"#standard-transfers",label:T("View Driver Services","查看包车服务"),location:"driver_header"}} searchPlaceholder="Yunnan private driver" />
     <JourneyHero
-      title={T("Explore Yunnan with a Private Driver", "云南私人包车与司机服务")}
+      title={T("Private Drivers in Yunnan — Flexible Routes & Local Support", "云南私人包车｜灵活路线与本地服务支持")}
       eyebrow={T("PRIVATE CAR & DRIVER SERVICE", "云南私人交通服务")}
       image="/home/hero.webp"
       imageAlt={T("Jade Dragon Snow Mountain in Yunnan", "云南玉龙雪山")}
-      description={T("Airport and station pickups, city-to-city transfers, private day trips and multi-day routes with a local driver and English-language support.", "机场车站接送、跨城用车、周边一日游和多日包车。由当地司机接送，我们协助英文沟通。")}
-      primary={{ href: "#standard-transfers", label: T("View Private Driver Services", "查看包车服务") }}
-      secondary={{ href: "#custom-routes", label: T("See How It Works", "了解包车服务") }}
+      description={T("Travel between Kunming, Dali, Lijiang and Shangri-La with your own private vehicle and local driver. From airport pickups to scenic road trips, we help check your route, match a suitable car and coordinate in English.", "从昆明、大理、丽江到香格里拉，安排专属车辆与当地司机。无论机场接送还是多日自驾式旅行，我们协助核实路线、匹配车型，并提供英文沟通协调。")}
+      primary={{ href: "#standard-transfers", label: T("Explore Routes & Prices", "查看路线与参考价") }}
+      secondary={{ href: "#multi-day-driver", label: T("Plan a Multi-Day Road Trip", "规划多日包车路线") }}
       note={T("We confirm the vehicle, route and total price before payment.", "先确认车型、路线和总价，再安排付款。")}
     />
 
@@ -151,6 +151,18 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     ]}>
       <a href="#driver-quote-form" data-custom-driver-quote>{T("Request a Custom or Multi-Day Quote", "申请定制路线或多日包车报价")} →</a>
     </JourneyFactCards>
+
+    <section className="driver-section driver-section-soft" id="multi-day-driver">
+      <div className="shell">
+        <div className="driver-section-head">
+          <p className="kicker">{T("CUSTOM & MULTI-DAY ROUTES", "定制路线与多日包车")}</p>
+          <h2>{T("Already Have a Yunnan Road Trip in Mind?", "已有云南自驾式旅行路线？")}</h2>
+          <p>{T("Share your travel dates, route, group size and luggage. We'll check road conditions and driver availability, recommend a suitable vehicle and prepare a written quote. No payment is needed to enquire.", "告诉我们出行日期、路线、人数和行李数量。我们会核实路况与车源、推荐合适车型，并提供书面报价。提交询价无需付款。")}</p>
+          <p>{T("Remote mountain routes and additional sightseeing stops are confirmed individually.", "偏远山区路线和额外观光停靠需逐项核实后确认。")}</p>
+          <a className="button button-blue" href="#driver-quote-form" data-custom-driver-quote>{T("Get a Custom Driver Quote", "获取定制包车报价")}</a>
+        </div>
+      </div>
+    </section>
 
     <StandardTransferSection locale={lang} stripeTestCheckoutEnabled={stripeTestCheckoutEnabled} />
 
