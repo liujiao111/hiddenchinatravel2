@@ -11,7 +11,6 @@ import { localizedStaticMetadata, localeUrl, type AppLocale } from "@/lib/i18n-s
 import { licensedOperator } from "@/lib/journey-trust";
 import { siteConfig } from "@/lib/site-config";
 import { StandardTransferSection } from "@/components/yunnan-private-driver-booking";
-import { isDriverStripeTestEnabled } from "@/lib/stripe-test";
 import "./yunnan-private-driver.css";
 
 type Props = { params: Promise<{ lang: AppLocale }> };
@@ -72,7 +71,6 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
   const { lang } = await params;
   setRequestLocale(lang);
   const zh = lang === "zh";
-  const stripeTestCheckoutEnabled = isDriverStripeTestEnabled();
   const T = (en: string, cn: string) => zh ? cn : en;
   const heading = (kicker: string, en: string, cn: string, introEn?: string, introCn?: string) => <div className="driver-section-head"><p className="kicker">{kicker}</p><h2>{T(en, cn)}</h2>{introEn ? <p>{T(introEn, introCn || introEn)}</p> : null}</div>;
   const coverage = [
@@ -146,7 +144,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </section>
 
-    <StandardTransferSection locale={lang} stripeTestCheckoutEnabled={stripeTestCheckoutEnabled} />
+    <StandardTransferSection locale={lang} />
 
     <section className="driver-section driver-section-soft" id="inclusions">
       <div className="shell">
