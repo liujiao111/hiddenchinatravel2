@@ -27,3 +27,53 @@ Driver requests are saved to a private Vercel Blob store when `BLOB_READ_WRITE_T
 For local staff commands load the same storage token, set `DRIVER_ORDER_ENV=preview` (or `production`) and set `DRIVER_ORDER_SITE_URL` to that environment's site URL. Use the existing request UUID as `orderId` in the quote file. The Checkout script attaches the quote and payment link to the guest order. The Stripe webhook verifies the Checkout session and updates the paid amount before sending a notification. Send the guest a message when the quote is ready.
 
 After verifying the initial payment and allocating the vehicle, run `node scripts/confirm-driver-pickup.mjs <order-id> <pickup.json>`. The file contains `pickup` (time, time zone, and meeting point) and `driver` (name, plate, and contact number). This publishes the pickup details on the guest's private page.
+
+## Kunming Airport & Railway Station: complete USD 1 Preview checkout
+
+This experiment exists **only** on `feat/driver-stripe-preview-integration` when
+`VERCEL_ENV=preview` and `VERCEL_GIT_COMMIT_REF` matches the branch. It does not
+modify real RMB guide fares or production orders. The Kunming card shows USD 1
+for either vehicle type in this Preview. Other product cards/forms still only
+request quotes.
+
+Workflow: choose Kunming transfer → fill required hub, direction, address (or
+airport→South Station), date/time, flight/train information for pickups,
+passengers, luggage and contact → review the saved choices, amount and
+sandbox-only consent → POST `/api/stripe/kunming-test-checkout` → server
+validates the entire form again, persists a private order in Vercel Blob,
+creates a USD 1 Stripe **test-mode** Checkout Session with the order UUID in
+`client_reference_id`, returns the session URL → Stripe redirects to
+`/{lang}/payment-success` → a signed webhook verifies amount/currency/order
+and marks `paid.test` in Blob → private `/driver-order/{access}` displays
+order details, HCT Ref, and the webhook-confirmed status.
+
+**Required Vercel environment variables for this Git branch only:**
+
+- `STRIPE_DRIVER_TEST_CHECKOUT_ENABLED=true` (set; Preview branch-scoped)
+- `STRIPE_SECRET_KEY=sk_test_...` (must be supplied from Stripe test mode;
+  never commit the key; Preview branch-scoped)
+- `STRIPE_WEBHOOK_SECRET=whsec_...` (signing secret from the **test-mode**
+  Stripe webhook destination for this Preview URL; Preview branch-scoped)
+- `BLOB_READ_WRITE_TOKEN` (existing private Blob storage token; do not place
+  it in the client)
+- `DRIVER_ORDER_LINK_SECRET` (set; random sensitive value, Preview branch-scoped)
+- `RESEND_API_KEY`, `CUSTOM_JOURNEY_FROM_EMAIL` (already shared; only used
+  for an optional payment notification, never to decide if the order is paid)
+
+Register the deployment's `https://<preview-domain>/api/stripe/webhook` as a
+Stripe **test** destination for `checkout.session.completed` and
+`checkout.session.async_payment_succeeded`, then put that destination's
+`whsec_` into the branch variable. Redeploy after changing environment
+variables. With no `sk_test_` key the experiment is hidden rather than
+displaying a checkout that cannot work. A static Stripe Payment Link cannot
+be used for this order-bound Checkout workflow.
+
+**Expected checks:** submit valid transfer, verify review details and $1,
+open checkout, pay with a Stripe test card, return to success page, verify
+order ID / Ref and `paid.test` from the signed webhook, refresh private order
+link, verify amount USD 1 and no real booking. Cancel checkout: the order
+must remain unpaid. Duplicate webhook: no duplicate paid amount. Invalid
+product / forged amount / production request: payment endpoint must reject.
+
+**Important:** A successful sandbox payment never reserves a vehicle or
+constitutes a live deposit. Do not connect the order to real fulfillment.
