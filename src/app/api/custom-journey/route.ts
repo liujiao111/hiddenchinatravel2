@@ -1,7 +1,7 @@
 import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
 import { createHash } from "node:crypto";
 import { parseAirportTransfer } from "@/lib/driver-airport-transfers";
-import { driverOrderAccess, driverOrdersEnabled, saveDriverRequest } from "@/lib/driver-orders.mjs";
+import { driverOrderAccess, driverOrdersEnabled, saveDriverRequest, updateDriverOrder } from "@/lib/driver-orders.mjs";
 import { enquiryEmailText, parseCustomJourneyEnquiry } from "@/lib/custom-journey-enquiry";
 
 export const runtime = "nodejs";
@@ -77,6 +77,68 @@ export async function POST(request: Request) {
     const response = await result.json();
     if (!result.ok || typeof response.id !== "string") return Response.json({ error: "We could not send your enquiry. Please try again or contact Joy below." }, { status: 502 });
     await saveFormRecord(formRecord);
-    return Response.json({ success: true, ref: formRecord.ref, orderPath }, { headers: { "Cache-Control": "no-store" } });
+    // Send an acknowledgement of the enquiry, NOT a vehicle or payment confirmation.
+    // This applies only to driver requests with a customer email; other journey forms are unchanged.
+    let acknowledgement = "not_requested";
+    if (formName.startsWith("yunnan_driver_") && enquiry.email) {
+      try {
+        const zh = locale === "zh";
+        const emailText = [
+          zh ? `你好，${enquiry.name}：` : `Hello ${enquiry.name},`,
+          "",
+          zh ? "我们已收到你的云南私人包车咨询，正在核实车辆和路线。" :
+            "We received your Yunnan private driver request. We're checking route details and vehicle availability.",
+          zh ? "提交咨询不等于车辆预订成功；我们不会在确认车源、价格及条款前要求付款。" :
+            "This is an enquiry, not a confirmed booking. There is no payment due until the vehicle, price and terms are confirmed.",
+          "",
+          `${zh ? "咨询编号" : "Enquiry reference"}: ${enquiry.requestId}`,
+          `${zh ? "来源 Ref" : "HCT Ref"}: ${formRecord.ref}`,
+          `${zh ? "服务" : "Service"}: ${typeof driverOrder?.service === "string" ? driverOrder.service.slice(0,100) : "Private driver"}`,
+          `${zh ? "服务日期" : "Date"}: ${enquiry.travelTiming}`,
+          `${zh ? "人数" : "Travellers"}: ${enquiry.adults + enquiry.children}`,
+          ...(orderUrl ? [`${zh ? "查看申请" : "View your request"}: ${orderUrl}`] : []),
+          "",
+          zh ? "如尚未确认航班号、车次或具体接客时间，可在确认安排前补充。" :
+            "You can share your flight or train number and exact pickup time later.",
+          zh ? "Hidden China Travel · 本邮件仅用于回复本次咨询。" : "Hidden China Travel · Reply to this email about this enquiry only.",
+        ].join("\n");
+        const ack = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json",
+            "Idempotency-Key": `driver-enquiry-ack-${enquiry.requestId}`,
+          },
+          body: JSON.stringify({
+            from, to: [enquiry.email], reply_to: to,
+            subject: zh ? "已收到你的云南私人包车咨询｜Hidden China Travel" : "Your private driver enquiry — Hidden China Travel",
+            text: emailText,
+          }),
+          signal: AbortSignal.timeout(8000),
+        });
+        if (ack.ok) {
+          acknowledgement = "accepted";
+          const response = await ack.json() as { id?: string };
+          if (orderPath && driverOrdersEnabled()) {
+            try {
+              await updateDriverOrder(enquiry.requestId, current => ({
+                ...current,
+                notifications: { ...current.notifications, enquiryAcknowledgement: {
+                  resendId: response.id || "", acceptedAt: new Date().toISOString(),
+                } },
+              }));
+            } catch {
+              console.error("[driver-enquiry] Acknowledgement accepted, order marker not saved");
+            }
+          }
+        } else {
+          acknowledgement = "failed";
+          console.error("[driver-enquiry] Guest acknowledgement rejected", { status: ack.status });
+        }
+      } catch {
+        acknowledgement = "failed";
+        console.error("[driver-enquiry] Guest acknowledgement unavailable");
+      }
+    }
+    return Response.json({ success: true, ref: formRecord.ref, orderPath, acknowledgement }, { headers: { "Cache-Control": "no-store" } });
   } catch { return Response.json({ error: "We could not send your enquiry. Your details are still here; please try again or contact Joy below." }, { status: 502 }); }
 }
