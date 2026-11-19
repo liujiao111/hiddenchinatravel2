@@ -5,6 +5,8 @@ import { useRef, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { journeyBudgets, journeyComfort, journeyInterests } from "@/lib/custom-journey-enquiry";
 import { siteConfig } from "@/lib/site-config";
+import { generateLeadId } from "@/lib/whatsapp";
+import { createFormTracking } from "@/lib/lead-ref";
 import { JourneyPlaceSelection, useJourneyInspiration } from "@/components/journey-inspiration-context";
 import { trackEvent } from "@/lib/analytics";
 
@@ -15,6 +17,7 @@ export function CustomJourneyForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const requestId = useRef<string | null>(null);
+  const refId = useRef<string | null>(null);
   const started = useRef(false);
 
   const interestLabels = t.raw("interestLabels") as Record<string, string>;
@@ -26,12 +29,13 @@ export function CustomJourneyForm() {
     if (status === "sending") return;
     const data = new FormData(event.currentTarget);
     requestId.current ??= crypto.randomUUID();
+    refId.current ??= generateLeadId();
     const fields = Object.fromEntries(["name", "email", "whatsapp", "travelTiming", "tripLength", "destinations", "budget", "comfort", "notes", "website"].map(key => [key, String(data.get(key) || "")]));
     fields.destinations = [fields.destinations, ...selected].filter(Boolean).join("; ");
     setStatus("sending");
     setMessage("");
     try {
-      const response = await fetch("/api/custom-journey", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...fields, adults: Number(data.get("adults")), children: Number(data.get("children")), interests: data.getAll("interests"), consent: data.get("consent") === "on", requestId: requestId.current }) });
+      const response = await fetch("/api/custom-journey", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...fields, adults: Number(data.get("adults")), children: Number(data.get("children")), interests: data.getAll("interests"), consent: data.get("consent") === "on", requestId: requestId.current, tracking: createFormTracking(refId.current, "custom_journey_enquiry") }) });
       const result = await response.json();
       if (!response.ok || result.success !== true) throw new Error(result.error || t("sendError"));
       setStatus("success");
