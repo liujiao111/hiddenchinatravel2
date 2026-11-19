@@ -1,6 +1,7 @@
 "use client";
 
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, generateLeadId } from "@/lib/whatsapp";
+import { createFormTracking } from "@/lib/lead-ref-client";
 import { useEffect, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { scheduleScrollToEnquire, scrollToEnquire } from "@/components/enquire-link";
@@ -41,7 +42,9 @@ export function ContactForm() {
     setError("");
     setWhatsappHref(whatsappUrl);
 
+    const formRef = generateLeadId();
     const analyticsParams = {
+      lead_id: formRef,
       form_name: "trip_planning_contact",
       travel_window: parsed.travelWindow,
       interest: parsed.interest,
@@ -55,7 +58,7 @@ export function ContactForm() {
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...parsed, allowEmptyPlans: true }),
+        body: JSON.stringify({ ...parsed, allowEmptyPlans: true, tracking: createFormTracking(formRef, "trip_planning_contact") }),
       });
       const result = await response.json().catch(() => ({ error: t("sendError") }));
 

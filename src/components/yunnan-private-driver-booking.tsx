@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useRef, useState, type FormEvent } from "react";
 import { getAttribution } from "@/lib/attribution";
+import { generateLeadId } from "@/lib/whatsapp";
+import { createFormTracking } from "@/lib/lead-ref-client";
 import { trackEvent } from "@/lib/analytics";
 import { LocaleLink as Link } from "@/components/locale-link";
 
@@ -146,6 +148,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const idRef = useRef<string | null>(null);
+  const leadRef = useRef<string | null>(null);
   const startedRef = useRef(false);
   const service = products.find(p => p.id === serviceId);
   const isArrival = service?.category === "arrival";
@@ -206,6 +209,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const days = kind === "custom" ? String(values.get("days") || "") : isDay ? "1 day / 9 hours" : "1 transfer";
     const serviceName = service?.en || "Custom & Multi-Day Driver";
     idRef.current ??= crypto.randomUUID();
+    leadRef.current ??= generateLeadId();
     const detail = [
       "PRODUCT ID: " + (service?.id || "custom-multi-day"),
       "CATEGORY: " + (service?.category || "custom"),
@@ -236,6 +240,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       consent: values.get("consent") === "yes",
       attribution: getAttribution(), conversionPage: window.location.pathname,
       requestId: idRef.current,
+      tracking: createFormTracking(leadRef.current, formName, service?.id || "custom-multi-day"),
     };
     setStatus("sending"); setError("");
     try {
@@ -246,7 +251,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         form_name: formName, lead_type: kind === "custom" ? "private_driver_custom" : "private_driver_product",
         product_id: service?.id || "custom-multi-day", service_category: service?.category || "custom",
         service_direction: direction || undefined, hotel_area: hotelArea || undefined, vehicle_requested: vehicle,
-        event_id: idRef.current, page_path: window.location.pathname,
+        event_id: idRef.current, lead_id: leadRef.current || undefined, page_path: window.location.pathname,
       });
       setStatus("success");
     } catch (caught) {

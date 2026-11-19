@@ -1,4 +1,4 @@
-import { findWhatsAppSource, parseWhatsAppSource, saveWhatsAppSource } from "@/lib/whatsapp-ref-store";
+import { findWhatsAppSource, parseWhatsAppSource, parsePassiveSource, saveWhatsAppSource } from "@/lib/whatsapp-ref-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,7 +32,9 @@ export async function POST(request: Request) {
   } catch {
     return json("Invalid JSON", 400);
   }
-  const record = parseWhatsAppSource(data);
+  const record = parseWhatsAppSource(data) && data && typeof data === "object" && !("status" in data)
+    ? parseWhatsAppSource(data)
+    : parsePassiveSource(data);
   if (!record) return json("Invalid reference or attribution", 400);
   try {
     await saveWhatsAppSource(record);

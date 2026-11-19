@@ -10,7 +10,12 @@ const MAX_BLOB_BYTES = 12_000;
 
 export type SavedWhatsAppSource = {
   ref: string;
-  status: "whatsapp_click_unconfirmed";
+  status: "whatsapp_click_unconfirmed" | "form_submitted" | "qr_view" | "qr_download" | "wechat_id_copy" | "qr_link_open";
+  channel?: "whatsapp" | "wechat" | "form";
+  form_name?: string;
+  form_submission_id?: string;
+  product_id?: string;
+  parent_ref?: string;
   captured_at: string;
   conversion_page: string;
   conversion_url: string;
@@ -98,6 +103,20 @@ export function parseWhatsAppSource(input: unknown): SavedWhatsAppSource | null 
     whatsapp_location: str(data.whatsapp_location, 80),
     first: touch(data.first), last: touch(data.last), session: touch(data.session),
   };
+}
+
+// Other lead events use the same private encrypted record format and Ref.
+// The public click receiver may record only passive interactions; the two form
+// APIs alone may claim a successful submission after Resend accepts it.
+export function parsePassiveSource(input: unknown): SavedWhatsAppSource | null {
+  const base = parseWhatsAppSource(input);
+  if (!base || !input || typeof input !== "object") return null;
+  const data = input as Record<string, unknown>;
+  const status = data.status;
+  if (status !== "qr_view" && status !== "qr_download" && status !== "wechat_id_copy") return null;
+  const channel = data.channel === "wechat" ? "wechat" : data.channel === "whatsapp" ? "whatsapp" : null;
+  if (!channel || (status === "wechat_id_copy" && channel !== "wechat")) return null;
+  return { ...base, status, channel };
 }
 
 function credentials() {

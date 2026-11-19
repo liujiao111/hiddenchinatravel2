@@ -3,6 +3,8 @@
 import { useRef, useState, useEffect, type FormEvent } from "react";
 import { EnquirySelect } from "@/components/enquiry-select";
 import { getAttribution } from "@/lib/attribution";
+import { generateLeadId } from "@/lib/whatsapp";
+import { createFormTracking } from "@/lib/lead-ref-client";
 import { trackEvent } from "@/lib/analytics";
 
 const partyOptions = [
@@ -25,6 +27,7 @@ export function PreviewEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
   const [error, setError] = useState("");
   const [replyChannel, setReplyChannel] = useState<"whatsapp" | "email">("whatsapp");
   const idRef = useRef<string | null>(null);
+  const leadRef = useRef<string | null>(null);
   const startedRef = useRef(false);
 
   useEffect(() => {
@@ -42,6 +45,7 @@ export function PreviewEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
     if (status === "sending" || status === "success") return;
     const form = new FormData(event.currentTarget);
     idRef.current ??= crypto.randomUUID();
+    leadRef.current ??= generateLeadId();
     const partyLabel = String(form.get("partyRange") || "");
     const days = String(form.get("tripLength") || "");
     const travelers = partyOptions.find(x => x.label === partyLabel)?.count ?? 2;
@@ -75,6 +79,7 @@ export function PreviewEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
       website: String(form.get("website") || ""),
       consent: form.get("consent") === "yes",
       requestId: idRef.current,
+      tracking: createFormTracking(leadRef.current, "private_yunnan_enquiry"),
     };
     setStatus("sending");
     setError("");
@@ -89,7 +94,7 @@ export function PreviewEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
       trackEvent("generate_lead", {
         form_name: "custom_journey_enquiry",
         lead_type: "tailor_made_journey",
-        lead_id: idRef.current || undefined,
+        lead_id: leadRef.current || undefined,
         page_path: window.location.pathname,
         event_id: idRef.current || undefined,
       });

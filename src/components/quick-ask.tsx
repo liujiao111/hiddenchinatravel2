@@ -1,6 +1,7 @@
 "use client";
 
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, generateLeadId } from "@/lib/whatsapp";
+import { createFormTracking } from "@/lib/lead-ref-client";
 import { useEffect, useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { budgetBands, isQuoteReady, parseEnquiry, partySizes, travelWindows, type Enquiry } from "@/lib/enquiry";
@@ -111,12 +112,13 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
     setError("");
     setWhatsappHref(whatsappUrl);
     const eventId = newAnalyticsEventId();
+    const formRef = generateLeadId();
 
     try {
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed),
+        body: JSON.stringify({ ...parsed, tracking: createFormTracking(formRef, "quick_ask") }),
       });
       const result = await response.json().catch(() => ({ error: t("sendError") }));
       if (!response.ok) {
@@ -128,6 +130,7 @@ export function QuickAsk({ source, sourceTitle, intent, id = "ask-joy", layout =
       setStatus("success");
       trackEvent("generate_lead", {
         form_name: "quick_ask",
+        lead_id: formRef,
         interest: parsed.interest,
         travel_window: parsed.travelWindow || "not_provided",
         quote_ready: isQuoteReady(parsed),

@@ -1,3 +1,4 @@
+import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
 import { Resend } from "resend";
 import { enquiryEmailText, enquirySubject, parseEnquiry } from "@/lib/enquiry";
 import { siteConfig } from "@/lib/site-config";
@@ -22,13 +23,18 @@ export async function POST(request: Request) {
     return Response.json({ error: parsed.error }, { status: 400 });
   }
 
-  const text = enquiryEmailText(parsed);
+  // A successful enquiry gets a Ref even for legacy/no-JS clients.
+  const tracking = body.tracking && typeof body.tracking === "object" ? body.tracking as Record<string, unknown> : {};
+  const formName = ["trip_planning_contact", "quick_ask"].includes(String(tracking.form_name || "")) ? String(tracking.form_name) : "contact_enquiry";
+  const fallbackUrl = parsed.source.startsWith("https://hiddenchinatravel.com/") ? parsed.source : "https://hiddenchinatravel.com/contact";
+  const formRecord = prepareFormRecord(tracking, fallbackUrl, formName);
+  const text = "Ref: " + formRecord.ref + "\n\n" + enquiryEmailText(parsed);
   const key = process.env.RESEND_API_KEY;
 
   if (!key) {
     if (process.env.NODE_ENV !== "production") {
       console.info("[enquiry]\n", text);
-      return Response.json({ ok: true });
+      return Response.json({ ok: true, ref: formRecord.ref });
     }
     console.error("[enquiry] RESEND_API_KEY is not configured.");
     return Response.json({ error: "Enquiry email is temporarily unavailable. Please use WhatsApp instead." }, { status: 503 });
@@ -65,5 +71,6 @@ export async function POST(request: Request) {
     return Response.json({ error: "We could not send this just now. Please try WhatsApp." }, { status: 502 });
   }
 
-  return Response.json({ ok: true });
+  await saveFormRecord(formRecord);
+  return Response.json({ ok: true, ref: formRecord.ref });
 }
