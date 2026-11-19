@@ -108,3 +108,24 @@ make a fresh US$1 sandbox checkout. The previous
 scoped to that old branch; copying the Payment Link alone does not make the
 new Webhook work. Without the signed, accessible Webhook, a completed
 Stripe payment does not trigger the order's payment-confirmation email.
+
+### Checkout-start email fallback (Preview, Kunming only)
+
+As of the current Preview test, the sandbox booking API sends a **payment
+pending / test order created** email with UUID, HCT Ref, date, route, amount
+US$1, guest details and a private order URL, using the existing Resend account.
+It is triggered before redirecting to Stripe, does not require Stripe's
+Webhook, does not claim money was received, and stores
+`notifications.checkoutEmail` only after Resend accepts the message.
+`notifications.paymentEmail` is a **different** status which only changes
+after an authenticated Stripe paid event. This avoids completely silent
+checkout enquiries when Webhook setup is pending.
+
+The Preview branch currently has **no `STRIPE_WEBHOOK_SECRET`** in Vercel;
+the only configured variable is sensitive and scoped to
+`codex/stripe-driver-test`. In addition, Preview is protected by Vercel SSO.
+To finish the actual paid-email flow, configure the new branch's test
+Webhook destination and its accessible protected URL; do not just repeat
+Stripe payments, and do not interpret the pending-order email as evidence
+of successful payment. Previous completed payments are not retroactively
+notified by deploying this change.
