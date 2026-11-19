@@ -97,30 +97,12 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     T("Unplanned sightseeing or major route changes", "临时观光停靠或重大路线变更"),
     T("Overtime beyond the complimentary 30 minutes", "超过免费延时30分钟的费用")
   ];
-  const whys: Pair[] = [
-    ["One English-speaking contact", "一位英文沟通联系人"],
-    ["Route checked before confirmation", "车源与线路提前核实"],
-    ["Clear service conditions", "服务与费用透明"],
-    ["Support during the journey", "旅途中协调支持"]
-  ];
-  const whyIcons = [
-    "M4 5h16v11H9l-5 4V5Zm4 4h8m-8 3h5",
-    "M12 22s7-5.5 7-13a7 7 0 1 0-14 0c0 7.5 7 13 7 13Zm-3-13 2 2 4-4",
-    "M6 3h12v18H6V3Zm3 5h6m-6 4h6m-6 4h4",
-    "M4 13v-2a8 8 0 0 1 16 0v2m-16 0h4v5H4v-5Zm12 0h4v5h-4v-5Zm4 5c0 2-3 3-6 3",
-  ];
-  const whyDescriptions: Pair[] = [
-    ["Talk to us on WhatsApp instead of coordinating with several local drivers.", "通过 WhatsApp 沟通，不用自己反复联系多个当地司机。"],
-    ["We review pickup points, suitcase size and planned stops before confirming.", "先核对上下车点、行李大小与沿途停靠。"],
-    ["We clarify vehicle capacity, service hours, exclusions and overtime.", "提前说明车型、服务时间、不含费用及超时规则。"],
-    ["If pickup or route communication is needed, we coordinate with the local driver.", "接送或路线沟通有问题时，我们协助联系当地司机。"]
-  ];
   const questions = faqs.map(([en,cn],i)=>({question:T(en,cn),answer:T(faqAnswers[i][0],faqAnswers[i][1])}));
 
   return <main className="driver-page">
     <SiteHeader cta={{href:"#standard-transfers",label:T("View Driver Services","查看包车服务"),location:"driver_header"}} searchPlaceholder="Yunnan private driver" />
     <JourneyHero
-      title={T("Private Drivers in Yunnan — Flexible Routes & Local Support", "云南私人包车｜灵活路线与本地服务支持")}
+      title={T("Private Driver in Yunnan — Less Hassle, More of Yunnan", "云南私人包车｜路交给老司机，时间留给风景")}
       eyebrow={T("PRIVATE CAR & DRIVER SERVICE", "云南私人交通服务")}
       image="/home/hero.webp"
       imageAlt={T("Jade Dragon Snow Mountain in Yunnan", "云南玉龙雪山")}
@@ -143,13 +125,13 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </nav>
 
-    <JourneyFactCards id="custom-routes" title={T("Private Driver Service at a Glance", "包车服务一览")} cards={[
-      { icon: "route", title: T("From One Ride to Several Days", "一趟接送，也可多日包车"), lines: [T("Airport and station pickups, intercity rides and day trips.", "机场车站接送、跨城接送与周边一日游。"), T("For multi-day trips, agree on your route and stops before booking.", "多日行程可提前商定路线、停留点与用车安排。")] },
-      { icon: "party", title: T("A Vehicle for Your Group", "按人数和行李配车"), lines: [T("Private five-seat cars and seven-seat MPVs.", "提供 5 座私家车和 7 座商务车。"), T("We check luggage space and can quote a larger vehicle.", "提前核实行李空间，也可询价安排更大车型。")] },
-      { icon: "person", title: T("Local Driver, English Support", "当地司机，英文协调"), lines: [T("We help confirm pickup points and communicate with your driver.", "我们协助确认集合地点，并与当地司机沟通接送安排。"), T("An English-speaking guide can be quoted separately.", "如需专业英文导游，可另行询价。")] },
-      { icon: "note", title: T("Written Quote Before Payment", "先确认书面报价，再付款"), lines: [T("Confirm the vehicle, route, price and terms with us first.", "先核实车源，并确认路线、总价和服务条款。"), T("Fixed transfers are paid in full after confirmation. Multi-day or flexible bookings use a 20% deposit.", "固定接送确认后付全款，多日或灵活包车付 20% 定金。")] },
+    <JourneyFactCards id="custom-routes" title={T("More Than a Ride — A More Relaxed Way to Travel", "不只是包车，更是一路省心的旅行")} cards={[
+      { icon: "note", title: T("The Little Details Matter", "小细节，少一点旅途麻烦"), lines: [T("From clear pickup instructions to practical travel needs, we help prepare the details before you get in.", "从清晰的接送点到旅途中的实际需求，我们提前沟通准备，减少临时麻烦。"), T("Need water, charging access or a child seat? Tell us in advance so we can confirm what's available.", "需要饮用水、充电设备或儿童座椅？提前告诉我们，以便确认安排。")] },
+      { icon: "party", title: T("Room for Everyone", "一家人同行，也能从容舒适"), lines: [T("Parents, kids and suitcases all matter. We check passenger numbers, luggage space and suitable vehicle options before confirmation.", "爸妈坐得舒适，孩子有空间，行李放得下。确认前核对人数、行李与合适车型。"), T("A family trip should fit the people travelling, not just the route.", "一家人出行，节奏应该照顾每个人，而不只是赶路。")] },
+      { icon: "route", title: T("Your Journey, Your Pace", "把时间留给沿途的风景"), lines: [T("Plan scenic stops, photo breaks and time to rest along your route, with the schedule agreed in advance.", "想拍照就多留一会儿，累了就安排休息；沿途停靠与用车时间提前商定。"), T("Flexible day trips and multi-day charters are designed around your plans, subject to road and safety conditions.", "一日游与多日包车可按需求规划，具体以路况、安全和约定行程为准。")] },
+      { icon: "person", title: T("Local Knowledge, Less Hassle", "熟悉云南的路，也懂旅途的细节"), lines: [T("Local drivers know practical routes and pickup points, and may suggest stops or places to eat along the way.", "当地司机熟悉常走路线与接送点，也可根据经验提供沿途停靠或用餐建议。"), T("We coordinate in English when needed; professional sightseeing guiding is a separate service.", "需要时由我们协助英文沟通；专业景点讲解需另行安排。")] },
     ]}>
-      <a href="#driver-quote-form" data-custom-driver-quote>{T("Request a Custom or Multi-Day Quote", "申请定制路线或多日包车报价")} →</a>
+      <a href="#driver-quote-form" data-custom-driver-quote>{T("Tell Us About Your Trip", "告诉我们你的行程")} →</a>
     </JourneyFactCards>
 
     <section className="driver-section driver-section-soft" id="multi-day-driver">
@@ -225,21 +207,6 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
         <p className="driver-operator-note">{T("Contracts and payments are handled by", "旅游合同及收款由持证经营方负责：")} <strong>{zh ? licensedOperator.nameZh : licensedOperator.nameEn}</strong> · {T("Licence", "许可证")} {licensedOperator.permitNumber}. <Link href="/licensed-operator">{T("View operator details", "查看资质信息")}</Link>.</p>
       </div>
     </section>
-
-    <JourneyFactCards
-      id="why-us"
-      className="driver-why-shared"
-      title={T("Why Arrange Your Driver With Us?", "为什么通过我们安排包车？")}
-      cards={whys.map(([en, cn], index) => ({
-        icon: (["person", "route", "note", "party"] as const)[index],
-        title: T(en, cn),
-        lines: [T(whyDescriptions[index][0], whyDescriptions[index][1])],
-        badge: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d={whyIcons[index]} />
-        </svg>,
-      }))}
-      action={{ href: "/licensed-operator", label: T("Meet our licensed local operator", "查看当地持证旅行社") }}
-    />
 
     <section className="driver-section driver-faq journey-faq" id="driver-faq">
       <div className="narrow">
