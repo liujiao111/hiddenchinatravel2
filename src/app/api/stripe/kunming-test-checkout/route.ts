@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
       payment_intent_data: { metadata: { purpose: "kunming_transfer_preview_checkout", order_id: enquiry.requestId } },
       success_url: `${request.nextUrl.origin}/${locale}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${request.nextUrl.origin}/${locale}/yunnan-private-driver?payment=cancelled#driver-quote-form`,
-      expires_at: Math.floor(Date.now() / 1000) + 1800,
+      expires_at: Math.floor(Date.now() / 1000) + 3600,
       custom_text: { submit: { message: "TEST MODE — no driver booking or actual service will be arranged." } },
     }, { idempotencyKey: `kunming-preview-${enquiry.requestId}` });
     if (!session.url || session.livemode || session.amount_total !== 100 || session.currency !== "usd") {
