@@ -160,9 +160,9 @@ function DriverPicker({ name, type, label, min }: { name: string; type: "date" |
   </div>;
 }
 
-function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: FormKind; serviceId?: ProductId }) {
+function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled = false }: { locale: Locale; kind: FormKind; serviceId?: ProductId; stripeTestCheckoutEnabled?: boolean }) {
   const zh = locale === "zh";
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "review" | "paying" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const [vehicle, setVehicle] = useState(fiveSeat);
   const [hubId, setHubId] = useState("");
@@ -174,6 +174,12 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const submissionKey = useRef<string | null>(null);
   const [orderPath, setOrderPath] = useState("");
   const startedRef = useRef(false);
+  const [paymentReview, setPaymentReview] = useState<null | {
+    payload: Record<string, unknown>; route: string; date: string; time: string;
+    vehicle: string; travelers: string; luggage: number; contact: string;
+  }>(null);
+  const [testTermsAccepted, setTestTermsAccepted] = useState(false);
+  const isKunmingTest = stripeTestCheckoutEnabled && serviceId === "kunming-arrival";
   const service = products.find(p => p.id === serviceId);
   const transfer = airportTransferCatalog[serviceId ?? ""];
   const isArrival = service?.category === "arrival";
@@ -210,7 +216,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (status === "sending" || status === "success") return;
+    if (status === "sending" || status === "paying" || status === "success") return;
     const values = new FormData(event.currentTarget);
     const email = String(values.get("email") || "").trim();
     const whatsapp = String(values.get("whatsapp") || "").trim();
@@ -327,6 +333,15 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         } } : {}),
       },
     };
+    if (isKunmingTest) {
+      setPaymentReview({
+        payload, route: `${pickup} → ${dropoff}`, date: travelDate, time: serviceTime,
+        vehicle, travelers: `${adults} ${zh ? "成人" : "adults"}, ${children} ${zh ? "儿童" : "children"}`,
+        luggage, contact: email || whatsapp,
+      });
+      setTestTermsAccepted(false); setError(""); setStatus("review");
+      return;
+    }
     setStatus("sending"); setError("");
     try {
       const response = await fetch("/api/custom-journey", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -346,6 +361,26 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     }
   }
 
+  async function confirmTestPayment() {
+    if (!paymentReview || status === "paying" || !testTermsAccepted) return;
+    setStatus("paying"); setError("");
+    try {
+      const response = await fetch("/api/stripe/kunming-test-checkout", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(paymentReview.payload),
+      });
+      const data = await response.json() as { url?: string; error?: string };
+      if (!response.ok || !data.url) throw new Error(data.error || "Could not create the test checkout.");
+      const next = new URL(data.url);
+      if (next.protocol !== "https:" || next.hostname !== "checkout.stripe.com") throw new Error("Unexpected payment link.");
+      trackEvent("driver_stripe_test_checkout_start", { product_id: "kunming-arrival", page_path: window.location.pathname });
+      window.location.assign(next.href);
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : (zh ? "无法打开 Stripe 测试付款。" : "Could not open Stripe test checkout."));
+      setStatus("review");
+    }
+  }
+
   if (status === "success") return <div className="driver-form-success" role="status">
     <h3>{zh ? "已收到包车需求" : "We received your driver request"}</h3>
     <p>{zh ? "我们会确认路线、车型、车源和价格，再联系你。尚未收取任何款项，预订也尚未确认。" : "We will verify the route, car and total price and contact you. No payment was taken and this is not yet a confirmed booking."}</p>
@@ -353,7 +388,12 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     <Link href="/licensed-operator">{zh ? "查看持证旅行社信息" : "View the licensed operator"}</Link>
   </div>;
 
-  return <form className="contact-form driver-form" onSubmit={submit} onFocus={() => {
+  return <form className="contact-form driver-form" onSubmit={submit} onChange={() => {
+    if (isKunmingTest && status === "review") {
+      setStatus("idle"); setPaymentReview(null); setTestTermsAccepted(false);
+      idRef.current = null; leadRef.current = null; submissionKey.current = null;
+    }
+  }} onFocus={() => {
     if (!startedRef.current) {
       startedRef.current = true;
       trackEvent("driver_enquiry_form_start", { form_name: formName, product_id: service?.id || "custom-multi-day", page_path: window.location.pathname });
@@ -361,7 +401,9 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   }}>
     <h3>{title}</h3>
     {service ? <p className="driver-form-selection">{zh ? "当前产品：" : "Your product: "}<strong>{zh ? service.zh : service.en}</strong></p> : null}
-    <p className="driver-form-note">{zh ? "选择路线选项并发送需求。车辆和总价核实后才安排付款，此表单不收取费用。" : "Select your options and request a quote. We check vehicle availability and total cost before arranging payment; this form is free."}</p>
+    <p className="driver-form-note">{isKunmingTest
+      ? (zh ? "PREVIEW 沙盒测试：填写接送信息并核对订单，统一支付 US$1 测试款。不会安排真实车辆，也不会发生真实扣款。" : "PREVIEW SANDBOX TEST: Enter transfer details, review your order, then pay US$1 in Stripe test mode. No real charge or vehicle booking.")
+      : (zh ? "选择路线选项并发送需求。车辆和总价核实后才安排付款，此表单不收取费用。" : "Select your options and request a quote. We check vehicle availability and total cost before arranging payment; this form is free.")}</p>
     {transfer ? <>
       <div className="contact-field-row">
         <EnquirySelect name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { setHubId(value); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
@@ -398,7 +440,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         ? "纳帕海及环湖区域、普达措、巴拉格宗、虎跳峡、白水台、梅里雪山／飞来寺、雨崩和哈巴雪山片区均按其他区域询价。"
         : "Request a custom quote for Napa Lake, Pudacuo, Balagezong, Tiger Leaping Gorge, Baishuitai, Meili Snow Mountain / Feilai Temple, Yubeng and the Haba Snow Mountain area."}</p> : null}
       <label><span>{transportLabel}{zh ? "（选填，可稍后补充）" : " (optional; share later)"}</span>
-        <input type="text" name="transportNumber" maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
+        <input type="text" name="transportNumber" required={isKunmingTest && requiresArrivalDetails} maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
         <small>{zh ? "还没订机票或火车票？可先询价，确认后再提供航班号或车次。" : "Not booked yet? Request a quote now and share your flight or train number later."}</small>
       </label>
     </> : null}
@@ -436,7 +478,9 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     {isArrival ? <p className="driver-area-hint">{zh
       ? "标准5座车建议1至3位乘客，最多3个大行李箱。实际车辆品牌、型号和颜色可能根据当天车源调整，最终车型类别将在订单确认时说明。"
       : "A standard five-seat car is recommended for 1–3 passengers and up to 3 large suitcases. The make, model and colour may vary with availability. We will confirm the vehicle category when confirming your booking."}</p> : null}
-    <p className="driver-area-hint" aria-live="polite">{isArrival && (!hub || !arrivalDirection || !priceArea)
+    <p className="driver-area-hint" aria-live="polite">{isKunmingTest
+      ? (zh ? "沙盒订单测试价 US$1／车（5座或7座相同），不是实际服务报价。" : "Sandbox test price: US$1 per vehicle (five-seat or seven-seat), not an actual quote.")
+      : isArrival && (!hub || !arrivalDirection || !priceArea)
       ? (zh ? "请选择交通枢纽、接送方向和酒店区域以查看参考价。" : "Select a hub, direction and hotel area to see the guide price.")
       : guidePrice === undefined
       ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "价格需人工确认" : isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
@@ -455,46 +499,29 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     <label className="contact-honeypot" aria-hidden="true"><span>Website</span><input name="website" tabIndex={-1} autoComplete="off" /></label>
     <label className="driver-form-consent"><input type="checkbox" name="consent" value="yes" required /><span>{zh ? "我同意仅就本次包车咨询接收回复。" : "I agree to be contacted only about this driver enquiry."} <Link href="/privacy-policy">{zh ? "隐私政策" : "Privacy policy"}</Link></span></label>
     {status === "error" ? <p role="alert" className="contact-form-error">{error}</p> : null}
-    <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? (zh ? "发送中…" : "Sending…") : (zh ? "查询车辆与报价" : "Check Availability & Request Price")}</button>
-  </form>;
-}
-
-function DriverStripeTestCheckout({ locale, productId }: { locale: Locale; productId: ProductId }) {
-  const zh = locale === "zh";
-  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
-  const [error, setError] = useState("");
-
-  async function startCheckout() {
-    if (status === "loading") return;
-    setStatus("loading");
-    setError("");
-    try {
-      const response = await fetch("/api/stripe/driver-test-checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId, locale }),
-      });
-      const data = await response.json() as { url?: string; error?: string };
-      if (!response.ok || !data.url) throw new Error(data.error || "Stripe checkout could not be created.");
-      trackEvent("driver_stripe_test_checkout_start", { product_id: productId, page_path: window.location.pathname });
-      window.location.assign(data.url);
-    } catch (caught) {
-      setError(caught instanceof Error ? caught.message : (zh ? "无法打开测试付款。" : "Could not open test checkout."));
-      setStatus("error");
-    }
-  }
-
-  return <aside className="driver-stripe-test" aria-label={zh ? "Stripe 测试付款" : "Stripe test checkout"}>
-    <div>
-      <p className="kicker">STRIPE TEST MODE</p>
-      <h3>{zh ? "测试 USD 1 定金流程" : "Test the USD 1 deposit flow"}</h3>
-      <p>{zh ? "仅用于验证 Stripe Checkout、返回页面和 webhook，不构成有效预订。" : "For verifying Stripe Checkout, the return page and webhook only. This does not create a valid booking."}</p>
-    </div>
-    <button className="button button-outline" type="button" onClick={startCheckout} disabled={status === "loading"}>
-      {status === "loading" ? (zh ? "正在打开 Stripe…" : "Opening Stripe…") : (zh ? "支付 USD 1 测试款" : "Pay USD 1 in test mode")}
+    <button className="button button-blue" type="submit" disabled={status === "sending" || status === "paying"}>
+      {status === "sending" ? (zh ? "发送中…" : "Sending…") : isKunmingTest ? (zh ? "核对 US$1 测试订单" : "Review US$1 Test Order") : (zh ? "查询车辆与报价" : "Check Availability & Request Price")}
     </button>
-    {error && <p className="contact-form-error" role="alert">{error}</p>}
-  </aside>;
+    {isKunmingTest && paymentReview && (status === "review" || status === "paying") ? <section className="driver-form-success" aria-label={zh ? "测试订单确认" : "Review test booking"}>
+      <p className="kicker">PREVIEW · STRIPE TEST MODE</p>
+      <h3>{zh ? "确认接送信息与付款金额" : "Confirm Transfer Details & Amount"}</h3>
+      <p><strong>{zh ? "路线：" : "Route: "}</strong>{paymentReview.route}</p>
+      <p><strong>{zh ? "日期与时间：" : "Date & time: "}</strong>{paymentReview.date} · {paymentReview.time} (China time)</p>
+      <p><strong>{zh ? "车型：" : "Vehicle: "}</strong>{paymentReview.vehicle}</p>
+      <p><strong>{zh ? "乘客：" : "Passengers: "}</strong>{paymentReview.travelers}</p>
+      <p><strong>{zh ? "大行李箱：" : "Large suitcases: "}</strong>{paymentReview.luggage}</p>
+      <p><strong>{zh ? "联系方式：" : "Contact: "}</strong>{paymentReview.contact}</p>
+      <p><strong>{zh ? "本次支付总额：" : "Total due: "}</strong>US$1.00 (USD · Stripe test mode)</p>
+      <p>{zh ? "仅验证下单、付款与订单查询，不代表真实车源确认，也不会安排车辆。" : "This checks order creation, payment and tracking only. No vehicle or real transfer will be arranged."}</p>
+      <label className="driver-form-consent"><input type="checkbox" checked={testTermsAccepted} onChange={event => { event.stopPropagation(); setTestTermsAccepted(event.target.checked); }} />
+        <span>{zh ? "我确认订单信息，并理解 US$1 是沙盒测试，不构成真实预订。" : "I confirm these details and understand the US$1 sandbox payment is not a real booking."}</span>
+      </label>
+      {error && <p role="alert" className="contact-form-error">{error}</p>}
+      <button className="button button-blue" type="button" disabled={!testTermsAccepted || status === "paying"} onClick={confirmTestPayment}>
+        {status === "paying" ? (zh ? "正在打开 Stripe…" : "Opening Stripe…") : (zh ? "确认并支付 US$1（测试）" : "Confirm & Pay US$1 (Test)")}
+      </button>
+    </section> : null}
+  </form>;
 }
 
 export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = false }: { locale: Locale; stripeTestCheckoutEnabled?: boolean }) {
@@ -539,6 +566,7 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
     };
   }, []);
   const priceLabel = (product: Product, vehicle: "five" | "seven") => {
+    if (stripeTestCheckoutEnabled && product.id === "kunming-arrival") return zh ? "US$1 测试价" : "US$1 test";
     const price = product.category === "arrival" ? transferStartingPrice(product.id, vehicle) : product.guidePrices?.[vehicle];
     if (price === undefined) return zh ? "价格待确认" : "Price to be confirmed";
     if (product.category === "arrival") return zh ? `¥${price}起` : `from RMB ${price}`;
@@ -588,15 +616,19 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
                 <h3>{zh ? product.zh : product.en}</h3>
                 <p>{zh ? product.detailZh : product.detailEn}</p>
                 <div className="driver-product-price">
-                  <span>{zh ? "每车参考价" : "Guide prices per vehicle"}</span>
+                  <span>{stripeTestCheckoutEnabled && product.id === "kunming-arrival" ? (zh ? "PREVIEW 沙盒测试价格" : "PREVIEW sandbox price") : (zh ? "每车参考价" : "Guide prices per vehicle")}</span>
                   <dl>
                     <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
                     <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
                   </dl>
-                  <small>{product.category === "day" ? (zh ? "路线与时长确认后可付全款" : "Full payment available once the route and hours are agreed") : (zh ? "确认后付全款" : "Full payment after confirmation")}</small>
+                  <small>{stripeTestCheckoutEnabled && product.id === "kunming-arrival"
+                     ? (zh ? "测试付款不会生成真实车辆预订" : "Test checkout only — no real vehicle booking")
+                     : product.category === "day" ? (zh ? "路线与时长确认后可付全款" : "Full payment available once the route and hours are agreed") : (zh ? "确认后付全款" : "Full payment after confirmation")}</small>
                 </div>
                 <button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>
-                  {zh ? "选择选项并询价" : "Select Options & Check Price"} <span aria-hidden="true">→</span>
+                  {stripeTestCheckoutEnabled && product.id === "kunming-arrival"
+                     ? (zh ? "选择并测试下单" : "Select & Test Booking")
+                     : (zh ? "选择选项并询价" : "Select Options & Check Price")} <span aria-hidden="true">→</span>
                 </button>
               </div>
             </article>;
@@ -609,10 +641,10 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
       </div>
       <div id="driver-quote-form">
         {selected ? <div className="driver-booking-panel" key={selected}>
-          <DriverEnquiryForm locale={locale} kind={selected === "custom" ? "custom" : "standard"} serviceId={selected === "custom" ? undefined : selected} />
+          <DriverEnquiryForm locale={locale} kind={selected === "custom" ? "custom" : "standard"} serviceId={selected === "custom" ? undefined : selected} stripeTestCheckoutEnabled={stripeTestCheckoutEnabled} />
         </div> : null}
       </div>
     </div>
-  {selected && selected !== "custom" && stripeTestCheckoutEnabled && !airportTransferCatalog[selected] ? <DriverStripeTestCheckout locale={locale} productId={selected} /> : null}
+
 </section>;
 }
