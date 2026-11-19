@@ -59,6 +59,5 @@ export function getSiteUrl(fallbackOrigin?: string) {
 export function isKunmingStripePreviewEnabled() {
   return process.env.VERCEL_ENV === "preview"
     && process.env.VERCEL_GIT_COMMIT_REF === "feat/driver-stripe-preview-integration"
-    && process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED === "true"
-    && process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_") === true;
+    && process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED === "true";
 }
