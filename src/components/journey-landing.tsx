@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { HashLink } from "@/components/hash-link";
@@ -31,10 +32,10 @@ export function JourneySectionNav({ links, action }: { links: Action[]; action: 
 
 export type FactIconName = "party" | "person" | "licence" | "star" | "calendar" | "route" | "meal" | "price" | "pin" | "note";
 
-export type FactCard = { title: string; lines: string[]; icon: FactIconName };
+export type FactCard = { title: string; lines: string[]; icon: FactIconName; badge?: ReactNode };
 
-export function JourneyFactCards({ id, title, cards, action, className = "" }: {
-  id: string; title: string; cards: FactCard[]; action?: Action; className?: string;
+export function JourneyFactCards({ id, title, cards, action, children, className = "" }: {
+  id: string; title: string; cards: FactCard[]; action?: Action; children?: ReactNode; className?: string;
 }) {
   const headingId = `${id}-title`;
   return <section className={`journey-fact-cards ${className}`.trim()} id={id} aria-labelledby={headingId}>
@@ -42,12 +43,14 @@ export function JourneyFactCards({ id, title, cards, action, className = "" }: {
       <h2 id={headingId}>{title}</h2>
       <ul className="journey-fact-grid">
         {cards.map((card, index) => <li key={card.title}>
-          <span className="journey-fact-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+          {card.badge ? <span className="journey-fact-badge" aria-hidden="true">{card.badge}</span>
+            : <span className="journey-fact-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>}
           <h3>{card.title}</h3>
           <ul>{card.lines.map((line) => <li key={line}>{line}</li>)}</ul>
         </li>)}
       </ul>
       {action ? <HashLink href={action.href}>{action.label} →</HashLink> : null}
+      {children}
     </div>
   </section>;
 }
