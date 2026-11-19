@@ -76,3 +76,35 @@ product / forged amount / production request: payment endpoint must reject.
 
 **Important:** A successful sandbox payment never reserves a vehicle or
 constitutes a live deposit. Do not connect the order to real fulfillment.
+
+### Stripe sandbox payment emails and protected Preview
+
+For the branch's US$1 Kunming test, the signing Webhook (not the success-page
+redirect) confirms payment and stores `paid.test`. Both Stripe Test Payment
+Link and dynamic Checkout send the operator's transaction email via Resend.
+The email contains order UUID, HCT Ref, route, date, passengers, customer
+contact, US$1 amount and Stripe session. Successful Resend delivery request
+stores `notifications.paymentEmail` on the private order page; email failures
+return a retryable webhook error. The email is a TEST notification, never a
+real driver confirmation.
+
+Stable branch alias for the Webhook:
+`https://hiddenchinatravel2-git-feat-driver-573269-liujiao111s-projects.vercel.app/api/stripe/webhook`
+
+**Important:** Vercel Authentication protects Preview deployments. Stripe
+cannot reach the above URL unauthenticated. Configure a Vercel
+Protection Bypass for Automation for this test and append the secret in
+Stripe's test Webhook destination URL as a confidential
+`x-vercel-protection-bypass` query parameter. A bypass secret grants access
+to protected deployments of this project, so never commit or share it,
+and revoke it after testing. Do not disable the project's entire protection.
+
+Create a Stripe TEST-mode Webhook destination for
+`checkout.session.completed` and
+`checkout.session.async_payment_succeeded`. Set its generated signing
+secret as branch-scoped Preview `STRIPE_WEBHOOK_SECRET`, redeploy, and
+make a fresh US$1 sandbox checkout. The previous
+`codex/stripe-driver-test` Webhook signing variable is **sensitive** and
+scoped to that old branch; copying the Payment Link alone does not make the
+new Webhook work. Without the signed, accessible Webhook, a completed
+Stripe payment does not trigger the order's payment-confirmation email.
