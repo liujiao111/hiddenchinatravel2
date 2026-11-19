@@ -227,6 +227,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
   const leadRef = useRef<string | null>(null);
   const submissionKey = useRef<string | null>(null);
   const [orderPath, setOrderPath] = useState("");
+  const [ackStatus, setAckStatus] = useState<"accepted" | "failed" | "not_requested">("not_requested");
   const startedRef = useRef(false);
   const [paymentReview, setPaymentReview] = useState<null | {
     payload: Record<string, unknown>; route: string; date: string; time: string;
@@ -417,6 +418,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
         event_id: idRef.current, lead_id: leadRef.current || undefined, page_path: window.location.pathname,
       });
       if (typeof data.orderPath === "string") setOrderPath(data.orderPath);
+      setAckStatus(data.acknowledgement === "accepted" ? "accepted" : data.acknowledgement === "failed" ? "failed" : "not_requested");
       setStatus("success");
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : (zh ? "发送失败，请重试。" : "Please try again."));
@@ -448,6 +450,8 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
     <h3>{zh ? "已收到包车需求" : "We received your driver request"}</h3>
     <p>{zh ? "我们会确认路线、车型、车源和价格，再联系你。尚未收取任何款项，预订也尚未确认。" : "We will verify the route, car and total price and contact you. No payment was taken and this is not yet a confirmed booking."}</p>
     {orderPath ? <p><a href={orderPath}>{zh ? "查看我的包车申请" : "View my driver request"}</a></p> : null}
+    {ackStatus === "accepted" ? <p>{zh ? "系统已向你的邮箱提交咨询回执（非预订确认）。" : "An acknowledgement has been accepted for your email (not a booking confirmation)."}</p>
+      : ackStatus === "failed" ? <p>{zh ? "邮箱回执暂时未发送成功，但我们已收到你的咨询。" : "The email acknowledgement was unavailable, but we received your enquiry."}</p> : null}
     <Link href="/licensed-operator">{zh ? "查看持证旅行社信息" : "View the licensed operator"}</Link>
   </div>;
 
