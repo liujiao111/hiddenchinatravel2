@@ -426,7 +426,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       const data = await response.json() as { url?: string; error?: string };
       if (!response.ok || !data.url) throw new Error(data.error || "Could not create the test checkout.");
       const next = new URL(data.url);
-      if (next.protocol !== "https:" || next.hostname !== "checkout.stripe.com") throw new Error("Unexpected payment link.");
+      if (next.protocol !== "https:" || !(next.hostname === "checkout.stripe.com" || (next.hostname === "buy.stripe.com" && next.pathname.startsWith("/test_")))) throw new Error("Unexpected payment link.");
       trackEvent("driver_stripe_test_checkout_start", { product_id: "kunming-arrival", page_path: window.location.pathname });
       window.location.assign(next.href);
     } catch (caught) {
