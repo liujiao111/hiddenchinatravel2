@@ -20,6 +20,17 @@ type Pair = [string, string];
 const waText = "Hello, I need a private driver in Yunnan.\n\nTravel date:\nRoute:\nPickup location:\nDrop-off location:\nPassengers:\nLarge suitcases:\nPlanned stops:\nNumber of days:";
 const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(waText)}`;
 
+// Use the FactCards icon badge slot locally, without changing shared components.
+function FeatureSymbol({ type }: { type: "details" | "family" | "route" | "local" }) {
+  const paths = {
+    details: <><path d="M8 3h8l3 3v15H5V3h3z"/><path d="M9 10h6M9 14h6M9 18h4"/></>,
+    family: <><circle cx="8" cy="7" r="3"/><circle cx="17" cy="8" r="2.5"/><path d="M2 20v-2a6 6 0 0 1 12 0v2M15 14a5 5 0 0 1 7 4v2"/></>,
+    route: <><circle cx="5" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 5h8a4 4 0 0 1 0 8H9a4 4 0 0 0 0 8h8"/></>,
+    local: <><path d="M12 22s8-8 8-14a8 8 0 0 0-16 0c0 6 8 14 8 14z"/><circle cx="12" cy="8" r="2.6"/></>,
+  };
+  return <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">{paths[type]}</svg>;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   const zh = lang === "zh";
@@ -63,7 +74,7 @@ const faqAnswers: Pair[] = [
   ["Direct transfers do not include sightseeing stops. Choose one of our via-Shaxi or Tiger Leaping Gorge services for planned visits; additional changes are quoted separately.", "直达接送不包含观光停靠。可直接选择经沙溪、虎跳峡的跨城产品；其他加停需求另行核价。"],
   ["A private day trip normally runs from 9:00 AM–6:00 PM and includes 30 complimentary minutes if agreed. Thereafter RMB 200 per started hour applies to approved overtime.", "周边一日游包车通常为09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时人民币200元计费。"],
   ["Changes can affect availability, tolls, time and price. We confirm any difference in writing before you proceed.", "变更路线可能影响车源、过路费、时长和价格，我们会先书面确认变更。"],
-  ["We confirm cancellation and refund terms in writing before payment. For deposit bookings under our standard driver terms, cancellation at least three full days ahead returns the deposit. Later cancellations retain 30% of the deposit.", "付款前会书面确认退改条款。适用标准定金条款的包车订单，至少提前3个完整自然日取消可全退定金；更晚取消扣留定金的30%。"],
+  ["We provide cancellation and refund terms for your exact service in writing before payment. The applicable charges and deadlines depend on the agreed quote.", "付款前会针对具体服务提供书面取消和退款条款；适用的取消期限和费用以确认的报价与条款为准。"],
   ["We send the vehicle and pickup details after confirmation, with driver contact details before the journey.", "确认车源后提供车辆和接送安排，出发前提供司机联系方式。"],
   ["If the licensed operator cannot provide the confirmed service, all payments collected for that service are refunded in full.", "如持证经营方无法提供确认的服务，该服务已收款项全额退还。"]
 ];
@@ -125,11 +136,11 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </nav>
 
-    <JourneyFactCards id="custom-routes" title={T("More Than a Ride — A More Relaxed Way to Travel", "不只是包车，更是一路省心的旅行")} cards={[
-      { icon: "note", title: T("The Little Details Matter", "小细节，少一点旅途麻烦"), lines: [T("From clear pickup instructions to practical travel needs, we help prepare the details before you get in.", "从清晰的接送点到旅途中的实际需求，我们提前沟通准备，减少临时麻烦。"), T("Need water, charging access or a child seat? Tell us in advance so we can confirm what's available.", "需要饮用水、充电设备或儿童座椅？提前告诉我们，以便确认安排。")] },
-      { icon: "party", title: T("Room for Everyone", "一家人同行，也能从容舒适"), lines: [T("Parents, kids and suitcases all matter. We check passenger numbers, luggage space and suitable vehicle options before confirmation.", "爸妈坐得舒适，孩子有空间，行李放得下。确认前核对人数、行李与合适车型。"), T("A family trip should fit the people travelling, not just the route.", "一家人出行，节奏应该照顾每个人，而不只是赶路。")] },
-      { icon: "route", title: T("Your Journey, Your Pace", "把时间留给沿途的风景"), lines: [T("Plan scenic stops, photo breaks and time to rest along your route, with the schedule agreed in advance.", "想拍照就多留一会儿，累了就安排休息；沿途停靠与用车时间提前商定。"), T("Flexible day trips and multi-day charters are designed around your plans, subject to road and safety conditions.", "一日游与多日包车可按需求规划，具体以路况、安全和约定行程为准。")] },
-      { icon: "person", title: T("Local Knowledge, Less Hassle", "熟悉云南的路，也懂旅途的细节"), lines: [T("Local drivers know practical routes and pickup points, and may suggest stops or places to eat along the way.", "当地司机熟悉常走路线与接送点，也可根据经验提供沿途停靠或用餐建议。"), T("We coordinate in English when needed; professional sightseeing guiding is a separate service.", "需要时由我们协助英文沟通；专业景点讲解需另行安排。")] },
+    <JourneyFactCards id="custom-routes" className="driver-why-shared" title={T("More Than a Ride — A More Relaxed Way to Travel", "不只是包车，更是一路省心的旅行")} cards={[
+      { icon: "note", badge: <FeatureSymbol type="details" />, title: T("The Little Details Matter", "小细节，少一点旅途麻烦"), lines: [T("From clear pickup instructions to practical travel needs, we help prepare the details before you get in.", "从清晰的接送点到旅途中的实际需求，我们提前沟通准备，减少临时麻烦。"), T("Need water, charging access or a child seat? Tell us in advance so we can confirm what's available.", "需要饮用水、充电设备或儿童座椅？提前告诉我们，以便确认安排。")] },
+      { icon: "party", badge: <FeatureSymbol type="family" />, title: T("Room for Everyone", "一家人同行，也能从容舒适"), lines: [T("Parents, kids and suitcases all matter. We check passenger numbers, luggage space and suitable vehicle options before confirmation.", "爸妈坐得舒适，孩子有空间，行李放得下。确认前核对人数、行李与合适车型。"), T("A family trip should fit the people travelling, not just the route.", "一家人出行，节奏应该照顾每个人，而不只是赶路。")] },
+      { icon: "route", badge: <FeatureSymbol type="route" />, title: T("Your Journey, Your Pace", "把时间留给沿途的风景"), lines: [T("Plan scenic stops, photo breaks and time to rest along your route, with the schedule agreed in advance.", "想拍照就多留一会儿，累了就安排休息；沿途停靠与用车时间提前商定。"), T("Flexible day trips and multi-day charters are designed around your plans, subject to road and safety conditions.", "一日游与多日包车可按需求规划，具体以路况、安全和约定行程为准。")] },
+      { icon: "person", badge: <FeatureSymbol type="local" />, title: T("Local Knowledge, Less Hassle", "熟悉云南的路，也懂旅途的细节"), lines: [T("Local drivers know practical routes and pickup points, and may suggest stops or places to eat along the way.", "当地司机熟悉常走路线与接送点，也可根据经验提供沿途停靠或用餐建议。"), T("We coordinate in English when needed; professional sightseeing guiding is a separate service.", "需要时由我们协助英文沟通；专业景点讲解需另行安排。")] },
     ]} />
     <div className="shell"><a href="#driver-quote-form" data-custom-driver-quote>{T("Tell Us About Your Trip", "告诉我们你的行程")} →</a></div>
 
@@ -201,7 +212,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <article><h3>{T("Cancellation","取消")}</h3><p>{T("Your written quote states the cancellation and refund terms for the agreed payment type before you pay.", "付款前，书面报价会列明对应付款方式的取消、改期和退款条件。")}</p></article>
           <article><h3>{T("Operator cannot provide the car","经营方无法派车")}</h3><p>{T("If the licensed operator cannot confirm or provide the booked vehicle, all payments collected for the unavailable service are refunded in full.", "如果持证经营方无法确认或提供已预订车辆，应全额退回该服务所收款项。")}</p></article>
         </div>
-        <p className="driver-detail-note">{T("Example only: for a RMB 1,300 service with a RMB 260 deposit, a late-cancellation fee of 30% of the deposit is RMB 78 and the deposit refund is RMB 182.", "举例说明：若服务总价为人民币1300元，定金260元，临近出发取消扣除定金30%即78元，剩余182元退回。")}</p>
+
         <p className="driver-detail-note"><Link href="/private-yunnan-tours">{T("Need hotels, guides and a complete itinerary? Explore our private Yunnan tours.","需要包含酒店、向导和完整行程？查看云南私人定制游。")}</Link></p>
         <p className="driver-operator-note">{T("Contracts and payments are handled by", "旅游合同及收款由持证经营方负责：")} <strong>{zh ? licensedOperator.nameZh : licensedOperator.nameEn}</strong> · {T("Licence", "许可证")} {licensedOperator.permitNumber}. <Link href="/licensed-operator">{T("View operator details", "查看资质信息")}</Link>.</p>
       </div>
