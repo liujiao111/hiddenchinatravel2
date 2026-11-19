@@ -21,7 +21,7 @@ async function notifyPendingKunmingTestOrder(id: string, origin: string) {
   }
   try {
     const stored = (await readDriverOrder(id))?.order;
-    if (!stored?.testCheckout || stored.notifications?.checkoutEmail?.orderId === id) return;
+    if (!stored?.testCheckout || (stored.notifications?.checkoutEmail?.orderId === id && (!stored.summary.email || stored.notifications?.guestCheckoutEmail?.orderId === id))) return;
     const summary = stored.summary;
     if (summary?.productId !== "kunming-arrival" || stored.testCheckout.amount !== 100
         || stored.testCheckout.currency !== "usd" || !driverOrderAccess(id)) return;
@@ -67,6 +67,47 @@ async function notifyPendingKunmingTestOrder(id: string, origin: string) {
         orderId: id, resendId: accepted.id || "", acceptedAt: new Date().toISOString(),
       } } });
     console.info("[kunming-preview] Pending checkout email accepted", { orderId: id });
+    // A separate, clearly labelled receipt of the *test request* to the guest.
+    // It must not claim payment succeeded or that transport has been booked.
+    if (typeof summary.email === "string" && /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(summary.email)
+        && stored.notifications?.guestCheckoutEmail?.orderId !== id) {
+      const zh = summary.locale === "zh";
+      const guestMail = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+          "Idempotency-Key": `kunming-test-guest-checkout-${id}`,
+        },
+        body: JSON.stringify({
+          from, to: [summary.email], reply_to: to,
+          subject: zh ? "昆明接送测试订单已创建（待付款）｜Hidden China Travel" : "Kunming test checkout created (payment pending) — Hidden China Travel",
+          text: [
+            zh ? `你好，${summary.name || "旅客"}：` : `Hello ${summary.name || "traveller"},`,
+            "",
+            zh ? "我们收到了你的 US$1 昆明接送沙盒测试订单。尚未验证付款；不会产生真实预订或安排车辆。" :
+              "We received your US$1 Kunming transfer sandbox test order. Payment has not been verified. No real vehicle or transfer will be arranged.",
+            "",
+            `Order ID: ${id}`, `HCT Ref: ${summary.ref || "N/A"}`,
+            `Service: ${summary.service}`, `Date: ${summary.date}`,
+            `Route: ${summary.route}`, `Test amount: USD 1.00`,
+            `Private test order: ${orderUrl}`,
+            "",
+            zh ? "这是测试订单通知，不是付款成功凭证。" : "This is a test-order acknowledgement, not a payment receipt.",
+          ].join("\\n"),
+        }),
+        signal: AbortSignal.timeout(8000),
+      });
+      if (guestMail.ok) {
+        const acceptedGuest = await guestMail.json() as { id?: string };
+        await updateDriverOrder(id, current => current.notifications?.guestCheckoutEmail?.orderId === id
+          ? current : { ...current, notifications: { ...current.notifications, guestCheckoutEmail: {
+            orderId: id, resendId: acceptedGuest.id || "", acceptedAt: new Date().toISOString(),
+          } } });
+      } else {
+        console.error("[kunming-preview] Guest test-order email rejected", { status: guestMail.status, orderId: id });
+      }
+    }
   } catch {
     // Checkout must still proceed: an email outage cannot turn a sandbox checkout into a failed order.
     console.error("[kunming-preview] Pending checkout email could not be sent", { orderId: id });
