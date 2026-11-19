@@ -21,7 +21,8 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   catch { return new Response("Order details are temporarily unavailable.", { status: 503, headers }); }
   if (!saved) return new Response("Order link not found.", { status: 404, headers });
 
-  const { summary, quote, paid, dispatch } = saved.order;
+  const { summary, quote, paid, dispatch, testCheckout } = saved.order;
+  const kunmingSandbox = summary.productId === "kunming-arrival" && testCheckout?.currency === "usd" && testCheckout?.amount === 100;
   const zh = summary.locale === "zh";
   const isShangriLaTransfer = summary.productId === "shangri-la-arrival";
   const t = (zhText: string, enText: string) => zh ? zhText : enText;
@@ -31,7 +32,10 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   const payable = payment && Date.parse(payment.expiresAt) > Date.now()
     && !paid?.balance && paidFen < quote.totalFen && isDriverCheckoutUrl(payment.url);
   const row = (label: string, value: unknown) => value ? `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>` : "";
-  const status = dispatch
+  const status = kunmingSandbox
+    ? paid?.test ? t("US$1 测试付款已确认（无真实预订）", "US$1 sandbox payment confirmed (not a real booking)")
+      : t("US$1 测试订单待付款或待 Webhook 确认", "US$1 sandbox order awaiting payment or webhook")
+    : dispatch
     ? t("预订已确认", "Booking confirmed")
     : paidFen > 0 ? t("已收到付款，待确认接送安排", "Payment received. Pickup details to be confirmed.")
     : quote ? t("报价已确认，待付款", "Quote ready. Awaiting payment.")
@@ -61,6 +65,11 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
     ${row(t(isShangriLaTransfer ? "参考价格" : "参考价", "Guide price"), summary.guideFen > 0 ? money(summary.guideFen) : summary.manualQuote ? t(isShangriLaTransfer ? "需人工确认" : "需人工确认价格", "Manual quote required") : null)}
     ${isShangriLaTransfer ? row(t("报价状态", "Quote status"), quote ? t("报价已确认", "Quote confirmed")
       : summary.manualQuote ? t("人工报价", "Manual quote") : t("待确认车源和最终价格", "Availability and final price to be confirmed")) : ""}</dl></section>
+    ${kunmingSandbox ? `<section><h2>${t("测试订单与付款", "Sandbox order & payment")}</h2><dl>
+      ${row(t("测试金额", "Test total"), "US$1.00")}
+      ${row(t("订单状态", "Order status"), paid?.test ? t("Webhook 已确认收款", "Payment confirmed by Stripe webhook") : t("等待付款或 Stripe 回调", "Awaiting payment or Stripe webhook"))}
+      ${row(t("咨询来源 Ref", "Attribution Ref"), summary.ref)}
+      </dl><p>${t("仅用于测试线上下单与支付状态，不构成真实包车预订，也不会安排车辆。", "This is a Stripe sandbox test only. No real driver booking or vehicle will be arranged.")}</p></section>` : ""}
     ${quote ? `<section><h2>${t("正式报价与付款", "Quote and payment")}</h2><dl>
     ${row(t("已确认的服务", "Confirmed service"), quote.description)}
     ${row(t("总价", "Total"), money(quote.totalFen))}
