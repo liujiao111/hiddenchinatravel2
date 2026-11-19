@@ -28,13 +28,12 @@ export async function POST(request: Request) {
   const formName = ["trip_planning_contact", "quick_ask"].includes(String(tracking.form_name || "")) ? String(tracking.form_name) : "contact_enquiry";
   const fallbackUrl = parsed.source.startsWith("https://hiddenchinatravel.com/") ? parsed.source : "https://hiddenchinatravel.com/contact";
   const formRecord = prepareFormRecord(tracking, fallbackUrl, formName);
-  const text = "Ref: " + formRecord.ref + "\\n\\n" + enquiryEmailText(parsed);
+  const text = "Ref: " + formRecord.ref + "\n\n" + enquiryEmailText(parsed);
   const key = process.env.RESEND_API_KEY;
 
   if (!key) {
     if (process.env.NODE_ENV !== "production") {
       console.info("[enquiry]\n", text);
-      await saveFormRecord(formRecord);
       return Response.json({ ok: true, ref: formRecord.ref });
     }
     console.error("[enquiry] RESEND_API_KEY is not configured.");
