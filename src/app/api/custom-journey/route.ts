@@ -56,7 +56,7 @@ export async function POST(request: Request) {
         locale: driverOrder.locale === "zh" ? "zh" : "en",
         service: value("service"), route: value("route"), pickup: value("pickup"), dropoff: value("dropoff"),
         vehicle: value("vehicle"), date: enquiry.travelTiming, party: enquiry.adults + enquiry.children,
-        guideFen: Number.isSafeInteger(driverOrder.guideFen) && driverOrder.guideFen > 0 && driverOrder.guideFen < 10000000
+        guideFen: typeof driverOrder.guideFen === "number" && Number.isSafeInteger(driverOrder.guideFen) && driverOrder.guideFen > 0 && driverOrder.guideFen < 10000000
           ? driverOrder.guideFen : null,
         email: enquiry.email,
         ...(airportTransfer || {}),
