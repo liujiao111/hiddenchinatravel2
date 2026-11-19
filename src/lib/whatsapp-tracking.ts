@@ -59,7 +59,31 @@ export function installWhatsAppTracking() {
       page_path: conversionPage, lead_type: "whatsapp_click",
     };
     trackEvent("whatsapp_click", payload);
-    // WhatsApp clicks are analytics events, not confirmed enquiries.\n    // Do not send an automatic inbox email for an unconfirmed click.
+    // Save attribution under the same Ref without putting any tracking data
+    // into the customer's WhatsApp message. A beacon cannot hold up navigation.
+    // Clicks are not confirmed WhatsApp messages, and never trigger emails.
+    const record = JSON.stringify({
+      ref: leadId,
+      captured_at: new Date(now).toISOString(),
+      conversion_url: window.location.href,
+      whatsapp_location: location,
+      first: attribution.first,
+      last: attribution.last,
+      session: attribution.session,
+    });
+    try {
+      const body = new Blob([record], { type: "application/json" });
+      const queued = typeof navigator.sendBeacon === "function" &&
+        navigator.sendBeacon("/api/whatsapp-ref", body);
+      if (!queued) {
+        void fetch("/api/whatsapp-ref", {
+          method: "POST", headers: { "content-type": "application/json" },
+          body: record, keepalive: true, credentials: "same-origin",
+        }).catch(() => { /* Never block the consultation */ });
+      }
+    } catch {
+      // Browser storage/network restrictions must not block WhatsApp.
+    }
   }
   document.addEventListener("click", click, true);
   document.addEventListener("auxclick", click, true);

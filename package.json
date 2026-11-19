@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run check:faq && next build",
+    "build": "npm run check:faq && npm run test:whatsapp && next build",
     "start": "next start",
     "lint": "eslint",
     "test:whatsapp": "node --test tests/whatsapp-tracking.test.cjs",
