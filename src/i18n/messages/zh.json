@@ -19,18 +19,6 @@
     },
     "fromPrice": "{price} 起",
     "tailoredQuote": "定制报价",
-    "countryGuide": {
-      "title": "从你的国家规划云南旅行",
-      "from": "从 {country} 出发的云南旅行",
-      "all": "查看全部国家指南",
-      "countries": {
-        "SG": "新加坡",
-        "US": "美国",
-        "AU": "澳大利亚",
-        "GB": "英国",
-        "MY": "马来西亚"
-      }
-    },
     "contactAria": "联系我们",
     "homeAria": "Hidden China Travel 首页",
     "tripPlanAria": "咨询你的行程方案",

@@ -19,18 +19,6 @@
     },
     "fromPrice": "From {price}",
     "tailoredQuote": "Tailored quote",
-    "countryGuide": {
-      "title": "Plan your Yunnan trip from",
-      "from": "Yunnan travel from {country}",
-      "all": "See all country guides",
-      "countries": {
-        "SG": "Singapore",
-        "US": "the USA",
-        "AU": "Australia",
-        "GB": "the UK",
-        "MY": "Malaysia"
-      }
-    },
     "contactAria": "Contact us",
     "homeAria": "Hidden China Travel home",
     "tripPlanAria": "Ask about your trip plan",

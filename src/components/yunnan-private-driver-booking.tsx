@@ -459,7 +459,45 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   </form>;
 }
 
-export function StandardTransferSection({ locale }: { locale: Locale }) {
+function DriverStripeTestCheckout({ locale, productId }: { locale: Locale; productId: ProductId }) {
+  const zh = locale === "zh";
+  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
+  const [error, setError] = useState("");
+
+  async function startCheckout() {
+    if (status === "loading") return;
+    setStatus("loading");
+    setError("");
+    try {
+      const response = await fetch("/api/stripe/driver-test-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId, locale }),
+      });
+      const data = await response.json() as { url?: string; error?: string };
+      if (!response.ok || !data.url) throw new Error(data.error || "Stripe checkout could not be created.");
+      trackEvent("driver_stripe_test_checkout_start", { product_id: productId, page_path: window.location.pathname });
+      window.location.assign(data.url);
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : (zh ? "无法打开测试付款。" : "Could not open test checkout."));
+      setStatus("error");
+    }
+  }
+
+  return <aside className="driver-stripe-test" aria-label={zh ? "Stripe 测试付款" : "Stripe test checkout"}>
+    <div>
+      <p className="kicker">STRIPE TEST MODE</p>
+      <h3>{zh ? "测试 USD 1 定金流程" : "Test the USD 1 deposit flow"}</h3>
+      <p>{zh ? "仅用于验证 Stripe Checkout、返回页面和 webhook，不构成有效预订。" : "For verifying Stripe Checkout, the return page and webhook only. This does not create a valid booking."}</p>
+    </div>
+    <button className="button button-outline" type="button" onClick={startCheckout} disabled={status === "loading"}>
+      {status === "loading" ? (zh ? "正在打开 Stripe…" : "Opening Stripe…") : (zh ? "支付 USD 1 测试款" : "Pay USD 1 in test mode")}
+    </button>
+    {error && <p className="contact-form-error" role="alert">{error}</p>}
+  </aside>;
+}
+
+export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = false }: { locale: Locale; stripeTestCheckoutEnabled?: boolean }) {
   const zh = locale === "zh";
   const catalog = useRef<HTMLDivElement>(null);
   const resetCatalogScroll = () => {
@@ -575,5 +613,6 @@ export function StandardTransferSection({ locale }: { locale: Locale }) {
         </div> : null}
       </div>
     </div>
-  </section>;
+  {selected !== "custom" && stripeTestCheckoutEnabled && !airportTransferCatalog[selected] ? <DriverStripeTestCheckout locale={locale} productId={selected} /> : null}
+</section>;
 }

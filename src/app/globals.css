@@ -618,7 +618,6 @@ a.footer-trust-item:hover { color:#fff; }
 .journey-faq details>p { margin:0; padding:0 45px 26px 0; color:#595e57; text-align:left; }
 .journey-final-cta { display:grid; min-height:490px; place-items:center; padding:80px 20px; background:linear-gradient(rgba(26,51,46,.84),rgba(26,51,46,.84)),url('/home/plan-journey.webp') center/cover; color:white; text-align:center; }
 .journey-final-cta>div { max-width:760px; }
-.journey-final-title { color:inherit; }
 .journey-final-cta h2 { font-size:clamp(2.4rem,5vw,4.2rem); }
 .journey-final-cta>div>span { display:block; margin:0 auto 28px; font-size:1rem; line-height:1.7; }
 .journey-final-cta-ask { min-height:0; padding:72px 20px 56px; }
@@ -2713,16 +2712,6 @@ body:has(.article-mobile-ask:not(.ask-bar-hidden)) .wa-float {
 /* Shared keyboard feedback for links, cards and standalone controls. */
 :where(a,button,input,select,textarea,summary):focus-visible { outline:3px solid var(--color-focus); outline-offset:3px; }
 .site-search:focus-within { outline:3px solid var(--color-focus); outline-offset:3px; }
-
-/* Stripe-hosted checkout return page. */
-.payment-result-section { min-height:62vh; padding:90px 20px; background:var(--color-surface-soft); }
-.payment-result-card { padding:clamp(28px,5vw,58px); border:1px solid var(--color-border); background:var(--color-surface); text-align:center; }
-.payment-result-card h1 { max-width:760px; margin:12px auto 18px; font-family:Georgia,serif; font-size:clamp(2rem,5vw,3.7rem); font-weight:400; line-height:1.08; }
-.payment-result-card>p:not(.kicker) { max-width:700px; margin:0 auto; color:var(--color-muted); line-height:1.75; }
-.payment-result-card small { display:block; margin:18px auto 0; color:var(--color-muted); overflow-wrap:anywhere; }
-.payment-result-card .button { margin-top:28px; }
-@media(max-width:700px) { .payment-result-section { padding:56px 16px; } }
-
 @media (prefers-reduced-motion:reduce) {
   .related-card,.search-result-card,.journeys-card-grid>a,.related-card img,.journeys-card-image img { transition:none; }
   .guide-card:hover,.journey-card:hover,.image-card:hover,.related-card:hover,.search-result-card:hover,.journeys-card-grid>a:hover { transform:none; }
@@ -2795,21 +2784,3 @@ body:has([role="dialog"][aria-modal="true"]) .wa-float {display:none!important}
 .journey-host-copy blockquote { border-top-color:#b7cbd8; }
 .journey-host-copy a { border-bottom-color:#9fbfd2; }
 .journey-plan-whatsapp,.journey-plan-whatsapp:hover { background:var(--blue); color:#fff; }
-
-:is(.tailor-preview,.driver-page) .enquiry-select{min-width:0;margin:0 0 18px;padding:0;border:0}
-:is(.tailor-preview,.driver-page) .enquiry-select legend{padding:0;margin-bottom:10px;color:#294b45;font-size:.78rem;font-weight:750}
-:is(.tailor-preview,.driver-page) .enquiry-select details{position:relative}
-:is(.tailor-preview,.driver-page) .enquiry-select summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:var(--control-height);padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-surface);color:var(--color-ink);font:inherit;list-style:none;cursor:pointer}
-:is(.tailor-preview,.driver-page) .enquiry-select summary::-webkit-details-marker{display:none}
-:is(.tailor-preview,.driver-page) .enquiry-select summary:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
-:is(.tailor-preview,.driver-page) .enquiry-select details[open]>summary{border-color:var(--color-focus);box-shadow:0 0 0 2px rgba(40,115,168,.13)}
-:is(.tailor-preview,.driver-page) .enquiry-select-placeholder{color:#74776f}
-:is(.tailor-preview,.driver-page) .enquiry-select-chevron{width:8px;height:8px;flex:0 0 8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin:0 3px 4px 0}
-:is(.tailor-preview,.driver-page) .enquiry-select details[open] .enquiry-select-chevron{transform:rotate(225deg);margin-bottom:0}
-:is(.tailor-preview,.driver-page) .enquiry-select-options{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:20;max-height:260px;max-height:min(260px,40dvh);overflow-y:auto;overscroll-behavior:contain;padding:5px;background:#fff;border:1px solid #cbc7b8;box-shadow:0 8px 24px rgba(29,68,48,.12)}
-:is(.tailor-preview,.driver-page) .enquiry-select-options label{position:relative;display:flex;align-items:center;gap:10px;min-height:var(--control-height);padding:11px 12px;margin:0;cursor:pointer}
-:is(.tailor-preview,.driver-page) .enquiry-select-options label>span{margin:0;font:inherit;color:inherit}
-:is(.tailor-preview,.driver-page) .enquiry-select-options label:hover,:is(.tailor-preview,.driver-page) .enquiry-select-options label:focus-within,:is(.tailor-preview,.driver-page) .enquiry-select-options label.is-selected{background:#e6eef1;color:#294b45}
-:is(.tailor-preview,.driver-page) .enquiry-select-options input{position:absolute;opacity:0;width:1px;height:1px;min-width:0;margin:0;padding:0}
-:is(.tailor-preview,.driver-page) .enquiry-select-options label:focus-within{outline:2px solid #4e7671;outline-offset:-2px}
-:is(.tailor-preview,.driver-page) .enquiry-select-check{margin-left:auto!important;font-weight:750!important}
