@@ -439,9 +439,9 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       {isShangriLaArrival && outsideArea ? <p className="driver-area-hint">{zh
         ? "纳帕海及环湖区域、普达措、巴拉格宗、虎跳峡、白水台、梅里雪山／飞来寺、雨崩和哈巴雪山片区均按其他区域询价。"
         : "Request a custom quote for Napa Lake, Pudacuo, Balagezong, Tiger Leaping Gorge, Baishuitai, Meili Snow Mountain / Feilai Temple, Yubeng and the Haba Snow Mountain area."}</p> : null}
-      <label><span>{transportLabel}{zh ? "（选填，可稍后补充）" : " (optional; share later)"}</span>
+      <label><span>{transportLabel}{isKunmingTest && requiresArrivalDetails ? " *" : (zh ? "（选填，可稍后补充）" : " (optional; share later)")}</span>
         <input type="text" name="transportNumber" required={isKunmingTest && requiresArrivalDetails} maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
-        <small>{zh ? "还没订机票或火车票？可先询价，确认后再提供航班号或车次。" : "Not booked yet? Request a quote now and share your flight or train number later."}</small>
+        <small>{isKunmingTest && requiresArrivalDetails ? (zh ? "沙盒测试请填一个航班号或车次；正式服务需核实准确编号。" : "For this sandbox test, enter a flight or train number; real bookings require verified details.") : (zh ? "还没订机票或火车票？可先询价，确认后再提供航班号或车次。" : "Not booked yet? Request a quote now and share your flight or train number later.")}</small>
       </label>
     </> : null}
     {isIntercity ? <>
