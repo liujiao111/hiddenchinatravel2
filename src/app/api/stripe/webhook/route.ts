@@ -1,8 +1,108 @@
 import Stripe from "stripe";
-import { driverOrdersEnabled, updateDriverOrder } from "@/lib/driver-orders.mjs";
+import { driverOrderAccess, driverOrdersEnabled, updateDriverOrder } from "@/lib/driver-orders.mjs";
 import { isDriverProductId } from "@/lib/stripe-test";
 
 export const runtime = "nodejs";
+
+/**
+ * This is sent only after Stripe's signed webhook has verified a USD 1 payment
+ * and the matching private order has been marked paid. Resend's idempotency key
+ * and the saved notification marker make Stripe retries safe.
+ */
+async function notifyKunmingSandboxPayment(request: Request, orderId: string, session: Stripe.Checkout.Session) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.CUSTOM_JOURNEY_FROM_EMAIL || process.env.ENQUIRY_FROM_EMAIL;
+  const to = process.env.CUSTOM_JOURNEY_TO_EMAIL || "joy.liu@hiddenchinatravel.com";
+  if (!apiKey || !from) {
+    console.error("[kunming-sandbox] Payment email missing Resend configuration");
+    return false;
+  }
+
+  let savedOrder: Awaited<ReturnType<typeof updateDriverOrder>>;
+  try {
+    savedOrder = await updateDriverOrder(orderId, current => current);
+    if (!savedOrder || !savedOrder.paid?.test || savedOrder.paid.test.sessionId !== session.id) {
+      throw new Error("Payment has not been matched to this order");
+    }
+    if (savedOrder.notifications?.paymentEmail?.sessionId === session.id) {
+      return true; // A retried webhook must not send a duplicate email.
+    }
+  } catch {
+    console.error("[kunming-sandbox] Verified order not available for email", { orderId });
+    return false;
+  }
+
+  const details = savedOrder.summary;
+  const access = driverOrderAccess(orderId);
+  const orderUrl = access ? new URL(`/driver-order/${access}`, request.url).toString() : "";
+  const lines = [
+    "SANDBOX PAYMENT CONFIRMED — NO REAL BOOKING OR VEHICLE WILL BE ARRANGED",
+    "",
+    `Amount received: USD 1.00 (Stripe TEST mode)`,
+    `Order ID: ${orderId}`,
+    `HCT Ref: ${details.ref || "Unavailable"}`,
+    `Service: ${details.service || "Kunming Airport & Railway Station Transfer"}`,
+    `Date: ${details.date || "Not supplied"}`,
+    `Route: ${details.route || "Not supplied"}`,
+    `Pickup: ${details.pickup || "Not supplied"}`,
+    `Drop-off: ${details.dropoff || "Not supplied"}`,
+    `Time (China): ${details.time || "Not supplied"}`,
+    `Flight/train: ${details.transportNumber || "Not supplied"}`,
+    `Vehicle: ${details.vehicle || "Not supplied"}`,
+    `Passengers: ${details.party || "Not supplied"}`,
+    `Large suitcases: ${details.luggage ?? "Not supplied"}`,
+    `Customer name: ${details.name || "Not supplied"}`,
+    `Customer email: ${details.email || "Not supplied"}`,
+    `Customer WhatsApp: ${details.whatsapp || "Not supplied"}`,
+    `Customer notes: ${details.notes || "None"}`,
+    `Stripe Checkout session: ${session.id}`,
+    ...(orderUrl ? [`Private order: ${orderUrl}`] : []),
+    "",
+    "This message is a Stripe sandbox payment notification, not a confirmed transfer booking.",
+  ];
+
+  try {
+    const result = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+        "Idempotency-Key": `kunming-sandbox-payment-${session.id}`,
+      },
+      body: JSON.stringify({
+        from, to: [to],
+        subject: `[Stripe TEST PAID] Kunming Transfer — US$1 — ${orderId}`,
+        text: lines.join("\n"),
+      }),
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!result.ok) {
+      console.error("[kunming-sandbox] Resend payment notification rejected", {
+        status: result.status, orderId,
+      });
+      return false;
+    }
+    const email = await result.json() as { id?: string };
+    try {
+      await updateDriverOrder(orderId, current => current.notifications?.paymentEmail?.sessionId === session.id
+        ? current
+        : { ...current, notifications: {
+          ...current.notifications,
+          paymentEmail: { sessionId: session.id, resendId: email.id || "",
+            sentAt: new Date().toISOString() },
+        } });
+    } catch {
+      // Resend has accepted the mail. Retried deliveries use the same Resend
+      // idempotency key to prevent duplicates if recording the marker fails.
+      console.error("[kunming-sandbox] Mail accepted, but status marker update failed", { orderId });
+    }
+    console.info("[kunming-sandbox] Payment email accepted", { orderId });
+    return true;
+  } catch {
+    console.error("[kunming-sandbox] Resend payment email request failed", { orderId });
+    return false;
+  }
+}
 
 export async function POST(request: Request) {
   const testSecret = process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED === "true"
@@ -67,6 +167,9 @@ export async function POST(request: Request) {
         };
       });
       if (!updated) throw new Error("Missing driver order");
+      if (!await notifyKunmingSandboxPayment(request, orderId, session)) {
+        return new Response("Payment recorded; email notification will be retried.", { status: 503 });
+      }
       return Response.json({ received: true });
     } catch (error) {
       console.error("[kunming-test-payment-link] Order reconciliation failed", {
@@ -105,33 +208,9 @@ export async function POST(request: Request) {
       console.error("[kunming-preview] Could not persist payment", { eventId: event.id, reason: error instanceof Error ? error.message : "unknown" });
       return new Response("Could not persist sandbox payment.", { status: 503 });
     }
-    // Payment is already recorded. Email notification is secondary and must not undo it.
-    const apiKey = process.env.RESEND_API_KEY;
-    const from = process.env.CUSTOM_JOURNEY_FROM_EMAIL || process.env.ENQUIRY_FROM_EMAIL;
-    if (apiKey && from) {
-      try {
-        const mail = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json",
-            "Idempotency-Key": `kunming-preview-payment-${session.id}`,
-          },
-          body: JSON.stringify({
-            from, to: [process.env.CUSTOM_JOURNEY_TO_EMAIL || "joy.liu@hiddenchinatravel.com"],
-            subject: `[Stripe sandbox] Kunming test order paid — ${orderId}`,
-            text: [
-              "Stripe confirmed a USD 1.00 SANDBOX payment. No real transfer has been booked.",
-              `Order: ${orderId}`, `Ref: ${metadata.lead_ref}`,
-              `Product: ${metadata.product_id}`, `Checkout: ${session.id}`,
-              `Customer email: ${session.customer_details?.email || session.customer_email || "Not available"}`,
-            ].join("\n"),
-          }),
-          signal: AbortSignal.timeout(5000),
-        });
-        if (!mail.ok) console.error("[kunming-preview] Payment alert email rejected", mail.status);
-      } catch {
-        console.error("[kunming-preview] Payment alert email unavailable");
-      }
+    // Payment status is persisted before notifying; failed email is safely retried by Stripe.
+    if (!await notifyKunmingSandboxPayment(request, orderId, session)) {
+      return new Response("Payment recorded; email notification will be retried.", { status: 503 });
     }
     return Response.json({ received: true });
   }
