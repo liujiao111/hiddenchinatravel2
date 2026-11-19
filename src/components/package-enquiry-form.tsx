@@ -102,7 +102,7 @@ export function PackageEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
       trackEvent("generate_lead", {
         form_name: "yunnan_package_enquiry",
         lead_type: "yunnan_package",
-        lead_id: idRef.current || undefined,
+        lead_id: leadRef.current || undefined,
         page_path: window.location.pathname,
         event_id: idRef.current || undefined,
       });
