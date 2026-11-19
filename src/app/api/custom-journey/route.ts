@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     enquiry = parseCustomJourneyEnquiry(parsedBody);
   } catch { return Response.json({ error: "Please check your details and try again." }, { status: 400 }); }
   if (!enquiry) return Response.json({ error: "Please check your name, email, traveler numbers and consent." }, { status: 400 });
-  const formName = (/^(?:custom_journey_enquiry|yunnan_package_enquiry|private_yunnan_enquiry|private_driver_[a-z_]+)$/.test(String((parsedBody.tracking as Record<string, unknown> | undefined)?.form_name || "")))
+  const formName = (/^(?:custom_journey_enquiry|yunnan_package_enquiry|private_yunnan_enquiry|yunnan_driver_(?:custom|product))$/.test(String((parsedBody.tracking as Record<string, unknown> | undefined)?.form_name || "")))
     ? String((parsedBody.tracking as Record<string, unknown>).form_name) : "custom_journey_enquiry";
   const formRecord = prepareFormRecord(parsedBody.tracking, "https://hiddenchinatravel.com" + (enquiry.conversionPage || "/private-yunnan-tours"), formName, enquiry.requestId);
   const apiKey = process.env.RESEND_API_KEY;
