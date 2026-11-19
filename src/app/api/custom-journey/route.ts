@@ -1,3 +1,4 @@
+import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
 import { createHash } from "node:crypto";
 import { enquiryEmailText, parseCustomJourneyEnquiry } from "@/lib/custom-journey-enquiry";
 
@@ -20,18 +21,23 @@ export async function POST(request: Request) {
   recentRequests.set(ip, { count: (limit?.count || 0) + 1, expires: limit?.expires || now + 600_000 });
   if (recentRequests.size > 2000) recentRequests.delete(recentRequests.keys().next().value!);
   let enquiry;
+  let parsedBody: Record<string, unknown> = {};
   try {
     const text = await request.text();
     if (text.length > 12_000) return Response.json({ error: "Your message is too long." }, { status: 413 });
-    enquiry = parseCustomJourneyEnquiry(JSON.parse(text));
+    parsedBody = JSON.parse(text) as Record<string, unknown>;
+    enquiry = parseCustomJourneyEnquiry(parsedBody);
   } catch { return Response.json({ error: "Please check your details and try again." }, { status: 400 }); }
   if (!enquiry) return Response.json({ error: "Please check your name, email, traveler numbers and consent." }, { status: 400 });
+  const formName = ["custom_journey_enquiry", "yunnan_package_enquiry", "private_yunnan_enquiry", "yunnan_private_driver"].includes(String((parsedBody.tracking as Record<string, unknown> | undefined)?.form_name || ""))
+    ? String((parsedBody.tracking as Record<string, unknown>).form_name) : "custom_journey_enquiry";
+  const formRecord = prepareFormRecord(parsedBody.tracking, "https://hiddenchinatravel.com" + (enquiry.conversionPage || "/private-yunnan-tours"), formName, enquiry.requestId);
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.CUSTOM_JOURNEY_FROM_EMAIL;
   const to = process.env.CUSTOM_JOURNEY_TO_EMAIL || "joy.liu@hiddenchinatravel.com";
   if (!apiKey || !from) return Response.json({ error: "The enquiry form is temporarily unavailable. Your details have been kept here; please try WhatsApp or email Joy below." }, { status: 503 });
   try {
-    const body = { from, to: [to], ...(enquiry.email ? { reply_to: enquiry.email } : {}), subject: `Custom journey enquiry — ${enquiry.name}`, text: enquiryEmailText(enquiry) };
+    const body = { from, to: [to], ...(enquiry.email ? { reply_to: enquiry.email } : {}), subject: `Custom journey enquiry — ${enquiry.name}`, text: "Ref: " + formRecord.ref + "\n\n" + enquiryEmailText(enquiry) };
     const digest = createHash("sha256").update(JSON.stringify(body)).digest("hex").slice(0,32);
     const result = await fetch("https://api.resend.com/emails", {
       method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": `custom-journey-${enquiry.requestId}-${digest}` },
@@ -39,6 +45,7 @@ export async function POST(request: Request) {
     });
     const response = await result.json();
     if (!result.ok || typeof response.id !== "string") return Response.json({ error: "We could not send your enquiry. Please try again or contact Joy below." }, { status: 502 });
-    return Response.json({ success: true });
+    await saveFormRecord(formRecord);
+    return Response.json({ success: true, ref: formRecord.ref });
   } catch { return Response.json({ error: "We could not send your enquiry. Your details are still here; please try again or contact Joy below." }, { status: 502 }); }
 }
