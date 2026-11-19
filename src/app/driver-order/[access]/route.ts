@@ -47,6 +47,10 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
     <main><p>Hidden China Travel</p><h1>${t("包车订单", "Driver order")}</h1><p><strong>${status}</strong></p>
     <section><h2>${t("用车需求", "Trip details")}</h2><dl>
     ${row(t("申请编号", "Reference"), id)}
+    ${row(t("HCT 来源编号", "HCT attribution Ref"), summary.ref)}
+    ${row(t("旅客姓名", "Guest name"), summary.name)}
+    ${row(t("邮箱", "Email"), summary.email)}
+    ${row("WhatsApp", summary.whatsapp)}
     ${row(t("服务", "Service"), summary.service)}
     ${row(t("日期", "Date"), summary.date)}
     ${row(t("路线", "Route"), summary.route)}
@@ -62,6 +66,7 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
     ${summary.hub ? row(t("人数", "Travellers"), t(`${summary.adults} 位成人、${summary.children} 位儿童`, `${summary.adults} adults, ${summary.children} children`)) : row(t("人数", "Travellers"), summary.party)}
     ${row(t("大行李箱", "Large suitcases"), summary.luggage === undefined ? null : String(summary.luggage))}
     ${row(t("额外要求", "Other requirements"), summary.notes)}
+    ${!kunmingSandbox && summary.email ? row(t("咨询回执邮件", "Request acknowledgement email"), notifications?.enquiryAcknowledgement?.acceptedAt ? t("邮件服务已接收", "Accepted by email provider") : t("未确认发送", "Not confirmed sent")) : ""}
     ${row(t(isShangriLaTransfer ? "参考价格" : "参考价", "Guide price"), summary.guideFen > 0 ? money(summary.guideFen) : summary.manualQuote ? t(isShangriLaTransfer ? "需人工确认" : "需人工确认价格", "Manual quote required") : null)}
     ${isShangriLaTransfer ? row(t("报价状态", "Quote status"), quote ? t("报价已确认", "Quote confirmed")
       : summary.manualQuote ? t("人工报价", "Manual quote") : t("待确认车源和最终价格", "Availability and final price to be confirmed")) : ""}</dl></section>
