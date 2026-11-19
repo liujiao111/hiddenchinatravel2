@@ -131,12 +131,22 @@ test('Header, footer, floating, hero, mobile and tour buttons emit one event eac
     assert.equal(events.at(-1)[2].lead_type, 'whatsapp_click');
     assert.ok(!/email|phone|name|gclid|text|link_url/i.test(Object.keys(events.at(-1)[2]).join(' ')));
   }
-  assert.equal(events.length, 6); assert.equal(requests.length, 0); cleanup();
+  assert.equal(events.length, 6);
+  assert.equal(requests.length, 6);
+  for (let i = 0; i < requests.length; i++) {
+    const [url, options] = requests[i];
+    assert.equal(url, '/api/whatsapp-ref');
+    assert.equal(options.method, 'POST');
+    assert.equal(options.keepalive, true);
+    assert.equal(JSON.parse(options.body).ref, events[i][2].lead_id);
+    assert.equal(JSON.parse(options.body).conversion_url, 'https://hiddenchinatravel.com/journeys/example?gclid=test');
+  }
+  cleanup();
 });
 test('Fast double clicks deduplicate both the event and reference; share links are not inquiries', () => {
   const { events, requests } = browser(); const cleanup = tracking.installWhatsAppTracking();
   const link = anchor(); click(link); const href = link.href; click(link);
-  assert.equal(events.length, 1); assert.equal(requests.length, 0); assert.equal(link.href, href);
+  assert.equal(events.length, 1); assert.equal(requests.length, 1); assert.equal(link.href, href);
   click(anchor(document.body, 'https://wa.me/?text=share')); assert.equal(events.length, 1); cleanup();
 });
 test('Strict Mode cleanup/remount and SPA dynamic links cannot duplicate click handlers', async () => {
@@ -232,6 +242,58 @@ test('Page-specific WhatsApp context survives normalization, click and reference
   const replaced = new URL(w.withWhatsAppRef(link.href, 'HCT-20261110-AAAAAAAAAAAAAAAA')).searchParams.get('text');
   assert.equal(replaced, `${message}\n\nRef: HCT-20261110-AAAAAAAAAAAAAAAA`);
   cleanup();
+});
+
+test('Ref points to encrypted server-side source details, not visible WhatsApp metadata', () => {
+  const store = require('../src/lib/whatsapp-ref-store.ts');
+  const now = new Date().toISOString();
+  const id = w.generateLeadId();
+  const source = { source: 'google', medium:'cpc', source_label:'Google Ads', landing_page:'/private-yunnan-tours', time:now, params:{gclid:'test-click',utm_campaign:'tour'} };
+  const record = store.parseWhatsAppSource({
+    ref:id, captured_at:now, conversion_url:'https://hiddenchinatravel.com/yunnan-private-driver?gclid=abc&email=private%40example.com',
+    whatsapp_location:'hero_section', first:source, last:source, session:source,
+  });
+  assert.ok(record);
+  assert.equal(record.conversion_url,'https://hiddenchinatravel.com/yunnan-private-driver?gclid=abc');
+  const ciphertext = store.encryptRecord(record,'vercel_blob_rw_testStore_foobar');
+  assert.equal(ciphertext.subarray(0,5).toString(),'HCTR1');
+  assert.ok(!ciphertext.toString('utf8').includes('Google Ads'));
+  assert.deepEqual(store.decryptRecord(ciphertext,'vercel_blob_rw_testStore_foobar'), record);
+  assert.equal(store.parseWhatsAppSource({...record,ref:'fake'}),null);
+  assert.equal(store.parseWhatsAppSource({...record,conversion_url:'https://evil.test/?gclid=abc'}),null);
+});
+test('Ref lookup is authenticated, and returns original source data', async () => {
+  const ingest = require('../src/app/api/whatsapp-ref/route.ts');
+  const admin = require('../src/app/api/admin/whatsapp-ref-lookup/route.ts');
+  const oldToken=process.env.BLOB_READ_WRITE_TOKEN, oldSecret=process.env.WHATSAPP_REF_LOOKUP_SECRET, oldFetch=global.fetch;
+  process.env.BLOB_READ_WRITE_TOKEN='vercel_blob_rw_testStore_foobar';
+  process.env.WHATSAPP_REF_LOOKUP_SECRET='this-is-a-long-operator-secret-for-tests';
+  let stored;
+  global.fetch=async (url, options) => {
+    if (String(url).startsWith('https://vercel.com/api/blob/')) { stored=Buffer.from(options.body); return new Response('{}',{status:201}); }
+    if (String(url).startsWith('https://testStore.public.blob.vercel-storage.com/')) return new Response(stored,{status:200});
+    throw new Error('unexpected mock fetch URL: '+url);
+  };
+  try {
+    const id=w.generateLeadId();
+    const record={ref:id,captured_at:new Date().toISOString(),conversion_url:'https://hiddenchinatravel.com/yunnan-private-driver?utm_source=google',whatsapp_location:'floating_button',first:touch(),last:touch(),session:touch()};
+    const req=new Request('https://hiddenchinatravel.com/api/whatsapp-ref',{method:'POST',headers:{origin:'https://hiddenchinatravel.com','sec-fetch-site':'same-origin','content-type':'application/json'},body:JSON.stringify(record)});
+    assert.equal((await ingest.POST(req)).status,201);
+    assert.ok(stored);
+    const base='https://hiddenchinatravel.com/api/admin/whatsapp-ref-lookup';
+    const denied=await admin.POST(new Request(base,{method:'POST',headers:{'x-ref-lookup-secret':'bad'},body:JSON.stringify({ref:id})}));
+    assert.equal(denied.status,401);
+    const good=await admin.POST(new Request(base,{method:'POST',headers:{'x-ref-lookup-secret':process.env.WHATSAPP_REF_LOOKUP_SECRET},body:JSON.stringify({ref:id})}));
+    assert.equal(good.status,200);
+    const result=await good.json();
+    assert.equal(result.ref,id);
+    assert.equal(result.first.source_label,'Google Ads');
+    assert.equal(result.status,'whatsapp_click_unconfirmed');
+  } finally {
+    global.fetch=oldFetch;
+    if(oldToken===undefined) delete process.env.BLOB_READ_WRITE_TOKEN; else process.env.BLOB_READ_WRITE_TOKEN=oldToken;
+    if(oldSecret===undefined) delete process.env.WHATSAPP_REF_LOOKUP_SECRET; else process.env.WHATSAPP_REF_LOOKUP_SECRET=oldSecret;
+  }
 });
 
 test('Custom enquiry email preserves optional timing, reference and first/last attribution without breaking legacy clients', () => {
