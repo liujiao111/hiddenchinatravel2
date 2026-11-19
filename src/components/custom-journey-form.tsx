@@ -39,7 +39,7 @@ export function CustomJourneyForm() {
       const result = await response.json();
       if (!response.ok || result.success !== true) throw new Error(result.error || t("sendError"));
       setStatus("success");
-      trackEvent("generate_lead", { form_name: "custom_journey_enquiry", page_path: window.location.pathname, lead_type: "tailor_made_journey", event_id: requestId.current || undefined });
+      trackEvent("generate_lead", { form_name: "custom_journey_enquiry", lead_id: refId.current || undefined, page_path: window.location.pathname, lead_type: "tailor_made_journey", event_id: requestId.current || undefined });
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : t("sendErrorAlt"));
