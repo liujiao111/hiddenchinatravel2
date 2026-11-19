@@ -21,7 +21,7 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   catch { return new Response("Order details are temporarily unavailable.", { status: 503, headers }); }
   if (!saved) return new Response("Order link not found.", { status: 404, headers });
 
-  const { summary, quote, paid, dispatch, testCheckout } = saved.order;
+  const { summary, quote, paid, dispatch, testCheckout, notifications } = saved.order;
   const kunmingSandbox = summary.productId === "kunming-arrival" && testCheckout?.currency === "usd" && testCheckout?.amount === 100;
   const zh = summary.locale === "zh";
   const isShangriLaTransfer = summary.productId === "shangri-la-arrival";
@@ -69,6 +69,7 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
       ${row(t("测试金额", "Test total"), "US$1.00")}
       ${row(t("订单状态", "Order status"), paid?.test ? t("Webhook 已确认收款", "Payment confirmed by Stripe webhook") : t("等待付款或 Stripe 回调", "Awaiting payment or Stripe webhook"))}
       ${row(t("咨询来源 Ref", "Attribution Ref"), summary.ref)}
+      ${paid?.test ? row(t("付款通知邮件", "Payment notification email"), notifications?.paymentEmail?.sessionId === paid.test.sessionId ? t("邮件服务已接收", "Accepted by email provider") : t("等待发送或重试", "Pending / awaiting retry")) : ""}
       </dl><p>${t("仅用于测试线上下单与支付状态，不构成真实包车预订，也不会安排车辆。", "This is a Stripe sandbox test only. No real driver booking or vehicle will be arranged.")}</p></section>` : ""}
     ${quote ? `<section><h2>${t("正式报价与付款", "Quote and payment")}</h2><dl>
     ${row(t("已确认的服务", "Confirmed service"), quote.description)}
