@@ -522,12 +522,12 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
         <DriverPicker name="date" type="date" label={zh ? "选择服务日期" : "Choose travel date"} min={isArrival ? chinaServiceDate() : undefined} />
       </div>
       {kind === "custom" ? <label><span>{zh ? "结束日期（选填）" : "End date (optional)"}</span><input type="date" name="endDate" min={chinaServiceDate()} /></label> : null}
-      {isArrival ? <div className="driver-picker-field"><span>{timeLabel}{isKunmingTest ? (zh ? "（选填，可稍后补充）" : " (optional; share later)") : " *"}</span>
-        <DriverPicker name="serviceTime" type="time" label={timeLabel} required={!isKunmingTest} />
+      {isArrival ? <div className="driver-picker-field"><span>{timeLabel}{zh ? "（选填，可稍后补充）" : " (optional; share later)"}</span>
+        <DriverPicker name="serviceTime" type="time" label={timeLabel} required={false} />
         <small>{isKunmingTest ? (zh ? "暂未确定时间也可以继续 US$1 测试，正式接送前再确认。" : "You may complete the US$1 sandbox test without an exact time. Confirm it before a real transfer.") : requiresArrivalDetails ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
           : (isLijiangArrival || isShangriLaArrival)
-            ? (zh ? "请填写希望司机到酒店或约定古城入口接您的时间。" : "Enter the time you would like the driver to meet you at the hotel or agreed Old Town entrance.")
-            : (zh ? "请填写希望司机到酒店接您的时间。" : "Enter the time you would like the driver to pick you up at the hotel.")}</small>
+            ? (zh ? "可稍后确认希望司机到酒店或古城入口接您的时间。" : "You can confirm your hotel or Old Town pickup time later.")
+            : (zh ? "可以稍后确认酒店接客时间。" : "You can confirm your hotel pickup time later.")}</small>
       </div> : null}
       <DriverDropdown name="vehicle" label={zh ? "车型需求 *" : "Vehicle preference *"} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={value => { invalidateReview(); setVehicle(value); }} options={[
         { value: fiveSeat, label: zh ? "标准5座车（建议1–3人）" : "Five-seat car (1–3 recommended)" },
