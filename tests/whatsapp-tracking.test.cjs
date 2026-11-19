@@ -228,9 +228,46 @@ test('Page-specific WhatsApp context survives normalization, click and reference
   assert.equal(new URL(link.href).searchParams.get('text'), message);
   click(link);
   assert.equal(events.length, 1);
-  assert.equal(new URL(link.href).searchParams.get('text'), `${message}\n\nRef: ${events[0][2].lead_id}`);
+  const sent = new URL(link.href).searchParams.get('text');
+  assert.ok(sent.startsWith(`${message}\n\nRef: ${events[0][2].lead_id}`));
+  assert.ok(sent.includes('\nSource page: https://hiddenchinatravel.com/'));
+  assert.ok(sent.includes('\nChannel: Google Ads'));
   const replaced = new URL(w.withWhatsAppRef(link.href, 'HCT-20261110-AAAAAAAAAAAAAAAA')).searchParams.get('text');
   assert.equal(replaced, `${message}\n\nRef: HCT-20261110-AAAAAAAAAAAAAAAA`);
+  cleanup();
+});
+
+
+test('WhatsApp enquiry includes full URL, first landing, first/last channels and redacts sensitive query parameters', () => {
+  browser('https://hiddenchinatravel.com/?gclid=testGclid&utm_source=google&utm_medium=cpc&utm_campaign=yunnan');
+  a.getAttribution();
+  window.history.pushState({}, '', '/zh/yunnan-private-driver?utm_source=instagram&utm_medium=social&email=alice%40example.com');
+  const cleanup = tracking.installWhatsAppTracking();
+  const link = anchor();
+  click(link);
+  const sent = new URL(link.href).searchParams.get('text');
+  assert.ok(sent.includes('Source page: https://hiddenchinatravel.com/zh/yunnan-private-driver?'));
+  assert.ok(sent.includes('utm_source=instagram'));
+  assert.ok(sent.includes('email=%5Bredacted%5D'));
+  assert.ok(!sent.includes('alice%40example.com'));
+  assert.ok(sent.includes('Channel: Organic Social'));
+  assert.ok(sent.includes('First landing: https://hiddenchinatravel.com/?gclid=testGclid'));
+  assert.ok(sent.includes('utm_campaign=yunnan'));
+  assert.ok(sent.includes('First channel: Google Ads'));
+  cleanup();
+});
+
+test('Analytics-denied visitor keeps WhatsApp and Ref without any source metadata', () => {
+  browser('https://hiddenchinatravel.com/?utm_source=google&utm_medium=cpc&gclid=test');
+  window.dataLayer = [['consent', 'default', { analytics_storage: 'denied' }]];
+  const cleanup = tracking.installWhatsAppTracking();
+  const link = anchor();
+  click(link);
+  const sent = new URL(link.href).searchParams.get('text');
+  assert.ok(sent.includes('Ref: HCT-'));
+  assert.ok(!sent.includes('Source page:'));
+  assert.ok(!sent.includes('Channel:'));
+  assert.ok(!sent.includes('gclid='));
   cleanup();
 });
 
