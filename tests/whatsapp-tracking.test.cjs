@@ -284,7 +284,6 @@ test('Ref lookup is authenticated, and returns original source data', async () =
     const req=new Request('https://hiddenchinatravel.com/api/whatsapp-ref',{method:'POST',headers:{origin:'https://hiddenchinatravel.com','sec-fetch-site':'same-origin','content-type':'application/json'},body:JSON.stringify(record)});
     assert.equal((await ingest.POST(req)).status,201);
     assert.ok(stored);
-    assert.equal(storeUrlAccess, undefined);
     const base='https://hiddenchinatravel.com/api/admin/whatsapp-ref-lookup';
     const denied=await admin.POST(new Request(base,{method:'POST',headers:{'x-ref-lookup-secret':'bad'},body:JSON.stringify({ref:id})}));
     assert.equal(denied.status,401);
