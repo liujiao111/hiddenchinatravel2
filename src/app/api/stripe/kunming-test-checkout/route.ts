@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { parseCustomJourneyEnquiry } from "@/lib/custom-journey-enquiry";
 import { parseAirportTransfer } from "@/lib/driver-airport-transfers";
-import { driverOrderAccess, driverOrdersEnabled, saveDriverRequest, updateDriverOrder } from "@/lib/driver-orders.mjs";
+import { driverOrderAccess, driverOrdersEnabled, readDriverOrder, saveDriverRequest, updateDriverOrder } from "@/lib/driver-orders.mjs";
 import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
 import { getStripeTestClient, getDriverTestPaymentLink, isKunmingStripePreviewEnabled } from "@/lib/stripe-test";
 
@@ -9,6 +9,69 @@ export const runtime = "nodejs";
 
 const jsonHeaders = { "Cache-Control": "no-store" };
 const uuidV4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+/** Pending checkout notices are informational only. Never claim payment has succeeded. */
+async function notifyPendingKunmingTestOrder(id: string, origin: string) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.CUSTOM_JOURNEY_FROM_EMAIL || process.env.ENQUIRY_FROM_EMAIL;
+  const to = process.env.CUSTOM_JOURNEY_TO_EMAIL || "joy.liu@hiddenchinatravel.com";
+  if (!apiKey || !from) {
+    console.error("[kunming-preview] Pending-order email is not configured");
+    return;
+  }
+  try {
+    const stored = (await readDriverOrder(id))?.order;
+    if (!stored?.testCheckout || stored.notifications?.checkoutEmail?.orderId === id) return;
+    const summary = stored.summary;
+    if (summary?.productId !== "kunming-arrival" || stored.testCheckout.amount !== 100
+        || stored.testCheckout.currency !== "usd" || !driverOrderAccess(id)) return;
+    const orderUrl = new URL(`/driver-order/${driverOrderAccess(id)}`, origin).toString();
+    const lines = [
+      "PREVIEW TEST ORDER CREATED — PAYMENT NOT YET VERIFIED",
+      "This email confirms a sandbox checkout was opened, NOT that payment succeeded.",
+      "No vehicle or actual booking will be arranged.",
+      "",
+      `Order ID: ${id}`, `HCT Ref: ${summary.ref || "N/A"}`,
+      "Test price: USD 1.00",
+      `Service: ${summary.service}`, `Travel date: ${summary.date}`,
+      `Route: ${summary.route}`, `Time (China): ${summary.time || "N/A"}`,
+      `Flight/train: ${summary.transportNumber || "N/A"}`,
+      `Vehicle: ${summary.vehicle || "N/A"}`,
+      `Passengers: ${summary.party}`, `Large suitcases: ${summary.luggage ?? "N/A"}`,
+      `Name: ${summary.name || "N/A"}`, `Email: ${summary.email || "N/A"}`,
+      `WhatsApp: ${summary.whatsapp || "N/A"}`,
+      `Notes: ${summary.notes || "None"}`,
+      `Private test order: ${orderUrl}`,
+    ];
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+        "Idempotency-Key": `kunming-preview-checkout-start-${id}`,
+      },
+      body: JSON.stringify({
+        from, to: [to],
+        subject: `[TEST ORDER — Payment pending] Kunming transfer US$1 — ${id}`,
+        text: lines.join("\n"),
+      }),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) {
+      console.error("[kunming-preview] Pending checkout email rejected", { status: response.status, orderId: id });
+      return;
+    }
+    const accepted = await response.json() as { id?: string };
+    await updateDriverOrder(id, current => current.notifications?.checkoutEmail?.orderId === id
+      ? current : { ...current, notifications: { ...current.notifications, checkoutEmail: {
+        orderId: id, resendId: accepted.id || "", acceptedAt: new Date().toISOString(),
+      } } });
+    console.info("[kunming-preview] Pending checkout email accepted", { orderId: id });
+  } catch {
+    // Checkout must still proceed: an email outage cannot turn a sandbox checkout into a failed order.
+    console.error("[kunming-preview] Pending checkout email could not be sent", { orderId: id });
+  }
+}
 
 export async function POST(request: NextRequest) {
   if (!isKunmingStripePreviewEnabled()) {
@@ -74,6 +137,7 @@ export async function POST(request: NextRequest) {
     const checkout = saved.testCheckout;
     if (saved.paid?.test) return Response.json({ error: "This test order has already been paid." }, { status: 409, headers: jsonHeaders });
     if (checkout?.url && Date.parse(checkout.expiresAt) > Date.now() && checkout.amount === 100 && checkout.currency === "usd") {
+      await notifyPendingKunmingTestOrder(enquiry.requestId, request.nextUrl.origin);
       return Response.json({ url: checkout.url, orderPath: `/driver-order/${driverOrderAccess(enquiry.requestId)}`, ref: source.ref }, { headers: jsonHeaders });
     }
     if (checkout) return Response.json({ error: "The previous test checkout expired. Please start a new booking." }, { status: 409, headers: jsonHeaders });
@@ -92,6 +156,7 @@ export async function POST(request: NextRequest) {
         return Response.json({ error: "Could not link this sandbox payment to the order." }, { status: 503, headers: jsonHeaders });
       }
       await saveFormRecord(source);
+      await notifyPendingKunmingTestOrder(enquiry.requestId, request.nextUrl.origin);
       return Response.json({
         url: url.toString(), orderPath: `/driver-order/${driverOrderAccess(enquiry.requestId)}`,
         ref: source.ref, orderId: enquiry.requestId,
@@ -136,6 +201,7 @@ export async function POST(request: NextRequest) {
     });
     if (updated?.testCheckout?.sessionId !== session.id) throw new Error("Checkout could not be linked to the saved order.");
     await saveFormRecord(source);
+    await notifyPendingKunmingTestOrder(enquiry.requestId, request.nextUrl.origin);
     return Response.json({
       url: session.url, orderPath: `/driver-order/${driverOrderAccess(enquiry.requestId)}`,
       ref: source.ref, orderId: enquiry.requestId,
