@@ -42,6 +42,66 @@ export async function POST(request: Request) {
   const session = event.data.object as Stripe.Checkout.Session;
   if (session.payment_status !== "paid") return Response.json({ received: true });
   const metadata = session.metadata;
+  if (metadata?.purpose === "kunming_transfer_preview_checkout") {
+    const orderId = metadata.order_id ?? "";
+    if (event.livemode || session.livemode || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(orderId)
+        || metadata.product_id !== "kunming-arrival" || metadata.environment !== "preview"
+        || session.client_reference_id !== orderId || session.amount_total !== 100 || session.currency !== "usd"
+        || !/^HCT-\d{8}-[A-F0-9]{16}$/.test(metadata.lead_ref ?? "")) {
+      console.error("[kunming-preview] Unexpected signed checkout", { eventId: event.id });
+      return new Response("Preview checkout does not match order.", { status: 422 });
+    }
+    try {
+      if (!driverOrdersEnabled()) throw new Error("Order storage unavailable");
+      const updated = await updateDriverOrder(orderId, current => {
+        if (current.summary?.productId !== "kunming-arrival" || current.summary?.ref !== metadata.lead_ref
+            || current.testCheckout?.sessionId !== session.id || current.testCheckout?.amount !== 100
+            || current.testCheckout?.currency !== "usd") throw new Error("Saved order mismatch");
+        if (current.paid?.test) return current; // webhook retries must not double-book or double-count
+        return {
+          ...current,
+          testCheckout: { ...current.testCheckout, status: "paid" },
+          paid: { ...current.paid, test: {
+            type: "sandbox", amount: 100, currency: "usd", sessionId: session.id,
+            eventId: event.id, paidAt: new Date(event.created * 1000).toISOString(),
+          } },
+        };
+      });
+      if (!updated) throw new Error("No matching saved order");
+    } catch (error) {
+      console.error("[kunming-preview] Could not persist payment", { eventId: event.id, reason: error instanceof Error ? error.message : "unknown" });
+      return new Response("Could not persist sandbox payment.", { status: 503 });
+    }
+    // Payment is already recorded. Email notification is secondary and must not undo it.
+    const apiKey = process.env.RESEND_API_KEY;
+    const from = process.env.CUSTOM_JOURNEY_FROM_EMAIL || process.env.ENQUIRY_FROM_EMAIL;
+    if (apiKey && from) {
+      try {
+        const mail = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json",
+            "Idempotency-Key": `kunming-preview-payment-${session.id}`,
+          },
+          body: JSON.stringify({
+            from, to: [process.env.CUSTOM_JOURNEY_TO_EMAIL || "joy.liu@hiddenchinatravel.com"],
+            subject: `[Stripe sandbox] Kunming test order paid — ${orderId}`,
+            text: [
+              "Stripe confirmed a USD 1.00 SANDBOX payment. No real transfer has been booked.",
+              `Order: ${orderId}`, `Ref: ${metadata.lead_ref}`,
+              `Product: ${metadata.product_id}`, `Checkout: ${session.id}`,
+              `Customer email: ${session.customer_details?.email || session.customer_email || "Not available"}`,
+            ].join("\n"),
+          }),
+          signal: AbortSignal.timeout(5000),
+        });
+        if (!mail.ok) console.error("[kunming-preview] Payment alert email rejected", mail.status);
+      } catch {
+        console.error("[kunming-preview] Payment alert email unavailable");
+      }
+    }
+    return Response.json({ received: true });
+  }
   const isQuote = metadata?.purpose === "driver_quote_payment";
   const productId = metadata?.purpose === "driver_test_deposit"
     ? metadata.product_id
