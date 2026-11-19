@@ -1,4 +1,4 @@
-import { parseWhatsAppSource, saveWhatsAppSource } from "@/lib/whatsapp-ref-store";
+import { findWhatsAppSource, parseWhatsAppSource, saveWhatsAppSource } from "@/lib/whatsapp-ref-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,6 +36,10 @@ export async function POST(request: Request) {
   if (!record) return json("Invalid reference or attribution", 400);
   try {
     await saveWhatsAppSource(record);
+    // A successful PUT is not enough: verify the encrypted record is
+    // immediately readable through the same private-store path used by lookup.
+    const saved = await findWhatsAppSource(record.ref);
+    if (!saved || saved.ref !== record.ref) throw new Error("Ref not readable after save");
     return Response.json({ saved: true }, {
       status: 201,
       headers: { "cache-control": "no-store", "x-robots-tag": "noindex" },
