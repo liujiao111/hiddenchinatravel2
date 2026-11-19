@@ -130,9 +130,8 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       { icon: "party", title: T("Room for Everyone", "一家人同行，也能从容舒适"), lines: [T("Parents, kids and suitcases all matter. We check passenger numbers, luggage space and suitable vehicle options before confirmation.", "爸妈坐得舒适，孩子有空间，行李放得下。确认前核对人数、行李与合适车型。"), T("A family trip should fit the people travelling, not just the route.", "一家人出行，节奏应该照顾每个人，而不只是赶路。")] },
       { icon: "route", title: T("Your Journey, Your Pace", "把时间留给沿途的风景"), lines: [T("Plan scenic stops, photo breaks and time to rest along your route, with the schedule agreed in advance.", "想拍照就多留一会儿，累了就安排休息；沿途停靠与用车时间提前商定。"), T("Flexible day trips and multi-day charters are designed around your plans, subject to road and safety conditions.", "一日游与多日包车可按需求规划，具体以路况、安全和约定行程为准。")] },
       { icon: "person", title: T("Local Knowledge, Less Hassle", "熟悉云南的路，也懂旅途的细节"), lines: [T("Local drivers know practical routes and pickup points, and may suggest stops or places to eat along the way.", "当地司机熟悉常走路线与接送点，也可根据经验提供沿途停靠或用餐建议。"), T("We coordinate in English when needed; professional sightseeing guiding is a separate service.", "需要时由我们协助英文沟通；专业景点讲解需另行安排。")] },
-    ]}>
-      <a href="#driver-quote-form" data-custom-driver-quote>{T("Tell Us About Your Trip", "告诉我们你的行程")} →</a>
-    </JourneyFactCards>
+    ]} />
+    <div className="shell"><a href="#driver-quote-form" data-custom-driver-quote>{T("Tell Us About Your Trip", "告诉我们你的行程")} →</a></div>
 
     <section className="driver-section driver-section-soft" id="multi-day-driver">
       <div className="shell">
