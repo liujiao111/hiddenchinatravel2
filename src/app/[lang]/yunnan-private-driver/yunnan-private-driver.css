@@ -374,10 +374,9 @@
   .driver-product-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:800px) {
+  /* Avoid covering form fields or the mobile header with sticky product filters. */
   .driver-catalog-filters {
-    position:sticky;
-    top:var(--control-height);
-    z-index:12;
+    position:static;
     background:var(--color-surface-soft);
   }
   .driver-catalog-filters .driver-underlined-options {
