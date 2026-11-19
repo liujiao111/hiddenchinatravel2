@@ -54,7 +54,7 @@ export async function POST(request: Request) {
 const html = `<!doctype html>
 <html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Hidden China Travel · Ref 来源查询</title>
+<title>Hidden China Travel · 全站咨询 Ref 查询</title>
 <style>
 *{box-sizing:border-box}body{font:15px system-ui,-apple-system,sans-serif;background:#f2f7fc;color:#213448;margin:0}
 main{max-width:790px;margin:7vh auto;padding:24px}
@@ -70,8 +70,8 @@ button:disabled{opacity:.55}#result{margin-top:20px;overflow-wrap:anywhere;line-
 .row{border-top:1px solid #e6eef5;padding:10px 0}.key{color:#5f7080;font-size:13px;display:block}
 .value{font-weight:550;display:block;white-space:pre-wrap}small{display:block;margin-top:20px;color:#698096}
 .notice{background:#edf5fb;border-radius:9px;padding:12px;margin:14px 0;color:#335e7a;font-size:13px}
-</style></head><body><main><h1>WhatsApp 咨询来源查询</h1>
-<p>先看客户这一次从哪里进入网站，再看首次与历史营销来源。客户 WhatsApp 消息只保留 Ref；点击不代表消息已发送。</p>
+</style></head><body><main><h1>全站咨询 Ref 来源查询</h1>
+<p>先看客户这一次从哪里进入网站，再看首次与历史营销来源。表单提交、WhatsApp 点击及二维码互动共用 Ref；点击或扫码不代表消息已经发送。</p>
 <section>
 <form id="lookup"><label>咨询 Ref<input id="ref" required autocomplete="off" spellcheck="false" placeholder="HCT-20261118-..." /></label>
 <label>内部查询密钥<input id="secret" type="password" required autocomplete="off" placeholder="仅运营人员持有" /></label>
@@ -142,12 +142,25 @@ form.addEventListener('submit',async function(e){
   const note=document.createElement('div');note.className='notice';
   note.textContent='本次访问来源不一定等于首次获客来源。以下历史触点按浏览器记录展示，不应将 UTM 标签直接视为平台引荐证明。';
   result.append(note);
-  section('本次访问与 WhatsApp 点击','当前会话来源优先；这是点击记录，不代表 WhatsApp 消息已发送');
+  const statuses={
+   whatsapp_click_unconfirmed:'WhatsApp 点击（未确认消息发送）',
+   form_submitted:'表单提交成功（邮件服务已接受）',
+   qr_view:'二维码展示（无法确认实际扫描）',
+   qr_download:'二维码下载（无法确认实际扫描）',
+   qr_link_open:'WhatsApp 二维码链接打开（无法确认消息发送）',
+   wechat_id_copy:'微信号复制（无法确认是否添加）'
+  };
+  section('本次访问与咨询行为','显示该 Ref 在网站能够确认的事件，不把扫码、点击算作真实对话');
   line('Ref',data.ref);
-  line('记录类型','WhatsApp 点击（未确认发送）');
-  line('点击时间（本地）',time(data.captured_at));
-  line('点击页面',data.conversion_url);
-  line('WhatsApp 按钮位置',data.whatsapp_location);
+  line('事件类型',statuses[data.status]||data.status||'未知');
+  line('事件时间（本地）',time(data.captured_at));
+  line('发生页面',data.conversion_url);
+  if(data.channel)line('咨询渠道',data.channel);
+  if(data.whatsapp_location)line('按钮／互动位置',data.whatsapp_location);
+  if(data.form_name)line('提交表单',data.form_name);
+  if(data.product_id)line('产品／服务 ID',data.product_id);
+  if(data.form_submission_id)line('原表单请求 UUID',data.form_submission_id);
+  if(data.parent_ref)line('PC 二维码来源 Ref',data.parent_ref);
   sourceDetails(data.session,'本次会话');
   section('历史：首次访问','首次进入网站时的来源，最多保留 90 天');
   sourceDetails(data.first,'首次');
