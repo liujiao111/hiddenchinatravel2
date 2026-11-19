@@ -2,7 +2,7 @@ import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:
 
 // Minimal Vercel Blob REST adapter. Reuses the project's existing blob token,
 // without adding a database or new npm dependencies. Records are AES-GCM
-// encrypted before upload, even if the connected Blob store is public.
+// encrypted before upload into the existing private Vercel Blob store.
 export const WHATSAPP_REF_PATTERN = /^HCT-\d{8}-[A-F0-9]{16}$/;
 const PREFIX = "private-lead-attribution/v1/";
 const API_VERSION = "12";
@@ -141,7 +141,7 @@ export async function saveWhatsAppSource(record: SavedWhatsAppSource) {
       "x-api-blob-request-attempt": "0",
       "x-vercel-blob-store-id": storeId,
       "x-api-version": API_VERSION,
-      "x-vercel-blob-access": "public",
+      "x-vercel-blob-access": "private",
       "x-add-random-suffix": "0",
       "x-allow-overwrite": "0",
       "x-content-type": "application/octet-stream",
@@ -168,7 +168,7 @@ export async function saveWhatsAppSource(record: SavedWhatsAppSource) {
 export async function findWhatsAppSource(ref: string): Promise<SavedWhatsAppSource | null> {
   if (!WHATSAPP_REF_PATTERN.test(ref)) return null;
   const { token, storeId } = credentials();
-  const res = await fetch(`https://${storeId}.public.blob.vercel-storage.com/${blobPath(ref)}`, {
+  const res = await fetch(`https://${storeId}.private.blob.vercel-storage.com/${blobPath(ref)}?cache=0`, {
     cache: "no-store", headers: { authorization: `Bearer ${token}` },
     signal: AbortSignal.timeout(7000),
   });
