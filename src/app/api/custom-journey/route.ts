@@ -58,7 +58,8 @@ export async function POST(request: Request) {
         vehicle: value("vehicle"), date: enquiry.travelTiming, party: enquiry.adults + enquiry.children,
         guideFen: typeof driverOrder.guideFen === "number" && Number.isSafeInteger(driverOrder.guideFen) && driverOrder.guideFen > 0 && driverOrder.guideFen < 10000000
           ? driverOrder.guideFen : null,
-        email: enquiry.email,
+        name: enquiry.name, email: enquiry.email, whatsapp: enquiry.whatsapp,
+        ref: formRecord.ref,
         ...(airportTransfer || {}),
       }, driverOrder.submissionKey);
       if (!saved || saved.summary.email !== enquiry.email) {
