@@ -270,8 +270,12 @@ test('Ref lookup is authenticated, and returns original source data', async () =
   process.env.WHATSAPP_REF_LOOKUP_SECRET='this-is-a-long-operator-secret-for-tests';
   let stored;
   global.fetch=async (url, options) => {
-    if (String(url).startsWith('https://vercel.com/api/blob/')) { stored=Buffer.from(options.body); return new Response('{}',{status:201}); }
-    if (String(url).startsWith('https://testStore.public.blob.vercel-storage.com/')) return new Response(stored,{status:200});
+    if (String(url).startsWith('https://vercel.com/api/blob/')) {
+      assert.equal(options.headers['x-vercel-blob-access'], 'private');
+      stored=Buffer.from(options.body);
+      return new Response('{}',{status:201});
+    }
+    if (String(url).startsWith('https://testStore.private.blob.vercel-storage.com/')) return new Response(stored,{status:200});
     throw new Error('unexpected mock fetch URL: '+url);
   };
   try {
@@ -280,6 +284,7 @@ test('Ref lookup is authenticated, and returns original source data', async () =
     const req=new Request('https://hiddenchinatravel.com/api/whatsapp-ref',{method:'POST',headers:{origin:'https://hiddenchinatravel.com','sec-fetch-site':'same-origin','content-type':'application/json'},body:JSON.stringify(record)});
     assert.equal((await ingest.POST(req)).status,201);
     assert.ok(stored);
+    assert.equal(storeUrlAccess, undefined);
     const base='https://hiddenchinatravel.com/api/admin/whatsapp-ref-lookup';
     const denied=await admin.POST(new Request(base,{method:'POST',headers:{'x-ref-lookup-secret':'bad'},body:JSON.stringify({ref:id})}));
     assert.equal(denied.status,401);
