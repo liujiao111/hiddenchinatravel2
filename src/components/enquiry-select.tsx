@@ -11,8 +11,8 @@ export function EnquirySelect({ name, label, placeholder, options, required = fa
   const id = useId();
   const disclosure = useRef<HTMLDetailsElement>(null);
   const summary = useRef<HTMLElement>(null);
-  const [internalValue, setValue] = useState(defaultValue);
-  const value = controlledValue ?? internalValue;
+  const [localValue, setValue] = useState(defaultValue);
+  const value = controlledValue ?? localValue;
   const selected = options.find(option => option.value === value);
 
   return <fieldset className="enquiry-select">
