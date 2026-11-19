@@ -612,7 +612,9 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
       }
     };
     const handleQuoteLink = (event: MouseEvent) => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      // Shared HashLink prevents its default navigation before this delegated handler runs.
+      // Still mount the custom form for valid hash-link clicks.
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const link = event.target instanceof Element && event.target.closest('a[href="#driver-quote-form"]');
       if (!link) return;
       event.preventDefault();
