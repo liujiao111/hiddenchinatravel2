@@ -143,10 +143,10 @@ const products: Product[] = [
 
 const fiveSeat = "Five-seat car";
 const sevenSeat = "Seven-seat car";
-function DriverPicker({ name, type, label, min }: { name: string; type: "date" | "time"; label: string; min?: string }) {
+function DriverPicker({ name, type, label, min, required = true }: { name: string; type: "date" | "time"; label: string; min?: string; required?: boolean }) {
   const input = useRef<HTMLInputElement>(null);
   return <div className="driver-picker">
-    <input ref={input} type={type} name={name} required min={min} aria-label={label} />
+    <input ref={input} type={type} name={name} required={required} min={min} aria-label={label} />
     <button type="button" aria-label={label} onClick={() => {
       const field = input.current;
       if (!field) return;
@@ -319,7 +319,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
     const serviceTime = String(values.get("serviceTime") || "");
     const direction = isArrival ? (isPickup ? pickupLabel : dropoffLabel) : String(values.get("direction") || "");
     if (isArrival && (!hub || !["pickup", "dropoff"].includes(arrivalDirection)
-      || (!secondHub && (!selectedArea || !hotel)) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(serviceTime)
+      || (!secondHub && (!selectedArea || !hotel)) || (!isKunmingTest && !/^([01]\d|2[0-3]):[0-5]\d$/.test(serviceTime))
       )) {
       setError(zh ? "请确认交通枢纽、接送方向、地址和服务时间。" : "Please confirm the hub, direction, address and service time.");
       setStatus("error"); return;
@@ -351,7 +351,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       ...(isArrival ? [
         "Hotel address: " + (hotel || "Not applicable"),
         (transportHub?.kind === "railway" ? "Train number: " : "Flight number: ") + (transportNumber || "Not supplied"),
-        (requiresArrivalDetails ? "Scheduled arrival time: " : "Preferred pickup time: ") + serviceTime + " (China time)",
+        (requiresArrivalDetails ? "Scheduled arrival time: " : "Preferred pickup time: ") + (serviceTime ? serviceTime + " (China time)" : "To be confirmed"),
       ] : ["Arrival / departure flight or train: Not supplied"]),
       "Pickup: " + pickup,
       "Drop-off: " + dropoff,
@@ -389,7 +389,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
     };
     if (isKunmingTest) {
       setPaymentReview({
-        payload, route: `${pickup} → ${dropoff}`, date: travelDate, time: serviceTime,
+        payload, route: `${pickup} → ${dropoff}`, date: travelDate, time: serviceTime || (zh ? "待补充" : "To be confirmed"),
         vehicle, travelers: `${adults} ${zh ? "成人" : "adults"}, ${children} ${zh ? "儿童" : "children"}`,
         luggage, contact: email || whatsapp, transportNumber, notes,
       });
@@ -493,9 +493,9 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       {isShangriLaArrival && outsideArea ? <p className="driver-area-hint">{zh
         ? "纳帕海及环湖区域、普达措、巴拉格宗、虎跳峡、白水台、梅里雪山／飞来寺、雨崩和哈巴雪山片区均按其他区域询价。"
         : "Request a custom quote for Napa Lake, Pudacuo, Balagezong, Tiger Leaping Gorge, Baishuitai, Meili Snow Mountain / Feilai Temple, Yubeng and the Haba Snow Mountain area."}</p> : null}
-      <label><span>{transportLabel}{isKunmingTest && requiresArrivalDetails ? " *" : (zh ? "（选填，可稍后补充）" : " (optional; share later)")}</span>
-        <input type="text" name="transportNumber" required={isKunmingTest && requiresArrivalDetails} maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
-        <small>{isKunmingTest && requiresArrivalDetails ? (zh ? "沙盒测试请填一个航班号或车次；正式服务需核实准确编号。" : "For this sandbox test, enter a flight or train number; real bookings require verified details.") : (zh ? "还没订机票或火车票？可先询价，确认后再提供航班号或车次。" : "Not booked yet? Request a quote now and share your flight or train number later.")}</small>
+      <label><span>{transportLabel}{zh ? "（选填，可稍后补充）" : " (optional; share later)"}</span>
+        <input type="text" name="transportNumber" maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
+        <small>{zh ? "还没订机票或火车票？可稍后补充航班号或车次。" : "Not booked yet? You can share your flight or train number later."}</small>
       </label>
     </> : null}
     {isIntercity ? <>
@@ -516,9 +516,9 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
         <DriverPicker name="date" type="date" label={zh ? "选择服务日期" : "Choose travel date"} min={isArrival ? chinaServiceDate() : undefined} />
       </div>
       {kind === "custom" ? <label><span>{zh ? "结束日期（选填）" : "End date (optional)"}</span><input type="date" name="endDate" min={chinaServiceDate()} /></label> : null}
-      {isArrival ? <div className="driver-picker-field"><span>{timeLabel} *</span>
-        <DriverPicker name="serviceTime" type="time" label={timeLabel} />
-        <small>{requiresArrivalDetails ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
+      {isArrival ? <div className="driver-picker-field"><span>{timeLabel}{isKunmingTest ? (zh ? "（选填，可稍后补充）" : " (optional; share later)") : " *"}</span>
+        <DriverPicker name="serviceTime" type="time" label={timeLabel} required={!isKunmingTest} />
+        <small>{isKunmingTest ? (zh ? "暂未确定时间也可以继续 US$1 测试，正式接送前再确认。" : "You may complete the US$1 sandbox test without an exact time. Confirm it before a real transfer.") : requiresArrivalDetails ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
           : (isLijiangArrival || isShangriLaArrival)
             ? (zh ? "请填写希望司机到酒店或约定古城入口接您的时间。" : "Enter the time you would like the driver to meet you at the hotel or agreed Old Town entrance.")
             : (zh ? "请填写希望司机到酒店接您的时间。" : "Enter the time you would like the driver to pick you up at the hotel.")}</small>
