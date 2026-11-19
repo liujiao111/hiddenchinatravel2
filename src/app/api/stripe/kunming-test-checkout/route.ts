@@ -69,7 +69,7 @@ async function notifyPendingKunmingTestOrder(id: string, origin: string) {
     console.info("[kunming-preview] Pending checkout email accepted", { orderId: id });
     // A separate, clearly labelled receipt of the *test request* to the guest.
     // It must not claim payment succeeded or that transport has been booked.
-    if (typeof summary.email === "string" && /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(summary.email)
+    if (typeof summary.email === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(summary.email)
         && stored.notifications?.guestCheckoutEmail?.orderId !== id) {
       const zh = summary.locale === "zh";
       const guestMail = await fetch("https://api.resend.com/emails", {
@@ -94,7 +94,7 @@ async function notifyPendingKunmingTestOrder(id: string, origin: string) {
             `Private test order: ${orderUrl}`,
             "",
             zh ? "这是测试订单通知，不是付款成功凭证。" : "This is a test-order acknowledgement, not a payment receipt.",
-          ].join("\\n"),
+          ].join("\n"),
         }),
         signal: AbortSignal.timeout(8000),
       });
