@@ -94,7 +94,7 @@ export function PreviewEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
       trackEvent("generate_lead", {
         form_name: "custom_journey_enquiry",
         lead_type: "tailor_made_journey",
-        lead_id: idRef.current || undefined,
+        lead_id: leadRef.current || undefined,
         page_path: window.location.pathname,
         event_id: idRef.current || undefined,
       });
