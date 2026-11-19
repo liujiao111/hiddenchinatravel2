@@ -131,23 +131,38 @@ export function decryptRecord(payload: Buffer, token: string): SavedWhatsAppSour
 export async function saveWhatsAppSource(record: SavedWhatsAppSource) {
   const { token, storeId } = credentials();
   const blob = encryptRecord(record, token);
+  // Follow the Vercel Blob SDK wire protocol. The request-ID and attempt
+  // headers are required for traceability and error classification by Blob.
   const res = await fetch(`https://vercel.com/api/blob/?pathname=${encodeURIComponent(blobPath(record.ref))}`, {
     method: "PUT", cache: "no-store",
     headers: {
       authorization: `Bearer ${token}`,
+      "x-api-blob-request-id": `${storeId}:${Date.now()}:${randomBytes(8).toString("hex")}`,
+      "x-api-blob-request-attempt": "0",
       "x-vercel-blob-store-id": storeId,
       "x-api-version": API_VERSION,
       "x-vercel-blob-access": "public",
       "x-add-random-suffix": "0",
       "x-allow-overwrite": "0",
       "x-content-type": "application/octet-stream",
-      "content-type": "application/octet-stream",
     },
     body: blob,
     signal: AbortSignal.timeout(7000),
   });
+  // The service returns a structured reason (e.g. wrong access mode) for a
+  // 400. Log only the short upstream error code/message, never secrets or
+  // customer attribution, so a future storage misconfiguration is diagnosable.
   if (res.status === 409) return; // Idempotent, don't overwrite the first click.
-  if (!res.ok) throw new Error(`Blob record write failed: ${res.status}`);
+  if (!res.ok) {
+    let detail = "";
+    try {
+      const payload = await res.json() as { error?: { code?: unknown; message?: unknown } };
+      const code = typeof payload.error?.code === "string" ? payload.error.code : "";
+      const message = typeof payload.error?.message === "string" ? payload.error.message : "";
+      detail = ` ${code.slice(0, 60)}: ${message.slice(0, 220)}`;
+    } catch { /* no structured response */ }
+    throw new Error(`Blob record write failed: ${res.status}${detail}`);
+  }
 }
 
 export async function findWhatsAppSource(ref: string): Promise<SavedWhatsAppSource | null> {
