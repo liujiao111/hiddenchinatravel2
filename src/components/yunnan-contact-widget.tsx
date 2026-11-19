@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 import { analyticsDenied, getAttribution } from "@/lib/attribution";
 import { buildWhatsAppUrl, generateLeadId } from "@/lib/whatsapp";
-import { createPassiveRecord, savePassiveRecord } from "@/lib/lead-ref";
+import { createPassiveRecord, savePassiveRecord } from "@/lib/lead-ref-client";
 import { QRCode } from "@synapxlab/qrcode";
 import styles from "./yunnan-contact-widget.module.css";
 
