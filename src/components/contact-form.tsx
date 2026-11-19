@@ -42,7 +42,9 @@ export function ContactForm() {
     setError("");
     setWhatsappHref(whatsappUrl);
 
+    const formRef = generateLeadId();
     const analyticsParams = {
+      lead_id: formRef,
       form_name: "trip_planning_contact",
       travel_window: parsed.travelWindow,
       interest: parsed.interest,
@@ -56,7 +58,7 @@ export function ContactForm() {
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...parsed, allowEmptyPlans: true, tracking: createFormTracking(generateLeadId(), "trip_planning_contact") }),
+        body: JSON.stringify({ ...parsed, allowEmptyPlans: true, tracking: createFormTracking(formRef, "trip_planning_contact") }),
       });
       const result = await response.json().catch(() => ({ error: t("sendError") }));
 
