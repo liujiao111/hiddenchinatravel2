@@ -42,6 +42,39 @@ export async function POST(request: Request) {
   const session = event.data.object as Stripe.Checkout.Session;
   if (session.payment_status !== "paid") return Response.json({ received: true });
   const metadata = session.metadata;
+  // Stripe Test Payment Link checkout carries order ID in client_reference_id rather
+  // than metadata; this is the original sandbox mechanism from the old branch.
+  if (!event.livemode && session.payment_link && metadata?.purpose !== "kunming_transfer_preview_checkout"
+      && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(session.client_reference_id || "")
+      && session.amount_total === 100 && session.currency === "usd") {
+    const orderId = session.client_reference_id!;
+    try {
+      if (!driverOrdersEnabled()) throw new Error("Order storage missing");
+      const updated = await updateDriverOrder(orderId, current => {
+        if (current.summary?.productId !== "kunming-arrival"
+            || current.testCheckout?.paymentMethod !== "test_payment_link"
+            || current.testCheckout?.amount !== 100 || current.testCheckout?.currency !== "usd") {
+          throw new Error("Test payment link does not belong to Kunming order");
+        }
+        if (current.paid?.test) return current;
+        return {
+          ...current,
+          testCheckout: { ...current.testCheckout, status: "paid", sessionId: session.id },
+          paid: { ...current.paid, test: {
+            type: "sandbox", amount: 100, currency: "usd", sessionId: session.id,
+            eventId: event.id, paidAt: new Date(event.created * 1000).toISOString(),
+          } },
+        };
+      });
+      if (!updated) throw new Error("Missing driver order");
+      return Response.json({ received: true });
+    } catch (error) {
+      console.error("[kunming-test-payment-link] Order reconciliation failed", {
+        eventId: event.id, reason: error instanceof Error ? error.message : "unknown",
+      });
+      return new Response("Could not record sandbox order payment.", { status: 503 });
+    }
+  }
   if (metadata?.purpose === "kunming_transfer_preview_checkout") {
     const orderId = metadata.order_id ?? "";
     if (event.livemode || session.livemode || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(orderId)
