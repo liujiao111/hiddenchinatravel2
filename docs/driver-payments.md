@@ -129,3 +129,32 @@ Webhook destination and its accessible protected URL; do not just repeat
 Stripe payments, and do not interpret the pending-order email as evidence
 of successful payment. Previous completed payments are not retroactively
 notified by deploying this change.
+
+### Driver landing page audit fixes (Preview, 2026-11-19)
+
+- Changing a Kunming checkout's dropdown selection, vehicle, station-transfer
+  toggle, or text input after review invalidates the old review payload and
+  requires a new summary/UUID/Ref. Sandbox checkout rejects larger quote-only
+  vehicles, server-side as well as in the selector; only 5- and 7-seat are
+  eligible for the USD 1 test.
+- Flight/train number and specific arrival/pickup time are optional and may
+  be supplied later for airport/station enquiries in **all four cities**.
+  Server and browser reject malformed times when a time is provided. Exact
+  time is still required before actual dispatch, not before enquiry.
+- Generic "Request a Quote" anchors, including shared Header HashLink, open
+  the custom driver request instead of leaving a stale previously selected
+  product.
+- Shared WhatsAppTracker already attaches HCT Ref and attribution to ordinary
+  `wa.me` click anchors; the driver page footer button uses that existing
+  global tracking, no parallel tracking system.
+- Standard driver requests now persist guest name, email, WhatsApp and HCT Ref
+  in private order records. If the guest supplied email, the driver enquiry
+  route attempts a **request received (not confirmed)** acknowledgement using
+  Resend; this is separate from the operator lead and from a signed-payment
+  notification, with the email-provider acceptance status exposed.
+- Four service advantage cards render their intended icon badges; cancellation
+  wording reflects the actual written terms rather than promising a universal
+  late-cancellation deduction.
+- An actual Stripe **paid** status and its payment email still require a
+  reachable, signed test Webhook for this protected Preview branch. Never
+  substitute return-page query parameters or an unverified success redirect.
