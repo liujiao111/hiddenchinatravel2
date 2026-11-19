@@ -1,5 +1,6 @@
 # Unified WhatsApp consultation tracking
 
+> **当前实现（2026-11-19）**：请以 [全站咨询 Ref 归因](lead-ref-attribution.md) 为准。本页为 2026-11-05 历史实施记录，其中“WhatsApp 点击发邮件、旧 `/api/whatsapp-click` 接收器”等内容已弃用；现使用私有 Blob 和全站表单/二维码统一 Ref 查询。\n\n
 Implemented 2026-11-05. Scope: every consultation WhatsApp CTA; existing form APIs,
 form fields, GA configuration, phone number, routes, CSS and SEO are preserved.
 
