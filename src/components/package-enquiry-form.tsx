@@ -4,7 +4,7 @@ import { useRef, useState, useEffect, type FormEvent } from "react";
 import { EnquirySelect } from "@/components/enquiry-select";
 import { getAttribution } from "@/lib/attribution";
 import { generateLeadId } from "@/lib/whatsapp";
-import { createFormTracking } from "@/lib/lead-ref";
+import { createFormTracking } from "@/lib/lead-ref-client";
 import { trackEvent } from "@/lib/analytics";
 
 const partyOptions = [
