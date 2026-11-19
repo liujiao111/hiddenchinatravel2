@@ -64,8 +64,7 @@ Register the deployment's `https://<preview-domain>/api/stripe/webhook` as a
 Stripe **test** destination for `checkout.session.completed` and
 `checkout.session.async_payment_succeeded`, then put that destination's
 `whsec_` into the branch variable. Redeploy after changing environment
-variables. With no `sk_test_` key the experiment is hidden rather than
-displaying a checkout that cannot work. A static Stripe Payment Link cannot
+variables. With no `sk_test_` key the Preview booking and US$1 review remain visible, but the payment API returns a setup error and cannot start Checkout. A static Stripe Payment Link cannot
 be used for this order-bound Checkout workflow.
 
 **Expected checks:** submit valid transfer, verify review details and $1,
