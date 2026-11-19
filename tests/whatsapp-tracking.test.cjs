@@ -55,6 +55,22 @@ test('Direct, Referral, Microsoft Ads, unknown incomplete UTM and Google spoof d
   assert.equal(touch('https://hiddenchinatravel.com/?utm_campaign=abc').source_label, 'Unknown');
   assert.equal(touch('https://hiddenchinatravel.com/', 'https://google.com.evil.test/').source_label, 'Referral');
 });
+test('AI source: genuine browser referrer is distinguished from UTM-only evidence', () => {
+  const tagged = touch('https://hiddenchinatravel.com/?utm_source=chatgpt.com');
+  assert.equal(tagged.source_label, 'AI Source (UTM only)');
+  assert.equal(tagged.source, 'chatgpt.com');
+  assert.equal(tagged.medium, 'unknown');
+  assert.deepEqual(tagged.params, {utm_source:'chatgpt.com'});
+  const actual = touch('https://hiddenchinatravel.com/', 'https://chatgpt.com/c/link');
+  assert.equal(actual.source_label, 'AI Referral (Referrer)');
+  assert.equal(actual.medium, 'referral');
+  assert.equal(actual.referrer, 'https://chatgpt.com');
+  assert.equal(touch('https://hiddenchinatravel.com/', 'https://chatgpt.com.evil.example/page').source_label, 'Referral');
+  assert.equal(touch('https://hiddenchinatravel.com/?utm_source=perplexity.ai').source_label, 'AI Source (UTM only)');
+  assert.equal(touch('https://hiddenchinatravel.com/', 'https://claude.ai/new').source_label, 'AI Referral (Referrer)');
+  assert.equal(touch('https://hiddenchinatravel.com/?gclid=x&utm_source=chatgpt.com').source_label, 'Google Ads');
+  assert.equal(touch('https://hiddenchinatravel.com/?utm_source=ordinary-blog').source_label, 'Unknown');
+});
 test('Meta paid traffic distinguished from ordinary Facebook sharing', () => {
   assert.equal(touch('https://hiddenchinatravel.com/?utm_source=facebook&utm_medium=paid_social').source_label, 'Meta Ads');
   assert.equal(touch('https://hiddenchinatravel.com/?fbclid=test').source_label, 'Organic Social');
@@ -300,6 +316,37 @@ test('Ref lookup is authenticated, and returns original source data', async () =
   }
 });
 
+test('Operator lookup prioritizes Direct session and labels old ChatGPT UTM attribution as unverified', async () => {
+  const admin = require('../src/app/api/admin/whatsapp-ref-lookup/route.ts');
+  const html = await (await admin.GET()).text();
+  const view = new JSDOM(html, {url:'https://hiddenchinatravel.com/api/admin/whatsapp-ref-lookup', runScripts:'dangerously'});
+  const win = view.window;
+  const now = '2026-11-19T03:10:08.848Z';
+  const base = {source:'direct',medium:'none',source_label:'Direct',landing_page:'/',referrer:'',time:now,params:{}};
+  const data = {
+    ref:'HCT-20261119-ADA8BE8D9E3B4B17',captured_at:now,
+    conversion_url:'https://hiddenchinatravel.com/',
+    whatsapp_location:'floating_button',status:'whatsapp_click_unconfirmed',
+    first:{...base},session:{...base},
+    last:{source:'chatgpt.com',medium:'unknown',source_label:'Unknown',landing_page:'/tailor-made-preview',
+      referrer:'',time:'2026-11-15T02:00:00.000Z',params:{utm_source:'chatgpt.com'}}
+  };
+  win.fetch = async () => ({ok:true,json:async()=>data});
+  win.document.getElementById('ref').value=data.ref;
+  win.document.getElementById('secret').value='test-secret';
+  win.document.getElementById('lookup').dispatchEvent(new win.Event('submit',{bubbles:true,cancelable:true}));
+  await new Promise(resolve=>setImmediate(resolve));
+  const sections=Array.from(win.document.querySelectorAll('#result .detail-section h2')).map(x=>x.textContent);
+  assert.deepEqual(sections,['本次访问与 WhatsApp 点击','历史：首次访问','历史：最近一次可归因来源']);
+  const output=win.document.getElementById('result').textContent;
+  assert.ok(output.includes('本次会话来源Direct'));
+  assert.ok(output.includes('ChatGPT · 仅 UTM 来源标记（未核实实际引荐）'));
+  assert.ok(output.includes('/tailor-made-preview'));
+  assert.ok(output.includes('2026'));
+  assert.ok(output.includes('floating_button'));
+  assert.equal(output.includes('ChatGPT · 浏览器引荐来源（Referrer）'),false);
+  win.close();
+});
 test('Custom enquiry email preserves optional timing, reference and first/last attribution without breaking legacy clients', () => {
   const custom = require(path.join(root, 'src/lib/custom-journey-enquiry.ts'));
   const payload = {name:'Test Traveler',email:'traveler@example.test',whatsapp:'',travelTiming:'',tripLength:'7–8 days',adults:2,children:0,destinations:'',budget:'Please advise',comfort:'Please advise',interests:[],notes:'',website:'',consent:true,requestId:'12345678-1234-1234-1234-123456789abc'};
