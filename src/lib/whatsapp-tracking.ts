@@ -14,6 +14,25 @@ export function whatsappLocation(link: HTMLAnchorElement) {
   return "page_content";
 }
 
+// Keep the full on-site URL (including UTM and ad-click parameters) in the
+// visitor-approved WhatsApp message, but never echo obvious personal/secret
+// query fields into a third-party chat.
+function safeSourceUrl(raw: string) {
+  try {
+    const url = new URL(raw);
+    if (!["http:", "https:"].includes(url.protocol)) return "";
+    url.username = "";
+    url.password = "";
+    for (const key of Array.from(url.searchParams.keys())) {
+      if (/(^|[_-])(email|phone|mobile|password|passwd|token|secret|api[_-]?key|auth|session|address|name)([_-]|$)/i.test(key))
+        url.searchParams.set(key, "[redacted]");
+    }
+    return url.toString().slice(0, 2400);
+  } catch {
+    return "";
+  }
+}
+
 export function installWhatsAppTracking() {
   const recent = new WeakMap<HTMLAnchorElement, number>();
   function normalize(link: HTMLAnchorElement) {
@@ -43,11 +62,22 @@ export function installWhatsAppTracking() {
     }
     recent.set(link, now);
     const leadId = generateLeadId();
+    const attribution = getAttribution();
+    const denied = analyticsDenied();
+    const landing = new URL(attribution.first.landing_page || "/", window.location.origin);
+    for (const [key, value] of Object.entries(attribution.first.params)) {
+      if (value) landing.searchParams.set(key, value);
+    }
+    const source = denied ? undefined : {
+      sourcePageUrl: safeSourceUrl(window.location.href),
+      channel: attribution.last.source_label,
+      firstLandingUrl: safeSourceUrl(landing.href),
+      firstChannel: attribution.first.source_label,
+    };
     // Update synchronously and let the native anchor open with its original target.
     // No window.open, awaited request, extra screen or popup-blocker dependency.
-    link.href = withWhatsAppRef(link.href, leadId, window.location.pathname.startsWith("/zh") ? "zh" : "en");
-    const attribution = getAttribution();
-    if (analyticsDenied()) return;
+    link.href = withWhatsAppRef(link.href, leadId, window.location.pathname.startsWith("/zh") ? "zh" : "en", source);
+    if (denied) return;
     const conversionPage = window.location.pathname.slice(0, 500);
     const location = whatsappLocation(link);
     const payload = {
