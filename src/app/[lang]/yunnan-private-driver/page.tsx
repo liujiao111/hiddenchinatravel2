@@ -100,7 +100,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
   return <main className="driver-page">
     <SiteHeader cta={{href:"#standard-transfers",label:T("View Driver Services","查看包车服务"),location:"driver_header"}} searchPlaceholder="Yunnan private driver" />
     <JourneyHero
-      title={T("Private Driver in Yunnan — Less Hassle, More of Yunnan", "云南私人包车｜路交给老司机，时间留给风景")}
+      title={T("Yunnan Private Driver & Car Hire — Travel at Your Own Pace", "云南私人包车｜路交给老司机，时间留给风景")}
       eyebrow={T("PRIVATE CAR & DRIVER SERVICE", "云南私人交通服务")}
       image="/home/hero.webp"
       imageAlt={T("Jade Dragon Snow Mountain in Yunnan", "云南玉龙雪山")}
