@@ -8,12 +8,33 @@ export function buildWhatsAppUrl(leadId?: string, locale: "en" | "zh" = "en") {
   const message = leadId ? `${base}\n\nRef: ${leadId}` : base;
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
-// Preserve page-specific requests while replacing only our previous tracking reference.
-export function withWhatsAppRef(raw: string, leadId: string, locale: "en" | "zh" = "en") {
+export type WhatsAppSourceDetails = {
+  sourcePageUrl: string;
+  channel: string;
+  firstLandingUrl?: string;
+  firstChannel?: string;
+};
+
+// Preserve the visitor's page-specific enquiry, replacing only our previous
+// reference/source block on a subsequent click. The extra context is included
+// in the prefilled message because GA4 alone cannot be looked up in WhatsApp.
+export function withWhatsAppRef(
+  raw: string, leadId: string, locale: "en" | "zh" = "en", source?: WhatsAppSourceDetails,
+) {
   const url = new URL(raw);
-  const original = (url.searchParams.get("text") || "").replace(/(?:\r?\n)*Ref: HCT-\d{8}-[A-F0-9]{16}\s*$/i, "").trim();
+  const original = (url.searchParams.get("text") || "")
+    .replace(/(?:\r?\n)*Ref: HCT-\d{8}-[A-F0-9]{16}(?:\r?\n(?:Source page|Channel|First landing|First channel):[^\r\n]*)*\s*$/i, "")
+    .trim();
   const fallback = locale === "zh" ? WHATSAPP_MESSAGE_ZH : WHATSAPP_MESSAGE;
-  url.searchParams.set("text", `${original || fallback}\n\nRef: ${leadId}`);
+  const details = [`Ref: ${leadId}`];
+  if (source) {
+    details.push(`Source page: ${source.sourcePageUrl}`, `Channel: ${source.channel}`);
+    if (source.firstLandingUrl && source.firstLandingUrl !== source.sourcePageUrl)
+      details.push(`First landing: ${source.firstLandingUrl}`);
+    if (source.firstChannel && source.firstChannel !== source.channel)
+      details.push(`First channel: ${source.firstChannel}`);
+  }
+  url.searchParams.set("text", `${original || fallback}\n\n${details.join("\n")}`);
   return url.toString();
 }
 export function isConsultationWhatsApp(raw: string) {
