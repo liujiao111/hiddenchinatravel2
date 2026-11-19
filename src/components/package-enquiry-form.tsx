@@ -3,6 +3,8 @@
 import { useRef, useState, useEffect, type FormEvent } from "react";
 import { EnquirySelect } from "@/components/enquiry-select";
 import { getAttribution } from "@/lib/attribution";
+import { generateLeadId } from "@/lib/whatsapp";
+import { createFormTracking } from "@/lib/lead-ref";
 import { trackEvent } from "@/lib/analytics";
 
 const partyOptions = [
@@ -25,6 +27,7 @@ export function PackageEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
   const [error, setError] = useState("");
   const [replyChannel, setReplyChannel] = useState<"whatsapp" | "email">("whatsapp");
   const idRef = useRef<string | null>(null);
+  const leadRef = useRef<string | null>(null);
   const startedRef = useRef(false);
 
   useEffect(() => {
@@ -42,6 +45,7 @@ export function PackageEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
     if (status === "sending" || status === "success") return;
     const form = new FormData(event.currentTarget);
     idRef.current ??= crypto.randomUUID();
+    leadRef.current ??= generateLeadId();
     const partyLabel = String(form.get("partyRange") || "");
     const packageChoice = String(form.get("preferredPackage") || "");
     const daysByPackage: Record<string, string> = {
@@ -83,6 +87,7 @@ export function PackageEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
       website: String(form.get("website") || ""),
       consent: form.get("consent") === "yes",
       requestId: idRef.current,
+      tracking: createFormTracking(leadRef.current, "yunnan_package_enquiry"),
     };
     setStatus("sending");
     setError("");
