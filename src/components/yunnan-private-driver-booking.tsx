@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { EnquirySelect } from "@/components/enquiry-select";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { getAttribution } from "@/lib/attribution";
 import { generateLeadId } from "@/lib/whatsapp";
 import { createFormTracking } from "@/lib/lead-ref-client";
@@ -158,6 +158,60 @@ function DriverPicker({ name, type, label, min }: { name: string; type: "date" |
       </svg>
     </button>
   </div>;
+}
+
+/**
+ * Driver-only dropdown: avoids mixing native <details>, nested radio changes,
+ * and form-wide change handlers while the checkout review is mounted.
+ * Keep this isolated to the private-driver page; other forms are unchanged.
+ */
+function DriverDropdown({ name, label, placeholder, options, required = false, value: controlledValue, defaultValue = "", onValueChange }: {
+  name: string; label: string; placeholder: string;
+  options: { value: string; label: string }[]; required?: boolean;
+  value?: string; defaultValue?: string; onValueChange?: (value: string) => void;
+}) {
+  const id = useId();
+  const [open, setOpen] = useState(false);
+  const [internalValue, setInternalValue] = useState(defaultValue);
+  const field = useRef<HTMLDivElement>(null);
+  const value = controlledValue ?? internalValue;
+  const selected = options.find(option => option.value === value);
+
+  useEffect(() => {
+    if (!open) return;
+    const close = (event: PointerEvent) => {
+      if (event.target instanceof Node && !field.current?.contains(event.target)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", close);
+    return () => document.removeEventListener("pointerdown", close);
+  }, [open]);
+
+  return <fieldset className="enquiry-select driver-dropdown">
+    <legend id={id + "-label"}>{label}</legend>
+    <div className="driver-dropdown-anchor" ref={field} onKeyDown={event => {
+      if (event.key === "Escape" && open) { event.preventDefault(); setOpen(false); }
+    }}>
+      <button type="button" className="driver-dropdown-trigger" aria-haspopup="listbox"
+        aria-expanded={open} aria-labelledby={id + "-label " + id + "-selected"}
+        aria-required={required} onClick={() => setOpen(current => !current)}>
+        <span id={id + "-selected"} className={selected ? "" : "enquiry-select-placeholder"}>{selected?.label ?? placeholder}</span>
+        <span className="enquiry-select-chevron" aria-hidden="true" />
+      </button>
+      {open ? <div className="driver-dropdown-options" role="listbox" aria-labelledby={id + "-label"}>
+        {options.map(option => <button key={option.value} type="button" role="option"
+          aria-selected={value === option.value} className={value === option.value ? "is-selected" : ""}
+          onClick={() => {
+            setInternalValue(option.value);
+            onValueChange?.(option.value);
+            setOpen(false);
+          }}>
+          <span>{option.label}</span>
+          {value === option.value ? <span aria-hidden="true">✓</span> : null}
+        </button>)}
+      </div> : null}
+      <input type="hidden" name={name} value={value} />
+    </div>
+  </fieldset>;
 }
 
 function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled = false }: { locale: Locale; kind: FormKind; serviceId?: ProductId; stripeTestCheckoutEnabled?: boolean }) {
@@ -388,8 +442,8 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
     <Link href="/licensed-operator">{zh ? "查看持证旅行社信息" : "View the licensed operator"}</Link>
   </div>;
 
-  return <form className="contact-form driver-form" onSubmit={submit} onChange={() => {
-    if (isKunmingTest && status === "review") {
+  return <form className="contact-form driver-form" onSubmit={submit} onChange={event => {
+    if (isKunmingTest && status === "review" && !(event.target instanceof Element && event.target.closest(".driver-form-success"))) {
       setStatus("idle"); setPaymentReview(null); setTestTermsAccepted(false);
       idRef.current = null; leadRef.current = null; submissionKey.current = null;
     }
@@ -406,15 +460,15 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       : (zh ? "选择路线选项并发送需求。车辆和总价核实后才安排付款，此表单不收取费用。" : "Select your options and request a quote. We check vehicle availability and total cost before arranging payment; this form is free.")}</p>
     {transfer ? <>
       <div className="contact-field-row">
-        <EnquirySelect name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { setHubId(value); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
-        <EnquirySelect name="direction" label={zh ? "接送方向 *" : "Transfer direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required value={arrivalDirection} onValueChange={setArrivalDirection} options={[{ value: "pickup", label: pickupLabel }, { value: "dropoff", label: dropoffLabel }]} />
+        <DriverDropdown name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { setHubId(value); setArrivalDirection(""); setHotelArea(""); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
+        <DriverDropdown name="direction" label={zh ? "接送方向 *" : "Transfer direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required value={arrivalDirection} onValueChange={setArrivalDirection} options={[{ value: "pickup", label: pickupLabel }, { value: "dropoff", label: dropoffLabel }]} />
       </div>
       {serviceId === "kunming-arrival" && hubId === "kmg" ? <label className="driver-form-consent">
         <input type="checkbox" checked={stationTransfer} onChange={event => setStationTransfer(event.target.checked)} />
         <span>{zh ? "长水机场与昆明南站直达" : "Direct transfer between Changshui Airport and Kunming South Railway Station"}</span>
       </label> : null}
       {!secondHub ? <div className="contact-field-row">
-        <EnquirySelect name="hotelArea" label={zh ? "酒店所在区域 *" : "Hotel area *"} placeholder={zh ? "选择酒店区域" : "Select hotel area"} required value={hotelArea} onValueChange={setHotelArea} options={transfer.areas.map(area => ({ value: area.value, label: area[locale] }))} />
+        <DriverDropdown name="hotelArea" label={zh ? "酒店所在区域 *" : "Hotel area *"} placeholder={zh ? "选择酒店区域" : "Select hotel area"} required value={hotelArea} onValueChange={setHotelArea} options={transfer.areas.map(area => ({ value: area.value, label: area[locale] }))} />
         <label><span>{zh ? "酒店名称或详细地址 *" : "Hotel name / full address *"}</span><input type="text" name="hotel" required maxLength={150} placeholder={zh ? "填写酒店名称或完整地址" : "Hotel name or full address"} /></label>
       </div> : null}
       {isLijiangArrival && hotelArea === "oldtown" ? <p className="driver-area-hint">{zh
@@ -445,7 +499,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
       </label>
     </> : null}
     {isIntercity ? <>
-      <EnquirySelect name="direction" label={zh ? "选择路线及方向 *" : "Route and direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required defaultValue={service.routes?.length === 1 ? service.routes[0].value : ""} options={(service.routes ?? []).map(route => ({ value: route.value, label: route[locale] }))} />
+      <DriverDropdown name="direction" label={zh ? "选择路线及方向 *" : "Route and direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required defaultValue={service.routes?.length === 1 ? service.routes[0].value : ""} options={(service.routes ?? []).map(route => ({ value: route.value, label: route[locale] }))} />
       {service.id === "dali-lijiang-shaxi" || service.id === "lijiang-tlg-shangri-la" ? <label><span>{zh ? "途中停留／计划参观内容" : "Sightseeing stops / time on site"}</span><input name="route" maxLength={300} placeholder={zh ? "希望停留多久、计划游览什么？" : "Preferred stops and time at each"} /></label> : null}
     </> : null}
     {!isArrival ? <div className="contact-field-row">
@@ -469,7 +523,7 @@ function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled 
             ? (zh ? "请填写希望司机到酒店或约定古城入口接您的时间。" : "Enter the time you would like the driver to meet you at the hotel or agreed Old Town entrance.")
             : (zh ? "请填写希望司机到酒店接您的时间。" : "Enter the time you would like the driver to pick you up at the hotel.")}</small>
       </div> : null}
-      <EnquirySelect name="vehicle" label={zh ? "车型需求 *" : "Vehicle preference *"} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={setVehicle} options={[
+      <DriverDropdown name="vehicle" label={zh ? "车型需求 *" : "Vehicle preference *"} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={setVehicle} options={[
         { value: fiveSeat, label: zh ? "标准5座车（建议1–3人）" : "Five-seat car (1–3 recommended)" },
         { value: sevenSeat, label: zh ? "7座商务车" : "Seven-seat MPV" },
         { value: "Larger vehicle - quote required", label: zh ? "更大车型（需另行报价）" : "Larger vehicle (custom quote)" },
