@@ -14,11 +14,11 @@ type Channel = "whatsapp" | "wechat";
 const WECHAT_ID = "ll917961898";
 const NOTICE_KEY = "hct_whatsapp_nudge_seen_v1";
 
-function record(event: string, channel?: Channel) {
+function record(event: string, channel?: Channel, ref?: string) {
   if (analyticsDenied()) return;
   const attribution = getAttribution();
   trackEvent(event, {
-    channel, page_path: window.location.pathname, conversion_page: window.location.pathname,
+    channel, lead_id: ref, event_id: ref, page_path: window.location.pathname, conversion_page: window.location.pathname,
     cta_location: "floating_contact", first_source: attribution.first.source,
     first_medium: attribution.first.medium, last_source: attribution.last.source,
     last_medium: attribution.last.medium,
@@ -92,9 +92,10 @@ export function YunnanContactWidget() {
     if (!open || !qrRef) return;
     if (!viewedChannels.current.has(channel)) {
       viewedChannels.current.add(channel);
-      record("contact_qr_view", channel);
+      const ref = channel === "whatsapp" ? qrRef : generateLeadId();
+      record("contact_qr_view", channel, ref);
       // Only proves that the QR panel was displayed, never that it was scanned.
-      savePassiveRecord(createPassiveRecord(channel === "whatsapp" ? qrRef : generateLeadId(), "qr_view", channel));
+      savePassiveRecord(createPassiveRecord(ref, "qr_view", channel));
     }
   }, [open, channel, qrRef]);
 
@@ -144,7 +145,7 @@ export function YunnanContactWidget() {
 
   useEffect(() => () => { if (copyTimer.current) clearTimeout(copyTimer.current); }, []);
   async function copyWechat() {
-    try { await navigator.clipboard.writeText(WECHAT_ID); setCopyStatus(zh ? "已复制微信号" : "WeChat ID copied"); record("wechat_id_copy", "wechat"); savePassiveRecord(createPassiveRecord(generateLeadId(), "wechat_id_copy", "wechat")); }
+    try { await navigator.clipboard.writeText(WECHAT_ID); setCopyStatus(zh ? "已复制微信号" : "WeChat ID copied"); const ref = generateLeadId(); record("wechat_id_copy", "wechat", ref); savePassiveRecord(createPassiveRecord(ref, "wechat_id_copy", "wechat")); }
     catch { setCopyStatus(zh ? "无法自动复制，请长按微信号手动复制。" : "Please press and hold the WeChat ID to copy it."); }
     if (copyTimer.current) clearTimeout(copyTimer.current);
     copyTimer.current = setTimeout(() => setCopyStatus(""), 4000);
@@ -190,7 +191,7 @@ export function YunnanContactWidget() {
           <div className={styles.channelNotes}>
             <strong>{item === "whatsapp" ? (zh ? "扫码联系 Joy" : "Scan to contact Joy") : (zh ? "添加 Joy 的微信" : "Add Joy on WeChat")}</strong>
             {item === "whatsapp" ? <><p className={styles.desktopHelp}>{zh ? <>用手机相机扫一扫，<br/>在 WhatsApp 上沟通。</> : "Scan with your phone camera to chat on WhatsApp."}</p><p className={styles.mobileHelp}>{zh ? <>用手机浏览？<br/>点击下方直接聊天。</> : "On your phone? Tap below to start chatting."}</p></> : <><p className={styles.desktopHelp}>{zh ? <>打开微信扫一扫，<br/>发送好友申请。</> : "Scan in WeChat and send a friend request."}</p><p className={styles.mobileHelp}>{zh ? <>保存二维码后，<br/>在微信相册中识别。</> : "Save the QR code, then open it in the WeChat scanner."}</p></>}
-            <a className={styles.save} href={item === "whatsapp" ? qrImage || "#" : "/assets/contact/joy-wechat-qr.jpeg"} download={item === "whatsapp" ? `Joy-WhatsApp-${qrRef}.svg` : "Joy-WeChat-QR.jpeg"} onClick={(event) => { if (item === "whatsapp" && !qrImage) { event.preventDefault(); return; } record("contact_qr_download", item); savePassiveRecord(createPassiveRecord(generateLeadId(), "qr_download", item)); }}>{zh ? "保存二维码" : "Save QR code"} <span aria-hidden="true">↓</span></a>
+            <a className={styles.save} href={item === "whatsapp" ? qrImage || "#" : "/assets/contact/joy-wechat-qr.jpeg"} download={item === "whatsapp" ? `Joy-WhatsApp-${qrRef}.svg` : "Joy-WeChat-QR.jpeg"} onClick={(event) => { if (item === "whatsapp" && !qrImage) { event.preventDefault(); return; } const ref = generateLeadId(); record("contact_qr_download", item, ref); savePassiveRecord(createPassiveRecord(ref, "qr_download", item)); }}>{zh ? "保存二维码" : "Save QR code"} <span aria-hidden="true">↓</span></a>
           </div>
         </div>
         {item === "whatsapp" ? <a className={`button button-primary ${styles.direct}`} href={buildWhatsAppUrl(undefined, locale)} target="_blank" rel="noopener noreferrer" data-cta-location="floating_whatsapp">{zh ? "打开 WhatsApp 聊天" : "Chat on WhatsApp"} <span aria-hidden="true">↗</span></a> : <>
