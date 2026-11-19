@@ -7,6 +7,7 @@ import { getAttribution } from "@/lib/attribution";
 import { trackEvent } from "@/lib/analytics";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { airportTransferCatalog, chinaServiceDate, isOutsideTransferArea, transferGuidePrice, transferStartingPrice } from "@/lib/driver-airport-transfers";
+import { filterDriverProducts } from "@/lib/driver-product-filter";
 
 type Locale = "en" | "zh";
 type Category = "arrival" | "intercity" | "day";
@@ -32,7 +33,7 @@ const serviceFilters = [
 type FormKind = "standard" | "custom";
 type NamedOption = { value: string; en: string; zh: string };
 type Product = {
-  id: ProductId; category: Category; cities: ServiceCity[]; en: string; zh: string;
+  id: ProductId; category: Category; cities: ServiceCity[]; departureCities?: ServiceCity[]; en: string; zh: string;
   detailEn: string; detailZh: string; photo: string; guidePrices?: { five: number; seven: number };
   routes?: NamedOption[];
 };
@@ -67,7 +68,7 @@ const products: Product[] = [
     photo: "/assets/destinations/yunnan/shangri-la.webp",
   },
   {
-    id: "dali-lijiang-direct", guidePrices: { five: 550, seven: 750 }, category: "intercity", cities: ["dali", "lijiang"],
+    id: "dali-lijiang-direct", guidePrices: { five: 550, seven: 750 }, category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
     en: "Dali ⇄ Lijiang Direct", zh: "大理 ⇄ 丽江 · 直达",
     detailEn: "Direct hotel-to-hotel service without sightseeing stops.",
     detailZh: "酒店到酒店直达，不含观光停靠。",
@@ -78,7 +79,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "dali-lijiang-shaxi", guidePrices: { five: 780, seven: 980 }, category: "intercity", cities: ["dali", "lijiang"],
+    id: "dali-lijiang-shaxi", guidePrices: { five: 780, seven: 980 }, category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
     en: "Dali ⇄ Lijiang via Shaxi", zh: "大理 ⇄ 丽江 · 途经沙溪",
     detailEn: "A scenic transfer with an agreed stop in Shaxi Ancient Town.",
     detailZh: "在沙溪古镇停留，观光时间需提前约定。",
@@ -89,7 +90,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-shangri-la", guidePrices: { five: 680, seven: 880 }, category: "intercity", cities: ["lijiang", "shangri-la"],
+    id: "lijiang-shangri-la", guidePrices: { five: 680, seven: 880 }, category: "intercity", cities: ["lijiang", "shangri-la"], departureCities: ["lijiang", "shangri-la"],
     en: "Lijiang ⇄ Shangri-La", zh: "丽江 ⇄ 香格里拉",
     detailEn: "Private transfer between Lijiang and Shangri-La.",
     detailZh: "丽江与香格里拉之间的私人接送。",
@@ -100,7 +101,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-tlg-shangri-la", guidePrices: { five: 880, seven: 1080 }, category: "intercity", cities: ["lijiang"],
+    id: "lijiang-tlg-shangri-la", guidePrices: { five: 880, seven: 1080 }, category: "intercity", cities: ["lijiang", "shangri-la"], departureCities: ["lijiang"],
     en: "Lijiang → Tiger Leaping Gorge → Shangri-La",
     zh: "丽江 → 虎跳峡 → 香格里拉",
     detailEn: "One-way journey with a planned Tiger Leaping Gorge visit.",
@@ -495,10 +496,7 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
   };
   const [category, setCategory] = useState<Category | "all">("all");
   const [city, setCity] = useState("");
-  const visibleProducts = products.filter(product =>
-    (category === "all" || product.category === category) &&
-    (!city || product.cities.some(departure => departure === city))
-  );
+  const visibleProducts = filterDriverProducts(products, category, city);
   const [selected, setSelected] = useState<ProductId | "custom" | null>(null);
   const scrollToForm = () => requestAnimationFrame(() => document.getElementById("driver-quote-form")?.scrollIntoView({ behavior: "smooth", block: "start" }));
 
@@ -550,17 +548,19 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
       <div ref={catalog}>
         <div className="driver-catalog-filters">
           <div className="driver-underlined-options" role="group" aria-label={zh ? "服务类别" : "Service categories"}>
-            {serviceFilters.map(filter => <button id={filter.id} type="button" key={filter.key} aria-pressed={category === filter.key} onClick={() => { setCategory(filter.key); resetCatalogScroll(); }}>
+            {serviceFilters.map(filter => <button id={filter.id} type="button" key={filter.key} aria-pressed={category === filter.key} onClick={() => { setCategory(filter.key); window.history.replaceState(null, "", `#${filter.id}`); resetCatalogScroll(); }}>
               {zh ? filter.zh : filter.en}
             </button>)}
           </div>
           <div className="driver-city-filter">
-            <EnquirySelect name="departure-city" label={zh ? "出发城市" : "Departure city"} placeholder={zh ? "全部城市" : "All cities"} value={city} onValueChange={value => { setCity(value); resetCatalogScroll(); }} options={[
-              { value: "", label: zh ? "全部城市" : "All cities" },
-              ...serviceCities.map(item => ({ value: item.value, label: item[locale] })),
-            ]} />
+            <label htmlFor="driver-departure-city">{zh ? "出发城市" : "Departure city"}</label>
+            <select id="driver-departure-city" name="departure-city" value={city} onChange={event => { setCity(event.currentTarget.value); resetCatalogScroll(); }}>
+              <option value="">{zh ? "全部城市" : "All cities"}</option>
+              {serviceCities.map(item => <option key={item.value} value={item.value}>{item[locale]}</option>)}
+            </select>
           </div>
         </div>
+        <p className="driver-filter-status" aria-live="polite">{zh ? `当前显示 ${visibleProducts.length} 项服务` : `${visibleProducts.length} services shown`}</p>
         <p className="sr-only" role="status">{zh ? `显示 ${visibleProducts.length} 项服务` : `${visibleProducts.length} services shown`}</p>
         {visibleProducts.length ? <div className="driver-product-grid">
           {visibleProducts.map(product => {

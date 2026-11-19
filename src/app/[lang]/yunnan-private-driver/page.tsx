@@ -231,7 +231,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <section className="driver-section driver-faq journey-faq" id="driver-faq">
       <div className="narrow">
-        {heading("11 / YOUR QUESTIONS","Private Driver FAQs","云南包车常见问题", "Practical answers before you send an enquiry.", "提交需求前，先看看常见的路线与费用问题。")}
+        {heading("10 / YOUR QUESTIONS","Private Driver FAQs","云南包车常见问题", "Practical answers before you send an enquiry.", "提交需求前，先看看常见的路线与费用问题。")}
         {questions.map(x=><details key={x.question}><summary>{x.question}<span aria-hidden="true">+</span></summary><p>{x.answer}</p></details>)}
       </div>
     </section>
