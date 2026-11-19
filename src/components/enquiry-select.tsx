@@ -5,13 +5,14 @@ import { useId, useRef, useState } from "react";
 type Option = { value: string; label: string };
 
 /** Styled disclosure with standard radio keyboard navigation and form validation. */
-export function EnquirySelect({ name, label, placeholder, options, required = false }: {
-  name: string; label: string; placeholder: string; options: Option[]; required?: boolean;
+export function EnquirySelect({ name, label, placeholder, options, required = false, value: controlledValue, defaultValue = "", onValueChange }: {
+  name: string; label: string; placeholder: string; options: Option[]; required?: boolean; value?: string; defaultValue?: string; onValueChange?: (value: string) => void;
 }) {
   const id = useId();
   const disclosure = useRef<HTMLDetailsElement>(null);
   const summary = useRef<HTMLElement>(null);
-  const [value, setValue] = useState("");
+  const [localValue, setValue] = useState(defaultValue);
+  const value = controlledValue ?? localValue;
   const selected = options.find(option => option.value === value);
 
   return <fieldset className="enquiry-select">
@@ -33,7 +34,7 @@ export function EnquirySelect({ name, label, placeholder, options, required = fa
         {options.map(option => <label key={option.value} className={value === option.value ? "is-selected" : ""}>
           <input type="radio" name={name} value={option.value} required={required} checked={value === option.value}
             onInvalid={() => { if (disclosure.current) disclosure.current.open = true; }}
-            onChange={() => setValue(option.value)}
+            onChange={() => { setValue(option.value); onValueChange?.(option.value); }}
             onClick={() => {
               if (disclosure.current) disclosure.current.open = false;
               summary.current?.focus();
