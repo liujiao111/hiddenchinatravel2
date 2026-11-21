@@ -5,10 +5,10 @@
 Configure these server-only Vercel environment variables for production and any preview used for a delivery test:
 
 - `RESEND_API_KEY`: a Resend sending key.
-- `CUSTOM_JOURNEY_FROM_EMAIL`: an address on a domain verified in Resend, e.g. `Hidden China Travel <enquiries@hiddenchinatravel.com>`.
-- `CUSTOM_JOURNEY_TO_EMAIL`: optional; defaults to `joy.liu@hiddenchinatravel.com`.
+- `ENQUIRY_FROM_EMAIL`: an address on a domain verified in Resend, e.g. `Hidden China Travel <enquiries@hiddenchinatravel.com>`.
+- `ENQUIRY_TO_EMAIL`: optional; defaults to `joy.liu@hiddenchinatravel.com`.
 
-Redeploy after configuration. Submit an enquiry, check the Resend delivery status and verify receipt in the target inbox. Reply-To uses the customer's email. No automatic marketing subscription or customer confirmation email is sent. API acceptance is not proof of inbox delivery.
+These are the existing site enquiry settings; driver requests and Stripe notifications reuse them. Redeploy after configuration changes. Submit an enquiry, check the Resend delivery status and verify receipt in the target inbox. Reply-To uses the customer's email. No marketing subscription is created. Driver requests with order storage enabled also receive an acknowledgement containing their private order link when an email address is supplied. API acceptance is not proof of inbox delivery.
 
 The endpoint validates and bounds fields, requires same-origin JSON requests and consent, checks a honeypot, and sends only to the configured recipient. A warm-instance burst guard is included but is not a distributed rate limiter. Resend idempotency prevents duplicate sends on retries with the same request and content. No enquiry body or email address is sent to GA4 or logged by this endpoint.
 

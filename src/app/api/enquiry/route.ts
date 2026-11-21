@@ -34,11 +34,10 @@ export async function POST(request: Request) {
     return Response.json({ error: "Enquiry email is temporarily unavailable. Please use WhatsApp instead." }, { status: 503 });
   }
 
-  // Reuse the sender configured for the custom journey form if no enquiry-specific
-  // sender is set. Never fall back to Resend's example address (beth.t@example.com).
-  const from = process.env.ENQUIRY_FROM_EMAIL || process.env.CUSTOM_JOURNEY_FROM_EMAIL;
+  // All enquiries and payment notifications reuse this verified sender.
+  const from = process.env.ENQUIRY_FROM_EMAIL;
   if (!from) {
-    console.error("[enquiry] No verified sender configured (ENQUIRY_FROM_EMAIL or CUSTOM_JOURNEY_FROM_EMAIL).");
+    console.error("[enquiry] No verified sender configured (ENQUIRY_FROM_EMAIL).");
     return Response.json({ error: "Enquiry email is temporarily unavailable. Please use WhatsApp instead." }, { status: 503 });
   }
 

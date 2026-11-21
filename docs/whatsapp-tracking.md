@@ -98,8 +98,8 @@ There is no database in the current project. Each accepted click generates a
 **separate email record**, clearly titled `[WhatsApp click — unconfirmed] <Ref>`.
 This is not a successful inquiry notification. It includes full sanitized first,
 last and session attribution, CTA/page/device/language and matching reference.
-It uses the existing RESEND_API_KEY, ENQUIRY_FROM_EMAIL (or
-CUSTOM_JOURNEY_FROM_EMAIL), and ENQUIRY_TO_EMAIL (or the existing site inbox).
+It uses the existing RESEND_API_KEY, ENQUIRY_FROM_EMAIL, and ENQUIRY_TO_EMAIL
+(or the existing site inbox).
 No new environment variables or external services are required. These records
 consume the existing email provider quota. Incoming WhatsApp messages can be
 matched manually via Ref; the site cannot confirm message sending automatically.

@@ -2,15 +2,18 @@
   "name": "hiddenchinatravel2",
   "version": "0.1.0",
   "private": true,
+  "engines": { "node": "24.x" },
   "scripts": {
     "dev": "next dev",
     "build": "npm run check:faq && next build",
     "start": "next start",
     "lint": "eslint",
     "test:whatsapp": "node --test tests/whatsapp-tracking.test.cjs",
+    "test": "node --test tests/*.test.cjs",
     "check:faq": "node scripts/check-article-faq.mjs"
   },
   "dependencies": {
+    "@vercel/blob": "^2.9.0",
     "gray-matter": "^4.0.3",
     "next": "16.3.5",
     "next-intl": "^4.14.9",
@@ -18,7 +21,8 @@
     "react-dom": "19.2.8",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
-    "resend": "^6.33.0"
+    "resend": "^6.33.0",
+    "stripe": "^23.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
