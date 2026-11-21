@@ -2,32 +2,13 @@
 
 import { LocaleLink as Link } from "@/components/locale-link";
 import { useEffect, useLayoutEffect, useRef, useState, type TransitionEvent } from "react";
-import type { Testimonial } from "@/lib/testimonials";
+import { useLocale } from "next-intl";
+import { guestReviews } from "@/lib/guest-reviews";
 
-type Props = {
-  items: Testimonial[];
-  heading: string;
-  intro?: string;
-  eyebrow?: string;
-  note?: string;
-  archiveHref?: string;
-  archiveLabel?: string;
-};
-
-function cardQuote(quote: string) {
-  const sentences = quote.match(/[^.!?]+[.!?]+/g);
-  if (!sentences || sentences.length === 0) return quote;
-  const complete = sentences.map((sentence) => sentence.trim()).join(" ");
-  // A finished note of at most three sentences still fits the card. Longer stories stay as a short excerpt.
-  if (sentences.length <= 4 && complete.length <= 420) return complete;
-  const first = sentences[0].trim();
-  if (first.length > 210 || sentences.length === 1) return first;
-  const two = `${first} ${sentences[1].trim()}`;
-  if (two.length <= 320) return two;
-  return first;
-}
-
-export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref, archiveLabel }: Props) {
+export function Testimonials({ firstReview, showArchiveLink = true }: { firstReview?: string; showArchiveLink?: boolean }) {
+  const zh = useLocale() === "zh";
+  const first = guestReviews.find((review) => review.id === firstReview);
+  const items = first ? [first, ...guestReviews.filter((review) => review !== first)] : guestReviews;
   const count = items.length;
   const loop = count > 3;
   // Three cards can be visible at desktop widths, so keep three clones on
@@ -90,33 +71,11 @@ export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref
     }
   };
 
-  const headingBlock = <header className="testimonials-heading shell">
-      {eyebrow ? <p className="kicker">{eyebrow}</p> : null}
-      <h2>{heading}</h2>
-      {intro ? <p>{intro}</p> : null}
-    </header>;
-  const noteText = note ?? "Names may be shortened. Some notes were translated and edited for clarity.";
-  const archive = archiveHref ? <p className="testimonials-archive"><Link href={archiveHref}>{archiveLabel ?? "Read the traveler stories"}</Link></p> : null;
-
-  if (count <= 3) {
-    return <section className="testimonials" id="stories">
-      {headingBlock}
-      <div className="testimonials-static shell">{items.map((item) => (
-        <figure className="testimonials-card" key={item.id}>
-          <blockquote>“{cardQuote(item.quote)}”</blockquote>
-          <figcaption>
-            <b>— {item.name}</b>
-            <span>{item.country}</span>
-          </figcaption>
-        </figure>
-      ))}</div>
-      <p className="testimonials-note">{noteText}</p>
-      {archive}
-    </section>;
-  }
-
   return <section className="testimonials" id="stories">
-    {headingBlock}
+    <header className="testimonials-heading shell">
+      <p className="kicker">{zh ? "旅客故事" : "Traveler stories"}</p>
+      <h2>{zh ? "旅客评价与行前反馈" : "Guest reviews & planning feedback"}</h2>
+    </header>
     <div className="testimonials-viewport" ref={viewportRef}>
       <div
         className={`testimonials-track${animate ? "" : " is-instant"}`}
@@ -126,27 +85,31 @@ export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref
         }}
         onTransitionEnd={handleTransitionEnd}
       >
-        {slides.map((item) => (
-          <figure className="testimonials-card" key={item.id} style={{ width: metrics.card, flexBasis: metrics.card }}>
-            <blockquote>“{cardQuote(item.quote)}”</blockquote>
+        {slides.map((item, position) => (
+          <figure className="testimonials-card" key={position + "-" + item.id} style={{ width: metrics.card, flexBasis: metrics.card }}>
+            <blockquote>“{zh ? item.translation : item.quote}”</blockquote>
             <figcaption>
-              <b>— {item.name}</b>
-              <span>{item.country}</span>
+              <b>— {item.topic[zh ? 1 : 0]}</b>
+              <span>
+                <a href={item.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
+                  {item.source === "Trustpilot" ? "★★★★★ · Trustpilot" : item.source === "Email" && zh ? "邮件" : item.source}
+                  {item.source === "Trustpilot" ? (zh ? " · 查看原评" : " · Read review") : (zh ? " · 查看截图" : " · View screenshot")}
+                </a>
+              </span>
             </figcaption>
           </figure>
         ))}
       </div>
     </div>
     <div className="testimonials-controls">
-      <button type="button" className="testimonials-arrow" aria-label="Previous traveler story" onClick={() => go(-1)}>‹</button>
-      <div className="testimonials-progress" role="tablist" aria-label="Traveler stories">
+      <button type="button" className="testimonials-arrow" aria-label={zh ? "上一条评价" : "Previous review"} onClick={() => go(-1)}>‹</button>
+      <div className="testimonials-progress" role="group" aria-label={zh ? "选择评价" : "Choose a review"}>
         {items.map((item, itemIndex) => (
           <button
             key={item.id}
             type="button"
-            role="tab"
-            aria-selected={itemIndex === active}
-            aria-label={`Show story from ${item.name}`}
+            aria-pressed={itemIndex === active}
+            aria-label={item.topic[zh ? 1 : 0]}
             className={itemIndex === active ? "active" : ""}
             onClick={() => {
               setAnimate(false);
@@ -156,9 +119,9 @@ export function Testimonials({ items, heading, intro, eyebrow, note, archiveHref
           />
         ))}
       </div>
-      <button type="button" className="testimonials-arrow" aria-label="Next traveler story" onClick={() => go(1)}>›</button>
+      <button type="button" className="testimonials-arrow" aria-label={zh ? "下一条评价" : "Next review"} onClick={() => go(1)}>›</button>
     </div>
-    <p className="testimonials-note">{noteText}</p>
-    {archive}
+    {zh && <p className="testimonials-note">评价由英文原文翻译，点击卡片中的来源可查看原文。</p>}
+    {showArchiveLink && <p className="testimonials-archive"><Link href="/traveler-stories">{zh ? "查看更多旅客故事" : "Read more traveler stories"}</Link></p>}
   </section>;
 }

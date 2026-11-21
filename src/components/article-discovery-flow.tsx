@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { PlanJourneyClose } from "@/components/plan-journey-close";
 import type { ContentItem } from "@/lib/content";
 import type { AppLocale } from "@/lib/i18n-seo";
+import { Testimonials } from "./testimonials";
 import { GuideCard } from "@/components/guide-card";
 import { JourneyCard } from "@/components/journey-card";
 import { JourneyQuoteBand } from "@/components/journey-quote-band";
@@ -62,6 +63,8 @@ export async function ArticleDiscoveryFlow({
         </div>
       </div>
     </section>
+
+    <Testimonials firstReview={/stone-forest|shilin/.test(sourcePath) ? "stone-forest" : undefined} />
 
     <JourneyQuoteBand id="ask-joy" source={sourcePath} sourceTitle={sourceTitle} whatsapp={whatsapp} />
 

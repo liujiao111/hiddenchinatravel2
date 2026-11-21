@@ -5,12 +5,14 @@ import { useLocale, useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { localeUrl, localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { LocaleLink as Link } from "@/components/locale-link";
+import { Testimonials } from "@/components/testimonials";
+import { guestReviews } from "@/lib/guest-reviews";
 import { ContentFooter } from "@/components/content-footer";
 import { EnquireLink } from "@/components/enquire-link";
 import { JsonLd, breadcrumbList } from "@/components/json-ld";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site-config";
-import { openingLine, getTravelerStoryPage, type TravelerStory } from "@/lib/traveler-stories";
+import { getTravelerStoryPage, type TravelerStory } from "@/lib/traveler-stories";
 import { getFeaturedJournals } from "@/lib/travel-journals";
 import styles from "./stories.module.css";
 
@@ -48,7 +50,7 @@ function StoryRoute({ story }: { story: TravelerStory }) {
 export default function TravelerStoriesPage() {
   const locale = useLocale() as AppLocale;
   const t = useTranslations("stories");
-  const { stories, featured, detailed, metrics, permit, operatorName, operatorNameZh, registryHref, reasons, gallery } = getTravelerStoryPage(locale);
+  const { featured, detailed, permit, operatorName, operatorNameZh, registryHref, reasons, gallery } = getTravelerStoryPage(locale);
   const title = t("metaTitle");
   const description = t("metaDescription");
   const whatsapp = buildWhatsAppUrl();
@@ -63,7 +65,7 @@ export default function TravelerStoriesPage() {
         url: localeUrl(locale, path),
         description,
       },
-      ...stories.map((story) => ({
+      ...[...featured, ...detailed].map((story) => ({
         "@type": "Review",
         author: { "@type": "Person", name: story.name },
         reviewBody: story.quote,
@@ -105,8 +107,7 @@ export default function TravelerStoriesPage() {
       </nav>
 
       <section className={styles.metrics} aria-label="About these notes">
-        <p className={styles.metric}><strong>{metrics.notes}</strong><span>{t("notesMetric")}</span></p>
-        <p className={styles.metric}><strong>{metrics.countries}</strong><span>{t("countriesMetric")}</span></p>
+        <p className={styles.metric}><strong>{guestReviews.length}</strong><span>{locale === "zh" ? "条精选反馈" : "selected guest notes"}</span></p>
         <p className={styles.metric}><strong>{locale === "zh" ? "私家团" : "Private"}</strong><span>{t("privateMetric")}</span></p>
         <p className={styles.metric}><strong>Joy</strong><span>{t("joyMetric")}</span></p>
       </section>
@@ -150,27 +151,8 @@ export default function TravelerStoriesPage() {
         ))}
       </section>
 
-      <section className={`${styles.notes} ${styles.section}`} id="notes" aria-labelledby="notes-title">
-        <div className="shell">
-          <header className={`${styles.heading} ${styles.center}`}>
-            <h2 id="notes-title">{t("notesTitle")}</h2>
-            <p>{t("notesIntro")}</p>
-          </header>
-          <div className={styles.noteGrid}>
-            {stories.map((story) => {
-              const full = story.role === "note";
-              return <figure key={story.id}>
-                <blockquote>“{full ? story.quote : openingLine(story.quote)}”</blockquote>
-                <figcaption>
-                  <b>{story.name}</b>
-                  <span>{story.country} · {story.setting}</span>
-                  {full ? null : <Link href={`#story-${story.id}`}>{t("readAccount")}</Link>}
-                </figcaption>
-              </figure>;
-            })}
-          </div>
-          <p className={styles.colophon}>{t("colophon")}</p>
-        </div>
+      <section className={`${styles.notes} ${styles.section}`} id="notes" aria-label={t("notesNav")}>
+        <Testimonials showArchiveLink={false} />
 
         <div className={`${styles.details} ${styles.detailGroup}`} id="journeys">
           <div className="shell">
@@ -278,7 +260,7 @@ export default function TravelerStoriesPage() {
         </div>
       </section>
     </main>
-    <ContentFooter />
+    <ContentFooter reviewsInPage />
     <JsonLd data={graph} />
   </>;
 }

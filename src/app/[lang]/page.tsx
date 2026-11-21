@@ -16,7 +16,6 @@ import { licensedOperator } from "@/lib/journey-trust";
 import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
 import { organizationJsonLd } from "@/lib/seo";
-import { getSelectedTestimonials } from "@/lib/testimonials";
 
 const canonical = "https://hiddenchinatravel.com/";
 
@@ -189,15 +188,7 @@ export default async function Home({ params }: Props) {
       </div>
     </section>
 
-    <Testimonials
-      items={getSelectedTestimonials(lang)}
-      eyebrow={t("storiesEyebrow")}
-      heading={t("storiesHeading")}
-      intro={t("storiesIntro")}
-      note={t("storiesNote")}
-      archiveHref="/traveler-stories"
-      archiveLabel={t("storiesArchive")}
-    />
+    <Testimonials />
 
     <section className="section process" id="how-it-works">
       <div className="narrow">
@@ -292,7 +283,7 @@ export default async function Home({ params }: Props) {
         <p className="final-cta-trust">{t("finalTrust")}</p>
       </div>
     </section>
-    <ContentFooter />
+    <ContentFooter reviewsInPage />
     <MobileCtaBar
       whatsappHref={whatsapp}
       formHref="/contact#enquire"

@@ -1,3 +1,4 @@
+import { Testimonials } from "@/components/testimonials";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/json-ld";
 import Image from "next/image";
@@ -35,7 +36,7 @@ const chineseCopy: Record<string,string> = {
   "6-Day First Encounter": "6天·初见云南",
   "8-Day Mountains & Ancient Towns": "8天·古城与雪山",
   "6 DAYS · KUNMING → DALI · SHAXI · LIJIANG": "6天 · 昆明 → 大理 → 沙溪 → 丽江",
-  "8 DAYS · KUNMING · DALI · LIJIANG · TIGER LEAPING GORGE · SHANGRI-LA": "8天 · 昆明 · 大理 · 丽江 · 虎跳峡 · 香格里拉",
+  "8 DAYS · KUNMING ROUND TRIP VIA DALI, LIJIANG & SHANGRI-LA": "8天 · 昆明往返，经大理、丽江、香格里拉",
   "A stone-paved street in Shaxi": "沙溪古镇石板街",
   "Mountain gorge in Yunnan": "云南虎跳峡峡谷",
   "Meet Bai artisans beside Erhai Lake, spend a quiet night in Shaxi’s old Tea Horse Road town, then give Jade Dragon Snow Mountain a full day — without rushing between stops.": "在洱海边认识白族传统手艺，在茶马古道上的沙溪安静住一晚，再留出完整一天探访玉龙雪山，不赶路。",
@@ -47,7 +48,7 @@ const chineseCopy: Record<string,string> = {
   "How many days do I need for Yunnan?": "云南旅行安排几天比较合适？",
   "Six days works well for Dali, Shaxi and Lijiang. Seven to eight days can include Tiger Leaping Gorge and Shangri-La; ten to twelve days gives you more time to explore at a comfortable pace.": "6天适合游览大理、沙溪和丽江；7至8天可以加入虎跳峡和香格里拉；10至12天则有更多时间慢慢体验当地文化与自然风光。",
   "How much does a private Yunnan tour cost?": "云南私人定制游大约多少钱？",
-  "Our sample 6-day journey starts at US$680 per person and the 8-day journey starts at US$799 per person. These are starting prices, not fixed quotes. Final costs depend on season, hotel choice, group size and the confirmed inclusions.": "参考行程6天每人 US$680 起，8天每人 US$799 起。这是参考起价，并非固定成交价；具体费用取决于出行季节、酒店、人数和最终确认的服务内容。",
+  "Our sample 6-day journey starts at US$680 per person and the 8-day Mountains & Ancient Towns journey starts at US$799 per person. These are starting prices, not fixed quotes. Final costs depend on season, hotel choice, group size and the confirmed inclusions.": "参考行程6天每人 US$680 起，8天古城与雪山经典线每人 US$799 起。这是参考起价，并非固定成交价；具体费用取决于出行季节、酒店、人数和最终确认的服务内容。",
   "Can I customize the 6-day or 8-day route?": "6天或8天的路线可以修改吗？",
   "Yes. Add or remove destinations, adjust the pace, select hotels and choose experiences. We will explain what fits comfortably within your available days.": "可以。你可以增减目的地、调整节奏、选择酒店和体验项目，我们会根据实际旅行时间帮你规划合理的路线。",
   "Is the journey completely private?": "全程都是私人团吗？",
@@ -80,7 +81,7 @@ const chineseCopy: Record<string,string> = {
   "Choose your guide language at no extra charge; one dedicated driver-guide throughout.": "中文或英文可选，不加收语言服务费，全程安排一位司机兼向导。",
   "Transparent Booking": "预订条款透明",
   "20% Deposit": "20% 定金",
-  "Full deposit refund when cancelled more than 7 days before departure.": "出发前超过7个完整自然日取消，定金全额退回。",
+  "Full deposit refund when cancelled more than 7 full days before departure.": "出发前超过7个完整自然日取消，定金全额退回。",
   "Get My Route & Price": "获取我的专属路线与报价",
   "YOUR KIND OF TRIP": "适合怎样的旅行者",
   "Who it's for": "适合谁",
@@ -180,12 +181,12 @@ export default async function PrivateYunnanTours({ params }: Props) {
   const L = (text: string) => lang === "zh" ? (chineseCopy[text] ?? text) : text;
   const routes = [
   { num: "01", title: L("6-Day First Encounter"), places: L("6 DAYS · KUNMING → DALI · SHAXI · LIJIANG"), image: "/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp", alt: L("A stone-paved street in Shaxi"), description: L("Meet Bai artisans beside Erhai Lake, spend a quiet night in Shaxi’s old Tea Horse Road town, then give Jade Dragon Snow Mountain a full day — without rushing between stops."), best: L("First-time visitors with limited time"), price: L("From US$680 per person"), href: "/journeys/kunming-dali-shaxi-lijiang-6-days" },
-  { num: "02", title: L("8-Day Mountains & Ancient Towns"), places: L("8 DAYS · KUNMING · DALI · LIJIANG · TIGER LEAPING GORGE · SHANGRI-LA"), image: "/assets/destinations/yunnan/tiger-leaping.webp", alt: L("Mountain gorge in Yunnan"), description: L("Go from lakeside Dali and Lijiang’s old lanes to the dramatic road through Tiger Leaping Gorge. Continue into Shangri-La for Tibetan culture and a slower highland day."), best: L("Travelers wanting Yunnan’s classic highlights"), price: L("From US$799 per person"), href: "/journeys/kunming-dali-lijiang-shangri-la-private-tour" },
+  { num: "02", title: L("8-Day Mountains & Ancient Towns"), places: L("8 DAYS · KUNMING ROUND TRIP VIA DALI, LIJIANG & SHANGRI-LA"), image: "/assets/destinations/yunnan/tiger-leaping.webp", alt: L("Mountain gorge in Yunnan"), description: L("Go from lakeside Dali and Lijiang’s old lanes to the dramatic road through Tiger Leaping Gorge. Continue into Shangri-La for Tibetan culture and a slower highland day."), best: L("Travelers wanting Yunnan’s classic highlights"), price: L("From US$799 per person"), href: "/journeys/kunming-dali-lijiang-shangri-la-private-tour" },
 ];
 
 const faqs = [
   [L("How many days do I need for Yunnan?"), L("Six days works well for Dali, Shaxi and Lijiang. Seven to eight days can include Tiger Leaping Gorge and Shangri-La; ten to twelve days gives you more time to explore at a comfortable pace.")],
-  [L("How much does a private Yunnan tour cost?"), L("Our sample 6-day journey starts at US$680 per person and the 8-day journey starts at US$799 per person. These are starting prices, not fixed quotes. Final costs depend on season, hotel choice, group size and the confirmed inclusions.")],
+  [L("How much does a private Yunnan tour cost?"), L("Our sample 6-day journey starts at US$680 per person and the 8-day Mountains & Ancient Towns journey starts at US$799 per person. These are starting prices, not fixed quotes. Final costs depend on season, hotel choice, group size and the confirmed inclusions.")],
   [L("Can I customize the 6-day or 8-day route?"), L("Yes. Add or remove destinations, adjust the pace, select hotels and choose experiences. We will explain what fits comfortably within your available days.")],
   [L("Is the journey completely private?"), L("Yes. Travel with your own partner, family or friends, without shared groups or mandatory shopping stops. Choose Chinese- or English-speaking service at no extra guide-language charge, with one dedicated driver-guide for the full journey. Your assigned guide and vehicle are confirmed before departure.")],
   [L("What is normally included in the quotation?"), L("The sample 6-day tour includes private transport, one driver-guide throughout, premium hotels with breakfast, second-class high-speed rail and listed attraction tickets. Lunches and dinners, international flights, travel insurance and personal expenses are not included. Your written quote specifies all services for your chosen route.")],
@@ -263,7 +264,7 @@ const cta = L("Get a Suggested Route & Price");
             <span className="sample-itinerary-label">{lang === "zh" ? "8天7晚 · 私人定制" : "8 DAYS / 7 NIGHTS · PRIVATE JOURNEY"}</span>
             <h3>{lang === "zh" ? "从洱海到雪山峡谷" : "From lakeside villages to wild mountain gorges"}</h3>
             <p>{lang === "zh" ? "4星级酒店（可升级5星）、私人专车、英文导游、昆明接机、丽江送机、高铁二等座及行程所列景点门票。" : "4-star hotels (5-star upgrades available), private transport, an English-speaking guide, airport transfers, second-class high-speed rail and listed attraction tickets."}</p>
-            <p className="sample-itinerary-note">{lang === "zh" ? "英文版PDF · 可按日期、酒店和兴趣调整 · 不含机票及个人消费" : "English PDF · Flexible dates, hotels and experiences · Flights and personal expenses excluded"}</p>
+            <p className="sample-itinerary-note">{lang === "zh" ? "昆明接机 · 丽江送机 · 英文版 PDF · 可按日期、酒店和兴趣调整 · 不含机票及个人消费" : "Kunming arrival · Lijiang departure · English PDF · Flexible dates, hotels and experiences · Flights and personal expenses excluded"}</p>
             <div className="sample-itinerary-actions">
               <a className="button button-primary" href="/assets/samples/Hidden_China_Travel_Yunnan_Hidden_Explorer_8D7N_EN.pdf" target="_blank" rel="noopener noreferrer" data-cta-location="private_yunnan_sample_pdf">{lang === "zh" ? "查看示例行程 PDF ↗" : "View Sample Itinerary (PDF) ↗"}</a>
               <a className="sample-itinerary-plan" href="#plan" data-cta-location="private_yunnan_sample_plan">{lang === "zh" ? "定制类似行程 →" : "Plan a Similar Trip →"}</a>
@@ -272,7 +273,7 @@ const cta = L("Get a Suggested Route & Price");
         </div>
       </div>
     </section>
-    <span id="stories" /><RealJourneyEvidence locale={lang} />
+    <RealJourneyEvidence locale={lang} />
     <section className="section preview-inclusions" id="included-excluded"><span id="quote" /><div className="shell">
       <div className="preview-heading"><p className="kicker">{L("THE 6-DAY REFERENCE JOURNEY")}</p><h2>{L("What’s Included — and What’s Not")}</h2><p>{L("The same inclusions and exclusions listed on our 6-day journey page. For the 8-day route or custom plans, your written proposal confirms the exact services.")}</p></div>
       <div className="preview-inclusion-grid">
@@ -305,7 +306,7 @@ const cta = L("Get a Suggested Route & Price");
       <article><span>02</span><h3>{L("Receive a route and price")}</h3><p>{L("Joy suggests a realistic route and an initial price range based on your trip length, group size and interests.")}</p></article>
       <article><span>03</span><h3>{L("Adjust before booking")}</h3><p>{L("Review changes to hotels, pace and experiences before booking; any change to included services or price is confirmed in writing.")}</p></article>
     </div><p className="preview-centered">{L("There is no payment or booking commitment when requesting an initial proposal.")}</p></div></section>
-    {/* Traveler testimonials are withheld on this preview until original sources and permission are verified. */}
+    <Testimonials />
     <section className="section preview-plan" id="plan"><span id="ask-joy" /><div className="shell preview-plan-grid">
       <div className="preview-plan-joy"><div className="preview-joy-photo"><Image src="/brand/founder/portrait.webp" alt={L("Joy, founder of Hidden China Travel")} fill sizes="(max-width:700px) 100vw, 42vw" /></div><p className="kicker">{L("LOCAL PLANNING, LICENSED DELIVERY")}</p><h2>{L("Get a Suggested Yunnan Route & Price")}</h2><p>{L("You do not need a finished itinerary. Share your approximate number of days and group size, and we will suggest a realistic starting route and price range based on your interests, with bookings and on-the-ground arrangements coordinated by our licensed local team.")}</p><p><strong>{L("Yunnan-based operations team")}</strong> · Chinese- or English-speaking service · Licensed local delivery</p><p className="preview-quiet">{L("Prefer WhatsApp?")} <Link href={whatsapp} data-cta-location="preview_form_whatsapp">{L("Chat with Joy →")}</Link></p></div>
       <PreviewEnquiryForm locale={lang} />
@@ -326,6 +327,6 @@ const cta = L("Get a Suggested Route & Price");
       { "@type": "Service", name: lang === "zh" ? "云南私人定制旅行" : "Private and Tailor-Made Yunnan Tours", url: localeUrl(lang, "/private-yunnan-tours"), areaServed: { "@type": "Place", name: "Yunnan, China" }, provider: { "@type": "Organization", name: "Hidden China Travel", url: "https://hiddenchinatravel.com" } },
       { "@type": "FAQPage", mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
     ] }} />
-    <ContentFooter />
+    <ContentFooter reviewsInPage />
   </main>;
 }

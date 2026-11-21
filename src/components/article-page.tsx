@@ -92,7 +92,7 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
       formLabel={tMobile("formLabel")}
       statusLabel={tMobile("statusLabel")}
     />
-    <ContentFooter />
+    <ContentFooter reviewsInPage />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;
 }

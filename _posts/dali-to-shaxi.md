@@ -197,7 +197,7 @@ With one night, you have time to walk through Sideng Square, see the old theatre
 
 Shaxi contains one of the most complete surviving market areas associated with the historic Tea and Horse Caravan Trail.
 
-### Joy’s planning note
+### Why I recommend an overnight stay
 
 I include Shaxi in the six-day route because it creates a pause between Dali and Lijiang. The value is not the number of sights inside the town. It is the change of pace between two busier destinations.
 
