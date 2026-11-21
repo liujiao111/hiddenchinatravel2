@@ -107,7 +107,7 @@ export default function TravelerStoriesPage() {
       </nav>
 
       <section className={styles.metrics} aria-label="About these notes">
-        <p className={styles.metric}><strong>{guestReviews.length}</strong><span>{locale === "zh" ? "条旅客评价" : "guest reviews"}</span></p>
+        <p className={styles.metric}><strong>{guestReviews.length}</strong><span>{locale === "zh" ? "条精选反馈" : "selected guest notes"}</span></p>
         <p className={styles.metric}><strong>{locale === "zh" ? "私家团" : "Private"}</strong><span>{t("privateMetric")}</span></p>
         <p className={styles.metric}><strong>Joy</strong><span>{t("joyMetric")}</span></p>
       </section>

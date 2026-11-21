@@ -112,13 +112,13 @@ export function PreviewEnquiryForm({ locale = "en" }: { locale?: "en" | "zh" }) 
       trackEvent("custom_journey_form_start", { form_name: "custom_journey_enquiry", page_path: window.location.pathname });
     }
   }}>
-    <p className="contact-form-note">{zh ? "* 联系方式请至少填写一项：WhatsApp 或邮箱均可。" : "* Please provide at least one contact method: WhatsApp or email."}</p>
+    <p className="contact-form-note">{zh ? "联系方式（至少填写一项）：WhatsApp 或邮箱。" : "Contact details (at least one required): WhatsApp or email."}</p>
     <div className="contact-field-row">
       <label><span>{zh ? "姓名 *" : "Name *"}</span><input required name="name" type="text" autoComplete="name" maxLength={100} placeholder={zh ? "你的姓名" : "Your name"} /></label>
-      <label><span>{zh ? "邮箱 *" : "Email *"}</span><input name="email" type="email" autoComplete="email" maxLength={254} placeholder="you@example.com" /></label>
+      <label><span>{zh ? "邮箱" : "Email"}</span><input name="email" type="email" autoComplete="email" maxLength={254} placeholder="you@example.com" /></label>
     </div>
     <div className="contact-field-row">
-      <label><span>WhatsApp *</span><input name="whatsapp" type="tel" inputMode="tel" autoComplete="tel" maxLength={40} placeholder={zh ? "+65 1234 5678（含国际区号）" : "+65 1234 5678 (with country code)"} /></label>
+      <label><span>WhatsApp</span><input name="whatsapp" type="tel" inputMode="tel" autoComplete="tel" maxLength={40} placeholder={zh ? "+65 1234 5678（含国际区号）" : "+65 1234 5678 (with country code)"} /></label>
       <EnquirySelect name="partyRange" label={zh ? "出行人数 *" : "Number of travelers *"} placeholder={zh ? "请选择人数" : "Select travelers"} required options={partyOptions.map(p => ({ value: p.label, label: p.label === "More than 10" && zh ? "超过10人" : p.label }))} />
     </div>
     <EnquirySelect name="travelTiming" label={zh ? "大致出行月份（选填）" : "Approximate travel month (optional)"} placeholder={zh ? "请选择具体月份" : "Select a month"} options={[{ value: "", label: zh ? "尚未决定" : "Not decided yet" }, ...monthOptions]} />

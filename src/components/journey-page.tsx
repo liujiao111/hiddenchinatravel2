@@ -209,7 +209,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
         vehicleCopy={isSixDayYunnanJourney ? t("trustVehicleCopySixDay") : undefined}
         hotelTitle={isSixDayYunnanJourney ? t("trustHotelTitleSixDay") : undefined}
         hotelCopy={isSixDayYunnanJourney ? t("trustHotelCopySixDay") : undefined}
-        hotelCities={isEightDayYunnanJourney ? ["kunming", "dali", "lijiang", "shangri-la"] : undefined}
+        hotelCities={isSixDayYunnanJourney ? ["dali", "lijiang"] : isEightDayYunnanJourney ? ["kunming", "dali", "lijiang", "shangri-la"] : undefined}
       />
 
     </section>

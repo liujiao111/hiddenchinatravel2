@@ -5,13 +5,15 @@ eyebrow: "Clear terms · secure payment"
 seoTitle: "Payment & Refund Policy | Hidden China Travel"
 metaDescription: "Review secure payment methods, the 20% deposit, final-payment timing, cancellation terms and free rescheduling for private Yunnan tours."
 canonical: "/booking"
-dateModified: "2026-11-16"
+dateModified: "2026-11-21"
 ogImage:
   url: "/home/hero.webp"
-lastUpdated: "November 16, 2026"
+lastUpdated: "November 21, 2026"
 ---
 
 We want the financial side of your journey to feel as considered as the itinerary itself. You receive a written route, named services, total price and payment schedule before you commit. No payment is required to request or revise an initial proposal.
+
+This policy covers private tour itineraries. For airport and station transfers, day hire or multi-day vehicle hire, see the [private driver payment and cancellation terms](/yunnan-private-driver#payment-policy).
 
 ## Payment schedule
 
@@ -33,7 +35,7 @@ Card and digital-wallet details are entered on the payment provider's secure che
 
 The cancellation clock is measured in local Yunnan time against the scheduled start date in your confirmed itinerary.
 
-- **More than 7 full days before departure:** your 20% deposit is fully refundable. We return it to the original payment method.
+- **More than 7 full days before departure:** your 20% deposit is fully refundable. We return the deposit to the original payment method. If early payment of the balance is required, the operator will specify in writing, before you pay the deposit, how much of that balance is refundable if you cancel during this period.
 - **7 days or fewer before departure:** the 20% deposit is non-refundable because vehicle, accommodation and operational commitments have entered the final confirmation period. If you have already paid any part of the 80% balance, we refund the recoverable portion after deducting documented, non-refundable third-party costs.
 - **After departure or for a no-show:** services already provided, missed or committed to suppliers are non-refundable. We will still seek any recoverable amount from hotels or other suppliers on your behalf.
 - **Operator cancellation:** if the licensed operator cancels the journey and cannot provide an agreed alternative, you receive a full refund of tour payments made for the cancelled services.

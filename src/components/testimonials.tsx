@@ -74,7 +74,7 @@ export function Testimonials({ firstReview, showArchiveLink = true }: { firstRev
   return <section className="testimonials" id="stories">
     <header className="testimonials-heading shell">
       <p className="kicker">{zh ? "旅客故事" : "Traveler stories"}</p>
-      <h2>{zh ? "旅客的云南旅行回忆" : "What Travelers Remember"}</h2>
+      <h2>{zh ? "旅客评价与行前反馈" : "Guest reviews & planning feedback"}</h2>
     </header>
     <div className="testimonials-viewport" ref={viewportRef}>
       <div
