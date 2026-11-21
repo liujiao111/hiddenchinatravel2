@@ -31,13 +31,24 @@ export function EnquirySelect({ name, label, placeholder, options, required = fa
         <span className="enquiry-select-chevron" aria-hidden="true" />
       </summary>
       <div className="enquiry-select-options">
-        {options.map(option => <label key={option.value} className={value === option.value ? "is-selected" : ""}>
+        {options.map(option => <label key={option.value} className={value === option.value ? "is-selected" : ""}
+          // Keep focus on the summary until the label activates its radio.
+          // Otherwise a pointer press on the label can blur and close details
+          // before the browser dispatches the option's click/change events.
+          onPointerDown={event => event.preventDefault()}>
           <input type="radio" name={name} value={option.value} required={required} checked={value === option.value}
             onInvalid={() => { if (disclosure.current) disclosure.current.open = true; }}
-            onChange={() => { setValue(option.value); onValueChange?.(option.value); }}
-            onClick={() => {
+            onChange={() => {
+              setValue(option.value);
+              onValueChange?.(option.value);
               if (disclosure.current) disclosure.current.open = false;
               summary.current?.focus();
+            }}
+            onClick={() => {
+              if (value === option.value) {
+                if (disclosure.current) disclosure.current.open = false;
+                summary.current?.focus();
+              }
             }} />
           <span>{option.label}</span>
           <span className="enquiry-select-check" aria-hidden="true">{value === option.value ? "✓" : ""}</span>
