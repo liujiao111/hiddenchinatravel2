@@ -5,7 +5,7 @@ import { useEffect, useLayoutEffect, useRef, useState, type TransitionEvent } fr
 import { useLocale } from "next-intl";
 import { guestReviews } from "@/lib/guest-reviews";
 
-export function Testimonials({ firstReview }: { firstReview?: string }) {
+export function Testimonials({ firstReview, showArchiveLink = true }: { firstReview?: string; showArchiveLink?: boolean }) {
   const zh = useLocale() === "zh";
   const first = guestReviews.find((review) => review.id === firstReview);
   const items = first ? [first, ...guestReviews.filter((review) => review !== first)] : guestReviews;
@@ -122,6 +122,6 @@ export function Testimonials({ firstReview }: { firstReview?: string }) {
       <button type="button" className="testimonials-arrow" aria-label={zh ? "下一条评价" : "Next review"} onClick={() => go(1)}>›</button>
     </div>
     {zh && <p className="testimonials-note">评价由英文原文翻译，点击卡片中的来源可查看原文。</p>}
-    <p className="testimonials-archive"><Link href="/traveler-stories">{zh ? "查看更多旅客故事" : "Read more traveler stories"}</Link></p>
+    {showArchiveLink && <p className="testimonials-archive"><Link href="/traveler-stories">{zh ? "查看更多旅客故事" : "Read more traveler stories"}</Link></p>}
   </section>;
 }
