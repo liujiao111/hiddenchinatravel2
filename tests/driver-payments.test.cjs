@@ -1,6 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const path = require('node:path');
 const Module = require('node:module');
 const ts = require('typescript');
 const Stripe = require('stripe');
@@ -15,6 +16,7 @@ Module._load = function(name, parent, main) {
     updateDriverOrder: async (_id, change) => (order = change(order)),
   };
   if (name === '@/lib/stripe-test') return { isDriverProductId: id => id === 'dali-arrival' };
+  if (name.startsWith('@/')) name = path.join(__dirname, '..', 'src', name.slice(2));
   return load.call(this, name, parent, main);
 };
 const { POST } = require('../src/app/api/stripe/webhook/route.ts');
@@ -79,4 +81,12 @@ test('email failure preserves paid status and a retry delivers the notification 
   assert.ok(order.paid.initial.notificationSentAt);
   assert.equal((await POST(request(event()))).status, 200);
   assert.equal(messages.length, 2);
+});
+test('payment notifications reuse the existing deployed sender name', async () => {
+  setup();
+  delete process.env.ENQUIRY_FROM_EMAIL;
+  process.env.CUSTOM_JOURNEY_FROM_EMAIL = 'existing-production@example.com';
+  assert.equal((await POST(request(event()))).status, 200);
+  assert.equal(messages[0].body.from, 'existing-production@example.com');
+  delete process.env.CUSTOM_JOURNEY_FROM_EMAIL;
 });

@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
 import { driverOrdersEnabled, updateDriverOrder } from "@/lib/driver-orders.mjs";
 import { isDriverProductId } from "@/lib/stripe-test";
 
@@ -111,9 +112,7 @@ export async function POST(request: Request) {
     ];
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.ENQUIRY_FROM_EMAIL;
-  const to = process.env.ENQUIRY_TO_EMAIL || "joy.liu@hiddenchinatravel.com";
+  const { apiKey, from, to } = getEnquiryMailConfig();
   if (!apiKey || !from) {
     console.error("[stripe-test] Payment notification email is not configured");
     return new Response("Payment notification email is not configured.", { status: 503 });

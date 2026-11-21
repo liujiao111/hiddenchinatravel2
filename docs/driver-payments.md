@@ -1,6 +1,6 @@
 # Private driver payments
 
-Use Node 24 (`nvm use`) for builds and tests. Run `npm ci`, `npm test`, `npm run lint` and `npm run build` before release. Enquiries, guest acknowledgements and payment notifications all reuse `RESEND_API_KEY`, `ENQUIRY_FROM_EMAIL` and `ENQUIRY_TO_EMAIL`; no driver-specific email configuration is required.
+Use Node 24 (`nvm use`) for builds and tests. Run `npm ci`, `npm test`, `npm run lint` and `npm run build` before release. Enquiries, guest acknowledgements and payment notifications share one mail configuration resolver: `RESEND_API_KEY`, `ENQUIRY_FROM_EMAIL` or the existing deployed `CUSTOM_JOURNEY_FROM_EMAIL`, and `ENQUIRY_TO_EMAIL` or `CUSTOM_JOURNEY_TO_EMAIL`. Existing production variables do not need to be renamed.
 
 The product cards show guide prices per standard vehicle. Staff confirm availability, the final route, the vehicle, the total and the written cancellation terms before creating Checkout. The card price never enters Checkout.
 

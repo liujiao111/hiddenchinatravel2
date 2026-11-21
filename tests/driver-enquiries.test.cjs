@@ -48,6 +48,7 @@ test('driver request reuses site email and returns the private order link; email
   assert.equal(messages.length, 1);
 });
 test('invalid requests and email rejection do not claim successful submission', async () => {
+  delete process.env.CUSTOM_JOURNEY_FROM_EMAIL;
   let calls = 0;
   global.fetch = async () => { calls++; return { ok: false, json: async () => ({ error: 'rejected' }) }; };
   assert.equal((await POST(request(payload({ email: '', whatsapp: '' })))).status, 400);
@@ -57,4 +58,14 @@ test('invalid requests and email rejection do not claim successful submission', 
   assert.equal((await POST(request(payload()))).status, 502);
   delete process.env.ENQUIRY_FROM_EMAIL;
   assert.equal((await POST(request(payload()))).status, 503);
+});
+test('the actual production sender configuration works without ENQUIRY_FROM_EMAIL', async () => {
+  delete process.env.ENQUIRY_FROM_EMAIL;
+  process.env.CUSTOM_JOURNEY_FROM_EMAIL = 'existing-production@example.com';
+  process.env.RESEND_API_KEY = 'local_mock';
+  const messages = [];
+  global.fetch = async (_url, options) => { messages.push(JSON.parse(options.body)); return { ok: true, json: async () => ({ id: 'local_email' }) }; };
+  assert.equal((await POST(request(payload()))).status, 200);
+  assert.equal(messages[0].from, 'existing-production@example.com');
+  delete process.env.CUSTOM_JOURNEY_FROM_EMAIL;
 });

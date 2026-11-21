@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 import { enquiryEmailText, enquirySubject, parseEnquiry } from "@/lib/enquiry";
-import { siteConfig } from "@/lib/site-config";
+import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
 
 async function readEnquiryBody(request: Request) {
   const contentType = request.headers.get("content-type") ?? "";
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
   }
 
   const text = enquiryEmailText(parsed);
-  const key = process.env.RESEND_API_KEY;
+  const { apiKey: key, from, to } = getEnquiryMailConfig();
 
   if (!key) {
     if (process.env.NODE_ENV !== "production") {
@@ -35,9 +35,8 @@ export async function POST(request: Request) {
   }
 
   // All enquiries and payment notifications reuse this verified sender.
-  const from = process.env.ENQUIRY_FROM_EMAIL;
   if (!from) {
-    console.error("[enquiry] No verified sender configured (ENQUIRY_FROM_EMAIL).");
+    console.error("[enquiry] No verified sender configured.");
     return Response.json({ error: "Enquiry email is temporarily unavailable. Please use WhatsApp instead." }, { status: 503 });
   }
 
@@ -45,7 +44,7 @@ export async function POST(request: Request) {
     const resend = new Resend(key);
     const { error } = await resend.emails.send({
       from,
-      to: process.env.ENQUIRY_TO_EMAIL || siteConfig.enquiryEmail,
+      to,
       replyTo: parsed.email,
       subject: enquirySubject(parsed),
       text,

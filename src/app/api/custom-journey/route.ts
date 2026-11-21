@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
 import { parseAirportTransfer } from "@/lib/driver-airport-transfers";
 import { driverOrderAccess, driverOrdersEnabled, saveDriverRequest } from "@/lib/driver-orders.mjs";
 import { enquiryEmailText, parseCustomJourneyEnquiry } from "@/lib/custom-journey-enquiry";
@@ -37,9 +38,7 @@ export async function POST(request: Request) {
   if (airportTransfer === null) {
     return Response.json({ error: locale === "zh" ? "请核对接送日期、时间、交通信息、人数和行李。" : "Check your transfer date, time, transport details, passenger and luggage counts." }, { status: 400 });
   }
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.ENQUIRY_FROM_EMAIL;
-  const to = process.env.ENQUIRY_TO_EMAIL || "joy.liu@hiddenchinatravel.com";
+  const { apiKey, from, to } = getEnquiryMailConfig();
   if (!apiKey || !from) return Response.json({ error: "The enquiry form is temporarily unavailable. Please try WhatsApp or email Joy below." }, { status: 503 });
   try {
     let orderPath: string | undefined;
