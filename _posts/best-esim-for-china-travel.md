@@ -125,7 +125,7 @@ Because most travel eSIMs are data-only, a Chinese phone number is not included.
   
 For most short-term travelers, the practical combination is: **travel eSIM for mobile data + VPN backup for Wi-Fi use**. A local SIM is only necessary if you genuinely need a Chinese phone number.
 
-## Best China eSIMs at a Glance
+## Best China eSIMs at a Glance {#esim-plan-picker}
 
 We are not naming one "best overall" provider — the right pick depends on price sensitivity, trip length, and daily data use. Here is how the six compared plans break down honestly:
 
@@ -138,7 +138,7 @@ Pick| Plan| Price| Why
 **Airalo unlimited**| Airalo Unlimited · 7 days| $27.00| 3 GB high-speed daily, then 1 Mbps under Airalo's current fair-use terms  
 **Best unlimited across more providers**| *Reserved — Nomad, Holafly, Saily comparison* | — | Not yet tested or price-compared here; see the note below before choosing one of these  
 
-[See the exact plan picker with live buy links →](#esim-plan-picker)
+Check current plans and prices on [Trip.com](/go/trip-esim) or [Airalo](/go/airalo).
 
 Prices were checked on September 3, 2026 and can change — confirm the live price at checkout.
 
