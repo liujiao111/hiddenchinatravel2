@@ -6,6 +6,7 @@ import { LocaleLink as Link } from "@/components/locale-link";
 import { SiteHeader } from "@/components/site-header";
 import { JourneyFactCards, JourneyHero } from "@/components/journey-landing";
 import { ContentFooter } from "@/components/content-footer";
+import { Testimonials } from "@/components/testimonials";
 import { JsonLd } from "@/components/json-ld";
 import { localizedStaticMetadata, localeUrl, type AppLocale } from "@/lib/i18n-seo";
 import { licensedOperator } from "@/lib/journey-trust";
@@ -152,6 +153,8 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       <a href="#driver-quote-form" data-custom-driver-quote>{T("Request a Custom or Multi-Day Quote", "申请定制路线或多日包车报价")} →</a>
     </JourneyFactCards>
 
+    <Testimonials firstReview="lijiang-family" />
+
     <StandardTransferSection locale={lang} stripeTestCheckoutEnabled={stripeTestCheckoutEnabled} />
 
     <section className="driver-section driver-section-soft" id="inclusions">
@@ -250,7 +253,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
         </div></div>
       </div>
     </section>
-    <ContentFooter />
+    <ContentFooter reviewsInPage />
     <JsonLd data={{
       "@context":"https://schema.org",
       "@graph":[
