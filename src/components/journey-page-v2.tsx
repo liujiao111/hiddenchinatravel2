@@ -15,7 +15,6 @@ import { JourneyPractical } from "@/components/journey-practical";
 import { JourneyWhy } from "@/components/journey-why";
 import { Testimonials } from "@/components/testimonials";
 import { licensedOperator } from "@/lib/journey-trust";
-import { getTestimonialsForJourney } from "@/lib/testimonials";
 import { YunnanTravelNotes } from "@/components/yunnan-travel-notes";
 import { breadcrumbList } from "@/components/json-ld";
 
@@ -32,7 +31,6 @@ export function JourneyPageV2({ journey, alternate }: { journey: Journey; altern
   const t = useTranslations("journey");
   const tMobile = useTranslations("mobileCta");
   const lang = useLocale() as "en" | "zh";
-  const stories = getTestimonialsForJourney(journey.slug, lang);
   const whatsapp = buildWhatsAppUrl();
   const completePrice = frontmatter.fromPrice > 0
     ? t("completePrice", { price: formatPriceLabel(frontmatter.fromPrice, frontmatter.currency), duration: frontmatter.duration.split("/")[0].trim().toLowerCase() })
@@ -128,7 +126,7 @@ export function JourneyPageV2({ journey, alternate }: { journey: Journey; altern
         { href: "#glance", label: t("navGlance") },
         { href: "#why-travel", label: t("navWhy") },
         { href: "#itinerary", label: frontmatter.itineraryKicker || t("navItinerarySix") },
-        { href: "#experiences", label: t("testimonialsHeading") },
+        { href: "#stories", label: t("testimonialsHeading") },
         { href: "#private-journey", label: t("navDetails") },
         { href: "#questions", label: t("goodToKnow") },
       ]}
@@ -155,7 +153,7 @@ export function JourneyPageV2({ journey, alternate }: { journey: Journey; altern
       { icon: "party", title: t("factPartyTitle"), lines: t.raw("factPartyLines") as string[] },
       { icon: "person", title: t("factJoyTitle"), lines: t.raw("factJoyLines") as string[] },
       { icon: "licence", title: t("factAgencyTitle"), lines: factAgencyLines },
-      { icon: "star", title: t("factGuestTitle"), lines: t.raw(stories.length ? "factGuestWithStories" : "factGuestNoStories") as string[] },
+      { icon: "star", title: t("factGuestTitle"), lines: t.raw("factGuestNoStories") as string[] },
     ]} />
 
     <JourneyWhy />
@@ -173,7 +171,7 @@ export function JourneyPageV2({ journey, alternate }: { journey: Journey; altern
       return <details key={day.days}><summary><span>{day.days}</span><div><h3>{day.title}</h3><p>{day.meta}</p></div><b aria-hidden="true">+</b></summary>{dayCopy.map((paragraph, paragraphIndex) => <p key={`${day.days}-${paragraphIndex}`}>{paragraph}</p>)}{day.meals ? <p className="journey-day-meals"><strong>{/Overnight|Pace:|住宿|节奏/.test(day.meals) ? t("theDayLabel") : t("mealsLabel")}</strong> {day.meals}</p> : null}{dayPhoto ? <figure className="journey-day-photo"><Image src={encodeURI(dayPhoto[0])} alt={dayPhoto[1]} fill sizes="(max-width:700px) 100vw, 640px" unoptimized /><figcaption>{dayPhoto[1]}</figcaption></figure> : null}</details>;
     })}</div></div></section>
 
-    {stories.length > 0 ? <Testimonials items={stories} eyebrow={t("testimonialsEyebrow")} heading={t("testimonialsHeading")} intro={t("testimonialsIntro")} note={t("testimonialsNote")} /> : null}
+    <Testimonials />
 
     {/* Pricing — same as 6-day: tiers empty → JourneyQuoteBand (not compact, with form) */}
     <section className="journey-price-module" id="pricing">
@@ -237,7 +235,7 @@ export function JourneyPageV2({ journey, alternate }: { journey: Journey; altern
       formLabel={tMobile("formLabel")}
       statusLabel={tMobile("statusLabel")}
     />
-    <ContentFooter />
+    <ContentFooter reviewsInPage />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { Testimonials } from "./testimonials";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { licensedOperator } from "@/lib/journey-trust";
@@ -12,7 +13,7 @@ export function ContentCta() {
   return <section className="content-cta"><div><p>{t("kicker")}</p><h2>{t("heading")}</h2><span>{t("body")}</span><a className="button button-light" href="#ask-joy">{t("button")}</a></div></section>;
 }
 
-export function ContentFooter() {
+export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boolean }) {
   const t = useTranslations("footer");
   const isZh = useLocale() === "zh";
   const agencyValues = {
@@ -25,6 +26,8 @@ export function ContentFooter() {
   };
 
   return (
+    <>
+    {reviewsInPage ? null : <Testimonials />}
     <footer className="footer">
       <div className="shell footer-grid">
         <section className="footer-brand" aria-labelledby="footer-brand-title">
@@ -123,5 +126,6 @@ export function ContentFooter() {
         </nav>
       </div>
     </footer>
+    </>
   );
 }

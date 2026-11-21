@@ -10,7 +10,6 @@ import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { getOperatorPaymentCopy } from "@/lib/booking-terms-i18n";
 import { licensedOperator } from "@/lib/journey-trust";
-import { getSelectedTestimonials } from "@/lib/testimonials";
 import { JsonLd, breadcrumbList } from "@/components/json-ld";
 import styles from "./about.module.css";
 
@@ -43,7 +42,6 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: Ap
   setRequestLocale(lang);
   const t = await getTranslations({ locale: lang, namespace: "about" });
   const tj = await getTranslations({ locale: lang, namespace: "journey" });
-  const stories = getSelectedTestimonials(lang);
   const whatsapp = buildWhatsAppUrl();
   const subnav = t.raw("subnav") as string[];
   const subnavHrefs = ["#joy", "#philosophy", "#why-us", "#booking", "#local-partners", "#stories"];
@@ -100,19 +98,11 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: Ap
     </div><div className={styles.checklist}><h3>{t("checklistHeading")}</h3><ul>{checklist.map((item) => <li key={item}>{item}</li>)}</ul><p>{t("checklistNote")}</p></div>
     <div id="local-partners"><OperatorCredentials /></div></div></section>
 
-    <Testimonials
-      items={stories}
-      eyebrow={tj("testimonialsEyebrow")}
-      heading={tj("testimonialsHeading")}
-      intro={tj("testimonialsIntroGeneric")}
-      note={tj("testimonialsNote")}
-      archiveHref="/traveler-stories"
-      archiveLabel={t("archiveLabel")}
-    />
+    <Testimonials />
 
     <section className={styles.faq}><div className={`shell ${styles.faqGrid}`}><div><h2>{t("faqHeading")}</h2><p>{t("faqSub")}</p></div><div>{questions.map(([q, a]) => <details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>
     <section className={styles.cta}><div className="shell"><h2>{t("ctaHeading")}</h2><p>{t("ctaText")}</p><Link href={whatsapp} className="button button-light">{tj("startPlanning")}</Link><Link href="/contact">{t("ctaEmail")}</Link><span>{t("ctaNote")}</span></div></section>
-  </main><ContentFooter />
+  </main><ContentFooter reviewsInPage />
   <JsonLd data={{ "@context": "https://schema.org", "@graph": [breadcrumbList([{ name: tj("breadcrumbHome"), href: "/" }, { name: t("breadcrumbAbout"), href: "/about-us" }])] }} />
   </>;
 }

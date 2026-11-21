@@ -8,7 +8,6 @@ import { ContactForm } from "@/components/contact-form";
 import { ContentFooter } from "@/components/content-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
-import { getSelectedTestimonials } from "@/lib/testimonials";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: AppLocale }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -40,7 +39,6 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
   const t = await getTranslations({ locale: lang, namespace: "contact" });
   const tj = await getTranslations({ locale: lang, namespace: "journey" });
   const tq = await getTranslations({ locale: lang, namespace: "quickAsk" });
-  const stories = getSelectedTestimonials(lang);
   const whatsapp = buildWhatsAppUrl();
   const steps = t.raw("steps") as [string, string, string][];
   const emphasis = t.raw("heroEmphasis") as string[];
@@ -96,13 +94,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      <Testimonials
-        items={stories}
-        eyebrow={tj("testimonialsEyebrow")}
-        heading={tj("testimonialsHeading")}
-        intro={tj("testimonialsIntroGeneric")}
-        note={tj("testimonialsNote")}
-      />
+      <Testimonials />
 
       <section className="contact-form-section section" id="enquire">
         <div className="shell contact-form-layout">
@@ -153,7 +145,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      <ContentFooter />
+      <ContentFooter reviewsInPage />
     </main>
   );
 }

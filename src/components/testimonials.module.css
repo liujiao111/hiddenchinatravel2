@@ -1,0 +1,50 @@
+.reviews {
+  background: var(--color-background);
+  color: var(--color-ink);
+  scroll-margin-top: 6rem;
+}
+
+.reviews h2 {
+  margin-bottom: var(--space-8);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.card {
+  margin: 0;
+  padding: clamp(1rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.card figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  color: var(--color-muted);
+  font-size: .875rem;
+}
+
+.card strong { color: var(--color-ink); }
+.card blockquote { margin: 0; font: 1.25rem/1.55 var(--font-editorial); }
+.translation { color: var(--color-muted); }
+.card a, .more summary { color: var(--color-action-text); text-decoration: underline; text-underline-offset: .2em; }
+.card a { margin-top: auto; }
+.more { margin-top: var(--space-4); }
+.more summary { cursor: pointer; width: fit-content; padding-block: var(--space-3); }
+.more[open] .grid { margin-top: var(--space-3); }
+.expanded, .more[open] .collapsed { display: none; }
+.more[open] .expanded { display: inline; }
+@media (max-width: 700px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+}
