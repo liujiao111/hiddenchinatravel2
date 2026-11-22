@@ -1,7 +1,9 @@
 import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
 import { createHash } from "node:crypto";
+import { driverDirectPrices } from "@/lib/driver-direct-prices";
+import { createDirectDriverCheckout } from "@/lib/driver-direct-checkout";
 import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
-import { parseAirportTransfer } from "@/lib/driver-airport-transfers";
+import { chinaServiceDate, parseAirportTransfer } from "@/lib/driver-airport-transfers";
 import { driverOrderAccess, driverOrdersEnabled, saveDriverRequest } from "@/lib/driver-orders.mjs";
 import { enquiryEmailText, parseCustomJourneyEnquiry } from "@/lib/custom-journey-enquiry";
 
@@ -42,6 +44,37 @@ export async function POST(request: Request) {
     return Response.json({ error: locale === "zh" ? "请核对接送日期、时间、交通信息、人数和行李。" : "Check your transfer date, time, transport details, passenger and luggage counts." }, { status: 400 });
   }
   const tracking = parsedBody.tracking && typeof parsedBody.tracking === "object" ? parsedBody.tracking as Record<string, unknown> : {};
+  if (driverOrder?.checkout === true) {
+    const productId = String(driverOrder.productId || "");
+    const product = Object.hasOwn(driverDirectPrices, productId) ? driverDirectPrices[productId] : undefined;
+    const vehicle = driverOrder.vehicleCode;
+    const size = vehicle === "Five-seat car" ? "five" : vehicle === "Seven-seat car" ? "seven" : null;
+    const date = new Date(enquiry.travelTiming + "T00:00:00Z");
+    const totalFen = airportTransfer?.guideFen ?? (product && size ? product[size] * 100 : null);
+    if (!/^\/(?:zh\/|en\/)?yunnan-private-driver\/?$/.test(enquiry.conversionPage || "")
+      || !size || !totalFen || !Number.isSafeInteger(totalFen)
+      || !Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== enquiry.travelTiming || enquiry.travelTiming < chinaServiceDate()
+      || !Number.isInteger(driverOrder.luggage) || driverOrder.luggage < 0 || driverOrder.luggage > 20
+      || (size === "five" && (enquiry.adults + enquiry.children > 3 || Number(driverOrder.luggage) > 3))
+      || (size === "seven" && enquiry.adults + enquiry.children > 6)
+      || (airportTransfer && driverOrder.airportTransfer.productId !== productId)
+      || (airportTransfer && driverOrder.airportTransfer.vehicle !== vehicle)
+      || (product?.routes && !product.routes.includes(String(driverOrder.directionCode)))
+      || typeof driverOrder.pickup !== "string" || !driverOrder.pickup.trim()
+      || typeof driverOrder.dropoff !== "string" || !driverOrder.dropoff.trim()) {
+      return Response.json({ error: "Please check the route, date, vehicle and passenger details before payment." }, { status: 400 });
+    }
+    try {
+      const result = await createDirectDriverCheckout({ id: enquiry.requestId, submissionKey: driverOrder.submissionKey, totalFen, origin,
+        summary: { locale, productId, service: productId, date: enquiry.travelTiming, route: String(driverOrder.route || "").slice(0, 700),
+          pickup: String(driverOrder.pickup).slice(0, 150), dropoff: String(driverOrder.dropoff).slice(0, 150), vehicle,
+          party: enquiry.adults + enquiry.children, email: enquiry.email, name: enquiry.name, whatsapp: enquiry.whatsapp,
+          notes: enquiry.notes, ...(airportTransfer || {}) } });
+      return Response.json({ success: true, ...result }, { headers: { "Cache-Control": "no-store" } });
+    } catch (error) {
+      return Response.json({ error: error instanceof Error ? error.message : "Could not open secure checkout. Please try again." }, { status: 503 });
+    }
+  }
   const formName = /^(?:custom_journey_enquiry|yunnan_package_enquiry|private_yunnan_enquiry|yunnan_driver_(?:custom|product))$/.test(String(tracking.form_name || ""))
     ? String(tracking.form_name) : "custom_journey_enquiry";
   const formRecord = prepareFormRecord(tracking, "https://hiddenchinatravel.com" + (enquiry.conversionPage || "/private-yunnan-tours"), formName, enquiry.requestId);

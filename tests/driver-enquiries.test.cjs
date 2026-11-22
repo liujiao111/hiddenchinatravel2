@@ -9,7 +9,12 @@ require.extensions['.ts'] = (module, filename) => module._compile(ts.transpileMo
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
 }).outputText, filename);
 const load = Module._load;
+let checkoutInput;
 Module._load = function(name, parent, main) {
+  if (name === '@/lib/driver-direct-checkout') return { createDirectDriverCheckout: async input => {
+    checkoutInput = input;
+    return { checkoutUrl: 'https://checkout.stripe.com/c/pay/test-local', orderPath: '/driver-order/test' };
+  } };
   if (name === '@/lib/driver-orders.mjs') return {
     driverOrdersEnabled: () => true, driverOrderAccess: id => `${id}.private-link`,
     saveDriverRequest: async (_id, summary) => ({ summary }),
@@ -77,4 +82,18 @@ test('the actual production sender configuration works without ENQUIRY_FROM_EMAI
   assert.equal((await POST(request(payload()))).status, 200);
   assert.equal(messages[0].from, 'existing-production@example.com');
   delete process.env.CUSTOM_JOURNEY_FROM_EMAIL;
+});
+test('direct checkout ignores browser prices, validates route and skips enquiry email', async () => {
+  global.fetch = async () => { throw new Error('Direct checkout must not send enquiry emails'); };
+  const driverOrder = { checkout: true, productId: 'dali-lijiang-direct', vehicleCode: 'Five-seat car',
+    directionCode: 'Dali → Lijiang direct', luggage: 1, pickup: 'Dali hotel', dropoff: 'Lijiang hotel',
+    route: 'Dali → Lijiang direct', submissionKey: randomUUID(), guideFen: 1 };
+  const response = await POST(request(payload({ driverOrder })));
+  assert.equal(response.status, 200);
+  assert.match((await response.json()).checkoutUrl, /^https:\/\/checkout.stripe.com\//);
+  assert.equal(checkoutInput.totalFen, 55000);
+  checkoutInput = null;
+  assert.equal((await POST(request(payload({ driverOrder: { ...driverOrder, directionCode: 'unknown route' } })))).status, 400);
+  assert.equal(checkoutInput, null);
+  assert.equal((await POST(request(payload({ driverOrder: { ...driverOrder, vehicleCode: 'Larger vehicle - quote required' } })))).status, 400);
 });

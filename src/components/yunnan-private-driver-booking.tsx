@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { driverDirectPrices } from "@/lib/driver-direct-prices";
 import { EnquirySelect } from "@/components/enquiry-select";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { getAttribution } from "@/lib/attribution";
@@ -188,7 +189,8 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const vehiclePrice = vehicle === fiveSeat ? "five" : vehicle === sevenSeat ? "seven" : undefined;
   const guidePrice = isArrival
     ? transferGuidePrice(serviceId ?? "", hubId, priceArea, arrivalDirection, vehiclePrice)
-    : vehiclePrice ? service?.guidePrices?.[vehiclePrice] : undefined;
+    : vehiclePrice ? driverDirectPrices[serviceId ?? ""]?.[vehiclePrice] : undefined;
+  const onlinePayable = kind === "standard" && guidePrice !== undefined;
   const outsideArea = !isStationTransfer && isOutsideTransferArea(hotelArea);
   const isPickup = arrivalDirection === "pickup";
   const transportHub = secondHub && !isPickup ? secondHub : hub;
@@ -317,6 +319,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       tracking: createFormTracking(leadRef.current, formName, service?.id || "custom-multi-day"),
       requestId: idRef.current,
       driverOrder: {
+        checkout: onlinePayable, productId: serviceId, vehicleCode: vehicle, directionCode: String(values.get("direction") || ""), luggage,
         submissionKey: submissionKey.current, locale, service: service ? (zh ? service.zh : service.en) : title,
         route: direction || route, pickup, dropoff, vehicle: zh
           ? (vehicle === fiveSeat ? "5座车" : vehicle === sevenSeat ? "7座商务车" : "更大车型") : vehicle,
@@ -332,6 +335,13 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       const response = await fetch("/api/custom-journey", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       const data = await response.json();
       if (!response.ok || data.success !== true) throw new Error(data.error || "Could not send your request.");
+      if (onlinePayable) {
+        if (typeof data.checkoutUrl !== "string") throw new Error(zh ? "未能创建付款链接，请重试。" : "Could not create checkout. Please try again.");
+        const url = new URL(data.checkoutUrl, window.location.origin);
+        if (url.protocol !== "https:" || (url.hostname !== "checkout.stripe.com" && url.origin !== window.location.origin)) throw new Error("Invalid checkout URL.");
+        window.location.assign(url.href);
+        return;
+      }
       trackEvent("generate_lead", {
         form_name: formName, lead_type: kind === "custom" ? "private_driver_custom" : "private_driver_product",
         product_id: service?.id || "custom-multi-day", service_category: service?.category || "custom",
@@ -361,7 +371,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   }}>
     <h3>{title}</h3>
     {service ? <p className="driver-form-selection">{zh ? "当前产品：" : "Your product: "}<strong>{zh ? service.zh : service.en}</strong></p> : null}
-    <p className="driver-form-note">{zh ? "选择路线选项并发送需求。车辆和总价核实后才安排付款，此表单不收取费用。" : "Select your options and request a quote. We check vehicle availability and total cost before arranging payment; this form is free."}</p>
+    <p className="driver-form-note">{onlinePayable ? (zh ? "提交后前往 Stripe 支付所选服务全款。付款后确认司机和派车安排；如无法提供服务，已付款项全额退还。" : "Continue to Stripe to pay in full for your selected service. We confirm driver allocation after payment. If we cannot provide the service, your payment is refunded in full.") : (zh ? "此路线需人工核价，提交需求后我们会联系你，提交本身不收款。" : "This route needs a custom quote. Submit your request and we will contact you; no payment is collected.")}</p>
     {transfer ? <>
       <div className="contact-field-row">
         <EnquirySelect name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { setHubId(value); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
@@ -455,7 +465,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     <label className="contact-honeypot" aria-hidden="true"><span>Website</span><input name="website" tabIndex={-1} autoComplete="off" /></label>
     <label className="driver-form-consent"><input type="checkbox" name="consent" value="yes" required /><span>{zh ? "我同意仅就本次包车咨询接收回复。" : "I agree to be contacted only about this driver enquiry."} <Link href="/privacy-policy">{zh ? "隐私政策" : "Privacy policy"}</Link></span></label>
     {status === "error" ? <p role="alert" className="contact-form-error">{error}</p> : null}
-    <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? (zh ? "发送中…" : "Sending…") : (zh ? "查询车辆与报价" : "Check Availability & Request Price")}</button>
+    <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? (onlinePayable ? (zh ? "正在前往 Stripe…" : "Opening Stripe…") : (zh ? "发送中…" : "Sending…")) : onlinePayable ? (zh ? `前往 Stripe 支付 ¥${guidePrice}` : `Pay RMB ${guidePrice} with Stripe`) : (zh ? "提交定制需求" : "Request a Custom Quote")}</button>
   </form>;
 }
 
@@ -539,7 +549,7 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
     };
   }, []);
   const priceLabel = (product: Product, vehicle: "five" | "seven") => {
-    const price = product.category === "arrival" ? transferStartingPrice(product.id, vehicle) : product.guidePrices?.[vehicle];
+    const price = product.category === "arrival" ? transferStartingPrice(product.id, vehicle) : driverDirectPrices[product.id]?.[vehicle];
     if (price === undefined) return zh ? "价格待确认" : "Price to be confirmed";
     if (product.category === "arrival") return zh ? `¥${price}起` : `from RMB ${price}`;
     return zh ? `¥${price}` : `RMB ${price}`;

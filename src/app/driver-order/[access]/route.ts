@@ -27,6 +27,7 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   const t = (zhText: string, enText: string) => zh ? zhText : enText;
   const money = (fen: number) => new Intl.NumberFormat(zh ? "zh-CN" : "en", { style: "currency", currency: "CNY" }).format(fen / 100);
   const paidFen = (paid?.initial?.amount ?? 0) + (paid?.balance?.amount ?? 0);
+  const returned = new URL(_request.url).searchParams.get("payment");
   const payment = paid?.initial ? quote?.balance : quote?.initial;
   const payable = payment && Date.parse(payment.expiresAt) > Date.now()
     && !paid?.balance && paidFen < quote.totalFen && isDriverCheckoutUrl(payment.url);
@@ -34,6 +35,9 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   const status = dispatch
     ? t("预订已确认", "Booking confirmed")
     : paidFen > 0 ? t("已收到付款，待确认接送安排", "Payment received. Pickup details to be confirmed.")
+    : quote && returned === "returned" ? t("正在核实付款，请稍后刷新此页", "Verifying payment. Please refresh shortly.")
+    : quote && returned === "cancelled" ? t("付款已取消，订单尚未付款", "Checkout cancelled. Your order is unpaid.")
+    : quote?.direct ? t("订单已创建，待付款", "Order created. Awaiting payment.")
     : quote ? t("报价已确认，待付款", "Quote ready. Awaiting payment.")
     : t("已收到申请，待确认车源", "Request received. Checking availability.");
 

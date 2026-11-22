@@ -136,15 +136,20 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     </JourneyFactCards>
     <Testimonials firstReview="lijiang-family" />
 
-    <section className="driver-section driver-section-soft" id="multi-day-driver">
-      <div className="shell">
-        <div className="driver-section-head">
+    <section id="multi-day-driver">
+      <div className="driver-editorial-close">
+        <Image src="/assets/destinations/yunnan/lijiang-shangri-la/yangtze-first-bend-shigu.webp" alt="" fill sizes="100vw" />
+        <div className="journey-hero-shade" />
+        <div className="shell driver-editorial-close-inner"><div className="driver-editorial-close-copy">
           <p className="kicker">{T("CUSTOM & MULTI-DAY ROUTES", "定制路线与多日包车")}</p>
-          <h2>{T("Already Have a Yunnan Road Trip in Mind?", "已有云南自驾式旅行路线？")}</h2>
+          <h2 className="journey-final-title">{T("Already Have a Yunnan Road Trip in Mind?", "已有云南自驾式旅行路线？")}</h2>
           <p>{T("Share your travel dates, route, group size and luggage. We'll check road conditions and driver availability, recommend a suitable vehicle and prepare a written quote. No payment is needed to enquire.", "告诉我们出行日期、路线、人数和行李数量。我们会核实路况与车源、推荐合适车型，并提供书面报价。提交询价无需付款。")}</p>
           <p>{T("Remote mountain routes and additional sightseeing stops are confirmed individually.", "偏远山区路线和额外观光停靠需逐项核实后确认。")}</p>
-          <a className="button button-blue" href="#driver-quote-form" data-custom-driver-quote>{T("Get a Custom Driver Quote", "获取定制包车报价")}</a>
-        </div>
+          <div className="driver-editorial-actions">
+            <a className="button button-blue" href="#driver-quote-form" data-custom-driver-quote>{T("Get a Custom Driver Quote", "获取定制包车报价")} <span aria-hidden="true">→</span></a>
+            <a className="button button-outline-light" href={whatsapp} target="_blank" rel="noopener noreferrer">{T("Chat on WhatsApp", "WhatsApp 咨询")}</a>
+          </div>
+        </div></div>
       </div>
     </section>
 
