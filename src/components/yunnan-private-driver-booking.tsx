@@ -450,7 +450,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       ? (zh ? "请选择交通枢纽、接送方向和酒店区域以查看参考价。" : "Select a hub, direction and hotel area to see the guide price.")
       : guidePrice === undefined
       ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "价格需人工确认" : isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
-      : (zh ? `当前参考报价 ¥${guidePrice}／车。确认车源和行程后提供正式报价。` : `Current guide quote: RMB ${guidePrice} per vehicle. We confirm the final price after checking availability and itinerary.`)}</p>
+      : (zh ? `所选服务 ¥${guidePrice}／车，在线支付全款后确认派车。` : `Selected service: RMB ${guidePrice} per vehicle. Pay in full online; driver allocation follows payment.`)}</p>
     <div className="contact-field-row">
       <label><span>{zh ? "成人数 *" : "Adults *"}</span><input required type="number" name="travelers" min="1" max="20" defaultValue="2" /></label>
       <label><span>{zh ? "儿童人数" : "Children"}</span><input type="number" name="children" min="0" max="20" defaultValue="0" /></label>
@@ -598,15 +598,15 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
                 <h3>{zh ? product.zh : product.en}</h3>
                 <p>{zh ? product.detailZh : product.detailEn}</p>
                 <div className="driver-product-price">
-                  <span>{zh ? "每车参考价" : "Guide prices per vehicle"}</span>
+                  <span>{zh ? "每车价格" : "Prices per vehicle"}</span>
                   <dl>
                     <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
                     <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
                   </dl>
-                  <small>{product.category === "day" ? (zh ? "路线与时长确认后可付全款" : "Full payment available once the route and hours are agreed") : (zh ? "确认后付全款" : "Full payment after confirmation")}</small>
+                  <small>{zh ? "已定价选项可在线付全款，付款后确认派车" : "Priced options: pay in full online; driver allocation follows payment"}</small>
                 </div>
                 <button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>
-                  {zh ? "选择选项并询价" : "Select Options & Check Price"} <span aria-hidden="true">→</span>
+                  {zh ? "选择服务选项" : "Select Service Options"} <span aria-hidden="true">→</span>
                 </button>
               </div>
             </article>;

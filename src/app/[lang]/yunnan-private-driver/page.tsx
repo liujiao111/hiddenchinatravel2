@@ -54,8 +54,8 @@ const faqs: Pair[] = [
 
 const faqAnswers: Pair[] = [
   ["Rates depend on the exact route, vehicle, date, waiting time and tolls. The cards show guide prices for five-seat and seven-seat vehicles. Larger vehicles are quoted individually. We confirm your written total before requesting payment.", "费用取决于具体路线、车型、日期、等候时间与高速费。卡片显示5座和7座每车参考价，更大车型需人工报价；付款前会提供书面总价。"],
-  ["You can request a transfer date online. Once the route, vehicle and total price are confirmed, the licensed operator sends the agreed secure payment link. The request form does not collect payment.", "你可以在线提交接送日期与需求。核实路线、车源和总价后，持证经营方提供约定的安全付款链接；查询表单不会扣费。"],
-  ["Airport, station and fixed-route transfers are paid in full after we confirm availability, the total and the change and cancellation terms. A single-day charter with agreed route and hours can be paid in full. Multi-day or flexible bookings require a 20% deposit.", "机场、车站和固定线路接送在确认车源、总价及退改条款后付全款。单日包车在路线和时长明确后可付全款；多日包车或行程仍可能调整的订单付20%定金。"],
+  ["Yes. Select a priced standard service, enter your trip details and continue to Stripe to pay in full. We confirm driver allocation after payment. Custom and unpriced routes require a quotation first. If we cannot provide a paid service, your payment is refunded in full.", "可以。选择已定价标准服务并填写用车信息后，前往 Stripe 支付全款，再由我们确认派车。定制及未定价路线先询价；如无法提供已付款的服务，所付款项全额退还。"],
+  ["Priced standard services are paid in full through Stripe before driver allocation. Multi-day and custom services follow the payment schedule in your written quote.", "已定价标准服务通过 Stripe 支付全款后安排派车。多日和定制服务以书面报价约定的付款安排为准。"],
   ["For deposit bookings, the written quote specifies the balance and when it is due.", "采用定金的订单会在书面报价中列明尾款金额和付款时间。"],
   ["Not always. Many local drivers speak Chinese; English-language coordination is available via Hidden China Travel on WhatsApp.", "不一定，很多当地司机主要讲中文；Hidden China Travel 可以通过 WhatsApp 提供英文沟通协调。"],
   ["No. A driver provides transport and agreed stops, not professional sightseeing commentary. Request an English-speaking guide separately if needed.", "不是。司机负责交通与约定停靠点，不默认包含专业景点讲解；可单独询价英文导游。"],
