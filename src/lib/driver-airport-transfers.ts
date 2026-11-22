@@ -140,8 +140,7 @@ export function parseAirportTransfer(value: unknown, date: string, adults: numbe
     || (vehicleType === "five" && (adults + children > 3 || luggage > 3))
     || (vehicleType === "seven" && adults + children > 6)
     || !/^\d{4}-\d{2}-\d{2}$/.test(date) || date < chinaServiceDate()
-    || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time)
-    || (arrival && (!transportNumber || transportNumber.toLowerCase() === "not confirmed yet"))) return null;
+    || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time)) return null;
   const parsedDate = new Date(`${date}T00:00:00Z`);
   if (Number.isNaN(parsedDate.getTime()) || parsedDate.toISOString().slice(0, 10) !== date) return null;
 

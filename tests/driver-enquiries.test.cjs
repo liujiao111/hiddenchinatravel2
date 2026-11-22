@@ -18,6 +18,15 @@ Module._load = function(name, parent, main) {
   return load.call(this, name, parent, main);
 };
 const { POST } = require('../src/app/api/custom-journey/route.ts');
+const { parseAirportTransfer } = require('../src/lib/driver-airport-transfers.ts');
+test('airport quote validation preserves the optional flight number in the current form', () => {
+  const transfer = { productId: 'kunming-arrival', hubId: 'kmg', direction: 'pickup', hotelArea: 'central',
+    hotel: 'Kunming hotel', transportNumber: '', serviceTime: '12:00', vehicle: 'Five-seat car', luggage: 1 };
+  const parsed = parseAirportTransfer(transfer, '2027-05-01', 2, 0, 'en');
+  assert.ok(parsed);
+  assert.equal(parsed.transportNumber, '');
+  assert.equal(parseAirportTransfer({ ...transfer, serviceTime: '99:00' }, '2027-05-01', 2, 0, 'en'), null);
+});
 function payload(overrides = {}) {
   return { name: 'Local test', email: 'guest@example.com', whatsapp: '', travelTiming: '2027-05-01',
     tripLength: '1 day', adults: 2, children: 0, destinations: 'Dali', budget: 'Please advise',

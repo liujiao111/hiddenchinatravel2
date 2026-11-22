@@ -5,18 +5,20 @@ import { useLocale } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 import { analyticsDenied, getAttribution } from "@/lib/attribution";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, generateLeadId } from "@/lib/whatsapp";
+import { createPassiveRecord, savePassiveRecord } from "@/lib/lead-ref-client";
+import { QRCode } from "@synapxlab/qrcode";
 import styles from "./yunnan-contact-widget.module.css";
 
 type Channel = "whatsapp" | "wechat";
 const WECHAT_ID = "ll917961898";
 const NOTICE_KEY = "hct_whatsapp_nudge_seen_v1";
 
-function record(event: string, channel?: Channel) {
+function record(event: string, channel?: Channel, ref?: string) {
   if (analyticsDenied()) return;
   const attribution = getAttribution();
   trackEvent(event, {
-    channel, page_path: window.location.pathname, conversion_page: window.location.pathname,
+    channel, lead_id: ref, event_id: ref, page_path: window.location.pathname, conversion_page: window.location.pathname,
     cta_location: "floating_contact", first_source: attribution.first.source,
     first_medium: attribution.first.medium, last_source: attribution.last.source,
     last_medium: attribution.last.medium,
@@ -33,6 +35,7 @@ export function YunnanContactWidget() {
   const [barOffset, setBarOffset] = useState(0);
   const [open, setOpen] = useState(false);
   const [channel, setChannel] = useState<Channel>("whatsapp");
+  const [qrRef, setQrRef] = useState("");
   const [suppressed, setSuppressed] = useState(false);
   const [backToTop, setBackToTop] = useState(false);
   const [nudge, setNudge] = useState(false);
@@ -46,6 +49,8 @@ export function YunnanContactWidget() {
 
   function close() { setOpen(false); }
   function show() {
+    viewedChannels.current.clear();
+    setQrRef(generateLeadId());
     lastFocus.current = document.activeElement as HTMLElement;
     setChannel("whatsapp"); setOpen(true); setNudge(false);
     try { sessionStorage.setItem(NOTICE_KEY, "1"); } catch { /* optional storage */ }
@@ -84,9 +89,15 @@ export function YunnanContactWidget() {
   }, []);
 
   useEffect(() => {
-    if (!open) return;
-    if (!viewedChannels.current.has(channel)) { viewedChannels.current.add(channel); record("contact_qr_view", channel); }
-  }, [open, channel]);
+    if (!open || !qrRef) return;
+    if (!viewedChannels.current.has(channel)) {
+      viewedChannels.current.add(channel);
+      const ref = channel === "whatsapp" ? qrRef : generateLeadId();
+      record("contact_qr_view", channel, ref);
+      // Only proves that the QR panel was displayed, never that it was scanned.
+      savePassiveRecord(createPassiveRecord(ref, "qr_view", channel));
+    }
+  }, [open, channel, qrRef]);
 
   useEffect(() => {
     if (!open) return;
@@ -134,7 +145,7 @@ export function YunnanContactWidget() {
 
   useEffect(() => () => { if (copyTimer.current) clearTimeout(copyTimer.current); }, []);
   async function copyWechat() {
-    try { await navigator.clipboard.writeText(WECHAT_ID); setCopyStatus(zh ? "已复制微信号" : "WeChat ID copied"); record("wechat_id_copy", "wechat"); }
+    try { await navigator.clipboard.writeText(WECHAT_ID); setCopyStatus(zh ? "已复制微信号" : "WeChat ID copied"); const ref = generateLeadId(); record("wechat_id_copy", "wechat", ref); savePassiveRecord(createPassiveRecord(ref, "wechat_id_copy", "wechat")); }
     catch { setCopyStatus(zh ? "无法自动复制，请长按微信号手动复制。" : "Please press and hold the WeChat ID to copy it."); }
     if (copyTimer.current) clearTimeout(copyTimer.current);
     copyTimer.current = setTimeout(() => setCopyStatus(""), 4000);
@@ -144,6 +155,11 @@ export function YunnanContactWidget() {
     if (focus) panelRef.current?.querySelector<HTMLButtonElement>(`#contact-tab-${next}`)?.focus();
   }
 
+  // The QR is rendered locally, so no visitor/campaign URL is sent to a QR provider.
+  // Scanning enters our same-origin redirect to bridge PC attribution to phone.
+  const scanUrl = qrRef ? `https://hiddenchinatravel.com/api/qr/whatsapp?ref=${encodeURIComponent(qrRef)}` : "";
+  const qrSvg = scanUrl ? QRCode.toSVG(scanUrl, { size: 360, margin: 4, errorCorrection: "M" }) : "";
+  const qrImage = qrSvg ? `data:image/svg+xml;charset=utf-8,${encodeURIComponent(qrSvg)}` : "";
   return <div ref={rootRef} className={styles.root} data-contact-widget="global" style={barOffset && !open ? { bottom: barOffset } : undefined} data-open={open || undefined}>
     {open && <button className={styles.scrim} onClick={close} aria-label={zh ? "关闭咨询面板遮罩" : "Close contact panel"} tabIndex={-1} />}
     {open && <section ref={panelRef} className={styles.panel} role="dialog" aria-label={zh ? "咨询云南私人定制旅行" : "Plan a private Yunnan trip"}>
@@ -168,12 +184,14 @@ export function YunnanContactWidget() {
       {(["whatsapp", "wechat"] as const).map(item => <div key={item} id={`contact-qr-${item}`} role="tabpanel" aria-labelledby={`contact-tab-${item}`} className={styles.content} hidden={channel !== item}>
         <div className={styles.channelLayout}>
           <div className={`${styles.qr} ${item === "whatsapp" ? styles.whatsappQr : styles.wechatQr}`}>
-            <Image src={`/assets/contact/joy-${item}-qr.jpeg`} alt={item === "whatsapp" ? (zh ? "扫码与 Joy 在 WhatsApp 聊天" : "Scan to chat with Joy on WhatsApp") : (zh ? "扫码添加 Joy 的微信" : "Scan to add Joy on WeChat")} width={item === "whatsapp" ? 1320 : 888} height={item === "whatsapp" ? 2868 : 1137} unoptimized />
+            {item === "whatsapp"
+              ? (qrImage ? <img src={qrImage} width={360} height={360} alt={zh ? "扫码在手机打开 WhatsApp 咨询" : "Scan to open WhatsApp on your phone"} style={{ width: "100%", height: "auto", background: "#fff" }} /> : <span>{zh ? "正在准备二维码…" : "Preparing QR code..."}</span>)
+              : <Image src="/assets/contact/joy-wechat-qr.jpeg" alt={zh ? "扫码添加 Joy 的微信" : "Scan to add Joy on WeChat"} width={888} height={1137} unoptimized />}
           </div>
           <div className={styles.channelNotes}>
             <strong>{item === "whatsapp" ? (zh ? "扫码联系 Joy" : "Scan to contact Joy") : (zh ? "添加 Joy 的微信" : "Add Joy on WeChat")}</strong>
             {item === "whatsapp" ? <><p className={styles.desktopHelp}>{zh ? <>用手机相机扫一扫，<br/>在 WhatsApp 上沟通。</> : "Scan with your phone camera to chat on WhatsApp."}</p><p className={styles.mobileHelp}>{zh ? <>用手机浏览？<br/>点击下方直接聊天。</> : "On your phone? Tap below to start chatting."}</p></> : <><p className={styles.desktopHelp}>{zh ? <>打开微信扫一扫，<br/>发送好友申请。</> : "Scan in WeChat and send a friend request."}</p><p className={styles.mobileHelp}>{zh ? <>保存二维码后，<br/>在微信相册中识别。</> : "Save the QR code, then open it in the WeChat scanner."}</p></>}
-            <a className={styles.save} href={`/assets/contact/joy-${item}-qr.jpeg`} download={`Joy-${item}-QR.jpeg`} onClick={() => record("contact_qr_download", item)}>{zh ? "保存二维码" : "Save QR code"} <span aria-hidden="true">↓</span></a>
+            <a className={styles.save} href={item === "whatsapp" ? qrImage || "#" : "/assets/contact/joy-wechat-qr.jpeg"} download={item === "whatsapp" ? `Joy-WhatsApp-${qrRef}.svg` : "Joy-WeChat-QR.jpeg"} onClick={(event) => { if (item === "whatsapp" && !qrImage) { event.preventDefault(); return; } const ref = generateLeadId(); record("contact_qr_download", item, ref); savePassiveRecord(createPassiveRecord(ref, "qr_download", item)); }}>{zh ? "保存二维码" : "Save QR code"} <span aria-hidden="true">↓</span></a>
           </div>
         </div>
         {item === "whatsapp" ? <a className={`button button-primary ${styles.direct}`} href={buildWhatsAppUrl(undefined, locale)} target="_blank" rel="noopener noreferrer" data-cta-location="floating_whatsapp">{zh ? "打开 WhatsApp 聊天" : "Chat on WhatsApp"} <span aria-hidden="true">↗</span></a> : <>

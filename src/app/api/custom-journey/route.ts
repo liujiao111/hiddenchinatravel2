@@ -1,3 +1,4 @@
+import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
 import { createHash } from "node:crypto";
 import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
 import { parseAirportTransfer } from "@/lib/driver-airport-transfers";
@@ -23,11 +24,13 @@ export async function POST(request: Request) {
   recentRequests.set(ip, { count: (limit?.count || 0) + 1, expires: limit?.expires || now + 600_000 });
   if (recentRequests.size > 2000) recentRequests.delete(recentRequests.keys().next().value!);
   let enquiry;
+  let parsedBody: Record<string, unknown> = {};
   let driverOrder;
   try {
     const text = await request.text();
     if (text.length > 12_000) return Response.json({ error: "Your message is too long." }, { status: 413 });
     const payload = JSON.parse(text);
+    parsedBody = payload;
     enquiry = parseCustomJourneyEnquiry(payload);
     driverOrder = payload?.driverOrder;
   } catch { return Response.json({ error: "Please check your details and try again." }, { status: 400 }); }
@@ -38,6 +41,10 @@ export async function POST(request: Request) {
   if (airportTransfer === null) {
     return Response.json({ error: locale === "zh" ? "请核对接送日期、时间、交通信息、人数和行李。" : "Check your transfer date, time, transport details, passenger and luggage counts." }, { status: 400 });
   }
+  const tracking = parsedBody.tracking && typeof parsedBody.tracking === "object" ? parsedBody.tracking as Record<string, unknown> : {};
+  const formName = /^(?:custom_journey_enquiry|yunnan_package_enquiry|private_yunnan_enquiry|yunnan_driver_(?:custom|product))$/.test(String(tracking.form_name || ""))
+    ? String(tracking.form_name) : "custom_journey_enquiry";
+  const formRecord = prepareFormRecord(tracking, "https://hiddenchinatravel.com" + (enquiry.conversionPage || "/private-yunnan-tours"), formName, enquiry.requestId);
   const { apiKey, from, to } = getEnquiryMailConfig();
   if (!apiKey || !from) return Response.json({ error: "The enquiry form is temporarily unavailable. Please try WhatsApp or email Joy below." }, { status: 503 });
   try {
@@ -65,7 +72,7 @@ export async function POST(request: Request) {
       orderUrl = new URL(orderPath, origin).href;
     }
     const orderLine = orderUrl ? `\nGuest order link: ${orderUrl}` : "";
-    const body = { from, to: [to], ...(enquiry.email ? { reply_to: enquiry.email } : {}), subject: `Custom journey enquiry — ${enquiry.name}`, text: enquiryEmailText(enquiry) + (airportTransfer ? `\nValidated transfer price: ${airportTransfer.manualQuote ? "manual quote required" : `CNY ${(airportTransfer.guideFen! / 100).toFixed(2)} per vehicle (reference only)`}` : "") + orderLine };
+    const body = { from, to: [to], ...(enquiry.email ? { reply_to: enquiry.email } : {}), subject: `Custom journey enquiry — ${enquiry.name}`, text: "Ref: " + formRecord.ref + "\n\n" + enquiryEmailText(enquiry) + (airportTransfer ? `\nValidated transfer price: ${airportTransfer.manualQuote ? "manual quote required" : `CNY ${(airportTransfer.guideFen! / 100).toFixed(2)} per vehicle (reference only)`}` : "") + orderLine };
     const digest = createHash("sha256").update(JSON.stringify(body)).digest("hex").slice(0,32);
     const result = await fetch("https://api.resend.com/emails", {
       method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": `custom-journey-${enquiry.requestId}-${digest}` },
@@ -90,6 +97,7 @@ export async function POST(request: Request) {
         console.error("[driver-orders] Acknowledgement unavailable");
       }
     }
-    return Response.json({ success: true, orderPath }, { headers: { "Cache-Control": "no-store" } });
+    await saveFormRecord(formRecord);
+    return Response.json({ success: true, ref: formRecord.ref, orderPath }, { headers: { "Cache-Control": "no-store" } });
   } catch { return Response.json({ error: "We could not send your enquiry. Your details are still here; please try again or contact Joy below." }, { status: 502 }); }
 }

@@ -5,7 +5,7 @@
   "engines": { "node": "24.x" },
   "scripts": {
     "dev": "next dev",
-    "build": "npm run check:faq && next build",
+    "build": "npm run check:faq && npm run test:whatsapp && next build",
     "start": "next start",
     "lint": "eslint",
     "test:whatsapp": "node --test tests/whatsapp-tracking.test.cjs",
@@ -22,7 +22,8 @@
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
     "resend": "^6.33.0",
-    "stripe": "^23.1.0"
+    "stripe": "^23.1.0",
+    "@synapxlab/qrcode": "^1.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

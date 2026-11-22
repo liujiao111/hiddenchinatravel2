@@ -1,6 +1,7 @@
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { setRequestLocale } from "next-intl/server";
 import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { Link } from "@/i18n/navigation";
 import { SiteHeader } from "@/components/site-header";
@@ -71,7 +72,10 @@ function ActionLink({ action, primary = false }: { action: Action; primary?: boo
   return <Link href={action.href} className={primary ? "button button-primary" : "kit-text-link"} {...(action.affiliate ? { rel: "sponsored nofollow" } : {})}>{action.label}<span aria-hidden="true"> →</span></Link>;
 }
 
-export default function SurvivalKitPage() {
+export default async function SurvivalKitPage({ params }: { params: Promise<{ lang: AppLocale }> }) {
+  const { lang } = await params;
+  setRequestLocale(lang);
+
   const featuredJourney = getAllJourneys().find(journey => journey.frontmatter.featured) ?? getAllJourneys()[0];
   const faqSchema = { "@context": "https://schema.org", "@graph": [{ "@type": "FAQPage", mainEntity: faqs.map(faq => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }, breadcrumbList([{ name: "Home", href: "/" }, { name: "China Trip Checklist", href: "/survival-kit" }])] };
   return <main><SiteHeader />

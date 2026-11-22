@@ -21,6 +21,26 @@ export function externalReferrer(raw: string, host: string) {
     return /^https?:$/.test(url.protocol) && normalize(url.hostname) !== normalize(host) ? url.origin : "";
   } catch { return ""; }
 }
+// Distinguish a real browser referrer from an unverified utm_source label.
+// Campaign tags can be added to any link, so a ChatGPT UTM alone is NOT
+// proof that the visitor clicked through from ChatGPT.
+const AI_SOURCE_NAMES: Record<string, string> = {
+  "chatgpt.com": "ChatGPT", "chat.openai.com": "ChatGPT", "chatgpt": "ChatGPT",
+  "perplexity.ai": "Perplexity", "perplexity": "Perplexity",
+  "claude.ai": "Claude", "claude": "Claude",
+  "gemini.google.com": "Gemini", "gemini": "Gemini",
+  "copilot.microsoft.com": "Copilot", "copilot": "Copilot",
+  "poe.com": "Poe", "poe": "Poe",
+  "grok.com": "Grok", "grok": "Grok",
+};
+export function aiPlatformName(raw: string): string {
+  const source = (raw || "").trim().toLowerCase().replace(/^www\./, "");
+  return AI_SOURCE_NAMES[source] || "";
+}
+export function aiReferrerName(raw: string): string {
+  try { return aiPlatformName(new URL(raw).hostname); }
+  catch { return ""; }
+}
 export function detectSource(params: TrackingParams, referrer: string) {
   const source = params.utm_source?.toLowerCase() || "";
   const medium = params.utm_medium?.toLowerCase() || "";
@@ -30,6 +50,13 @@ export function detectSource(params: TrackingParams, referrer: string) {
   if (["facebook", "instagram", "meta"].includes(source) && !paid) return { source, medium: medium || "social", source_label: "Organic Social" };
   if (params.msclkid) return { source: "bing", medium: "cpc", source_label: "Microsoft Ads" };
   if (source === "google" && medium === "organic") return { source: "google", medium: "organic", source_label: "Google Organic" };
+  const aiReferrer = aiReferrerName(referrer);
+  if (aiReferrer && (!source || aiPlatformName(source))) {
+    return { source: new URL(referrer).hostname.toLowerCase(), medium: "referral", source_label: "AI Referral (Referrer)" };
+  }
+  if (aiPlatformName(source)) {
+    return { source, medium: medium || "unknown", source_label: "AI Source (UTM only)" };
+  }
   if (Object.keys(params).some(key => key.startsWith("utm_"))) return { source: source || "unknown", medium: medium || "unknown", source_label: source && medium ? (paid ? "Paid Campaign" : medium === "organic" ? "Organic Search" : "Campaign") : "Unknown" };
   if (params.fbclid) return { source: "facebook", medium: "social", source_label: "Organic Social" };
   if (referrer) {
@@ -38,6 +65,7 @@ export function detectSource(params: TrackingParams, referrer: string) {
     const engines: [RegExp, string][] = [[/(^|\.)google\.(com|[a-z]{2}|co\.[a-z]{2}|com\.[a-z]{2})$/, "google"], [/(^|\.)bing\.com$/, "bing"], [/(^|\.)search\.yahoo\.[a-z.]+$/, "yahoo"], [/(^|\.)duckduckgo\.com$/, "duckduckgo"], [/(^|\.)baidu\.com$/, "baidu"]];
     const engine = engines.find(([pattern]) => pattern.test(host));
     if (engine) return { source: engine[1], medium: "organic", source_label: engine[1] === "google" ? "Google Organic" : "Organic Search" };
+    if (aiPlatformName(host)) return { source: host, medium: "referral", source_label: "AI Referral (Referrer)" };
     return { source: host, medium: "referral", source_label: "Referral" };
   }
   return { source: "direct", medium: "none", source_label: "Direct" };
