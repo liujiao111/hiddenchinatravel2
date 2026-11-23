@@ -38,6 +38,15 @@ if (process.env.VERCEL_ENV === "production" && process.env.BLOB_READ_WRITE_TOKEN
       const reread = await readDriverOrder(orderId);
       console.log("[blob-canary] actual-order-reread", reread?.order?.quote?.totalFen === 10500 ? "PASS":"FAIL");
       if (reread?.order?.quote?.totalFen !== 10500) throw new Error("Actual order path is inconsistent");
+      // Trigger genuine contention to reveal whether ETag retries tolerate multi-writer bursts.
+      const batch = await Promise.allSettled(Array.from({length:4}, (_,i) =>
+        updateDriverOrder(orderId, old => ({...old, diagnosticLastWriter:i, diagnosticCount:(old.diagnosticCount||0)+1}))));
+      console.log("[blob-canary] actual-order-concurrent-update",
+        "fulfilled",batch.filter(x=>x.status==="fulfilled").length,
+        "rejected",batch.filter(x=>x.status==="rejected").length);
+      const finalRecord = await readDriverOrder(orderId);
+      console.log("[blob-canary] final-count",finalRecord?.order?.diagnosticCount ?? null);
+
     } finally {
       await del(orderBlobPath);
     }
