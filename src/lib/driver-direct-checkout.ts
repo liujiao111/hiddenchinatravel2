@@ -1,5 +1,6 @@
 import Stripe from "stripe";
-import { driverOrdersEnabled, saveDriverRequest, updateDriverOrder } from "@/lib/driver-orders.mjs";
+import { createHash } from "node:crypto";
+import { driverOrdersEnabled, driverOrderAccess, readDriverOrder, saveDriverRequest, updateDriverOrder } from "@/lib/driver-orders.mjs";
 
 export function getDriverCheckoutConfigStatus() {
   const live = (process.env.VERCEL_ENV || process.env.DRIVER_ORDER_ENV) === "production";
@@ -25,17 +26,28 @@ export async function createDirectDriverCheckout(input: {
     console.error("[driver-checkout] Checkout environment validation failed", config);
     throw new Error("Online payment is not configured for this environment. Please contact Joy to arrange payment.");
   }
-  const order = await saveDriverRequest(input.id, input.summary, input.submissionKey);
-  if (!order || JSON.stringify(order.summary) !== JSON.stringify(input.summary)) throw new Error("This request changed. Please start a new booking.");
-  const orderPath = `/driver-order/${order.access}`;
+  // Never create a fresh order record and then immediately overwrite it.
+  // A fresh checkout is created first but the URL stays private until its quote
+  // and order are atomically persisted together in one immutable Blob write.
+  const access = driverOrderAccess(input.id);
+  if (!access) throw new Error("Order links are not configured.");
+  const orderPath = `/driver-order/${access}`;
   const orderUrl = new URL(orderPath, input.origin).href;
-  if (order.paid?.initial) return { orderPath, checkoutUrl: orderUrl };
   const stripe = new Stripe(key!);
-  if (order.quote?.initial) {
-    const existing = await stripe.checkout.sessions.retrieve(order.quote.initial.id);
-    if (existing.status === "open" && existing.url) return { orderPath, checkoutUrl: existing.url };
-    if (existing.status === "complete") return { orderPath, checkoutUrl: orderUrl };
-    throw new Error("This payment link expired. Please start a new booking.");
+  const previous = await readDriverOrder(input.id);
+  if (previous) {
+    const submissionHash = createHash("sha256").update(input.submissionKey).digest("hex");
+    if (previous.order.submissionHash !== submissionHash
+      || JSON.stringify(previous.order.summary) !== JSON.stringify(input.summary)) {
+      throw new Error("This request changed. Please start a new booking.");
+    }
+    if (previous.order.paid?.initial) return { orderPath, checkoutUrl: orderUrl };
+    if (previous.order.quote?.initial) {
+      const existing = await stripe.checkout.sessions.retrieve(previous.order.quote.initial.id);
+      if (existing.status === "open" && existing.url) return { orderPath, checkoutUrl: existing.url };
+      if (existing.status === "complete") return { orderPath, checkoutUrl: orderUrl };
+      throw new Error("This payment link expired. Please start a new booking.");
+    }
   }
   const description = String(input.summary.service).slice(0, 400);
   const dueFen = input.deposit ? Math.round(input.totalFen / 5) : input.totalFen;
@@ -51,11 +63,28 @@ export async function createDirectDriverCheckout(input: {
     custom_text: { submit: { message: cancellationTerms } },
   }, { idempotencyKey: `driver-direct-${input.id}` });
   if (!session.url) throw new Error("Stripe did not return a payment link.");
-  const updated = await updateDriverOrder(input.id, current => {
-    if (current.quote?.initial && current.quote.initial.id !== session.id) throw new Error("A payment already exists for this booking.");
-    return { ...current, quote: { direct: true, bookingType: "transfer", totalFen: input.totalFen, currency: "usd", description, cancellationTerms, balanceDue,
-      initial: { id: session.id, url: session.url, dueFen, type: paymentType, live: session.livemode, expiresAt: new Date(session.expires_at * 1000).toISOString() } } };
-  });
-  if (!updated) throw new Error("Could not save payment details.");
+  const quote = { direct: true, bookingType: "transfer", totalFen: input.totalFen, currency: "usd",
+    description, cancellationTerms, balanceDue,
+    initial: { id: session.id, url: session.url, dueFen, type: paymentType, live: session.livemode,
+      expiresAt: new Date(session.expires_at * 1000).toISOString() } };
+  const order = await saveDriverRequest(input.id, input.summary, input.submissionKey, {quote});
+  if (!order || JSON.stringify(order.summary) !== JSON.stringify(input.summary)) {
+    throw new Error("This request changed. Please start a new booking.");
+  }
+  // Legacy requests may have persisted an empty order before Stripe was configured.
+  // New checkout requests avoid this update entirely, so no ETag overwrite is needed.
+  if (!order.quote?.initial) {
+    const updated = await updateDriverOrder(input.id, current => {
+      if (current.paid?.initial) return current;
+      if (current.quote?.initial) {
+        if (current.quote.initial.id !== session.id) throw new Error("A payment already exists for this booking.");
+        return current;
+      }
+      return { ...current, quote };
+    });
+    if (!updated) throw new Error("Could not persist your payment details.");
+  } else if (order.quote.initial.id !== session.id) {
+    throw new Error("A different payment session already exists for this booking.");
+  }
   return { orderPath, checkoutUrl: session.url };
 }
