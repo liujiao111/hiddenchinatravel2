@@ -72,7 +72,7 @@ const products: Product[] = [
     photo: "/assets/destinations/yunnan/shangri-la.webp",
   },
   {
-    id: "dali-lijiang-direct", guidePrices: { five: 550, seven: 750 }, category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
+    id: "dali-lijiang-direct", guidePrices: { five: 500, seven: 500 }, category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
     en: "Dali ⇄ Lijiang Direct", zh: "大理 ⇄ 丽江 · 直达",
     detailEn: "Direct hotel-to-hotel service without sightseeing stops.",
     detailZh: "酒店到酒店直达，不含观光停靠。",
@@ -83,7 +83,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "dali-lijiang-shaxi", guidePrices: { five: 780, seven: 980 }, category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
+    id: "dali-lijiang-shaxi", guidePrices: { five: 500, seven: 500 }, category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
     en: "Dali ⇄ Lijiang via Shaxi", zh: "大理 ⇄ 丽江 · 途经沙溪",
     detailEn: "A scenic transfer with an agreed stop in Shaxi Ancient Town.",
     detailZh: "在沙溪古镇停留，观光时间需提前约定。",
@@ -94,7 +94,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-shangri-la", guidePrices: { five: 680, seven: 880 }, category: "intercity", cities: ["lijiang", "shangri-la"], departureCities: ["lijiang", "shangri-la"],
+    id: "lijiang-shangri-la", guidePrices: { five: 500, seven: 500 }, category: "intercity", cities: ["lijiang", "shangri-la"], departureCities: ["lijiang", "shangri-la"],
     en: "Lijiang ⇄ Shangri-La", zh: "丽江 ⇄ 香格里拉",
     detailEn: "Private transfer between Lijiang and Shangri-La.",
     detailZh: "丽江与香格里拉之间的私人接送。",
@@ -105,7 +105,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-tlg-shangri-la", guidePrices: { five: 880, seven: 1080 }, category: "intercity", cities: ["lijiang", "shangri-la"], departureCities: ["lijiang"],
+    id: "lijiang-tlg-shangri-la", guidePrices: { five: 500, seven: 500 }, category: "intercity", cities: ["lijiang", "shangri-la"], departureCities: ["lijiang"],
     en: "Lijiang → Tiger Leaping Gorge → Shangri-La",
     zh: "丽江 → 虎跳峡 → 香格里拉",
     detailEn: "One-way journey with a planned Tiger Leaping Gorge visit.",
@@ -114,31 +114,31 @@ const products: Product[] = [
     routes: [{ value: "Lijiang → Tiger Leaping Gorge → Shangri-La", en: "Lijiang → Tiger Leaping Gorge → Shangri-La", zh: "丽江 → 虎跳峡 → 香格里拉" }]
   },
   {
-    id: "kunming-day", category: "day", cities: ["kunming"],
+    id: "kunming-day", guidePrices: { five: 600, seven: 600 }, category: "day", cities: ["kunming"],
     en: "Kunming Private Day Trip", zh: "昆明周边一日游包车",
-    detailEn: "Wander among the Stone Forest’s limestone spires, or take in Dianchi Lake from the Western Hills.",
-    detailZh: "去石林看奇峰怪石，或走滇池海埂与西山，从湖边一路看到山上。",
+    detailEn: "City-area driver hire from RMB 600/day. Stone Forest and other out-of-city trips need a separate quote.",
+    detailZh: "市区范围包车参考价 ¥600/天；石林等市区以外行程需单独确认报价。",
     photo: "/assets/blog/kunming-travel-guide/cover-stone-forest.webp",
   },
   {
-    id: "dali-day", guidePrices: { five: 750, seven: 950 }, category: "day", cities: ["dali"],
+    id: "dali-day", guidePrices: { five: 600, seven: 600 }, category: "day", cities: ["dali"],
     en: "Dali Private Day Trip", zh: "大理周边一日游包车",
-    detailEn: "Explore Bai courtyards in Xizhou and lakeside villages around Erhai, or visit the Three Pagodas and Dali Old Town.",
-    detailZh: "去喜洲看白族老院子，沿洱海看湖景；也可走崇圣寺三塔和大理古城。",
+    detailEn: "City-area driver hire from RMB 600/day. Wider Erhai routes and out-of-city stops need a separate quote.",
+    detailZh: "市区范围包车参考价 ¥600/天；环洱海等较远路线需单独确认报价。",
     photo: "/assets/destinations/yunnan/dali-erhai-cover.webp",
   },
   {
-    id: "lijiang-day", guidePrices: { five: 780, seven: 980 }, category: "day", cities: ["lijiang"],
+    id: "lijiang-day", guidePrices: { five: 600, seven: 600 }, category: "day", cities: ["lijiang"],
     en: "Lijiang Private Day Trip", zh: "丽江周边一日游包车",
-    detailEn: "Pair Jade Dragon Snow Mountain with Blue Moon Valley, or slow down in Baisha and Shuhe’s old lanes.",
-    detailZh: "去玉龙雪山和蓝月谷看雪峰与碧水，或到白沙、束河慢逛纳西古镇。",
+    detailEn: "City-area driver hire from RMB 600/day. Jade Dragon Snow Mountain and distant scenic routes require a quote.",
+    detailZh: "市区范围包车参考价 ¥600/天；玉龙雪山等远途路线需单独确认报价。",
     photo: "/assets/destinations/yunnan/blue-moon.webp",
   },
   {
-    id: "shangri-la-day", guidePrices: { five: 850, seven: 1050 }, category: "day", cities: ["shangri-la"],
+    id: "shangri-la-day", guidePrices: { five: 600, seven: 600 }, category: "day", cities: ["shangri-la"],
     en: "Shangri-La Private Day Trip", zh: "香格里拉周边一日游包车",
-    detailEn: "Visit Songzanlin Monastery and the wetlands around Napa Lake, or spend the day among Pudacuo’s lakes and forests.",
-    detailZh: "看松赞林寺与纳帕海湿地，或留一天到普达措走湖畔、看森林。",
+    detailEn: "City-area driver hire from RMB 600/day. Pudacuo and more distant locations need a separate quote.",
+    detailZh: "市区范围包车参考价 ¥600/天；普达措等远途路线需单独确认报价。",
     photo: "/assets/blog/best-time-to-visit-yunnan/cover-pudacuo-autumn.webp",
   },
 ];
@@ -191,7 +191,8 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const guidePrice = isArrival
     ? transferGuidePrice(serviceId ?? "", hubId, priceArea, arrivalDirection, vehiclePrice)
     : vehiclePrice ? driverDirectPrices[serviceId ?? ""]?.[vehiclePrice] : undefined;
-  const onlinePayable = kind === "standard" && guidePrice !== undefined;
+  // City-day scope requires manual route confirmation; do not charge for remote excursions at the city-only rate.
+  const onlinePayable = kind === "standard" && service?.category !== "day" && guidePrice !== undefined;
   const outsideArea = !isStationTransfer && isOutsideTransferArea(hotelArea);
   const isPickup = arrivalDirection === "pickup";
   const transportHub = secondHub && !isPickup ? secondHub : hub;
@@ -451,6 +452,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       ? (zh ? "请选择交通枢纽、接送方向和酒店区域以查看参考价。" : "Select a hub, direction and hotel area to see the guide price.")
       : guidePrice === undefined
       ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "价格需人工确认" : isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
+      : !onlinePayable ? (zh ? `参考价 ¥${guidePrice}／天（仅市区标准行程）；请先提交路线核价，不会立即扣款。` : `Guide price RMB ${guidePrice}/day for standard city-area hire; route confirmation required before payment.`)
       : (zh ? `所选服务 ¥${guidePrice}／车，在线支付全款后确认派车。` : `Selected service: RMB ${guidePrice} per vehicle. Pay in full online; driver allocation follows payment.`)}</p>
     <div className="contact-field-row">
       <label><span>{zh ? "成人数 *" : "Adults *"}</span><input required type="number" name="travelers" min="1" max="20" defaultValue="2" /></label>
@@ -562,9 +564,9 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
   }, []);
   const priceLabel = (product: Product, vehicle: "five" | "seven") => {
     const price = product.category === "arrival" ? transferStartingPrice(product.id, vehicle) : driverDirectPrices[product.id]?.[vehicle];
-    if (price === undefined) return zh ? "价格待确认" : "Price to be confirmed";
+    if (price === undefined) return zh ? "需询价" : "Request quote";
     if (product.category === "arrival") return zh ? `¥${price}起` : `from RMB ${price}`;
-    return zh ? `¥${price}` : `RMB ${price}`;
+    return product.category === "day" ? (zh ? `¥${price}/天起` : `from RMB ${price}/day`) : (zh ? `¥${price}` : `RMB ${price}`);
   };
   const pick = (id: ProductId) => {
     setSelected(id);
@@ -615,7 +617,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
                     <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
                     <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
                   </dl>
-                  <small>{zh ? "已定价选项可在线付全款，付款后确认派车" : "Priced options: pay in full online; driver allocation follows payment"}</small>
+                  <small>{product.category === "day" ? (zh ? "仅市区常规路线参考价；确定路线后核价付款" : "City-only guide rate; confirm route before payment") : (zh ? "已确认价格的标准路线可在线支付；7座及其他路线需另行核价" : "Standard priced routes can pay online; seven-seat and other routes require a quote")}</small>
                 </div>
                 <button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>
                   {zh ? "选择服务选项" : "Select Service Options"} <span aria-hidden="true">→</span>
@@ -627,7 +629,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
           <p>{zh ? "这个出发城市暂无此类标准服务。" : "There are no standard services in this category for the selected departure city."}</p>
           <button type="button" className="driver-text-link" onClick={() => setCity("")}>{zh ? "查看全部城市" : "View all cities"}</button>
         </div>}
-        <p className="driver-product-footnote">{zh ? "5座和7座显示每车参考价，更大车型需人工报价。正式价格按日期、路线和车型确认。标准5座车建议1–3位旅客；更多乘客和大件行李可申请更大车型。车辆照片仅为示例，实际车型以确认单为准。" : "Guide prices are per five-seat or seven-seat vehicle. Larger vehicles are quoted individually. The written quote depends on date, route and vehicle. A five-seat car is recommended for 1–3 travellers; larger vehicles can be quoted. Photos are category examples. Vehicle details are confirmed in writing."}</p>
+        <p className="driver-product-footnote">{zh ? "跨城标准路线5座车参考价 ¥500/车；市区一日包车5座车 ¥600/天起。7座与更大车型、郊外及特殊路线需人工报价。跨城与市区标准报价包含燃油、高速及停车费；机场／车站接送按单独规则执行。车辆照片仅为示例。" : "Standard five-seat intercity routes: RMB 500 per vehicle; city-only five-seat hire: from RMB 600/day. Seven-seat, larger vehicles and extended scenic routes require a quote. Standard intercity and city hire prices include fuel, tolls and parking. Airport/station transfers have separate terms. Vehicle photos are examples."}</p>
       </div>
       <div id="driver-quote-form">
         {selected ? <div className="driver-booking-panel" key={selected}>
