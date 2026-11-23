@@ -57,3 +57,22 @@ export function trackEvent(eventName: string, params: AnalyticsParams = {}) {
     });
   }
 }
+
+// E-commerce events have nested items. Do not reuse the lead goal conversion mapping.
+// These represent intent, not revenue; the separately Stripe-verified order page sends purchase.
+export function trackEcommerceEvent(eventName: "begin_checkout", details: {
+  amountDueFen: number; productId: string; paymentType: "full" | "deposit";
+  serviceCategory?: string;
+}) {
+  if (typeof window === "undefined" || analyticsDenied() || !window.gtag) return;
+  const { amountDueFen, productId, paymentType, serviceCategory } = details;
+  if (!Number.isSafeInteger(amountDueFen) || amountDueFen < 1 || !/^[a-z0-9-]{1,80}$/.test(productId)) return;
+  const value = amountDueFen / 100;
+  window.gtag("event", eventName, {
+    currency: "USD", value,
+    payment_type: paymentType,
+    service_category: serviceCategory,
+    items: [{ item_id: productId, item_name: productId, price: value, quantity: 1 }],
+    transport_type: "beacon",
+  } as Parameters<NonNullable<Window["gtag"]>>[2]);
+}
