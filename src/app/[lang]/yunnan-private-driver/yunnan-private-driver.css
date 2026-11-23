@@ -374,10 +374,9 @@
   .driver-product-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:800px) {
+  /* Avoid covering form fields or the mobile header with sticky product filters. */
   .driver-catalog-filters {
-    position:sticky;
-    top:var(--control-height);
-    z-index:12;
+    position:static;
     background:var(--color-surface-soft);
   }
   .driver-catalog-filters .driver-underlined-options {
@@ -400,3 +399,31 @@
   .driver-underlined-options button {font-size:.8rem}
   .driver-product-grid {grid-template-columns:minmax(0,1fr)}
 }
+
+
+/* Driver booking dropdowns: isolated from global EnquirySelect <details> styling. */
+.driver-page .driver-dropdown-anchor {position:relative;min-width:0}
+.driver-page .driver-dropdown-trigger {
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  width:100%;min-height:var(--control-height);padding:10px 14px;
+  border:1px solid var(--color-border);border-radius:var(--radius-control);
+  background:var(--color-surface);color:var(--color-ink);font:inherit;
+  text-align:left;cursor:pointer;
+}
+.driver-page .driver-dropdown-trigger[aria-expanded="true"] {border-color:var(--color-focus);box-shadow:0 0 0 2px rgba(40,115,168,.13)}
+.driver-page .driver-dropdown-trigger:focus-visible,.driver-page .driver-dropdown-options button:focus-visible {outline:3px solid var(--color-focus);outline-offset:2px}
+.driver-page .driver-dropdown-trigger[aria-expanded="true"] .enquiry-select-chevron {transform:rotate(225deg);margin-bottom:0}
+.driver-page .driver-dropdown-options {
+  position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:40;
+  max-height:min(260px,40dvh);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--color-surface);border:1px solid var(--color-border);
+  border-radius:var(--radius-control);padding:5px;box-shadow:0 12px 26px rgba(25,40,56,.14);
+}
+.driver-page .driver-dropdown-options button {
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  width:100%;min-height:44px;padding:10px 12px;border:0;border-radius:5px;
+  background:transparent;color:var(--color-ink);font:inherit;
+  text-align:left;cursor:pointer;
+}
+.driver-page .driver-dropdown-options button:hover,
+.driver-page .driver-dropdown-options button.is-selected {background:#eaf2fc;color:#174da3}

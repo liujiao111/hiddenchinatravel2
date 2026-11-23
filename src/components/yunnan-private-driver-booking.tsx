@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { EnquirySelect } from "@/components/enquiry-select";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { getAttribution } from "@/lib/attribution";
 import { generateLeadId } from "@/lib/whatsapp";
 import { createFormTracking } from "@/lib/lead-ref-client";
@@ -143,10 +143,10 @@ const products: Product[] = [
 
 const fiveSeat = "Five-seat car";
 const sevenSeat = "Seven-seat car";
-function DriverPicker({ name, type, label, min }: { name: string; type: "date" | "time"; label: string; min?: string }) {
+function DriverPicker({ name, type, label, min, required = true }: { name: string; type: "date" | "time"; label: string; min?: string; required?: boolean }) {
   const input = useRef<HTMLInputElement>(null);
   return <div className="driver-picker">
-    <input ref={input} type={type} name={name} required min={min} aria-label={label} />
+    <input ref={input} type={type} name={name} required={required} min={min} aria-label={label} />
     <button type="button" aria-label={label} onClick={() => {
       const field = input.current;
       if (!field) return;
@@ -160,9 +160,85 @@ function DriverPicker({ name, type, label, min }: { name: string; type: "date" |
   </div>;
 }
 
-function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: FormKind; serviceId?: ProductId }) {
+/**
+ * Driver-only dropdown: avoids mixing native <details>, nested radio changes,
+ * and form-wide change handlers while the checkout review is mounted.
+ * Keep this isolated to the private-driver page; other forms are unchanged.
+ */
+function DriverDropdown({ name, label, placeholder, options, required = false, value: controlledValue, defaultValue = "", onValueChange }: {
+  name: string; label: string; placeholder: string;
+  options: { value: string; label: string }[]; required?: boolean;
+  value?: string; defaultValue?: string; onValueChange?: (value: string) => void;
+}) {
+  const id = useId();
+  const [open, setOpen] = useState(false);
+  const [internalValue, setInternalValue] = useState(defaultValue);
+  const field = useRef<HTMLDivElement>(null);
+  const value = controlledValue ?? internalValue;
+  const selected = options.find(option => option.value === value);
+
+  useEffect(() => {
+    if (!open) return;
+    const close = (event: PointerEvent) => {
+      if (event.target instanceof Node && !field.current?.contains(event.target)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", close);
+    return () => document.removeEventListener("pointerdown", close);
+  }, [open]);
+
+  return <fieldset className="enquiry-select driver-dropdown">
+    <legend id={id + "-label"}>{label}</legend>
+    <div className="driver-dropdown-anchor" ref={field} onKeyDown={event => {
+      if (event.key === "Escape" && open) {
+        event.preventDefault(); setOpen(false);
+        field.current?.querySelector<HTMLButtonElement>(".driver-dropdown-trigger")?.focus();
+        return;
+      }
+      if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Home" || event.key === "End") {
+        event.preventDefault();
+        if (!open) {
+          setOpen(true);
+          requestAnimationFrame(() => {
+            const all = field.current?.querySelectorAll<HTMLButtonElement>('[role="option"]');
+            all?.[event.key === "ArrowUp" || event.key === "End" ? all.length - 1 : 0]?.focus();
+          });
+          return;
+        }
+        const all = Array.from(field.current?.querySelectorAll<HTMLButtonElement>('[role="option"]') || []);
+        if (!all.length) return;
+        const current = all.findIndex(item => item === document.activeElement);
+        const index = event.key === "Home" ? 0 : event.key === "End" ? all.length - 1
+          : event.key === "ArrowUp" ? (current + all.length - 1) % all.length
+          : (current + 1) % all.length;
+        all[index]?.focus();
+      }
+    }}>
+      <button type="button" className="driver-dropdown-trigger" aria-haspopup="listbox"
+        aria-expanded={open} aria-labelledby={id + "-label " + id + "-selected"}
+        aria-required={required} onClick={() => setOpen(current => !current)}>
+        <span id={id + "-selected"} className={selected ? "" : "enquiry-select-placeholder"}>{selected?.label ?? placeholder}</span>
+        <span className="enquiry-select-chevron" aria-hidden="true" />
+      </button>
+      {open ? <div className="driver-dropdown-options" role="listbox" aria-labelledby={id + "-label"}>
+        {options.map(option => <button key={option.value} type="button" role="option"
+          aria-selected={value === option.value} className={value === option.value ? "is-selected" : ""}
+          onClick={() => {
+            setInternalValue(option.value);
+            onValueChange?.(option.value);
+            setOpen(false);
+          }}>
+          <span>{option.label}</span>
+          {value === option.value ? <span aria-hidden="true">✓</span> : null}
+        </button>)}
+      </div> : null}
+      <input type="hidden" name={name} value={value} />
+    </div>
+  </fieldset>;
+}
+
+function DriverEnquiryForm({ locale, kind, serviceId, stripeTestCheckoutEnabled = false }: { locale: Locale; kind: FormKind; serviceId?: ProductId; stripeTestCheckoutEnabled?: boolean }) {
   const zh = locale === "zh";
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "review" | "paying" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const [vehicle, setVehicle] = useState(fiveSeat);
   const [hubId, setHubId] = useState("");
@@ -173,7 +249,19 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const leadRef = useRef<string | null>(null);
   const submissionKey = useRef<string | null>(null);
   const [orderPath, setOrderPath] = useState("");
+  const [ackStatus, setAckStatus] = useState<"accepted" | "failed" | "not_requested">("not_requested");
   const startedRef = useRef(false);
+  const [paymentReview, setPaymentReview] = useState<null | {
+    payload: Record<string, unknown>; route: string; date: string; time: string;
+    vehicle: string; travelers: string; luggage: number; contact: string; transportNumber: string; notes: string;
+  }>(null);
+  const [testTermsAccepted, setTestTermsAccepted] = useState(false);
+  const isKunmingTest = stripeTestCheckoutEnabled && serviceId === "kunming-arrival";
+  const invalidateReview = () => {
+    if (status !== "review") return;
+    setStatus("idle"); setError(""); setPaymentReview(null); setTestTermsAccepted(false);
+    idRef.current = null; leadRef.current = null; submissionKey.current = null;
+  };
   const service = products.find(p => p.id === serviceId);
   const transfer = airportTransferCatalog[serviceId ?? ""];
   const isArrival = service?.category === "arrival";
@@ -210,7 +298,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (status === "sending" || status === "success") return;
+    if (status === "sending" || status === "paying" || status === "success") return;
     const values = new FormData(event.currentTarget);
     const email = String(values.get("email") || "").trim();
     const whatsapp = String(values.get("whatsapp") || "").trim();
@@ -259,9 +347,13 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const serviceTime = String(values.get("serviceTime") || "");
     const direction = isArrival ? (isPickup ? pickupLabel : dropoffLabel) : String(values.get("direction") || "");
     if (isArrival && (!hub || !["pickup", "dropoff"].includes(arrivalDirection)
-      || (!secondHub && (!selectedArea || !hotel)) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(serviceTime)
+      || (!secondHub && (!selectedArea || !hotel)) || (serviceTime && !/^([01]\d|2[0-3]):[0-5]\d$/.test(serviceTime))
       )) {
       setError(zh ? "请确认交通枢纽、接送方向、地址和服务时间。" : "Please confirm the hub, direction, address and service time.");
+      setStatus("error"); return;
+    }
+    if (isKunmingTest && ![fiveSeat, sevenSeat].includes(vehicle)) {
+      setError(zh ? "US$1 测试只支持5座和7座；更大车型请单独询价。" : "The US$1 test only supports five-seat and seven-seat vehicles.");
       setStatus("error"); return;
     }
     if (isIntercity && !service?.routes?.some(r => r.value === direction)) {
@@ -291,18 +383,18 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       ...(isArrival ? [
         "Hotel address: " + (hotel || "Not applicable"),
         (transportHub?.kind === "railway" ? "Train number: " : "Flight number: ") + (transportNumber || "Not supplied"),
-        (requiresArrivalDetails ? "Scheduled arrival time: " : "Preferred pickup time: ") + serviceTime + " (China time)",
+        (requiresArrivalDetails ? "Scheduled arrival time: " : "Preferred pickup time: ") + (serviceTime ? serviceTime + " (China time)" : "To be confirmed"),
       ] : ["Arrival / departure flight or train: Not supplied"]),
       "Pickup: " + pickup,
       "Drop-off: " + dropoff,
       "Vehicle requested: " + vehicle,
-      guidePrice === undefined ? "Price: manual quote" : "Online guide price: RMB " + guidePrice + " per vehicle",
+      isKunmingTest ? "Sandbox test price: USD 1.00 (not a real quote)" : guidePrice === undefined ? "Price: manual quote" : "Online guide price: RMB " + guidePrice + " per vehicle",
       "Passengers: " + adults + " adults, " + children + " children",
       "Large suitcases: " + luggage,
       "Duration: " + days,
       "Stops / day plan: " + route,
       "Requirements: " + notes,
-      "Status: enquiry only; no price, vehicle or payment confirmed",
+      isKunmingTest ? "Status: PREVIEW sandbox US$1 checkout; no real booking" : "Status: enquiry only; no price, vehicle or payment confirmed",
       "Source page: " + window.location.href,
     ].join("\n").slice(0, 2900);
     const payload = {
@@ -327,6 +419,15 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         } } : {}),
       },
     };
+    if (isKunmingTest) {
+      setPaymentReview({
+        payload, route: `${pickup} → ${dropoff}`, date: travelDate, time: serviceTime || (zh ? "待补充" : "To be confirmed"),
+        vehicle, travelers: `${adults} ${zh ? "成人" : "adults"}, ${children} ${zh ? "儿童" : "children"}`,
+        luggage, contact: email || whatsapp, transportNumber, notes,
+      });
+      setTestTermsAccepted(false); setError(""); setStatus("review");
+      return;
+    }
     setStatus("sending"); setError("");
     try {
       const response = await fetch("/api/custom-journey", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -339,6 +440,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         event_id: idRef.current, lead_id: leadRef.current || undefined, page_path: window.location.pathname,
       });
       if (typeof data.orderPath === "string") setOrderPath(data.orderPath);
+      setAckStatus(data.acknowledgement === "accepted" ? "accepted" : data.acknowledgement === "failed" ? "failed" : "not_requested");
       setStatus("success");
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : (zh ? "发送失败，请重试。" : "Please try again."));
@@ -346,14 +448,38 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     }
   }
 
+  async function confirmTestPayment() {
+    if (!paymentReview || status === "paying" || !testTermsAccepted) return;
+    setStatus("paying"); setError("");
+    try {
+      const response = await fetch("/api/stripe/kunming-test-checkout", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(paymentReview.payload),
+      });
+      const data = await response.json() as { url?: string; error?: string };
+      if (!response.ok || !data.url) throw new Error(data.error || "Could not create the test checkout.");
+      const next = new URL(data.url);
+      if (next.protocol !== "https:" || !(next.hostname === "checkout.stripe.com" || (next.hostname === "buy.stripe.com" && next.pathname.startsWith("/test_")))) throw new Error("Unexpected payment link.");
+      trackEvent("driver_stripe_test_checkout_start", { product_id: "kunming-arrival", page_path: window.location.pathname });
+      window.location.assign(next.href);
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : (zh ? "无法打开 Stripe 测试付款。" : "Could not open Stripe test checkout."));
+      setStatus("review");
+    }
+  }
+
   if (status === "success") return <div className="driver-form-success" role="status">
     <h3>{zh ? "已收到包车需求" : "We received your driver request"}</h3>
     <p>{zh ? "我们会确认路线、车型、车源和价格，再联系你。尚未收取任何款项，预订也尚未确认。" : "We will verify the route, car and total price and contact you. No payment was taken and this is not yet a confirmed booking."}</p>
     {orderPath ? <p><a href={orderPath}>{zh ? "查看我的包车申请" : "View my driver request"}</a></p> : null}
+    {ackStatus === "accepted" ? <p>{zh ? "系统已向你的邮箱提交咨询回执（非预订确认）。" : "An acknowledgement has been accepted for your email (not a booking confirmation)."}</p>
+      : ackStatus === "failed" ? <p>{zh ? "邮箱回执暂时未发送成功，但我们已收到你的咨询。" : "The email acknowledgement was unavailable, but we received your enquiry."}</p> : null}
     <Link href="/licensed-operator">{zh ? "查看持证旅行社信息" : "View the licensed operator"}</Link>
   </div>;
 
-  return <form className="contact-form driver-form" onSubmit={submit} onFocus={() => {
+  return <form className="contact-form driver-form" onSubmit={submit} onChange={event => {
+    if (isKunmingTest && !(event.target instanceof Element && event.target.closest(".driver-form-success"))) invalidateReview();
+  }} onFocus={() => {
     if (!startedRef.current) {
       startedRef.current = true;
       trackEvent("driver_enquiry_form_start", { form_name: formName, product_id: service?.id || "custom-multi-day", page_path: window.location.pathname });
@@ -361,18 +487,20 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   }}>
     <h3>{title}</h3>
     {service ? <p className="driver-form-selection">{zh ? "当前产品：" : "Your product: "}<strong>{zh ? service.zh : service.en}</strong></p> : null}
-    <p className="driver-form-note">{zh ? "选择路线选项并发送需求。车辆和总价核实后才安排付款，此表单不收取费用。" : "Select your options and request a quote. We check vehicle availability and total cost before arranging payment; this form is free."}</p>
+    <p className="driver-form-note">{isKunmingTest
+      ? (zh ? "PREVIEW 沙盒测试：填写接送信息并核对订单，统一支付 US$1 测试款。不会安排真实车辆，也不会发生真实扣款。" : "PREVIEW SANDBOX TEST: Enter transfer details, review your order, then pay US$1 in Stripe test mode. No real charge or vehicle booking.")
+      : (zh ? "选择路线选项并发送需求。车辆和总价核实后才安排付款，此表单不收取费用。" : "Select your options and request a quote. We check vehicle availability and total cost before arranging payment; this form is free.")}</p>
     {transfer ? <>
       <div className="contact-field-row">
-        <EnquirySelect name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { setHubId(value); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
-        <EnquirySelect name="direction" label={zh ? "接送方向 *" : "Transfer direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required value={arrivalDirection} onValueChange={setArrivalDirection} options={[{ value: "pickup", label: pickupLabel }, { value: "dropoff", label: dropoffLabel }]} />
+        <DriverDropdown name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { invalidateReview(); setHubId(value); setArrivalDirection(""); setHotelArea(""); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
+        <DriverDropdown name="direction" label={zh ? "接送方向 *" : "Transfer direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required value={arrivalDirection} onValueChange={value => { invalidateReview(); setArrivalDirection(value); }} options={[{ value: "pickup", label: pickupLabel }, { value: "dropoff", label: dropoffLabel }]} />
       </div>
       {serviceId === "kunming-arrival" && hubId === "kmg" ? <label className="driver-form-consent">
         <input type="checkbox" checked={stationTransfer} onChange={event => setStationTransfer(event.target.checked)} />
         <span>{zh ? "长水机场与昆明南站直达" : "Direct transfer between Changshui Airport and Kunming South Railway Station"}</span>
       </label> : null}
       {!secondHub ? <div className="contact-field-row">
-        <EnquirySelect name="hotelArea" label={zh ? "酒店所在区域 *" : "Hotel area *"} placeholder={zh ? "选择酒店区域" : "Select hotel area"} required value={hotelArea} onValueChange={setHotelArea} options={transfer.areas.map(area => ({ value: area.value, label: area[locale] }))} />
+        <DriverDropdown name="hotelArea" label={zh ? "酒店所在区域 *" : "Hotel area *"} placeholder={zh ? "选择酒店区域" : "Select hotel area"} required value={hotelArea} onValueChange={value => { invalidateReview(); setHotelArea(value); }} options={transfer.areas.map(area => ({ value: area.value, label: area[locale] }))} />
         <label><span>{zh ? "酒店名称或详细地址 *" : "Hotel name / full address *"}</span><input type="text" name="hotel" required maxLength={150} placeholder={zh ? "填写酒店名称或完整地址" : "Hotel name or full address"} /></label>
       </div> : null}
       {isLijiangArrival && hotelArea === "oldtown" ? <p className="driver-area-hint">{zh
@@ -399,11 +527,11 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         : "Request a custom quote for Napa Lake, Pudacuo, Balagezong, Tiger Leaping Gorge, Baishuitai, Meili Snow Mountain / Feilai Temple, Yubeng and the Haba Snow Mountain area."}</p> : null}
       <label><span>{transportLabel}{zh ? "（选填，可稍后补充）" : " (optional; share later)"}</span>
         <input type="text" name="transportNumber" maxLength={40} placeholder={(isAirport || !transportHub) ? (isShangriLaArrival ? "MU5931" : "MU1234") : isDaliArrival ? "D3937" : isLijiangArrival ? "D8791" : isShangriLaArrival ? "C119" : "G2845"} key={transportHub?.kind ?? "unknown"} />
-        <small>{zh ? "还没订机票或火车票？可先询价，确认后再提供航班号或车次。" : "Not booked yet? Request a quote now and share your flight or train number later."}</small>
+        <small>{zh ? "还没订机票或火车票？可稍后补充航班号或车次。" : "Not booked yet? You can share your flight or train number later."}</small>
       </label>
     </> : null}
     {isIntercity ? <>
-      <EnquirySelect name="direction" label={zh ? "选择路线及方向 *" : "Route and direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required defaultValue={service.routes?.length === 1 ? service.routes[0].value : ""} options={(service.routes ?? []).map(route => ({ value: route.value, label: route[locale] }))} />
+      <DriverDropdown name="direction" label={zh ? "选择路线及方向 *" : "Route and direction *"} placeholder={zh ? "请选择方向" : "Choose direction"} required defaultValue={service.routes?.length === 1 ? service.routes[0].value : ""} options={(service.routes ?? []).map(route => ({ value: route.value, label: route[locale] }))} />
       {service.id === "dali-lijiang-shaxi" || service.id === "lijiang-tlg-shangri-la" ? <label><span>{zh ? "途中停留／计划参观内容" : "Sightseeing stops / time on site"}</span><input name="route" maxLength={300} placeholder={zh ? "希望停留多久、计划游览什么？" : "Preferred stops and time at each"} /></label> : null}
     </> : null}
     {!isArrival ? <div className="contact-field-row">
@@ -420,23 +548,25 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         <DriverPicker name="date" type="date" label={zh ? "选择服务日期" : "Choose travel date"} min={isArrival ? chinaServiceDate() : undefined} />
       </div>
       {kind === "custom" ? <label><span>{zh ? "结束日期（选填）" : "End date (optional)"}</span><input type="date" name="endDate" min={chinaServiceDate()} /></label> : null}
-      {isArrival ? <div className="driver-picker-field"><span>{timeLabel} *</span>
-        <DriverPicker name="serviceTime" type="time" label={timeLabel} />
-        <small>{requiresArrivalDetails ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
+      {isArrival ? <div className="driver-picker-field"><span>{timeLabel}{zh ? "（选填，可稍后补充）" : " (optional; share later)"}</span>
+        <DriverPicker name="serviceTime" type="time" label={timeLabel} required={false} />
+        <small>{isKunmingTest ? (zh ? "暂未确定时间也可以继续 US$1 测试，正式接送前再确认。" : "You may complete the US$1 sandbox test without an exact time. Confirm it before a real transfer.") : requiresArrivalDetails ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
           : (isLijiangArrival || isShangriLaArrival)
-            ? (zh ? "请填写希望司机到酒店或约定古城入口接您的时间。" : "Enter the time you would like the driver to meet you at the hotel or agreed Old Town entrance.")
-            : (zh ? "请填写希望司机到酒店接您的时间。" : "Enter the time you would like the driver to pick you up at the hotel.")}</small>
+            ? (zh ? "可稍后确认希望司机到酒店或古城入口接您的时间。" : "You can confirm your hotel or Old Town pickup time later.")
+            : (zh ? "可以稍后确认酒店接客时间。" : "You can confirm your hotel pickup time later.")}</small>
       </div> : null}
-      <EnquirySelect name="vehicle" label={zh ? "车型需求 *" : "Vehicle preference *"} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={setVehicle} options={[
+      <DriverDropdown name="vehicle" label={zh ? "车型需求 *" : "Vehicle preference *"} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={value => { invalidateReview(); setVehicle(value); }} options={[
         { value: fiveSeat, label: zh ? "标准5座车（建议1–3人）" : "Five-seat car (1–3 recommended)" },
         { value: sevenSeat, label: zh ? "7座商务车" : "Seven-seat MPV" },
-        { value: "Larger vehicle - quote required", label: zh ? "更大车型（需另行报价）" : "Larger vehicle (custom quote)" },
+        ...(!isKunmingTest ? [{ value: "Larger vehicle - quote required", label: zh ? "更大车型（需另行报价）" : "Larger vehicle (custom quote)" }] : []),
       ]} />
     </div>
     {isArrival ? <p className="driver-area-hint">{zh
       ? "标准5座车建议1至3位乘客，最多3个大行李箱。实际车辆品牌、型号和颜色可能根据当天车源调整，最终车型类别将在订单确认时说明。"
       : "A standard five-seat car is recommended for 1–3 passengers and up to 3 large suitcases. The make, model and colour may vary with availability. We will confirm the vehicle category when confirming your booking."}</p> : null}
-    <p className="driver-area-hint" aria-live="polite">{isArrival && (!hub || !arrivalDirection || !priceArea)
+    <p className="driver-area-hint" aria-live="polite">{isKunmingTest
+      ? (zh ? "沙盒订单测试价 US$1／车（5座或7座相同），不是实际服务报价。" : "Sandbox test price: US$1 per vehicle (five-seat or seven-seat), not an actual quote.")
+      : isArrival && (!hub || !arrivalDirection || !priceArea)
       ? (zh ? "请选择交通枢纽、接送方向和酒店区域以查看参考价。" : "Select a hub, direction and hotel area to see the guide price.")
       : guidePrice === undefined
       ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "价格需人工确认" : isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
@@ -455,11 +585,34 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     <label className="contact-honeypot" aria-hidden="true"><span>Website</span><input name="website" tabIndex={-1} autoComplete="off" /></label>
     <label className="driver-form-consent"><input type="checkbox" name="consent" value="yes" required /><span>{zh ? "我同意仅就本次包车咨询接收回复。" : "I agree to be contacted only about this driver enquiry."} <Link href="/privacy-policy">{zh ? "隐私政策" : "Privacy policy"}</Link></span></label>
     {status === "error" ? <p role="alert" className="contact-form-error">{error}</p> : null}
-    <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? (zh ? "发送中…" : "Sending…") : (zh ? "查询车辆与报价" : "Check Availability & Request Price")}</button>
+    <button className="button button-blue" type="submit" disabled={status === "sending" || status === "paying"}>
+      {status === "sending" ? (zh ? "发送中…" : "Sending…") : isKunmingTest ? (zh ? "核对 US$1 测试订单" : "Review US$1 Test Order") : (zh ? "查询车辆与报价" : "Check Availability & Request Price")}
+    </button>
+    {isKunmingTest && paymentReview && (status === "review" || status === "paying") ? <section className="driver-form-success" aria-label={zh ? "测试订单确认" : "Review test booking"}>
+      <p className="kicker">PREVIEW · STRIPE TEST MODE</p>
+      <h3>{zh ? "确认接送信息与付款金额" : "Confirm Transfer Details & Amount"}</h3>
+      <p><strong>{zh ? "路线：" : "Route: "}</strong>{paymentReview.route}</p>
+      <p><strong>{zh ? "日期与时间：" : "Date & time: "}</strong>{paymentReview.date} · {paymentReview.time}{paymentReview.time === "To be confirmed" || paymentReview.time === "待补充" ? "" : " (China time)"}</p>
+      <p><strong>{zh ? "车型：" : "Vehicle: "}</strong>{paymentReview.vehicle}</p>
+      {paymentReview.transportNumber && <p><strong>{transportLabel}: </strong>{paymentReview.transportNumber}</p>}
+      {paymentReview.notes && <p><strong>{zh ? "备注：" : "Notes: "}</strong>{paymentReview.notes}</p>}
+      <p><strong>{zh ? "乘客：" : "Passengers: "}</strong>{paymentReview.travelers}</p>
+      <p><strong>{zh ? "大行李箱：" : "Large suitcases: "}</strong>{paymentReview.luggage}</p>
+      <p><strong>{zh ? "联系方式：" : "Contact: "}</strong>{paymentReview.contact}</p>
+      <p><strong>{zh ? "本次支付总额：" : "Total due: "}</strong>US$1.00 (USD · Stripe test mode)</p>
+      <p>{zh ? "仅验证下单、付款与订单查询，不代表真实车源确认，也不会安排车辆。" : "This checks order creation, payment and tracking only. No vehicle or real transfer will be arranged."}</p>
+      <label className="driver-form-consent"><input type="checkbox" checked={testTermsAccepted} onChange={event => { event.stopPropagation(); setTestTermsAccepted(event.target.checked); }} />
+        <span>{zh ? "我确认订单信息，并理解 US$1 是沙盒测试，不构成真实预订。" : "I confirm these details and understand the US$1 sandbox payment is not a real booking."}</span>
+      </label>
+      {error && <p role="alert" className="contact-form-error">{error}</p>}
+      <button className="button button-blue" type="button" disabled={!testTermsAccepted || status === "paying"} onClick={confirmTestPayment}>
+        {status === "paying" ? (zh ? "正在打开 Stripe…" : "Opening Stripe…") : (zh ? "确认并支付 US$1（测试）" : "Confirm & Pay US$1 (Test)")}
+      </button>
+    </section> : null}
   </form>;
 }
 
-export function StandardTransferSection({ locale }: { locale: Locale }) {
+export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = false }: { locale: Locale; stripeTestCheckoutEnabled?: boolean }) {
   const zh = locale === "zh";
   const catalog = useRef<HTMLDivElement>(null);
   const resetCatalogScroll = () => {
@@ -485,11 +638,13 @@ export function StandardTransferSection({ locale }: { locale: Locale }) {
       }
     };
     const handleQuoteLink = (event: MouseEvent) => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      // Shared HashLink prevents its default navigation before this delegated handler runs.
+      // Still mount the custom form for valid hash-link clicks.
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const link = event.target instanceof Element && event.target.closest('a[href="#driver-quote-form"]');
       if (!link) return;
       event.preventDefault();
-      setSelected(current => link.hasAttribute("data-custom-driver-quote") ? "custom" : current ?? "custom");
+      setSelected("custom");
       scrollToForm();
     };
     openFromHash();
@@ -501,6 +656,7 @@ export function StandardTransferSection({ locale }: { locale: Locale }) {
     };
   }, []);
   const priceLabel = (product: Product, vehicle: "five" | "seven") => {
+    if (stripeTestCheckoutEnabled && product.id === "kunming-arrival") return zh ? "US$1 测试价" : "US$1 test";
     const price = product.category === "arrival" ? transferStartingPrice(product.id, vehicle) : product.guidePrices?.[vehicle];
     if (price === undefined) return zh ? "价格待确认" : "Price to be confirmed";
     if (product.category === "arrival") return zh ? `¥${price}起` : `from RMB ${price}`;
@@ -550,15 +706,19 @@ export function StandardTransferSection({ locale }: { locale: Locale }) {
                 <h3>{zh ? product.zh : product.en}</h3>
                 <p>{zh ? product.detailZh : product.detailEn}</p>
                 <div className="driver-product-price">
-                  <span>{zh ? "每车参考价" : "Guide prices per vehicle"}</span>
+                  <span>{stripeTestCheckoutEnabled && product.id === "kunming-arrival" ? (zh ? "PREVIEW 沙盒测试价格" : "PREVIEW sandbox price") : (zh ? "每车参考价" : "Guide prices per vehicle")}</span>
                   <dl>
                     <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
                     <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
                   </dl>
-                  <small>{product.category === "day" ? (zh ? "路线与时长确认后可付全款" : "Full payment available once the route and hours are agreed") : (zh ? "确认后付全款" : "Full payment after confirmation")}</small>
+                  <small>{stripeTestCheckoutEnabled && product.id === "kunming-arrival"
+                     ? (zh ? "测试付款不会生成真实车辆预订" : "Test checkout only — no real vehicle booking")
+                     : product.category === "day" ? (zh ? "路线与时长确认后可付全款" : "Full payment available once the route and hours are agreed") : (zh ? "确认后付全款" : "Full payment after confirmation")}</small>
                 </div>
                 <button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>
-                  {zh ? "选择选项并询价" : "Select Options & Check Price"} <span aria-hidden="true">→</span>
+                  {stripeTestCheckoutEnabled && product.id === "kunming-arrival"
+                     ? (zh ? "选择并测试下单" : "Select & Test Booking")
+                     : (zh ? "选择选项并询价" : "Select Options & Check Price")} <span aria-hidden="true">→</span>
                 </button>
               </div>
             </article>;
@@ -571,9 +731,10 @@ export function StandardTransferSection({ locale }: { locale: Locale }) {
       </div>
       <div id="driver-quote-form">
         {selected ? <div className="driver-booking-panel" key={selected}>
-          <DriverEnquiryForm locale={locale} kind={selected === "custom" ? "custom" : "standard"} serviceId={selected === "custom" ? undefined : selected} />
+          <DriverEnquiryForm locale={locale} kind={selected === "custom" ? "custom" : "standard"} serviceId={selected === "custom" ? undefined : selected} stripeTestCheckoutEnabled={stripeTestCheckoutEnabled} />
         </div> : null}
       </div>
     </div>
-  </section>;
+
+</section>;
 }
