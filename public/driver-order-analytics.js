@@ -29,25 +29,27 @@
     page_location: location.origin + "/driver-order/" + (d.paid === "1" ? "paid" : "pending"),
   });
   if (d.paid === "1") {
-    ["initial", "balance"].forEach(function(stage) {
-      var prefix = stage === "balance" ? "balance" : "";
-      var total = Number(prefix ? d.balanceAmount : d.amount);
-      var transaction = prefix ? d.balanceTransaction : d.transaction;
-      var paymentType = prefix ? "balance" : (d.paymentType || "full");
-      if (!/^cs_(?:live|test)_[A-Za-z0-9_]+$/.test(transaction || "") ||
-        !Number.isFinite(total) || total <= 0 || !/^[-a-z0-9_]{1,80}$/.test(d.product || "")) return;
-      // GA4 deduplicates by transaction_id. Local storage prevents repeated pageview reloads.
+    var purchases = [];
+    try { purchases = JSON.parse(d.purchases || "[]"); } catch (_error) { /* malformed data is ignored */ }
+    if (Array.isArray(purchases)) purchases.forEach(function(record) {
+      if (!record || !/^cs_(?:live|test)_[A-Za-z0-9_]+$/.test(record.transaction_id || "") ||
+        !Number.isSafeInteger(record.amount_cents) || record.amount_cents < 1 ||
+        !/^[a-z0-9-]{1,80}$/.test(record.item_id || "") ||
+        !/^(initial|balance)$/.test(record.stage || "")) return;
+      var total = record.amount_cents / 100;
+      var transaction = record.transaction_id;
+      var paymentType = record.payment_type || "full";
       var key = "hct_ga4_purchase_" + transaction;
       var sent = false;
-      try { sent = localStorage.getItem(key) === "1"; } catch (_error) { /* optional */ }
+      try { sent = localStorage.getItem(key) === "1"; } catch (_error) { /* optional storage */ }
       if (sent) return;
       window.gtag("event","purchase",{
         currency:"USD",value:total,transaction_id:transaction,payment_type:paymentType,
-        items:[{item_id:d.product,item_name:d.product,price:total,quantity:1}],
+        items:[{item_id:record.item_id,item_name:record.item_id,price:total,quantity:1}],
         transport_type:"beacon",
       });
       window.gtag("event","driver_payment_success",{
-        currency:"USD",value:total,payment_type:paymentType,product_id:d.product,
+        currency:"USD",value:total,payment_type:paymentType,product_id:record.item_id,
       });
       try { localStorage.setItem(key,"1"); } catch (_error) { /* GA4 transaction dedup still applies */ }
     });
