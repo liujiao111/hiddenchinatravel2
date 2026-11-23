@@ -165,6 +165,7 @@ Module._load = function(request, parent, isMain) {
     getEnquiryMailConfig: () => ({ apiKey: "resend_mock", from: "orders@example.test", to: "owner@example.test" }),
   };
   if (request === "@/lib/stripe-test") return { isDriverProductId: () => true };
+  if (request === "@/lib/driver-order-mail") return require("../src/lib/driver-order-mail.ts");
   return nativeLoad.call(this, request, parent, isMain);
 };
 const { POST: handleWebhook } = require("../src/app/api/stripe/webhook/route.ts");
