@@ -69,11 +69,15 @@ Module._load = function(request, parent, isMain) {
   if (request === "stripe") return StripeStub;
   if (request === "@/lib/driver-orders.mjs") return {
     driverOrdersEnabled: () => true,
-    saveDriverRequest: async (id, summary) => {
-      order = { id, access: "fake.private.link", summary };
+    driverOrderAccess: id => id + ".fake-private-token",
+    readDriverOrder: async () => order ? {order, etag:"test-etag"} : null,
+    saveDriverRequest: async (id, summary, _submissionKey, initialFields = {}) => {
+      order = { id, access: "fake.private.link", summary, ...initialFields };
       return order;
     },
-    updateDriverOrder: async (_id, update) => { order = update(order); return order; },
+    updateDriverOrder: async (_id, update) => {
+      throw new Error("New checkout must never do a second ETag write");
+    },
   };
   return nativeLoad.call(this, request, parent, isMain);
 };
