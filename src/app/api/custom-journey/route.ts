@@ -80,13 +80,15 @@ export async function POST(request: Request) {
       || (airportTransfer && driverOrder.airportTransfer.vehicle !== vehicle)
       || (product?.routes && !product.routes.includes(String(driverOrder.directionCode)))
       || ((multi || productId.endsWith("-day")) && (typeof driverOrder.route !== "string" || !driverOrder.route.trim()))
+      || (!airportTransfer && !/^([01]\\d|2[0-3]):[0-5]\\d$/.test(String(driverOrder.pickupTime || "")))
+      || (size === "seven" && driverOrder.luggage > 5)
       || typeof driverOrder.pickup !== "string" || !driverOrder.pickup.trim()
       || typeof driverOrder.dropoff !== "string" || !driverOrder.dropoff.trim()) {
       return Response.json({ error: "Please check the route, date, vehicle and passenger details before payment." }, { status: 400 });
     }
     try {
       const result = await createDirectDriverCheckout({ id: enquiry.requestId, submissionKey: driverOrder.submissionKey, totalFen, origin, deposit: multi,
-        summary: { locale, productId, service: productId, date: enquiry.travelTiming, ...(multi ? { days } : {}), route: String(driverOrder.route || "").slice(0, 700),
+        summary: { locale, productId, service: productId, date: enquiry.travelTiming, pickupTime: airportTransfer?.time || String(driverOrder.pickupTime || ""), ...(multi ? { days } : {}), route: String(driverOrder.route || "").slice(0, 700),
           pickup: String(driverOrder.pickup).slice(0, 150), dropoff: String(driverOrder.dropoff).slice(0, 150), vehicle,
           party: enquiry.adults + enquiry.children, email: enquiry.email, name: enquiry.name, whatsapp: enquiry.whatsapp,
           notes: enquiry.notes, ...(airportTransfer || {}), currency: "usd", guideFen: totalFen } });
