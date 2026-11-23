@@ -23,10 +23,12 @@
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
   window.gtag("js", new Date());
-  window.gtag("config", d.measurement, {send_page_view: false});
+  var safePath = "/driver-order/" + (d.paid === "1" ? "paid" : "pending");
+  var safeUrl = location.origin + safePath;
+  window.gtag("config", d.measurement, {send_page_view: false, page_path: safePath, page_location: safeUrl});
   window.gtag("event", "page_view", {
-    page_title: document.title, page_path: "/driver-order/" + (d.paid === "1" ? "paid" : "pending"),
-    page_location: location.origin + "/driver-order/" + (d.paid === "1" ? "paid" : "pending"),
+    page_title: document.title, page_path: safePath,
+    page_location: safeUrl,
   });
   if (d.paid === "1") {
     var purchases = [];
@@ -46,10 +48,11 @@
       window.gtag("event","purchase",{
         currency:"USD",value:total,transaction_id:transaction,payment_type:paymentType,
         items:[{item_id:record.item_id,item_name:record.item_id,price:total,quantity:1}],
-        transport_type:"beacon",
+        transport_type:"beacon",page_path:safePath,page_location:safeUrl,
       });
       window.gtag("event","driver_payment_success",{
         currency:"USD",value:total,payment_type:paymentType,product_id:record.item_id,
+        page_path:safePath,page_location:safeUrl,
       });
       try { localStorage.setItem(key,"1"); } catch (_error) { /* GA4 transaction dedup still applies */ }
     });
@@ -68,7 +71,7 @@
     var channel = link.getAttribute("data-driver-contact-channel");
     if (!/^(whatsapp|wechat|email|wechat_qr|whatsapp_qr)$/.test(channel || "")) return;
     window.gtag("event","driver_contact_after_payment",{
-      contact_channel:channel, page_path:"/driver-order/paid",
+      contact_channel:channel, page_path:safePath, page_location:safeUrl,
     });
   });
   if ("IntersectionObserver" in window && d.paid === "1") {
@@ -80,7 +83,7 @@
         if (observed[channel]) return;
         observed[channel] = true;
         window.gtag("event","driver_contact_qr_view",{
-          contact_channel:channel,page_path:"/driver-order/paid",
+          contact_channel:channel,page_path:safePath,page_location:safeUrl,
         });
         watcher.unobserve(entry.target);
       });
