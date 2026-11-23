@@ -18,6 +18,7 @@ const emails = [];
 const nativeLoad = Module._load;
 Module._load = function(request, parent, isMain) {
   if (request === "@/lib/enquiry-spam") return {isTransferClaimSpam: () => false};
+  if (request === "@/lib/driver-distributed-rate-limit.mjs") return {checkDriverRateLimit: async () => ({allowed:true,retryAfter:0})};
   if (request === "@/lib/lead-ref") return {
     prepareFormRecord: (_tracking, _url, _form, requestId) => ({ref: "TEST-" + requestId}),
     saveFormRecord: async record => { stored.push(record); },
