@@ -59,6 +59,7 @@ export const zhLivePaths = new Set<string>([
   "/chinese-id-number-foreigners",
   "/dali-hidden-gems-off-the-beaten-path",
   "/dali-travel-guide",
+  "/dali-to-lijiang",
   "/dali-to-shaxi",
   "/digital-survival-china-internet-guide",
   "/digital-survival-china-payment-guide",
