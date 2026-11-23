@@ -116,29 +116,29 @@ const products: Product[] = [
   {
     id: "kunming-day", category: "day", cities: ["kunming"],
     en: "Kunming Private Day Trip", zh: "昆明周边一日游包车",
-    detailEn: "City-area driver hire from RMB 600/day. Stone Forest and other out-of-city trips need a separate quote.",
-    detailZh: "市区范围包车参考价 ¥600/天；石林等市区以外行程需单独确认报价。",
+    detailEn: "City-area driver hire from RMB 1,000/day. Stone Forest and other out-of-city trips need a separate quote.",
+    detailZh: "市区范围包车参考价 ¥1,000/天；石林等市区以外行程需单独确认报价。",
     photo: "/assets/blog/kunming-travel-guide/cover-stone-forest.webp",
   },
   {
     id: "dali-day", category: "day", cities: ["dali"],
     en: "Dali Private Day Trip", zh: "大理周边一日游包车",
-    detailEn: "City-area driver hire from RMB 600/day. Wider Erhai routes and out-of-city stops need a separate quote.",
-    detailZh: "市区范围包车参考价 ¥600/天；环洱海等较远路线需单独确认报价。",
+    detailEn: "City-area driver hire from RMB 1,000/day. Wider Erhai routes and out-of-city stops need a separate quote.",
+    detailZh: "市区范围包车参考价 ¥1,000/天；环洱海等较远路线需单独确认报价。",
     photo: "/assets/destinations/yunnan/dali-erhai-cover.webp",
   },
   {
     id: "lijiang-day", category: "day", cities: ["lijiang"],
     en: "Lijiang Private Day Trip", zh: "丽江周边一日游包车",
-    detailEn: "City-area driver hire from RMB 600/day. Jade Dragon Snow Mountain and distant scenic routes require a quote.",
-    detailZh: "市区范围包车参考价 ¥600/天；玉龙雪山等远途路线需单独确认报价。",
+    detailEn: "City-area driver hire from RMB 1,000/day. Jade Dragon Snow Mountain and distant scenic routes require a quote.",
+    detailZh: "市区范围包车参考价 ¥1,000/天；玉龙雪山等远途路线需单独确认报价。",
     photo: "/assets/destinations/yunnan/blue-moon.webp",
   },
   {
     id: "shangri-la-day", category: "day", cities: ["shangri-la"],
     en: "Shangri-La Private Day Trip", zh: "香格里拉周边一日游包车",
-    detailEn: "City-area driver hire from RMB 600/day. Pudacuo and more distant locations need a separate quote.",
-    detailZh: "市区范围包车参考价 ¥600/天；普达措等远途路线需单独确认报价。",
+    detailEn: "City-area driver hire from RMB 1,000/day. Pudacuo and more distant locations need a separate quote.",
+    detailZh: "市区范围包车参考价 ¥1,000/天；普达措等远途路线需单独确认报价。",
     photo: "/assets/blog/best-time-to-visit-yunnan/cover-pudacuo-autumn.webp",
   },
 ];
@@ -617,7 +617,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
                     <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
                     <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
                   </dl>
-                  <small>{product.category === "day" ? (zh ? "仅市区常规路线参考价；确定路线后核价付款" : "City-only guide rate; confirm route before payment") : (zh ? "已确认价格的标准路线可在线支付；7座及其他路线需另行核价" : "Standard priced routes can pay online; seven-seat and other routes require a quote")}</small>
+                  <small>{product.category === "day" ? (zh ? "市区标准行程全包参考价，无隐藏收费；确定路线后核价付款" : "All-inclusive city-only guide rate, no hidden charges; confirm route before payment") : (zh ? "已确认价格的标准路线可在线支付；7座及其他路线需另行核价" : "Standard priced routes can pay online; seven-seat and other routes require a quote")}</small>
                 </div>
                 <button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>
                   {zh ? "选择服务选项" : "Select Service Options"} <span aria-hidden="true">→</span>
@@ -629,7 +629,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
           <p>{zh ? "这个出发城市暂无此类标准服务。" : "There are no standard services in this category for the selected departure city."}</p>
           <button type="button" className="driver-text-link" onClick={() => setCity("")}>{zh ? "查看全部城市" : "View all cities"}</button>
         </div>}
-        <p className="driver-product-footnote">{zh ? "跨城标准路线5座车参考价 ¥500/车；市区一日包车5座车 ¥600/天起。7座与更大车型、郊外及特殊路线需人工报价。跨城与市区标准报价包含燃油、高速及停车费；机场／车站接送按单独规则执行。车辆照片仅为示例。" : "Standard five-seat intercity routes: RMB 500 per vehicle; city-only five-seat hire: from RMB 600/day. Seven-seat, larger vehicles and extended scenic routes require a quote. Standard intercity and city hire prices include fuel, tolls and parking. Airport/station transfers have separate terms. Vehicle photos are examples."}</p>
+        <p className="driver-product-footnote">{zh ? "跨城标准路线5座车参考价 ¥500/车；市区一日包车5座车 ¥1,000/天起。7座与更大车型、郊外及特殊路线需人工报价。跨城与市区标准路线报价已包含车辆、司机、燃油、高速费与停车费，无隐藏收费；机场／车站接送单独核价。变更路线、超时或额外服务须先确认报价。车辆照片仅为示例。" : "Standard five-seat intercity routes: RMB 500 per vehicle; city-only five-seat hire: from RMB 1,000/day. Seven-seat, larger vehicles and extended scenic routes require a quote. Standard intercity and city hire prices include the vehicle, driver, fuel, tolls and parking, with no hidden charges. Airport/station transfers have separate terms. Any changes, overtime or extra services are quoted before agreement. Vehicle photos are examples."}</p>
       </div>
       <div id="driver-quote-form">
         {selected ? <div className="driver-booking-panel" key={selected}>
