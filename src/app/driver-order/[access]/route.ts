@@ -49,6 +49,7 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
     ${row(t("申请编号", "Reference"), id)}
     ${row(t("服务", "Service"), summary.service)}
     ${row(t("日期", "Date"), summary.date)}
+    ${row(t("首日接客时间（中国时间）", "Pickup time (China time)"), summary.pickupTime)}
     ${row(t("路线", "Route"), summary.route)}
     ${row(t("交通枢纽", "Airport or railway station"), summary.hub)}
     ${row(t("接送方向", "Transfer direction"), summary.direction)}
