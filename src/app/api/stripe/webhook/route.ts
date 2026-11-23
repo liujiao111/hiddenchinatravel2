@@ -3,6 +3,7 @@ import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
 import { driverOrdersEnabled, readDriverOrder } from "@/lib/driver-orders.mjs";
 import { createDriverPaymentRecord, getDriverPaymentRecord } from "@/lib/driver-payment-records.mjs";
 import { isDriverProductId } from "@/lib/stripe-test";
+import { driverPaidOperatorEmail } from "@/lib/driver-order-mail";
 
 export const runtime = "nodejs";
 
@@ -59,6 +60,7 @@ export async function POST(request: Request) {
   let subject: string;
   let details: string[];
   let notificationOrder: { id: string; stage: "initial" | "balance" } | undefined;
+  let operatorAlreadySent = false;
   if (isQuote && metadata) {
     const total = Number(metadata.total_fen);
     const due = Number(metadata.due_fen);
@@ -94,6 +96,7 @@ export async function POST(request: Request) {
           throw new Error("Conflicting paid receipt");
         }
         const operatorSent = await getDriverPaymentRecord(metadata.order_id,stage,"operator-email");
+        operatorAlreadySent = Boolean(operatorSent);
         const customerSent = await getDriverPaymentRecord(metadata.order_id,stage,"customer-email");
         if (operatorSent && (!saved.order.summary?.email || customerSent)) return Response.json({received:true});
         notificationOrder = { id: metadata.order_id, stage };
@@ -102,17 +105,16 @@ export async function POST(request: Request) {
         return new Response("Could not record order payment.", { status: 503 });
       }
     }
-    subject = metadata.test_only === "1"
-      ? `[Stripe ${event.livemode ? "LIVE" : "sandbox"} TEST] US$1 full-order verification paid — ${metadata.order_id}`
-      : `${event.livemode ? "[Stripe]" : "[Stripe sandbox]"} Driver payment received — ${metadata.order_id}`;
-    details = [
-      ...(metadata.test_only === "1" ? ["PAYMENT VERIFICATION ONLY — NO TRANSPORT OR BOOKING TO DISPATCH"] : []),
-      `Order: ${metadata.order_id}`,
-      `Service: ${metadata.service}`,
-      `Payment: ${type} · USD ${(due / 100).toFixed(2)}`,
-      `Quoted total: USD ${(total / 100).toFixed(2)}`,
-      ...(type === "deposit" ? [`Balance: USD ${((total - due) / 100).toFixed(2)} · Due: ${metadata.balance_due}`] : []),
-    ];
+    const opsMail = driverPaidOperatorEmail({
+      orderId: metadata.order_id, service: String(metadata.service || ""),
+      paidCents: due, totalCents: total, paymentType: type,
+      testOnly: metadata.test_only === "1", checkoutId: session.id,
+      paymentIntentId: typeof session.payment_intent === "string" ? session.payment_intent : session.payment_intent?.id,
+      payerEmail: session.customer_details?.email || session.customer_email || undefined,
+      orderUrl: "https://hiddenchinatravel.com/driver-order/" + (await readDriverOrder(metadata.order_id))?.order.access,
+    });
+    subject = opsMail.subject;
+    details = [opsMail.text];
   } else {
     if (session.amount_total !== 100 || session.currency !== "usd" || !isDriverProductId(productId)
       || (event.livemode ? !isLiveTest : metadata?.purpose === "production_payment_verification")) {
@@ -140,33 +142,33 @@ export async function POST(request: Request) {
     ? session.payment_intent
     : session.payment_intent?.id;
   try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-        "Idempotency-Key": `driver-${isQuote ? "quote" : "test"}-payment-${session.id}`,
-      },
-      body: JSON.stringify({
-        from,
-        to: [to],
-        subject,
-        text: [
+    if (!operatorAlreadySent) {
+      const response = await fetch("https://api.resend.com/emails", {
+        method:"POST",
+        headers:{
+          Authorization:`Bearer ${apiKey}`,
+          "Content-Type":"application/json",
+          "Idempotency-Key":`driver-${isQuote?"quote":"test"}-payment-${session.id}`,
+        },
+        body:JSON.stringify({from,to:[to],subject,text:[
           ...details,
-          `Checkout session: ${session.id}`,
-          `Payment intent: ${paymentIntentId || "Unavailable"}`,
-          `Payer email: ${session.customer_details?.email || session.customer_email || "Unavailable"}`,
-        ].join("\n"),
-      }),
-      signal: AbortSignal.timeout(5_000),
-    });
-    if (!response.ok) {
-      console.error("[stripe-test] Payment notification rejected", { status: response.status });
-      return new Response("Could not send payment notification.", { status: 502 });
+          ...(!isQuote ? [
+            `Checkout session: ${session.id}`,
+            `Payment intent: ${paymentIntentId||"Unavailable"}`,
+            `Payer email: ${session.customer_details?.email||session.customer_email||"Unavailable"}`,
+          ]:[]),
+        ].join("\n")}),
+        signal:AbortSignal.timeout(5000),
+      });
+      if(!response.ok) {
+        console.error("[stripe-driver] Operator payment email rejected",{status:response.status});
+        return new Response("Could not send payment notification.",{status:502});
+      }
+      if(notificationOrder) await createDriverPaymentRecord(notificationOrder.id,notificationOrder.stage,
+        "operator-email",{at:new Date().toISOString(),sessionId:session.id});
     }
     if (notificationOrder) {
       const { id, stage } = notificationOrder;
-      await createDriverPaymentRecord(id,stage,"operator-email",{at:new Date().toISOString(),sessionId:session.id});
       const current = await readDriverOrder(id);
       if (!current) throw new Error("Order missing after payment");
       const recipient = typeof current.order.summary?.email === "string" ? current.order.summary.email : "";
