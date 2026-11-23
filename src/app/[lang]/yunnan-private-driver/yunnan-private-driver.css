@@ -76,6 +76,10 @@
 /* Search-intent transport guides: short, readable and mobile friendly. */
 .driver-seo-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .driver-page .driver-seo-guide-grid .driver-list-card{display:flex;flex-direction:column;gap:12px;padding:clamp(22px,3vw,32px);border:1px solid var(--color-border)}
+.driver-seo-guide-media{position:relative;width:100%;aspect-ratio:5/3;overflow:hidden;border-radius:10px;background:var(--color-surface-soft)}
+.driver-seo-guide-media img{object-fit:cover;transition:transform .25s ease}
+.driver-seo-guide-grid .driver-list-card:hover .driver-seo-guide-media img{transform:scale(1.025)}
+@media(prefers-reduced-motion:reduce){.driver-seo-guide-media img{transition:none!important}}
 .driver-seo-guide-grid .driver-list-card h3{margin:0;font-size:clamp(1.1rem,1.65vw,1.4rem);line-height:1.35}
 .driver-seo-guide-grid .driver-list-card p{margin:0;color:var(--color-muted);font-size:.89rem;line-height:1.7}
 .driver-seo-guide-grid .driver-list-card a{display:inline-flex;align-self:flex-start;margin-top:auto;padding-top:8px;color:var(--color-action-text);font-size:.84rem;font-weight:700;text-decoration:underline;text-underline-offset:3px}
