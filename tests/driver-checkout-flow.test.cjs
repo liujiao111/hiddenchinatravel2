@@ -94,6 +94,7 @@ const envBefore = {
 test.beforeEach(() => {
   captures = [];
   order = null;
+  paymentRecords = new Map();
   process.env.STRIPE_SECRET_KEY = "sk_test_a_mock_key";
   process.env.STRIPE_WEBHOOK_SECRET = "whsec_mock";
   process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED = "true";
@@ -136,12 +137,29 @@ test("multi-day checkout charges exactly a 20% USD deposit and stores 80% balanc
 });
 
 let simulatedEvent;
+let paymentRecords = new Map();
 StripeStub.webhooks = { constructEvent: () => simulatedEvent };
 Module._load = function(request, parent, isMain) {
   if (request === "stripe") return StripeStub;
   if (request === "@/lib/driver-orders.mjs") return {
     driverOrdersEnabled: () => true,
-    updateDriverOrder: async (_id, update) => { order = update(order); return order; },
+    readDriverOrder: async () => {
+      if (!order) return null;
+      const paid = paymentRecords.get("initial:paid");
+      const operator = paymentRecords.get("initial:operator-email");
+      const customer = paymentRecords.get("initial:customer-email");
+      return {order:{...order,...(paid?{paid:{initial:{...paid,
+        ...(operator?{notificationSentAt:operator.at}:{}),
+        ...(customer?{customerNotificationSentAt:customer.at}:{})}}}: {})}};
+    },
+  };
+  if (request === "@/lib/driver-payment-records.mjs") return {
+    getDriverPaymentRecord: async (_id,stage,kind) => paymentRecords.get(stage+":"+kind)||null,
+    createDriverPaymentRecord: async (_id,stage,kind,value) => {
+      const k=stage+":"+kind;
+      if(!paymentRecords.has(k))paymentRecords.set(k,value);
+      return paymentRecords.get(k);
+    },
   };
   if (request === "@/lib/enquiry-mail") return {
     getEnquiryMailConfig: () => ({ apiKey: "resend_mock", from: "orders@example.test", to: "owner@example.test" }),
@@ -175,13 +193,14 @@ test("signed paid 20% webhook marks deposit, emails operator and customer exactl
     let response = await handleWebhook(req());
     if (response.status !== 200) console.error("Webhook mock diagnostic", { status:response.status, sent:messages.length, stage:order?.paid?.initial, detail:await response.text() });
     assert.equal(response.status, 200);
+    order = (await (async()=>({ ...order, paid:{initial:{...paymentRecords.get("initial:paid"),notificationSentAt:paymentRecords.get("initial:operator-email")?.at,customerNotificationSentAt:paymentRecords.get("initial:customer-email")?.at}} }))());
     assert.equal(order.paid.initial.amount, 25200);
     assert.equal(order.paid.initial.type, "deposit");
     assert.ok(order.paid.initial.notificationSentAt);
     assert.ok(order.paid.initial.customerNotificationSentAt);
     assert.equal(messages.length, 2);
     assert.deepEqual(messages.map(x => x.to[0]).sort(), ["checkout@example.test", "owner@example.test"]);
-    assert.match(messages[1].text, /private order link|order and pickup|Order and pickup/i);
+    assert.match(messages[1].text, /View order|查看订单/i);
     response = await handleWebhook(req());
     assert.equal(response.status, 200);
     assert.equal(messages.length, 2, "Stripe retry must not resend completed notifications");
