@@ -1,5 +1,6 @@
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { get, put, BlobPreconditionFailedError } from "@vercel/blob";
+import { mergeDriverPaymentRecords } from "./driver-payment-records.mjs";
 
 const idPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 const options = { access: /** @type {const} */ ("private") };
@@ -34,7 +35,7 @@ export function driverOrderId(access) {
 export async function readDriverOrder(id) {
   const result = await get(orderPath(id), { ...options, useCache: false });
   if (!result || result.statusCode !== 200) return null;
-  return { order: await new Response(result.stream).json(), etag: result.blob.etag };
+  return { order: await mergeDriverPaymentRecords(await new Response(result.stream).json()), etag: result.blob.etag };
 }
 
 /** @param {string} id @param {object} summary @param {string} submissionKey @param {object} [initialFields] */
