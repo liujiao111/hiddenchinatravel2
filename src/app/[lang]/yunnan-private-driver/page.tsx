@@ -146,7 +146,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
         <div className="shell driver-editorial-close-inner"><div className="driver-editorial-close-copy">
           <p className="kicker">{T("CUSTOM & MULTI-DAY ROUTES", "定制路线与多日包车")}</p>
           <h2 className="journey-final-title">{T("Already Have a Yunnan Road Trip in Mind?", "已有云南自驾式旅行路线？")}</h2>
-          <p>{T("Share your travel dates, route, group size and luggage. We'll check road conditions and driver availability, recommend a suitable vehicle and prepare a written quote. No payment is needed to enquire.", "标准多日包车可选车型和天数，按美元总价在线支付20%定金。特殊路线或更大车型可免费提交询价，我们会核实车源后提供书面报价。")}</p>
+          <p>{T("For standard multi-day drivers, select a vehicle and number of days for an instant USD total and pay a 20% deposit online. For special routes or larger vehicles, send a free enquiry for a written quotation.", "标准多日包车可选车型和天数，按美元总价在线支付20%定金。特殊路线或更大车型可免费提交询价，我们会核实车源后提供书面报价。")}</p>
           <p>{T("Multi-day driver guide rate: US$180/day for 1–6 days, or US$150/day for trips longer than 6 days (all days at the longer-trip rate). Vehicle, driver, fuel, tolls and parking are included, with no hidden charges for the agreed route and hours. Select your vehicle, days and route to pay a 20% deposit online. We confirm availability and details after payment; if unavailable, the deposit is refunded.", "多日包车参考价：1–6天 US$180/天，超过6天按 US$150/天计算全程天数。约定路线和用车时长内，车辆、司机、燃油、高速费、停车费全部包含，无隐藏费用。选择车型、天数及路线后可在线支付20%定金，我们随后确认车源和具体安排；如无法提供服务则退还定金。")}</p>
           <p>{T("Remote mountain routes and additional sightseeing stops are confirmed individually.", "偏远山区路线和额外观光停靠需逐项核实后确认。")}</p>
           <div className="driver-editorial-actions">
