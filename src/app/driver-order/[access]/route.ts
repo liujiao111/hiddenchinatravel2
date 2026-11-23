@@ -48,9 +48,11 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   const payment = paid?.initial ? quote?.balance : quote?.initial;
   const payable = payment && Date.parse(payment.expiresAt) > Date.now()
     && !paid?.balance && paidFen < quote.totalFen && isDriverCheckoutUrl(payment.url);
-  const whatsAppMessage = zh
-    ? `你好 Joy，我的云南包车订单已付款。请帮我确认司机、车辆和接送安排。\\n订单号：${id}`
-    : `Hi Joy, I have paid for my Yunnan private driver order. Please help confirm the vehicle, driver and pickup arrangements.\\nOrder ID: ${id}`;
+  const whatsAppMessage = verificationOnly
+    ? (zh ? `你好 Joy，我已完成 US$1 支付测试，请帮我核对结果。\n订单号：${id}`
+      : `Hi Joy, I've completed the US$1 payment test. Could you help verify it?\nOrder ID: ${id}`)
+    : (zh ? `你好 Joy，我的云南包车订单已付款，请帮我确认司机、车辆和接送安排。\n订单号：${id}`
+      : `Hi Joy, I have paid for my Yunnan private driver order. Please confirm the driver, vehicle and pickup arrangements.\nOrder ID: ${id}`);
   const whatsAppUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(whatsAppMessage)}`;
   const emailUrl = `mailto:${siteConfig.enquiryEmail}?subject=${encodeURIComponent(`Driver order ${id} — pickup arrangements`)}&body=${encodeURIComponent(whatsAppMessage)}`;
   const row = (label: string, value: unknown) => value ? `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>` : "";
