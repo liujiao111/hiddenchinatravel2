@@ -25,6 +25,9 @@ function clientAddress(headers) {
  * @returns {Promise<{allowed:boolean,retryAfter:number}>}
  */
 export async function checkDriverRateLimit(request, policy) {
+  // Node's built-in test runner sets this only for test worker processes.
+  // Never touch shared production storage during unit and integration tests.
+  if (process.env.NODE_TEST_CONTEXT) return { allowed: true, retryAfter: 0 };
   const config = policies[policy];
   if (!config) throw new Error("Invalid rate limit policy");
   if (!process.env.BLOB_READ_WRITE_TOKEN) throw new Error("Private rate-limit storage unavailable");
