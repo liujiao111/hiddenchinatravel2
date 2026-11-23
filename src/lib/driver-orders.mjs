@@ -63,7 +63,7 @@ export async function updateDriverOrder(id, change) {
     const order = change(current.order);
     if (order === current.order) return order;
     try {
-      await put(orderPath(id), JSON.stringify(order), { ...options, ifMatch: current.etag, contentType: "application/json" });
+      await put(orderPath(id), JSON.stringify(order), { ...options, allowOverwrite: true, ifMatch: current.etag, contentType: "application/json" });
       return order;
     } catch (error) {
       if (!(error instanceof BlobPreconditionFailedError) || attempt === 4) throw error;
