@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { ContentItem } from "@/lib/content";
-import { getRelatedArticles } from "@/lib/content";
+import { getRelatedArticles, isTransportArticle } from "@/lib/content";
 import type { LocaleAlternate } from "@/lib/i18n-seo";
 import type { AppLocale } from "@/lib/i18n-seo";
 import { ArticleDiscoveryFlow } from "@/components/article-discovery-flow";
@@ -32,6 +32,7 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
   const tMobile = await getTranslations({ locale: lang, namespace: "mobileCta" });
   const whatsapp = buildWhatsAppUrl(undefined, lang === "zh" ? "zh" : "en");
   const related = getRelatedArticles(item, 6, lang);
+  const isTransport = isTransportArticle(item);
   const localizedArticlePath = `${lang === "zh" ? "/zh" : ""}/${item.slug}`;
   const articleJsonLd = {
     "@type": "Article",
@@ -80,11 +81,11 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
       {frontmatter.excerpt && <div className="article-intro shell"><p>{frontmatter.excerpt}</p></div>}
       <div className="article-layout shell">
         <div className="article-body"><MarkdownContent>{item.body}</MarkdownContent></div>
-        <ArticleGuideAside section={frontmatter.section} lang={lang} />
+        <ArticleGuideAside section={frontmatter.section} isTransport={isTransport} lang={lang} />
       </div>
     </article>
     {frontmatter.faqs?.length ? <section className="article-faq"><div className="narrow"><p className="article-section">{t("faqKicker")}</p><h2>{t("faqHeading")}</h2>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><MarkdownContent compact>{faq.answer}</MarkdownContent></details>)}</div></section> : null}
-    <ArticleDiscoveryFlow related={related} sourceTitle={frontmatter.title} sourcePath={`/${item.slug}`} lang={lang} />
+    <ArticleDiscoveryFlow related={related} isTransport={isTransport} sourceTitle={frontmatter.title} sourcePath={`/${item.slug}`} lang={lang} />
     <MobileCtaBar
       whatsappHref={whatsapp}
       formHref="#ask-joy"
