@@ -89,7 +89,7 @@ export async function POST(request: Request) {
           } } };
         });
         if (!updated) throw new Error("Order not found");
-        if (updated.paid?.[stage]?.notificationSentAt) return Response.json({ received: true });
+        if (updated.paid?.[stage]?.notificationSentAt && (!updated.summary?.email || updated.paid?.[stage]?.customerNotificationSentAt)) return Response.json({ received: true });
         notificationOrder = { id: metadata.order_id, stage };
       } catch {
         console.error("[stripe-driver] Could not record paid order", { eventId: event.id });
@@ -164,6 +164,36 @@ export async function POST(request: Request) {
         } },
       }));
       if (!updated) throw new Error("Could not record notification delivery");
+      const recipient = typeof updated.summary?.email === "string" ? updated.summary.email : "";
+      if (recipient && !updated.paid?.[stage]?.customerNotificationSentAt) {
+        const link = "https://hiddenchinatravel.com/driver-order/" + updated.access;
+        const isZh = updated.summary?.locale === "zh";
+        const message = (isZh ? "已收到您的包车付款。金额：" : "Your private-driver payment has been received. Paid amount: ")
+          + "USD " + (due / 100).toFixed(2)
+          + (isZh ? "；订单总价：" : "; total: ") + "USD " + (total / 100).toFixed(2)
+          + "\\n" + (isZh ? "订单与接车信息：" : "Order and pickup details: ") + link
+          + "\\n" + (isZh ? "付款不代表已安排司机，待确认车辆；无法提供服务会退款。" : "Vehicle and driver allocation are pending. If unavailable, your payment will be refunded.");
+        const guestResponse = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: { Authorization: "Bearer " + apiKey, "Content-Type": "application/json",
+            "Idempotency-Key": "driver-payment-guest-" + session.id },
+          body: JSON.stringify({ from, to: [recipient], reply_to: to,
+            subject: isZh ? "Hidden China Travel 包车付款确认" : "Hidden China Travel — driver payment received",
+            text: message }),
+          signal: AbortSignal.timeout(5_000),
+        });
+        if (!guestResponse.ok) {
+          console.error("[stripe-driver] Guest payment email rejected", { status: guestResponse.status });
+          return new Response("Could not notify guest of payment.", { status: 502 });
+        }
+        const receipt = await updateDriverOrder(id, current => ({
+          ...current,
+          paid: { ...current.paid, [stage]: {
+            ...current.paid[stage], customerNotificationSentAt: new Date().toISOString(),
+          } },
+        }));
+        if (!receipt) throw new Error("Could not record guest payment email");
+      }
     }
   } catch {
     console.error("[stripe-test] Payment notification request failed");
