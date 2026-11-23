@@ -19,7 +19,7 @@
     } catch (_error) { return true; }
     return false;
   }
-  if (consentDenied()) return;
+  if (consentDenied() || (navigator && navigator.globalPrivacyControl === true) || window["ga-disable-" + d.measurement] === true) return;
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
   window.gtag("js", new Date());
@@ -29,25 +29,32 @@
     page_location: location.origin + "/driver-order/" + (d.paid === "1" ? "paid" : "pending"),
   });
   if (d.paid === "1") {
-    var total = Number(d.amount);
-    var transaction = d.transaction;
-    if (/^cs_(?:live|test)_[A-Za-z0-9_]+$/.test(transaction || "") &&
-      Number.isFinite(total) && total > 0 && /^[-a-z0-9_]{1,80}$/.test(d.product || "")) {
-      // Local dedup plus GA4's transaction_id dedup across Stripe returns / browser sessions.
-      var key = "hct_ga4_purchase_" + transaction;
+    var payments = [];
+    try { payments = JSON.parse(d.purchases || "[]"); } catch (_error) { payments = []; }
+    if (Array.isArray(payments)) payments.forEach(function (payment) {
+      if (!payment || !/^cs_(?:live|test)_[A-Za-z0-9_]+$/.test(payment.transaction_id || "")
+        || !/^[a-z0-9-]{1,80}$/.test(payment.item_id || "")
+        || !Number.isSafeInteger(payment.amount_cents) || payment.amount_cents < 1
+        || !/^(initial|balance)$/.test(payment.stage || "")) return;
+      var key = "hct_ga4_purchase_" + payment.transaction_id;
       var sent = false;
-      try { sent = localStorage.getItem(key) === "1"; } catch (_error) { /* storage may be blocked */ }
-      if (!sent) {
-        var common = {currency:"USD", value:total, transaction_id:transaction,
-          payment_type: d.paymentType || "full",
-          items:[{item_id:d.product, item_name:d.product,price:total,quantity:1}]};
-        window.gtag("event","purchase",common);
-        window.gtag("event","driver_payment_success",{
-          currency:"USD",value:total,payment_type:d.paymentType || "full",product_id:d.product,
-        });
-        try { localStorage.setItem(key,"1"); } catch (_error) { /* GA4 still deduplicates transaction IDs */ }
-      }
-    }
+      try { sent = localStorage.getItem(key) === "1"; } catch (_error) { /* blocked */ }
+      if (sent) return;
+      var amount = payment.amount_cents / 100;
+      // Store Stripe session ID as transaction ID to avoid double-counting after refresh.
+      window.gtag("event", "purchase", {
+        currency: "USD", value: amount, transaction_id: payment.transaction_id,
+        payment_type: payment.payment_type || "full", service_category: "private_driver",
+        page_path: "/driver-order/paid", page_location: location.origin + "/driver-order/paid",
+        items: [{item_id: payment.item_id, item_name: payment.item_id, price: amount, quantity: 1}],
+        transport_type: "beacon",
+      });
+      window.gtag("event", "driver_payment_success", {
+        currency: "USD", value: amount, payment_type: payment.payment_type || "full",
+        product_id: payment.item_id, page_path: "/driver-order/paid",
+      });
+      try { localStorage.setItem(key, "1"); } catch (_error) { /* GA4 also deduplicates same transaction_id */ }
+    });
   }
   // Clicks are not verified conversations or WeChat friend requests.
   document.addEventListener("click", function(event) {
@@ -55,12 +62,12 @@
       event.target.closest("[data-driver-contact-channel]");
     if (!link) return;
     var channel = link.getAttribute("data-driver-contact-channel");
-    if (!/^(whatsapp|wechat|email)$/.test(channel || "")) return;
+    if (!/^(whatsapp|wechat|email|wechat_qr|whatsapp_qr)$/.test(channel || "")) return;
     window.gtag("event","driver_contact_after_payment",{
       contact_channel:channel, page_path:"/driver-order/paid",
     });
   });
-  if ("IntersectionObserver" in window) {
+  if ("IntersectionObserver" in window && d.paid === "1") {
     var observed = {};
     var watcher = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
