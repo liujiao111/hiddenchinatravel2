@@ -9,11 +9,9 @@ import { chinaServiceDate, parseAirportTransfer } from "@/lib/driver-airport-tra
 import { driverOrderAccess, driverOrdersEnabled, saveDriverRequest } from "@/lib/driver-orders.mjs";
 import { enquiryEmailText, parseCustomJourneyEnquiry } from "@/lib/custom-journey-enquiry";
 import { driverUnpaidEmail } from "@/lib/driver-order-mail";
+import { checkDriverRateLimit } from "@/lib/driver-distributed-rate-limit.mjs";
 
 export const runtime = "nodejs";
-
-// A warm-instance burst guard complements honeypot and same-origin checks.
-const recentRequests = new Map<string, { count: number; expires: number }>();
 
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
@@ -21,13 +19,6 @@ export async function POST(request: Request) {
   const expectedOrigin = `${requestUrl.protocol}//${request.headers.get("host") || requestUrl.host}`;
   if (!origin || origin !== expectedOrigin) return Response.json({ error: "Please submit from our website." }, { status: 403 });
   if (!request.headers.get("content-type")?.startsWith("application/json")) return Response.json({ error: "Invalid request." }, { status: 415 });
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
-  const now = Date.now();
-  for (const [key, value] of recentRequests) if (value.expires <= now) recentRequests.delete(key);
-  const limit = recentRequests.get(ip);
-  if (limit && limit.count >= 5) return Response.json({ error: "Please wait a few minutes before trying again." }, { status: 429, headers: { "Retry-After": "600" } });
-  recentRequests.set(ip, { count: (limit?.count || 0) + 1, expires: limit?.expires || now + 600_000 });
-  if (recentRequests.size > 2000) recentRequests.delete(recentRequests.keys().next().value!);
   let enquiry;
   let parsedBody: Record<string, unknown> = {};
   let driverOrder;
@@ -40,6 +31,17 @@ export async function POST(request: Request) {
     driverOrder = payload?.driverOrder;
   } catch { return Response.json({ error: "Please check your details and try again." }, { status: 400 }); }
   if (!enquiry) return Response.json({ error: "Please check your name, email, traveler numbers and consent." }, { status: 400 });
+  // Shared abuse control across all Vercel function instances; keep Stripe webhook unthrottled.
+  try {
+    const limit = await checkDriverRateLimit(request,
+      driverOrder?.checkout === true ? "driver-checkout" : "journey-enquiry");
+    if (!limit.allowed) return Response.json(
+      { error: "Too many requests. Please retry later or contact us directly." },
+      { status: 429, headers: { "Retry-After": String(limit.retryAfter), "Cache-Control": "no-store" } });
+  } catch {
+    console.error("[driver-security] Shared request limiter unavailable");
+    return Response.json({ error: "Booking is temporarily busy. Please retry shortly." }, { status: 503 });
+  }
   if (isTransferClaimSpam(enquiry.notes)) {
     return Response.json({ error: "Please describe your travel plans and try again." }, { status: 422 });
   }
