@@ -288,7 +288,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const transportNumber = String(values.get("transportNumber") || "").trim();
     const serviceTime = String(values.get("serviceTime") || "");
     const pickupTime = String(values.get("pickupTime") || "");
-    if (kind === "standard" && !isArrival && !/^([01]\\d|2[0-3]):[0-5]\\d$/.test(pickupTime)) {
+    if (kind === "standard" && !isArrival && !/^([01]\d|2[0-3]):[0-5]\d$/.test(pickupTime)) {
       setError(zh ? "请选择首日接客时间。" : "Please choose your pickup time."); setStatus("error"); return;
     }
     const direction = isArrival ? (isPickup ? pickupLabel : dropoffLabel) : String(values.get("direction") || "");
