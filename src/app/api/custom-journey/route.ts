@@ -2,6 +2,7 @@ import { isTransferClaimSpam } from "@/lib/enquiry-spam";
 import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
 import { createHash } from "node:crypto";
 import { driverDirectPrices } from "@/lib/driver-direct-prices";
+import { driverUsdCents, driverMultiDayTotalUsd } from "@/lib/driver-usd-prices";
 import { createDirectDriverCheckout } from "@/lib/driver-direct-checkout";
 import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
 import { chinaServiceDate, parseAirportTransfer } from "@/lib/driver-airport-transfers";
@@ -55,10 +56,18 @@ export async function POST(request: Request) {
     const size = vehicle === "Five-seat car" ? "five" : vehicle === "Seven-seat car" ? "seven" : null;
     const date = new Date(enquiry.travelTiming + "T00:00:00Z");
     const directRate = product && size ? product[size] : undefined;
-    // City-only charter mileage/area is unverified at checkout; collect a quote first.
-    const totalFen = airportTransfer?.guideFen ?? (productId.endsWith("-day") ? null : typeof directRate === "number" ? directRate * 100 : null);
+    const multi = productId === "multi-short" || productId === "multi-long";
+    const days = Number(driverOrder.days);
+    const validMulti = multi && Number.isInteger(days) && days >= (productId === "multi-long" ? 7 : 1)
+      && days <= (productId === "multi-long" ? 45 : 6) && driverOrder.deposit === true;
+    // Reprice independently of the browser. All live Checkout amounts are in USD cents.
+    const totalFen = airportTransfer?.guideFen !== undefined && airportTransfer?.guideFen !== null
+      ? driverUsdCents(airportTransfer.guideFen / 100)
+      : validMulti && size ? driverMultiDayTotalUsd(days, size === "seven") * 100
+      : productId.endsWith("-day") && typeof directRate === "number" ? driverUsdCents(directRate)
+      : typeof directRate === "number" ? driverUsdCents(directRate) : null;
     if (!/^\/(?:zh\/|en\/)?yunnan-private-driver\/?$/.test(enquiry.conversionPage || "")
-      || !size || !totalFen || !Number.isSafeInteger(totalFen)
+      || !size || !totalFen || !Number.isSafeInteger(totalFen) || (multi && !validMulti)
       || !Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== enquiry.travelTiming || enquiry.travelTiming < chinaServiceDate()
       || !Number.isInteger(driverOrder.luggage) || driverOrder.luggage < 0 || driverOrder.luggage > 20
       || (size === "five" && (enquiry.adults + enquiry.children > 3 || Number(driverOrder.luggage) > 3))
@@ -71,8 +80,8 @@ export async function POST(request: Request) {
       return Response.json({ error: "Please check the route, date, vehicle and passenger details before payment." }, { status: 400 });
     }
     try {
-      const result = await createDirectDriverCheckout({ id: enquiry.requestId, submissionKey: driverOrder.submissionKey, totalFen, origin,
-        summary: { locale, productId, service: productId, date: enquiry.travelTiming, route: String(driverOrder.route || "").slice(0, 700),
+      const result = await createDirectDriverCheckout({ id: enquiry.requestId, submissionKey: driverOrder.submissionKey, totalFen, origin, deposit: multi,
+        summary: { locale, productId, service: productId, date: enquiry.travelTiming, ...(multi ? { days } : {}), route: String(driverOrder.route || "").slice(0, 700),
           pickup: String(driverOrder.pickup).slice(0, 150), dropoff: String(driverOrder.dropoff).slice(0, 150), vehicle,
           party: enquiry.adults + enquiry.children, email: enquiry.email, name: enquiry.name, whatsapp: enquiry.whatsapp,
           notes: enquiry.notes, ...(airportTransfer || {}) } });
