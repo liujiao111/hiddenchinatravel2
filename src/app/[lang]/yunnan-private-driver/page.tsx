@@ -184,13 +184,13 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <div className="driver-list-card"><h3>{T("Included","通常包含")}</h3><ul>{included.map(x=><li key={x}>{x}</li>)}</ul></div>
           <div className="driver-list-card"><h3>{T("Not Included","通常不包含")}</h3><ul>{excluded.map(x=><li key={x}>{x}</li>)}</ul></div>
         </div>
-        <p className="driver-detail-note">{T("For agreed full-day hire only: overtime beyond the first 30 complimentary minutes is US$15 per started hour, subject to driver availability and route approval. Your written quote takes precedence.", "仅适用于已确认的一日包车：经约定的免费延时30分钟之后，每开始1小时加收人民币200元，需事先取得司机和运营方同意；具体以书面报价为准。")}</p>
+        <p className="driver-detail-note">{T("For agreed full-day hire only: overtime beyond the first 30 complimentary minutes is US$15 per started hour, subject to driver availability and route approval. Your written quote takes precedence.", "仅适用于已确认的一日包车：经约定的免费延时30分钟之后，每开始1小时加收 US$15，需事先取得司机和运营方同意；具体以书面报价为准。")}</p>
       </div>
     </section>
 
     <section className="driver-section" id="vehicles">
       <div className="shell">
-        {heading("05 / VEHICLE & LUGGAGE","How to Choose a Vehicle","如何选择车辆", "Five-seat and seven-seat USD prices are shown for standard routes. Seven-seat adds about US$23 on direct transfers and US$30 on scenic routes or per day on day/multi-day hire. Request a quote for larger vehicles.", "5座与7座标准路线均显示美元价格，7座直达路线增加约 US$23，途经景点路线增加约 US$30，一日／多日包车每天下调？；更大车型请询价。")}
+        {heading("05 / VEHICLE & LUGGAGE","How to Choose a Vehicle","如何选择车辆", "Five-seat and seven-seat USD prices are shown for standard routes. Seven-seat adds about US$23 on direct transfers and US$30 on scenic routes or per day on day/multi-day hire. Request a quote for larger vehicles.", "5座与7座标准路线均显示美元价格，7座直达路线增加约 US$23，途经景点路线增加约 US$30，一日／多日包车每天加约 US$30；更大车型请询价。")}
         <DriverVehicleGallery zh={zh} />
       </div>
     </section>
