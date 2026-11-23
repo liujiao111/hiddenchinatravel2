@@ -30,7 +30,7 @@ export async function createDirectDriverCheckout(input: {
   const orderPath = `/driver-order/${order.access}`;
   const orderUrl = new URL(orderPath, input.origin).href;
   if (order.paid?.initial) return { orderPath, checkoutUrl: orderUrl };
-  const stripe = new Stripe(key);
+  const stripe = new Stripe(key!);
   if (order.quote?.initial) {
     const existing = await stripe.checkout.sessions.retrieve(order.quote.initial.id);
     if (existing.status === "open" && existing.url) return { orderPath, checkoutUrl: existing.url };
