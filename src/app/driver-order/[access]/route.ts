@@ -33,7 +33,11 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   const payable = payment && Date.parse(payment.expiresAt) > Date.now()
     && !paid?.balance && paidFen < quote.totalFen && isDriverCheckoutUrl(payment.url);
   const row = (label: string, value: unknown) => value ? `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>` : "";
-  const status = dispatch
+  const status = verificationOnly && paidFen > 0
+    ? t("US$1 正式测试付款成功（无用车服务）", "US$1 live test payment successful — no transport booked")
+    : verificationOnly && quote?.direct && returned === "returned"
+    ? t("正在核实 US$1 测试付款", "Verifying US$1 test payment")
+    : dispatch
     ? t("预订已确认", "Booking confirmed")
     : paidFen > 0 ? t("已收到付款，待确认接送安排", "Payment received. Pickup details to be confirmed.")
     : quote && returned === "returned" ? t("正在核实付款，请稍后刷新此页", "Verifying payment. Please refresh shortly.")
