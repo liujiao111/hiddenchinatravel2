@@ -24,6 +24,8 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   const { summary, quote, paid, dispatch } = saved.order;
   const zh = summary.locale === "zh";
   const verificationOnly = quote?.testOnly === true && summary.testOnly === true;
+  const usefulNotes = typeof summary.notes === "string" && !summary.notes.trim().startsWith("PRODUCT ID:") ? summary.notes.trim() : "";
+  const paymentPending = Boolean(quote && !paid?.initial && new URL(_request.url).searchParams.get("payment") === "returned");
   const isShangriLaTransfer = summary.productId === "shangri-la-arrival";
   const t = (zhText: string, enText: string) => zh ? zhText : enText;
   const money = (fen: number) => new Intl.NumberFormat(zh ? "zh-CN" : "en", { style: "currency", currency: quote?.currency === "usd" ? "USD" : "CNY" }).format(fen / 100);
@@ -48,15 +50,18 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
 
   return new Response(`<!doctype html><html lang="${zh ? "zh" : "en"}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
     <title>${t("包车订单", "Driver order")} | Hidden China Travel</title>
-    <style>body{margin:0;background:#f3f7fc;color:#192838;font:1rem/1.6 system-ui,sans-serif}main{max-width:46rem;margin:2rem auto;padding:0 1rem}section{background:white;border:1px solid #dce5ee;border-radius:14px;padding:clamp(1rem,4vw,2rem);margin:1rem 0}h1,h2{line-height:1.2}dl{margin:0}dl div{display:grid;grid-template-columns:minmax(7rem,1fr) 2fr;gap:1rem;border-bottom:1px solid #e7edf3;padding:.65rem 0}dt{font-weight:650}dd{margin:0;overflow-wrap:anywhere;white-space:pre-line}.button{display:inline-block;padding:.7rem 1.2rem;background:#174da3;color:white;border-radius:8px;font-weight:650}</style>
+    <style>body{margin:0;background:#f3f7fc;color:#192838;font:1rem/1.6 system-ui,sans-serif}main{max-width:46rem;margin:2rem auto;padding:0 1rem}section{background:white;border:1px solid #dce5ee;border-radius:14px;padding:clamp(1rem,4vw,2rem);margin:1rem 0}h1,h2{line-height:1.2}.subtle{color:#59718c;font-size:.93rem}.success{color:#126647}.pending{color:#915b13}.test-banner{border-left:5px solid #d49b30}.status{font-weight:750;font-size:1.13rem}.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.summary div{background:#f1f5fb;padding:.9rem;border-radius:9px}.summary strong{display:block;font-size:1.1rem}@media(max-width:610px){.summary{grid-template-columns:1fr}}dl{margin:0}dl div{display:grid;grid-template-columns:minmax(7rem,1fr) 2fr;gap:1rem;border-bottom:1px solid #e7edf3;padding:.65rem 0}dt{font-weight:650}dd{margin:0;overflow-wrap:anywhere;white-space:pre-line}.button{display:inline-block;padding:.7rem 1.2rem;background:#174da3;color:white;border-radius:8px;font-weight:650}</style>
     <main><p>Hidden China Travel</p><h1>${verificationOnly ? t("US$1 支付测试订单", "US$1 Payment Verification Order") : t("包车订单", "Driver order")}</h1>
     ${verificationOnly ? `<section><strong>${t("仅用于支付验收，真实扣款 US$1。不包含包车、接送、导游或有效预订；请勿安排司机。", "REAL US$1 payment verification only. No transport, driver, guide or reservation is included. Do not dispatch a vehicle.")}</strong></section>` : ""}
-    <p><strong>${status}</strong></p>
-    <section><h2>${t("用车需求", "Trip details")}</h2><dl>
-    ${row(t("申请编号", "Reference"), id)}
-    ${row(t("服务", "Service"), summary.service)}
-    ${row(t("日期", "Date"), summary.date)}
-    ${row(t("首日接客时间（中国时间）", "Pickup time (China time)"), summary.pickupTime)}
+    <p class="status ${paidFen>0?"success":"pending"}">${escape(status)}</p>
+    ${paymentPending ? `<p class="subtle">${t("Stripe 付款已返回，我们正在同步支付记录。请刷新此页；付款成功前无需再次支付。", "Returned from Stripe. We are reconciling your payment. Refresh this page; do not pay a second time.")} <a href="${escape(new URL(_request.url).pathname)}">${t("刷新订单状态", "Refresh payment status")}</a></p>` : ""}
+    <section><h2>${verificationOnly ? t("测试订单", "Test order") : t("行程详情", "Trip details")}</h2><dl>
+    ${row(t("订单编号", "Order ID"), id)}
+    ${row(t("服务项目", "Service"), summary.service)}
+    ${verificationOnly ? row(t("测试类型", "Purpose"), t("US$1 正式支付闭环验收（不提供交通服务）", "US$1 live payment flow verification — NO TRANSPORT"))
+      : `
+    ${row(t("日期", "Travel date"), summary.date)}
+    ${row(t("接客时间（中国时间）", "Pickup time (China time)"), summary.pickupTime)}
     ${row(t("路线", "Route"), summary.route)}
     ${row(t("交通枢纽", "Airport or railway station"), summary.hub)}
     ${row(t("接送方向", "Transfer direction"), summary.direction)}
@@ -67,21 +72,23 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
     ${row(t("上车地点", "Pickup"), summary.pickup)}
     ${row(t("送达地点", "Drop-off"), summary.dropoff)}
     ${row(t("车型", "Vehicle"), summary.vehicle)}
-    ${summary.hub ? row(t("人数", "Travellers"), t(`${summary.adults} 位成人、${summary.children} 位儿童`, `${summary.adults} adults, ${summary.children} children`)) : row(t("人数", "Travellers"), summary.party)}
-    ${row(t("大行李箱", "Large suitcases"), summary.luggage === undefined ? null : String(summary.luggage))}
-    ${row(t("额外要求", "Other requirements"), summary.notes)}
-    ${row(t(isShangriLaTransfer ? "参考价格" : "参考价", "Guide price"), summary.guideFen > 0 ? money(summary.guideFen) : summary.manualQuote ? t(isShangriLaTransfer ? "需人工确认" : "需人工确认价格", "Manual quote required") : null)}
-    ${isShangriLaTransfer ? row(t("报价状态", "Quote status"), quote ? t("报价已确认", "Quote confirmed")
-      : summary.manualQuote ? t("人工报价", "Manual quote") : t("待确认车源和最终价格", "Availability and final price to be confirmed")) : ""}</dl></section>
-    ${quote ? `<section><h2>${t("正式报价与付款", "Quote and payment")}</h2><dl>
-    ${row(t("已确认的服务", "Confirmed service"), quote.description)}
-    ${row(t("总价", "Total"), money(quote.totalFen))}
-    ${row(t("已付", "Paid"), money(paidFen))}
-    ${row(t("剩余应付", "Remaining"), money(quote.totalFen - paidFen))}
-    ${row(t("尾款截止时间", "Balance due"), quote.balanceDue)}
-    ${row(t("退改条款", "Cancellation and changes"), quote.cancellationTerms)}</dl>
-    ${payable ? `<p><a class="button" href="${escape(payment.url)}" rel="noreferrer">${t("通过 Stripe 支付", "Pay with Stripe")} ${escape(money(payment.dueFen))}</a></p>`
-      : paidFen < quote.totalFen ? `<p>${t("需要付款链接时，请联系 Hidden China Travel。", "Contact Hidden China Travel if you need a payment link.")}</p>` : ""}</section>` : ""}
+    ${row(t("人数", "Travellers"), summary.party)}
+    ${row(t("其他要求", "Other requirements"), usefulNotes)}
+    `}</dl></section>
+    ${quote ? `<section>
+      <h2>${t("支付详情", "Payment summary")}</h2>
+      <div class="summary">
+        <div><span class="subtle">${t("订单总额","Order total")}</span><strong>${escape(money(quote.totalFen))}</strong></div>
+        <div><span class="subtle">${t("已收款","Paid")}</span><strong>${escape(money(paidFen))}</strong></div>
+        <div><span class="subtle">${t("待付余额","Balance")}</span><strong>${escape(money(Math.max(0,quote.totalFen-paidFen)))}</strong></div>
+      </div>
+      <p class="subtle">${verificationOnly ? t("这笔测试支付不对应任何交通服务。","This verification payment does not purchase transport.") : t("付款不代表司机和车辆已经确认，具体派车信息将另行通知。","Payment received does not mean a driver has been assigned. Pickup arrangements follow separately.")}</p>
+      ${paidFen>0 ? `<p class="success"><strong>${t("Stripe 付款已确认", "Stripe payment confirmed")}</strong></p>` : ""}
+      ${!verificationOnly && quote.balanceDue ? `<p>${t("尾款支付安排","Balance arrangements")}: ${escape(quote.balanceDue)}</p>` : ""}
+      ${!verificationOnly ? `<details><summary>${t("退改条款", "Cancellation and changes")}</summary><p>${escape(quote.cancellationTerms)}</p></details>` : ""}
+      ${payable && !paymentPending ? `<p><a class="button" href="${escape(payment.url)}" rel="noreferrer">${t("通过 Stripe 支付","Pay with Stripe")} ${escape(money(payment.dueFen))}</a></p>`
+        : !paidFen && !paymentPending ? `<p class="subtle">${t("付款链接已不可用，请联系 Hidden China Travel 获取帮助。", "Your payment link is unavailable. Contact Hidden China Travel for assistance.")}</p>` : ""}
+    </section>` : ""}
     ${!verificationOnly && dispatch ? `<section><h2>${t("接送安排", "Pickup arrangements")}</h2><dl>${row(t("时间与集合点", "Time and meeting point"), dispatch.pickup)}${row(t("司机联系方式", "Driver contact"), dispatch.driver)}</dl></section>` : ""}
     </main></html>`, { headers: { ...headers, "Content-Type": "text/html; charset=utf-8" } });
 }
