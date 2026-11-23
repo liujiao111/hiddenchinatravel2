@@ -29,31 +29,27 @@
     page_location: location.origin + "/driver-order/" + (d.paid === "1" ? "paid" : "pending"),
   });
   if (d.paid === "1") {
-    var payments = [];
-    try { payments = JSON.parse(d.purchases || "[]"); } catch (_error) { payments = []; }
-    if (Array.isArray(payments)) payments.forEach(function (payment) {
-      if (!payment || !/^cs_(?:live|test)_[A-Za-z0-9_]+$/.test(payment.transaction_id || "")
-        || !/^[a-z0-9-]{1,80}$/.test(payment.item_id || "")
-        || !Number.isSafeInteger(payment.amount_cents) || payment.amount_cents < 1
-        || !/^(initial|balance)$/.test(payment.stage || "")) return;
-      var key = "hct_ga4_purchase_" + payment.transaction_id;
+    ["initial", "balance"].forEach(function(stage) {
+      var prefix = stage === "balance" ? "balance" : "";
+      var total = Number(prefix ? d.balanceAmount : d.amount);
+      var transaction = prefix ? d.balanceTransaction : d.transaction;
+      var paymentType = prefix ? "balance" : (d.paymentType || "full");
+      if (!/^cs_(?:live|test)_[A-Za-z0-9_]+$/.test(transaction || "") ||
+        !Number.isFinite(total) || total <= 0 || !/^[-a-z0-9_]{1,80}$/.test(d.product || "")) return;
+      // GA4 deduplicates by transaction_id. Local storage prevents repeated pageview reloads.
+      var key = "hct_ga4_purchase_" + transaction;
       var sent = false;
-      try { sent = localStorage.getItem(key) === "1"; } catch (_error) { /* blocked */ }
+      try { sent = localStorage.getItem(key) === "1"; } catch (_error) { /* optional */ }
       if (sent) return;
-      var amount = payment.amount_cents / 100;
-      // Store Stripe session ID as transaction ID to avoid double-counting after refresh.
-      window.gtag("event", "purchase", {
-        currency: "USD", value: amount, transaction_id: payment.transaction_id,
-        payment_type: payment.payment_type || "full", service_category: "private_driver",
-        page_path: "/driver-order/paid", page_location: location.origin + "/driver-order/paid",
-        items: [{item_id: payment.item_id, item_name: payment.item_id, price: amount, quantity: 1}],
-        transport_type: "beacon",
+      window.gtag("event","purchase",{
+        currency:"USD",value:total,transaction_id:transaction,payment_type:paymentType,
+        items:[{item_id:d.product,item_name:d.product,price:total,quantity:1}],
+        transport_type:"beacon",
       });
-      window.gtag("event", "driver_payment_success", {
-        currency: "USD", value: amount, payment_type: payment.payment_type || "full",
-        product_id: payment.item_id, page_path: "/driver-order/paid",
+      window.gtag("event","driver_payment_success",{
+        currency:"USD",value:total,payment_type:paymentType,product_id:d.product,
       });
-      try { localStorage.setItem(key, "1"); } catch (_error) { /* GA4 also deduplicates same transaction_id */ }
+      try { localStorage.setItem(key,"1"); } catch (_error) { /* GA4 transaction dedup still applies */ }
     });
   }
   // Clicks are not verified conversations or WeChat friend requests.
