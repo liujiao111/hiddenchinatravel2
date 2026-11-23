@@ -61,6 +61,12 @@
     var link = event.target && event.target.closest &&
       event.target.closest("[data-driver-contact-channel]");
     if (!link) return;
+    var copyId = link.getAttribute("data-copy-wechat");
+    if (copyId && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(copyId).then(function () {
+        link.textContent = "✓ " + (link.textContent || "Copied");
+      }).catch(function () {});
+    }
     var channel = link.getAttribute("data-driver-contact-channel");
     if (!/^(whatsapp|wechat|email|wechat_qr|whatsapp_qr)$/.test(channel || "")) return;
     window.gtag("event","driver_contact_after_payment",{
