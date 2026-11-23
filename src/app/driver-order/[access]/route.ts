@@ -25,7 +25,7 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   const zh = summary.locale === "zh";
   const isShangriLaTransfer = summary.productId === "shangri-la-arrival";
   const t = (zhText: string, enText: string) => zh ? zhText : enText;
-  const money = (fen: number) => new Intl.NumberFormat(zh ? "zh-CN" : "en", { style: "currency", currency: "CNY" }).format(fen / 100);
+  const money = (fen: number) => new Intl.NumberFormat(zh ? "zh-CN" : "en", { style: "currency", currency: quote?.currency === "usd" ? "USD" : "CNY" }).format(fen / 100);
   const paidFen = (paid?.initial?.amount ?? 0) + (paid?.balance?.amount ?? 0);
   const returned = new URL(_request.url).searchParams.get("payment");
   const payment = paid?.initial ? quote?.balance : quote?.initial;
