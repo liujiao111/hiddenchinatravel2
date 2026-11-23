@@ -169,6 +169,7 @@ test("signed paid 20% webhook marks deposit, emails operator and customer exactl
       method: "POST", headers: { "stripe-signature": "valid-mock" }, body: "{}",
     });
     let response = await handleWebhook(req());
+    if (response.status !== 200) console.error("Webhook mock diagnostic", { status:response.status, sent:messages.length, stage:order?.paid?.initial, detail:await response.text() });
     assert.equal(response.status, 200);
     assert.equal(order.paid.initial.amount, 25200);
     assert.equal(order.paid.initial.type, "deposit");
