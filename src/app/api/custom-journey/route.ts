@@ -84,7 +84,7 @@ export async function POST(request: Request) {
         summary: { locale, productId, service: productId, date: enquiry.travelTiming, ...(multi ? { days } : {}), route: String(driverOrder.route || "").slice(0, 700),
           pickup: String(driverOrder.pickup).slice(0, 150), dropoff: String(driverOrder.dropoff).slice(0, 150), vehicle,
           party: enquiry.adults + enquiry.children, email: enquiry.email, name: enquiry.name, whatsapp: enquiry.whatsapp,
-          notes: enquiry.notes, ...(airportTransfer || {}) } });
+          notes: enquiry.notes, ...(airportTransfer || {}), currency: "usd", guideFen: totalFen } });
       return Response.json({ success: true, ...result }, { headers: { "Cache-Control": "no-store" } });
     } catch (error) {
       return Response.json({ error: error instanceof Error ? error.message : "Could not open secure checkout. Please try again." }, { status: 503 });
