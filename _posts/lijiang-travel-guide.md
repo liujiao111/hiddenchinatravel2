@@ -116,6 +116,8 @@ Autumn is often the easiest season for clearer mountain views. Summer is greener
 
 ## Practical notes
 
+Want to visit the gorge as a Lijiang day trip instead? Our [Lijiang to Tiger Leaping Gorge guide](/lijiang-to-tiger-leaping-gorge) compares buses, private drivers and going onward to Shangri-La.
+
 Continuing north? Our [Lijiang to Shangri-La transport guide](/lijiang-to-shangri-la) compares direct trains, public buses and private transfers via Tiger Leaping Gorge.
 
 High-speed rail works well between Kunming, Dali and Lijiang. Shaxi is the stretch that is easier by road. For road transfers, where to stay and whether one or two nights make sense, see our [Shaxi Ancient Town guide](/shaxi-ancient-town-guide). If you skip Shaxi to “save a day for Lijiang,” you usually arrive more tired, not with a better mountain day.
