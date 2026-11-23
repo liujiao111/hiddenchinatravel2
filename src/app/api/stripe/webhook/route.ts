@@ -169,8 +169,8 @@ export async function POST(request: Request) {
         const link = "https://hiddenchinatravel.com/driver-order/" + updated.access;
         const isZh = updated.summary?.locale === "zh";
         const message = (isZh ? "已收到您的包车付款。金额：" : "Your private-driver payment has been received. Paid amount: ")
-          + "USD " + (due / 100).toFixed(2)
-          + (isZh ? "；订单总价：" : "; total: ") + "USD " + (total / 100).toFixed(2)
+          + "USD " + (Number(metadata?.due_fen) / 100).toFixed(2)
+          + (isZh ? "；订单总价：" : "; total: ") + "USD " + (Number(metadata?.total_fen) / 100).toFixed(2)
           + "\\n" + (isZh ? "订单与接车信息：" : "Order and pickup details: ") + link
           + "\\n" + (isZh ? "付款不代表已安排司机，待确认车辆；无法提供服务会退款。" : "Vehicle and driver allocation are pending. If unavailable, your payment will be refunded.");
         const guestResponse = await fetch("https://api.resend.com/emails", {
