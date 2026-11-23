@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { driverDirectPrices } from "@/lib/driver-direct-prices";
+import { driverDirectPrices, DRIVER_FULL_ORDER_TEST_ID, DRIVER_FULL_ORDER_TEST_ROUTE } from "@/lib/driver-direct-prices";
 import { driverUsd, driverMultiDayTotalUsd } from "@/lib/driver-usd-prices";
 import { EnquirySelect } from "@/components/enquiry-select";
 import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
@@ -20,7 +20,7 @@ type ProductId =
   | "kunming-arrival" | "dali-arrival" | "lijiang-arrival" | "shangri-la-arrival"
   | "dali-lijiang-direct" | "dali-lijiang-shaxi" | "lijiang-shangri-la" | "lijiang-tlg-shangri-la"
   | "kunming-day" | "dali-day" | "lijiang-day" | "shangri-la-day"
-  | "multi-short" | "multi-long";
+  | "multi-short" | "multi-long" | "driver-full-order-usd1-test";
 const serviceCities = [
   { value: "kunming", en: "Kunming", zh: "昆明" },
   { value: "dali", en: "Dali", zh: "大理" },
@@ -46,6 +46,13 @@ type Product = {
 };
 
 const products: Product[] = [
+  { id: "driver-full-order-usd1-test", category: "intercity", cities: ["kunming"],
+    en: "US$1 Full Booking Payment Test — No Transport", zh: "US$1 完整订单付款测试（不含用车服务）",
+    detailEn: "Internal payment verification only. A real US$1 charge; NO transport or booking service.",
+    detailZh: "仅用于内部验收，将真实扣款 US$1，不提供包车、接送或旅游服务。",
+    photo: "/assets/partners/vehicles/five-seat-toyota.webp",
+    routes: [{ value: DRIVER_FULL_ORDER_TEST_ROUTE, en: "Payment test only — no transport", zh: "仅支付测试 — 不提供接送" }],
+  },
   {
     id: "dali-lijiang-direct", category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
     en: "Dali ⇄ Lijiang Direct", zh: "大理 ⇄ 丽江 · 直达",
@@ -231,6 +238,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const multiTotal = isMulti && vehiclePrice ? driverMultiDayTotalUsd(multiDays, vehicle === sevenSeat) : 0;
   const multiDeposit = Math.round(multiTotal * 0.2 * 100) / 100;
   const isIntercity = service?.category === "intercity";
+  const isFullOrderTest = serviceId === DRIVER_FULL_ORDER_TEST_ID;
   const title = kind === "custom" ? (zh ? "提交定制／多日包车需求" : "Request a Custom or Multi-Day Driver") : (zh ? "选择服务选项与日期" : "Select Your Transfer Details");
   const formName = kind === "custom" ? "yunnan_driver_custom" : "yunnan_driver_product";
 
@@ -367,7 +375,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       tracking: createFormTracking(leadRef.current, formName, service?.id || "custom-multi-day"),
       requestId: idRef.current,
       driverOrder: {
-        checkout: onlinePayable, productId: serviceId, vehicleCode: vehicle, directionCode: String(values.get("direction") || ""), luggage,
+        checkout: onlinePayable, productId: serviceId, checkoutTest: isFullOrderTest, vehicleCode: vehicle, directionCode: String(values.get("direction") || ""), luggage,
          pickupTime,
          ...(isMulti ? { days: multiCount, deposit: true, endDate } : {}),
         submissionKey: submissionKey.current, locale, service: service ? (zh ? service.zh : service.en) : title,
@@ -431,7 +439,8 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   }}>
     <h3>{title}</h3>
     {service ? <p className="driver-form-selection">{zh ? "当前产品：" : "Your product: "}<strong>{zh ? service.zh : service.en}</strong></p> : null}
-    <p className="driver-form-note">{isMulti ? (zh ? "填写路线并支付20%定金，最终车源及行程仍需确认；无法提供服务则退款。" : "Enter your route and pay a 20% deposit. Vehicle and itinerary are confirmed afterwards; unavailable service is refunded.") : onlinePayable ? (zh ? "提交后前往 Stripe 支付所选服务全款。付款后确认司机和派车安排；如无法提供服务，已付款项全额退还。" : "Continue to Stripe to pay in full for your selected service. We confirm driver allocation after payment. If we cannot provide the service, your payment is refunded in full.") : (zh ? "此路线需人工核价，提交需求后我们会联系你，提交本身不收款。" : "This route needs a custom quote. Submit your request and we will contact you; no payment is collected.")}</p>
+    {isFullOrderTest ? <p className="driver-form-note" role="note"><strong>{zh ? "真实扣款 US$1 · 仅用于完整订单验收，不提供任何包车或接送服务；请使用自己的邮箱查看付款确认和订单状态。" : "REAL US$1 CHARGE · Full-order checkout verification only. NO transportation or reservation will be provided. Use your email to verify the receipt and order status."}</strong></p> : null}
+    <p className="driver-form-note">{isFullOrderTest ? (zh ? "提交后使用真实银行卡支付 US$1，然后检查订单、Webhook 与通知邮件。不是沙盒。" : "Continue to Stripe to pay US$1 with a real card, then check order status and payment emails. This is not sandbox mode.") : isMulti ? (zh ? "填写路线并支付20%定金，最终车源及行程仍需确认；无法提供服务则退款。" : "Enter your route and pay a 20% deposit. Vehicle and itinerary are confirmed afterwards; unavailable service is refunded.") : onlinePayable ? (zh ? "提交后前往 Stripe 支付所选服务全款。付款后确认司机和派车安排；如无法提供服务，已付款项全额退还。" : "Continue to Stripe to pay in full for your selected service. We confirm driver allocation after payment. If we cannot provide the service, your payment is refunded in full.") : (zh ? "此路线需人工核价，提交需求后我们会联系你，提交本身不收款。" : "This route needs a custom quote. Submit your request and we will contact you; no payment is collected.")}</p>
     {transfer ? <>
       <div className="contact-field-row">
         <EnquirySelect name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { setHubId(value); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
@@ -498,7 +507,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
             ? (zh ? "请填写希望司机到酒店或约定古城入口接您的时间。" : "Enter the time you would like the driver to meet you at the hotel or agreed Old Town entrance.")
             : (zh ? "请填写希望司机到酒店接您的时间。" : "Enter the time you would like the driver to pick you up at the hotel.")}</small>
       </div> : null}
-      <EnquirySelect name="vehicle" label={zh ? "车型需求 *" : "Vehicle preference *"} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={setVehicle} options={[
+      <EnquirySelect name="vehicle" label={isFullOrderTest ? (zh ? "测试车型（固定5座）" : "Test vehicle (five-seat only)") : (zh ? "车型需求 *" : "Vehicle preference *")} placeholder={zh ? "请选择车型" : "Choose a vehicle"} required value={vehicle} onValueChange={setVehicle} options={isFullOrderTest ? [{ value: fiveSeat, label: zh ? "测试订单（5座标识，不提供车辆）" : "Test order (five-seat label; no vehicle)" }] : [
         { value: fiveSeat, label: zh ? "标准5座车（建议1–3人）" : "Five-seat car (1–3 recommended)" },
         { value: sevenSeat, label: zh ? "7座商务车" : "Seven-seat MPV" },
         { value: "Larger vehicle - quote required", label: zh ? "更大车型（需另行报价）" : "Larger vehicle (custom quote)" },
@@ -591,13 +600,17 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
   };
   const [category, setCategory] = useState<Category | "all">("all");
   const [city, setCity] = useState("");
-  const visibleProducts = filterDriverProducts(products, category, city);
+  const visibleProducts = filterDriverProducts(products.filter(p => p.id !== DRIVER_FULL_ORDER_TEST_ID), category, city);
   const [selected, setSelected] = useState<ProductId | "custom" | null>(null);
   const scrollToForm = () => requestAnimationFrame(() => document.getElementById("driver-quote-form")?.scrollIntoView({ behavior: "smooth", block: "start" }));
 
   useEffect(() => {
     const openFromHash = () => {
       const hash = window.location.hash.slice(1);
+      if (new URLSearchParams(window.location.search).get("checkout_test") === "1") {
+        setSelected(DRIVER_FULL_ORDER_TEST_ID);
+        return;
+      }
       if (hash === "driver-quote-form") setSelected(current => current ?? "custom");
       const filter = serviceFilters.find(item => item.id === hash);
       if (filter) {
