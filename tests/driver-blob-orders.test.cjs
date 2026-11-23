@@ -35,11 +35,11 @@ const moduleSource = fs.readFileSync(filename, "utf8")
   .replace(/^import .*;\s*$/gm, "")
   .replace(/\bexport\s+(?=(?:async\s+)?function|const)/g, "");
 const loadOrders = new Function("createHash", "createHmac", "timingSafeEqual",
-  "get", "put", "BlobPreconditionFailedError",
+  "get", "put", "BlobPreconditionFailedError", "mergeDriverPaymentRecords",
   moduleSource + "\nreturn {saveDriverRequest,updateDriverOrder,readDriverOrder};");
 const {saveDriverRequest,updateDriverOrder,readDriverOrder} = loadOrders(
   crypto.createHash,crypto.createHmac,crypto.timingSafeEqual,
-  blobMock.get,blobMock.put,BlobPreconditionFailedError);
+  blobMock.get,blobMock.put,BlobPreconditionFailedError,async order=>order);
 
 const oldEnv = {VERCEL_ENV:process.env.VERCEL_ENV,BLOB_READ_WRITE_TOKEN:process.env.BLOB_READ_WRITE_TOKEN,
   DRIVER_ORDER_LINK_SECRET:process.env.DRIVER_ORDER_LINK_SECRET};
