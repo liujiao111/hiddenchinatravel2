@@ -8,7 +8,7 @@ import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } fro
 import { getAttribution } from "@/lib/attribution";
 import { generateLeadId } from "@/lib/whatsapp";
 import { createFormTracking } from "@/lib/lead-ref-client";
-import { trackEvent, trackEcommerceEvent } from "@/lib/analytics";
+import { driverGaClientId, trackEvent, trackEcommerceEvent } from "@/lib/analytics";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { airportTransferCatalog, chinaServiceDate, isOutsideTransferArea, transferGuidePrice, transferStartingPrice } from "@/lib/driver-airport-transfers";
 import { filterDriverProducts } from "@/lib/driver-product-filter";
@@ -375,7 +375,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       tracking: createFormTracking(leadRef.current, formName, service?.id || "custom-multi-day"),
       requestId: idRef.current,
       driverOrder: {
-        checkout: onlinePayable, productId: serviceId, checkoutTest: isFullOrderTest, vehicleCode: vehicle, directionCode: String(values.get("direction") || ""), luggage,
+        checkout: onlinePayable, productId: serviceId, checkoutTest: isFullOrderTest, analyticsClientId: driverGaClientId(), vehicleCode: vehicle, directionCode: String(values.get("direction") || ""), luggage,
          pickupTime,
          ...(isMulti ? { days: multiCount, deposit: true, endDate } : {}),
         submissionKey: submissionKey.current, locale, service: service ? (zh ? service.zh : service.en) : title,
@@ -403,16 +403,6 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
           vehicle_requested: vehicle, event_id: idRef.current, lead_id: leadRef.current || undefined,
           page_path: window.location.pathname,
         });
-        if (typeof data.checkoutAmount === "number" && Number.isFinite(data.checkoutAmount) && data.checkoutAmount > 0
-          && data.checkoutCurrency === "USD") {
-          // The amount comes from the server, never from user-supplied price inputs.
-          trackEvent("begin_checkout", {
-            currency: "USD", value: data.checkoutAmount,
-            product_id: service?.id || "custom-multi-day", service_category: service?.category || "custom",
-            payment_type: data.checkoutPaymentType === "deposit" ? "deposit" : "full",
-            page_path: window.location.pathname,
-          });
-        }
         trackEvent("driver_checkout_started", {
           product_id: service?.id || "custom-multi-day", service_category: service?.category || "custom",
           page_path: window.location.pathname,
