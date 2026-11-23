@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { driverDirectPrices } from "@/lib/driver-direct-prices";
-import { driverUsd, driverMultiDayRate, driverMultiDayTotalUsd } from "@/lib/driver-usd-prices";
+import { driverUsd, driverMultiDayTotalUsd } from "@/lib/driver-usd-prices";
 import { EnquirySelect } from "@/components/enquiry-select";
 import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { getAttribution } from "@/lib/attribution";
@@ -206,6 +206,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const selectedArea = transfer?.areas.find(option => option.value === hotelArea);
   const priceArea = secondHub?.value || hotelArea;
   const vehiclePrice = vehicle === fiveSeat ? "five" : vehicle === sevenSeat ? "seven" : undefined;
+  const isMulti = service?.category === "multi";
   const guidePrice = isArrival
     ? transferGuidePrice(serviceId ?? "", hubId, priceArea, arrivalDirection, vehiclePrice)
     : isMulti ? undefined : vehiclePrice ? driverDirectPrices[serviceId ?? ""]?.[vehiclePrice] : undefined;
@@ -226,9 +227,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const dropoffLabel = secondHub ? (zh ? "昆明南站 → 机场（接站）" : "Kunming South Railway Station → airport (railway pickup)")
     : zh ? `酒店 → ${hubType}（${hub ? hub.kind === "airport" ? "送机" : "送站" : "送机／送站"}）` : `Hotel → ${hubType} (drop-off)`;
   const isDay = service?.category === "day";
-  const isMulti = service?.category === "multi";
   const [multiDays, setMultiDays] = useState(serviceId === "multi-long" ? 7 : 1);
-  const multiRate = driverMultiDayRate(multiDays) + (vehicle === sevenSeat ? 100 : 0);
   const multiTotal = isMulti ? driverMultiDayTotalUsd(multiDays, vehicle === sevenSeat) : 0;
   const multiDeposit = Math.round(multiTotal * 0.2 * 100) / 100;
   const isIntercity = service?.category === "intercity";
