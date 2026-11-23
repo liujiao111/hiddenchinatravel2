@@ -7,7 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { JourneyFactCards, JourneyHero } from "@/components/journey-landing";
 import { ContentFooter } from "@/components/content-footer";
 import { Testimonials } from "@/components/testimonials";
-import { getDriverStripeTestMode } from "@/lib/stripe-test";
+import { getDriverLiveTestPaymentLink, getDriverStripeTestMode } from "@/lib/stripe-test";
 import { JsonLd } from "@/components/json-ld";
 import { localizedStaticMetadata, localeUrl, type AppLocale } from "@/lib/i18n-seo";
 import { licensedOperator } from "@/lib/journey-trust";
@@ -73,6 +73,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
   const { lang } = await params;
   setRequestLocale(lang);
   const stripeTestMode = getDriverStripeTestMode();
+  const liveVerificationLink = stripeTestMode === "live" ? getDriverLiveTestPaymentLink()?.toString() : undefined;
   const zh = lang === "zh";
   const T = (en: string, cn: string) => zh ? cn : en;
   const heading = (kicker: string, en: string, cn: string, introEn?: string, introCn?: string) => <div className="driver-section-head"><p className="kicker">{kicker}</p><h2>{T(en, cn)}</h2>{introEn ? <p>{T(introEn, introCn || introEn)}</p> : null}</div>;
@@ -154,6 +155,24 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     </section>
 
     <StandardTransferSection locale={lang} stripeTestMode={stripeTestMode} />
+
+    {liveVerificationLink ? <section className="driver-section driver-section-soft" id="stripe-live-test-product">
+      <div className="shell">
+        <div className="driver-section-head">
+          <p className="kicker">STRIPE LIVE · PAYMENT VERIFICATION</p>
+          <h2>{T("Test Payment — US$1", "支付测试产品 — US$1")}</h2>
+          <p>{T("A separate checkout product for testing real payment processing. No transport, tour or booking is included.", "用于验证真实 Stripe 收款的独立测试产品，不包含包车、旅游服务或有效预订。")}</p>
+        </div>
+        <div className="driver-list-card" style={{ maxWidth: 560 }}>
+          <h3>{T("US$1 Live Payment Test", "US$1 生产环境支付测试")}</h3>
+          <p>{T("Amount charged: US$1.00 (real card charge). This is not Stripe sandbox mode and test card numbers will not work.", "实扣金额：US$1.00。此为 Stripe 生产环境真实扣款，不能使用沙盒测试卡号。")}</p>
+          <p>{T("Only pay if you intend to verify this checkout. Any refund must be processed separately; paying does not create an order.", "仅在需要验证收款时支付；退款需另行处理，付款不会生成包车订单。")}</p>
+          <a className="button button-blue" href={liveVerificationLink} target="_blank" rel="noopener noreferrer nofollow">
+            {T("Pay US$1 to Test Stripe", "支付 US$1 测试 Stripe")}
+          </a>
+        </div>
+      </div>
+    </section> : null}
 
     <section className="driver-section driver-section-soft" id="inclusions">
       <div className="shell">
