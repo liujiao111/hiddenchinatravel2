@@ -7,7 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { JourneyFactCards, JourneyHero } from "@/components/journey-landing";
 import { ContentFooter } from "@/components/content-footer";
 import { Testimonials } from "@/components/testimonials";
-import { isDriverStripeTestEnabled } from "@/lib/stripe-test";
+import { getDriverStripeTestMode } from "@/lib/stripe-test";
 import { JsonLd } from "@/components/json-ld";
 import { localizedStaticMetadata, localeUrl, type AppLocale } from "@/lib/i18n-seo";
 import { licensedOperator } from "@/lib/journey-trust";
@@ -72,7 +72,7 @@ const faqAnswers: Pair[] = [
 export default async function YunnanPrivateDriverPage({ params }: Props) {
   const { lang } = await params;
   setRequestLocale(lang);
-  const stripeTestCheckoutEnabled = isDriverStripeTestEnabled();
+  const stripeTestMode = getDriverStripeTestMode();
   const zh = lang === "zh";
   const T = (en: string, cn: string) => zh ? cn : en;
   const heading = (kicker: string, en: string, cn: string, introEn?: string, introCn?: string) => <div className="driver-section-head"><p className="kicker">{kicker}</p><h2>{T(en, cn)}</h2>{introEn ? <p>{T(introEn, introCn || introEn)}</p> : null}</div>;
@@ -153,7 +153,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </section>
 
-    <StandardTransferSection locale={lang} stripeTestCheckoutEnabled={stripeTestCheckoutEnabled} />
+    <StandardTransferSection locale={lang} stripeTestMode={stripeTestMode} />
 
     <section className="driver-section driver-section-soft" id="inclusions">
       <div className="shell">

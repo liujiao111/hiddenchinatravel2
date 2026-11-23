@@ -25,6 +25,7 @@ function setup() {
   process.env.STRIPE_DRIVER_LIVE_WEBHOOK_SECRET = secret;
   process.env.STRIPE_WEBHOOK_SECRET = 'whsec_sandbox_only';
   process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED = 'true';
+  process.env.STRIPE_DRIVER_LIVE_TEST_PAYMENT_LINK_ID = 'plink_live_verification';
   process.env.RESEND_API_KEY = 'local_mock';
   process.env.ENQUIRY_FROM_EMAIL = 'sender@example.com';
   process.env.ENQUIRY_TO_EMAIL = 'operations@example.com';
@@ -89,4 +90,23 @@ test('payment notifications reuse the existing deployed sender name', async () =
   assert.equal((await POST(request(event()))).status, 200);
   assert.equal(messages[0].body.from, 'existing-production@example.com');
   delete process.env.CUSTOM_JOURNEY_FROM_EMAIL;
+});
+test('signed USD 1 live verification is accepted only from the configured payment link', async () => {
+  setup();
+  const liveTest = event({
+    amount_total: 100,
+    currency: 'usd',
+    payment_link: 'plink_live_verification',
+    client_reference_id: 'driver_live_test_dali-arrival',
+    metadata: { purpose: 'production_payment_verification' },
+  });
+  assert.equal((await POST(request(liveTest))).status, 200);
+  assert.match(messages[0].body.subject, /Stripe production test/);
+  assert.match(messages[0].body.text, /real USD 1\.00 production payment/);
+  assert.equal(order.paid, undefined);
+
+  setup();
+  liveTest.data.object.payment_link = 'plink_other';
+  assert.equal((await POST(request(liveTest))).status, 200);
+  assert.equal(messages.length, 0);
 });

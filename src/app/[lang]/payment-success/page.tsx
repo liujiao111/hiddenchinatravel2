@@ -25,6 +25,7 @@ export default async function PaymentSuccessPage({ params, searchParams }: Props
   let paid = false;
   let reference = "";
   const submittedViaPaymentLink = paymentLink === "1" && sessionId?.startsWith("cs_test_") === true;
+  const submittedViaLiveTest = paymentLink === "live_test" && sessionId?.startsWith("cs_live_") === true;
 
   if (stripe && sessionId?.startsWith("cs_test_")) {
     try {
@@ -42,20 +43,26 @@ export default async function PaymentSuccessPage({ params, searchParams }: Props
       <div className="narrow payment-result-card">
         <p className="kicker">{paid
           ? (zh ? "STRIPE 测试付款成功" : "STRIPE TEST PAYMENT COMPLETE")
+          : submittedViaLiveTest
+            ? (zh ? "STRIPE 正式支付已提交" : "STRIPE LIVE PAYMENT SUBMITTED")
           : submittedViaPaymentLink
             ? (zh ? "STRIPE 测试付款已提交" : "STRIPE TEST PAYMENT SUBMITTED")
             : (zh ? "付款状态" : "PAYMENT STATUS")}</p>
         <h1>{paid
           ? (zh ? "USD 1 测试付款已验证" : "Your USD 1 test payment was verified")
+          : submittedViaLiveTest
+            ? (zh ? "USD 1 正式验收付款已提交" : "Your USD 1 live verification was submitted")
           : submittedViaPaymentLink
             ? (zh ? "Stripe 已接收此次测试结账" : "Stripe received your test checkout")
             : (zh ? "暂时无法验证付款" : "We could not verify this payment")}</h1>
         <p>{paid
           ? (zh ? "这是测试模式付款，不构成有效定金或包车预订。正式付款流程会在车源、价格和服务内容确认后启用。" : "This was a test-mode payment. It is not a valid deposit or driver booking. Live payment will only be enabled after the car, price and service details are confirmed.")
+          : submittedViaLiveTest
+            ? (zh ? "Stripe 已接收真实 USD 1 付款，签名 Webhook 正在服务端验证并发送通知。此款项不构成预订，验收后退款。" : "Stripe received the real USD 1 payment. The signed webhook is verifying it server-side and sending the notification. This is not a booking and will be refunded after verification.")
           : submittedViaPaymentLink
             ? (zh ? "这是 USD 1 沙盒测试，不构成有效定金或包车预订。付款结果将由 Stripe 签名 Webhook 在服务端处理。" : "This was a USD 1 sandbox test, not a valid deposit or driver booking. The result is processed server-side through Stripe's signed webhook.")
           : (zh ? "没有找到有效的 Stripe 测试付款。请返回包车页面重试，或通过 WhatsApp 联系我们。" : "No valid Stripe test payment was found. Return to the driver page to try again, or contact us on WhatsApp.")}</p>
-        {(reference || (submittedViaPaymentLink ? sessionId : "")) && <small>{zh ? "测试编号" : "Test reference"}: {reference || sessionId}</small>}
+        {(reference || ((submittedViaPaymentLink || submittedViaLiveTest) ? sessionId : "")) && <small>{zh ? "测试编号" : "Test reference"}: {reference || sessionId}</small>}
         <Link className="button button-primary" href="/yunnan-private-driver">{zh ? "返回云南包车页面" : "Return to Yunnan driver services"}</Link>
       </div>
     </section>

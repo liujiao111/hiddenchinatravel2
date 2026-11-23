@@ -23,9 +23,19 @@ export function isDriverProductId(value: unknown): value is DriverProductId {
 }
 
 export function isDriverStripeTestEnabled() {
-  return process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED === "true"
+  return getDriverStripeTestMode() !== null;
+}
+
+export type DriverStripeTestMode = "sandbox" | "live";
+
+export function getDriverStripeTestMode(): DriverStripeTestMode | null {
+  if (process.env.VERCEL_ENV === "production"
+    && process.env.STRIPE_DRIVER_LIVE_TEST_CHECKOUT_ENABLED === "true"
+    && getDriverLiveTestPaymentLink()) return "live";
+  if (process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED === "true"
     && (process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_") === true
-      || getDriverTestPaymentLink() !== null);
+      || getDriverTestPaymentLink())) return "sandbox";
+  return null;
 }
 
 export function getStripeTestClient() {
@@ -43,6 +53,21 @@ export function getDriverTestPaymentLink() {
     if (url.protocol !== "https:"
       || url.hostname !== "buy.stripe.com"
       || !url.pathname.startsWith("/test_")) return null;
+    return url;
+  } catch {
+    return null;
+  }
+}
+
+export function getDriverLiveTestPaymentLink() {
+  const configured = process.env.STRIPE_DRIVER_LIVE_TEST_PAYMENT_LINK_URL?.trim();
+  if (!configured) return null;
+
+  try {
+    const url = new URL(configured);
+    if (url.protocol !== "https:"
+      || url.hostname !== "buy.stripe.com"
+      || url.pathname.startsWith("/test_")) return null;
     return url;
   } catch {
     return null;

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { driverDirectPrices } from "@/lib/driver-direct-prices";
 import { EnquirySelect } from "@/components/enquiry-select";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { getAttribution } from "@/lib/attribution";
 import { generateLeadId } from "@/lib/whatsapp";
 import { createFormTracking } from "@/lib/lead-ref-client";
@@ -11,6 +11,7 @@ import { trackEvent } from "@/lib/analytics";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { airportTransferCatalog, chinaServiceDate, isOutsideTransferArea, transferGuidePrice, transferStartingPrice } from "@/lib/driver-airport-transfers";
 import { filterDriverProducts } from "@/lib/driver-product-filter";
+import type { DriverStripeTestMode } from "@/lib/stripe-test";
 
 type Locale = "en" | "zh";
 type Category = "arrival" | "intercity" | "day";
@@ -469,10 +470,19 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   </form>;
 }
 
-function DriverStripeTestCheckout({ locale, productId }: { locale: Locale; productId: ProductId }) {
+function DriverStripeTestCheckout({ locale, productId, mode }: { locale: Locale; productId: ProductId; mode: DriverStripeTestMode }) {
   const zh = locale === "zh";
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [error, setError] = useState("");
+  const paymentTestToken = useSyncExternalStore(
+    (notify) => {
+      window.addEventListener("popstate", notify);
+      return () => window.removeEventListener("popstate", notify);
+    },
+    () => new URLSearchParams(window.location.search).get("payment_test") || "",
+    () => "",
+  );
+  const liveToken = mode === "live" ? paymentTestToken : "";
 
   async function startCheckout() {
     if (status === "loading") return;
@@ -481,12 +491,12 @@ function DriverStripeTestCheckout({ locale, productId }: { locale: Locale; produ
     try {
       const response = await fetch("/api/stripe/driver-test-checkout", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...(mode === "live" && liveToken ? { "X-Driver-Test-Token": liveToken } : {}) },
         body: JSON.stringify({ productId, locale }),
       });
       const data = await response.json() as { url?: string; error?: string };
       if (!response.ok || !data.url) throw new Error(data.error || "Stripe checkout could not be created.");
-      trackEvent("driver_stripe_test_checkout_start", { product_id: productId, page_path: window.location.pathname });
+      trackEvent(mode === "live" ? "driver_stripe_live_verification_start" : "driver_stripe_test_checkout_start", { product_id: productId, page_path: window.location.pathname });
       window.location.assign(data.url);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : (zh ? "无法打开测试付款。" : "Could not open test checkout."));
@@ -494,20 +504,22 @@ function DriverStripeTestCheckout({ locale, productId }: { locale: Locale; produ
     }
   }
 
-  return <aside className="driver-stripe-test" aria-label={zh ? "Stripe 测试付款" : "Stripe test checkout"}>
+  if (mode === "live" && !liveToken) return null;
+
+  return <aside className="driver-stripe-test" aria-label={zh ? "Stripe 支付验收" : "Stripe payment verification"}>
     <div>
-      <p className="kicker">STRIPE TEST MODE</p>
-      <h3>{zh ? "测试 USD 1 定金流程" : "Test the USD 1 deposit flow"}</h3>
-      <p>{zh ? "仅用于验证 Stripe Checkout、返回页面和 webhook，不构成有效预订。" : "For verifying Stripe Checkout, the return page and webhook only. This does not create a valid booking."}</p>
+      <p className="kicker">{mode === "live" ? "STRIPE LIVE VERIFICATION" : "STRIPE TEST MODE"}</p>
+      <h3>{mode === "live" ? (zh ? "验证 USD 1 正式支付" : "Verify a USD 1 live payment") : (zh ? "测试 USD 1 定金流程" : "Test the USD 1 deposit flow")}</h3>
+      <p>{mode === "live" ? (zh ? "这会真实扣款 USD 1，用于验证生产 Checkout、返回页面和 webhook；验收后退款，不构成预订。" : "This makes a real USD 1 charge to verify production Checkout, the return page and webhook. It will be refunded and does not create a booking.") : (zh ? "仅用于验证 Stripe Checkout、返回页面和 webhook，不构成有效预订。" : "For verifying Stripe Checkout, the return page and webhook only. This does not create a valid booking.")}</p>
     </div>
     <button className="button button-outline" type="button" onClick={startCheckout} disabled={status === "loading"}>
-      {status === "loading" ? (zh ? "正在打开 Stripe…" : "Opening Stripe…") : (zh ? "支付 USD 1 测试款" : "Pay USD 1 in test mode")}
+      {status === "loading" ? (zh ? "正在打开 Stripe…" : "Opening Stripe…") : mode === "live" ? (zh ? "支付 USD 1 正式验收款" : "Pay USD 1 live verification") : (zh ? "支付 USD 1 测试款" : "Pay USD 1 in test mode")}
     </button>
     {error && <p className="contact-form-error" role="alert">{error}</p>}
   </aside>;
 }
 
-export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = false }: { locale: Locale; stripeTestCheckoutEnabled?: boolean }) {
+export function StandardTransferSection({ locale, stripeTestMode = null }: { locale: Locale; stripeTestMode?: DriverStripeTestMode | null }) {
   const zh = locale === "zh";
   const catalog = useRef<HTMLDivElement>(null);
   const resetCatalogScroll = () => {
@@ -620,7 +632,7 @@ export function StandardTransferSection({ locale, stripeTestCheckoutEnabled = fa
       <div id="driver-quote-form">
         {selected ? <div className="driver-booking-panel" key={selected}>
           <DriverEnquiryForm locale={locale} kind={selected === "custom" ? "custom" : "standard"} serviceId={selected === "custom" ? undefined : selected} />
-          {selected !== "custom" && stripeTestCheckoutEnabled && !airportTransferCatalog[selected] ? <DriverStripeTestCheckout locale={locale} productId={selected} /> : null}
+          {selected !== "custom" && stripeTestMode && !airportTransferCatalog[selected] ? <DriverStripeTestCheckout locale={locale} productId={selected} mode={stripeTestMode} /> : null}
         </div> : null}
       </div>
     </div>

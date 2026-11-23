@@ -1,6 +1,9 @@
 import type { NextRequest } from "next/server";
+import { timingSafeEqual } from "node:crypto";
 import {
+  getDriverLiveTestPaymentLink,
   getDriverTestPaymentLink,
+  getDriverStripeTestMode,
   getSiteUrl,
   getStripeTestClient,
   isDriverProductId,
@@ -24,10 +27,19 @@ const productNames: Record<string, string> = {
 };
 
 export async function POST(request: NextRequest) {
+  const mode = getDriverStripeTestMode();
   const stripe = getStripeTestClient();
-  const paymentLink = getDriverTestPaymentLink();
-  if (process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED !== "true" || (!stripe && !paymentLink)) {
+  const paymentLink = mode === "live" ? getDriverLiveTestPaymentLink() : getDriverTestPaymentLink();
+  if (!mode || (!stripe && !paymentLink)) {
     return Response.json({ error: "Stripe test checkout is disabled." }, { status: 503 });
+  }
+  if (mode === "live") {
+    const expected = process.env.STRIPE_DRIVER_LIVE_TEST_TOKEN || "";
+    const supplied = request.headers.get("x-driver-test-token") || "";
+    if (!expected || expected.length !== supplied.length
+      || !timingSafeEqual(Buffer.from(expected), Buffer.from(supplied))) {
+      return Response.json({ error: "Production payment verification is unavailable." }, { status: 404 });
+    }
   }
 
   let input: unknown;
@@ -51,8 +63,8 @@ export async function POST(request: NextRequest) {
   };
 
   if (!stripe && paymentLink) {
-    paymentLink.searchParams.set("client_reference_id", `driver_test_${body.productId}`);
-    return Response.json({ url: paymentLink.toString() });
+    paymentLink.searchParams.set("client_reference_id", `${mode === "live" ? "driver_live_test" : "driver_test"}_${body.productId}`);
+    return Response.json({ url: paymentLink.toString(), mode });
   }
 
   if (!stripe) {

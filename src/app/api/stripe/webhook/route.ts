@@ -44,8 +44,13 @@ export async function POST(request: Request) {
   if (session.payment_status !== "paid") return Response.json({ received: true });
   const metadata = session.metadata;
   const isQuote = metadata?.purpose === "driver_quote_payment";
+  const isLiveTest = event.livemode
+    && metadata?.purpose === "production_payment_verification"
+    && session.payment_link === process.env.STRIPE_DRIVER_LIVE_TEST_PAYMENT_LINK_ID;
   const productId = metadata?.purpose === "driver_test_deposit"
     ? metadata.product_id
+    : isLiveTest
+      ? session.client_reference_id?.match(/^driver_live_test_(.+)$/)?.[1]
     : session.payment_link
       ? session.client_reference_id?.match(/^driver_test_(.+)$/)?.[1]
       : undefined;
@@ -100,12 +105,16 @@ export async function POST(request: Request) {
       ...(type === "deposit" ? [`Balance: CNY ${((total - due) / 100).toFixed(2)} · Due: ${metadata.balance_due}`] : []),
     ];
   } else {
-    if (event.livemode || session.amount_total !== 100
-      || session.currency !== "usd" || !isDriverProductId(productId)) {
+    if (session.amount_total !== 100 || session.currency !== "usd" || !isDriverProductId(productId)
+      || (event.livemode ? !isLiveTest : metadata?.purpose === "production_payment_verification")) {
       return Response.json({ received: true });
     }
-    subject = `[Stripe sandbox] Driver payment received — ${productId}`;
-    details = [
+    subject = `${event.livemode ? "[Stripe production test]" : "[Stripe sandbox]"} Driver payment received — ${productId}`;
+    details = event.livemode ? [
+      "Stripe verified a real USD 1.00 production payment. Refund this verification charge after review.",
+      `Service: ${productId}`,
+      "This verification payment is not a valid booking or deposit.",
+    ] : [
       "Stripe verified a USD 1.00 sandbox payment. This is not a paid booking.",
       `Service: ${productId}`,
       "The test checkout carries no order number or pickup details.",
