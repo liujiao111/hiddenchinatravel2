@@ -130,3 +130,70 @@ test("multi-day checkout charges exactly a 20% USD deposit and stores 80% balanc
   assert.equal(order.quote.totalFen, 126000);
   assert.ok(order.quote.balanceDue);
 });
+
+let simulatedEvent;
+StripeStub.webhooks = { constructEvent: () => simulatedEvent };
+Module._load = function(request, parent, isMain) {
+  if (request === "stripe") return StripeStub;
+  if (request === "@/lib/driver-orders.mjs") return {
+    driverOrdersEnabled: () => true,
+    updateDriverOrder: async (_id, update) => { order = update(order); return order; },
+  };
+  if (request === "@/lib/enquiry-mail") return {
+    getEnquiryMailConfig: () => ({ apiKey: "resend_mock", from: "orders@example.test", to: "owner@example.test" }),
+  };
+  if (request === "@/lib/stripe-test") return { isDriverProductId: () => true };
+  return nativeLoad.call(this, request, parent, isMain);
+};
+const { POST: handleWebhook } = require("../src/app/api/stripe/webhook/route.ts");
+Module._load = nativeLoad;
+
+test("signed paid 20% webhook marks deposit, emails operator and customer exactly once", async () => {
+  await createDirectDriverCheckout(opts(126000, true));
+  const metadata = captures[0].payload.metadata;
+  simulatedEvent = {
+    id: "evt_test_success", type: "checkout.session.completed", livemode: false,
+    created: Math.floor(Date.now() / 1000),
+    data: { object: {
+      id: "cs_test_mock", payment_status: "paid", amount_total: 25200,
+      currency: "usd", client_reference_id: order.id,
+      metadata, payment_intent: "pi_test_mock",
+      customer_details: { email: "checkout@example.test" },
+    } },
+  };
+  const originalFetch = global.fetch;
+  const messages = [];
+  global.fetch = async (_url, init) => { messages.push(JSON.parse(init.body)); return {ok:true, status:200}; };
+  try {
+    const req = () => new Request("https://example.com/api/stripe/webhook", {
+      method: "POST", headers: { "stripe-signature": "valid-mock" }, body: "{}",
+    });
+    let response = await handleWebhook(req());
+    assert.equal(response.status, 200);
+    assert.equal(order.paid.initial.amount, 25200);
+    assert.equal(order.paid.initial.type, "deposit");
+    assert.ok(order.paid.initial.notificationSentAt);
+    assert.ok(order.paid.initial.customerNotificationSentAt);
+    assert.equal(messages.length, 2);
+    assert.deepEqual(messages.map(x => x.to[0]).sort(), ["checkout@example.test", "owner@example.test"]);
+    assert.match(messages[1].text, /private order link|order and pickup|Order and pickup/i);
+    response = await handleWebhook(req());
+    assert.equal(response.status, 200);
+    assert.equal(messages.length, 2, "Stripe retry must not resend completed notifications");
+  } finally {
+    global.fetch = originalFetch;
+  }
+});
+
+test("webhook rejects a falsified paid amount instead of marking an order paid", async () => {
+  await createDirectDriverCheckout(opts(126000, true));
+  const metadata = captures[0].payload.metadata;
+  simulatedEvent = { id:"evt_test_wrong_amount", type:"checkout.session.completed", livemode:false,
+    created:Math.floor(Date.now()/1000), data:{object:{id:"cs_test_mock", payment_status:"paid",
+      amount_total: 1, currency:"usd", client_reference_id:order.id, metadata}} };
+  const result = await handleWebhook(new Request("https://example.com/api/stripe/webhook", {
+    method:"POST", headers:{"stripe-signature":"valid-mock"}, body:"{}",
+  }));
+  assert.equal(result.status, 422);
+  assert.equal(order.paid, undefined);
+});
