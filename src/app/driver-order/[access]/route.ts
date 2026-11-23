@@ -155,6 +155,7 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
         <div class="contact-option"><strong>${t("微信 WeChat", "WeChat")}</strong>
           <p>${t("微信号", "WeChat ID")}: <code>ll917961898</code> <button type="button" data-driver-contact-channel="wechat" data-copy-wechat="ll917961898">${t("复制微信号", "Copy WeChat ID")}</button></p>
           <p class="contact-hint">${t("扫码添加 Joy，发送订单号", "Scan to add Joy and send the order ID")}</p>
+          <p><a data-driver-contact-channel="wechat" href="#driver-wechat-qr">${t("查看微信二维码", "View WeChat QR code")}</a></p>
         </div>
         <div class="contact-option"><strong>Email</strong>
           <p><a href="mailto:${escape(siteConfig.enquiryEmail)}">${escape(siteConfig.enquiryEmail)}</a></p>
@@ -166,7 +167,7 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
           <img src="/assets/contact/joy-whatsapp-qr.jpeg" alt="${t("扫码通过 WhatsApp 联系 Joy", "Scan to contact Joy on WhatsApp")}" width="240" height="240" loading="lazy">
           <p class="contact-hint">${t("扫码后请发送订单号", "Please send your order ID after scanning")}</p>
         </figure>
-        <figure data-driver-qr-channel="wechat"><figcaption>${t("微信二维码", "WeChat QR")}</figcaption>
+        <figure id="driver-wechat-qr" data-driver-qr-channel="wechat"><figcaption>${t("微信二维码", "WeChat QR")}</figcaption>
           <img src="/assets/contact/joy-wechat-qr.jpeg" alt="${t("扫码添加 Joy 的微信", "Scan to add Joy on WeChat")}" width="240" height="240" loading="lazy">
           <p class="contact-hint">${t("添加好友后请发送订单号", "Send your order ID after adding Joy")}</p>
         </figure>
