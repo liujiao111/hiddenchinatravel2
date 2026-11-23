@@ -118,15 +118,15 @@ const products: Product[] = [
   },  {
     id: "multi-short", category: "multi", cities: ["kunming", "dali", "lijiang", "shangri-la"],
     en: "Yunnan Free-Travel Private Driver · 1–6 Days", zh: "云南自由行多日包车 · 1–6天",
-    detailEn: "US$180/day for five-seat, or US$195/day for seven-seat. Pay a 20% deposit after selecting dates, days and an agreed route. Fuel, tolls and parking included.",
-    detailZh: "5座车 US$180/天，7座车 US$195/天。选择日期、天数及路线，按总价支付20%定金，油费、高速和停车全包。",
+    detailEn: "US$180/day for five-seat, or US$210/day for seven-seat. Pay a 20% deposit after selecting dates, days and an agreed route. Fuel, tolls and parking included.",
+    detailZh: "5座车 US$180/天，7座车 US$210/天。选择日期、天数及路线，按总价支付20%定金，油费、高速和停车全包。",
     photo: "/assets/destinations/yunnan/dali-erhai-cover.webp",
   },
   {
     id: "multi-long", category: "multi", cities: ["kunming", "dali", "lijiang", "shangri-la"],
     en: "Yunnan Free-Travel Private Driver · 7+ Days", zh: "云南自由行多日包车 · 7天及以上",
-    detailEn: "US$150/day for five-seat, or US$165/day for seven-seat. Pay a 20% deposit for the agreed trip. Fuel, tolls and parking included.",
-    detailZh: "5座车 US$150/天，7座车 US$165/天。按约定总价支付20%定金，油费、高速和停车全包。",
+    detailEn: "US$150/day for five-seat, or US$180/day for seven-seat. Pay a 20% deposit for the agreed trip. Fuel, tolls and parking included.",
+    detailZh: "5座车 US$150/天，7座车 US$180/天。按约定总价支付20%定金，油费、高速和停车全包。",
     photo: "/assets/destinations/yunnan/shangri-la.webp",
   },
 
@@ -590,7 +590,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
     };
   }, []);
   const priceLabel = (product: Product, vehicle: "five" | "seven") => {
-    const price = product.category === "arrival" ? transferStartingPrice(product.id, vehicle) : product.category === "multi" ? (product.id === "multi-long" ? 1000 : 1200) + (vehicle === "seven" ? 100 : 0) : driverDirectPrices[product.id]?.[vehicle];
+    const price = product.category === "arrival" ? transferStartingPrice(product.id, vehicle) : product.category === "multi" ? (product.id === "multi-long" ? 1000 : 1200) + (vehicle === "seven" ? 200 : 0) : driverDirectPrices[product.id]?.[vehicle];
     if (price === undefined) return zh ? "需询价" : "Request quote";
     if (product.category === "arrival") return `from US${driverUsd(price)}`;
     return product.category === "day" || product.category === "multi" ? `US${driverUsd(price)}/day` : `US${driverUsd(price)}`;
@@ -656,7 +656,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
           <p>{zh ? "这个出发城市暂无此类标准服务。" : "There are no standard services in this category for the selected departure city."}</p>
           <button type="button" className="driver-text-link" onClick={() => setCity("")}>{zh ? "查看全部城市" : "View all cities"}</button>
         </div>}
-        <p className="driver-product-footnote">{zh ? "标准跨城及周边一日游均以美元标价；7座比同路线5座增加约人民币100元折算的美元金额。跨城与市区标准路线报价已包含车辆、司机、燃油、高速费与停车费，无隐藏收费；机场／车站接送单独核价。变更路线、超时或额外服务须先确认报价。车辆照片仅为示例。" : "All standard routes and day trips are priced in USD. Seven-seat vehicles have a CNY 100-equivalent USD uplift over five-seat prices. Standard intercity and city hire prices include the vehicle, driver, fuel, tolls and parking, with no hidden charges. Airport/station transfers have separate terms. Any changes, overtime or extra services are quoted before agreement. Vehicle photos are examples."}</p>
+        <p className="driver-product-footnote">{zh ? "标准跨城及周边一日游均以美元标价；直达路线7座加价约¥150，沙溪／虎跳峡线路及一日／多日包车7座加价约¥200（每天），均已折算为美元。跨城与市区标准路线报价已包含车辆、司机、燃油、高速费与停车费，无隐藏收费；机场／车站接送单独核价。变更路线、超时或额外服务须先确认报价。车辆照片仅为示例。" : "All standard routes and day trips are priced in USD. Seven-seat uplifts are CNY 150-equivalent on direct transfers and CNY 200-equivalent on scenic routes and per day on day/multi-day hire. Standard intercity and city hire prices include the vehicle, driver, fuel, tolls and parking, with no hidden charges. Airport/station transfers have separate terms. Any changes, overtime or extra services are quoted before agreement. Vehicle photos are examples."}</p>
       </div>
       <div id="driver-quote-form">
         {selected ? <div className="driver-booking-panel" key={selected}>
