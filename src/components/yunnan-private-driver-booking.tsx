@@ -118,15 +118,15 @@ const products: Product[] = [
   },  {
     id: "multi-short", category: "multi", cities: ["kunming", "dali", "lijiang", "shangri-la"],
     en: "Yunnan Free-Travel Private Driver · 1–6 Days", zh: "云南自由行多日包车 · 1–6天",
-    detailEn: "RMB 1,200/day five-seat base, or RMB 1,300/day seven-seat. Pay a 20% deposit after selecting dates, days and an agreed route. Fuel, tolls and parking included.",
-    detailZh: "5座车每日基准价1200元，7座每日1300元。选择日期、天数及路线，按总价支付20%定金，油费、高速和停车全包。",
+    detailEn: "US$180/day for five-seat, or US$195/day for seven-seat. Pay a 20% deposit after selecting dates, days and an agreed route. Fuel, tolls and parking included.",
+    detailZh: "5座车 US$180/天，7座车 US$195/天。选择日期、天数及路线，按总价支付20%定金，油费、高速和停车全包。",
     photo: "/assets/destinations/yunnan/dali-erhai-cover.webp",
   },
   {
     id: "multi-long", category: "multi", cities: ["kunming", "dali", "lijiang", "shangri-la"],
     en: "Yunnan Free-Travel Private Driver · 7+ Days", zh: "云南自由行多日包车 · 7天及以上",
-    detailEn: "RMB 1,000/day five-seat base, or RMB 1,100/day seven-seat. Pay a 20% deposit for the agreed trip. Fuel, tolls and parking included.",
-    detailZh: "5座车每日基准价1000元，7座每日1100元。按约定总价支付20%定金，油费、高速和停车全包。",
+    detailEn: "US$150/day for five-seat, or US$165/day for seven-seat. Pay a 20% deposit for the agreed trip. Fuel, tolls and parking included.",
+    detailZh: "5座车 US$150/天，7座车 US$165/天。按约定总价支付20%定金，油费、高速和停车全包。",
     photo: "/assets/destinations/yunnan/shangri-la.webp",
   },
 
@@ -210,7 +210,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const guidePrice = isArrival
     ? transferGuidePrice(serviceId ?? "", hubId, priceArea, arrivalDirection, vehiclePrice)
     : isMulti ? undefined : vehiclePrice ? driverDirectPrices[serviceId ?? ""]?.[vehiclePrice] : undefined;
-  // City-day scope requires manual route confirmation; do not charge for remote excursions at the city-only rate.
+  // Route and timing are agreed at checkout; day-trip fee covers listed nearby attractions, subject to normal access conditions.
   const onlinePayable = kind === "standard" && (isMulti ? vehiclePrice !== undefined : guidePrice !== undefined);
   const outsideArea = !isStationTransfer && isOutsideTransferArea(hotelArea);
   const isPickup = arrivalDirection === "pickup";
@@ -644,7 +644,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
                     <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
                     <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
                   </dl>
-                  <small>{product.category === "multi" ? (zh ? "选择天数后按总价支付20%定金，余款按确认条款支付" : "Select days and pay a 20% deposit; balance per booking terms") : product.category === "day" ? (zh ? "市区标准行程全包参考价，无隐藏收费；确定路线后核价付款" : "All-inclusive city-only guide rate, no hidden charges; confirm route before payment") : (zh ? "标准路线可在线支付；包含已约定路线的车辆、司机、油费、高速费及停车费" : "Standard routes can pay online; agreed car, driver, fuel, tolls and parking included")}</small>
+                  <small>{product.category === "multi" ? (zh ? "选择天数后按总价支付20%定金，余款按确认条款支付" : "Select days and pay a 20% deposit; balance per booking terms") : product.category === "day" ? (zh ? "周边一日游交通全包价：车辆、司机、油费、高速、停车费，无隐藏收费" : "All-inclusive nearby day trip; driver, fuel, tolls and parking included") : (zh ? "标准路线可在线支付；包含已约定路线的车辆、司机、油费、高速费及停车费" : "Standard routes can pay online; agreed car, driver, fuel, tolls and parking included")}</small>
                 </div>
                 <button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>
                   {zh ? "选择服务选项" : "Select Service Options"} <span aria-hidden="true">→</span>
