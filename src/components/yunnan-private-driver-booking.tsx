@@ -38,7 +38,7 @@ type FormKind = "standard" | "custom";
 type NamedOption = { value: string; en: string; zh: string };
 type Product = {
   id: ProductId; category: Category; cities: ServiceCity[]; departureCities?: ServiceCity[]; en: string; zh: string;
-  detailEn: string; detailZh: string; photo: string; guidePrices?: { five: number; seven: number };
+  detailEn: string; detailZh: string; photo: string;
   routes?: NamedOption[];
 };
 
@@ -72,7 +72,7 @@ const products: Product[] = [
     photo: "/assets/destinations/yunnan/shangri-la.webp",
   },
   {
-    id: "dali-lijiang-direct", guidePrices: { five: 500, seven: 500 }, category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
+    id: "dali-lijiang-direct", category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
     en: "Dali ⇄ Lijiang Direct", zh: "大理 ⇄ 丽江 · 直达",
     detailEn: "Direct hotel-to-hotel service without sightseeing stops.",
     detailZh: "酒店到酒店直达，不含观光停靠。",
@@ -83,7 +83,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "dali-lijiang-shaxi", guidePrices: { five: 500, seven: 500 }, category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
+    id: "dali-lijiang-shaxi", category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
     en: "Dali ⇄ Lijiang via Shaxi", zh: "大理 ⇄ 丽江 · 途经沙溪",
     detailEn: "A scenic transfer with an agreed stop in Shaxi Ancient Town.",
     detailZh: "在沙溪古镇停留，观光时间需提前约定。",
@@ -94,7 +94,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-shangri-la", guidePrices: { five: 500, seven: 500 }, category: "intercity", cities: ["lijiang", "shangri-la"], departureCities: ["lijiang", "shangri-la"],
+    id: "lijiang-shangri-la", category: "intercity", cities: ["lijiang", "shangri-la"], departureCities: ["lijiang", "shangri-la"],
     en: "Lijiang ⇄ Shangri-La", zh: "丽江 ⇄ 香格里拉",
     detailEn: "Private transfer between Lijiang and Shangri-La.",
     detailZh: "丽江与香格里拉之间的私人接送。",
@@ -105,7 +105,7 @@ const products: Product[] = [
     ]
   },
   {
-    id: "lijiang-tlg-shangri-la", guidePrices: { five: 500, seven: 500 }, category: "intercity", cities: ["lijiang", "shangri-la"], departureCities: ["lijiang"],
+    id: "lijiang-tlg-shangri-la", category: "intercity", cities: ["lijiang", "shangri-la"], departureCities: ["lijiang"],
     en: "Lijiang → Tiger Leaping Gorge → Shangri-La",
     zh: "丽江 → 虎跳峡 → 香格里拉",
     detailEn: "One-way journey with a planned Tiger Leaping Gorge visit.",
@@ -114,28 +114,28 @@ const products: Product[] = [
     routes: [{ value: "Lijiang → Tiger Leaping Gorge → Shangri-La", en: "Lijiang → Tiger Leaping Gorge → Shangri-La", zh: "丽江 → 虎跳峡 → 香格里拉" }]
   },
   {
-    id: "kunming-day", guidePrices: { five: 600, seven: 600 }, category: "day", cities: ["kunming"],
+    id: "kunming-day", category: "day", cities: ["kunming"],
     en: "Kunming Private Day Trip", zh: "昆明周边一日游包车",
     detailEn: "City-area driver hire from RMB 600/day. Stone Forest and other out-of-city trips need a separate quote.",
     detailZh: "市区范围包车参考价 ¥600/天；石林等市区以外行程需单独确认报价。",
     photo: "/assets/blog/kunming-travel-guide/cover-stone-forest.webp",
   },
   {
-    id: "dali-day", guidePrices: { five: 600, seven: 600 }, category: "day", cities: ["dali"],
+    id: "dali-day", category: "day", cities: ["dali"],
     en: "Dali Private Day Trip", zh: "大理周边一日游包车",
     detailEn: "City-area driver hire from RMB 600/day. Wider Erhai routes and out-of-city stops need a separate quote.",
     detailZh: "市区范围包车参考价 ¥600/天；环洱海等较远路线需单独确认报价。",
     photo: "/assets/destinations/yunnan/dali-erhai-cover.webp",
   },
   {
-    id: "lijiang-day", guidePrices: { five: 600, seven: 600 }, category: "day", cities: ["lijiang"],
+    id: "lijiang-day", category: "day", cities: ["lijiang"],
     en: "Lijiang Private Day Trip", zh: "丽江周边一日游包车",
     detailEn: "City-area driver hire from RMB 600/day. Jade Dragon Snow Mountain and distant scenic routes require a quote.",
     detailZh: "市区范围包车参考价 ¥600/天；玉龙雪山等远途路线需单独确认报价。",
     photo: "/assets/destinations/yunnan/blue-moon.webp",
   },
   {
-    id: "shangri-la-day", guidePrices: { five: 600, seven: 600 }, category: "day", cities: ["shangri-la"],
+    id: "shangri-la-day", category: "day", cities: ["shangri-la"],
     en: "Shangri-La Private Day Trip", zh: "香格里拉周边一日游包车",
     detailEn: "City-area driver hire from RMB 600/day. Pudacuo and more distant locations need a separate quote.",
     detailZh: "市区范围包车参考价 ¥600/天；普达措等远途路线需单独确认报价。",
