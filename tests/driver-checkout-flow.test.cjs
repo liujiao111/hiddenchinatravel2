@@ -166,6 +166,7 @@ Module._load = function(request, parent, isMain) {
   };
   if (request === "@/lib/stripe-test") return { isDriverProductId: () => true };
   if (request === "@/lib/driver-order-mail") return require("../src/lib/driver-order-mail.ts");
+  if (request === "@/lib/driver-ga4-purchase") return { reportVerifiedDriverPurchase: async () => false };
   return nativeLoad.call(this, request, parent, isMain);
 };
 const { POST: handleWebhook } = require("../src/app/api/stripe/webhook/route.ts");
