@@ -217,28 +217,28 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           "先比较高铁与公路交通，再决定是否包车。酒店到酒店、家庭大件行李和计划沿途游览时，私人包车通常更方便。")}
         <div className="driver-seo-guide-grid">
           <article className="driver-list-card">
-            <div className="driver-seo-guide-media"><Image src="/assets/blog/how-many-days-in-yunnan/lijiang-old-town.webp" alt="Dali–Lijiang private transfer route in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
+            <div className="driver-seo-guide-media"><Image src="/assets/blog/yunnan-private-driver/dali-lijiang.webp" alt="Dali–Lijiang private transfer route in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
             
             <h3>{T("Dali to Lijiang: Train or Private Car?","大理到丽江：高铁还是私人包车？")}</h3>
             <p>{T("Trains work well for light luggage and station-to-station travel. Choose a private transfer for hotel pickup, a family group or a flexible arrival time.", "行李较少、车站之间出行时，高铁通常更经济；家庭出行、酒店直接接送或时间灵活时，可考虑包车。")}</p>
             <Link href="/dali-to-lijiang">{T("Compare Dali–Lijiang travel options","查看大理到丽江交通对比")} →</Link>
           </article>
           <article className="driver-list-card">
-            <div className="driver-seo-guide-media"><Image src="/assets/destinations/yunnan/shaxi/shaxi-ancient-town-hero.webp" alt="Shaxi Ancient Town traditional square in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
+            <div className="driver-seo-guide-media"><Image src="/assets/blog/yunnan-private-driver/dali-shaxi.webp" alt="Shaxi Ancient Town traditional square in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
             
             <h3>{T("Dali to Shaxi: Road Access & Luggage","大理到沙溪：公路交通与行李安排")}</h3>
             <p>{T("Shaxi has no railway station. Compare buses and private road transfers, or arrange a Shaxi stop on your journey north to Lijiang.", "沙溪没有火车站，最后一段必须走公路。可比较班车与私人接送，或安排从大理到丽江途经沙溪。")}</p>
             <Link href="/dali-to-shaxi">{T("Explore Dali–Shaxi transport","查看大理到沙溪交通攻略")} →</Link>
           </article>
           <article className="driver-list-card">
-            <div className="driver-seo-guide-media"><Image src="/assets/destinations/yunnan/shangri-la.webp" alt="Shangri-La landscape in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
+            <div className="driver-seo-guide-media"><Image src="/assets/blog/yunnan-private-driver/lijiang-shangri-la.webp" alt="Shangri-La landscape in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
             
             <h3>{T("Lijiang to Shangri-La: Direct or Scenic","丽江到香格里拉：直达还是沿途游览？")}</h3>
             <p>{T("A direct train can be efficient, while a private driver offers hotel-to-hotel travel and the option to plan an agreed scenic stop.", "高铁适合快速直达，包车则可酒店接送，并提前商定沿途观景停靠。")}</p>
             <Link href="/lijiang-to-shangri-la">{T("Compare Shangri-La travel options","查看丽江到香格里拉交通对比")} →</Link>
           </article>
           <article className="driver-list-card">
-            <div className="driver-seo-guide-media"><Image src="/assets/destinations/yunnan/tiger-leaping.webp" alt="Tiger Leaping Gorge canyon in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
+            <div className="driver-seo-guide-media"><Image src="/assets/blog/yunnan-private-driver/lijiang-tiger-leaping-gorge.webp" alt="Tiger Leaping Gorge canyon in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
             
             <h3>{T("Tiger Leaping Gorge: Day Trip or Onward Transfer","虎跳峡：丽江往返还是继续去香格里拉？")}</h3>
             <p>{T("Upper Gorge sightseeing and onward travel need different timing. Check road access and confirmed sightseeing areas before planning a stop.", "上虎跳峡观景与继续前往香格里拉的时间安排不同，应提前核实路况、开放区域与停留计划。")}</p>
