@@ -131,3 +131,35 @@ test("seven-seat booking with excessive luggage is refused before charge", async
   assert.equal(response.status, 400);
   assert.equal(checkouts.length, 0);
 });
+
+test("hidden internal full-order test produces a real checkout for exactly USD 1", async () => {
+  const response = await send(sample("driver-full-order-usd1-test", "Five-seat car", {
+    directionCode: "PAYMENT TEST ONLY - NO TRANSPORT SERVICE",
+    checkoutTest: true, route: "PAYMENT TEST ONLY - NO TRANSPORT SERVICE",
+    pickup:"No pickup - payment test", dropoff:"No dropoff - payment test",
+  }));
+  assert.equal(response.status, 200, await response.clone().text());
+  assert.equal(checkouts.length, 1);
+  assert.equal(checkouts[0].totalFen, 100);
+  assert.equal(checkouts[0].deposit, false);
+  assert.equal(checkouts[0].testOnly, true);
+  assert.equal(checkouts[0].summary.testOnly, true);
+});
+
+test("a forged USD 1 test product without explicit test purpose is rejected", async () => {
+  const response = await send(sample("driver-full-order-usd1-test", "Five-seat car", {
+    directionCode:"PAYMENT TEST ONLY - NO TRANSPORT SERVICE",
+    checkoutTest:false,
+  }));
+  assert.equal(response.status, 400);
+  assert.equal(checkouts.length, 0);
+});
+
+test("a USD 1 test product cannot use seven-seat transport or deposit payments", async () => {
+  const response = await send(sample("driver-full-order-usd1-test", "Seven-seat car", {
+    directionCode:"PAYMENT TEST ONLY - NO TRANSPORT SERVICE",
+    checkoutTest:true, deposit:true,
+  }));
+  assert.equal(response.status, 400);
+  assert.equal(checkouts.length, 0);
+});
