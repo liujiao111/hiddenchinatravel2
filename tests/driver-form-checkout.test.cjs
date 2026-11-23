@@ -66,7 +66,7 @@ const sample = (productId, vehicle, options = {}) => ({
   driverOrder:{
     checkout:true, productId, vehicleCode:vehicle, luggage:1,
     submissionKey:crypto.randomUUID(), directionCode: "Dali → Lijiang direct",
-    route:"Dali → Lijiang direct", pickup:"Dali Hotel",dropoff:"Lijiang Hotel",
+    route:"Dali → Lijiang direct", pickup:"Dali Hotel",dropoff:"Lijiang Hotel", pickupTime:"09:30",
     ...options,
   },
 });
