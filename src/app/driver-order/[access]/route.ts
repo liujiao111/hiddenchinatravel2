@@ -67,6 +67,11 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
     <main><p>Hidden China Travel</p><h1>${verificationOnly ? t("US$1 支付测试订单", "US$1 Payment Verification Order") : t("包车订单", "Driver order")}</h1>
     ${verificationOnly ? `<section><strong>${t("仅用于支付验收，真实扣款 US$1。不包含包车、接送、导游或有效预订；请勿安排司机。", "REAL US$1 payment verification only. No transport, driver, guide or reservation is included. Do not dispatch a vehicle.")}</strong></section>` : ""}
     <p class="status ${paidFen>0?"success":"pending"}">${escape(status)}</p>
+    ${verificationOnly && paidFen>0 ? `<p class="subtle">
+      ${t("运营方付款通知：","Operator payment email:")} ${paid?.initial?.notificationSentAt ? t("已提交邮件服务","Accepted for sending") : t("尚未确认","Not yet confirmed")}
+      |
+      ${t("客户付款确认邮件：","Guest confirmation email:")} ${paid?.initial?.customerNotificationSentAt ? t("已提交邮件服务","Accepted for sending") : t("尚未确认","Not yet confirmed")}
+    </p>` : ""}
     ${paymentPending ? `<p class="subtle">${t("Stripe 付款已返回，我们正在同步支付记录。请刷新此页；付款成功前无需再次支付。", "Returned from Stripe. We are reconciling your payment. Refresh this page; do not pay a second time.")} <a href="${escape(new URL(_request.url).pathname)}">${t("刷新订单状态", "Refresh payment status")}</a></p>` : ""}
     <section><h2>${verificationOnly ? t("测试订单", "Test order") : t("行程详情", "Trip details")}</h2><dl>
     ${row(t("订单编号", "Order ID"), id)}
