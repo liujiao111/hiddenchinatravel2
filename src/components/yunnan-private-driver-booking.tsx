@@ -403,6 +403,16 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
           vehicle_requested: vehicle, event_id: idRef.current, lead_id: leadRef.current || undefined,
           page_path: window.location.pathname,
         });
+        if (typeof data.checkoutAmount === "number" && Number.isFinite(data.checkoutAmount) && data.checkoutAmount > 0
+          && data.checkoutCurrency === "USD") {
+          // The amount comes from the server, never from user-supplied price inputs.
+          trackEvent("begin_checkout", {
+            currency: "USD", value: data.checkoutAmount,
+            product_id: service?.id || "custom-multi-day", service_category: service?.category || "custom",
+            payment_type: data.checkoutPaymentType === "deposit" ? "deposit" : "full",
+            page_path: window.location.pathname,
+          });
+        }
         trackEvent("driver_checkout_started", {
           product_id: service?.id || "custom-multi-day", service_category: service?.category || "custom",
           page_path: window.location.pathname,
