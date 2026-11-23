@@ -37,14 +37,14 @@ export async function readDriverOrder(id) {
   return { order: await new Response(result.stream).json(), etag: result.blob.etag };
 }
 
-/** @param {string} id @param {object} summary @param {string} submissionKey */
-export async function saveDriverRequest(id, summary, submissionKey) {
+/** @param {string} id @param {object} summary @param {string} submissionKey @param {object} [initialFields] */
+export async function saveDriverRequest(id, summary, submissionKey, initialFields = {}) {
   if (!idPattern.test(submissionKey)) throw new Error("Invalid submission key");
   const submissionHash = createHash("sha256").update(submissionKey).digest("hex");
   const path = orderPath(id);
   const current = await readDriverOrder(id);
   if (current) return current.order.submissionHash === submissionHash ? current.order : null;
-  const order = { id, summary, access: driverOrderAccess(id), submissionHash, createdAt: new Date().toISOString() };
+  const order = { id, summary, access: driverOrderAccess(id), submissionHash, createdAt: new Date().toISOString(), ...initialFields };
   try {
     await put(path, JSON.stringify(order), { ...options, allowOverwrite: false, contentType: "application/json" });
     return order;
