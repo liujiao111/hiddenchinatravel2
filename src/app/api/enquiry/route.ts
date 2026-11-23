@@ -3,6 +3,7 @@ import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
 import { Resend } from "resend";
 import { enquiryEmailText, enquirySubject, parseEnquiry } from "@/lib/enquiry";
 import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
+import { checkDriverRateLimit } from "@/lib/driver-distributed-rate-limit.mjs";
 
 async function readEnquiryBody(request: Request) {
   const contentType = request.headers.get("content-type") ?? "";
@@ -26,6 +27,16 @@ export async function POST(request: Request) {
 
   if (isTransferClaimSpam(parsed.plans)) {
     return Response.json({ error: "Please describe your travel plans and try again." }, { status: 422 });
+  }
+
+  try {
+    const limit = await checkDriverRateLimit(request, "contact-enquiry");
+    if (!limit.allowed) return Response.json(
+      { error: "Too many enquiries. Please try again later or contact us on WhatsApp." },
+      { status: 429, headers: { "Retry-After": String(limit.retryAfter), "Cache-Control": "no-store" } });
+  } catch {
+    console.error("[enquiry-security] Shared request limiter unavailable");
+    return Response.json({ error: "The enquiry form is temporarily busy. Please try again shortly." }, { status: 503 });
   }
 
   // A successful enquiry gets a Ref even for legacy/no-JS clients.
