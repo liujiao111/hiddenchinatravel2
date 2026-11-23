@@ -60,6 +60,10 @@ export async function POST(request: Request) {
     const days = Number(driverOrder.days);
     const validMulti = multi && Number.isInteger(days) && days >= (productId === "multi-long" ? 7 : 1)
       && days <= (productId === "multi-long" ? 45 : 6) && driverOrder.deposit === true;
+    const endDate = typeof driverOrder.endDate === "string" ? driverOrder.endDate : "";
+    const expectedEnd = new Date(enquiry.travelTiming + "T00:00:00Z");
+    if (Number.isFinite(expectedEnd.getTime()) && validMulti) expectedEnd.setUTCDate(expectedEnd.getUTCDate() + days - 1);
+    const validEnd = !multi || (!endDate || (Number.isFinite(expectedEnd.getTime()) && endDate === expectedEnd.toISOString().slice(0, 10)));
     // Reprice independently of the browser. All live Checkout amounts are in USD cents.
     const totalFen = airportTransfer?.guideFen !== undefined && airportTransfer?.guideFen !== null
       ? driverUsdCents(airportTransfer.guideFen / 100)
@@ -67,7 +71,7 @@ export async function POST(request: Request) {
       : productId.endsWith("-day") && typeof directRate === "number" ? driverUsdCents(directRate)
       : typeof directRate === "number" ? driverUsdCents(directRate) : null;
     if (!/^\/(?:zh\/|en\/)?yunnan-private-driver\/?$/.test(enquiry.conversionPage || "")
-      || !size || !totalFen || !Number.isSafeInteger(totalFen) || (multi && !validMulti)
+      || !size || !totalFen || !Number.isSafeInteger(totalFen) || (multi && (!validMulti || !validEnd))
       || !Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== enquiry.travelTiming || enquiry.travelTiming < chinaServiceDate()
       || !Number.isInteger(driverOrder.luggage) || driverOrder.luggage < 0 || driverOrder.luggage > 20
       || (size === "five" && (enquiry.adults + enquiry.children > 3 || Number(driverOrder.luggage) > 3))
@@ -75,6 +79,7 @@ export async function POST(request: Request) {
       || (airportTransfer && driverOrder.airportTransfer.productId !== productId)
       || (airportTransfer && driverOrder.airportTransfer.vehicle !== vehicle)
       || (product?.routes && !product.routes.includes(String(driverOrder.directionCode)))
+      || ((multi || productId.endsWith("-day")) && (typeof driverOrder.route !== "string" || !driverOrder.route.trim()))
       || typeof driverOrder.pickup !== "string" || !driverOrder.pickup.trim()
       || typeof driverOrder.dropoff !== "string" || !driverOrder.dropoff.trim()) {
       return Response.json({ error: "Please check the route, date, vehicle and passenger details before payment." }, { status: 400 });
@@ -85,6 +90,29 @@ export async function POST(request: Request) {
           pickup: String(driverOrder.pickup).slice(0, 150), dropoff: String(driverOrder.dropoff).slice(0, 150), vehicle,
           party: enquiry.adults + enquiry.children, email: enquiry.email, name: enquiry.name, whatsapp: enquiry.whatsapp,
           notes: enquiry.notes, ...(airportTransfer || {}), currency: "usd", guideFen: totalFen } });
+      // A Stripe redirect is NOT a paid booking. Persist and notify the operator of
+      // the lead now, so abandoned/cancelled checkouts are not silently lost.
+      const formRecord = prepareFormRecord(tracking, "https://hiddenchinatravel.com" + (enquiry.conversionPage || "/yunnan-private-driver"), "yunnan_driver_product", enquiry.requestId);
+      try { await saveFormRecord(formRecord); }
+      catch { console.error("[driver-checkout] Lead attribution could not be saved"); }
+      const { apiKey, from, to } = getEnquiryMailConfig();
+      if (apiKey && from && to) {
+        try {
+          const mail = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json",
+              "Idempotency-Key": `driver-checkout-started-${enquiry.requestId}` },
+            body: JSON.stringify({ from, to: [to], subject: `[Unpaid checkout] Driver enquiry — ${enquiry.name}`,
+              text: "Payment status: NOT PAID. Stripe Checkout created; do not dispatch.\\n" +
+                "Reference: " + formRecord.ref + "\\n" + enquiryEmailText(enquiry) +
+                "\\nOrder page: " + new URL(result.orderPath, origin).href +
+                "\\nExpected total: USD " + (totalFen / 100).toFixed(2) +
+                "\\nPayment due now: USD " + ((multi ? Math.round(totalFen / 5) : totalFen) / 100).toFixed(2) } }),
+            signal: AbortSignal.timeout(5_000),
+          });
+          if (!mail.ok) console.error("[driver-checkout] Operator lead notification rejected", { status: mail.status });
+        } catch { console.error("[driver-checkout] Operator lead notification unavailable"); }
+      } else console.error("[driver-checkout] Operator lead notification is not configured");
       return Response.json({ success: true, ...result }, { headers: { "Cache-Control": "no-store" } });
     } catch (error) {
       return Response.json({ error: error instanceof Error ? error.message : "Could not open secure checkout. Please try again." }, { status: 503 });
