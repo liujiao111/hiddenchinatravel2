@@ -31,6 +31,15 @@ const nextConfig = {
         destination: "/traveler-stories/from-chinas-cities-to-yunnans-landscapes",
         permanent: true,
       },
+      // Keep old public PNG URLs working after their replacement with optimized WebP.
+      ...[
+        "AEA90834-C386-4023-84A9-B7E29C6569E7",
+        "38F5AAF2-AD1C-4D3D-B035-5B9109C589D9",
+      ].map((name) => ({
+        source: `/assets/destinations/yunnan/shaxi/${name}.png`,
+        destination: `/assets/destinations/yunnan/shaxi/${name}.webp`,
+        permanent: true,
+      })),
       ...legacyRedirects(),
     ];
   },

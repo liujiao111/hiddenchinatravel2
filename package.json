@@ -5,12 +5,13 @@
   "engines": { "node": "24.x" },
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/check-driver-prod-env.cjs && npm run check:faq && npm run test:whatsapp && node --test tests/driver-checkout-flow.test.cjs tests/driver-form-checkout.test.cjs tests/driver-blob-orders.test.cjs tests/driver-order-ga4.test.cjs && next build",
+    "build": "node scripts/check-driver-prod-env.cjs && npm run check:images && npm run check:faq && npm run test:whatsapp && node --test tests/driver-checkout-flow.test.cjs tests/driver-form-checkout.test.cjs tests/driver-blob-orders.test.cjs tests/driver-order-ga4.test.cjs && next build",
     "start": "next start",
     "lint": "eslint",
     "test:whatsapp": "node --test tests/whatsapp-tracking.test.cjs",
     "test": "node --test tests/*.test.cjs",
-    "check:faq": "node scripts/check-article-faq.mjs"
+    "check:faq": "node scripts/check-article-faq.mjs",
+    "check:images": "node scripts/check-site-images.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.9.0",
