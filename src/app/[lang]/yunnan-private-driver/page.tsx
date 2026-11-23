@@ -206,6 +206,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       <div className="shell">
         {heading("07 / SERVICE AREAS","Private Driver Services Across Yunnan","云南私人包车覆盖地区", "From classic routes to lesser-known Yunnan destinations, private driving is available across the province.", "从热门城市到未列出的云南省内目的地，均可提供私人包车服务，具体路线按道路和车源确认。")}
         <div className="driver-area-grid">{coverage.map(item=><article className="driver-area-card" key={item.name}><div><Image src={item.img} alt={item.name} fill sizes="(max-width:600px) 100vw, 25vw" /></div><h3>{item.name}</h3><p>{item.detail}</p></article>)}</div>
+        <p className="driver-detail-note">{T("Planning a stop at Tiger Leaping Gorge? Our Lijiang-to-Gorge guide explains bus options, private day trips and the one-way route to Shangri-La.", "计划从丽江前往虎跳峡？交通攻略对比大巴、当日往返包车，以及经虎跳峡去香格里拉的单程路线。")} <Link href="/lijiang-to-tiger-leaping-gorge">{T("Read the Lijiang to Tiger Leaping Gorge guide", "查看丽江到虎跳峡交通攻略")}</Link>.</p>
       </div>
     </section>
 

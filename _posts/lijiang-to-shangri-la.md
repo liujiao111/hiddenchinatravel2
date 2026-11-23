@@ -63,6 +63,8 @@ This guide compares the train, the public bus, a direct private transfer, and a 
 
 Train and bus schedules shift by season and by holiday, so confirm your actual travel date before locking in hotels, attraction tickets, or onward transport. Don't plan around a screenshot from someone else's trip.
 
+If you are deciding whether to visit the developed Upper Gorge, how to get there from Lijiang, or whether a return trip makes sense, read our [Lijiang to Tiger Leaping Gorge transport guide](/lijiang-to-tiger-leaping-gorge) first.
+
 For the wider route, see our [Lijiang travel guide](/lijiang-travel-guide), [Shangri-La travel guide](/shangri-la-travel-guide) and [Yunnan travel guide](/china-destinations/yunnan).
 
 ## Lijiang to Shangri-La at a Glance
