@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { driverDirectPrices } from "@/lib/driver-direct-prices";
+import { driverUsd, driverMultiDayRate, driverMultiDayTotalUsd } from "@/lib/driver-usd-prices";
 import { EnquirySelect } from "@/components/enquiry-select";
 import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { getAttribution } from "@/lib/attribution";
@@ -14,11 +15,12 @@ import { filterDriverProducts } from "@/lib/driver-product-filter";
 import type { DriverStripeTestMode } from "@/lib/stripe-test";
 
 type Locale = "en" | "zh";
-type Category = "arrival" | "intercity" | "day";
+type Category = "arrival" | "intercity" | "day" | "multi";
 type ProductId =
   | "kunming-arrival" | "dali-arrival" | "lijiang-arrival" | "shangri-la-arrival"
   | "dali-lijiang-direct" | "dali-lijiang-shaxi" | "lijiang-shangri-la" | "lijiang-tlg-shangri-la"
-  | "kunming-day" | "dali-day" | "lijiang-day" | "shangri-la-day";
+  | "kunming-day" | "dali-day" | "lijiang-day" | "shangri-la-day"
+  | "multi-short" | "multi-long";
 const serviceCities = [
   { value: "kunming", en: "Kunming", zh: "昆明" },
   { value: "dali", en: "Dali", zh: "大理" },
@@ -29,9 +31,10 @@ type ServiceCity = typeof serviceCities[number]["value"];
 
 const serviceFilters = [
   { key: "all", id: "all-driver-services", en: "All services", zh: "全部服务" },
-  { key: "arrival", id: "airport-station-transfers", en: "Airport & Station", zh: "机场／车站接送" },
-  { key: "intercity", id: "intercity-transfers", en: "Intercity", zh: "跨城接送" },
+  { key: "intercity", id: "intercity-transfers", en: "Intercity Transfers", zh: "跨城接送" },
   { key: "day", id: "private-car-by-day", en: "Private Day Trips", zh: "周边一日游包车" },
+  { key: "multi", id: "multi-day-private-driver", en: "Multi-Day Yunnan Driver", zh: "云南自由行多日包车" },
+  { key: "arrival", id: "airport-station-transfers", en: "Airport & Station", zh: "机场／高铁站接送" },
 ] as const;
 
 type FormKind = "standard" | "custom";
@@ -43,34 +46,6 @@ type Product = {
 };
 
 const products: Product[] = [
-  {
-    id: "kunming-arrival", category: "arrival", cities: ["kunming"],
-    en: "Kunming Airport & Railway Station Transfer", zh: "昆明机场与火车站接送",
-    detailEn: "Private transfers between Kunming Changshui Airport, Kunming Railway Station or Kunming South Railway Station and major hotel areas.",
-    detailZh: "提供昆明长水国际机场、昆明站及昆明南站与昆明主要酒店区域之间的私人接送服务。",
-    photo: "/assets/blog/kunming-travel-guide/kunming-city.webp",
-  },
-  {
-    id: "dali-arrival", category: "arrival", cities: ["dali"],
-    en: "Dali Airport & Railway Station Transfer", zh: "大理机场与火车站接送",
-    detailEn: "Private transfers between Dali Fengyi Airport, Dali Railway Station, Xiaguan, Dali Old Town, Xizhou and Shuanglang.",
-    detailZh: "提供大理凤仪机场、大理站与下关、大理古城、喜洲及双廊之间的私人接送服务。",
-    photo: "/assets/destinations/yunnan/dali-erhai-cover.webp",
-  },
-  {
-    id: "lijiang-arrival", category: "arrival", cities: ["lijiang"],
-    en: "Lijiang Airport & Railway Station Transfer", zh: "丽江机场与火车站接送",
-    detailEn: "Private transfers between Lijiang Sanyi International Airport, Lijiang Railway Station, Lijiang Old Town, Shuhe and Baisha.",
-    detailZh: "提供丽江三义国际机场、丽江站与丽江古城、束河古镇及白沙古镇之间的私人接送服务。",
-    photo: "/assets/destinations/yunnan/lijiang.webp",
-  },
-  {
-    id: "shangri-la-arrival", category: "arrival", cities: ["shangri-la"],
-    en: "Shangri-La Airport & Railway Station Transfer", zh: "香格里拉机场与火车站接送",
-    detailEn: "Private transfers between Diqing Shangri-La Airport, Shangri-La Railway Station, Dukezong Ancient Town, central Shangri-La and the Songzanlin area.",
-    detailZh: "提供迪庆香格里拉机场、香格里拉站与独克宗古城、香格里拉市区及松赞林寺片区之间的私人接送服务。",
-    photo: "/assets/destinations/yunnan/shangri-la.webp",
-  },
   {
     id: "dali-lijiang-direct", category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
     en: "Dali ⇄ Lijiang Direct", zh: "大理 ⇄ 丽江 · 直达",
@@ -116,31 +91,74 @@ const products: Product[] = [
   {
     id: "kunming-day", category: "day", cities: ["kunming"],
     en: "Kunming Private Day Trip", zh: "昆明周边一日游包车",
-    detailEn: "City-area driver hire from RMB 1,000/day. Stone Forest and other out-of-city trips need a separate quote.",
-    detailZh: "市区范围包车参考价 ¥1,000/天；石林等市区以外行程需单独确认报价。",
+    detailEn: "Explore Stone Forest, Dianchi Lake, Haigeng Dam, Western Hills, Green Lake or Kunming Old Street on an agreed day route. All transport costs included.",
+    detailZh: "可选石林、滇池、海埂大坝、西山、翠湖、昆明老街等周边一日游参考景点；约定行程内车费、油费、高速费和停车费全包。",
     photo: "/assets/blog/kunming-travel-guide/cover-stone-forest.webp",
   },
   {
     id: "dali-day", category: "day", cities: ["dali"],
     en: "Dali Private Day Trip", zh: "大理周边一日游包车",
-    detailEn: "City-area driver hire from RMB 1,000/day. Wider Erhai routes and out-of-city stops need a separate quote.",
-    detailZh: "市区范围包车参考价 ¥1,000/天；环洱海等较远路线需单独确认报价。",
+    detailEn: "Explore Erhai Lake loop, Xizhou, Shuanglang, Dali Old Town, Three Pagodas, Zhoucheng or Shaping Market on your planned day route.",
+    detailZh: "可选环洱海、喜洲、双廊、大理古城、崇圣寺三塔、周城及沙坪集市等周边景点，按约定一日行程全包交通费用。",
     photo: "/assets/destinations/yunnan/dali-erhai-cover.webp",
   },
   {
     id: "lijiang-day", category: "day", cities: ["lijiang"],
     en: "Lijiang Private Day Trip", zh: "丽江周边一日游包车",
-    detailEn: "City-area driver hire from RMB 1,000/day. Jade Dragon Snow Mountain and distant scenic routes require a quote.",
-    detailZh: "市区范围包车参考价 ¥1,000/天；玉龙雪山等远途路线需单独确认报价。",
+    detailEn: "Discover Jade Dragon Snow Mountain, Blue Moon Valley, Baisha, Shuhe, Yuhu Village or Lashihai on an agreed day route.",
+    detailZh: "可选玉龙雪山、蓝月谷、白沙古镇、束河古镇、玉湖村、拉市海等周边一日游景点，按约定行程全包交通费用。",
     photo: "/assets/destinations/yunnan/blue-moon.webp",
   },
   {
     id: "shangri-la-day", category: "day", cities: ["shangri-la"],
     en: "Shangri-La Private Day Trip", zh: "香格里拉周边一日游包车",
-    detailEn: "City-area driver hire from RMB 1,000/day. Pudacuo and more distant locations need a separate quote.",
-    detailZh: "市区范围包车参考价 ¥1,000/天；普达措等远途路线需单独确认报价。",
+    detailEn: "Explore Pudacuo National Park, Songzanlin Monastery, Dukezong Ancient Town, Napa Lake or local viewpoints on an agreed day route.",
+    detailZh: "可选普达措国家公园、松赞林寺、独克宗古城、纳帕海及周边观景地，按约定一日行程全包交通费用。",
     photo: "/assets/blog/best-time-to-visit-yunnan/cover-pudacuo-autumn.webp",
+  },  {
+    id: "multi-short", category: "multi", cities: ["kunming", "dali", "lijiang", "shangri-la"],
+    en: "Yunnan Free-Travel Private Driver · 1–6 Days", zh: "云南自由行多日包车 · 1–6天",
+    detailEn: "RMB 1,200/day five-seat base, or RMB 1,300/day seven-seat. Pay a 20% deposit after selecting dates, days and an agreed route. Fuel, tolls and parking included.",
+    detailZh: "5座车每日基准价1200元，7座每日1300元。选择日期、天数及路线，按总价支付20%定金，油费、高速和停车全包。",
+    photo: "/assets/destinations/yunnan/dali-erhai-cover.webp",
   },
+  {
+    id: "multi-long", category: "multi", cities: ["kunming", "dali", "lijiang", "shangri-la"],
+    en: "Yunnan Free-Travel Private Driver · 7+ Days", zh: "云南自由行多日包车 · 7天及以上",
+    detailEn: "RMB 1,000/day five-seat base, or RMB 1,100/day seven-seat. Pay a 20% deposit for the agreed trip. Fuel, tolls and parking included.",
+    detailZh: "5座车每日基准价1000元，7座每日1100元。按约定总价支付20%定金，油费、高速和停车全包。",
+    photo: "/assets/destinations/yunnan/shangri-la.webp",
+  },
+
+  {
+    id: "kunming-arrival", category: "arrival", cities: ["kunming"],
+    en: "Kunming Airport & Railway Station Transfer", zh: "昆明机场与火车站接送",
+    detailEn: "Private transfers between Kunming Changshui Airport, Kunming Railway Station or Kunming South Railway Station and major hotel areas.",
+    detailZh: "提供昆明长水国际机场、昆明站及昆明南站与昆明主要酒店区域之间的私人接送服务。",
+    photo: "/assets/blog/kunming-travel-guide/kunming-city.webp",
+  },
+  {
+    id: "dali-arrival", category: "arrival", cities: ["dali"],
+    en: "Dali Airport & Railway Station Transfer", zh: "大理机场与火车站接送",
+    detailEn: "Private transfers between Dali Fengyi Airport, Dali Railway Station, Xiaguan, Dali Old Town, Xizhou and Shuanglang.",
+    detailZh: "提供大理凤仪机场、大理站与下关、大理古城、喜洲及双廊之间的私人接送服务。",
+    photo: "/assets/destinations/yunnan/dali-erhai-cover.webp",
+  },
+  {
+    id: "lijiang-arrival", category: "arrival", cities: ["lijiang"],
+    en: "Lijiang Airport & Railway Station Transfer", zh: "丽江机场与火车站接送",
+    detailEn: "Private transfers between Lijiang Sanyi International Airport, Lijiang Railway Station, Lijiang Old Town, Shuhe and Baisha.",
+    detailZh: "提供丽江三义国际机场、丽江站与丽江古城、束河古镇及白沙古镇之间的私人接送服务。",
+    photo: "/assets/destinations/yunnan/lijiang.webp",
+  },
+  {
+    id: "shangri-la-arrival", category: "arrival", cities: ["shangri-la"],
+    en: "Shangri-La Airport & Railway Station Transfer", zh: "香格里拉机场与火车站接送",
+    detailEn: "Private transfers between Diqing Shangri-La Airport, Shangri-La Railway Station, Dukezong Ancient Town, central Shangri-La and the Songzanlin area.",
+    detailZh: "提供迪庆香格里拉机场、香格里拉站与独克宗古城、香格里拉市区及松赞林寺片区之间的私人接送服务。",
+    photo: "/assets/destinations/yunnan/shangri-la.webp",
+  },
+
 ];
 
 const fiveSeat = "Five-seat car";
@@ -190,9 +208,9 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const vehiclePrice = vehicle === fiveSeat ? "five" : vehicle === sevenSeat ? "seven" : undefined;
   const guidePrice = isArrival
     ? transferGuidePrice(serviceId ?? "", hubId, priceArea, arrivalDirection, vehiclePrice)
-    : vehiclePrice ? driverDirectPrices[serviceId ?? ""]?.[vehiclePrice] : undefined;
+    : isMulti ? undefined : vehiclePrice ? driverDirectPrices[serviceId ?? ""]?.[vehiclePrice] : undefined;
   // City-day scope requires manual route confirmation; do not charge for remote excursions at the city-only rate.
-  const onlinePayable = kind === "standard" && service?.category !== "day" && guidePrice !== undefined;
+  const onlinePayable = kind === "standard" && (isMulti ? vehiclePrice !== undefined : guidePrice !== undefined);
   const outsideArea = !isStationTransfer && isOutsideTransferArea(hotelArea);
   const isPickup = arrivalDirection === "pickup";
   const transportHub = secondHub && !isPickup ? secondHub : hub;
@@ -208,6 +226,11 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   const dropoffLabel = secondHub ? (zh ? "昆明南站 → 机场（接站）" : "Kunming South Railway Station → airport (railway pickup)")
     : zh ? `酒店 → ${hubType}（${hub ? hub.kind === "airport" ? "送机" : "送站" : "送机／送站"}）` : `Hotel → ${hubType} (drop-off)`;
   const isDay = service?.category === "day";
+  const isMulti = service?.category === "multi";
+  const [multiDays, setMultiDays] = useState(serviceId === "multi-long" ? 7 : 1);
+  const multiRate = driverMultiDayRate(multiDays) + (vehicle === sevenSeat ? 100 : 0);
+  const multiTotal = isMulti ? driverMultiDayTotalUsd(multiDays, vehicle === sevenSeat) : 0;
+  const multiDeposit = Math.round(multiTotal * 0.2 * 100) / 100;
   const isIntercity = service?.category === "intercity";
   const title = kind === "custom" ? (zh ? "提交定制／多日包车需求" : "Request a Custom or Multi-Day Driver") : (zh ? "选择服务选项与日期" : "Select Your Transfer Details");
   const formName = kind === "custom" ? "yunnan_driver_custom" : "yunnan_driver_product";
@@ -278,7 +301,11 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const dropoff = isArrival ? (isPickup ? secondLocation : hubName) : (String(values.get("dropoff") || "") || (isDay ? pickup : ""));
     const route = String(values.get("route") || "");
     const notes = String(values.get("notes") || "");
-    const days = kind === "custom" ? String(values.get("days") || "") : isDay ? "1 day" : "1 transfer";
+    const days = isMulti ? String(values.get("days") || "") : kind === "custom" ? String(values.get("days") || "") : isDay ? "1 day" : "1 transfer";
+    const multiCount = Number(days);
+    if (isMulti && (!Number.isInteger(multiCount) || multiCount < (serviceId === "multi-long" ? 7 : 1) || multiCount > (serviceId === "multi-long" ? 45 : 6))) {
+      setError(zh ? "请填写符合该套餐的包车天数。" : "Enter a valid number of days for this product."); setStatus("error"); return;
+    }
     const serviceName = service?.en || "Custom & Multi-Day Driver";
     idRef.current ??= crypto.randomUUID();
     leadRef.current ??= generateLeadId();
@@ -300,7 +327,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       "Pickup: " + pickup,
       "Drop-off: " + dropoff,
       "Vehicle requested: " + vehicle,
-      guidePrice === undefined ? "Price: manual quote" : "Online guide price: RMB " + guidePrice + " per vehicle",
+      isMulti ? `Online total: USD ${multiTotal}; 20% deposit: USD ${multiDeposit}` : guidePrice === undefined ? "Price: manual quote" : "Online guide price: USD " + driverUsd(guidePrice) + " per vehicle",
       "Passengers: " + adults + " adults, " + children + " children",
       "Large suitcases: " + luggage,
       "Duration: " + days,
@@ -322,10 +349,11 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       requestId: idRef.current,
       driverOrder: {
         checkout: onlinePayable, productId: serviceId, vehicleCode: vehicle, directionCode: String(values.get("direction") || ""), luggage,
+         ...(isMulti ? { days: multiCount, deposit: true } : {}),
         submissionKey: submissionKey.current, locale, service: service ? (zh ? service.zh : service.en) : title,
         route: direction || route, pickup, dropoff, vehicle: zh
           ? (vehicle === fiveSeat ? "5座车" : vehicle === sevenSeat ? "7座商务车" : "更大车型") : vehicle,
-        guideFen: guidePrice === undefined ? null : guidePrice * 100,
+        guideFen: isMulti ? multiTotal * 100 : guidePrice === undefined ? null : driverUsd(guidePrice) * 100,
         ...(isArrival ? { airportTransfer: {
           productId: serviceId, hubId, direction: arrivalDirection, hotelArea: secondHub ? "" : hotelArea,
           stationTransfer: Boolean(secondHub), hotel, transportNumber, serviceTime, vehicle, luggage, notes,
@@ -373,7 +401,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
   }}>
     <h3>{title}</h3>
     {service ? <p className="driver-form-selection">{zh ? "当前产品：" : "Your product: "}<strong>{zh ? service.zh : service.en}</strong></p> : null}
-    <p className="driver-form-note">{onlinePayable ? (zh ? "提交后前往 Stripe 支付所选服务全款。付款后确认司机和派车安排；如无法提供服务，已付款项全额退还。" : "Continue to Stripe to pay in full for your selected service. We confirm driver allocation after payment. If we cannot provide the service, your payment is refunded in full.") : (zh ? "此路线需人工核价，提交需求后我们会联系你，提交本身不收款。" : "This route needs a custom quote. Submit your request and we will contact you; no payment is collected.")}</p>
+    <p className="driver-form-note">{isMulti ? (zh ? "填写路线并支付20%定金，最终车源及行程仍需确认；无法提供服务则退款。" : "Enter your route and pay a 20% deposit. Vehicle and itinerary are confirmed afterwards; unavailable service is refunded.") : onlinePayable ? (zh ? "提交后前往 Stripe 支付所选服务全款。付款后确认司机和派车安排；如无法提供服务，已付款项全额退还。" : "Continue to Stripe to pay in full for your selected service. We confirm driver allocation after payment. If we cannot provide the service, your payment is refunded in full.") : (zh ? "此路线需人工核价，提交需求后我们会联系你，提交本身不收款。" : "This route needs a custom quote. Submit your request and we will contact you; no payment is collected.")}</p>
     {transfer ? <>
       <div className="contact-field-row">
         <EnquirySelect name="hub" label={zh ? "选择机场／火车站 *" : "Airport / railway station *"} placeholder={zh ? "请选择" : "Choose a hub"} required value={hubId} onValueChange={value => { setHubId(value); setStationTransfer(false); }} options={transfer.hubs.map(h => ({ value: h.value, label: h[locale] }))} />
@@ -423,15 +451,15 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       <label><span>{isDay ? (zh ? "结束地点（选填）" : "Drop-off location (optional)") : (zh ? "送达酒店／地点 *" : "Drop-off city / location *")}</span><input required={!isDay} name="dropoff" maxLength={150} placeholder={isDay ? (zh ? "留空则与出发地相同" : "Same as pickup if blank") : (zh ? "完整地点或酒店名" : "City, station or hotel")} /></label>
     </div> : null}
     {isDay ? <label><span>{zh ? "当天计划路线及停靠点 *" : "Planned day route and stops *"}</span><input required name="route" maxLength={300} placeholder={zh ? "例如：酒店－周边景区－酒店" : "Hotel – sights – hotel"} /></label> : null}
-    {kind === "custom" ? <div className="contact-field-row">
-      <label><span>{zh ? "包车天数 *" : "Number of days *"}</span><input required name="days" maxLength={60} placeholder={zh ? "例如：7天6晚" : "e.g. 7 days / 6 nights"} /></label>
+    {(kind === "custom" || isMulti) ? <div className="contact-field-row">
+      <label><span>{zh ? "包车天数 *" : "Number of days *"}</span>{isMulti ? <input required type="number" name="days" min={serviceId === "multi-long" ? 7 : 1} max={serviceId === "multi-long" ? 45 : 6} value={multiDays} onChange={e => setMultiDays(Number(e.target.value))} /> : <input required name="days" maxLength={60} placeholder={zh ? "例如：7天6晚" : "e.g. 7 days / 6 nights"} />}</label>
       <label><span>{zh ? "计划路线及停靠点 *" : "Route and planned stops *"}</span><input required name="route" maxLength={300} placeholder={zh ? "例如：昆明－大理－沙溪－丽江" : "Kunming – Dali – Shaxi – Lijiang"} /></label>
     </div> : null}
     <div className="contact-field-row">
       <div className="driver-picker-field"><span>{zh ? "服务日期 *" : "Travel date *"}</span>
         <DriverPicker name="date" type="date" label={zh ? "选择服务日期" : "Choose travel date"} min={isArrival ? chinaServiceDate() : undefined} />
       </div>
-      {kind === "custom" ? <label><span>{zh ? "结束日期（选填）" : "End date (optional)"}</span><input type="date" name="endDate" min={chinaServiceDate()} /></label> : null}
+      {(kind === "custom" || isMulti) ? <label><span>{zh ? "结束日期（选填）" : "End date (optional)"}</span><input type="date" name="endDate" min={chinaServiceDate()} /></label> : null}
       {isArrival ? <div className="driver-picker-field"><span>{timeLabel} *</span>
         <DriverPicker name="serviceTime" type="time" label={timeLabel} />
         <small>{requiresArrivalDetails ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "请填写航班或列车的计划抵达时间。" : "请填写航班或列车计划抵达时间。") : "Enter the scheduled arrival time of your flight or train.")
@@ -448,12 +476,12 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     {isArrival ? <p className="driver-area-hint">{zh
       ? "标准5座车建议1至3位乘客，最多3个大行李箱。实际车辆品牌、型号和颜色可能根据当天车源调整，最终车型类别将在订单确认时说明。"
       : "A standard five-seat car is recommended for 1–3 passengers and up to 3 large suitcases. The make, model and colour may vary with availability. We will confirm the vehicle category when confirming your booking."}</p> : null}
-    <p className="driver-area-hint" aria-live="polite">{isArrival && (!hub || !arrivalDirection || !priceArea)
+    <p className="driver-area-hint" aria-live="polite">{isMulti ? (zh ? `总价 US${multiTotal}；20%定金 US${multiDeposit}；剩余80%按订单约定支付。` : `Total US${multiTotal}; 20% deposit US${multiDeposit}; the 80% balance follows your booking terms.`) : isArrival && (!hub || !arrivalDirection || !priceArea)
       ? (zh ? "请选择交通枢纽、接送方向和酒店区域以查看参考价。" : "Select a hub, direction and hotel area to see the guide price.")
       : guidePrice === undefined
       ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "价格需人工确认" : isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
-      : !onlinePayable ? (zh ? `参考价 ¥${guidePrice}／天（仅市区标准行程）；请先提交路线核价，不会立即扣款。` : `Guide price RMB ${guidePrice}/day for standard city-area hire; route confirmation required before payment.`)
-      : (zh ? `所选服务 ¥${guidePrice}／车，在线支付全款后确认派车。` : `Selected service: RMB ${guidePrice} per vehicle. Pay in full online; driver allocation follows payment.`)}</p>
+      : !onlinePayable ? (zh ? `所选服务 US${driverUsd(guidePrice)}，包含司机、燃油、高速及停车费。` : `Selected service US${driverUsd(guidePrice)} including driver, fuel, tolls and parking.`)
+      : (zh ? `所选服务 US${driverUsd(guidePrice)}／车，在线支付全款后确认派车。` : `Selected service: US${driverUsd(guidePrice)} per vehicle. Pay in full online; driver allocation follows payment.`)}</p>
     <div className="contact-field-row">
       <label><span>{zh ? "成人数 *" : "Adults *"}</span><input required type="number" name="travelers" min="1" max="20" defaultValue="2" /></label>
       <label><span>{zh ? "儿童人数" : "Children"}</span><input type="number" name="children" min="0" max="20" defaultValue="0" /></label>
@@ -468,7 +496,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     <label className="contact-honeypot" aria-hidden="true"><span>Website</span><input name="website" tabIndex={-1} autoComplete="off" /></label>
     <label className="driver-form-consent"><input type="checkbox" name="consent" value="yes" required /><span>{zh ? "我同意仅就本次包车咨询接收回复。" : "I agree to be contacted only about this driver enquiry."} <Link href="/privacy-policy">{zh ? "隐私政策" : "Privacy policy"}</Link></span></label>
     {status === "error" ? <p role="alert" className="contact-form-error">{error}</p> : null}
-    <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? (onlinePayable ? (zh ? "正在前往 Stripe…" : "Opening Stripe…") : (zh ? "发送中…" : "Sending…")) : onlinePayable ? (zh ? `前往 Stripe 支付 ¥${guidePrice}` : `Pay RMB ${guidePrice} with Stripe`) : (zh ? "提交定制需求" : "Request a Custom Quote")}</button>
+    <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? (onlinePayable ? (zh ? "正在前往 Stripe…" : "Opening Stripe…") : (zh ? "发送中…" : "Sending…")) : onlinePayable ? (zh ? isMulti ? `支付20%定金 US${multiDeposit}` : `前往 Stripe 支付 US${driverUsd(guidePrice!)}` : isMulti ? `Pay 20% deposit US${multiDeposit}` : `Pay US${driverUsd(guidePrice!)} with Stripe`) : (zh ? "提交定制需求" : "Request a Custom Quote")}</button>
   </form>;
 }
 
@@ -563,10 +591,10 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
     };
   }, []);
   const priceLabel = (product: Product, vehicle: "five" | "seven") => {
-    const price = product.category === "arrival" ? transferStartingPrice(product.id, vehicle) : driverDirectPrices[product.id]?.[vehicle];
+    const price = product.category === "arrival" ? transferStartingPrice(product.id, vehicle) : product.category === "multi" ? (product.id === "multi-long" ? 1000 : 1200) + (vehicle === "seven" ? 100 : 0) : driverDirectPrices[product.id]?.[vehicle];
     if (price === undefined) return zh ? "需询价" : "Request quote";
-    if (product.category === "arrival") return zh ? `¥${price}起` : `from RMB ${price}`;
-    return product.category === "day" ? (zh ? `¥${price}/天起` : `from RMB ${price}/day`) : (zh ? `¥${price}` : `RMB ${price}`);
+    if (product.category === "arrival") return `from US${driverUsd(price)}`;
+    return product.category === "day" || product.category === "multi" ? `US${driverUsd(price)}/day` : `US${driverUsd(price)}`;
   };
   const pick = (id: ProductId) => {
     setSelected(id);
@@ -579,7 +607,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
       <div className="driver-section-head">
         <p className="kicker">{zh ? "私人交通服务目录" : "YUNNAN DRIVER SERVICES"}</p>
         <h2>{zh ? "选择合适的接送与包车服务" : "Find Your Private Car Service"}</h2>
-        <p>{zh ? "按城市选机场或车站接送、跨城接送和周边一日游包车。提交日期和车型后，我们会核实车源与总价。" : "Choose airport and station transfers, intercity routes or a private day trip. We confirm the car and total price before requesting payment."}</p>
+        <p>{zh ? "跨城接送、周边一日游、多日自由行包车及机场／高铁接送均可预订。所示价格统一为美元，包含约定路线内车辆、司机、油费、高速费与停车费，无隐藏收费。" : "Book intercity transfers, nearby day trips, multi-day private drivers and airport/station transfers. All prices are in USD; agreed routes include the car, driver, fuel, tolls and parking with no hidden fees."}</p>
       </div>
       <div ref={catalog}>
         <div className="driver-catalog-filters">
@@ -612,12 +640,12 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
                 <h3>{zh ? product.zh : product.en}</h3>
                 <p>{zh ? product.detailZh : product.detailEn}</p>
                 <div className="driver-product-price">
-                  <span>{zh ? "每车价格" : "Prices per vehicle"}</span>
+                  <span>{product.category === "multi" ? (zh ? "每日价格 · USD" : "Price per day · USD") : (zh ? "每车价格 · USD" : "Price per vehicle · USD")}</span>
                   <dl>
                     <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
                     <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
                   </dl>
-                  <small>{product.category === "day" ? (zh ? "市区标准行程全包参考价，无隐藏收费；确定路线后核价付款" : "All-inclusive city-only guide rate, no hidden charges; confirm route before payment") : (zh ? "已确认价格的标准路线可在线支付；7座及其他路线需另行核价" : "Standard priced routes can pay online; seven-seat and other routes require a quote")}</small>
+                  <small>{product.category === "multi" ? (zh ? "选择天数后按总价支付20%定金，余款按确认条款支付" : "Select days and pay a 20% deposit; balance per booking terms") : product.category === "day" ? (zh ? "市区标准行程全包参考价，无隐藏收费；确定路线后核价付款" : "All-inclusive city-only guide rate, no hidden charges; confirm route before payment") : (zh ? "标准路线可在线支付；包含已约定路线的车辆、司机、油费、高速费及停车费" : "Standard routes can pay online; agreed car, driver, fuel, tolls and parking included")}</small>
                 </div>
                 <button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>
                   {zh ? "选择服务选项" : "Select Service Options"} <span aria-hidden="true">→</span>
@@ -629,7 +657,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
           <p>{zh ? "这个出发城市暂无此类标准服务。" : "There are no standard services in this category for the selected departure city."}</p>
           <button type="button" className="driver-text-link" onClick={() => setCity("")}>{zh ? "查看全部城市" : "View all cities"}</button>
         </div>}
-        <p className="driver-product-footnote">{zh ? "跨城标准5座车按具体路线 ¥700–¥900/车；市区一日包车5座车 ¥1,000/天起。7座与更大车型、郊外及特殊路线需人工报价。跨城与市区标准路线报价已包含车辆、司机、燃油、高速费与停车费，无隐藏收费；机场／车站接送单独核价。变更路线、超时或额外服务须先确认报价。车辆照片仅为示例。" : "Standard five-seat intercity routes: RMB 700–900 per vehicle; city-only five-seat hire: from RMB 1,000/day. Seven-seat, larger vehicles and extended scenic routes require a quote. Standard intercity and city hire prices include the vehicle, driver, fuel, tolls and parking, with no hidden charges. Airport/station transfers have separate terms. Any changes, overtime or extra services are quoted before agreement. Vehicle photos are examples."}</p>
+        <p className="driver-product-footnote">{zh ? "标准跨城及周边一日游均以美元标价；7座比同路线5座增加约人民币100元折算的美元金额。跨城与市区标准路线报价已包含车辆、司机、燃油、高速费与停车费，无隐藏收费；机场／车站接送单独核价。变更路线、超时或额外服务须先确认报价。车辆照片仅为示例。" : "All standard routes and day trips are priced in USD. Seven-seat vehicles have a CNY 100-equivalent USD uplift over five-seat prices. Standard intercity and city hire prices include the vehicle, driver, fuel, tolls and parking, with no hidden charges. Airport/station transfers have separate terms. Any changes, overtime or extra services are quoted before agreement. Vehicle photos are examples."}</p>
       </div>
       <div id="driver-quote-form">
         {selected ? <div className="driver-booking-panel" key={selected}>
