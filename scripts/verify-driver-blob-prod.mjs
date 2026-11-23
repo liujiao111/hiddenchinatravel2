@@ -46,6 +46,7 @@ if (process.env.VERCEL_ENV === "production" && process.env.BLOB_READ_WRITE_TOKEN
         "rejected",batch.filter(x=>x.status==="rejected").length);
       const finalRecord = await readDriverOrder(orderId);
       console.log("[blob-canary] final-count",finalRecord?.order?.diagnosticCount ?? null);
+      if (batch.some(x=>x.status==="rejected") || finalRecord?.order?.diagnosticCount !== 4) throw new Error("Real concurrent order writes did not all succeed");
 
     } finally {
       await del(orderBlobPath);
