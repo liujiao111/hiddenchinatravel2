@@ -5,4 +5,4 @@ export const driverUsd = (cny: number) => Math.ceil(cny / DRIVER_CNY_PER_USD);
 export const driverUsdCents = (cny: number) => driverUsd(cny) * 100;
 export const driverMultiDayRate = (days: number) => days > 6 ? 1000 : 1200;
 export const driverMultiDayTotalUsd = (days: number, sevenSeat: boolean) =>
-  driverUsd((driverMultiDayRate(days) + (sevenSeat ? 100 : 0)) * days);
+  driverUsd((driverMultiDayRate(days) + (sevenSeat ? 200 : 0)) * days);
