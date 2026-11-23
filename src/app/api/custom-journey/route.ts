@@ -92,7 +92,7 @@ export async function POST(request: Request) {
     }
     try {
       const result = await createDirectDriverCheckout({ id: enquiry.requestId, submissionKey: driverOrder.submissionKey, totalFen, origin, deposit: multi, testOnly: fullOrderTest,
-        summary: { locale, productId, testOnly: fullOrderTest, service: fullOrderTest ? "US$1 full-order payment verification — NO TRANSPORT" : productId, date: enquiry.travelTiming, pickupTime: airportTransfer?.time || String(driverOrder.pickupTime || ""), ...(multi ? { days } : {}), route: String(driverOrder.route || "").slice(0, 700),
+        summary: { locale, productId, gaClientId: typeof driverOrder.analyticsClientId === "string" && /^\\d{5,15}\\.\\d{5,15}$/.test(driverOrder.analyticsClientId) ? driverOrder.analyticsClientId : undefined, testOnly: fullOrderTest, service: fullOrderTest ? "US$1 full-order payment verification — NO TRANSPORT" : productId, date: enquiry.travelTiming, pickupTime: airportTransfer?.time || String(driverOrder.pickupTime || ""), ...(multi ? { days } : {}), route: String(driverOrder.route || "").slice(0, 700),
           pickup: String(driverOrder.pickup).slice(0, 150), dropoff: String(driverOrder.dropoff).slice(0, 150), vehicle,
           party: enquiry.adults + enquiry.children, email: enquiry.email, name: enquiry.name, whatsapp: enquiry.whatsapp,
           notes: typeof driverOrder.notes === "string" ? driverOrder.notes.trim().slice(0,1100) : "", ...(airportTransfer || {}), currency: "usd", guideFen: totalFen } });
