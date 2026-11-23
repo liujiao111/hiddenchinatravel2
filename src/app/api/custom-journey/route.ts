@@ -80,7 +80,7 @@ export async function POST(request: Request) {
       || (airportTransfer && driverOrder.airportTransfer.vehicle !== vehicle)
       || (product?.routes && !product.routes.includes(String(driverOrder.directionCode)))
       || ((multi || productId.endsWith("-day")) && (typeof driverOrder.route !== "string" || !driverOrder.route.trim()))
-      || (!airportTransfer && !/^([01]\\d|2[0-3]):[0-5]\\d$/.test(String(driverOrder.pickupTime || "")))
+      || (!airportTransfer && !/^([01]\d|2[0-3]):[0-5]\d$/.test(String(driverOrder.pickupTime || "")))
       || (size === "seven" && driverOrder.luggage > 5)
       || typeof driverOrder.pickup !== "string" || !driverOrder.pickup.trim()
       || typeof driverOrder.dropoff !== "string" || !driverOrder.dropoff.trim()) {
