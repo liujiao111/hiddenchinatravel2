@@ -228,7 +228,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     : zh ? `酒店 → ${hubType}（${hub ? hub.kind === "airport" ? "送机" : "送站" : "送机／送站"}）` : `Hotel → ${hubType} (drop-off)`;
   const isDay = service?.category === "day";
   const [multiDays, setMultiDays] = useState(serviceId === "multi-long" ? 7 : 1);
-  const multiTotal = isMulti ? driverMultiDayTotalUsd(multiDays, vehicle === sevenSeat) : 0;
+  const multiTotal = isMulti && vehiclePrice ? driverMultiDayTotalUsd(multiDays, vehicle === sevenSeat) : 0;
   const multiDeposit = Math.round(multiTotal * 0.2 * 100) / 100;
   const isIntercity = service?.category === "intercity";
   const title = kind === "custom" ? (zh ? "提交定制／多日包车需求" : "Request a Custom or Multi-Day Driver") : (zh ? "选择服务选项与日期" : "Select Your Transfer Details");
@@ -269,6 +269,10 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       setError(zh ? "7座车最多可乘坐6位旅客，请改选更大车型。" : "Select a larger vehicle for more than six travellers.");
       setStatus("error"); return;
     }
+    if (kind === "standard" && vehicle === sevenSeat && luggage > 5) {
+      setError(zh ? "7座车的行李空间可能不足，请选择更大车型并人工确认。" : "For more than five large suitcases, request a larger vehicle and a manual quote.");
+      setStatus("error"); return;
+    }
     const travelDate = String(values.get("date") || "");
     const localToday = new Date(); localToday.setHours(0, 0, 0, 0);
     if (!travelDate || (isArrival ? travelDate < chinaServiceDate() : new Date(travelDate + "T00:00:00") < localToday)) {
@@ -283,6 +287,10 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const hotel = String(values.get("hotel") || "").trim();
     const transportNumber = String(values.get("transportNumber") || "").trim();
     const serviceTime = String(values.get("serviceTime") || "");
+    const pickupTime = String(values.get("pickupTime") || "");
+    if (kind === "standard" && !isArrival && !/^([01]\\d|2[0-3]):[0-5]\\d$/.test(pickupTime)) {
+      setError(zh ? "请选择首日接客时间。" : "Please choose your pickup time."); setStatus("error"); return;
+    }
     const direction = isArrival ? (isPickup ? pickupLabel : dropoffLabel) : String(values.get("direction") || "");
     if (isArrival && (!hub || !["pickup", "dropoff"].includes(arrivalDirection)
       || (!secondHub && (!selectedArea || !hotel)) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(serviceTime)
@@ -325,6 +333,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       "CATEGORY: " + (service?.category || "custom"),
       "Service: " + serviceName,
       "Travel date: " + travelDate,
+      "Pickup time: " + (pickupTime || (isArrival ? serviceTime : "Not provided")) + " (China time)",
       ...(kind === "custom" ? ["Travel end date: " + (String(values.get("endDate") || "") || "Not supplied")] : []),
       "Direction / selected route: " + (direction || "Custom"),
       "Airport / railway station: " + (hub?.en || "Not applicable"),
@@ -343,7 +352,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       "Duration: " + days,
       "Stops / day plan: " + route,
       "Requirements: " + notes,
-      "Status: enquiry only; no price, vehicle or payment confirmed",
+      onlinePayable ? "Status: Checkout created; payment NOT yet completed; allocation pending" : "Status: enquiry only; no price, vehicle or payment confirmed",
       "Source page: " + window.location.href,
     ].join("\n").slice(0, 2900);
     const payload = {
@@ -359,6 +368,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       requestId: idRef.current,
       driverOrder: {
         checkout: onlinePayable, productId: serviceId, vehicleCode: vehicle, directionCode: String(values.get("direction") || ""), luggage,
+         pickupTime,
          ...(isMulti ? { days: multiCount, deposit: true, endDate } : {}),
         submissionKey: submissionKey.current, locale, service: service ? (zh ? service.zh : service.en) : title,
         route: direction || route, pickup, dropoff, vehicle: zh
@@ -479,6 +489,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       <div className="driver-picker-field"><span>{zh ? "服务日期 *" : "Travel date *"}</span>
         <DriverPicker name="date" type="date" label={zh ? "选择服务日期" : "Choose travel date"} min={isArrival ? chinaServiceDate() : undefined} />
       </div>
+      {(kind === "standard" && !isArrival) ? <div className="driver-picker-field"><span>{zh ? "首日接客时间 *（中国时间）" : "Pickup time * (China time)"}</span><DriverPicker name="pickupTime" type="time" label={zh ? "选择接客时间" : "Choose pickup time"} /></div> : null}
       {(kind === "custom" || isMulti) ? <label><span>{zh ? "结束日期（选填）" : "End date (optional)"}</span><input type="date" name="endDate" min={chinaServiceDate()} /></label> : null}
       {isArrival ? <div className="driver-picker-field"><span>{timeLabel} *</span>
         <DriverPicker name="serviceTime" type="time" label={timeLabel} />
@@ -496,7 +507,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     {isArrival ? <p className="driver-area-hint">{zh
       ? "标准5座车建议1至3位乘客，最多3个大行李箱。实际车辆品牌、型号和颜色可能根据当天车源调整，最终车型类别将在订单确认时说明。"
       : "A standard five-seat car is recommended for 1–3 passengers and up to 3 large suitcases. The make, model and colour may vary with availability. We will confirm the vehicle category when confirming your booking."}</p> : null}
-    <p className="driver-area-hint" aria-live="polite">{isMulti ? (zh ? `总价 USD ${multiTotal}；20%定金 USD ${multiDeposit}；剩余80%按订单约定支付。` : `Total USD ${multiTotal}; 20% deposit USD ${multiDeposit}; the 80% balance follows your booking terms.`) : isArrival && (!hub || !arrivalDirection || !priceArea)
+    <p className="driver-area-hint" aria-live="polite">{isMulti && !vehiclePrice ? (zh ? "更大车型需要人工核价，提交表单不会扣款。" : "Larger vehicles need a custom quote; no payment is collected.") : isMulti ? (zh ? `总价 USD ${multiTotal}；20%定金 USD ${multiDeposit}；剩余80%按订单约定支付。` : `Total USD ${multiTotal}; 20% deposit USD ${multiDeposit}; the 80% balance follows your booking terms.`) : isArrival && (!hub || !arrivalDirection || !priceArea)
       ? (zh ? "请选择交通枢纽、接送方向和酒店区域以查看参考价。" : "Select a hub, direction and hotel area to see the guide price.")
       : guidePrice === undefined
       ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "价格需人工确认" : isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
