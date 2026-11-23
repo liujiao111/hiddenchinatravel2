@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
-import { driverOrdersEnabled, updateDriverOrder } from "@/lib/driver-orders.mjs";
+import { driverOrdersEnabled, readDriverOrder } from "@/lib/driver-orders.mjs";
+import { createDriverPaymentRecord, getDriverPaymentRecord } from "@/lib/driver-payment-records.mjs";
 import { isDriverProductId } from "@/lib/stripe-test";
 
 export const runtime = "nodejs";
@@ -77,19 +78,24 @@ export async function POST(request: Request) {
       try {
         if (!driverOrdersEnabled()) throw new Error("Order storage unavailable");
         const stage = type === "balance" ? "balance" : "initial";
-        const updated = await updateDriverOrder(metadata.order_id, current => {
-          const payment = current.quote?.[stage];
-          if (current.quote?.totalFen !== total || payment?.id !== session.id || payment.dueFen !== due
-            || payment.type !== type || payment.live !== event.livemode) {
-            throw new Error("Payment does not match saved order");
-          }
-          if (current.paid?.[stage]) return current;
-          return { ...current, paid: { ...current.paid, [stage]: {
-            type, amount: due, eventId: event.id, paidAt: new Date(event.created * 1000).toISOString(),
-          } } };
+        const saved = await readDriverOrder(metadata.order_id);
+        if (!saved) throw new Error("Order not found");
+        const payment = saved.order.quote?.[stage];
+        if (saved.order.quote?.totalFen !== total || payment?.id !== session.id ||
+            payment.dueFen !== due || payment.type !== type || payment.live !== event.livemode ||
+            (metadata.test_only === "1") !== (saved.order.quote?.testOnly === true)) {
+          throw new Error("Payment does not match saved order");
+        }
+        const receipt = await createDriverPaymentRecord(metadata.order_id,stage,"paid",{
+          type,amount:due,eventId:event.id,sessionId:session.id,
+          paidAt:new Date(event.created*1000).toISOString(),
         });
-        if (!updated) throw new Error("Order not found");
-        if (updated.paid?.[stage]?.notificationSentAt && (!updated.summary?.email || updated.paid?.[stage]?.customerNotificationSentAt)) return Response.json({ received: true });
+        if (receipt.sessionId !== session.id || receipt.amount !== due) {
+          throw new Error("Conflicting paid receipt");
+        }
+        const operatorSent = await getDriverPaymentRecord(metadata.order_id,stage,"operator-email");
+        const customerSent = await getDriverPaymentRecord(metadata.order_id,stage,"customer-email");
+        if (operatorSent && (!saved.order.summary?.email || customerSent)) return Response.json({received:true});
         notificationOrder = { id: metadata.order_id, stage };
       } catch {
         console.error("[stripe-driver] Could not record paid order", { eventId: event.id });
@@ -160,45 +166,40 @@ export async function POST(request: Request) {
     }
     if (notificationOrder) {
       const { id, stage } = notificationOrder;
-      const updated = await updateDriverOrder(id, current => ({
-        ...current,
-        paid: { ...current.paid, [stage]: {
-          ...current.paid[stage], notificationSentAt: new Date().toISOString(),
-        } },
-      }));
-      if (!updated) throw new Error("Could not record notification delivery");
-      const recipient = typeof updated.summary?.email === "string" ? updated.summary.email : "";
-      if (recipient && !updated.paid?.[stage]?.customerNotificationSentAt) {
-        const link = "https://hiddenchinatravel.com/driver-order/" + updated.access;
-        const isZh = updated.summary?.locale === "zh";
-        const testOnly = updated.quote?.testOnly === true && metadata?.test_only === "1";
-        const message = (testOnly
-          ? (isZh ? "已收到 US$1 正式测试款。此订单仅验证支付系统，不包含包车、接送或有效预订。金额：" : "Your US$1 LIVE payment verification succeeded. This is a test only: NO transport or booking is included. Paid amount: ")
-          : (isZh ? "已收到您的包车付款。金额：" : "Your private-driver payment has been received. Paid amount: "))
-          + "USD " + (Number(metadata?.due_fen) / 100).toFixed(2)
-          + (isZh ? "；订单总价：" : "; total: ") + "USD " + (Number(metadata?.total_fen) / 100).toFixed(2)
-          + "\\n" + (isZh ? "订单与接车信息：" : "Order and pickup details: ") + link
-          + (testOnly ? "" : "\\n" + (isZh ? "付款不代表已安排司机，待确认车辆；无法提供服务会退款。" : "Vehicle and driver allocation are pending. If unavailable, your payment will be refunded."));
+      await createDriverPaymentRecord(id,stage,"operator-email",{at:new Date().toISOString(),sessionId:session.id});
+      const current = await readDriverOrder(id);
+      if (!current) throw new Error("Order missing after payment");
+      const recipient = typeof current.order.summary?.email === "string" ? current.order.summary.email : "";
+      if (recipient && !current.order.paid?.[stage]?.customerNotificationSentAt) {
+        const link = "https://hiddenchinatravel.com/driver-order/" + current.order.access;
+        const isZh = current.order.summary?.locale === "zh";
+        const testOnly = current.order.quote?.testOnly === true && metadata?.test_only === "1";
+        const amount = (Number(metadata?.due_fen)/100).toFixed(2);
+        const totalDisplay = (Number(metadata?.total_fen)/100).toFixed(2);
+        const text = testOnly
+          ? (isZh ? "US$1 正式测试支付成功。此订单不包含任何交通或旅行服务。"
+            : "US$1 live payment test successful. No transportation or reservation is included.")
+          : (isZh ? "已收到您的包车付款。车辆和司机安排尚待确认。"
+            : "Your private-driver payment was received. Driver allocation is pending.");
+        const message = text + "\\n" + (isZh ? "本次付款：" : "Paid now: ") + "USD " + amount
+          + "\\n" + (isZh ? "订单总价：" : "Order total: ") + "USD " + totalDisplay
+          + "\\n" + (isZh ? "查看订单：" : "View order: ") + link;
         const guestResponse = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: { Authorization: "Bearer " + apiKey, "Content-Type": "application/json",
-            "Idempotency-Key": "driver-payment-guest-" + session.id },
-          body: JSON.stringify({ from, to: [recipient], reply_to: to,
-            subject: testOnly ? (isZh ? "Hidden China Travel · US$1 测试支付成功" : "Hidden China Travel — US$1 payment verification successful") : (isZh ? "Hidden China Travel 包车付款确认" : "Hidden China Travel — driver payment received"),
-            text: message }),
-          signal: AbortSignal.timeout(5_000),
+          method:"POST",
+          headers:{Authorization:"Bearer "+apiKey,"Content-Type":"application/json",
+            "Idempotency-Key":"driver-payment-guest-"+session.id},
+          body:JSON.stringify({from,to:[recipient],reply_to:to,
+            subject:testOnly ? (isZh ? "Hidden China Travel · US$1 测试支付成功" : "Hidden China Travel — US$1 payment verification successful")
+              : (isZh ? "Hidden China Travel 包车付款确认" : "Hidden China Travel — driver payment received"),
+            text:message}),
+          signal:AbortSignal.timeout(5000),
         });
-        if (!guestResponse.ok) {
-          console.error("[stripe-driver] Guest payment email rejected", { status: guestResponse.status });
-          return new Response("Could not notify guest of payment.", { status: 502 });
+        if(!guestResponse.ok) {
+          console.error("[stripe-driver] Guest payment email rejected",{status:guestResponse.status});
+          // The operator receipt remains stored, so a Stripe retry cannot send it again.
+          return new Response("Could not notify guest of payment.",{status:502});
         }
-        const receipt = await updateDriverOrder(id, current => ({
-          ...current,
-          paid: { ...current.paid, [stage]: {
-            ...current.paid[stage], customerNotificationSentAt: new Date().toISOString(),
-          } },
-        }));
-        if (!receipt) throw new Error("Could not record guest payment email");
+        await createDriverPaymentRecord(id,stage,"customer-email",{at:new Date().toISOString(),sessionId:session.id});
       }
     }
   } catch {
