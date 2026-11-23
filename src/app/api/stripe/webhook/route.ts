@@ -96,8 +96,11 @@ export async function POST(request: Request) {
         return new Response("Could not record order payment.", { status: 503 });
       }
     }
-    subject = `${event.livemode ? "[Stripe]" : "[Stripe sandbox]"} Driver payment received — ${metadata.order_id}`;
+    subject = metadata.test_only === "1"
+      ? `[Stripe ${event.livemode ? "LIVE" : "sandbox"} TEST] US$1 full-order verification paid — ${metadata.order_id}`
+      : `${event.livemode ? "[Stripe]" : "[Stripe sandbox]"} Driver payment received — ${metadata.order_id}`;
     details = [
+      ...(metadata.test_only === "1" ? ["PAYMENT VERIFICATION ONLY — NO TRANSPORT OR BOOKING TO DISPATCH"] : []),
       `Order: ${metadata.order_id}`,
       `Service: ${metadata.service}`,
       `Payment: ${type} · USD ${(due / 100).toFixed(2)}`,
@@ -168,17 +171,20 @@ export async function POST(request: Request) {
       if (recipient && !updated.paid?.[stage]?.customerNotificationSentAt) {
         const link = "https://hiddenchinatravel.com/driver-order/" + updated.access;
         const isZh = updated.summary?.locale === "zh";
-        const message = (isZh ? "已收到您的包车付款。金额：" : "Your private-driver payment has been received. Paid amount: ")
+        const testOnly = updated.quote?.testOnly === true && metadata?.test_only === "1";
+        const message = (testOnly
+          ? (isZh ? "已收到 US$1 正式测试款。此订单仅验证支付系统，不包含包车、接送或有效预订。金额：" : "Your US$1 LIVE payment verification succeeded. This is a test only: NO transport or booking is included. Paid amount: ")
+          : (isZh ? "已收到您的包车付款。金额：" : "Your private-driver payment has been received. Paid amount: "))
           + "USD " + (Number(metadata?.due_fen) / 100).toFixed(2)
           + (isZh ? "；订单总价：" : "; total: ") + "USD " + (Number(metadata?.total_fen) / 100).toFixed(2)
           + "\\n" + (isZh ? "订单与接车信息：" : "Order and pickup details: ") + link
-          + "\\n" + (isZh ? "付款不代表已安排司机，待确认车辆；无法提供服务会退款。" : "Vehicle and driver allocation are pending. If unavailable, your payment will be refunded.");
+          + (testOnly ? "" : "\\n" + (isZh ? "付款不代表已安排司机，待确认车辆；无法提供服务会退款。" : "Vehicle and driver allocation are pending. If unavailable, your payment will be refunded."));
         const guestResponse = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: { Authorization: "Bearer " + apiKey, "Content-Type": "application/json",
             "Idempotency-Key": "driver-payment-guest-" + session.id },
           body: JSON.stringify({ from, to: [recipient], reply_to: to,
-            subject: isZh ? "Hidden China Travel 包车付款确认" : "Hidden China Travel — driver payment received",
+            subject: testOnly ? (isZh ? "Hidden China Travel · US$1 测试支付成功" : "Hidden China Travel — US$1 payment verification successful") : (isZh ? "Hidden China Travel 包车付款确认" : "Hidden China Travel — driver payment received"),
             text: message }),
           signal: AbortSignal.timeout(5_000),
         });
