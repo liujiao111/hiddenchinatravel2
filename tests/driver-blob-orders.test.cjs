@@ -30,21 +30,16 @@ const blobMock = {
     return {etag:'"v' + puts.length + '"'};
   },
 };
-const originalLoad = Module._load;
-Module._load = function(name, parent, isMain) {
-  if(name === "@vercel/blob") return blobMock;
-  return originalLoad.call(this,name,parent,isMain);
-};
-const js = ts.transpileModule(fs.readFileSync(filename,"utf8"), {
-  compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022},
-  fileName:filename,
-}).outputText;
-const mod = new Module(filename,module);
-mod.filename = filename;
-mod.paths = Module._nodeModulePaths(path.dirname(filename));
-mod._compile(js,filename);
-Module._load = originalLoad;
-const {saveDriverRequest,updateDriverOrder,readDriverOrder} = mod.exports;
+// Load the small ESM module with a local in-memory Blob adapter only.
+const moduleSource = fs.readFileSync(filename, "utf8")
+  .replace(/^import .*;\\s*$/gm, "")
+  .replace(/\\bexport\\s+(?=(?:async\\s+)?function|const)/g, "");
+const loadOrders = new Function("createHash", "createHmac", "timingSafeEqual",
+  "get", "put", "BlobPreconditionFailedError",
+  moduleSource + "\\nreturn {saveDriverRequest,updateDriverOrder,readDriverOrder};");
+const {saveDriverRequest,updateDriverOrder,readDriverOrder} = loadOrders(
+  crypto.createHash,crypto.createHmac,crypto.timingSafeEqual,
+  blobMock.get,blobMock.put,BlobPreconditionFailedError);
 
 const oldEnv = {VERCEL_ENV:process.env.VERCEL_ENV,BLOB_READ_WRITE_TOKEN:process.env.BLOB_READ_WRITE_TOKEN,
   DRIVER_ORDER_LINK_SECRET:process.env.DRIVER_ORDER_LINK_SECRET};
