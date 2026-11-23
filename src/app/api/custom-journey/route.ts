@@ -54,7 +54,9 @@ export async function POST(request: Request) {
     const vehicle = driverOrder.vehicleCode;
     const size = vehicle === "Five-seat car" ? "five" : vehicle === "Seven-seat car" ? "seven" : null;
     const date = new Date(enquiry.travelTiming + "T00:00:00Z");
-    const totalFen = airportTransfer?.guideFen ?? (product && size ? product[size] * 100 : null);
+    const directRate = product && size ? product[size] : undefined;
+    // City-only charter mileage/area is unverified at checkout; collect a quote first.
+    const totalFen = airportTransfer?.guideFen ?? (productId.endsWith("-day") ? null : typeof directRate === "number" ? directRate * 100 : null);
     if (!/^\/(?:zh\/|en\/)?yunnan-private-driver\/?$/.test(enquiry.conversionPage || "")
       || !size || !totalFen || !Number.isSafeInteger(totalFen)
       || !Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== enquiry.travelTiming || enquiry.travelTiming < chinaServiceDate()
