@@ -127,7 +127,7 @@ export async function POST(request: Request) {
           if (!mail.ok) console.error("[driver-checkout] Operator lead notification rejected", { status: mail.status });
         } catch { console.error("[driver-checkout] Operator lead notification unavailable"); }
       } else console.error("[driver-checkout] Operator lead notification is not configured");
-      return Response.json({ success: true, ...result }, { headers: { "Cache-Control": "no-store" } });
+      return Response.json({ success: true, ...result, amountDueFen: multi ? Math.round(totalFen / 5) : totalFen, totalFen, currency: "USD", paymentType: multi ? "deposit" : "full" }, { headers: { "Cache-Control": "no-store" } });
     } catch (error) {
       return Response.json({ error: error instanceof Error ? error.message : "Could not open secure checkout. Please try again." }, { status: 503 });
     }
