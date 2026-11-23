@@ -53,14 +53,14 @@ const faqs: Pair[] = [
 ];
 
 const faqAnswers: Pair[] = [
-  ["Rates depend on the exact route, vehicle, date, waiting time and tolls. The cards show guide prices for five-seat and seven-seat vehicles. Larger vehicles are quoted individually. We confirm your written total before requesting payment.", "费用取决于具体路线、车型、日期、等候时间与高速费。卡片显示5座和7座每车参考价，更大车型需人工报价；付款前会提供书面总价。"],
+  ["Confirmed standard five-seat intercity routes are RMB 500 per vehicle, with tolls and parking included. City-area day hire starts at RMB 600 per day. Seven-seat, extended routes and airport transfers are quoted separately. We confirm the written total before payment.", "标准5座跨城路线 ¥500/车，包含高速及停车费；市区范围一日包车 ¥600/天起。7座、超出标准范围和机场接送需另行核价，付款前确认书面总价。"],
   ["Yes. Select a priced standard service, enter your trip details and continue to Stripe to pay in full. We confirm driver allocation after payment. Custom and unpriced routes require a quotation first. If we cannot provide a paid service, your payment is refunded in full.", "可以。选择已定价标准服务并填写用车信息后，前往 Stripe 支付全款，再由我们确认派车。定制及未定价路线先询价；如无法提供已付款的服务，所付款项全额退还。"],
   ["Priced standard services are paid in full through Stripe before driver allocation. Multi-day and custom services follow the payment schedule in your written quote.", "已定价标准服务通过 Stripe 支付全款后安排派车。多日和定制服务以书面报价约定的付款安排为准。"],
   ["For deposit bookings, the written quote specifies the balance and when it is due.", "采用定金的订单会在书面报价中列明尾款金额和付款时间。"],
   ["Not always. Many local drivers speak Chinese; English-language coordination is available via Hidden China Travel on WhatsApp.", "不一定，很多当地司机主要讲中文；Hidden China Travel 可以通过 WhatsApp 提供英文沟通协调。"],
   ["No. A driver provides transport and agreed stops, not professional sightseeing commentary. Request an English-speaking guide separately if needed.", "不是。司机负责交通与约定停靠点，不默认包含专业景点讲解；可单独询价英文导游。"],
   ["A standard five-seat car is best for 1–3 travellers and up to three large cases, subject to suitcase dimensions. A seven-seat MPV seats up to six travellers, subject to luggage space. Larger vehicles are quoted individually.", "标准5座车建议1–3人及最多3个大箱，但实际需按行李尺寸和后备箱核实。7座商务车最多可坐6位旅客，仍需核实行李空间；更大车型另行报价。"],
-  ["For the standard offers on this page, expressway tolls are extra unless explicitly included in the final written quote.", "此页标准服务的高速过路费原则上另计，除非正式书面报价明确包含。"],
+  ["Standard intercity and city-area driver rates include fuel, expressway tolls and parking. Airport and railway station transfers follow their own quoted inclusions.", "标准跨城包车与市区包车报价包含燃油、高速费和停车费；机场及高铁站接送按各自确认的报价规则执行。"],
   ["Direct transfers do not include sightseeing stops. Choose one of our via-Shaxi or Tiger Leaping Gorge services for planned visits; additional changes are quoted separately.", "直达接送不包含观光停靠。可直接选择经沙溪、虎跳峡的跨城产品；其他加停需求另行核价。"],
   ["A private day trip normally runs from 9:00 AM–6:00 PM and includes 30 complimentary minutes if agreed. Thereafter RMB 200 per started hour applies to approved overtime.", "周边一日游包车通常为09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时人民币200元计费。"],
   ["Changes can affect availability, tolls, time and price. We confirm any difference in writing before you proceed.", "变更路线可能影响车源、过路费、时长和价格，我们会先书面确认变更。"],
@@ -86,14 +86,14 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
   ];
   const included = [
     T("Private vehicle and local driver", "私人用车和当地司机"),
-    T("Fuel and standard parking charges", "燃油及常规停车费用"),
+    T("Fuel, expressway tolls and parking for intercity and city-area hire (airport/station transfers excepted)", "跨城与市区包车包含燃油、高速费及停车费（机场／车站接送除外）"),
     T("Agreed hotel or station pickup and drop-off", "双方约定的酒店或车站接送"),
     T("English-language coordination through Hidden China Travel", "Hidden China Travel 英文沟通协调"),
     T("Day trip times agreed before booking", "一日游用车时段提前确认"),
     T("Up to 30 minutes of agreed complimentary overtime for day hire", "一日包车经约定可免费延时30分钟")
   ];
   const excluded = [
-    T("Expressway tolls unless quoted as included", "高速过路费（书面报价列明包含的除外）"),
+    T("Airport/station transfer tolls or other charges unless explicitly included in its quote", "机场／车站接送单独报价未包含的高速等费用"),
     T("Attraction tickets, meals and personal expenses", "门票、餐饮及个人消费"),
     T("Professional English-speaking tour guide", "专业英文导游"),
     T("Unplanned sightseeing or major route changes", "临时观光停靠或重大路线变更"),
@@ -145,6 +145,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <p className="kicker">{T("CUSTOM & MULTI-DAY ROUTES", "定制路线与多日包车")}</p>
           <h2 className="journey-final-title">{T("Already Have a Yunnan Road Trip in Mind?", "已有云南自驾式旅行路线？")}</h2>
           <p>{T("Share your travel dates, route, group size and luggage. We'll check road conditions and driver availability, recommend a suitable vehicle and prepare a written quote. No payment is needed to enquire.", "告诉我们出行日期、路线、人数和行李数量。我们会核实路况与车源、推荐合适车型，并提供书面报价。提交询价无需付款。")}</p>
+          <p>{T("Multi-day driver guide rate: RMB 1,000 per day for 1–6 days, or RMB 800 per day for trips longer than 6 days (all days at the longer-trip rate). Fuel, tolls and parking included. Vehicle category, route and availability are confirmed before quoting; no online charge at enquiry.", "多日包车参考价：1–6天 ¥1,000/天，超过6天按 ¥800/天计算全程天数。包含燃油、高速费及停车费，车型、路线与车源需确认后书面报价；提交咨询不扣款。")}</p>
           <p>{T("Remote mountain routes and additional sightseeing stops are confirmed individually.", "偏远山区路线和额外观光停靠需逐项核实后确认。")}</p>
           <div className="driver-editorial-actions">
             <a className="button button-blue" href="#driver-quote-form" data-custom-driver-quote>{T("Get a Custom Driver Quote", "获取定制包车报价")} <span aria-hidden="true">→</span></a>
@@ -176,7 +177,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <section className="driver-section driver-section-soft" id="inclusions">
       <div className="shell">
-        {heading("04 / SERVICE DETAILS","What the Service Includes","服务包含与不包含", "Clear boundaries are part of a good private transfer.", "正式报价应明确服务范围，避免临时争议。")}
+        {heading("04 / SERVICE DETAILS","What the Service Includes","服务包含与不包含", "Standard intercity and city-area hire includes tolls and parking; airport and station transfers use separate terms.", "跨城与市区包车包含高速和停车费；机场及车站接送按单独条款执行。")}
         <div className="driver-inclusions-grid">
           <div className="driver-list-card"><h3>{T("Included","通常包含")}</h3><ul>{included.map(x=><li key={x}>{x}</li>)}</ul></div>
           <div className="driver-list-card"><h3>{T("Not Included","通常不包含")}</h3><ul>{excluded.map(x=><li key={x}>{x}</li>)}</ul></div>
