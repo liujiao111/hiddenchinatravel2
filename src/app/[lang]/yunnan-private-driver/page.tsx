@@ -84,7 +84,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     { name: T("Lijiang", "丽江"), detail: T("Jade Dragon Snow Mountain, Blue Moon Valley, Shuhe and Baisha.", "玉龙雪山、蓝月谷、束河、白沙及周边。"), img: "/assets/destinations/yunnan/shuhe.webp" },
     { name: T("Tiger Leaping Gorge", "虎跳峡"), detail: T("Dramatic Jinsha River canyon and scenic roadside stops, subject to access.", "金沙江峡谷风光及沿线观景停靠，具体以开放和道路情况为准。"), img: "/assets/destinations/yunnan/tiger-leaping.webp" },
     { name: T("Shangri-La", "香格里拉"), detail: T("Pudacuo, Napa Lake, Songzanlin Monastery and Dukezong.", "普达措、纳帕海、松赞林寺、独克宗古城及周边。"), img: "/assets/destinations/yunnan/shangri-la.webp" },
-    { name: T("Other Yunnan Destinations", "其他云南目的地"), detail: T("Travel elsewhere across Yunnan? Tell us your route and we'll arrange a suitable driver, subject to access and availability.", "云南省内其他未列出的城市、县镇和景点也可安排；告诉我们路线，确认道路、车源后为你服务。"), img: "/assets/destinations/yunnan/lijiang-shangri-la/yangtze-first-bend-shigu.webp" },
+    { name: T("Other Yunnan Destinations", "其他云南目的地"), detail: T("Travel elsewhere across Yunnan? Tell us your route and we'll arrange a suitable driver, subject to access and availability.", "云南省内其他未列出的城市、县镇和景点也可安排；告诉我们路线，确认道路、车源后为你服务。"), img: "/assets/destinations/yunnan/lijiang-shangri-la/baishuitai-white-water-terraces.webp" },
   ];
   const included = [
     T("Private vehicle and local driver", "私人用车和当地司机"),
@@ -108,8 +108,8 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
     <JourneyHero
       title={T("Yunnan Private Driver & Car Hire — Transfers, Day Trips & Road Trips", "云南私人包车与司机服务｜接送、一日游及多日包车")}
       eyebrow={T("PRIVATE CAR & DRIVER SERVICE", "云南私人交通服务")}
-      image="/home/hero.webp"
-      imageAlt={T("Jade Dragon Snow Mountain in Yunnan", "云南玉龙雪山")}
+      image="/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp"
+      imageAlt={T("Private transfer MPV for a road trip in Yunnan", "云南私人包车接送商务车实景")}
       description={T("Hire a car with driver for private transfers, day trips and multi-day journeys around Kunming, Dali, Lijiang and Shangri-La. Review USD vehicle prices and route options, with English-language coordination from Joy.", "从昆明、大理、丽江到香格里拉，安排5座或7座私人包车、跨城接送、一日游及多日路线。查看美元报价，Joy 协助英文沟通与接送安排。")}
       primary={{ href: "#standard-transfers", label: T("Explore Routes & Prices", "查看路线与参考价") }}
       secondary={{ href: "#multi-day-driver", label: T("Plan a Multi-Day Road Trip", "规划多日包车路线") }}
@@ -141,7 +141,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <section id="multi-day-driver">
       <div className="driver-editorial-close">
-        <Image src="/assets/destinations/yunnan/lijiang-shangri-la/yangtze-first-bend-shigu.webp" alt="" fill sizes="100vw" />
+        <Image src="/assets/destinations/yunnan/shaxi/shaxi-riverside-valley.webp" alt="" fill sizes="100vw" />
         <div className="journey-hero-shade" />
         <div className="shell driver-editorial-close-inner"><div className="driver-editorial-close-copy">
           <p className="kicker">{T("CUSTOM & MULTI-DAY ROUTES", "定制路线与多日包车")}</p>
