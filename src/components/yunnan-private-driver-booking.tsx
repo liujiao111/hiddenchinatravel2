@@ -8,7 +8,7 @@ import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } fro
 import { getAttribution } from "@/lib/attribution";
 import { generateLeadId } from "@/lib/whatsapp";
 import { createFormTracking } from "@/lib/lead-ref-client";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackEcommerceEvent } from "@/lib/analytics";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { airportTransferCatalog, chinaServiceDate, isOutsideTransferArea, transferGuidePrice, transferStartingPrice } from "@/lib/driver-airport-transfers";
 import { filterDriverProducts } from "@/lib/driver-product-filter";
@@ -407,6 +407,14 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
           product_id: service?.id || "custom-multi-day", service_category: service?.category || "custom",
           page_path: window.location.pathname,
         });
+        if (data.currency === "USD" && (data.paymentType === "full" || data.paymentType === "deposit") && Number.isSafeInteger(data.amountDueFen)) {
+          trackEcommerceEvent("begin_checkout", {
+            amountDueFen: data.amountDueFen,
+            productId: service?.id || "custom-multi-day",
+            paymentType: data.paymentType,
+            serviceCategory: service?.category || "custom",
+          });
+        }
         window.location.assign(url.href);
         return;
       }
