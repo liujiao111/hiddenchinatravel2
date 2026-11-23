@@ -211,15 +211,15 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <section className="driver-section driver-section-soft journey-support-flow driver-process" id="booking-process">
       <div className="shell journey-section-layout">
-        <header className="driver-flow-heading"><p className="kicker">08 / HOW BOOKING WORKS</p><h2>{T("From Route to Confirmed Pickup","从选线路到司机接送")}</h2><p>{T("A request is not a confirmed booking. We check the driver, route and price before requesting payment.","提交咨询不代表预订成功。我们会先确认司机、路线与价格，再安排付款。")}</p></header>
+        <header className="driver-flow-heading"><p className="kicker">08 / HOW BOOKING WORKS</p><h2>{T("From Route to Confirmed Pickup","从选线路到司机接送")}</h2><p>{T("A payment is not an immediate driver confirmation. Standard routes can be paid online; custom routes receive a quote first. We confirm the car and pickup arrangements after payment.","付款不等于立即确认派车。标准路线可在线支付，定制路线先询价；收到付款后核实车源并确认接送安排。")}</p></header>
         <div className="journey-support-grid">{[
           [T("Choose a service","选服务"),T("Pick a standard transfer or describe your custom route.","选择标准接送，或发送定制路线。")],
           [T("Share your date","提交日期"),T("Tell us pickup, drop-off, passengers and luggage.","提供接送点、人数和行李情况。")],
-          [T("Review the quote","核对报价"),T("We check the vehicle and send confirmed total and terms.","核实车源后发送完整报价和条款。")],
+          [T("Review USD price","核对美元价格"),T("Review the displayed standard-route total, or request a written quote for custom routes.","核对标准产品显示的美元价格；定制路线先获得书面报价。")],
           [T("Pay the agreed amount","支付约定金额"),T("Use the licensed operator’s secure payment link for the agreed full amount or deposit.","通过持证经营方提供的安全链接支付约定的全款或定金。")],
           [T("Receive confirmation","获取确认"),T("Get written booking confirmation and pickup information.","取得书面预订确认及接送安排。")]
         ].map(([h,p],i)=><article key={h}><span>{String(i+1).padStart(2,"0")}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
-        <p className="driver-detail-note driver-flow-note">{T("Submitting your route is free. You only pay after you review a confirmed price, service terms and payment request.","提交路线免费。核实车源并确认完整报价、服务条款及付款通知后，才需要支付约定金额。")}</p>
+        <p className="driver-detail-note driver-flow-note">{T("Custom enquiries are free. For priced standard routes, Stripe collects the listed full amount or the 20% multi-day deposit before vehicle allocation; if we cannot provide the service, your payment is refunded.","定制路线询价免费。标准路线选择后，Stripe 收取显示的全款或多日包车20%定金，随后确认车源；如无法提供服务将退款。")}</p>
       </div>
     </section>
 
@@ -227,7 +227,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       <div className="shell">
         {heading("09 / TERMS & PAYMENT","Payment and Cancellation Policy","付款与取消政策", "Driver-only service terms are separate from multi-day tour packages and are confirmed before payment.", "本页单独包车服务条款与多日旅游套餐不同，具体在付款前书面确认。")}
         <div className="driver-terms-grid">
-          <article><h3>{T("Payment","付款")}</h3><p>{T("Confirmed transfers are paid in full. A single-day charter with agreed route and hours can be paid in full. Multi-day and flexible bookings require a 20% deposit, with the balance and due date in the quote.", "固定接送确认后付全款。单日包车路线和时长明确后可付全款。多日或灵活包车付20%定金，尾款金额和付款时间以书面报价为准。")}</p></article>
+          <article><h3>{T("Payment","付款")}</h3><p>{T("Priced intercity transfers and day trips are paid in full at checkout. Multi-day private-driver products take a 20% deposit at checkout; the remaining balance and due date are agreed in writing. Vehicle allocation follows payment.", "已定价跨城接送和周边一日游在线支付全款。多日包车在线支付20%定金，余款金额及截止时间以书面确认内容为准；付款后再安排确认车源。")}</p></article>
           <article><h3>{T("Cancellation","取消")}</h3><p>{T("Your written quote states the cancellation and refund terms for the agreed payment type before you pay.", "付款前，书面报价会列明对应付款方式的取消、改期和退款条件。")}</p></article>
           <article><h3>{T("Operator cannot provide the car","经营方无法派车")}</h3><p>{T("If the licensed operator cannot confirm or provide the booked vehicle, all payments collected for the unavailable service are refunded in full.", "如果持证经营方无法确认或提供已预订车辆，应全额退回该服务所收款项。")}</p></article>
         </div>
