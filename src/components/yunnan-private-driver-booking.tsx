@@ -276,7 +276,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       setStatus("error"); return;
     }
     const endDate = String(values.get("endDate") || "");
-    if (kind === "custom" && endDate && endDate < travelDate) {
+    if ((kind === "custom" || isMulti) && endDate && endDate < travelDate) {
       setError(zh ? "结束日期不能早于出发日期。" : "The end date cannot be before the start date.");
       setStatus("error"); return;
     }
@@ -304,6 +304,17 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     const multiCount = Number(days);
     if (isMulti && (!Number.isInteger(multiCount) || multiCount < (serviceId === "multi-long" ? 7 : 1) || multiCount > (serviceId === "multi-long" ? 45 : 6))) {
       setError(zh ? "请填写符合该套餐的包车天数。" : "Enter a valid number of days for this product."); setStatus("error"); return;
+    }
+    if (isMulti && endDate) {
+      const expectedEnd = new Date(travelDate + "T00:00:00Z");
+      if (!Number.isFinite(expectedEnd.getTime())) {
+        setError(zh ? "日期无效，请重新选择。" : "Invalid travel date."); setStatus("error"); return;
+      }
+      expectedEnd.setUTCDate(expectedEnd.getUTCDate() + multiCount - 1);
+      if (endDate !== expectedEnd.toISOString().slice(0, 10)) {
+        setError(zh ? "结束日期和包车天数不一致，请核对。" : "The end date must match the selected number of days.");
+        setStatus("error"); return;
+      }
     }
     const serviceName = service?.en || "Custom & Multi-Day Driver";
     idRef.current ??= crypto.randomUUID();
@@ -348,7 +359,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
       requestId: idRef.current,
       driverOrder: {
         checkout: onlinePayable, productId: serviceId, vehicleCode: vehicle, directionCode: String(values.get("direction") || ""), luggage,
-         ...(isMulti ? { days: multiCount, deposit: true } : {}),
+         ...(isMulti ? { days: multiCount, deposit: true, endDate } : {}),
         submissionKey: submissionKey.current, locale, service: service ? (zh ? service.zh : service.en) : title,
         route: direction || route, pickup, dropoff, vehicle: zh
           ? (vehicle === fiveSeat ? "5座车" : vehicle === sevenSeat ? "7座商务车" : "更大车型") : vehicle,
@@ -368,6 +379,16 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         if (typeof data.checkoutUrl !== "string") throw new Error(zh ? "未能创建付款链接，请重试。" : "Could not create checkout. Please try again.");
         const url = new URL(data.checkoutUrl, window.location.origin);
         if (url.protocol !== "https:" || (url.hostname !== "checkout.stripe.com" && url.origin !== window.location.origin)) throw new Error("Invalid checkout URL.");
+        trackEvent("generate_lead", {
+          form_name: formName, lead_type: "private_driver_checkout_started",
+          product_id: service?.id || "custom-multi-day", service_category: service?.category || "custom",
+          vehicle_requested: vehicle, event_id: idRef.current, lead_id: leadRef.current || undefined,
+          page_path: window.location.pathname,
+        });
+        trackEvent("driver_checkout_started", {
+          product_id: service?.id || "custom-multi-day", service_category: service?.category || "custom",
+          page_path: window.location.pathname,
+        });
         window.location.assign(url.href);
         return;
       }
