@@ -49,24 +49,42 @@ export async function saveDriverRequest(id, summary, submissionKey) {
     await put(path, JSON.stringify(order), { ...options, allowOverwrite: false, contentType: "application/json" });
     return order;
   } catch (error) {
-    const saved = await readDriverOrder(id);
-    if (saved) return saved.order.submissionHash === submissionHash ? saved.order : null;
-    throw error;
+    // Duplicate requests can race to create the same immutable initial record.
+    // A fresh origin read (with a short backoff) resolves idempotent submissions.
+    if (!(error instanceof BlobPreconditionFailedError)) throw error;
+    for (let attempt = 0; attempt < 7; attempt++) {
+      const saved = await readDriverOrder(id);
+      if (saved) return saved.order.submissionHash === submissionHash ? saved.order : null;
+      await new Promise(resolve => setTimeout(resolve, Math.min(35 * 2 ** attempt, 600)));
+    }
+    throw new Error("Your booking is being saved. Please retry the same request.");
   }
 }
 
 /** @param {string} id @param {(order: any) => any} change */
 export async function updateDriverOrder(id, change) {
-  for (let attempt = 0; attempt < 5; attempt++) {
+  // Multiple Vercel functions (Checkout, webhook, retries) can edit one order at once.
+  // Retry genuine ETag conflicts against a fresh origin read with bounded backoff;
+  // immediate tight-loop retries can repeatedly lose to the same concurrent writers.
+  const attempts = 12;
+  for (let attempt = 0; attempt < attempts; attempt++) {
     const current = await readDriverOrder(id);
     if (!current) return null;
     const order = change(current.order);
     if (order === current.order) return order;
     try {
-      await put(orderPath(id), JSON.stringify(order), { ...options, allowOverwrite: true, ifMatch: current.etag, contentType: "application/json" });
+      await put(orderPath(id), JSON.stringify(order), {
+        ...options, allowOverwrite: true, ifMatch: current.etag, contentType: "application/json",
+      });
       return order;
     } catch (error) {
-      if (!(error instanceof BlobPreconditionFailedError) || attempt === 4) throw error;
+      if (!(error instanceof BlobPreconditionFailedError)) throw error;
+      if (attempt === attempts - 1) {
+        console.error("[driver-orders] Persistent ETag contention after bounded retries", { attempts });
+        throw new Error("Your booking is busy. Please try again; no duplicate payment is needed.");
+      }
+      await new Promise(resolve => setTimeout(resolve,
+        Math.min(40 * 2 ** Math.min(attempt, 5), 900) + Math.floor(Math.random() * 50)));
     }
   }
 }
