@@ -400,3 +400,96 @@
   .driver-underlined-options button {font-size:.8rem}
   .driver-product-grid {grid-template-columns:minmax(0,1fr)}
 }
+
+
+/* One visual system for every field in the driver booking form.
+   Keep browser-native date/time keyboards and pickers, but match standard text inputs. */
+.driver-page .driver-form :is(label > span, .driver-picker-field > span),
+.driver-page .driver-form .enquiry-select legend {
+  display:block;
+  margin:0 0 10px;
+  color:var(--color-accent);
+  font-size:.78rem;
+  line-height:1.4;
+  font-weight:750;
+}
+.driver-page .driver-form :is(
+  input[type="text"],input[type="email"],input[type="tel"],input[type="number"],
+  input[type="date"],input[type="time"],select
+) {
+  box-sizing:border-box;
+  width:100%;
+  min-width:0;
+  height:var(--control-height);
+  min-height:var(--control-height);
+  padding:0 14px;
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-control);
+  background:var(--color-surface);
+  color:var(--color-ink);
+  font:inherit;
+  font-size:.875rem;
+  line-height:normal;
+  box-shadow:none;
+}
+.driver-page .driver-form textarea {
+  box-sizing:border-box;
+  padding:14px;
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-control);
+  background:var(--color-surface);
+  color:var(--color-ink);
+  font:inherit;
+}
+.driver-page .driver-form .driver-picker {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) var(--control-height);
+  height:var(--control-height);
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-control);
+  overflow:hidden;
+  background:var(--color-surface);
+}
+.driver-page .driver-form .driver-picker input {
+  height:100%;
+  min-height:0;
+  border:0;
+  border-radius:0;
+  outline:none;
+  padding:0 14px;
+  background:transparent;
+}
+.driver-page .driver-form .driver-picker button {
+  display:grid;
+  height:100%;
+  width:100%;
+  place-items:center;
+  border:0;
+  border-left:1px solid var(--color-border);
+  border-radius:0;
+  background:var(--color-surface-soft);
+  color:var(--color-action-text);
+  cursor:pointer;
+}
+.driver-page .driver-form .driver-picker:focus-within {
+  border-color:var(--color-focus);
+  outline:3px solid var(--color-focus);
+  outline-offset:2px;
+}
+.driver-page .driver-form :is(
+  input[type="text"],input[type="email"],input[type="tel"],input[type="number"],
+  input[type="date"],input[type="time"],select,textarea
+):focus {
+  border-color:var(--color-focus);
+  outline:3px solid var(--color-focus);
+  outline-offset:2px;
+}
+.driver-page .driver-form .driver-picker input:focus {
+  border:0;
+  outline:none;
+}
+.driver-page .driver-form .driver-picker button:focus-visible {
+  outline:2px solid var(--color-focus);
+  outline-offset:-3px;
+}
+.driver-page .driver-form :is(.contact-field-row > label,.contact-field-row > .driver-picker-field,.contact-field-row > .enquiry-select) {min-width:0}
