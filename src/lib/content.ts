@@ -103,10 +103,44 @@ export function getContentBySlug(slug: string, lang: ContentLang = "en"): Conten
   return getAllContent(lang).find((item) => item.slug === slug);
 }
 
+// Transport articles can live under the broader "Itinerary Planning" section.
+// Detect them by route slug as well as explicit transport sections, so a road
+// transfer guide is not grouped with unrelated trip-planning content.
+const yunnanPlace = "(?:kunming|dali|shaxi|lijiang|shangri-la|tiger-leaping-gorge|lugu-lake)";
+const yunnanTransferSlug = new RegExp(`^${yunnanPlace}-to-${yunnanPlace}(?:-|$)`);
+
+export function isTransportArticle(item: ContentItem): boolean {
+  const section = (item.frontmatter.section || "").toLowerCase();
+  return item.kind === "article" && (
+    section.includes("transport") ||
+    section.includes("交通") ||
+    yunnanTransferSlug.test(item.slug)
+  );
+}
+
+const relatedStopWords = new Set(["to", "from", "the", "in", "for", "a", "and", "how", "use", "guide", "china", "chinese", "foreigners", "travel", "2026", "2027"]);
+
+function relatedTerms(item: ContentItem): Set<string> {
+  return new Set(item.slug.split("-").filter((term) => term.length > 2 && !relatedStopWords.has(term)));
+}
+
 export function getRelatedArticles(item: ContentItem, limit = 4, lang: ContentLang = "en"): ContentItem[] {
-  return getAllContent(lang)
-    .filter((candidate) => candidate.kind === "article" && candidate.slug !== item.slug)
-    .sort((a, b) => Number(b.frontmatter.section === item.frontmatter.section) - Number(a.frontmatter.section === item.frontmatter.section))
+  const transport = isTransportArticle(item);
+  const sourceTerms = relatedTerms(item);
+  const sameSection = item.frontmatter.section;
+  const all = getAllContent(lang).filter((candidate) => candidate.kind === "article" && candidate.slug !== item.slug);
+  // For transport articles, never fill vacant slots with unrelated visa,
+  // payment, hotel or general itinerary articles.
+  const candidates = transport ? all.filter(isTransportArticle) : all;
+
+  const score = (candidate: ContentItem) => {
+    const commonTerms = [...relatedTerms(candidate)].filter((term) => sourceTerms.has(term)).length;
+    const bothYunnanTransfers = transport && yunnanTransferSlug.test(item.slug) && yunnanTransferSlug.test(candidate.slug);
+    return commonTerms * 12 + (candidate.frontmatter.section === sameSection ? 16 : 0) + (bothYunnanTransfers ? 32 : 0);
+  };
+
+  return candidates
+    .sort((a, b) => score(b) - score(a) || a.slug.localeCompare(b.slug))
     .slice(0, limit);
 }
 
