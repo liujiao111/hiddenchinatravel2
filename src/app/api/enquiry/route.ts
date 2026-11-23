@@ -1,3 +1,4 @@
+import { isTransferClaimSpam } from "@/lib/enquiry-spam";
 import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
 import { Resend } from "resend";
 import { enquiryEmailText, enquirySubject, parseEnquiry } from "@/lib/enquiry";
@@ -21,6 +22,10 @@ export async function POST(request: Request) {
   const parsed = parseEnquiry(body);
   if ("error" in parsed) {
     return Response.json({ error: parsed.error }, { status: 400 });
+  }
+
+  if (isTransferClaimSpam(parsed.plans)) {
+    return Response.json({ error: "Please describe your travel plans and try again." }, { status: 422 });
   }
 
   // A successful enquiry gets a Ref even for legacy/no-JS clients.

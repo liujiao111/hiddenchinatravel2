@@ -1,3 +1,4 @@
+import { isTransferClaimSpam } from "@/lib/enquiry-spam";
 import { prepareFormRecord, saveFormRecord } from "@/lib/lead-ref";
 import { createHash } from "node:crypto";
 import { driverDirectPrices } from "@/lib/driver-direct-prices";
@@ -37,6 +38,9 @@ export async function POST(request: Request) {
     driverOrder = payload?.driverOrder;
   } catch { return Response.json({ error: "Please check your details and try again." }, { status: 400 }); }
   if (!enquiry) return Response.json({ error: "Please check your name, email, traveler numbers and consent." }, { status: 400 });
+  if (isTransferClaimSpam(enquiry.notes)) {
+    return Response.json({ error: "Please describe your travel plans and try again." }, { status: 422 });
+  }
   const locale = driverOrder?.locale === "zh" ? "zh" : "en";
   const airportTransfer = driverOrder?.airportTransfer === undefined ? undefined
     : parseAirportTransfer(driverOrder.airportTransfer, enquiry.travelTiming, enquiry.adults, enquiry.children, locale);
