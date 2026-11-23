@@ -1,4 +1,5 @@
 import { driverOrderId, isDriverCheckoutUrl, readDriverOrder } from "@/lib/driver-orders.mjs";
+import { reconcileVerifiedDriverPayment } from "@/lib/driver-payment-reconcile";
 
 const headers = {
   "Cache-Control": "private, no-store",
@@ -20,6 +21,18 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   try { saved = await readDriverOrder(id); }
   catch { return new Response("Order details are temporarily unavailable.", { status: 503, headers }); }
   if (!saved) return new Response("Order link not found.", { status: 404, headers });
+  // This link carries a signed order token. Recover genuinely paid Stripe orders
+  // from Stripe's API if webhook delivery failed; never infer payment from redirects.
+  if (saved.order.quote?.direct && !saved.order.paid?.initial?.customerNotificationSentAt) {
+    try {
+      await reconcileVerifiedDriverPayment(saved.order);
+      saved = await readDriverOrder(id) || saved;
+    } catch (error) {
+      console.error("[driver-order] Signed order reconciliation unavailable",{
+        orderId:id,kind:error instanceof Error?error.name:"unknown",
+      });
+    }
+  }
 
   const { summary, quote, paid, dispatch } = saved.order;
   const zh = summary.locale === "zh";
