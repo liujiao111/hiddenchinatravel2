@@ -89,5 +89,5 @@ export async function createDirectDriverCheckout(input: {
   } else if (order.quote.initial.id !== session.id) {
     throw new Error("A different payment session already exists for this booking.");
   }
-  return { orderPath, checkoutUrl: session.url };
+  return { orderPath, checkoutUrl: session.url, checkoutAmount: dueFen / 100, checkoutCurrency: "USD", checkoutPaymentType: paymentType };
 }
