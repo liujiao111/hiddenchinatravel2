@@ -5,12 +5,12 @@ const vm = require("node:vm");
 const path = require("node:path");
 
 const code = fs.readFileSync(path.join(__dirname, "../public/driver-order-analytics.js"), "utf8");
-function harness(purchases, persisted = new Map()) {
+function harness(purchases, persisted = new Map(), denyConsent = false) {
   const events = [], handlers = {}, observers = [];
   const dataset = {measurement:"G-TEST123",paid:purchases.length?"1":"0",purchases:JSON.stringify(purchases)};
   const root = {dataset};
   const window = {
-    dataLayer:[],
+    dataLayer:denyConsent ? [["consent","default",{analytics_storage:"denied"}]] : [],
     gtag: (command,event,details) => { events.push({command,event,details}); },
   };
   const doc = {
@@ -66,7 +66,8 @@ test("invalid receipt and unpaid page never send purchase",()=>{
   assert.equal(eventNames(harness([{...receipt,amount_cents:0}]),"purchase").length,0);
   assert.equal(eventNames(harness([{...receipt,transaction_id:"personal-contact@example.com"}]),"purchase").length,0);
 });
-test("explicit analytics denial suppresses tracking",()=>{
-  const h=harness([receipt]);
-  assert.equal(eventNames(h,"page_view").length,1);
+test("explicit analytics denial suppresses all tracking",()=>{
+  const h=harness([receipt],new Map(),true);
+  assert.equal(eventNames(h,"page_view").length,0);
+  assert.equal(eventNames(h,"purchase").length,0);
 });
