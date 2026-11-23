@@ -8,6 +8,7 @@ import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
 import { chinaServiceDate, parseAirportTransfer } from "@/lib/driver-airport-transfers";
 import { driverOrderAccess, driverOrdersEnabled, saveDriverRequest } from "@/lib/driver-orders.mjs";
 import { enquiryEmailText, parseCustomJourneyEnquiry } from "@/lib/custom-journey-enquiry";
+import { driverUnpaidEmail } from "@/lib/driver-order-mail";
 
 export const runtime = "nodejs";
 
@@ -94,7 +95,7 @@ export async function POST(request: Request) {
         summary: { locale, productId, testOnly: fullOrderTest, service: fullOrderTest ? "US$1 full-order payment verification — NO TRANSPORT" : productId, date: enquiry.travelTiming, pickupTime: airportTransfer?.time || String(driverOrder.pickupTime || ""), ...(multi ? { days } : {}), route: String(driverOrder.route || "").slice(0, 700),
           pickup: String(driverOrder.pickup).slice(0, 150), dropoff: String(driverOrder.dropoff).slice(0, 150), vehicle,
           party: enquiry.adults + enquiry.children, email: enquiry.email, name: enquiry.name, whatsapp: enquiry.whatsapp,
-          notes: enquiry.notes, ...(airportTransfer || {}), currency: "usd", guideFen: totalFen } });
+          notes: typeof driverOrder.notes === "string" ? driverOrder.notes.trim().slice(0,1100) : "", ...(airportTransfer || {}), currency: "usd", guideFen: totalFen } });
       // A Stripe redirect is NOT a paid booking. Persist and notify the operator of
       // the lead now, so abandoned/cancelled checkouts are not silently lost.
       const formRecord = prepareFormRecord(tracking, "https://hiddenchinatravel.com" + (enquiry.conversionPage || "/yunnan-private-driver"), "yunnan_driver_product", enquiry.requestId);
@@ -107,12 +108,20 @@ export async function POST(request: Request) {
             method: "POST",
             headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json",
               "Idempotency-Key": `driver-checkout-started-${enquiry.requestId}` },
-            body: JSON.stringify({ from, to: [to], subject: `[Unpaid checkout] Driver enquiry — ${enquiry.name}`,
-              text: "Payment status: NOT PAID. Stripe Checkout created; do not dispatch.\\n" +
-                "Reference: " + formRecord.ref + "\\n" + enquiryEmailText(enquiry) +
-                "\\nOrder page: " + new URL(result.orderPath, origin).href +
-                "\\nExpected total: USD " + (totalFen / 100).toFixed(2) +
-                "\\nPayment due now: USD " + ((multi ? Math.round(totalFen / 5) : totalFen) / 100).toFixed(2) }),
+            body: JSON.stringify({ from, to: [to], ...driverUnpaidEmail({
+              id: enquiry.requestId, ref: formRecord.ref, name: enquiry.name,
+              email: enquiry.email, whatsapp: enquiry.whatsapp,
+              service: fullOrderTest ? "US$1 payment verification (NO TRANSPORT)" : productId,
+              route: String(driverOrder.route || driverOrder.directionCode || "").slice(0,300),
+              travelDate: enquiry.travelTiming,
+              pickup: String(driverOrder.pickup || "").slice(0,150),
+              dropoff: String(driverOrder.dropoff || "").slice(0,150),
+              vehicle: String(driverOrder.vehicleCode || ""),
+              travellers: enquiry.adults+enquiry.children,
+              totalCents: totalFen, dueCents: multi ? Math.round(totalFen/5) : totalFen,
+              deposit: multi, testOnly: fullOrderTest,
+              orderUrl: new URL(result.orderPath,origin).href,
+            }) }),
             signal: AbortSignal.timeout(5_000),
           });
           if (!mail.ok) console.error("[driver-checkout] Operator lead notification rejected", { status: mail.status });
