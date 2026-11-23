@@ -53,16 +53,16 @@ const faqs: Pair[] = [
 ];
 
 const faqAnswers: Pair[] = [
-  ["Standard five-seat intercity journeys cost US$105–135 per vehicle depending on route. Day hire starts at approximately US$150 per day. Vehicle, driver, fuel, tolls and parking are included, with no hidden fees. Seven-seat cars cost the equivalent of CNY 100 more than five-seat on the same standard route; airport transfers have separate prices.", "标准5座跨城路线按具体行程 US$105–135/车，周边一日游包车从 US$150/天起。车辆、司机、燃油、高速费及停车费均包含，无隐藏费用。7座同路线比5座增加人民币100元等值美元；机场接送另有报价。"],
+  ["Standard five-seat intercity journeys cost US$105–135 per vehicle depending on route. Day hire starts at approximately US$150 per day. Vehicle, driver, fuel, tolls and parking are included, with no hidden fees. Seven-seat cars are US$15 more than five-seat on the same standard route; airport transfers have separate prices.", "标准5座跨城路线按具体行程 US$105–135/车，周边一日游包车从 US$150/天起。车辆、司机、燃油、高速费及停车费均包含，无隐藏费用。7座同路线比5座增加 US$15；机场接送另有报价。"],
   ["Yes. Select a priced standard service, enter your trip details and continue to Stripe to pay in full. We confirm driver allocation after payment. Custom and unpriced routes require a quotation first. If we cannot provide a paid service, your payment is refunded in full.", "可以。选择已定价标准服务并填写用车信息后，前往 Stripe 支付全款，再由我们确认派车。定制及未定价路线先询价；如无法提供已付款的服务，所付款项全额退还。"],
-  ["Priced standard services are paid in full through Stripe before driver allocation. Multi-day and custom services follow the payment schedule in your written quote.", "已定价标准服务通过 Stripe 支付全款后安排派车。多日和定制服务以书面报价约定的付款安排为准。"],
+  ["Priced standard services are paid in full through Stripe before driver allocation. Multi-day driver products accept a 20% online deposit in USD; any bespoke service follows the written quote.", "已定价标准服务通过 Stripe 支付全款后安排派车。多日包车产品以美元在线支付20%定金，其他定制服务以书面报价为准。"],
   ["For deposit bookings, the written quote specifies the balance and when it is due.", "采用定金的订单会在书面报价中列明尾款金额和付款时间。"],
   ["Not always. Many local drivers speak Chinese; English-language coordination is available via Hidden China Travel on WhatsApp.", "不一定，很多当地司机主要讲中文；Hidden China Travel 可以通过 WhatsApp 提供英文沟通协调。"],
   ["No. A driver provides transport and agreed stops, not professional sightseeing commentary. Request an English-speaking guide separately if needed.", "不是。司机负责交通与约定停靠点，不默认包含专业景点讲解；可单独询价英文导游。"],
   ["A standard five-seat car is best for 1–3 travellers and up to three large cases, subject to suitcase dimensions. A seven-seat MPV seats up to six travellers, subject to luggage space. Larger vehicles are quoted individually.", "标准5座车建议1–3人及最多3个大箱，但实际需按行李尺寸和后备箱核实。7座商务车最多可坐6位旅客，仍需核实行李空间；更大车型另行报价。"],
   ["Our standard intercity and city-area prices include the car, driver, fuel, expressway tolls and parking. No hidden fees for the agreed route and hours. Airport and railway station transfers follow separately quoted terms.", "标准跨城及市区包车包含车辆、司机、燃油、高速费和停车费，约定路线和用车时间内无任何隐藏费用；机场及高铁站接送按各自报价规则执行。"],
   ["Direct transfers do not include sightseeing stops. Choose one of our via-Shaxi or Tiger Leaping Gorge services for planned visits; additional changes are quoted separately.", "直达接送不包含观光停靠。可直接选择经沙溪、虎跳峡的跨城产品；其他加停需求另行核价。"],
-  ["A private day trip normally runs from 9:00 AM–6:00 PM and includes 30 complimentary minutes if agreed. Thereafter RMB 100 per started hour applies to approved overtime.", "周边一日游包车通常为09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时人民币100元计费。"],
+  ["A private day trip normally runs from 9:00 AM–6:00 PM and includes 30 complimentary minutes if agreed. Thereafter US$15 per started hour applies to approved overtime.", "周边一日游包车通常为09:00–18:00，按约定可免费延时30分钟；此后需提前获同意，按每开始1小时加收 US$15计费。"],
   ["Changes can affect availability, tolls, time and price. We confirm any difference in writing before you proceed.", "变更路线可能影响车源、过路费、时长和价格，我们会先书面确认变更。"],
   ["We confirm cancellation and refund terms in writing before payment. For deposit bookings under our standard driver terms, cancellation at least three full days ahead returns the deposit. Later cancellations retain 30% of the deposit.", "付款前会书面确认退改条款。适用标准定金条款的包车订单，至少提前3个完整自然日取消可全退定金；更晚取消扣留定金的30%。"],
   ["We send the vehicle and pickup details after confirmation, with driver contact details before the journey.", "确认车源后提供车辆和接送安排，出发前提供司机联系方式。"],
@@ -147,7 +147,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <p className="kicker">{T("CUSTOM & MULTI-DAY ROUTES", "定制路线与多日包车")}</p>
           <h2 className="journey-final-title">{T("Already Have a Yunnan Road Trip in Mind?", "已有云南自驾式旅行路线？")}</h2>
           <p>{T("Share your travel dates, route, group size and luggage. We'll check road conditions and driver availability, recommend a suitable vehicle and prepare a written quote. No payment is needed to enquire.", "告诉我们出行日期、路线、人数和行李数量。我们会核实路况与车源、推荐合适车型，并提供书面报价。提交询价无需付款。")}</p>
-          <p>{T("Multi-day driver guide rate: US$180/day for 1–6 days, or US$150/day for trips longer than 6 days (all days at the longer-trip rate). Vehicle, driver, fuel, tolls and parking are included, with no hidden charges for the agreed route and hours. Vehicle category, route and availability are confirmed before quoting; enquiry is free.", "多日包车参考价：1–6天 US$180/天，超过6天按 US$150/天计算全程天数。约定路线和用车时长内，车辆、司机、燃油、高速费、停车费全部包含，无隐藏费用。车型、路线与车源确认后提供书面总价；提交咨询不扣款。")}</p>
+          <p>{T("Multi-day driver guide rate: US$180/day for 1–6 days, or US$150/day for trips longer than 6 days (all days at the longer-trip rate). Vehicle, driver, fuel, tolls and parking are included, with no hidden charges for the agreed route and hours. Select your vehicle, days and route to pay a 20% deposit online. We confirm availability and details after payment; if unavailable, the deposit is refunded.", "多日包车参考价：1–6天 US$180/天，超过6天按 US$150/天计算全程天数。约定路线和用车时长内，车辆、司机、燃油、高速费、停车费全部包含，无隐藏费用。选择车型、天数及路线后可在线支付20%定金，我们随后确认车源和具体安排；如无法提供服务则退还定金。")}</p>
           <p>{T("Remote mountain routes and additional sightseeing stops are confirmed individually.", "偏远山区路线和额外观光停靠需逐项核实后确认。")}</p>
           <div className="driver-editorial-actions">
             <a className="button button-blue" href="#driver-quote-form" data-custom-driver-quote>{T("Get a Custom Driver Quote", "获取定制包车报价")} <span aria-hidden="true">→</span></a>
@@ -184,13 +184,13 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <div className="driver-list-card"><h3>{T("Included","通常包含")}</h3><ul>{included.map(x=><li key={x}>{x}</li>)}</ul></div>
           <div className="driver-list-card"><h3>{T("Not Included","通常不包含")}</h3><ul>{excluded.map(x=><li key={x}>{x}</li>)}</ul></div>
         </div>
-        <p className="driver-detail-note">{T("For agreed full-day hire only: overtime beyond the first 30 complimentary minutes is RMB 100 per started hour, subject to driver availability and route approval. Your written quote takes precedence.", "仅适用于已确认的一日包车：经约定的免费延时30分钟之后，每开始1小时加收人民币200元，需事先取得司机和运营方同意；具体以书面报价为准。")}</p>
+        <p className="driver-detail-note">{T("For agreed full-day hire only: overtime beyond the first 30 complimentary minutes is US$15 per started hour, subject to driver availability and route approval. Your written quote takes precedence.", "仅适用于已确认的一日包车：经约定的免费延时30分钟之后，每开始1小时加收人民币200元，需事先取得司机和运营方同意；具体以书面报价为准。")}</p>
       </div>
     </section>
 
     <section className="driver-section" id="vehicles">
       <div className="shell">
-        {heading("05 / VEHICLE & LUGGAGE","How to Choose a Vehicle","如何选择车辆", "Five-seat and seven-seat USD prices are shown for standard routes. Seven-seat adds the USD equivalent of CNY 100. Request a quote for larger vehicles.", "5座与7座标准路线均显示美元价格，7座统一增加人民币100元折算的美元金额；更大车型请询价。")}
+        {heading("05 / VEHICLE & LUGGAGE","How to Choose a Vehicle","如何选择车辆", "Five-seat and seven-seat USD prices are shown for standard routes. Seven-seat adds US$15 on standard routes. Request a quote for larger vehicles.", "5座与7座标准路线均显示美元价格，7座标准路线统一加 US$15；更大车型请询价。")}
         <DriverVehicleGallery zh={zh} />
       </div>
     </section>
@@ -231,7 +231,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
           <article><h3>{T("Cancellation","取消")}</h3><p>{T("Your written quote states the cancellation and refund terms for the agreed payment type before you pay.", "付款前，书面报价会列明对应付款方式的取消、改期和退款条件。")}</p></article>
           <article><h3>{T("Operator cannot provide the car","经营方无法派车")}</h3><p>{T("If the licensed operator cannot confirm or provide the booked vehicle, all payments collected for the unavailable service are refunded in full.", "如果持证经营方无法确认或提供已预订车辆，应全额退回该服务所收款项。")}</p></article>
         </div>
-        <p className="driver-detail-note">{T("Example only: for a RMB 1,300 service with a RMB 260 deposit, a late-cancellation fee of 30% of the deposit is RMB 78 and the deposit refund is RMB 182.", "举例说明：若服务总价为人民币1300元，定金260元，临近出发取消扣除定金30%即78元，剩余182元退回。")}</p>
+        <p className="driver-detail-note">{T("Example only: for a US$540 multi-day service with a US$108 deposit, a late cancellation fee of 30% of the deposit is US$32.40, leaving a US$75.60 deposit refund.", "举例说明：若多日包车总价 US$540、20%定金 US$108，假如约定的临近取消费用为定金30%，则扣 US$32.40、退 US$75.60。")}</p>
         <p className="driver-detail-note"><Link href="/private-yunnan-tours">{T("Need hotels, guides and a complete itinerary? Explore our private Yunnan tours.","需要包含酒店、向导和完整行程？查看云南私人定制游。")}</Link></p>
         <p className="driver-operator-note">{T("Contracts and payments are handled by", "旅游合同及收款由持证经营方负责：")} <strong>{zh ? licensedOperator.nameZh : licensedOperator.nameEn}</strong> · {T("Licence", "许可证")} {licensedOperator.permitNumber}. <Link href="/licensed-operator">{T("View operator details", "查看资质信息")}</Link>.</p>
       </div>
