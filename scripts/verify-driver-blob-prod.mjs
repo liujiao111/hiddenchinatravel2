@@ -2,6 +2,7 @@
 // Uses a random throwaway object and deletes it in finally. Never logs tokens or ETags.
 import { randomUUID } from "node:crypto";
 import { put, get, del } from "@vercel/blob";
+import { saveDriverRequest, readDriverOrder, updateDriverOrder } from "../src/lib/driver-orders.mjs";
 
 if (process.env.VERCEL_ENV === "production" && process.env.BLOB_READ_WRITE_TOKEN) {
   const path = "driver-orders/diagnostics/" + randomUUID() + ".json";
@@ -23,6 +24,24 @@ if (process.env.VERCEL_ENV === "production" && process.env.BLOB_READ_WRITE_TOKEN
     const after = latest?.statusCode === 200 ? await new Response(latest.stream).json() : null;
     console.log("[blob-canary] post-update-read", after?.stage === 2 ? "PASS":"FAIL");
     if (after?.stage !== 2) throw new Error("Post-update read is stale");
+    // Exercise the actual application order helpers (not just direct SDK calls).
+    const orderId = randomUUID();
+    const orderBlobPath = "driver-orders/production/" + orderId + ".json";
+    try {
+      const submissionKey = randomUUID();
+      const initial = await saveDriverRequest(orderId, {service:"canary", currency:"usd"}, submissionKey);
+      console.log("[blob-canary] actual-order-create", initial?.id === orderId ? "PASS":"FAIL");
+      const updated = await updateDriverOrder(orderId, old => ({...old, quote:{
+        initial:{id:"cs_canary",dueFen:10500}, totalFen:10500, currency:"usd",
+      }}));
+      console.log("[blob-canary] actual-order-quote-update", updated?.quote?.initial?.dueFen === 10500 ? "PASS":"FAIL");
+      const reread = await readDriverOrder(orderId);
+      console.log("[blob-canary] actual-order-reread", reread?.order?.quote?.totalFen === 10500 ? "PASS":"FAIL");
+      if (reread?.order?.quote?.totalFen !== 10500) throw new Error("Actual order path is inconsistent");
+    } finally {
+      await del(orderBlobPath);
+    }
+
   } catch (error) {
     console.error("[blob-canary] FAIL", error instanceof Error ? error.name+":"+error.message : "unknown error");
     throw error;
