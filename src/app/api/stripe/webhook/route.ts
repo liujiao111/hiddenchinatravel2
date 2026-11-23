@@ -68,7 +68,7 @@ export async function POST(request: Request) {
     if (!/^[A-Za-z0-9_-]{1,64}$/.test(metadata.order_id ?? "")
       || session.client_reference_id !== metadata.order_id
       || !Number.isSafeInteger(total) || total < 5 || due <= 0 || due !== expected
-      || session.amount_total !== due || session.currency !== "cny"
+      || session.amount_total !== due || session.currency !== "usd"
       || (type !== "full" && !metadata.balance_due?.trim())) {
       console.error("[stripe-driver] Quote payment needs reconciliation", { eventId: event.id });
       return new Response("Quote payment needs reconciliation.", { status: 422 });
@@ -100,9 +100,9 @@ export async function POST(request: Request) {
     details = [
       `Order: ${metadata.order_id}`,
       `Service: ${metadata.service}`,
-      `Payment: ${type} · CNY ${(due / 100).toFixed(2)}`,
-      `Quoted total: CNY ${(total / 100).toFixed(2)}`,
-      ...(type === "deposit" ? [`Balance: CNY ${((total - due) / 100).toFixed(2)} · Due: ${metadata.balance_due}`] : []),
+      `Payment: ${type} · USD ${(due / 100).toFixed(2)}`,
+      `Quoted total: USD ${(total / 100).toFixed(2)}`,
+      ...(type === "deposit" ? [`Balance: USD ${((total - due) / 100).toFixed(2)} · Due: ${metadata.balance_due}`] : []),
     ];
   } else {
     if (session.amount_total !== 100 || session.currency !== "usd" || !isDriverProductId(productId)
