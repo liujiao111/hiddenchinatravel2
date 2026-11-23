@@ -1,6 +1,6 @@
 import { analyticsDenied } from "./attribution";
 
-export type AnalyticsParams = Record<string, string | number | boolean | undefined>;
+export type AnalyticsParams = Record<string, string | number | boolean | undefined | Array<{ item_id: string; item_name?: string; price?: number; quantity?: number }>>;
 
 declare global {
   interface Window {
@@ -75,4 +75,15 @@ export function trackEcommerceEvent(eventName: "begin_checkout", details: {
     items: [{ item_id: productId, item_name: productId, price: value, quantity: 1 }],
     transport_type: "beacon",
   } as Parameters<NonNullable<Window["gtag"]>>[2]);
+}
+
+/** First-party GA client ID; never collect when analytics consent was denied. */
+export function driverGaClientId() {
+  if (typeof document === "undefined" || analyticsDenied()) return undefined;
+  try {
+    const ga = document.cookie.split("; ").find(item => item.startsWith("_ga="));
+    const decoded = decodeURIComponent(ga?.slice(4) || "");
+    const match = decoded.match(/^GA\d+\.\d+\.(\d{5,15})\.(\d{5,15})$/);
+    return match ? match[1] + "." + match[2] : undefined;
+  } catch { return undefined; }
 }
