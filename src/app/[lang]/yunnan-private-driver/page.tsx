@@ -53,7 +53,7 @@ const faqs: Pair[] = [
 ];
 
 const faqAnswers: Pair[] = [
-  ["Standard five-seat intercity journeys cost US$105–135 per vehicle depending on route. Day hire starts at approximately US$150 per day. Vehicle, driver, fuel, tolls and parking are included, with no hidden fees. Seven-seat cars are US$15 more than five-seat on the same standard route; airport transfers have separate prices.", "标准5座跨城路线按具体行程 US$105–135/车，周边一日游包车从 US$150/天起。车辆、司机、燃油、高速费及停车费均包含，无隐藏费用。7座同路线比5座增加 US$15；机场接送另有报价。"],
+  ["Standard five-seat intercity journeys cost US$105–135 per vehicle depending on route. Day hire starts at approximately US$150 per day. Vehicle, driver, fuel, tolls and parking are included, with no hidden fees. Seven-seat adds US$23 on direct transfers and US$30 on scenic transfers or per day on day and multi-day hire; airport transfers have separate prices.", "标准5座跨城路线按具体行程 US$105–135/车，周边一日游包车从 US$150/天起。车辆、司机、燃油、高速费及停车费均包含，无隐藏费用。7座直达路线增加约 US$23，途经沙溪／虎跳峡的线路以及一日、多日包车每次／每天增加约 US$30；机场接送另有报价。"],
   ["Yes. Select a priced standard service, enter your trip details and continue to Stripe to pay in full. We confirm driver allocation after payment. Custom and unpriced routes require a quotation first. If we cannot provide a paid service, your payment is refunded in full.", "可以。选择已定价标准服务并填写用车信息后，前往 Stripe 支付全款，再由我们确认派车。定制及未定价路线先询价；如无法提供已付款的服务，所付款项全额退还。"],
   ["Priced standard services are paid in full through Stripe before driver allocation. Multi-day driver products accept a 20% online deposit in USD; any bespoke service follows the written quote.", "已定价标准服务通过 Stripe 支付全款后安排派车。多日包车产品以美元在线支付20%定金，其他定制服务以书面报价为准。"],
   ["For deposit bookings, the written quote specifies the balance and when it is due.", "采用定金的订单会在书面报价中列明尾款金额和付款时间。"],
@@ -190,7 +190,7 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <section className="driver-section" id="vehicles">
       <div className="shell">
-        {heading("05 / VEHICLE & LUGGAGE","How to Choose a Vehicle","如何选择车辆", "Five-seat and seven-seat USD prices are shown for standard routes. Seven-seat adds US$15 on standard routes. Request a quote for larger vehicles.", "5座与7座标准路线均显示美元价格，7座标准路线统一加 US$15；更大车型请询价。")}
+        {heading("05 / VEHICLE & LUGGAGE","How to Choose a Vehicle","如何选择车辆", "Five-seat and seven-seat USD prices are shown for standard routes. Seven-seat adds about US$23 on direct transfers and US$30 on scenic routes or per day on day/multi-day hire. Request a quote for larger vehicles.", "5座与7座标准路线均显示美元价格，7座直达路线增加约 US$23，途经景点路线增加约 US$30，一日／多日包车每天下调？；更大车型请询价。")}
         <DriverVehicleGallery zh={zh} />
       </div>
     </section>
