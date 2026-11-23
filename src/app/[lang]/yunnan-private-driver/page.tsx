@@ -206,46 +206,46 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       <div className="shell">
         {heading("07 / SERVICE AREAS","Private Driver Services Across Yunnan","云南私人包车覆盖地区", "From classic routes to lesser-known Yunnan destinations, private driving is available across the province.", "从热门城市到未列出的云南省内目的地，均可提供私人包车服务，具体路线按道路和车源确认。")}
         <div className="driver-area-grid">{coverage.map(item=><article className="driver-area-card" key={item.name}><div><Image src={item.img} alt={item.name} fill sizes="(max-width:600px) 100vw, 25vw" /></div><h3>{item.name}</h3><p>{item.detail}</p></article>)}</div>
-        <p className="driver-detail-note">{T("Planning a stop at Tiger Leaping Gorge? Our Lijiang-to-Gorge guide explains bus options, private day trips and the one-way route to Shangri-La.", "计划从丽江前往虎跳峡？交通攻略对比大巴、当日往返包车，以及经虎跳峡去香格里拉的单程路线。")} <Link href="/lijiang-to-tiger-leaping-gorge">{T("Read the Lijiang to Tiger Leaping Gorge guide", "查看丽江到虎跳峡交通攻略")}</Link>.</p>
+        <p className="driver-detail-note">{T("Want to visit Tiger Leaping Gorge on the way to Shangri-La? Choose the scenic transfer below or send us your stops and pickup details for a quote.", "想从丽江途经虎跳峡前往香格里拉？可选择含虎跳峡停靠的跨城包车，或提交接送地点和停留需求获取报价。")} <a href="#standard-transfers">{T("View private driver options", "查看包车路线和价格")} →</a></p>
       </div>
     </section>
 
     <section className="driver-section driver-section-soft driver-seo-guides" id="private-driver-route-guides">
       <div className="shell">
-        {heading("ROUTE PLANNING & TRANSPORT OPTIONS","Plan Your Yunnan Private Transfers","云南私人包车与交通路线攻略",
-          "Compare train and road travel before choosing a driver. A private car is especially useful for hotel-to-hotel transfers, families with luggage and scenic stops agreed in advance.",
-          "先比较高铁与公路交通，再决定是否包车。酒店到酒店、家庭大件行李和计划沿途游览时，私人包车通常更方便。")}
+        {heading("POPULAR PRIVATE DRIVER ROUTES","Popular Yunnan Private Driver Routes","热门云南私人包车路线",
+          "Choose a private transfer with hotel pickup, suitable luggage space and optional agreed sightseeing stops. View vehicle prices or request a tailored route.",
+          "从酒店接送、适合人数与行李的车型，到提前商定的沿途停靠，选择合适的云南包车路线并查看价格或咨询定制安排。")}
         <div className="driver-seo-guide-grid">
           <article className="driver-list-card">
             <div className="driver-seo-guide-media"><Image src="/assets/blog/yunnan-private-driver/dali-lijiang.webp" alt="Dali–Lijiang private transfer route in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
             
-            <h3>{T("Dali to Lijiang: Train or Private Car?","大理到丽江：高铁还是私人包车？")}</h3>
-            <p>{T("Trains work well for light luggage and station-to-station travel. Choose a private transfer for hotel pickup, a family group or a flexible arrival time.", "行李较少、车站之间出行时，高铁通常更经济；家庭出行、酒店直接接送或时间灵活时，可考虑包车。")}</p>
-            <Link href="/dali-to-lijiang">{T("Compare Dali–Lijiang travel options","查看大理到丽江交通对比")} →</Link>
+            <h3>{T("Dali ↔ Lijiang Private Transfer","大理 ⇄ 丽江私人接送")}</h3>
+            <p>{T("Direct hotel-to-hotel transfers in either direction, with a private five- or seven-seat vehicle. Confirm your pickup and drop-off before payment.", "支持双向酒店接送，提供5座或7座私人车辆。付款前请核对接送地点及车型。")}</p>
+            <a href="#standard-transfers">{T("See transfer prices & book","查看接送价格并预订")} →</a>
           </article>
           <article className="driver-list-card">
             <div className="driver-seo-guide-media"><Image src="/assets/blog/yunnan-private-driver/dali-shaxi.webp" alt="Shaxi Ancient Town traditional square in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
             
-            <h3>{T("Dali to Shaxi: Road Access & Luggage","大理到沙溪：公路交通与行李安排")}</h3>
-            <p>{T("Shaxi has no railway station. Compare buses and private road transfers, or arrange a Shaxi stop on your journey north to Lijiang.", "沙溪没有火车站，最后一段必须走公路。可比较班车与私人接送，或安排从大理到丽江途经沙溪。")}</p>
-            <Link href="/dali-to-shaxi">{T("Explore Dali–Shaxi transport","查看大理到沙溪交通攻略")} →</Link>
+            <h3>{T("Dali → Shaxi → Lijiang Scenic Transfer","大理 → 沙溪 → 丽江包车")}</h3>
+            <p>{T("Travel from Dali to Lijiang with a planned stop in Shaxi Ancient Town. Your driver carries your luggage while you explore the old town.", "从大理前往丽江，中途提前约定沙溪古镇停靠；行李随车，游览时间提前确认。")}</p>
+            <a href="#standard-transfers">{T("See scenic transfer prices","查看途经沙溪包车价格")} →</a>
           </article>
           <article className="driver-list-card">
             <div className="driver-seo-guide-media"><Image src="/assets/blog/yunnan-private-driver/lijiang-shangri-la.webp" alt="Shangri-La landscape in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
             
-            <h3>{T("Lijiang to Shangri-La: Direct or Scenic","丽江到香格里拉：直达还是沿途游览？")}</h3>
-            <p>{T("A direct train can be efficient, while a private driver offers hotel-to-hotel travel and the option to plan an agreed scenic stop.", "高铁适合快速直达，包车则可酒店接送，并提前商定沿途观景停靠。")}</p>
-            <Link href="/lijiang-to-shangri-la">{T("Compare Shangri-La travel options","查看丽江到香格里拉交通对比")} →</Link>
+            <h3>{T("Lijiang ↔ Shangri-La Private Transfer","丽江 ⇄ 香格里拉私人接送")}</h3>
+            <p>{T("Private door-to-door transfers between Lijiang and Shangri-La. Choose a direct journey or enquire about a scenic stop on the way.", "丽江与香格里拉之间提供酒店到酒店私人接送；可选择直达，或询问沿途观景停靠方案。")}</p>
+            <a href="#standard-transfers">{T("See private transfer prices","查看私人接送价格")} →</a>
           </article>
           <article className="driver-list-card">
             <div className="driver-seo-guide-media"><Image src="/assets/blog/yunnan-private-driver/lijiang-tiger-leaping-gorge.webp" alt="Tiger Leaping Gorge canyon in Yunnan" fill sizes="(max-width: 680px) 100vw, (max-width: 1200px) 48vw, 530px" loading="lazy" /></div>
             
-            <h3>{T("Tiger Leaping Gorge: Day Trip or Onward Transfer","虎跳峡：丽江往返还是继续去香格里拉？")}</h3>
-            <p>{T("Upper Gorge sightseeing and onward travel need different timing. Check road access and confirmed sightseeing areas before planning a stop.", "上虎跳峡观景与继续前往香格里拉的时间安排不同，应提前核实路况、开放区域与停留计划。")}</p>
-            <Link href="/lijiang-to-tiger-leaping-gorge">{T("Read the Tiger Leaping Gorge transport guide","查看丽江到虎跳峡交通攻略")} →</Link>
+            <h3>{T("Lijiang → Tiger Leaping Gorge → Shangri-La","丽江 → 虎跳峡 → 香格里拉")}</h3>
+            <p>{T("One-way scenic transfer with an agreed Upper Tiger Leaping Gorge visit. Stop duration and access are confirmed before the journey.", "丽江出发，途经上虎跳峡观景后前往香格里拉。停留时间和景区开放情况需提前确认。")}</p>
+            <a href="#standard-transfers">{T("Check scenic transfer & book","查看观景接送并预订")} →</a>
           </article>
         </div>
-        <p className="driver-detail-note">{T("Need a private car for any of these routes? Select a standard service above, or send your hotels, travel date, group size and preferred stops for a tailored quote. Prices include the agreed transport scope; tickets, meals and unplanned detours are extra.", "希望安排这些路线的包车？可在上方选择标准产品，也可以提供酒店、出行日期、人数和途中停留需求获取报价。费用以约定用车范围为准，门票、餐饮与临时改线不包含在内。")} <a href="#standard-transfers">{T("See routes and prices","查看路线与价格")} →</a></p>
+        <p className="driver-detail-note">{T("Prices are per vehicle for the agreed route. Choose a priced service to pay online or send your travel details for a custom quote. Sightseeing tickets, meals and unplanned detours are not included.", "标准路线按车报价，可选择产品在线支付，或提交需求获取定制报价。门票、餐饮及临时改线不包含在约定车费内。")} <a href="#standard-transfers">{T("See routes and prices","查看路线与价格")} →</a></p>
       </div>
     </section>
 
