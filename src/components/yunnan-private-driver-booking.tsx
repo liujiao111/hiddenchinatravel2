@@ -475,12 +475,12 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     {isArrival ? <p className="driver-area-hint">{zh
       ? "标准5座车建议1至3位乘客，最多3个大行李箱。实际车辆品牌、型号和颜色可能根据当天车源调整，最终车型类别将在订单确认时说明。"
       : "A standard five-seat car is recommended for 1–3 passengers and up to 3 large suitcases. The make, model and colour may vary with availability. We will confirm the vehicle category when confirming your booking."}</p> : null}
-    <p className="driver-area-hint" aria-live="polite">{isMulti ? (zh ? `总价 US${multiTotal}；20%定金 US${multiDeposit}；剩余80%按订单约定支付。` : `Total US${multiTotal}; 20% deposit US${multiDeposit}; the 80% balance follows your booking terms.`) : isArrival && (!hub || !arrivalDirection || !priceArea)
+    <p className="driver-area-hint" aria-live="polite">{isMulti ? (zh ? `总价 USD ${multiTotal}；20%定金 USD ${multiDeposit}；剩余80%按订单约定支付。` : `Total USD ${multiTotal}; 20% deposit USD ${multiDeposit}; the 80% balance follows your booking terms.`) : isArrival && (!hub || !arrivalDirection || !priceArea)
       ? (zh ? "请选择交通枢纽、接送方向和酒店区域以查看参考价。" : "Select a hub, direction and hotel area to see the guide price.")
       : guidePrice === undefined
       ? (zh ? ((isDaliArrival || isLijiangArrival || isShangriLaArrival) ? "价格需人工确认" : isArrival ? "需人工确认价格" : "此选项需人工报价。") : "Request a custom quote for this option.")
-      : !onlinePayable ? (zh ? `所选服务 US${driverUsd(guidePrice)}，包含司机、燃油、高速及停车费。` : `Selected service US${driverUsd(guidePrice)} including driver, fuel, tolls and parking.`)
-      : (zh ? `所选服务 US${driverUsd(guidePrice)}／车，在线支付全款后确认派车。` : `Selected service: US${driverUsd(guidePrice)} per vehicle. Pay in full online; driver allocation follows payment.`)}</p>
+      : !onlinePayable ? (zh ? `所选服务 USD ${driverUsd(guidePrice)}，包含司机、燃油、高速及停车费。` : `Selected service USD ${driverUsd(guidePrice)} including driver, fuel, tolls and parking.`)
+      : (zh ? `所选服务 USD ${driverUsd(guidePrice)}／车，在线支付全款后确认派车。` : `Selected service: USD ${driverUsd(guidePrice)} per vehicle. Pay in full online; driver allocation follows payment.`)}</p>
     <div className="contact-field-row">
       <label><span>{zh ? "成人数 *" : "Adults *"}</span><input required type="number" name="travelers" min="1" max="20" defaultValue="2" /></label>
       <label><span>{zh ? "儿童人数" : "Children"}</span><input type="number" name="children" min="0" max="20" defaultValue="0" /></label>
@@ -495,7 +495,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
     <label className="contact-honeypot" aria-hidden="true"><span>Website</span><input name="website" tabIndex={-1} autoComplete="off" /></label>
     <label className="driver-form-consent"><input type="checkbox" name="consent" value="yes" required /><span>{zh ? "我同意仅就本次包车咨询接收回复。" : "I agree to be contacted only about this driver enquiry."} <Link href="/privacy-policy">{zh ? "隐私政策" : "Privacy policy"}</Link></span></label>
     {status === "error" ? <p role="alert" className="contact-form-error">{error}</p> : null}
-    <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? (onlinePayable ? (zh ? "正在前往 Stripe…" : "Opening Stripe…") : (zh ? "发送中…" : "Sending…")) : onlinePayable ? (zh ? isMulti ? `支付20%定金 US${multiDeposit}` : `前往 Stripe 支付 US${driverUsd(guidePrice!)}` : isMulti ? `Pay 20% deposit US${multiDeposit}` : `Pay US${driverUsd(guidePrice!)} with Stripe`) : (zh ? "提交定制需求" : "Request a Custom Quote")}</button>
+    <button className="button button-blue" type="submit" disabled={status === "sending"}>{status === "sending" ? (onlinePayable ? (zh ? "正在前往 Stripe…" : "Opening Stripe…") : (zh ? "发送中…" : "Sending…")) : onlinePayable ? (zh ? isMulti ? `支付20%定金 USD ${multiDeposit}` : `前往 Stripe 支付 USD ${driverUsd(guidePrice!)}` : isMulti ? `Pay 20% deposit USD ${multiDeposit}` : `Pay USD ${driverUsd(guidePrice!)} with Stripe`) : (zh ? "提交定制需求" : "Request a Custom Quote")}</button>
   </form>;
 }
 
@@ -592,8 +592,8 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
   const priceLabel = (product: Product, vehicle: "five" | "seven") => {
     const price = product.category === "arrival" ? transferStartingPrice(product.id, vehicle) : product.category === "multi" ? (product.id === "multi-long" ? 1000 : 1200) + (vehicle === "seven" ? 200 : 0) : driverDirectPrices[product.id]?.[vehicle];
     if (price === undefined) return zh ? "需询价" : "Request quote";
-    if (product.category === "arrival") return `from US${driverUsd(price)}`;
-    return product.category === "day" || product.category === "multi" ? `US${driverUsd(price)}/day` : `US${driverUsd(price)}`;
+    if (product.category === "arrival") return `from USD ${driverUsd(price)}`;
+    return product.category === "day" || product.category === "multi" ? `USD ${driverUsd(price)}/day` : `USD ${driverUsd(price)}`;
   };
   const pick = (id: ProductId) => {
     setSelected(id);
