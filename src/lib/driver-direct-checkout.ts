@@ -1,14 +1,28 @@
 import Stripe from "stripe";
 import { driverOrdersEnabled, saveDriverRequest, updateDriverOrder } from "@/lib/driver-orders.mjs";
 
+export function getDriverCheckoutConfigStatus() {
+  const live = (process.env.VERCEL_ENV || process.env.DRIVER_ORDER_ENV) === "production";
+  const key = process.env.STRIPE_SECRET_KEY;
+  const webhook = live ? process.env.STRIPE_DRIVER_LIVE_WEBHOOK_SECRET : process.env.STRIPE_WEBHOOK_SECRET;
+  const checks = {
+    orderStorage: driverOrdersEnabled(),
+    stripeKey: Boolean(key?.startsWith(live ? "sk_live_" : "sk_test_")),
+    webhook: Boolean(webhook?.startsWith("whsec_")),
+    environment: live || process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED === "true",
+  };
+  return { ready: Object.values(checks).every(Boolean), checks, environment: live ? "production" : "nonproduction" };
+}
+
 export async function createDirectDriverCheckout(input: {
   id: string; submissionKey: string; summary: Record<string, unknown>; totalFen: number; origin: string; deposit?: boolean;
 }) {
   const key = process.env.STRIPE_SECRET_KEY;
   const live = (process.env.VERCEL_ENV || process.env.DRIVER_ORDER_ENV) === "production";
   const webhook = live ? process.env.STRIPE_DRIVER_LIVE_WEBHOOK_SECRET : process.env.STRIPE_WEBHOOK_SECRET;
-  if (!driverOrdersEnabled() || !key?.startsWith(live ? "sk_live_" : "sk_test_") || !webhook?.startsWith("whsec_")
-    || (!live && process.env.STRIPE_DRIVER_TEST_CHECKOUT_ENABLED !== "true")) {
+  const config = getDriverCheckoutConfigStatus();
+  if (!config.ready) {
+    console.error("[driver-checkout] Checkout environment validation failed", config);
     throw new Error("Online payment is not configured for this environment. Please contact Joy to arrange payment.");
   }
   const order = await saveDriverRequest(input.id, input.summary, input.submissionKey);
