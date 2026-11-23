@@ -381,7 +381,7 @@ function DriverEnquiryForm({ locale, kind, serviceId }: { locale: Locale; kind: 
         submissionKey: submissionKey.current, locale, service: service ? (zh ? service.zh : service.en) : title,
         route: direction || route, pickup, dropoff, vehicle: zh
           ? (vehicle === fiveSeat ? "5座车" : vehicle === sevenSeat ? "7座商务车" : "更大车型") : vehicle,
-        guideFen: isMulti ? multiTotal * 100 : guidePrice === undefined ? null : driverUsd(guidePrice) * 100,
+        notes, guideFen: isMulti ? multiTotal * 100 : guidePrice === undefined ? null : driverUsd(guidePrice) * 100,
         ...(isArrival ? { airportTransfer: {
           productId: serviceId, hubId, direction: arrivalDirection, hotelArea: secondHub ? "" : hotelArea,
           stationTransfer: Boolean(secondHub), hotel, transportNumber, serviceTime, vehicle, luggage, notes,
