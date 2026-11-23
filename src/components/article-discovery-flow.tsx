@@ -15,11 +15,13 @@ function wordCount(body: string) {
 
 export async function ArticleDiscoveryFlow({
   related,
+  isTransport,
   sourceTitle,
   sourcePath,
   lang,
 }: {
   related: ContentItem[];
+  isTransport: boolean;
   sourceTitle: string;
   sourcePath: string;
   lang: AppLocale;
@@ -71,8 +73,8 @@ export async function ArticleDiscoveryFlow({
     <section className="article-discovery article-explore">
       <div className="shell">
         <header className="article-flow-heading">
-          <h2>{t("discoveryTitle")}</h2>
-          <p>{t("discoveryIntro")}</p>
+          <h2>{t(isTransport ? "discoveryTransportTitle" : "discoveryTitle")}</h2>
+          <p>{t(isTransport ? "discoveryTransportIntro" : "discoveryIntro")}</p>
         </header>
         <div className="article-guide-grid">
           {related.map((item) => <GuideCard key={item.slug} guide={{
