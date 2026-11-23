@@ -3,7 +3,7 @@ import { get, put, BlobPreconditionFailedError } from "@vercel/blob";
 const opts = { access: /** @type {const} */ ("private") };
 const idPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 const stages = ["initial", "balance"];
-const kinds = ["paid", "operator-email", "customer-email"];
+const kinds = ["paid", "operator-email", "customer-email", "ga4-purchase"];
 /** @param {string} id @param {string} stage @param {string} kind */
 function path(id,stage,kind) {
   if (!idPattern.test(id) || !stages.includes(stage) || !kinds.includes(kind)) throw new Error("Invalid payment record");
