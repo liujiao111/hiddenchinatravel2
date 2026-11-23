@@ -212,13 +212,13 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
 
     <section className="driver-section driver-section-soft journey-support-flow driver-process" id="booking-process">
       <div className="shell journey-section-layout">
-        <header className="driver-flow-heading"><p className="kicker">08 / HOW BOOKING WORKS</p><h2>{T("From Route to Confirmed Pickup","从选线路到司机接送")}</h2><p>{T("A payment is not an immediate driver confirmation. Standard routes can be paid online; custom routes receive a quote first. We confirm the car and pickup arrangements after payment.","付款不等于立即确认派车。标准路线可在线支付，定制路线先询价；收到付款后核实车源并确认接送安排。")}</p></header>
+        <header className="driver-flow-heading"><p className="kicker">08 / HOW BOOKING WORKS</p><h2>{T("From Route to Confirmed Pickup","从选线路到司机接送")}</h2><p>{T("Choose your service, pay securely, then connect with Joy to confirm your driver and pickup details.","选好服务、安全付款后，与 Joy 联系确认司机和接送安排。")}</p></header>
         <div className="journey-support-grid">{[
           [T("Choose a service","选服务"),T("Pick a standard transfer or describe your custom route.","选择标准接送，或发送定制路线。")],
           [T("Share your date","提交日期"),T("Tell us pickup, drop-off, passengers and luggage.","提供接送点、人数和行李情况。")],
           [T("Review USD price","核对美元价格"),T("Review the displayed standard-route total, or request a written quote for custom routes.","核对标准产品显示的美元价格；定制路线先获得书面报价。")],
-          [T("Pay the agreed amount","支付约定金额"),T("Use the licensed operator’s secure payment link for the agreed full amount or deposit.","通过持证经营方提供的安全链接支付约定的全款或定金。")],
-          [T("Receive confirmation","获取确认"),T("Get written booking confirmation and pickup information.","取得书面预订确认及接送安排。")]
+          [T("Pay securely online","安全在线付款"),T("Pay the full amount or 20% multi-day deposit securely via Stripe.","通过 Stripe 安全支付全款，或多日包车20%定金。")],
+          [T("Connect & confirm pickup","联系确认接送"),T("After payment, Joy will contact you. You can also message us on WhatsApp or WeChat with your order number. We’ll confirm your driver and pickup details.","付款后 Joy 会联系你；你也可以主动加 WhatsApp 或微信并提供订单号，我们将确认司机与接送安排。")]
         ].map(([h,p],i)=><article key={h}><span>{String(i+1).padStart(2,"0")}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
         <p className="driver-detail-note driver-flow-note">{T("Custom enquiries are free. For priced standard routes, Stripe collects the listed full amount or the 20% multi-day deposit before vehicle allocation; if we cannot provide the service, your payment is refunded.","定制路线询价免费。标准路线选择后，Stripe 收取显示的全款或多日包车20%定金，随后确认车源；如无法提供服务将退款。")}</p>
       </div>
