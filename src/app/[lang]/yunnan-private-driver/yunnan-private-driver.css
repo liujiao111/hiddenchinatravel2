@@ -72,6 +72,15 @@
 .driver-custom-photo{position:relative;min-height:510px;margin:0;overflow:hidden;background:var(--color-surface-soft)}
 .driver-custom-photo img{object-fit:cover}
 .driver-custom-photo figcaption{position:absolute;right:18px;bottom:18px;max-width:280px;background:var(--color-surface);padding:12px 16px;font-size:.75rem}
+
+/* Search-intent transport guides: short, readable and mobile friendly. */
+.driver-seo-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.driver-page .driver-seo-guide-grid .driver-list-card{display:flex;flex-direction:column;gap:12px;padding:clamp(22px,3vw,32px);border:1px solid var(--color-border)}
+.driver-seo-guide-grid .driver-list-card h3{margin:0;font-size:clamp(1.1rem,1.65vw,1.4rem);line-height:1.35}
+.driver-seo-guide-grid .driver-list-card p{margin:0;color:var(--color-muted);font-size:.89rem;line-height:1.7}
+.driver-seo-guide-grid .driver-list-card a{display:inline-flex;align-self:flex-start;margin-top:auto;padding-top:8px;color:var(--color-action-text);font-size:.84rem;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.driver-seo-guides .driver-detail-note a{color:var(--color-action-text);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:680px){.driver-seo-guide-grid{grid-template-columns:1fr;gap:12px}}
 .driver-inclusions-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .driver-list-card{background:var(--color-surface);padding:32px}
 .driver-list-card h3{margin:0 0 22px}
