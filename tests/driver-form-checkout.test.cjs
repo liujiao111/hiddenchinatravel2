@@ -24,6 +24,7 @@ Module._load = function(request, parent, isMain) {
   };
   if (request === "@/lib/driver-direct-prices") return prices;
   if (request === "@/lib/driver-usd-prices") return usd;
+  if (request === "@/lib/driver-order-mail") return require("../src/lib/driver-order-mail.ts");
   if (request === "@/lib/driver-direct-checkout") return {
     createDirectDriverCheckout: async details => {
       checkouts.push(details);
@@ -87,7 +88,7 @@ test("standard 7-seat form uses SERVER USD price and captures unpaid enquiry", a
   assert.equal(checkouts[0].deposit, false);
   assert.equal(stored.length, 1);
   assert.equal(emails.length, 1);
-  assert.match(emails[0].subject, /Unpaid checkout/);
+  assert.match(emails[0].subject, /\[UNPAID\]/);
   assert.match(emails[0].text, /NOT PAID/);
   assert.match(emails[0].text, /USD 128/);
 });
