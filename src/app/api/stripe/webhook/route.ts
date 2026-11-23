@@ -4,6 +4,7 @@ import { driverOrdersEnabled, readDriverOrder } from "@/lib/driver-orders.mjs";
 import { createDriverPaymentRecord, getDriverPaymentRecord } from "@/lib/driver-payment-records.mjs";
 import { isDriverProductId } from "@/lib/stripe-test";
 import { driverPaidOperatorEmail } from "@/lib/driver-order-mail";
+import { reportVerifiedDriverPurchase } from "@/lib/driver-ga4-purchase";
 
 export const runtime = "nodejs";
 
@@ -94,6 +95,14 @@ export async function POST(request: Request) {
         });
         if (receipt.sessionId !== session.id || receipt.amount !== due) {
           throw new Error("Conflicting paid receipt");
+        }
+        // Analytics failure must never block verified payments or customer notification.
+        try {
+          const verified = await readDriverOrder(metadata.order_id);
+          if (verified) await reportVerifiedDriverPurchase(verified.order,stage,session.id,due,
+            type as "full" | "deposit" | "balance");
+        } catch {
+          console.error("[stripe-driver] GA4 purchase reporting unavailable");
         }
         const operatorSent = await getDriverPaymentRecord(metadata.order_id,stage,"operator-email");
         operatorAlreadySent = Boolean(operatorSent);
