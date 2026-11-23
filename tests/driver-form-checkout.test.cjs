@@ -119,3 +119,15 @@ test("tampered intercity route is rejected before Stripe creation", async () => 
   assert.equal(response.status, 400);
   assert.equal(checkouts.length, 0);
 });
+
+test("missing pickup time cannot create an under-specified booking", async () => {
+  const response = await send(sample("dali-lijiang-direct", "Five-seat car", {pickupTime:""}));
+  assert.equal(response.status, 400);
+  assert.equal(checkouts.length, 0);
+});
+
+test("seven-seat booking with excessive luggage is refused before charge", async () => {
+  const response = await send(sample("dali-lijiang-direct", "Seven-seat car", {luggage:6}));
+  assert.equal(response.status, 400);
+  assert.equal(checkouts.length, 0);
+});
