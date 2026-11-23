@@ -107,7 +107,7 @@ export async function POST(request: Request) {
                 "Reference: " + formRecord.ref + "\\n" + enquiryEmailText(enquiry) +
                 "\\nOrder page: " + new URL(result.orderPath, origin).href +
                 "\\nExpected total: USD " + (totalFen / 100).toFixed(2) +
-                "\\nPayment due now: USD " + ((multi ? Math.round(totalFen / 5) : totalFen) / 100).toFixed(2) } }),
+                "\\nPayment due now: USD " + ((multi ? Math.round(totalFen / 5) : totalFen) / 100).toFixed(2) }),
             signal: AbortSignal.timeout(5_000),
           });
           if (!mail.ok) console.error("[driver-checkout] Operator lead notification rejected", { status: mail.status });
