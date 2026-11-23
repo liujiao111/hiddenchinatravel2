@@ -32,11 +32,11 @@ const blobMock = {
 };
 // Load the small ESM module with a local in-memory Blob adapter only.
 const moduleSource = fs.readFileSync(filename, "utf8")
-  .replace(/^import .*;\\s*$/gm, "")
-  .replace(/\\bexport\\s+(?=(?:async\\s+)?function|const)/g, "");
+  .replace(/^import .*;\s*$/gm, "")
+  .replace(/\bexport\s+(?=(?:async\s+)?function|const)/g, "");
 const loadOrders = new Function("createHash", "createHmac", "timingSafeEqual",
   "get", "put", "BlobPreconditionFailedError",
-  moduleSource + "\\nreturn {saveDriverRequest,updateDriverOrder,readDriverOrder};");
+  moduleSource + "\nreturn {saveDriverRequest,updateDriverOrder,readDriverOrder};");
 const {saveDriverRequest,updateDriverOrder,readDriverOrder} = loadOrders(
   crypto.createHash,crypto.createHmac,crypto.timingSafeEqual,
   blobMock.get,blobMock.put,BlobPreconditionFailedError);
