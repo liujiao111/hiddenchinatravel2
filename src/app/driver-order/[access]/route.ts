@@ -1,12 +1,13 @@
 import { driverOrderId, isDriverCheckoutUrl, readDriverOrder } from "@/lib/driver-orders.mjs";
 import { reconcileVerifiedDriverPayment } from "@/lib/driver-payment-reconcile";
+import { siteConfig } from "@/lib/site-config";
 
 const headers = {
   "Cache-Control": "private, no-store",
   "Referrer-Policy": "no-referrer",
   "X-Robots-Tag": "noindex, nofollow, noarchive",
   "X-Content-Type-Options": "nosniff",
-  "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'",
+  "Content-Security-Policy": "default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'",
 };
 const escape = (value: unknown) => String(value ?? "").replace(/[&<>"']/g, character => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
@@ -47,6 +48,11 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
   const payment = paid?.initial ? quote?.balance : quote?.initial;
   const payable = payment && Date.parse(payment.expiresAt) > Date.now()
     && !paid?.balance && paidFen < quote.totalFen && isDriverCheckoutUrl(payment.url);
+  const whatsAppMessage = zh
+    ? `你好 Joy，我的云南包车订单已付款。请帮我确认司机、车辆和接送安排。\\n订单号：${id}`
+    : `Hi Joy, I have paid for my Yunnan private driver order. Please help confirm the vehicle, driver and pickup arrangements.\\nOrder ID: ${id}`;
+  const whatsAppUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(whatsAppMessage)}`;
+  const emailUrl = `mailto:${siteConfig.enquiryEmail}?subject=${encodeURIComponent(`Driver order ${id} — pickup arrangements`)}&body=${encodeURIComponent(whatsAppMessage)}`;
   const row = (label: string, value: unknown) => value ? `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>` : "";
   const status = verificationOnly && paidFen > 0
     ? t("US$1 正式测试付款成功（无用车服务）", "US$1 live test payment successful — no transport booked")
@@ -63,7 +69,7 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
 
   return new Response(`<!doctype html><html lang="${zh ? "zh" : "en"}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
     <title>${t("包车订单", "Driver order")} | Hidden China Travel</title>
-    <style>body{margin:0;background:#f3f7fc;color:#192838;font:1rem/1.6 system-ui,sans-serif}main{max-width:46rem;margin:2rem auto;padding:0 1rem}section{background:white;border:1px solid #dce5ee;border-radius:14px;padding:clamp(1rem,4vw,2rem);margin:1rem 0}h1,h2{line-height:1.2}.subtle{color:#59718c;font-size:.93rem}.success{color:#126647}.pending{color:#915b13}.test-banner{border-left:5px solid #d49b30}.status{font-weight:750;font-size:1.13rem}.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.summary div{background:#f1f5fb;padding:.9rem;border-radius:9px}.summary strong{display:block;font-size:1.1rem}@media(max-width:610px){.summary{grid-template-columns:1fr}}dl{margin:0}dl div{display:grid;grid-template-columns:minmax(7rem,1fr) 2fr;gap:1rem;border-bottom:1px solid #e7edf3;padding:.65rem 0}dt{font-weight:650}dd{margin:0;overflow-wrap:anywhere;white-space:pre-line}.button{display:inline-block;padding:.7rem 1.2rem;background:#174da3;color:white;border-radius:8px;font-weight:650}</style>
+    <style>body{margin:0;background:#f3f7fc;color:#192838;font:1rem/1.6 system-ui,sans-serif}main{max-width:46rem;margin:2rem auto;padding:0 1rem}section{background:white;border:1px solid #dce5ee;border-radius:14px;padding:clamp(1rem,4vw,2rem);margin:1rem 0}h1,h2{line-height:1.2}.subtle{color:#59718c;font-size:.93rem}.success{color:#126647}.pending{color:#915b13}.test-banner{border-left:5px solid #d49b30}.status{font-weight:750;font-size:1.13rem}.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.summary div{background:#f1f5fb;padding:.9rem;border-radius:9px}.summary strong{display:block;font-size:1.1rem}.contact-next{border-color:#bfd3ee}.contact-next h2{margin-top:0}.order-reference{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;padding:.7rem .9rem;background:#f1f5fb;border-radius:9px;margin:1rem 0}.order-reference code{font-size:.94rem;overflow-wrap:anywhere;user-select:all}.contact-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin:1.2rem 0}.contact-option{border:1px solid #dce5ee;border-radius:10px;padding:1rem;min-width:0}.contact-option strong{display:block;margin-bottom:.45rem}.contact-option a{overflow-wrap:anywhere}.contact-option .button{display:inline-block;text-align:center;font-size:.92rem;max-width:100%;box-sizing:border-box}.contact-option p{margin:.45rem 0}.contact-qr{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}.contact-qr figure{margin:0;border:1px solid #dce5ee;border-radius:10px;padding:1rem;text-align:center}.contact-qr img{display:block;width:100%;height:auto;max-width:200px;max-height:225px;object-fit:contain;margin:.7rem auto}.contact-qr figcaption{font-weight:650}.contact-hint{color:#526a84;font-size:.9rem}@media(max-width:610px){.summary{grid-template-columns:1fr}.contact-options{grid-template-columns:1fr}.contact-qr{grid-template-columns:1fr 1fr;gap:.5rem}.contact-qr figure{padding:.6rem}.contact-qr img{max-height:180px}}dl{margin:0}dl div{display:grid;grid-template-columns:minmax(7rem,1fr) 2fr;gap:1rem;border-bottom:1px solid #e7edf3;padding:.65rem 0}dt{font-weight:650}dd{margin:0;overflow-wrap:anywhere;white-space:pre-line}.button{display:inline-block;padding:.7rem 1.2rem;background:#174da3;color:white;border-radius:8px;font-weight:650}</style>
     <main><p>Hidden China Travel</p><h1>${verificationOnly ? t("US$1 支付测试订单", "US$1 Payment Verification Order") : t("包车订单", "Driver order")}</h1>
     ${verificationOnly ? `<section><strong>${t("仅用于支付验收，真实扣款 US$1。不包含包车、接送、导游或有效预订；请勿安排司机。", "REAL US$1 payment verification only. No transport, driver, guide or reservation is included. Do not dispatch a vehicle.")}</strong></section>` : ""}
     <p class="status ${paidFen>0?"success":"pending"}">${escape(status)}</p>
@@ -106,6 +112,43 @@ export async function GET(_request: Request, context: RouteContext<"/driver-orde
       ${!verificationOnly ? `<details><summary>${t("退改条款", "Cancellation and changes")}</summary><p>${escape(quote.cancellationTerms)}</p></details>` : ""}
       ${payable && !paymentPending ? `<p><a class="button" href="${escape(payment.url)}" rel="noreferrer">${t("通过 Stripe 支付","Pay with Stripe")} ${escape(money(payment.dueFen))}</a></p>`
         : !paidFen && !paymentPending ? `<p class="subtle">${t("付款链接已不可用，请联系 Hidden China Travel 获取帮助。", "Your payment link is unavailable. Contact Hidden China Travel for assistance.")}</p>` : ""}
+    </section>` : ""}
+    ${paidFen>0 ? `<section class="contact-next" aria-label="${t("付款后联系 Joy", "Contact Joy after payment")}">
+      <h2>${verificationOnly ? t("测试付款完成 · 联系 Joy", "Test payment complete · Contact Joy") : dispatch
+        ? t("需要协助？联系 Joy", "Need help? Contact Joy")
+        : t("下一步：联系 Joy 确认接车安排", "Next step: Contact Joy to arrange your driver")}</h2>
+      <p>${verificationOnly
+        ? t("这是 US$1 支付测试订单，不会安排司机。若需确认测试结果或退款，请通过以下任一方式联系 Joy，并提供订单号。", "This US$1 payment test does not include transport. To discuss verification or a test refund, contact Joy using one of the options below and provide your order ID.")
+        : dispatch
+          ? t("如需调整接送安排，请联系 Joy 并提供订单号。", "For changes or questions about your pickup, contact Joy and provide your order ID.")
+          : t("我们已收到付款。请通过 WhatsApp、微信或邮箱联系 Joy，提供下方订单号，以便确认司机、车型、接车时间和集合地点。付款并不代表车辆已派出。", "Your payment is confirmed. Please contact Joy by WhatsApp, WeChat or email, and share the order ID below so we can confirm your driver, vehicle, pickup time and meeting point. Driver assignment is not yet confirmed.")}</p>
+      <div class="order-reference"><strong>${t("订单号", "Order ID")}:</strong>
+        <code aria-label="${t("长按或选中复制订单号", "Select or long-press to copy order ID")}">${escape(id)}</code>
+      </div>
+      <p class="contact-hint">${t("联系时请提供上方订单号，方便快速查询；WhatsApp 按钮已自动带入订单号。", "Please include this order ID in your message. The WhatsApp button automatically includes it.")}</p>
+      <div class="contact-options">
+        <div class="contact-option"><strong>WhatsApp</strong>
+          <p><a href="https://wa.me/${escape(siteConfig.whatsappNumber)}" target="_blank" rel="noopener noreferrer">+${escape(siteConfig.whatsappNumber)}</a></p>
+          <a class="button" href="${escape(whatsAppUrl)}" target="_blank" rel="noopener noreferrer">${t("发送订单号联系 Joy", "Message Joy with order ID")}</a></div>
+        <div class="contact-option"><strong>${t("微信 WeChat", "WeChat")}</strong>
+          <p>${t("微信号", "WeChat ID")}: <code>ll917961898</code></p>
+          <p class="contact-hint">${t("扫码添加 Joy，发送订单号", "Scan to add Joy and send the order ID")}</p>
+        </div>
+        <div class="contact-option"><strong>Email</strong>
+          <p><a href="mailto:${escape(siteConfig.enquiryEmail)}">${escape(siteConfig.enquiryEmail)}</a></p>
+          <a href="${escape(emailUrl)}">${t("发送包含订单号的邮件", "Email Joy with order ID")}</a>
+        </div>
+      </div>
+      <div class="contact-qr">
+        <figure><figcaption>WhatsApp QR</figcaption>
+          <img src="/assets/contact/joy-whatsapp-qr.jpeg" alt="${t("扫码通过 WhatsApp 联系 Joy", "Scan to contact Joy on WhatsApp")}" width="240" height="240" loading="lazy">
+          <p class="contact-hint">${t("扫码后请发送订单号", "Please send your order ID after scanning")}</p>
+        </figure>
+        <figure><figcaption>${t("微信二维码", "WeChat QR")}</figcaption>
+          <img src="/assets/contact/joy-wechat-qr.jpeg" alt="${t("扫码添加 Joy 的微信", "Scan to add Joy on WeChat")}" width="240" height="240" loading="lazy">
+          <p class="contact-hint">${t("添加好友后请发送订单号", "Send your order ID after adding Joy")}</p>
+        </figure>
+      </div>
     </section>` : ""}
     ${!verificationOnly && dispatch ? `<section><h2>${t("接送安排", "Pickup arrangements")}</h2><dl>${row(t("时间与集合点", "Time and meeting point"), dispatch.pickup)}${row(t("司机联系方式", "Driver contact"), dispatch.driver)}</dl></section>` : ""}
     </main></html>`, { headers: { ...headers, "Content-Type": "text/html; charset=utf-8" } });
