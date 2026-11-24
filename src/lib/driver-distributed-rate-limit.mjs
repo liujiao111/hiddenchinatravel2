@@ -1,5 +1,5 @@
 import { createHmac } from "node:crypto";
-import { put, BlobPreconditionFailedError } from "@vercel/blob";
+import { get, put, BlobPreconditionFailedError } from "@vercel/blob";
 
 // Shared, atomic slots: separate Vercel invocations see the same private Blob state.
 // This is a defense in depth. A Vercel edge Firewall rule is still preferred so
@@ -51,6 +51,12 @@ export async function checkDriverRateLimit(request, policy) {
       return { allowed: true, retryAfter: 0 };
     } catch (error) {
       if (error instanceof BlobPreconditionFailedError) continue;
+      // Blob create-only collisions may be reported as generic bad_request/BlobError
+      // rather than an ETag precondition failure. Verify the exact immutable slot
+      // at origin before advancing. Never treat an unverified storage failure as
+      // permission to proceed and never overwrite a slot.
+      const occupied = await get(path, { ...options, useCache: false });
+      if (occupied?.statusCode === 200) continue;
       throw error;
     }
   }

@@ -35,7 +35,9 @@ export async function POST(request:Request){
     // Never log the request body, credentials, customer details, URLs, or Stripe's raw message.
     const e=error && typeof error==="object"?error as Record<string,unknown>:{};
     const token=(v:unknown)=>typeof v==="string"&&/^[A-Za-z0-9_.\\[\\]-]{1,100}$/.test(v)?v:undefined;
-    console.error("[experience-live-test] Checkout unavailable",{stage,type:token(e.type??e.name),code:token(e.code),param:token(e.param),requestId:token(e.requestId),statusCode:typeof e.statusCode==="number"?e.statusCode:undefined});
+    const msg=typeof e.message==="string"?e.message:"";
+    const category=/already exists|overwrite/i.test(msg)?"blob-conflict":/token|access denied|forbidden/i.test(msg)?"storage-or-api-auth":/invalid rate limit policy/i.test(msg)?"invalid-rate-policy":/quota|suspended/i.test(msg)?"storage-quota":/rate.limit|too many requests/i.test(msg)?"rate-limited":/network|fetch failed|timeout/i.test(msg)?"network":undefined;
+    console.error("[experience-live-test] Checkout unavailable",{stage,category,type:token(e.type??e.name)??token(error instanceof Error?error.constructor.name:typeof error),code:token(e.code),param:token(e.param),requestId:token(e.requestId),statusCode:typeof e.statusCode==="number"?e.statusCode:undefined});
     return Response.json({error:"Checkout unavailable. Retry the same selection."},{status:503});
   }
 }
