@@ -1,0 +1,60 @@
+import Image from "next/image";
+import { SiteHeader } from "@/components/site-header";
+import { ContentFooter } from "@/components/content-footer";
+import { JourneyHero, JourneyFactCards } from "@/components/journey-landing";
+import { LocaleLink as Link } from "@/components/locale-link";
+import { ExperienceBookingPreview } from "@/components/experience-booking-preview";
+import { displayDraftPrice, experiencePath, experiences, type ExperienceMedia, type ExperienceProduct } from "@/lib/experiences";
+import type { AppLocale } from "@/lib/i18n-seo";
+import { localePath } from "@/lib/i18n-seo";
+import type { ReactNode } from "react";
+
+function Media({ media, lang }: { media: ExperienceMedia; lang: AppLocale }) {
+  return media.src ? <Image src={media.src} alt={media.alt[lang]} fill sizes="(max-width: 680px) 100vw, 33vw" /> : <div className="absolute inset-0 flex items-center justify-center p-4 text-center" style={{background:"var(--color-surface-soft)",color:"var(--color-muted)"}}>{lang==="zh"?"图片预留":"Image placeholder"} · {media.alt[lang]}</div>;
+}
+function Section({ id, kicker, title, children, soft=false }: { id:string; kicker:string; title:string; children:ReactNode; soft?:boolean }) {
+  return <section className={"driver-section"+(soft?" driver-section-soft":"")} id={id}><div className="shell"><div className="driver-section-head"><p className="kicker">{kicker}</p><h2>{title}</h2></div>{children}</div></section>;
+}
+function Nav({lang,links,action}:{lang:AppLocale;links:{href:string;label:string}[];action:{href:string;label:string}}) {
+  return <nav className="driver-desktop-nav" aria-label={lang==="zh"?"体验页面导航":"Experience page navigation"}><div className="shell driver-desktop-nav-inner"><Link href="/" aria-label="Hidden China Travel"><Image src="/brand/logo.webp" width={92} height={46} alt="" /></Link><div className="driver-desktop-nav-links">{links.map(l=><a href={l.href} key={l.href}>{l.label}</a>)}</div><a className="button button-blue" href={action.href}>{action.label}</a></div></nav>;
+}
+function LocalePreviewLink({lang,path}:{lang:AppLocale;path:string}) {
+  return <p className="driver-detail-note"><a className="driver-text-link" href={localePath(lang==="zh"?"en":"zh",path)}>{lang==="zh"?"English preview":"中文预览"}</a></p>;
+}
+export function ExperienceDetailTemplate({product:p,lang}:{product:ExperienceProduct;lang:AppLocale}) {
+  const T=(en:string,zh:string)=>lang==="zh"?zh:en;
+  const choose={href:"#packages",label:T("Choose Your Experience","选择体验套餐")};
+  const path=experiencePath(p.slug);
+  return <main className="driver-page">
+    <SiteHeader cta={{...choose,location:"experience_header"}} searchPlaceholder={p.shortTitle[lang]}/>
+    <JourneyHero title={p.title[lang]} eyebrow={p.city[lang]+" · "+p.category[lang]} image={p.hero.src} imageAlt={p.hero.alt[lang]} imagePlaceholder={T("Hero image reserved","Hero 主图预留")} description={p.description[lang]} primary={choose} secondary={{href:"#overview",label:T("Discover the Craft","了解体验")}} note={T("Product preview · prices and availability pending confirmation","产品预览 · 价格及可订状态待确认")} bounds={p.duration[lang]+" · "+T("Hands-on experience","亲手体验")} breadcrumb={{href:"/yunnan-experiences",label:T("Local Experiences","特色体验")}}/>
+    <Nav lang={lang} links={[{href:"#overview",label:T("Overview","体验概览")},{href:"#packages",label:T("Packages","套餐")},{href:p.process?.length?"#process":"#inclusions",label:T("Experience","体验内容")},{href:"#location",label:T("Location","地点")},{href:"#faq",label:T("FAQs","常见问题")}]} action={choose}/>
+    <LocalePreviewLink lang={lang} path={path}/>
+    <JourneyFactCards id="overview" title={T("Experience Highlights","体验亮点")} cards={p.highlights.map(h=>({icon:"note",title:h.title[lang],lines:[h.text[lang]]}))}/>
+    <Section id="packages" kicker="02 / EXPERIENCE OPTIONS" title={T("Choose Your Experience","选择你的体验")} soft>
+      <div className="driver-product-grid">{p.packages.filter(x=>x.price).map(pkg=><article key={pkg.id} className="driver-product"><div className="driver-product-photo"><Media media={pkg.media} lang={lang}/></div><div className="driver-product-copy"><p className="driver-product-meta">{pkg.minutes} {T("min","分钟")}</p><h3>{pkg.name[lang]}</h3><p>{pkg.description[lang]}</p><p>{pkg.pieces?.map(x=>x.name[lang]).join(" / ")}</p><div className="driver-product-price"><strong>{displayDraftPrice(pkg,lang)}</strong></div><a className="button button-blue driver-product-action" href="#booking-preview">{T("Select Options","选择选项")} →</a></div></article>)}</div>
+      {p.packages.filter(x=>!x.price).map(pkg=><div className="driver-stripe-test" key={pkg.id}><div><h3>{pkg.name[lang]}</h3><p>{pkg.description[lang]}</p></div><a className="button button-outline" href="#booking-preview">{T("Preview Custom Options","查看定制选项")}</a></div>)}
+      <p className="driver-detail-note">{T("Prices are from the draft supplier document; the premium and add-on currencies require verification. No price is final.","价格来自供应商初稿，深度套餐和增购币种需核实；所有价格均未最终确认。")}</p>
+      <ExperienceBookingPreview product={p} lang={lang}/>
+    </Section>
+    {p.process?.length ? <Section id="process" kicker="03 / WHAT TO EXPECT" title={T("What to Expect","体验流程")}><div className="driver-seo-guide-grid">{p.process.map((item,i)=><article className="driver-list-card" key={item.title[lang]}><div className="driver-seo-guide-media"><Media media={item.media} lang={lang}/></div><h3>{String(i+1).padStart(2,"0")} / {item.title[lang]}</h3><p>{item.text[lang]}</p></article>)}</div></Section>:null}
+    {p.story ? <section className="driver-section driver-section-soft" id="story"><div className="shell driver-custom-grid"><figure className="driver-custom-photo"><Media media={p.story.media} lang={lang}/></figure><div><p className="kicker">04 / THE STORY BEHIND THE CRAFT</p><h2>{p.story.title[lang]}</h2><p>{p.story.text[lang]}</p></div></div></section>:null}
+    <Section id="inclusions" kicker="05 / WHAT'S INCLUDED" title={T("What’s Included","费用包含")}>
+      <div className="driver-inclusions-grid"><div className="driver-list-card"><h3>{T("Included","拟定包含")}</h3><ul>{p.included.map(x=><li key={x[lang]}>{x[lang]}</li>)}</ul></div>{p.excluded?.length?<div className="driver-list-card"><h3>{T("Not included","拟定不包含")}</h3><ul>{p.excluded.map(x=><li key={x[lang]}>{x[lang]}</li>)}</ul></div>:null}</div>
+    </Section>
+    <Section id="location" kicker="06 / MEETING POINT" title={T("Where Your Experience Takes Place","体验地点")} soft><div className="driver-custom-grid"><div className="driver-list-card"><h3>{p.location.title[lang]}</h3><p>{p.location.text[lang]}</p><Link className="button button-text" href="/yunnan-private-driver">{T("Explore private driver services","查看私人包车服务")} →</Link></div><div className="driver-seo-guide-media"><Media media={{alt:{en:"Meeting point / map",zh:"集合点 / 地图"}}} lang={lang}/></div></div></Section>
+    {p.gallery?.length ? <Section id="gallery" kicker="07 / EXPERIENCE GALLERY" title={T("Real Moments, Real Creations","真实体验与作品")}><div className="driver-product-grid">{p.gallery.map(m=><div className="driver-product-photo" key={m.alt.en}><Media media={m} lang={lang}/></div>)}</div><p className="driver-detail-note">{T("Real workshop photos will be added here. No guest ratings are displayed before verified reviews are available.","后续补充真实作坊素材，暂无已核实评价时不展示评分。")}</p></Section>:null}
+    <section className="driver-section driver-section-soft journey-support-flow driver-process" id="booking-process"><div className="shell journey-section-layout"><header className="driver-flow-heading"><p className="kicker">08 / HOW BOOKING WORKS</p><h2>{T("From Booking to Creating","从预约到体验")}</h2><p>{T("Planned booking process — checkout is not enabled in this prototype.","拟定预订流程——本原型未接入收款。")}</p></header><div className="journey-support-grid">{[[T("Choose","选套餐"),T("Select your experience and piece.","选择体验套餐与作品。")],[T("Pick a date","选日期"),T("Share your preferred time and group size.","填写期望时间和人数。")],[T("Review","核对"),T("Confirm price and terms.","确认价格及条款。")],[T("Pay securely","安全付款"),T("Planned online payment after validation.","后续接入安全在线付款。")],[T("Get confirmed","确认预约"),T("Receive workshop details after confirmation.","确认后获得作坊与到达信息。")]].map(([h,d],i)=><article key={h}><span>{String(i+1).padStart(2,"0")}</span><h3>{h}</h3><p>{d}</p></article>)}</div></div></section>
+    <Section id="terms" kicker="09 / TERMS & PAYMENT" title={T("Payment and Cancellation","付款与取消政策")}><div className="driver-terms-grid"><article><h3>{T("Payment","付款")}</h3><p>{T("No payment is enabled in this preview.","当前预览未启用付款。")}</p></article><article><h3>{T("Cancellation","取消")}</h3><p>{T("Final refund and rescheduling terms are pending supplier confirmation.","最终退款及改期政策待供应商确认。")}</p></article><article><h3>{T("Availability","可订状态")}</h3><p>{T("No real-time inventory is represented.","当前不代表实时库存。")}</p></article></div></Section>
+    <section className="driver-section driver-faq journey-faq" id="faq"><div className="narrow"><div className="driver-section-head"><p className="kicker">10 / YOUR QUESTIONS</p><h2>{T("Frequently Asked Questions","常见问题")}</h2></div>{p.faqs.map(f=><details key={f.title.en}><summary>{f.title[lang]}<span aria-hidden="true">+</span></summary><p>{f.text[lang]}</p></details>)}</div></section>
+    <section className="driver-editorial-close" style={{background:"var(--color-accent)"}}><div className="shell driver-editorial-close-inner"><div className="driver-editorial-close-copy"><h2 className="journey-final-title">{T("Ready to Create Your Own Piece of Yunnan?","准备好亲手制作你的云南纪念品了吗？")}</h2><p>{T("Explore the options and preview your preferred experience.","查看套餐，预览你喜欢的体验。")}</p><div className="driver-editorial-actions"><a href="#packages" className="button button-blue">{choose.label} →</a></div></div></div></section>
+    <ContentFooter/>
+  </main>;
+}
+export function ExperienceCollection({lang}:{lang:AppLocale}) {
+  const T=(en:string,zh:string)=>lang==="zh"?zh:en;
+  return <main className="driver-page"><SiteHeader cta={{href:"#experience-list",label:T("Explore Experiences","探索特色体验"),location:"experience_header"}} searchPlaceholder="Yunnan experiences"/>
+    <JourneyHero title={T("Experience Yunnan Beyond the Sights","不止风景，亲身体验云南")} eyebrow={T("YUNNAN LOCAL EXPERIENCES","云南特色文旅体验")} imageAlt="" imagePlaceholder={T("Collection hero image reserved","合集主图预留")} description={T("Discover local traditions, meet artisans and create something memorable.","体验在地传统文化，认识手工艺人，创造难忘的旅行回忆。")} primary={{href:"#experience-list",label:T("Explore Experiences","探索特色体验")}} secondary={{href:"#experience-list",label:T("View Local Activities","查看当地活动")}} note={T("Product collection preview","产品合集预览")} breadcrumb={{href:"/yunnan-experiences",label:T("Local Experiences","特色体验")}}/>
+    <LocalePreviewLink lang={lang} path="/yunnan-experiences"/>
+    <Section id="experience-list" kicker="01 / LOCAL EXPERIENCES" title={T("Explore Local Experiences","探索云南特色体验")} soft><div className="driver-product-grid">{experiences.map(p=><article className="driver-product" key={p.slug}><div className="driver-product-photo"><Media media={p.hero} lang={lang}/></div><div className="driver-product-copy"><p className="driver-product-meta">{p.city[lang]} · {p.category[lang]} · {p.duration[lang]}</p><h3>{p.title[lang]}</h3><p>{p.description[lang]}</p><div className="driver-product-price"><strong>{p.packages[0] ? displayDraftPrice(p.packages[0],lang):T("Price pending","价格待确认")}</strong></div><Link href={experiencePath(p.slug)} className="button button-blue driver-product-action">{T("View Experience","查看体验")} →</Link></div></article>)}</div></Section><ContentFooter/></main>;
+}
