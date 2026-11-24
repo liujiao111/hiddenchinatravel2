@@ -278,18 +278,6 @@
 .driver-filter-status {margin:0 0 var(--space-4);color:var(--color-muted);font-size:.78rem}
 .driver-page .driver-form .enquiry-select {margin:0 0 12px}
 .driver-product-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-8) var(--space-6)}
-.driver-product {display:flex;min-width:0;flex-direction:column}
-.driver-product-photo {position:relative;aspect-ratio:1.85;background:var(--color-surface);overflow:hidden}
-.driver-product-photo img {object-fit:cover}
-.driver-product-copy {display:flex;flex:1;flex-direction:column;padding-top:var(--space-3)}
-.driver-product-copy p {margin:0 0 var(--space-4);color:var(--color-muted);font-size:.87rem;line-height:1.58}
-.driver-product-copy .driver-product-meta {margin-bottom:var(--space-2);font-size:.74rem}
-.driver-product-copy h3 {margin:0 0 var(--space-2);font-size:clamp(1.25rem,2.1vw,1.55rem)}
-.driver-product-price {margin-top:auto;padding-top:var(--space-3);border-top:1px solid var(--color-border)}
-.driver-product-price>span,.driver-product-price dt,.driver-product-price small {color:var(--color-muted);font-size:.75rem}
-.driver-product-price dl {display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-6);margin:var(--space-2) 0}
-.driver-product-price dd {margin:2px 0 0;font-size:.92rem;font-weight:650}
-.driver-product-price small {display:block}
 .driver-catalog-empty button {
   align-self:flex-start;
   min-height:44px;
@@ -298,8 +286,6 @@
   background:none;
   cursor:pointer;
 }
-.driver-product-action {width:100%;align-self:stretch;margin-top:var(--space-3);white-space:normal}
-.driver-product-action span {margin-inline-start:var(--space-2)}
 .driver-product-footnote {margin:var(--space-6) 0 0;color:var(--color-muted);font-size:.75rem}
 .driver-catalog-empty {padding:var(--space-4) 0;color:var(--color-muted)}
 .driver-page .driver-booking-panel {max-width:900px}

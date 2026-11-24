@@ -2840,3 +2840,19 @@ body:has([role="dialog"][aria-modal="true"]) .wa-float {display:none!important}
 .journey-card-product-details small {display:block;line-height:1.5}
 #travel-services {scroll-margin-top:24px}
 @media(max-width:700px){.home-product-grid{grid-template-columns:minmax(0,1fr);margin-top:var(--space-6)}.journey-card.journey-card-compact{min-height:340px}.journey-card-compact .journey-card-copy{padding:var(--space-4)}.home-journeys-grid .journey-card{min-height:500px}}
+
+/* Shared catalogue product card. Legacy driver-product selectors retain identical styles for existing consumers. */
+:is(.driver-product,.catalog-product) {display:flex;min-width:0;flex-direction:column}
+:is(.driver-product-photo,.catalog-product-photo) {position:relative;aspect-ratio:1.85;background:var(--color-surface);overflow:hidden}
+:is(.driver-product-photo,.catalog-product-photo) img {object-fit:cover}
+:is(.driver-product-copy,.catalog-product-copy) {display:flex;flex:1;flex-direction:column;padding-top:var(--space-3)}
+:is(.driver-product-copy,.catalog-product-copy) p {margin:0 0 var(--space-4);color:var(--color-muted);font-size:.87rem;line-height:1.58}
+:is(.driver-product-copy,.catalog-product-copy) :is(.driver-product-meta,.catalog-product-meta) {margin-bottom:var(--space-2);font-size:.74rem}
+:is(.driver-product-copy,.catalog-product-copy) h3 {margin:0 0 var(--space-2);font-size:clamp(1.25rem,2.1vw,1.55rem)}
+:is(.driver-product-price,.catalog-product-price) {margin-top:auto;padding-top:var(--space-3);border-top:1px solid var(--color-border)}
+:is(.driver-product-price,.catalog-product-price)>span,:is(.driver-product-price,.catalog-product-price) dt,:is(.driver-product-price,.catalog-product-price) small {color:var(--color-muted);font-size:.75rem}
+:is(.driver-product-price,.catalog-product-price) dl {display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-6);margin:var(--space-2) 0}
+:is(.driver-product-price,.catalog-product-price) dd {margin:2px 0 0;font-size:.92rem;font-weight:650}
+:is(.driver-product-price,.catalog-product-price) small {display:block}
+:is(.driver-product-action,.catalog-product-action) {width:100%;align-self:stretch;margin-top:var(--space-3);white-space:normal}
+:is(.driver-product-action,.catalog-product-action) span {margin-inline-start:var(--space-2)}

@@ -1,6 +1,6 @@
 "use client";
 
-import { JourneyCard } from "@/components/journey-card";
+import { CatalogProductCard } from "@/components/catalog-product-card";
 import { driverDirectPrices, DRIVER_FULL_ORDER_TEST_ID, DRIVER_FULL_ORDER_TEST_ROUTE } from "@/lib/driver-direct-prices";
 import { driverUsd, driverMultiDayTotalUsd } from "@/lib/driver-usd-prices";
 import { EnquirySelect } from "@/components/enquiry-select";
@@ -686,14 +686,23 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
               const item = serviceCities.find(entry => entry.value === value);
               return item ? (zh ? item.zh : item.en) : "";
             }).join(" / ");
-            return <JourneyCard key={product.id} compact journey={{title:zh?product.zh:product.en,subtitle:zh?product.detailZh:product.detailEn,destination:cities+" · "+(zh?filter?.zh:filter?.en),image:product.photo,imageAlt:zh?product.zh:product.en,href:"#driver-quote-form"}} details={<div className="journey-card-product-details">
+            return <CatalogProductCard key={product.id}
+              image={product.photo}
+              meta={cities + " · " + (zh ? filter?.zh : filter?.en)}
+              title={zh ? product.zh : product.en}
+              description={zh ? product.detailZh : product.detailEn}
+              price={<div className="catalog-product-price">
                   <span>{product.category === "multi" ? (zh ? "每日价格 · USD" : "Price per day · USD") : (zh ? "每车价格 · USD" : "Price per vehicle · USD")}</span>
                   <dl>
                     <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
                     <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
                   </dl>
                   <small>{product.category === "multi" ? (zh ? "选择天数后按总价支付20%定金，余款按确认条款支付" : "Select days and pay a 20% deposit; balance per booking terms") : product.category === "day" ? (zh ? "周边一日游交通全包价：车辆、司机、油费、高速、停车费，无隐藏收费" : "All-inclusive nearby day trip; driver, fuel, tolls and parking included") : (zh ? "标准路线可在线支付；包含已约定路线的车辆、司机、油费、高速费及停车费" : "Standard routes can pay online; agreed car, driver, fuel, tolls and parking included")}</small>
-                </div>} action={<button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>{zh ? "选择服务选项" : "Select Service Options"} <span aria-hidden="true">→</span></button>} />;
+                </div>}
+              action={<button type="button" className="button button-blue catalog-product-action" onClick={() => pick(product.id)}>
+                  {zh ? "选择服务选项" : "Select Service Options"} <span aria-hidden="true">→</span>
+                </button>}
+            />;
           })}
         </div> : <div className="driver-catalog-empty">
           <p>{zh ? "这个出发城市暂无此类标准服务。" : "There are no standard services in this category for the selected departure city."}</p>
