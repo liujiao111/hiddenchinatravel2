@@ -6,8 +6,6 @@ import { Link } from "@/i18n/navigation";
 import { licensedOperator } from "@/lib/journey-trust";
 import { siteConfig } from "@/lib/site-config";
 
-const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=Hi%2C%20I%27d%20like%20help%20planning%20my%20China%20trip`;
-
 export function ContentCta() {
   const t = useTranslations("contentCta");
   return <section className="content-cta"><div><p>{t("kicker")}</p><h2>{t("heading")}</h2><span>{t("body")}</span><a className="button button-light" href="#ask-joy">{t("button")}</a></div></section>;
@@ -17,6 +15,7 @@ export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boole
   const t = useTranslations("footer");
   const isZh = useLocale() === "zh";
   const preview = process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
+  const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(t("whatsappMessage"))}`;
   const agencyValues = {
     agencyEn: licensedOperator.nameEn,
     agencyZh: licensedOperator.nameZh,
@@ -34,7 +33,7 @@ export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boole
         <section className="footer-brand" aria-labelledby="footer-brand-title">
           <h2 id="footer-brand-title">Hidden China Travel</h2>
           <p className="footer-tagline">{t("tagline")}</p>
-          <p>{t("intro")}</p>
+          <p>{t(preview ? "introPreview" : "intro")}</p>
           <p className="footer-origin">{t("origin")}</p>
           <p className="footer-origin">{t("companyLine", agencyValues)}</p>
           <p className="footer-origin">{t("address", agencyValues)}</p>
@@ -54,49 +53,54 @@ export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boole
           </nav>
         </section>
 
-        <nav className="footer-nav" aria-label={t("journeysHeading")}>
+        <nav className="footer-nav" aria-label={t("productsNavigation")}>
           <h3>{t("journeysHeading")}</h3>
-          <Link href="/journeys/kunming-dali-shaxi-lijiang-6-days">{t("journeyFirst")}</Link>
-          <Link href="/journeys/kunming-dali-lijiang-shangri-la-private-tour">{t("journeyEssence")}</Link>
-          <Link href="/yunnan-tour-packages">{t("journeyAll")}</Link>
-          <Link href="/private-yunnan-tours">{t("journeyCustom")}</Link>
-          <h3>{isZh ? "自由行与体验" : "Travel & Experiences"}</h3>
-          <Link href="/yunnan-private-driver#multi-day-private-driver" data-cta-location="footer_driver_multi">{isZh ? "多日私人包车" : "Multi-Day Private Drivers"}</Link>
-          <Link href="/yunnan-private-driver#private-car-by-day" data-cta-location="footer_driver_day">{isZh ? "一日观光包车" : "Full-Day Private Car Hire"}</Link>
-          <Link href="/yunnan-private-driver#intercity-transfers" data-cta-location="footer_driver_intercity">{isZh ? "跨城私人接送" : "Intercity Transfers"}</Link>
-          <Link href="/yunnan-private-driver#airport-station-transfers" data-cta-location="footer_driver_arrival">{isZh ? "机场与车站接送" : "Airport & Station Transfers"}</Link>
-          {preview ? <Link href="/yunnan-experiences" data-cta-location="footer_local_experiences">{isZh ? "特色文旅体验（预览）" : "Local Experiences (Preview)"}</Link> : null}
+          <Link href="/private-yunnan-tours" data-cta-location="footer_private_tours">{t("journeyCustom")}</Link>
+          <Link href="/yunnan-tour-packages" data-cta-location="footer_tour_packages">{t("journeyAll")}</Link>
+          <Link href="/journeys/kunming-dali-shaxi-lijiang-6-days" data-cta-location="footer_first_encounter">{t("journeyFirst")}</Link>
+          <Link href="/journeys/kunming-dali-lijiang-shangri-la-private-tour" data-cta-location="footer_essence">{t("journeyEssence")}</Link>
+          <h3>{t("independentHeading")}</h3>
+          <Link href="/yunnan-private-driver" data-cta-location="footer_private_driver">{t("privateDriver")}</Link>
+          <Link href="/yunnan-private-driver#multi-day-private-driver" data-cta-location="footer_driver_multi">{t("multiDayDriver")}</Link>
+          <Link href="/yunnan-private-driver#private-car-by-day" data-cta-location="footer_driver_day">{t("dayDriver")}</Link>
+          <Link href="/yunnan-private-driver#intercity-transfers" data-cta-location="footer_driver_intercity">{t("intercityDriver")}</Link>
+          <Link href="/yunnan-private-driver#airport-station-transfers" data-cta-location="footer_driver_arrival">{t("arrivalDriver")}</Link>
+          {preview ? <Link href="/yunnan-experiences" data-cta-location="footer_local_experiences">{t("experiencesPreview")}</Link> : null}
         </nav>
 
-        <nav className="footer-nav footer-resources" aria-label={t("resourcesHeading")}>
-          <h3>{t("resourcesHeading")}</h3>
-          <Link href="/survival-kit">{t("survivalKit")}</Link>
+        <nav className="footer-nav footer-resources" aria-label={t("resourcesNavigation")}>
+          <h3>{t("destinationsHeading")}</h3>
           <div className="footer-guide-group">
-            <Link className="footer-guide-title" href="/china-travel-essentials">{t("travelGuides")}</Link>
-            <div className="footer-topic-links" aria-label="Travel guides by destination">
-              <Link href="/china-destinations/yunnan">{t("destYunnan")}</Link>
+            <Link className="footer-guide-title" href="/china-destinations/yunnan">{t("yunnanGuide")}</Link>
+            <div className="footer-topic-links" aria-label={t("destinationsHeading")}>
+              <Link href="/kunming-travel-guide">{t("destKunming")}</Link>
               <Link href="/dali-travel-guide">{t("destDali")}</Link>
               <Link href="/lijiang-travel-guide">{t("destLijiang")}</Link>
-              <Link href="/kunming-travel-guide">{t("destKunming")}</Link>
-              <Link className="footer-explore-more" href="/china-destinations/yunnan">{t("exploreMore")}</Link>
+              <Link href="/shaxi-ancient-town-guide">{t("destShaxi")}</Link>
+              <Link href="/shangri-la-travel-guide">{t("destShangriLa")}</Link>
             </div>
           </div>
+          <h3>{t("essentialsHeading")}</h3>
+          <Link href="/survival-kit">{t("survivalKit")}</Link>
+          <Link href="/china-travel-essentials">{t("travelGuides")}</Link>
+          <Link href="/china-visa-checker">{t("visaChecker")}</Link>
           <Link href="/payments-in-china">{t("payments")}</Link>
           <Link href="/china-currency-converter">{t("currencyConverter")}</Link>
-          <Link href="/china-visa-checker">{t("visaChecker")}</Link>
           <Link href="/internet-in-china">{t("internet")}</Link>
           <Link href="/transport-in-china">{t("transport")}</Link>
           <Link href="/attraction-tickets-in-china">{t("booking")}</Link>
         </nav>
 
-        <nav className="footer-nav" aria-label={t("companyHeading")}>
+        <nav className="footer-nav" aria-label={t("companyNavigation")}>
           <h3>{t("companyHeading")}</h3>
-          <Link href="/about-us">{t("about")}</Link>
+          <Link href="/about-us">{t("aboutBrand")}</Link>
+          <Link href="/about-us#joy">{t("about")}</Link>
           <Link href="/traveler-stories">{t("stories")}</Link>
           <Link href="/licensed-operator">{t("licensed")}</Link>
+          <h3>{t("supportHeading")}</h3>
+          <Link href="/contact" data-cta-location="footer_contact">{t("contact")}</Link>
           <Link href="/booking">{t("bookingService")}</Link>
-          <Link href="/contact">{t("contact")}</Link>
-          <Link href={whatsapp}>WhatsApp</Link>
+          <Link href={whatsapp} data-cta-location="footer_whatsapp">{t("whatsappSupport")}</Link>
         </nav>
       </div>
 
@@ -109,26 +113,24 @@ export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boole
           <span className="footer-trust-index" aria-hidden="true">02</span>
           <span className="footer-trust-copy"><strong>{t("trustPaymentsLabel")}</strong><span>{t("trustPayments")}</span></span>
         </Link>
-        <div className="footer-trust-item">
+        <Link className="footer-trust-item" href="/booking">
           <span className="footer-trust-index" aria-hidden="true">03</span>
-          <span className="footer-trust-copy"><strong>{t("trustPrivateLabel")}</strong><span>{t("trustPrivate")}</span></span>
-        </div>
+          <span className="footer-trust-copy"><strong>{t("trustBookingLabel")}</strong><span>{t("trustBooking")}</span></span>
+        </Link>
       </section>
 
       <div className="shell footer-cta">
         <p>{t("ctaText")}</p>
-        <Link href={whatsapp}>{t("ctaLink")} <span aria-hidden="true">→</span></Link>
+        <Link href={whatsapp} data-cta-location="footer_cta_whatsapp">{t("ctaLink")} <span aria-hidden="true">→</span></Link>
       </div>
 
       <div className="shell footer-bottom">
         <span>{t("copyright")}</span>
-        <nav className="footer-legal" aria-label="Legal and company links">
+        <nav className="footer-legal" aria-label={t("legalNavigation")}>
           <Link href="/privacy-policy">{t("privacy")}</Link>
           <Link href="/booking">{t("bookingService")}</Link>
           <Link href="/terms-of-service">{t("terms")}</Link>
           <Link href="/affiliate-disclosure">{t("affiliate")}</Link>
-          <Link href="/contact">{t("contact")}</Link>
-          <Link href="/about-us">{t("aboutShort")}</Link>
         </nav>
       </div>
     </footer>

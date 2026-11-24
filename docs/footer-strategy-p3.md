@@ -1,0 +1,3 @@
+# Footer strategic alignment
+
+Keep the shared ContentFooter and all existing CSS, four-column desktop and existing mobile breakpoints. Brand copy aligns with Discover Yunnan, Your Way. Group private tours and independent travel (multi-day, full-day, intercity, airport/station); add the driver landing page. Local experiences remain preview-only. Group destination guides and practical resources; separate brand information from booking support. Keep legal operator details, complaint links, registry, social links, secure payment and legal policies. Replace tour-specific third trust item with transparent booking. Track commercial footer links with existing CTA locations; no new conversion events. No production release.
