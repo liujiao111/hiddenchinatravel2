@@ -12,7 +12,7 @@ export type ExperiencePackage = {
 };
 export type ExperienceProduct = {
   slug: string; title: Localized; shortTitle: Localized; city: Localized; category: Localized;
-  description: Localized; closing: ExperienceText; priceNote: Localized; seo: { title: Localized; description: Localized };
+  description: Localized; closing: ExperienceText & { media?: ExperienceMedia }; priceNote: Localized; seo: { title: Localized; description: Localized };
   hero: ExperienceMedia; duration: Localized; highlights: ExperienceText[];
   packages: ExperiencePackage[]; process?: (ExperienceText & { media: ExperienceMedia })[];
   story?: ExperienceText & { media: ExperienceMedia }; included: Localized[]; excluded?: Localized[];
@@ -30,7 +30,7 @@ export const experiences: ExperienceProduct[] = [{
   shortTitle: t("Bai Tie-Dye Workshop", "白族扎染体验"),
   city: t("Dali", "大理"), category: t("Arts & Crafts", "传统手工艺"),
   description: t("Make your own Bai tie-dye in Dali. Learn traditional indigo dyeing with local instruction, choose a textile to personalise, and take home a piece you made yourself.", "走进大理白族扎染工艺，在当地老师指导下亲手设计纹样、捆扎和染色，从方巾到帆布包，带走自己制作的云南纪念品。"),
-  closing: { title:t("Make a Memory of Dali with Your Own Hands","亲手制作属于你的大理旅行纪念品"),text:t("Choose a textile and explore the experience that fits your time in Dali.","选一件喜欢的作品，安排适合你旅行节奏的扎染体验。") },
+  closing: { title:t("Make a Memory of Dali with Your Own Hands","亲手制作属于你的大理旅行纪念品"),text:t("Choose a textile and explore the experience that fits your time in Dali.","选一件喜欢的作品，安排适合你旅行节奏的扎染体验。"),media:tieDyePhoto("tea-seating","Sunlit seating area with tie-dye tablecloths","临窗扎染桌布与茶席") },
   priceNote:t("Draft prices are per participant and include one main piece. Signature pricing varies by piece; final item prices, Premium currency and optional add-ons require confirmation.","暂定价格按参与者计，每人含一件主作品。进阶套餐因作品不同而异；具体作品价格、深度套餐币种和增购价格仍待确认。"),
   seo: { title: t("Dali Tie-Dye Workshop | Traditional Bai Craft Experience", "大理白族扎染体验｜非遗手工制作与预约"), description: t("Explore a 45–90 minute Bai tie-dye workshop in Dali, Yunnan. Compare packages, make your own scarf or bag and take home your handmade indigo textile.", "大理白族非遗扎染体验，约45–90分钟。比较不同套餐，亲手制作方巾、帆布包等作品，体验传统靛蓝染色。") },
   hero: tieDyePhoto("indigo-fabric", "Woman lifting a blue-and-white tie-dyed textile outdoors", "户外展示蓝白扎染布料的女士"),
@@ -57,7 +57,7 @@ export const experiences: ExperienceProduct[] = [{
   included:[t("Materials for your selected main piece","所选主作品材料"),t("Instructor assistance","老师现场指导"),t("English step-by-step guide card","英文步骤指引卡"),t("Apron and gloves","围裙和手套"),t("Your finished piece and gift bag","成品及礼品袋")],
   excluded:[t("Additional pieces outside the selected package (subject to final terms)","所选套餐外的额外作品（以最终条款为准）")],
   location:{title:t("Dali, Yunnan","云南大理"),text:t("Workshop address, meeting point, opening hours and arrival instructions to be confirmed.","具体作坊地址、集合点、营业时间和到达说明待确认。")},
-  gallery:[tieDyePhoto("workshop-interior","Wooden tables and bamboo chairs beneath blue-and-white textile canopies","蓝白扎染布幕下的木桌与竹椅"),tieDyePhoto("tea-seating","Sunlit seating area with tie-dye tablecloths and tea sets","摆放扎染桌布与茶具的临窗座位"),tieDyePhoto("textile-display","Workshop interior with tie-dyed garments and textile displays","陈列扎染服饰与织物的室内空间"),tieDyePhoto("courtyard-textiles","Hanging blue-and-white finished textiles in a leafy courtyard","绿意庭院中悬挂晾晒的蓝白扎染织物")],
+  gallery:[tieDyePhoto("workshop-interior","Wooden tables and bamboo chairs beneath blue-and-white textile canopies","蓝白扎染布幕下的木桌与竹椅"),tieDyePhoto("textile-display","Workshop interior with tie-dyed garments and textile displays","陈列扎染服饰与织物的室内空间"),tieDyePhoto("animal-dolls","Two blue-and-white animal-shaped textile dolls","两个蓝白扎染动物造型玩偶"),tieDyePhoto("courtyard-textiles","Hanging blue-and-white finished textiles in a leafy courtyard","绿意庭院中悬挂晾晒的蓝白扎染织物")],
   faqs:[
     {title:t("Do I need previous tie-dye experience?","需要扎染经验吗？"),text:t("The proposed basic package includes guided instruction and an English step-by-step card.","拟定的入门套餐包含老师指导和英文步骤卡。")},
     {title:t("Can I take my finished piece home?","可以带走作品吗？"),text:t("Yes. The source plan includes a final rinse and drying or damp packing before you leave.","可以。原方案包含最后漂洗、晾干或湿装打包。")},
