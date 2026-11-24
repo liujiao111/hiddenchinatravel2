@@ -24,7 +24,7 @@ export async function POST(request:Request){
       if(JSON.stringify(existing.selection)!==JSON.stringify(selection))return Response.json({error:"Request ID already used."},{status:409});
       const session=await stripe.checkout.sessions.retrieve(existing.sessionId);
       if(session.status==="open"&&session.url)return Response.json({url:session.url});
-      return Response.json({url:existing.returnOrigin+(selection.locale==="zh"?"/zh":"")+"/experience-payment-status?order="+encodeURIComponent(access)});
+      return Response.json({url:existing.returnOrigin+"/api/stripe/experience-test-status?order="+encodeURIComponent(access)});
     }
     const prefix=selection.locale==="zh"?"/zh":"";
     const metadata={purpose:TEST_PURPOSE,order_id:id,product_id:product.slug};
@@ -32,7 +32,7 @@ export async function POST(request:Request){
       mode:"payment",payment_method_types:["card"],client_reference_id:id,
       line_items:[{quantity:1,price_data:{currency:"usd",unit_amount:TEST_CENTS,product_data:{name:"SANDBOX — Experience payment test",description:"No real booking, no service, USD 1 test only"}}}],
       metadata,payment_intent_data:{metadata},
-      success_url:origin+prefix+"/experience-payment-status?order="+encodeURIComponent(access),
+      success_url:origin+"/api/stripe/experience-test-status?order="+encodeURIComponent(access),
       cancel_url:origin+prefix+"/experiences/"+product.slug+"?payment=cancelled#booking-preview",
       custom_text:{submit:{message:"Sandbox test only. No actual service is booked."}}
     },{idempotencyKey:"experience-sandbox-"+id});

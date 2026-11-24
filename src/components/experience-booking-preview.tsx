@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { experiencePreviewEvent } from "@/lib/experience-analytics";
 import { Media } from "@/components/experience-media";
 import { DriverPicker } from "@/components/yunnan-private-driver-booking";
 import { chinaServiceDate } from "@/lib/driver-airport-transfers";
@@ -28,24 +29,24 @@ export function ExperienceBookingPreview({ product, lang, sandboxEnabled = false
   useEffect(() => {
     const select = (event: Event) => {
       const id = (event as CustomEvent<string>).detail;
-      if (product.packages.some(p => p.id === id)) { setPackageId(id); setPieces({}); setAddons([]); setReview(false); requestId.current=""; }
+      if (product.packages.some(p => p.id === id)) { setPackageId(id); setPieces({}); setAddons([]); setReview(false); requestId.current=""; experiencePreviewEvent("select_experience_package",{items:[{item_id:product.slug+":"+id}]}); }
     };
     window.addEventListener("experience-package-select", select);
     return () => window.removeEventListener("experience-package-select", select);
-  }, [product.packages]);
+  }, [product.packages,product.slug]);
   if (!pkg) return null;
   const update = () => {setReview(false);requestId.current="";setError("");};
   const startSandbox=async()=>{
     if(busy||!pkg.pieces?.length||!date||!time)return;
     setBusy(true);setError("");
-    try{if(!requestId.current)requestId.current=crypto.randomUUID();const response=await fetch("/api/stripe/experience-test-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({requestId:requestId.current,slug:product.slug,packageId:pkg.id,people,date,time,pieces:Array.from({length:people},(_,i)=>pieces[i]??pkg.pieces?.[0]?.id),addons,locale:lang})});const data=await response.json();if(!response.ok||typeof data.url!=="string")throw Error("Checkout unavailable");window.location.assign(data.url);}catch{setError(T("Test checkout unavailable. Please retry.","测试结账暂不可用，请重试。"));setBusy(false);}
+    try{if(!requestId.current)requestId.current=crypto.randomUUID();const response=await fetch("/api/stripe/experience-test-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({requestId:requestId.current,slug:product.slug,packageId:pkg.id,people,date,time,pieces:Array.from({length:people},(_,i)=>pieces[i]??pkg.pieces?.[0]?.id),addons,locale:lang})});const data=await response.json();if(!response.ok||typeof data.url!=="string")throw Error("Checkout unavailable");experiencePreviewEvent("begin_checkout",{currency:"USD",value:1,items:[{item_id:product.slug+":"+pkg.id,price:1,quantity:1}]});window.location.assign(data.url);}catch{setError(T("Test checkout unavailable. Please retry.","测试结账暂不可用，请重试。"));setBusy(false);}
   };
   const draftTotal = pkg.price?.currency === "USD" && !pkg.price.currencyPending ? "US$"+(pkg.price.min*people).toFixed(2)+(pkg.price.max!==undefined?"–"+(pkg.price.max*people).toFixed(2):"") : T("Pending confirmation","待确认");
   return <div className="driver-booking-panel" id="booking-preview">
     <form className="contact-form driver-form" onSubmit={e => { e.preventDefault(); setReview(true); }}>
       <h3>{T("Preview Your Experience Booking","体验预约预览")}</h3>
       <p className="driver-form-note">{T("Prototype only. Prices and availability are not confirmed. Review creates no real order; sandbox checkout, if enabled, is test only.","仅为展示原型，价格和可订状态待确认；预览不产生真实订单，若启用沙盒支付也仅用于测试。")}</p>
-      <EnquirySelect name="experiencePackage" label={T("Experience package","体验套餐")} placeholder={T("Choose a package","选择套餐")} required value={packageId} onValueChange={id => { setPackageId(id); setPieces({}); setAddons([]); update(); }} options={product.packages.map(p=>({value:p.id,label:p.name[lang]}))}/>
+      <EnquirySelect name="experiencePackage" label={T("Experience package","体验套餐")} placeholder={T("Choose a package","选择套餐")} required value={packageId} onValueChange={id => { setPackageId(id); setPieces({}); setAddons([]); update(); experiencePreviewEvent("select_experience_package",{items:[{item_id:product.slug+":"+id}]}); }} options={product.packages.map(p=>({value:p.id,label:p.name[lang]}))}/>
       <p className="driver-form-selection">{displayDraftPrice(pkg,lang)}</p>
       <div className="contact-field-row">
         <div className="driver-picker-field" onChange={e=>{if(e.target instanceof HTMLInputElement){setDate(e.target.value);update();}}}><span>{T("Preferred date (China time)","期望日期（中国时间）")}</span><DriverPicker name="experienceDate" type="date" label={T("Choose date","选择日期")} min={chinaServiceDate()}/></div>

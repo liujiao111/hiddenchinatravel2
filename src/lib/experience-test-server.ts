@@ -45,7 +45,7 @@ export async function notifyExperienceTest(order:TestOrder,session:Stripe.Checko
   if(!config.apiKey||!config.from||!config.to)throw Error("Mail unavailable");
   const access=testAccess(order.id);
   if(!access)throw Error("Order access unavailable");
-  const link=order.returnOrigin+(order.selection.locale==="zh"?"/zh":"")+"/experience-payment-status?order="+encodeURIComponent(access);
+  const link=order.returnOrigin+"/api/stripe/experience-test-status?order="+encodeURIComponent(access);
   const opsText=["STRIPE SANDBOX — NO REAL PAYMENT OR BOOKING","Order: "+order.id,"Product: "+order.selection.slug,"Package: "+order.selection.packageId,"Preferred date/time: "+order.selection.date+" "+order.selection.time,"Participants: "+order.selection.people,"Pieces: "+order.selection.pieces.join(", "),"Add-ons (unpriced): "+order.selection.addons.join(", "),"Test amount: USD "+(TEST_CENTS/100).toFixed(2),"Checkout: "+session.id,"Status: verified sandbox payment; do not arrange service",link].join("\n");
   const send=async(kind:"operator-email"|"customer-email",to:string,subject:string,text:string)=>{
     if(await readTestRecord(order.id,kind))return;
