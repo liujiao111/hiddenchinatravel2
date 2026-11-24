@@ -1,0 +1,2 @@
+# Independent travel priority
+Two homepage travel modes; premium future. Shared JourneyCard compact variant for home, driver catalogue and local experience cards, including real select actions. Driver category IDs, pricing functions, product IDs, test gates and forms unchanged. Multi-day and day hire before intercity and arrival. Existing category hashes retained. Draft experiences preview only. No production merge.

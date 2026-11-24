@@ -451,71 +451,68 @@
     "finalTrust": "No payment to start planning · 20% deposit, fully refundable if cancelled more than 7 full days before departure",
     "exploreServices": "Explore Local Services",
     "optionsKicker": "WAYS TO TRAVEL",
-    "optionsHeading": "Find Your Way to Explore Yunnan",
-    "optionsIntro": "Choose a complete private journey or arrange just the local services you need.",
+    "optionsHeading": "Private Tours or Independent Travel",
+    "optionsIntro": "Let us arrange your whole journey, or plan it yourself and book only the local services you need.",
     "servicesKicker": "TRAVEL INDEPENDENTLY",
-    "servicesHeading": "Make Your Yunnan Trip Your Own",
+    "servicesHeading": "Popular Independent Travel Services",
     "servicesIntro": "Already planning your own itinerary? Choose local services that fit your route and schedule.",
     "servicesHelper": "Check each service for its price, inclusions and booking conditions.",
     "planningLink": "Learn how private planning works →",
     "productCards": [
       {
         "title": "Private Tailor-Made Tours",
-        "excerpt": "A complete private journey designed around your dates, interests and pace.",
+        "subtitle": "A complete private journey: itinerary, transport, hotels and guiding arranged around your pace.",
         "href": "/private-yunnan-tours",
         "image": "/home/local-support.webp",
-        "imageAlt": "Yunnan highland lake",
-        "readLabel": "Explore private tours",
+        "ctaLabel": "Explore private tours →",
         "trackingLocation": "home_category_private"
       },
       {
-        "title": "Private Drivers & Transfers",
-        "excerpt": "Airport pickups, intercity transfers and flexible multi-day private drivers.",
-        "href": "/yunnan-private-driver",
-        "image": "/assets/partners/vehicles/five-seat-toyota.webp",
-        "imageAlt": "Private vehicle in Yunnan",
-        "readLabel": "Explore driver services",
-        "trackingLocation": "home_category_driver"
-      },
-      {
-        "title": "Local Experiences",
-        "excerpt": "Discover local crafts and culture. Preview our first Dali tie-dye experience; bookings are not yet open.",
-        "href": "/yunnan-experiences",
-        "image": "/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp",
-        "imageAlt": "Blue and white tie-dyed fabric",
-        "readLabel": "Preview local experiences",
-        "trackingLocation": "home_category_experiences"
+        "title": "Independent Travel",
+        "subtitle": "Plan your own route. Choose full-day or multi-day private drivers and the local services you need.",
+        "href": "/#travel-services",
+        "image": "/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp",
+        "ctaLabel": "Explore independent travel →",
+        "trackingLocation": "home_category_independent"
       }
     ],
     "localCards": [
       {
-        "title": "Airport & Station Transfers",
-        "excerpt": "Arrange a private pickup or drop-off for your arrival and departure.",
-        "href": "/yunnan-private-driver#standard-transfers",
-        "image": "/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp",
-        "imageAlt": "Private transfer vehicle",
-        "readLabel": "Explore transfers",
-        "trackingLocation": "home_service_transfer"
+        "title": "Multi-Day Private Drivers",
+        "subtitle": "Keep your own driver across Kunming, Dali, Lijiang and Shangri-La. Arrange your own hotels and pace.",
+        "href": "/yunnan-private-driver#multi-day-private-driver",
+        "image": "/assets/destinations/yunnan/shangri-la.webp",
+        "ctaLabel": "View multi-day drivers →",
+        "trackingLocation": "home_service_multi",
+        "fromPrice": "From US$150 / day · per vehicle",
+        "priceNote": "Five-seat vehicle, trips of 7 days or longer"
       },
       {
-        "title": "Intercity & Multi-Day Drivers",
-        "excerpt": "Travel between cities with your own driver, or plan a flexible multi-day route.",
-        "href": "/yunnan-private-driver#multi-day-driver",
-        "image": "/assets/blog/yunnan-private-driver/dali-shaxi.webp",
-        "imageAlt": "Shaxi Ancient Town",
-        "readLabel": "Explore private drivers",
-        "trackingLocation": "home_service_driver"
+        "title": "Full-Day Private Car Hire",
+        "subtitle": "Explore Erhai Lake, snow mountains and surrounding sights on an agreed route with your own driver.",
+        "href": "/yunnan-private-driver#private-car-by-day",
+        "image": "/assets/destinations/yunnan/dali-erhai-cover.webp",
+        "ctaLabel": "View day hire →",
+        "trackingLocation": "home_service_day"
       },
       {
         "title": "Dali Bai Tie-Dye Workshop",
-        "excerpt": "Create your own indigo textile. Product preview only; booking details are pending.",
+        "subtitle": "Make your own indigo textile. Product preview; bookings not yet open.",
         "href": "/experiences/dali-tie-dye-workshop",
         "image": "/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp",
-        "imageAlt": "Blue and white tie-dyed fabric",
-        "readLabel": "Preview workshop",
+        "ctaLabel": "Preview workshop →",
         "trackingLocation": "home_service_tie_dye"
+      },
+      {
+        "title": "Scenic Intercity Transfers",
+        "subtitle": "Travel between cities with agreed stops such as Shaxi or Tiger Leaping Gorge.",
+        "href": "/yunnan-private-driver#intercity-transfers",
+        "image": "/assets/destinations/yunnan/tiger-leaping.webp",
+        "ctaLabel": "View scenic transfers →",
+        "trackingLocation": "home_service_intercity"
       }
-    ]
+    ],
+    "allDriverServices": "See all driver and transfer services →"
   },
   "journeys": {
     "metaTitle": "Private Yunnan Journeys",

@@ -106,13 +106,13 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
   return <main className="driver-page">
     <SiteHeader cta={{href:"#standard-transfers",label:T("View Driver Services","查看包车服务"),location:"driver_header"}} searchPlaceholder="Yunnan private driver" />
     <JourneyHero
-      title={T("Yunnan Private Driver & Car Hire — Transfers, Day Trips & Road Trips", "云南私人包车与司机服务｜接送、一日游及多日包车")}
+      title={T("Yunnan Private Driver & Car Hire — Multi-Day Journeys & Full-Day Hire", "云南私人包车｜多日自由行与一日观光包车")}
       eyebrow={T("PRIVATE CAR & DRIVER SERVICE", "云南私人交通服务")}
       image="/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp"
       imageAlt={T("Private transfer MPV for a road trip in Yunnan", "云南私人包车接送商务车实景")}
-      description={T("Hire a car with driver for private transfers, day trips and multi-day journeys around Kunming, Dali, Lijiang and Shangri-La. Review USD vehicle prices and route options, with English-language coordination from Joy.", "从昆明、大理、丽江到香格里拉，安排5座或7座私人包车、跨城接送、一日游及多日路线。查看美元报价，Joy 协助英文沟通与接送安排。")}
-      primary={{ href: "#standard-transfers", label: T("Explore Routes & Prices", "查看路线与参考价") }}
-      secondary={{ href: "#multi-day-driver", label: T("Plan a Multi-Day Road Trip", "规划多日包车路线") }}
+      description={T("Hire your own driver for multi-day journeys and full-day sightseeing around Kunming, Dali, Lijiang and Shangri-La. Intercity and arrival transfers are also available. Review USD vehicle prices and route options, with English-language coordination from Joy.", "从昆明、大理、丽江到香格里拉，安排5座或7座多日自由行包车、一日观光用车，也提供跨城及机场车站接送。查看美元报价，Joy 协助英文沟通与接送安排。")}
+      primary={{ href: "#multi-day-private-driver", label: T("Explore Multi-Day Drivers", "查看多日包车") }}
+      secondary={{ href: "#private-car-by-day", label: T("Explore Full-Day Car Hire", "查看一日包车") }}
       note={T("Standard services can be paid online; vehicle allocation is confirmed after payment. Complex routes are quoted first.", "标准服务可在线付款，付款后确认派车；复杂路线先提供报价。")}
     />
 
@@ -128,6 +128,8 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
         <a className="button button-blue" href="#driver-quote-form">{T("Request a Quote", "开始询价")}</a>
       </div>
     </nav>
+
+    <StandardTransferSection locale={lang} stripeTestMode={stripeTestMode} />
 
     <JourneyFactCards id="custom-routes" title={T("More Than a Ride — A More Relaxed Way to Travel", "不只是包车，更是一路省心的旅行")} cards={[
       { icon: "note", title: T("The Little Details Matter", "小细节，少一点旅途麻烦"), lines: [T("From clear pickup instructions to practical travel needs, we help prepare the details before you get in.", "从清晰的接送点到旅途中的实际需求，我们提前沟通准备，减少临时麻烦。"), T("Need water, charging access or a child seat? Tell us in advance so we can confirm what's available.", "需要饮用水、充电设备或儿童座椅？提前告诉我们，以便确认安排。")] },
@@ -157,7 +159,6 @@ export default async function YunnanPrivateDriverPage({ params }: Props) {
       </div>
     </section>
 
-    <StandardTransferSection locale={lang} stripeTestMode={stripeTestMode} />
 
     {liveVerificationLink ? <section className="driver-section driver-section-soft" id="stripe-live-test-product">
       <div className="shell">

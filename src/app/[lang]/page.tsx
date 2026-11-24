@@ -6,8 +6,7 @@ import { LocaleLink as Link } from "@/components/locale-link";
 import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { EnquireLink } from "@/components/enquire-link";
-import { GuideCard, type GuideCardData } from "@/components/guide-card";
-import { JourneyCard } from "@/components/journey-card";
+import { JourneyCard, type JourneyCardData } from "@/components/journey-card";
 import { JourneyQuoteBand } from "@/components/journey-quote-band";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { PaymentTrust } from "@/components/payment-trust";
@@ -70,8 +69,8 @@ export default async function Home({ params }: Props) {
   const classic = journeys.find((journey) => journey.slug === "kunming-dali-lijiang-shangri-la-private-tour");
 
   const preview = process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
-  const productCards = (t.raw("productCards") as GuideCardData[]).filter(card => preview || card.href !== "/yunnan-experiences");
-  const localCards = (t.raw("localCards") as GuideCardData[]).filter(card => preview || !card.href.startsWith("/experiences/"));
+  const productCards = t.raw("productCards") as JourneyCardData[];
+  const localCards = (t.raw("localCards") as JourneyCardData[]).filter(card => preview || !card.href.startsWith("/experiences/"));
   const reasons = (t.raw("reasons") as Step[]).map(([n, title, text]) => [n, title, fill(text)] as Step);
   const supportItems = t.raw("supportItems") as SupportItem[];
   const destinations = t.raw("destinations") as Destination[];
@@ -128,7 +127,7 @@ export default async function Home({ params }: Props) {
     <section className="section section-sand" id="travel-options">
       <div className="shell">
         <div className="section-heading"><p className="kicker">{t("optionsKicker")}</p><h2>{t("optionsHeading")}</h2><p>{t("optionsIntro")}</p></div>
-        <div className={productCards.length===3?"article-guide-grid home-journeys-grid":"yunnan-guide-grid home-journeys-grid"}>{productCards.map(card=><GuideCard key={card.href} guide={card}/>)}</div>
+        <div className="yunnan-guide-grid home-product-grid">{productCards.map(card=><JourneyCard key={card.href} journey={card} compact/>)}</div>
       </div>
     </section>
 
@@ -190,8 +189,8 @@ export default async function Home({ params }: Props) {
     <section className="section section-sand" id="travel-services">
       <div className="shell">
         <div className="section-heading"><p className="kicker">{t("servicesKicker")}</p><h2>{t("servicesHeading")}</h2><p>{t("servicesIntro")}</p></div>
-        <div className={localCards.length===3?"article-guide-grid home-journeys-grid":"yunnan-guide-grid home-journeys-grid"}>{localCards.map(card=><GuideCard key={card.href} guide={card}/>)}</div>
-        <p className="home-helper">{t("servicesHelper")}</p>
+        <div className="yunnan-guide-grid home-product-grid">{localCards.map(card=><JourneyCard key={card.href} journey={card} compact/>)}</div>
+        <p className="home-helper">{t("servicesHelper")} <Link href="/yunnan-private-driver" data-cta-location="home_all_driver_services">{t("allDriverServices")}</Link></p>
       </div>
     </section>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { JourneyCard } from "@/components/journey-card";
 import { driverDirectPrices, DRIVER_FULL_ORDER_TEST_ID, DRIVER_FULL_ORDER_TEST_ROUTE } from "@/lib/driver-direct-prices";
 import { driverUsd, driverMultiDayTotalUsd } from "@/lib/driver-usd-prices";
 import { EnquirySelect } from "@/components/enquiry-select";
@@ -31,9 +31,9 @@ type ServiceCity = typeof serviceCities[number]["value"];
 
 const serviceFilters = [
   { key: "all", id: "all-driver-services", en: "All services", zh: "全部服务" },
-  { key: "intercity", id: "intercity-transfers", en: "Intercity Transfers", zh: "跨城接送" },
-  { key: "day", id: "private-car-by-day", en: "Private Day Trips", zh: "周边一日游包车" },
   { key: "multi", id: "multi-day-private-driver", en: "Multi-Day Yunnan Driver", zh: "云南自由行多日包车" },
+  { key: "day", id: "private-car-by-day", en: "Full-Day Private Car Hire", zh: "一日观光包车" },
+  { key: "intercity", id: "intercity-transfers", en: "Intercity Transfers", zh: "跨城接送" },
   { key: "arrival", id: "airport-station-transfers", en: "Airport & Station", zh: "机场／高铁站接送" },
 ] as const;
 
@@ -608,7 +608,8 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
   };
   const [category, setCategory] = useState<Category | "all">("all");
   const [city, setCity] = useState("");
-  const visibleProducts = filterDriverProducts(products.filter(p => p.id !== DRIVER_FULL_ORDER_TEST_ID), category, city);
+  const order: Record<Category,number> = {multi:0,day:1,intercity:2,arrival:3};
+  const visibleProducts = filterDriverProducts(products.filter(p => p.id !== DRIVER_FULL_ORDER_TEST_ID), category, city).sort((a,b)=>order[a.category]-order[b.category]);
   const [selected, setSelected] = useState<ProductId | "custom" | null>(null);
   const scrollToForm = () => requestAnimationFrame(() => document.getElementById("driver-quote-form")?.scrollIntoView({ behavior: "smooth", block: "start" }));
 
@@ -659,7 +660,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
       <div className="driver-section-head">
         <p className="kicker">{zh ? "私人交通服务目录" : "YUNNAN DRIVER SERVICES"}</p>
         <h2>{zh ? "选择合适的接送与包车服务" : "Find Your Private Car Service"}</h2>
-        <p>{zh ? "跨城接送、周边一日游、多日自由行包车及机场／高铁接送均可预订。所示价格统一为美元，包含约定路线内车辆、司机、油费、高速费与停车费，无隐藏收费。" : "Book intercity transfers, nearby day trips, multi-day private drivers and airport/station transfers. All prices are in USD; agreed routes include the car, driver, fuel, tolls and parking with no hidden fees."}</p>
+        <p>{zh ? "多日自由行包车、一日观光包车、跨城接送及机场／高铁接送均可预订。所示价格统一为美元，包含约定路线内车辆、司机、油费、高速费与停车费，无隐藏收费。" : "Book multi-day private drivers, full-day car hire, intercity transfers and airport/station transfers. All prices are in USD; agreed routes include the car, driver, fuel, tolls and parking with no hidden fees."}</p>
       </div>
       <div ref={catalog}>
         <div className="driver-catalog-filters">
@@ -685,25 +686,14 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
               const item = serviceCities.find(entry => entry.value === value);
               return item ? (zh ? item.zh : item.en) : "";
             }).join(" / ");
-            return <article className="driver-product" key={product.id}>
-              <div className="driver-product-photo"><Image src={product.photo} alt="" fill sizes="(max-width:590px) 100vw, (max-width:900px) 50vw, 33vw" /></div>
-              <div className="driver-product-copy">
-                <p className="driver-product-meta">{cities} · {zh ? filter?.zh : filter?.en}</p>
-                <h3>{zh ? product.zh : product.en}</h3>
-                <p>{zh ? product.detailZh : product.detailEn}</p>
-                <div className="driver-product-price">
+            return <JourneyCard key={product.id} compact journey={{title:zh?product.zh:product.en,subtitle:zh?product.detailZh:product.detailEn,destination:cities+" · "+(zh?filter?.zh:filter?.en),image:product.photo,imageAlt:zh?product.zh:product.en,href:"#driver-quote-form"}} details={<div className="journey-card-product-details">
                   <span>{product.category === "multi" ? (zh ? "每日价格 · USD" : "Price per day · USD") : (zh ? "每车价格 · USD" : "Price per vehicle · USD")}</span>
                   <dl>
                     <div><dt>{zh ? "5座" : "5-seat"}</dt><dd>{priceLabel(product, "five")}</dd></div>
                     <div><dt>{zh ? "7座" : "7-seat"}</dt><dd>{priceLabel(product, "seven")}</dd></div>
                   </dl>
                   <small>{product.category === "multi" ? (zh ? "选择天数后按总价支付20%定金，余款按确认条款支付" : "Select days and pay a 20% deposit; balance per booking terms") : product.category === "day" ? (zh ? "周边一日游交通全包价：车辆、司机、油费、高速、停车费，无隐藏收费" : "All-inclusive nearby day trip; driver, fuel, tolls and parking included") : (zh ? "标准路线可在线支付；包含已约定路线的车辆、司机、油费、高速费及停车费" : "Standard routes can pay online; agreed car, driver, fuel, tolls and parking included")}</small>
-                </div>
-                <button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>
-                  {zh ? "选择服务选项" : "Select Service Options"} <span aria-hidden="true">→</span>
-                </button>
-              </div>
-            </article>;
+                </div>} action={<button type="button" className="button button-blue driver-product-action" onClick={() => pick(product.id)}>{zh ? "选择服务选项" : "Select Service Options"} <span aria-hidden="true">→</span></button>} />;
           })}
         </div> : <div className="driver-catalog-empty">
           <p>{zh ? "这个出发城市暂无此类标准服务。" : "There are no standard services in this category for the selected departure city."}</p>

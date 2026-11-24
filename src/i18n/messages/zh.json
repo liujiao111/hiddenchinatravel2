@@ -451,71 +451,68 @@
     "finalTrust": "免费咨询 · 正式报价与付款条款书面确认",
     "exploreServices": "探索自由行服务",
     "optionsKicker": "选择旅行方式",
-    "optionsHeading": "找到适合你的云南旅行方式",
-    "optionsIntro": "选择完整的私人定制旅行，也可以只安排你需要的当地服务。",
+    "optionsHeading": "私人定制，或自由探索云南",
+    "optionsIntro": "无论你希望我们安排整趟旅行，还是自己规划行程、只购买需要的当地服务，都能获得云南本地旅行支持。",
     "servicesKicker": "自由安排你的旅程",
-    "servicesHeading": "自由安排你的云南旅行",
+    "servicesHeading": "云南自由行热门产品",
     "servicesIntro": "已经有自己的旅行计划？选择适合路线和时间的当地服务。",
     "servicesHelper": "具体价格、包含项目与预订条件，以各服务页面为准。",
     "planningLink": "了解私人定制流程 →",
     "productCards": [
       {
-        "title": "私人定制游",
-        "excerpt": "按日期、兴趣与节奏设计的完整私人旅行。",
+        "title": "私人定制旅行",
+        "subtitle": "路线、酒店、交通及向导，按你的需求安排。",
         "href": "/private-yunnan-tours",
         "image": "/home/local-support.webp",
-        "imageAlt": "云南高原湖泊",
-        "readLabel": "查看私人定制",
+        "ctaLabel": "查看私人定制 →",
         "trackingLocation": "home_category_private"
       },
       {
-        "title": "私人包车与接送",
-        "excerpt": "机场接送、城市间接送及灵活的多日私人包车。",
-        "href": "/yunnan-private-driver",
-        "image": "/assets/partners/vehicles/five-seat-toyota.webp",
-        "imageAlt": "云南私人包车车辆",
-        "readLabel": "查看包车服务",
-        "trackingLocation": "home_category_driver"
-      },
-      {
-        "title": "特色文旅体验",
-        "excerpt": "探索当地手工艺与文化。首个大理扎染产品预览，尚未开放预约。",
-        "href": "/yunnan-experiences",
-        "image": "/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp",
-        "imageAlt": "蓝白扎染布料",
-        "readLabel": "预览特色体验",
-        "trackingLocation": "home_category_experiences"
+        "title": "云南自由行",
+        "subtitle": "自己决定路线，自由选择一日、多日包车及所需的当地服务。",
+        "href": "/#travel-services",
+        "image": "/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp",
+        "ctaLabel": "探索自由行服务 →",
+        "trackingLocation": "home_category_independent"
       }
     ],
     "localCards": [
       {
-        "title": "机场与火车站接送",
-        "excerpt": "提前安排抵达或离开云南时的专车接送。",
-        "href": "/yunnan-private-driver#standard-transfers",
-        "image": "/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp",
-        "imageAlt": "私人接送车辆",
-        "readLabel": "查看接送服务",
-        "trackingLocation": "home_service_transfer"
+        "title": "多日私人包车",
+        "subtitle": "昆明、大理、丽江、香格里拉等地灵活用车，酒店与旅行节奏自己决定。",
+        "href": "/yunnan-private-driver#multi-day-private-driver",
+        "image": "/assets/destinations/yunnan/shangri-la.webp",
+        "ctaLabel": "查看多日包车 →",
+        "trackingLocation": "home_service_multi",
+        "fromPrice": "US$150 起 / 天 · 每车",
+        "priceNote": "5座车，7天及以上行程"
       },
       {
-        "title": "跨城与多日包车",
-        "excerpt": "城市间专车接送，也可安排灵活的多日用车路线。",
-        "href": "/yunnan-private-driver#multi-day-driver",
-        "image": "/assets/blog/yunnan-private-driver/dali-shaxi.webp",
-        "imageAlt": "沙溪古镇",
-        "readLabel": "查看私人包车",
-        "trackingLocation": "home_service_driver"
+        "title": "一日观光包车",
+        "subtitle": "环洱海、雪山及周边景点，专车司机按约定路线灵活安排。",
+        "href": "/yunnan-private-driver#private-car-by-day",
+        "image": "/assets/destinations/yunnan/dali-erhai-cover.webp",
+        "ctaLabel": "查看一日包车 →",
+        "trackingLocation": "home_service_day"
       },
       {
         "title": "大理白族扎染体验",
-        "excerpt": "亲手制作靛蓝扎染作品。产品预览，预约细节待确认。",
+        "subtitle": "亲手制作靛蓝扎染作品。产品预览，尚未开放预约。",
         "href": "/experiences/dali-tie-dye-workshop",
         "image": "/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp",
-        "imageAlt": "蓝白扎染布料",
-        "readLabel": "预览扎染体验",
+        "ctaLabel": "预览扎染体验 →",
         "trackingLocation": "home_service_tie_dye"
+      },
+      {
+        "title": "跨城观景接送",
+        "subtitle": "城市间专车接送，可提前约定沙溪、虎跳峡等沿途观景停靠。",
+        "href": "/yunnan-private-driver#intercity-transfers",
+        "image": "/assets/destinations/yunnan/tiger-leaping.webp",
+        "ctaLabel": "查看跨城观景接送 →",
+        "trackingLocation": "home_service_intercity"
       }
-    ]
+    ],
+    "allDriverServices": "查看全部包车与接送服务 →"
   },
   "journeys": {
     "metaTitle": "云南私家定制行程",

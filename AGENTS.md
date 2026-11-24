@@ -31,3 +31,5 @@ Before editing or publishing `_posts/*.md` or `_posts-zh/*.md`, read `PROJECT.md
 - 表单输入必须显式声明 type；共享 contact-form 样式必须同时覆盖默认文本输入（未声明 type）、text、password、email、tel 等常用文本类型，不得遗漏边框及焦点态。checkbox/radio/hidden/file 等保留专用控件样式。新增或修改表单必须核查实际浏览器空白输入框是否清晰可见。
 
 - 全站移动端（700px 及以下）不挂载右下角悬浮联系 Joy 组件；保留页面原有底部 CTA、正文联系方式与页脚入口。桌面端悬浮组件行为不变。新增页面不得自行挂载移动悬浮咨询按钮。
+
+- 商业旅游产品与旅行方式入口统一复用 JourneyCard 全幅照片、渐变遮罩与叠加信息，允许共享 compact 尺寸变体及保留真实购买操作；GuideCard 仅用于攻略文章。禁止重新创建并行商业卡片视觉体系。自由行主推多日包车、一日观光包车，跨城与机场接送仍保留完整购买入口。

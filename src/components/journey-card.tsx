@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 
 export type JourneyCardData = {
@@ -18,7 +19,8 @@ export type JourneyCardData = {
   secondaryLabel?: string;
 };
 
-export function JourneyCard({ journey, priority = false }: { journey: JourneyCardData; priority?: boolean }) {
+export function JourneyCard({ journey, priority = false, compact = false, details, action }: { journey: JourneyCardData; priority?: boolean; compact?: boolean; details?: ReactNode; action?: ReactNode }) {
+  const className = "journey-card"+(compact?" journey-card-compact":"");
   const contents = <>
     <Image
       src={journey.image}
@@ -37,14 +39,15 @@ export function JourneyCard({ journey, priority = false }: { journey: JourneyCar
       {journey.features?.length ? <ul>{journey.features.map((feature) => <li key={feature}>✓ {feature}</li>)}</ul> : null}
       {journey.fromPrice ? <b className="journey-card-price">{journey.fromPrice}</b> : null}
       {journey.priceNote ? <small className="journey-card-note">{journey.priceNote}</small> : null}
-      {journey.secondaryHref
+      {details}
+      {action ? <div className="journey-card-product-action">{action}</div> : journey.secondaryHref
         ? <div className="journey-card-actions"><Link href={journey.href} data-cta-location={journey.trackingLocation}>{journey.ctaLabel || "View the Journey"} →</Link><Link href={journey.secondaryHref} data-cta-location={journey.trackingLocation ? journey.trackingLocation + "_customize" : undefined}>{journey.secondaryLabel || "Customize This Route"}</Link></div>
         : <strong>{journey.ctaLabel || "Explore the journey →"}</strong>}
     </div>
   </>;
   // Cards with two actions cannot be wrapped in an outer link: nested links
   // are invalid and break keyboard/touch interactions.
-  return journey.secondaryHref
-    ? <article className="journey-card journey-card-dual">{contents}</article>
-    : <Link href={journey.href} className="journey-card" data-cta-location={journey.trackingLocation}>{contents}</Link>;
+  return action || journey.secondaryHref
+    ? <article className={className+" journey-card-dual"}>{contents}</article>
+    : <Link href={journey.href} className={className} data-cta-location={journey.trackingLocation}>{contents}</Link>;
 }

@@ -2823,3 +2823,20 @@ body:has([role="dialog"][aria-modal="true"]) .wa-float {display:none!important}
 .mobile-nav-section:focus-visible { outline:2px solid var(--color-focus); outline-offset:-2px; }
 .mobile-nav>div>div:not([hidden]) { display:flex; flex-direction:column; }
 .mobile-nav>div>div>div { display:flex; flex-direction:column; }
+
+/* Shared compact travel-product cards: same full-bleed photography, shade and typography as JourneyCard. */
+.home-product-grid {margin-top:42px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.journey-card.journey-card-compact {display:flex;flex-direction:column;justify-content:flex-end;min-width:0;min-height:390px;width:100%;max-width:100%}
+.journey-card-compact .journey-card-copy {position:relative;inset:auto;padding:var(--space-6);}
+.journey-card-compact .journey-card-copy h3 {font-size:clamp(1.5rem,2.4vw,2.1rem);overflow-wrap:anywhere}
+.journey-card-compact .journey-card-copy>p {font-size:.86rem;line-height:1.5}
+.journey-card-compact .journey-card-shade {background:linear-gradient(180deg,rgba(12,25,21,.06),rgba(12,25,21,.55) 35%,rgba(12,25,21,.96) 100%)}
+.journey-card-product-action {margin-top:var(--space-4);padding-top:var(--space-3);border-top:1px solid rgba(255,255,255,.55)}
+.journey-card-product-action .button {width:100%;white-space:normal}
+.journey-card-product-details {margin-top:var(--space-3);font-size:.83rem;color:rgba(255,255,255,.92)}
+.journey-card-product-details dl {display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4);margin:0 0 var(--space-2)}
+.journey-card-product-details dt {font-size:.75rem;color:rgba(255,255,255,.88)}
+.journey-card-product-details dd {margin:0;font-weight:700}
+.journey-card-product-details small {display:block;line-height:1.5}
+#travel-services {scroll-margin-top:24px}
+@media(max-width:700px){.home-product-grid{grid-template-columns:minmax(0,1fr);margin-top:var(--space-6)}.journey-card.journey-card-compact{min-height:340px}.journey-card-compact .journey-card-copy{padding:var(--space-4)}.home-journeys-grid .journey-card{min-height:500px}}

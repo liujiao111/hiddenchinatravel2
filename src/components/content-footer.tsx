@@ -61,7 +61,10 @@ export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boole
           <Link href="/yunnan-tour-packages">{t("journeyAll")}</Link>
           <Link href="/private-yunnan-tours">{t("journeyCustom")}</Link>
           <h3>{isZh ? "自由行与体验" : "Travel & Experiences"}</h3>
-          <Link href="/yunnan-private-driver" data-cta-location="footer_private_driver">{isZh ? "私人包车与接送" : "Private Drivers & Transfers"}</Link>
+          <Link href="/yunnan-private-driver#multi-day-private-driver" data-cta-location="footer_driver_multi">{isZh ? "多日私人包车" : "Multi-Day Private Drivers"}</Link>
+          <Link href="/yunnan-private-driver#private-car-by-day" data-cta-location="footer_driver_day">{isZh ? "一日观光包车" : "Full-Day Private Car Hire"}</Link>
+          <Link href="/yunnan-private-driver#intercity-transfers" data-cta-location="footer_driver_intercity">{isZh ? "跨城私人接送" : "Intercity Transfers"}</Link>
+          <Link href="/yunnan-private-driver#airport-station-transfers" data-cta-location="footer_driver_arrival">{isZh ? "机场与车站接送" : "Airport & Station Transfers"}</Link>
           {preview ? <Link href="/yunnan-experiences" data-cta-location="footer_local_experiences">{isZh ? "特色文旅体验（预览）" : "Local Experiences (Preview)"}</Link> : null}
         </nav>
 
