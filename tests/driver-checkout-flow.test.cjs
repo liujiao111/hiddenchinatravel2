@@ -137,6 +137,7 @@ test("multi-day checkout charges exactly a 20% USD deposit and stores 80% balanc
 });
 
 let simulatedEvent;
+let experienceDispatches = 0;
 let paymentRecords = new Map();
 StripeStub.webhooks = { constructEvent: () => simulatedEvent };
 Module._load = function(request, parent, isMain) {
@@ -166,6 +167,7 @@ Module._load = function(request, parent, isMain) {
   };
   if (request === "@/lib/stripe-test") return { isDriverProductId: () => true };
   if (request === "@/lib/driver-order-mail") return require("../src/lib/driver-order-mail.ts");
+  if (request === "@/lib/experience-live-test") return { PURPOSE: "experience_live_verification", settleExperienceTest: async () => { experienceDispatches++; return Response.json({received:true}); } };
   if (request === "@/lib/driver-ga4-purchase") return { reportVerifiedDriverPurchase: async () => false };
   return nativeLoad.call(this, request, parent, isMain);
 };
@@ -222,4 +224,11 @@ test("webhook rejects a falsified paid amount instead of marking an order paid",
   }));
   assert.equal(result.status, 422);
   assert.equal(order.paid, undefined);
+});
+
+test("experience verification is routed separately after signature verification", async () => {
+  experienceDispatches=0;
+  process.env.STRIPE_DRIVER_LIVE_WEBHOOK_SECRET="whsec_live_mock";
+  simulatedEvent={id:"evt_live_experience",type:"checkout.session.completed",livemode:true,data:{object:{payment_status:"paid",metadata:{purpose:"experience_live_verification"}}}};
+  try{const response=await handleWebhook(new Request("https://example.com/api/stripe/webhook",{method:"POST",headers:{"stripe-signature":"valid-mock"},body:"{}"}));assert.equal(response.status,200);assert.equal(experienceDispatches,1);assert.equal(paymentRecords.size,0);}finally{delete process.env.STRIPE_DRIVER_LIVE_WEBHOOK_SECRET;}
 });
