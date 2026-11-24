@@ -14,7 +14,6 @@ export function ContentCta() {
 export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boolean }) {
   const t = useTranslations("footer");
   const isZh = useLocale() === "zh";
-  const preview = process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
   const whatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(t("whatsappMessage"))}`;
   const agencyValues = {
     agencyEn: licensedOperator.nameEn,
@@ -33,7 +32,7 @@ export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boole
         <section className="footer-brand" aria-labelledby="footer-brand-title">
           <h2 id="footer-brand-title">Hidden China Travel</h2>
           <p className="footer-tagline">{t("tagline")}</p>
-          <p>{t(preview ? "introPreview" : "intro")}</p>
+          <p>{t("intro")}</p>
           <p className="footer-origin">{t("origin")}</p>
           <p className="footer-origin">{t("companyLine", agencyValues)}</p>
           <p className="footer-origin">{t("address", agencyValues)}</p>
@@ -65,7 +64,7 @@ export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boole
           <Link href="/yunnan-private-driver#private-car-by-day" data-cta-location="footer_driver_day">{t("dayDriver")}</Link>
           <Link href="/yunnan-private-driver#intercity-transfers" data-cta-location="footer_driver_intercity">{t("intercityDriver")}</Link>
           <Link href="/yunnan-private-driver#airport-station-transfers" data-cta-location="footer_driver_arrival">{t("arrivalDriver")}</Link>
-          <Link href="/yunnan-experiences" data-cta-location="footer_local_experiences">{t(preview ? "experiencesPreview" : "experiences")}</Link>
+          <Link href="/yunnan-experiences" data-cta-location="footer_local_experiences">{t("experiences")}</Link>
         </nav>
 
         <nav className="footer-nav footer-resources" aria-label={t("resourcesNavigation")}>

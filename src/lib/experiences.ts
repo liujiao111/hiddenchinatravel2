@@ -7,7 +7,7 @@ export type ExperienceText = { title: Localized; text: Localized };
 export type ExperiencePackage = {
   id: string; name: Localized; minutes?: number; description: Localized;
   price?: { currency: "USD" | "CNY"; min: number; max?: number; confirmed: boolean; currencyPending?: boolean };
-  pieces?: { id: string; name: Localized; media?: ExperienceMedia }[];
+  pieces?: { id: string; name: Localized; media?: ExperienceMedia; priceCents?: number }[];
   media: ExperienceMedia;
 };
 export type ExperienceProduct = {
@@ -17,13 +17,13 @@ export type ExperienceProduct = {
   packages: ExperiencePackage[]; process?: (ExperienceText & { media: ExperienceMedia })[];
   story?: ExperienceText & { media: ExperienceMedia }; included: Localized[]; excluded?: Localized[];
   location: ExperienceText; gallery?: ExperienceMedia[]; faqs: ExperienceText[];
-  addons?: { id: string; title: Localized; sourcePrice: string; media?: ExperienceMedia }[];
-  booking: { mode: "preview"; pricingUnit: "person" | "group" | "piece"; timeSlots: string[]; maxParticipants?: number };
+  addons?: { id: string; title: Localized; sourcePrice: string; priceCents: number; minutes: number; media?: ExperienceMedia }[];
+  booking: { mode: "request"; pricingUnit: "person" | "group" | "piece"; timeSlots: string[]; maxParticipants?: number };
 };
 const t = bilingual;
 const media = (en: string, zh: string): ExperienceMedia => ({ alt: t(en, zh) });
 const tieDyePhoto = (file: string, en: string, zh: string): ExperienceMedia => ({ src: "/assets/experiences/dali-tie-dye/dali-tie-dye-" + file + ".webp", alt: t(en, zh) });
-const piece = (id: string, en: string, zh: string, photo?: ExperienceMedia) => ({ id, name: t(en, zh), media: photo ?? media(en, zh) });
+const piece = (id: string, en: string, zh: string, photo?: ExperienceMedia, priceCents?: number) => ({ id, name: t(en, zh), media: photo ?? media(en, zh), priceCents });
 export const experiences: ExperienceProduct[] = [{
   slug: "dali-tie-dye-workshop",
   title: t("Traditional Bai Tie-Dye Workshop in Dali", "大理白族扎染体验"),
@@ -31,10 +31,10 @@ export const experiences: ExperienceProduct[] = [{
   city: t("Dali", "大理"), category: t("Arts & Crafts", "传统手工艺"),
   description: t("Make your own Bai tie-dye in Dali. Learn traditional indigo dyeing with local instruction, choose a textile to personalise, and take home a piece you made yourself.", "走进大理白族扎染工艺，在当地老师指导下亲手设计纹样、捆扎和染色，从方巾到帆布包，带走自己制作的云南纪念品。"),
   closing: { title:t("Make a Memory of Dali with Your Own Hands","亲手制作属于你的大理旅行纪念品"),text:t("Choose a textile and explore the experience that fits your time in Dali.","选一件喜欢的作品，安排适合你旅行节奏的扎染体验。"),media:tieDyePhoto("tea-seating","Sunlit seating area with tie-dye tablecloths","临窗扎染桌布与茶席") },
-  priceNote:t("Draft prices are per participant and include one main piece. Signature pricing varies by piece; final item prices, Premium currency and optional add-ons require confirmation.","暂定价格按参与者计，每人含一件主作品。进阶套餐因作品不同而异；具体作品价格、深度套餐币种和增购价格仍待确认。"),
-  seo: { title: t("Dali Tie-Dye Workshop | Traditional Bai Craft Experience", "大理白族扎染体验｜非遗手工制作与预约"), description: t("Explore a 45–90 minute Bai tie-dye workshop in Dali, Yunnan. Compare packages, make your own scarf or bag and take home your handmade indigo textile.", "大理白族非遗扎染体验，约45–90分钟。比较不同套餐，亲手制作方巾、帆布包等作品，体验传统靛蓝染色。") },
+  priceNote:t("Prices are in USD per participant and include one main piece. Artisan T-shirts cost US$28.80; other Artisan pieces cost US$25.80. Add-ons require a standard package. Master+ is quoted separately.","所有标价为美元，每人含一件主作品。Artisan T恤 US$28.80，其余作品 US$25.80；加购须搭配标准套餐，Master+ 单独询价。"),
+  seo: { title: t("Dali Tie-Dye Workshop | Traditional Bai Craft Experience", "大理白族扎染体验｜非遗手工制作与预约"), description: t("Explore a 45–120 minute Bai tie-dye workshop in Dali, Yunnan. Compare packages, make your own scarf or bag and take home your handmade indigo textile.", "大理白族非遗扎染体验，约45–120分钟。比较不同套餐，亲手制作方巾、帆布包等作品，体验传统靛蓝染色。") },
   hero: tieDyePhoto("indigo-fabric", "Woman lifting a blue-and-white tie-dyed textile outdoors", "户外展示蓝白扎染布料的女士"),
-  duration: t("Approx. 45–90 min", "约45–90分钟"),
+  duration: t("Approx. 45–120 min", "约45–120分钟"),
   highlights: [
     { title: t("One of a Kind", "每一件，都是独一无二"), text: t("No two handmade tie-dye pieces are exactly alike. Unwrap yours to reveal a pattern that is uniquely your own.", "每一次捆扎与浸染，都会呈现不同的纹样。拆线的那一刻，揭晓只属于你的作品。") },
     { title: t("A Living Bai Heritage", "走进千年白族非遗"), text: t("Discover a traditional craft passed down through generations and recognized as China's national intangible cultural heritage in 2006.", "体验世代传承的白族扎染技艺，感受2006年入选国家级非遗名录的传统文化。") },
@@ -42,10 +42,10 @@ export const experiences: ExperienceProduct[] = [{
     { title: t("Made by You, Taken Home", "亲手创造，带走云南记忆"), text: t("Create your own scarf, bag or textile with local guidance, and take home a personal souvenir of your time in Dali.", "在当地老师指导下制作方巾、包袋或其他织物，把亲手创造的云南记忆带回家。") },
   ],
   packages: [
-    { id:"essential", name:t("Essential Experience","入门体验"), minutes:45, description:t("A short introduction for first-time makers. Choose one main piece; includes instructor assistance, materials, apron, gloves, English step-by-step card and gift bag.","适合首次体验，任选一件主作品，包含老师指导、材料、围裙、手套、英文步骤卡及礼品袋。"), price:{currency:"USD",min:18.8,confirmed:false}, media:media("Essential package finished pieces","入门套餐作品"), pieces:[piece("square-scarf","Square scarf","方巾"),piece("bucket-hat","Bucket hat","渔夫帽"),piece("small-tote","Small canvas tote","小帆布包")] },
-    { id:"signature", name:t("Signature Experience","特色进阶体验"), minutes:60, description:t("More time to create, with upgraded material choices and a local tea break. Includes the Essential benefits and one selected main piece.","在入门体验基础上，延长制作时间、升级作品材料，并享用当地茶歇，任选一件主作品。"), price:{currency:"USD",min:25.8,max:28.8,confirmed:false}, media:tieDyePhoto("cat-dolls","Blue-and-white cat-shaped textile dolls hanging outdoors","户外悬挂的蓝白扎染猫咪玩偶"), pieces:[piece("silk-scarf","Silk scarf","真丝围巾"),piece("cushion","Cushion cover","抱枕套"),piece("doll","Doll","玩偶",tieDyePhoto("animal-dolls","Two blue-and-white animal-shaped textile dolls","两个蓝白扎染动物造型玩偶")),piece("large-tote","Large canvas tote","大帆布包")] },
-    { id:"premium", name:t("Premium Experience","深度体验"), minutes:90, description:t("Spend longer on a more detailed textile. Includes Signature benefits, a planned small-group or private setting, illustrated culture booklet, premium tea break and gift packaging.","在特色体验基础上制作更复杂的织物，拟安排小团或私人体验，含文化图册、高级茶歇及礼品包装。"), price:{currency:"CNY",min:32.8,confirmed:false,currencyPending:true}, media:media("Premium package finished pieces","深度套餐作品"), pieces:[piece("long-scarf","Long scarf","长围巾"),piece("complex-tote","Complex canvas tote","复杂帆布包"),piece("skirt","Half-length skirt","半身裙"),piece("tshirt","T-shirt","T恤")] },
-    { id:"bespoke", name:t("Bespoke Experience","高级定制体验"), description:t("Table runners, curtains, shirts, dresses and wall hangings. Timing and price depend on the design.","桌旗、门帘、衬衫、连衣裙和墙面挂饰等，时长及价格依设计确认。"), media:media("Bespoke textile pieces","高级定制作品") },
+    { id:"essential", name:t("Explorer","Explorer · 入门体验"), minutes:45, description:t("A short introduction for first-time makers. Choose one main piece; includes instructor assistance, materials, apron, gloves, English step-by-step card and gift bag.","适合首次体验，任选一件主作品，包含老师指导、材料、围裙、手套、英文步骤卡及礼品袋。"), price:{currency:"USD",min:18.8,confirmed:true}, media:media("Essential package finished pieces","入门套餐作品"), pieces:[piece("square-scarf","Square scarf","方巾"),piece("bucket-hat","Bucket hat","渔夫帽"),piece("small-tote","Small canvas tote","小帆布包")] },
+    { id:"signature", name:t("Artisan","Artisan · 特色进阶体验"), minutes:60, description:t("More time to create, with upgraded material choices and a local tea break. Includes the Explorer benefits and one selected main piece.","在入门体验基础上，延长制作时间、升级作品材料，并享用当地茶歇，任选一件主作品。"), price:{currency:"USD",min:25.8,max:28.8,confirmed:true}, media:tieDyePhoto("cat-dolls","Blue-and-white cat-shaped textile dolls hanging outdoors","户外悬挂的蓝白扎染猫咪玩偶"), pieces:[piece("silk-scarf","Silk scarf","真丝围巾"),piece("cushion","Cushion cover","抱枕套"),piece("doll","Doll","玩偶",tieDyePhoto("animal-dolls","Two blue-and-white animal-shaped textile dolls","两个蓝白扎染动物造型玩偶")),piece("large-tote","Large canvas tote","大帆布包"),piece("tshirt","T-shirt","T恤",undefined,2880)] },
+    { id:"premium", name:t("Master","Master · 深度体验"), minutes:90, description:t("Spend longer on a more detailed textile. Includes Artisan benefits, a planned small-group or private setting, illustrated culture booklet, premium tea break and gift packaging.","在特色体验基础上制作更复杂的织物，拟安排小团或私人体验，含文化图册、高级茶歇及礼品包装。"), price:{currency:"USD",min:32.8,confirmed:true}, media:media("Premium package finished pieces","深度套餐作品"), pieces:[piece("long-scarf","Long scarf","长围巾"),piece("complex-tote","Complex canvas tote","复杂帆布包"),piece("skirt","Half-length skirt","半身裙"),piece("tshirt","T-shirt","T恤")] },
+    { id:"bespoke", name:t("Master+","Master+ · 定制升级"), minutes:120, description:t("Choose a door curtain, top or shirt, or tablecloth. Request an individual quote before booking.","选择门帘、上衣／衬衫或桌布，预约前单独询价。"), media:media("Bespoke textile pieces","高级定制作品"),pieces:[piece("door-curtain","Door curtain","门帘"),piece("shirt","Top / shirt","上衣／衬衫"),piece("tablecloth","Tablecloth","桌布")] },
   ],
   process: [
     { title:t("Learn the Techniques","了解技艺"),text:t("Learn how folding, twisting, binding and stitching prevent dye from reaching parts of the cloth, with an English step-by-step card.","借助英文步骤卡了解折叠、扭转、捆扎与缝制如何形成防染纹样。"),media:media("Instructor explaining tie-dye","老师讲解") },
@@ -63,17 +63,38 @@ export const experiences: ExperienceProduct[] = [{
     {title:t("Can I take my finished piece home?","可以带走作品吗？"),text:t("Yes. The source plan includes a final rinse and drying or damp packing before you leave.","可以。原方案包含最后漂洗、晾干或湿装打包。")},
     {title:t("Is the instructor English-speaking?","老师会英语吗？"),text:t("An English instruction card is included in the proposed package. Spoken English support still needs confirmation.","拟定套餐包含英文指引卡，老师英语沟通能力仍待确认。")},
     {title:t("Can children join?","儿童可以参加吗？"),text:t("Minimum age, supervision and safety rules are pending workshop confirmation.","最低年龄、陪同和安全规则待作坊确认。")},
-    {title:t("Can I cancel or change my booking?","可以取消或改期吗？"),text:t("Final cancellation and rescheduling terms are not yet confirmed. No payment is taken in this preview.","最终取消与改期规则尚未确认；本预览不会收款。")},
+    {title:t("Can I cancel or change my booking?","可以取消或改期吗？"),text:t("Cancellation and rescheduling terms will be provided for your approval before any payment.","付款前会提供具体取消和改期条款供你确认。")},
   ],
-  addons:[{id:"pouch",title:t("Pocket tissue pouch","纸巾收纳袋"),sourcePrice:"¥9.8",media:media("Tissue pouch","纸巾收纳袋")},{id:"hair-ties",title:t("Hair ties ×3","发圈×3"),sourcePrice:"¥12.8",media:media("Hair ties","发圈")}],
-  booking:{mode:"preview",pricingUnit:"person",timeSlots:[]},
+  addons:[{id:"pouch",title:t("Pocket tissue pouch","纸巾收纳袋"),sourcePrice:"US$9.80",priceCents:980,minutes:30,media:media("Tissue pouch","纸巾收纳袋")},{id:"hair-ties",title:t("Hair ties ×3","发圈×3"),sourcePrice:"US$12.80",priceCents:1280,minutes:30,media:media("Hair ties","发圈")}],
+  booking:{mode:"request",pricingUnit:"person",timeSlots:[]},
 }];
 export const getExperience = (slug: string) => experiences.find(p => p.slug === slug);
 export const experiencePath = (slug: string) => "/experiences/" + slug;
 export const displayDraftPrice = (pkg: ExperiencePackage, locale: AppLocale) => {
-  if (!pkg.price) return locale === "zh" ? "单独询价（待确认）" : "Custom quote (pending)";
+  if (!pkg.price) return locale === "zh" ? "单独询价" : "Request a quote";
   const p = pkg.price;
   if (p.currencyPending) return locale === "zh" ? "价格待确认" : "Price to be confirmed";
   const symbol = p.currency === "USD" ? "US$" : "¥";
-  return symbol + p.min.toFixed(2) + (p.max !== undefined ? "–" + p.max.toFixed(2) : "") + (locale === "zh" ? "（暂定）" : " (draft)");
+  return symbol + p.min.toFixed(2) + (p.max !== undefined ? "–" + p.max.toFixed(2) : "") + (p.confirmed ? "" : locale === "zh" ? "（暂定）" : " (draft)");
 };
+
+/** Exact USD cents from the approved catalog; no client-supplied price accepted. */
+export function experiencePieceCents(pkg: ExperiencePackage, pieceId: string): number | null {
+  if (!pkg.price?.confirmed || pkg.price.currency !== "USD" || pkg.price.currencyPending) return null;
+  const selected = pkg.pieces?.find(p=>p.id===pieceId);
+  if (!selected) return null;
+  return selected.priceCents ?? Math.round(pkg.price.min*100);
+}
+export function experienceRequestTotal(product: ExperienceProduct, packageId:string, pieces:string[], addons:Record<string,number>):number|null {
+  const pkg=product.packages.find(p=>p.id===packageId);
+  if(!pkg||!pieces.length||pieces.length>(product.booking.maxParticipants??12)) return null;
+  const amounts=pieces.map(id=>experiencePieceCents(pkg,id));
+  if(amounts.some(n=>n===null))return null;
+  let total=amounts.reduce<number>((sum,n)=>sum+(n??0),0);
+  for(const [id,quantity] of Object.entries(addons)){
+    const addon=product.addons?.find(a=>a.id===id);
+    if(!addon||!Number.isInteger(quantity)||quantity<0||quantity>pieces.length)return null;
+    total+=addon.priceCents*quantity;
+  }
+  return total;
+}

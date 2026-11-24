@@ -148,7 +148,7 @@
   },
   "footer": {
     "tagline": "按自己的方式，探索云南。",
-    "intro": "你的云南本地旅行伙伴。提供私人定制旅行、灵活包车及实用旅行支持，陪你按自己的节奏探索云南。",
+    "intro": "你的云南本地旅行伙伴。提供私人定制旅行、灵活包车、当地特色文化体验及实用旅行支持。",
     "origin": "生于云南，也走过世界。",
     "companyLine": "云南行程签约与接待：{agencyZh} · 经营许可证 {permit} · 统一社会信用代码 {credit}",
     "address": "{addressZh}",
@@ -214,7 +214,8 @@
     "supportHeading": "预订与帮助",
     "whatsappSupport": "WhatsApp 咨询",
     "whatsappMessage": "你好，我想咨询云南旅行或已有预订。",
-    "legalNavigation": "法律与预订政策"
+    "legalNavigation": "法律与预订政策",
+    "experiences": "特色文旅体验"
   },
   "home": {
     "meta": {
@@ -520,10 +521,10 @@
       },
       {
         "title": "大理白族扎染体验",
-        "subtitle": "亲手制作靛蓝扎染作品。产品预览，尚未开放预约。",
+        "subtitle": "亲手制作靛蓝扎染作品，选择喜欢的作品并申请预约。",
         "href": "/experiences/dali-tie-dye-workshop",
         "image": "/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp",
-        "ctaLabel": "预览扎染体验 →",
+        "ctaLabel": "查看扎染体验 →",
         "trackingLocation": "home_service_tie_dye"
       },
       {

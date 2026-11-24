@@ -1,0 +1,2 @@
+# Dali tie-dye public booking requests
+Approved retail USD: Explorer 18.80, Artisan 25.80/T-shirt 28.80, Master 32.80, Master+ quoted, add-ons 9.80 and 12.80. Exact cents calculated for selected pieces and quantities. Booking request via WhatsApp/email; no automatic charge until workshop availability, meeting point and cancellation terms are confirmed. Internal USD1 test is only shown by explicit query and existing access code; no payment API change. Public links and bilingual sitemap enabled.

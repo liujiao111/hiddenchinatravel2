@@ -14,6 +14,6 @@ export default async function Page({params,searchParams}:Props) {
   const {lang,slug}=await params;setRequestLocale(lang);
   const p=getExperience(slug);if(!p)notFound();
   const {checkout_test}=await searchParams;
-  const showLiveTest=slug==="dali-tie-dye-workshop" && Boolean(process.env.EXPERIENCE_LIVE_TEST_ACCESS_CODE);
+  const showLiveTest=checkout_test==="1" && slug==="dali-tie-dye-workshop" && Boolean(process.env.EXPERIENCE_LIVE_TEST_ACCESS_CODE);
   return <ExperienceDetailTemplate product={p} lang={lang} showLiveTest={showLiveTest}/>;
 }

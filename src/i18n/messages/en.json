@@ -148,7 +148,7 @@
   },
   "footer": {
     "tagline": "Discover Yunnan, Your Way.",
-    "intro": "Your local travel partner in Yunnan, China. Explore at your own pace with tailor-made private tours, flexible private drivers and practical travel support.",
+    "intro": "Your local travel partner in Yunnan, China. Explore at your own pace with private tours, flexible private drivers, local cultural experiences and practical travel support.",
     "origin": "Born in Yunnan. Shaped by experiences abroad.",
     "companyLine": "Yunnan tour operator: {agencyEn} · Permit {permit} · {credit}",
     "address": "{addressEn} · {addressZh}",
@@ -214,7 +214,8 @@
     "supportHeading": "Booking & Support",
     "whatsappSupport": "WhatsApp Support",
     "whatsappMessage": "Hi, I'd like help with Yunnan travel or a booking.",
-    "legalNavigation": "Legal and booking policies"
+    "legalNavigation": "Legal and booking policies",
+    "experiences": "Local Experiences"
   },
   "home": {
     "meta": {
@@ -520,10 +521,10 @@
       },
       {
         "title": "Dali Bai Tie-Dye Workshop",
-        "subtitle": "Make your own indigo textile. Product preview; bookings not yet open.",
+        "subtitle": "Make your own indigo textile, choose a piece and request a workshop booking.",
         "href": "/experiences/dali-tie-dye-workshop",
         "image": "/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp",
-        "ctaLabel": "Preview workshop →",
+        "ctaLabel": "Explore workshop →",
         "trackingLocation": "home_service_tie_dye"
       },
       {

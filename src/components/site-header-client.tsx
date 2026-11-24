@@ -27,8 +27,7 @@ const tailorMadeBase = {
 };
 
 type MenuName = "destinations" | "journeys" | "experiences" | "guides" | "about";
-// Draft experiences can be reviewed in Preview but must not be promoted before release.
-const showDraftExperiences = process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
+
 
 const whatsapp = buildWhatsAppUrl();
 
@@ -149,7 +148,7 @@ export function SiteHeaderClient({ journeys, cta, alternate, searchInitialQuery,
             <Link href="/yunnan-private-driver#private-car-by-day" data-cta-location="header_driver_day" onClick={()=>setMobileOpen(false)}>{T("Full-Day Private Car Hire","一日观光包车")}</Link>
             <Link href="/yunnan-private-driver#intercity-transfers" data-cta-location="header_driver_intercity" onClick={()=>setMobileOpen(false)}>{T("Intercity Transfers","跨城私人接送")}</Link>
             <Link href="/yunnan-private-driver#airport-station-transfers" data-cta-location="header_driver_arrival" onClick={()=>setMobileOpen(false)}>{T("Airport & Station Transfers","机场与车站接送")}</Link>
-            {showDraftExperiences?<Link locale={isZh?"zh":"en"} href="/yunnan-experiences" data-cta-location="header_local_experiences" onClick={()=>setMobileOpen(false)}>{T("Local Experiences (Preview)","特色文旅体验（预览）")}</Link>:null}
+            <Link locale={isZh?"zh":"en"} href="/yunnan-experiences" data-cta-location="header_local_experiences" onClick={()=>setMobileOpen(false)}>{T("Local Experiences","特色文旅体验")}</Link>
           </>:item.id==="destinations"?popular.map(item=><Link key={item} href={destinationHref(item,label(item))} onClick={()=>setMobileOpen(false)}>{label(item)}</Link>):item.id==="guides"?<>
             <Link href="/survival-kit" onClick={()=>setMobileOpen(false)}>{T("China Travel Essentials","中国旅行指南")}</Link>
             {menuGroups.guides.map(group=><div key={group.title}><p className="mobile-nav-kicker">{label(group.title)}</p>{group.links.map(item=><Link key={item} href={hrefFor(item)} onClick={()=>setMobileOpen(false)}>{label(item)}</Link>)}</div>)}
@@ -213,7 +212,7 @@ export function SiteHeaderClient({ journeys, cta, alternate, searchInitialQuery,
           <div className="mega-current-journey-grid">
             <Link href="/yunnan-private-driver#multi-day-private-driver" data-cta-location="header_driver_multi"><Image src="/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp" alt={T("Multi-Day Private Drivers","多日私人包车")} width={300} height={178} unoptimized/><span><small>{T("INDEPENDENT TRAVEL","自由行")}</small><b>{T("Multi-Day Private Drivers","多日私人包车")}</b><em>{T("Arrange your own hotels and route; keep a private driver for your journey.","自己安排酒店及路线，全程灵活私人用车。")}</em><strong>{T("Explore services","查看服务")}</strong></span></Link>
             <Link href="/yunnan-private-driver#private-car-by-day" data-cta-location="header_driver_day"><Image src="/assets/destinations/yunnan/dali-erhai-cover.webp" alt={T("Full-Day Private Car Hire","一日观光包车")} width={300} height={178} unoptimized/><span><small>{T("INDEPENDENT TRAVEL","自由行")}</small><b>{T("Full-Day Private Car Hire","一日观光包车")}</b><em>{T("Explore nearby sights at your own pace with a private driver.","专属车辆与司机，按自己的节奏游览周边景点。")}</em><strong>{T("Explore services","查看服务")}</strong></span></Link>
-            {showDraftExperiences?<Link locale={isZh?"zh":"en"} href="/yunnan-experiences" data-cta-location="header_local_experiences"><Image src="/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp" alt={T("Blue and white tie-dyed fabric","蓝白扎染布料")} width={300} height={178} unoptimized/><span><small>{T("PREVIEW · NOT YET BOOKABLE","预览 · 尚未开放预约")}</small><b>{T("Local Experiences","特色文旅体验")}</b><em>{T("Discover local crafts and cultural activities, starting with Dali tie-dye.","探索云南当地手工艺与文化体验，从大理扎染开始。")}</em><strong>{T("Preview experiences","预览体验")}</strong></span></Link>:null}
+            <Link locale={isZh?"zh":"en"} href="/yunnan-experiences" data-cta-location="header_local_experiences"><Image src="/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp" alt={T("Blue and white tie-dyed fabric","蓝白扎染布料")} width={300} height={178} unoptimized/><span><small>{T("LOCAL CULTURE","当地文化")}</small><b>{T("Local Experiences","特色文旅体验")}</b><em>{T("Discover local crafts and cultural activities, starting with Dali tie-dye.","探索云南当地手工艺与文化体验，从大理扎染开始。")}</em><strong>{T("Explore experiences","探索体验")}</strong></span></Link>
           </div>
           <Link href="/yunnan-private-driver#intercity-transfers" className="mega-text-link" data-cta-location="header_driver_intercity">{T("Intercity Transfers","跨城私人接送")}</Link>
           <Link href="/yunnan-private-driver#airport-station-transfers" className="mega-text-link" data-cta-location="header_driver_arrival">{T("Airport & Station Transfers","机场与车站接送")}</Link>

@@ -37,6 +37,8 @@ export const zhLivePaths = new Set<string>([
   "/private-yunnan-tours",
   "/yunnan-tour-packages",
   "/yunnan-private-driver",
+  "/yunnan-experiences",
+  "/experiences/dali-tie-dye-workshop",
   "/contact",
   "/licensed-operator",
   "/about-us",
