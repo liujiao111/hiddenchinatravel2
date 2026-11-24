@@ -13,6 +13,9 @@ import { PaymentTrust } from "@/components/payment-trust";
 import { SiteHeader } from "@/components/site-header";
 import { Testimonials } from "@/components/testimonials";
 import { licensedOperator } from "@/lib/journey-trust";
+import { driverDirectPrices } from "@/lib/driver-direct-prices";
+import { driverUsd, driverMultiDayRate } from "@/lib/driver-usd-prices";
+import { getExperience } from "@/lib/experiences";
 import { formatPriceLabel } from "@/lib/format-price";
 import { getAllJourneys } from "@/lib/journeys";
 import { organizationJsonLd } from "@/lib/seo";
@@ -69,8 +72,30 @@ export default async function Home({ params }: Props) {
   const classic = journeys.find((journey) => journey.slug === "kunming-dali-lijiang-shangri-la-private-tour");
 
   const preview = process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
-  const productCards = t.raw("productCards") as JourneyCardData[];
-  const localCards = (t.raw("localCards") as JourneyCardData[]).filter(card => preview || !card.href.startsWith("/experiences/"));
+  const T = (en:string, zh:string) => lang === "zh" ? zh : en;
+  const usdFrom = (amount:number, enUnit:string, zhUnit:string) => T(`From US${amount} / ${enUnit}`, `US${amount} 起 / ${zhUnit}`);
+  const dayRates = ["kunming-day","dali-day","lijiang-day","shangri-la-day"].map(id=>driverDirectPrices[id]?.five).filter((n):n is number=>typeof n==="number"&&n>0);
+  const scenicRates = ["dali-lijiang-shaxi","lijiang-tlg-shangri-la"].map(id=>driverDirectPrices[id]?.five).filter((n):n is number=>typeof n==="number"&&n>0);
+  const dayPrice = dayRates.length ? usdFrom(driverUsd(Math.min(...dayRates)),"vehicle / day","车 / 天") : T("Request a quote","获取报价");
+  const scenicPrice = scenicRates.length ? usdFrom(driverUsd(Math.min(...scenicRates)),"vehicle","车") : T("Request a quote","获取报价");
+  const multiPrice = usdFrom(driverUsd(driverMultiDayRate(7)),"vehicle / day","车 / 天");
+  const firstPrice = firstEncounter && firstEncounter.frontmatter.fromPrice>0 ? T(`From ${formatPriceLabel(firstEncounter.frontmatter.fromPrice,firstEncounter.frontmatter.currency)} / person`,`${formatPriceLabel(firstEncounter.frontmatter.fromPrice,firstEncounter.frontmatter.currency)} 起 / 人`) : T("Request a tailored quote","获取定制报价");
+  const tieDye = getExperience("dali-tie-dye-workshop");
+  const draftRates = tieDye?.packages.flatMap(pkg=>pkg.price?.currency==="USD"&&!pkg.price.currencyPending?[pkg.price.min]:[]) ?? [];
+  const draftPrice = draftRates.length ? T(`From US${Math.min(...draftRates).toFixed(2)} / person (draft)`,`US${Math.min(...draftRates).toFixed(2)} 起 / 人（暂定）`) : T("Price pending","价格待确认");
+  const addPrice = (card:JourneyCardData):JourneyCardData => {
+    switch(card.trackingLocation){
+      case "home_category_private": return {...card,fromPrice:firstPrice,priceNote:T("6-day sample private tour; custom quote varies","6天参考私家行程；定制价格另行确认")};
+      case "home_category_independent": return {...card,fromPrice:dayPrice,priceNote:T("Five-seat full-day private car hire","5座一日观光包车参考价")};
+      case "home_service_multi": return {...card,fromPrice:multiPrice,priceNote:T("Five-seat vehicle · 7 days or longer","5座车 · 7天及以上")};
+      case "home_service_day": return {...card,fromPrice:dayPrice,priceNote:T("Five-seat vehicle · agreed day route","5座车 · 约定一日路线")};
+      case "home_service_intercity": return {...card,fromPrice:scenicPrice,priceNote:T("Five-seat vehicle · scenic transfer","5座车 · 含约定观景停靠")};
+      case "home_service_tie_dye": return {...card,fromPrice:draftPrice,priceNote:T("Preview only · final pricing pending","仅预览 · 最终价格待确认")};
+      default:return card;
+    }
+  };
+  const productCards = (t.raw("productCards") as JourneyCardData[]).map(addPrice);
+  const localCards = (t.raw("localCards") as JourneyCardData[]).filter(card => preview || !card.href.startsWith("/experiences/")).map(addPrice);
   const reasons = (t.raw("reasons") as Step[]).map(([n, title, text]) => [n, title, fill(text)] as Step);
   const supportItems = t.raw("supportItems") as SupportItem[];
   const destinations = t.raw("destinations") as Destination[];
@@ -170,6 +195,7 @@ export default async function Home({ params }: Props) {
             image: "/home/local-support.webp",
             imageAlt: t("card3ImageAlt"),
             destination: t("card3Destination"),
+            fromPrice: T("Request a tailored quote","获取定制报价"),
             features: t.raw("card3Features") as string[],
             ctaLabel: t("card3Cta"),
             trackingLocation: "home_featured_custom",
