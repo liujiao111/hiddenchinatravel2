@@ -65,7 +65,7 @@ export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boole
           <Link href="/yunnan-private-driver#private-car-by-day" data-cta-location="footer_driver_day">{t("dayDriver")}</Link>
           <Link href="/yunnan-private-driver#intercity-transfers" data-cta-location="footer_driver_intercity">{t("intercityDriver")}</Link>
           <Link href="/yunnan-private-driver#airport-station-transfers" data-cta-location="footer_driver_arrival">{t("arrivalDriver")}</Link>
-          {preview ? <Link href="/yunnan-experiences" data-cta-location="footer_local_experiences">{t("experiencesPreview")}</Link> : null}
+          <Link href="/yunnan-experiences" data-cta-location="footer_local_experiences">{t(preview ? "experiencesPreview" : "experiences")}</Link>
         </nav>
 
         <nav className="footer-nav footer-resources" aria-label={t("resourcesNavigation")}>
