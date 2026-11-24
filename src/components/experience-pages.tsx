@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
 import { JourneyHero, JourneyFactCards } from "@/components/journey-landing";
 import { LocaleLink as Link } from "@/components/locale-link";
-import { ExperienceBookingPreview } from "@/components/experience-booking-preview";
+import { ExperienceBookingPreview, ExperiencePackageAction } from "@/components/experience-booking-preview";
 import { displayDraftPrice, experiencePath, experiences, type ExperienceMedia, type ExperienceProduct } from "@/lib/experiences";
 import type { AppLocale } from "@/lib/i18n-seo";
 import { localePath } from "@/lib/i18n-seo";
@@ -32,8 +32,8 @@ export function ExperienceDetailTemplate({product:p,lang}:{product:ExperiencePro
     <LocalePreviewLink lang={lang} path={path}/>
     <JourneyFactCards id="overview" title={T("Experience Highlights","体验亮点")} cards={p.highlights.map(h=>({icon:"note",title:h.title[lang],lines:[h.text[lang]]}))}/>
     <Section id="packages" kicker="02 / EXPERIENCE OPTIONS" title={T("Choose Your Experience","选择你的体验")} soft>
-      <div className="driver-product-grid">{p.packages.filter(x=>x.price).map(pkg=><article key={pkg.id} className="driver-product"><div className="driver-product-photo"><Media media={pkg.media} lang={lang}/></div><div className="driver-product-copy"><p className="driver-product-meta">{pkg.minutes} {T("min","分钟")}</p><h3>{pkg.name[lang]}</h3><p>{pkg.description[lang]}</p><p>{pkg.pieces?.map(x=>x.name[lang]).join(" / ")}</p><div className="driver-product-price"><strong>{displayDraftPrice(pkg,lang)}</strong></div><a className="button button-blue driver-product-action" href="#booking-preview">{T("Select Options","选择选项")} →</a></div></article>)}</div>
-      {p.packages.filter(x=>!x.price).map(pkg=><div className="driver-stripe-test" key={pkg.id}><div><h3>{pkg.name[lang]}</h3><p>{pkg.description[lang]}</p></div><a className="button button-outline" href="#booking-preview">{T("Preview Custom Options","查看定制选项")}</a></div>)}
+      <div className="driver-product-grid">{p.packages.filter(x=>x.price).map(pkg=><article key={pkg.id} className="driver-product"><div className="driver-product-photo"><Media media={pkg.media} lang={lang}/></div><div className="driver-product-copy"><p className="driver-product-meta">{pkg.minutes} {T("min","分钟")}</p><h3>{pkg.name[lang]}</h3><p>{pkg.description[lang]}</p><p>{pkg.pieces?.map(x=>x.name[lang]).join(" / ")}</p><div className="driver-product-price"><strong>{displayDraftPrice(pkg,lang)}</strong></div><ExperiencePackageAction packageId={pkg.id} label={T("Select Options","选择选项")}/></div></article>)}</div>
+      {p.packages.filter(x=>!x.price).map(pkg=><div className="driver-stripe-test" key={pkg.id}><div><h3>{pkg.name[lang]}</h3><p>{pkg.description[lang]}</p></div><ExperiencePackageAction packageId={pkg.id} label={T("Preview Custom Options","查看定制选项")} primary={false}/></div>)}
       <p className="driver-detail-note">{T("Prices are from the draft supplier document; the premium and add-on currencies require verification. No price is final.","价格来自供应商初稿，深度套餐和增购币种需核实；所有价格均未最终确认。")}</p>
       <ExperienceBookingPreview product={p} lang={lang}/>
     </Section>
