@@ -2,9 +2,18 @@ import Stripe from "stripe";
 import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
 import { driverPaidOperatorEmail } from "@/lib/driver-order-mail";
 import { createDriverPaymentRecord, getDriverPaymentRecord } from "@/lib/driver-payment-records.mjs";
-import { readDriverOrder } from "@/lib/driver-orders.mjs";
 
-type StoredOrder = { id:string; quote?:any; summary?:any; access?:string; paid?:any };
+type StoredOrder = {
+  id: string;
+  quote?: {
+    initial?: { id?: string; dueFen?: number; type?: string };
+    totalFen?: number;
+    testOnly?: boolean;
+  };
+  summary?: { email?: string; locale?: string; service?: string };
+  access?: string;
+  paid?: unknown;
+};
 
 /**
  * Repair an order from the Stripe API after a webhook delivery failed.
@@ -13,13 +22,13 @@ type StoredOrder = { id:string; quote?:any; summary?:any; access?:string; paid?:
  */
 export async function reconcileVerifiedDriverPayment(order: StoredOrder) {
   const stage = "initial";
-  const quote = order.quote?.initial;
+  const storedQuote = order.quote;
+  const quote = storedQuote?.initial;
   if (!quote?.id || typeof quote.id !== "string") return;
   const existingPaid = await getDriverPaymentRecord(order.id,stage,"paid");
   if (!existingPaid && !process.env.STRIPE_SECRET_KEY?.startsWith(
     process.env.VERCEL_ENV === "production" ? "sk_live_" : "sk_test_")) return;
 
-  let session: Stripe.Checkout.Session;
   if (existingPaid) {
     // With an immutable paid receipt, keep working on unsent emails only.
     const [operator,guest] = await Promise.all([
@@ -29,10 +38,11 @@ export async function reconcileVerifiedDriverPayment(order: StoredOrder) {
     if (operator && (!order.summary?.email || guest)) return;
   }
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-  session = await stripe.checkout.sessions.retrieve(quote.id);
+  const session: Stripe.Checkout.Session = await stripe.checkout.sessions.retrieve(quote.id);
   const metadata = session.metadata;
   const due = quote.dueFen;
-  const total = order.quote.totalFen;
+  const total = storedQuote?.totalFen;
+  if (typeof total !== "number") return;
   if (session.payment_status !== "paid" || session.status !== "complete") return;
   if (session.id !== quote.id || session.client_reference_id !== order.id
     || session.currency !== "usd" || session.amount_total !== due
@@ -41,7 +51,7 @@ export async function reconcileVerifiedDriverPayment(order: StoredOrder) {
     || metadata.order_id !== order.id || metadata.linked_driver_order !== "1"
     || Number(metadata.due_fen) !== due || Number(metadata.total_fen) !== total
     || metadata.payment_type !== quote.type
-    || (metadata.test_only === "1") !== (order.quote.testOnly === true)
+    || (metadata.test_only === "1") !== (storedQuote?.testOnly === true)
     || (quote.type === "deposit" && due !== Math.round(total/5))) {
     console.error("[driver-reconcile] Rejected mismatched Stripe session",{orderId:order.id});
     return;
@@ -65,7 +75,7 @@ export async function reconcileVerifiedDriverPayment(order: StoredOrder) {
     const mail = driverPaidOperatorEmail({
       orderId:order.id,service:String(metadata.service || order.summary?.service || ""),
       paidCents:due,totalCents:total,paymentType:quote.type,
-      testOnly:order.quote.testOnly===true,checkoutId:session.id,
+      testOnly:storedQuote?.testOnly===true,checkoutId:session.id,
       paymentIntentId,payerEmail:session.customer_details?.email || session.customer_email || undefined,
       orderUrl:"https://hiddenchinatravel.com/driver-order/"+order.access,
     });
@@ -86,7 +96,7 @@ export async function reconcileVerifiedDriverPayment(order: StoredOrder) {
   const recipient=String(order.summary?.email || "").trim();
   if (recipient && !guestSent) {
     const zh=order.summary?.locale==="zh";
-    const testOnly=order.quote.testOnly===true;
+    const testOnly=storedQuote?.testOnly===true;
     const message = (testOnly
       ? (zh ? "US$1 正式测试支付成功。此订单不包含任何交通或旅行服务。" :
         "US$1 live payment test successful. No transportation or reservation is included.")

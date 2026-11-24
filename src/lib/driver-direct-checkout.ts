@@ -19,8 +19,6 @@ export async function createDirectDriverCheckout(input: {
   id: string; submissionKey: string; summary: Record<string, unknown>; totalFen: number; origin: string; deposit?: boolean; testOnly?: boolean;
 }) {
   const key = process.env.STRIPE_SECRET_KEY;
-  const live = (process.env.VERCEL_ENV || process.env.DRIVER_ORDER_ENV) === "production";
-  const webhook = live ? process.env.STRIPE_DRIVER_LIVE_WEBHOOK_SECRET : process.env.STRIPE_WEBHOOK_SECRET;
   const config = getDriverCheckoutConfigStatus();
   if (!config.ready) {
     console.error("[driver-checkout] Checkout environment validation failed", config);
