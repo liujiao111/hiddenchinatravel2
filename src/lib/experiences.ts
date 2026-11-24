@@ -36,10 +36,10 @@ export const experiences: ExperienceProduct[] = [{
   hero: tieDyePhoto("indigo-fabric", "Woman lifting a blue-and-white tie-dyed textile outdoors", "户外展示蓝白扎染布料的女士"),
   duration: t("Approx. 45–90 min", "约45–90分钟"),
   highlights: [
-    { title: t("A Living Bai Tradition", "白族传统非遗"), text: t("Discover the craft passed down through generations in Dali.", "了解大理代代相传的白族扎染技艺。") },
-    { title: t("Create Your Own Pattern", "亲手设计图案"), text: t("Fold, bind and dye your own piece with instructor assistance.", "在老师指导下折叠、捆扎和染制自己的作品。") },
-    { title: t("Choose Your Own Piece", "自由选择作品"), text: t("From small scarves to bags and more detailed textiles.", "从方巾、帆布包到更复杂的织物。") },
-    { title: t("Take Your Creation Home", "带走亲手制作的纪念品"), text: t("Keep a unique piece of your journey in Yunnan.", "把云南之旅的独特记忆带回家。") },
+    { title: t("One of a Kind", "每一件，都是独一无二"), text: t("No two handmade tie-dye pieces are exactly alike. Unwrap yours to reveal a pattern that is uniquely your own.", "每一次捆扎与浸染，都会呈现不同的纹样。拆线的那一刻，揭晓只属于你的作品。") },
+    { title: t("A Living Bai Heritage", "走进千年白族非遗"), text: t("Discover a traditional craft passed down through generations and recognized as China's national intangible cultural heritage in 2006.", "体验世代传承的白族扎染技艺，感受2006年入选国家级非遗名录的传统文化。") },
+    { title: t("The Art of Indigo Dyeing", "源于自然的靛蓝之美"), text: t("Discover the Bai tradition of plant-based indigo dyeing, where repeated dips create beautiful layers of blue.", "了解传统植物靛蓝染色工艺，感受一次次浸染所形成的深浅蓝色与自然纹理。") },
+    { title: t("Made by You, Taken Home", "亲手创造，带走云南记忆"), text: t("Create your own scarf, bag or textile with local guidance, and take home a personal souvenir of your time in Dali.", "在当地老师指导下制作方巾、包袋或其他织物，把亲手创造的云南记忆带回家。") },
   ],
   packages: [
     { id:"essential", name:t("Essential Experience","入门体验"), minutes:45, description:t("A short introduction for first-time makers. Choose one main piece; includes instructor assistance, materials, apron, gloves, English step-by-step card and gift bag.","适合首次体验，任选一件主作品，包含老师指导、材料、围裙、手套、英文步骤卡及礼品袋。"), price:{currency:"USD",min:18.8,confirmed:false}, media:media("Essential package finished pieces","入门套餐作品"), pieces:[piece("square-scarf","Square scarf","方巾"),piece("bucket-hat","Bucket hat","渔夫帽"),piece("small-tote","Small canvas tote","小帆布包")] },
