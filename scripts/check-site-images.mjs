@@ -6,7 +6,7 @@ import { extname, join, relative, sep } from "node:path";
 // unchanged. Every new/replaced image must be WebP and <= 500 KB.
 const root = process.cwd();
 const maxBytes = 500_000;
-const photoDirectories = ["blog", "destinations", "customers", "journeys", "planning"];
+const photoDirectories = ["blog", "destinations", "customers", "journeys", "planning", "experiences"];
 const { legacy } = JSON.parse(readFileSync(join(root, "scripts/image-legacy-allowlist.json"), "utf8"));
 const issues = [];
 let checked = 0;
