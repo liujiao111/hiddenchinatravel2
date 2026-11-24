@@ -1087,9 +1087,13 @@ a.footer-trust-item:hover { color:#fff; }
     z-index: 80;
     right: 0;
     left: 0;
-    bottom: max(0px, env(safe-area-inset-bottom, 0px));
+    bottom: 0;
     display: flex;
-    height: 60px;
+    box-sizing: border-box;
+    height: auto;
+    min-height: calc(60px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--color-primary);
     align-items: stretch;
     box-shadow: 0 -6px 24px rgba(20,33,28,.18);
     pointer-events: auto;
@@ -1149,6 +1153,10 @@ a.footer-trust-item:hover { color:#fff; }
     -webkit-tap-highlight-color: transparent;
   }
   .mobile-cta-form:active { background:var(--color-primary-hover); }
+  .mobile-cta-bar > a { min-height:60px; }
+  .mobile-cta-form-only .mobile-cta-form { flex:1 1 100%; }
+  .mobile-cta-form-only .mobile-cta-label { font-size:.76rem; white-space:normal; letter-spacing:0; text-transform:none; }
+  main:has(.mobile-cta-bar) { padding-bottom:calc(78px + env(safe-area-inset-bottom, 0px)); }
   .mobile-cta-form .mobile-cta-label {
     font-size: .72rem;
     font-weight: 700;

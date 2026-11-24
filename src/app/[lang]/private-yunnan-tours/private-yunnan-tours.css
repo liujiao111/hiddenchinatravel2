@@ -127,12 +127,7 @@ body.preview-form-visible .preview-sticky-cta{display:none}
   .tailor-preview .preview-joy-photo{aspect-ratio:1.5}
 }
 
-@media(max-width:700px){
-  .tailor-preview .mobile-cta-form-only{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:45;min-height:58px;padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -4px 18px #0002;background:var(--blue)}
-  .tailor-preview .mobile-cta-form-only.ask-bar-hidden{display:none}
-  .tailor-preview .mobile-cta-form-only .mobile-cta-form{flex:1 1 100%;background:#087eb8}
-  .tailor-preview .mobile-cta-form-only .mobile-cta-label{font-size:.76rem;white-space:normal;letter-spacing:0;text-transform:none}
-}
+
 
 /* Compact proof reuses the existing catalogue of real guide, vehicle and hotel assets. */
 .tailor-preview .preview-real-proof{background:#f2f7f5}
