@@ -45,7 +45,7 @@
 .driver-page .driver-section-soft{background:var(--driver-soft)}
 .driver-page .kicker{margin:0 0 14px;color:var(--color-primary);letter-spacing:.14em;font-weight:800;font-size:.7rem}
 /* Keep page heading colors inside driver content sections; never override the shared Footer. */
-.driver-page .driver-section h2:not(.journey-final-title),.driver-page .driver-section h3{color:var(--color-ink)}
+.driver-page .driver-section h2:not(.journey-final-title),.driver-page .driver-section h3:not(.journey-card h3){color:var(--color-ink)}
 .driver-page h2:not(.journey-final-title){font-family:Georgia,serif;letter-spacing:-.035em;font-weight:400}
 .driver-page h2:not(.journey-final-title){font-size:clamp(2rem,3.3vw,3.3rem);line-height:1.18;margin:0 0 17px;text-wrap:balance}
 .driver-page h3{font-family:Georgia,serif;font-weight:400;font-size:1.38rem;line-height:1.25}
