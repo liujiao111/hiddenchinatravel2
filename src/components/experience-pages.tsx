@@ -2,16 +2,15 @@ import Image from "next/image";
 import { SiteHeader } from "@/components/site-header";
 import { ContentFooter } from "@/components/content-footer";
 import { JourneyHero, JourneyFactCards } from "@/components/journey-landing";
-import { LocaleLink as Link } from "@/components/locale-link";
+import { Link } from "@/i18n/navigation";
 import { ExperienceBookingPreview, ExperiencePackageAction } from "@/components/experience-booking-preview";
-import { displayDraftPrice, experiencePath, experiences, type ExperienceMedia, type ExperienceProduct } from "@/lib/experiences";
+import { displayDraftPrice, experiencePath, experiences, type ExperienceProduct } from "@/lib/experiences";
 import type { AppLocale } from "@/lib/i18n-seo";
 import { localePath } from "@/lib/i18n-seo";
 import type { ReactNode } from "react";
+import { MobileCtaBar } from "@/components/mobile-cta-bar";
 
-function Media({ media, lang }: { media: ExperienceMedia; lang: AppLocale }) {
-  return media.src ? <Image src={media.src} alt={media.alt[lang]} fill sizes="(max-width: 680px) 100vw, 33vw" /> : <div className="absolute inset-0 flex items-center justify-center p-4 text-center" style={{background:"var(--color-surface-soft)",color:"var(--color-muted)"}}>{lang==="zh"?"图片预留":"Image placeholder"} · {media.alt[lang]}</div>;
-}
+import { Media } from "@/components/experience-media";
 function Section({ id, kicker, title, children, soft=false }: { id:string; kicker:string; title:string; children:ReactNode; soft?:boolean }) {
   return <section className={"driver-section"+(soft?" driver-section-soft":"")} id={id}><div className="shell"><div className="driver-section-head"><p className="kicker">{kicker}</p><h2>{title}</h2></div>{children}</div></section>;
 }
@@ -26,8 +25,8 @@ export function ExperienceDetailTemplate({product:p,lang}:{product:ExperiencePro
   const choose={href:"#packages",label:T("Choose Your Experience","选择体验套餐")};
   const path=experiencePath(p.slug);
   return <main className="driver-page">
-    <SiteHeader cta={{...choose,location:"experience_header"}} searchPlaceholder={p.shortTitle[lang]}/>
-    <JourneyHero title={p.title[lang]} eyebrow={p.city[lang]+" · "+p.category[lang]} image={p.hero.src} imageAlt={p.hero.alt[lang]} imagePlaceholder={T("Hero image reserved","Hero 主图预留")} description={p.description[lang]} primary={choose} secondary={{href:"#overview",label:T("Discover the Craft","了解体验")}} note={T("Product preview · prices and availability pending confirmation","产品预览 · 价格及可订状态待确认")} bounds={p.duration[lang]+" · "+T("Hands-on experience","亲手体验")} breadcrumb={{href:"/yunnan-experiences",label:T("Local Experiences","特色体验")}}/>
+    <SiteHeader cta={{...choose,location:"experience_header"}} searchPlaceholder={p.shortTitle[lang]} alternate={{en:path,zh:path}}/>
+    <JourneyHero title={p.title[lang]} eyebrow={p.city[lang]+" · "+p.category[lang]} image={p.hero.src} imageAlt={p.hero.alt[lang]} imagePlaceholder={T("Hero image reserved","Hero 主图预留")} description={p.description[lang]} price={p.packages[0]?.price?T("Draft from ","暂定起价 ")+displayDraftPrice(p.packages[0],lang)+T(" / person"," / 人"):undefined} primary={choose} secondary={{href:"#overview",label:T("Discover the Craft","了解体验")}} note={T("Product preview · prices and availability pending confirmation","产品预览 · 价格及可订状态待确认")} bounds={p.duration[lang]+" · "+T("Hands-on experience","亲手体验")} breadcrumb={{href:"/yunnan-experiences",label:T("Local Experiences","特色体验")}}/>
     <Nav lang={lang} links={[{href:"#overview",label:T("Overview","体验概览")},{href:"#packages",label:T("Packages","套餐")},{href:p.process?.length?"#process":"#inclusions",label:T("Experience","体验内容")},{href:"#location",label:T("Location","地点")},{href:"#faq",label:T("FAQs","常见问题")}]} action={choose}/>
     <LocalePreviewLink lang={lang} path={path}/>
     <JourneyFactCards id="overview" title={T("Experience Highlights","体验亮点")} cards={p.highlights.map(h=>({icon:"note",title:h.title[lang],lines:[h.text[lang]]}))}/>
@@ -48,13 +47,14 @@ export function ExperienceDetailTemplate({product:p,lang}:{product:ExperiencePro
     <Section id="terms" kicker="09 / TERMS & PAYMENT" title={T("Payment and Cancellation","付款与取消政策")}><div className="driver-terms-grid"><article><h3>{T("Payment","付款")}</h3><p>{T("No payment is enabled in this preview.","当前预览未启用付款。")}</p></article><article><h3>{T("Cancellation","取消")}</h3><p>{T("Final refund and rescheduling terms are pending supplier confirmation.","最终退款及改期政策待供应商确认。")}</p></article><article><h3>{T("Availability","可订状态")}</h3><p>{T("No real-time inventory is represented.","当前不代表实时库存。")}</p></article></div></Section>
     <section className="driver-section driver-faq journey-faq" id="faq"><div className="narrow"><div className="driver-section-head"><p className="kicker">10 / YOUR QUESTIONS</p><h2>{T("Frequently Asked Questions","常见问题")}</h2></div>{p.faqs.map(f=><details key={f.title.en}><summary>{f.title[lang]}<span aria-hidden="true">+</span></summary><p>{f.text[lang]}</p></details>)}</div></section>
     <section className="driver-editorial-close" style={{background:"var(--color-accent)"}}><div className="shell driver-editorial-close-inner"><div className="driver-editorial-close-copy"><h2 className="journey-final-title">{T("Ready to Create Your Own Piece of Yunnan?","准备好亲手制作你的云南纪念品了吗？")}</h2><p>{T("Explore the options and preview your preferred experience.","查看套餐，预览你喜欢的体验。")}</p><div className="driver-editorial-actions"><a href="#packages" className="button button-blue">{choose.label} →</a></div></div></div></section>
-    <ContentFooter/>
+    <ContentFooter reviewsInPage/>
+    <MobileCtaBar formOnly formHref="#booking-preview" whatsappHref="" whatsappLabel="" formLabel={T("Preview Booking","预览预约")} formCtaLocation="experience_preview_mobile"/>
   </main>;
 }
 export function ExperienceCollection({lang}:{lang:AppLocale}) {
   const T=(en:string,zh:string)=>lang==="zh"?zh:en;
-  return <main className="driver-page"><SiteHeader cta={{href:"#experience-list",label:T("Explore Experiences","探索特色体验"),location:"experience_header"}} searchPlaceholder="Yunnan experiences"/>
+  return <main className="driver-page"><SiteHeader cta={{href:"#experience-list",label:T("Explore Experiences","探索特色体验"),location:"experience_header"}} searchPlaceholder="Yunnan experiences" alternate={{en:"/yunnan-experiences",zh:"/yunnan-experiences"}}/>
     <JourneyHero title={T("Experience Yunnan Beyond the Sights","不止风景，亲身体验云南")} eyebrow={T("YUNNAN LOCAL EXPERIENCES","云南特色文旅体验")} imageAlt="" imagePlaceholder={T("Collection hero image reserved","合集主图预留")} description={T("Discover local traditions, meet artisans and create something memorable.","体验在地传统文化，认识手工艺人，创造难忘的旅行回忆。")} primary={{href:"#experience-list",label:T("Explore Experiences","探索特色体验")}} secondary={{href:"#experience-list",label:T("View Local Activities","查看当地活动")}} note={T("Product collection preview","产品合集预览")} breadcrumb={{href:"/yunnan-experiences",label:T("Local Experiences","特色体验")}}/>
     <LocalePreviewLink lang={lang} path="/yunnan-experiences"/>
-    <Section id="experience-list" kicker="01 / LOCAL EXPERIENCES" title={T("Explore Local Experiences","探索云南特色体验")} soft><div className="driver-product-grid">{experiences.map(p=><article className="driver-product" key={p.slug}><div className="driver-product-photo"><Media media={p.hero} lang={lang}/></div><div className="driver-product-copy"><p className="driver-product-meta">{p.city[lang]} · {p.category[lang]} · {p.duration[lang]}</p><h3>{p.title[lang]}</h3><p>{p.description[lang]}</p><div className="driver-product-price"><strong>{p.packages[0] ? displayDraftPrice(p.packages[0],lang):T("Price pending","价格待确认")}</strong></div><Link href={experiencePath(p.slug)} className="button button-blue driver-product-action">{T("View Experience","查看体验")} →</Link></div></article>)}</div></Section><ContentFooter/></main>;
+    <Section id="experience-list" kicker="01 / LOCAL EXPERIENCES" title={T("Explore Local Experiences","探索云南特色体验")} soft><div className="driver-product-grid">{experiences.map(p=><article className="driver-product" key={p.slug}><div className="driver-product-photo"><Media media={p.hero} lang={lang}/></div><div className="driver-product-copy"><p className="driver-product-meta">{p.city[lang]} · {p.category[lang]} · {p.duration[lang]}</p><h3>{p.title[lang]}</h3><p>{p.description[lang]}</p><div className="driver-product-price"><strong>{p.packages[0] ? displayDraftPrice(p.packages[0],lang):T("Price pending","价格待确认")}</strong></div><Link href={experiencePath(p.slug)} className="button button-blue driver-product-action">{T("View Experience","查看体验")} →</Link></div></article>)}</div></Section><ContentFooter reviewsInPage/></main>;
 }

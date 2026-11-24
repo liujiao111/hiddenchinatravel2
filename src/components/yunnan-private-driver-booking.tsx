@@ -170,7 +170,7 @@ const products: Product[] = [
 
 const fiveSeat = "Five-seat car";
 const sevenSeat = "Seven-seat car";
-function DriverPicker({ name, type, label, min }: { name: string; type: "date" | "time"; label: string; min?: string }) {
+export function DriverPicker({ name, type, label, min }: { name: string; type: "date" | "time"; label: string; min?: string }) {
   const input = useRef<HTMLInputElement>(null);
   return <div className="driver-picker">
     <input ref={input} type={type} name={name} required min={min} aria-label={label} />
