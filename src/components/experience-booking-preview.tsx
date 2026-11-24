@@ -43,7 +43,7 @@ export function ExperienceBookingPreview({ product, lang }: { product: Experienc
   if (!pkg) return null;
   const update = () => setReview(false);
   const selectedPieces=Array.from({length:people},(_,i)=>pieces[i]??pkg.pieces?.[0]?.id??"");
-  const selectedAddons=Object.fromEntries(Object.entries(addons).map(([id,n])=>[id,Math.min(n,people)]).filter(([,n])=>Number(n)>0)) as Record<string,number>;
+  const selectedAddons:Record<string,number>=Object.fromEntries(Object.entries(addons).map(([id,n])=>[id,Math.min(n,people)] as const).filter(([,n])=>n>0));
   const cents=experienceRequestTotal(product,pkg.id,selectedPieces,pkg.price?selectedAddons:{});
   const draftTotal=cents===null?T("Request a quote","单独询价"):"US$"+(cents/100).toFixed(2);
   const pieceText=selectedPieces.map(id=>pkg.pieces?.find(p=>p.id===id)?.name[lang]??id).join(" / ");
