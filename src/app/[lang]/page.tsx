@@ -6,6 +6,7 @@ import { LocaleLink as Link } from "@/components/locale-link";
 import { localizedStaticMetadata, type AppLocale } from "@/lib/i18n-seo";
 import { ContentFooter } from "@/components/content-footer";
 import { EnquireLink } from "@/components/enquire-link";
+import { GuideCard, type GuideCardData } from "@/components/guide-card";
 import { JourneyCard } from "@/components/journey-card";
 import { JourneyQuoteBand } from "@/components/journey-quote-band";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
@@ -68,7 +69,9 @@ export default async function Home({ params }: Props) {
   const firstEncounter = journeys.find((journey) => journey.slug === "kunming-dali-shaxi-lijiang-6-days");
   const classic = journeys.find((journey) => journey.slug === "kunming-dali-lijiang-shangri-la-private-tour");
 
-  const howItWorks = (t.raw("howItWorks") as Step[]).map(([n, title, text]) => [n, title, fill(text)] as Step);
+  const preview = process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
+  const productCards = (t.raw("productCards") as GuideCardData[]).filter(card => preview || card.href !== "/yunnan-experiences");
+  const localCards = (t.raw("localCards") as GuideCardData[]).filter(card => preview || !card.href.startsWith("/experiences/"));
   const reasons = (t.raw("reasons") as Step[]).map(([n, title, text]) => [n, title, fill(text)] as Step);
   const supportItems = t.raw("supportItems") as SupportItem[];
   const destinations = t.raw("destinations") as Destination[];
@@ -111,7 +114,7 @@ export default async function Home({ params }: Props) {
         <p className="hero-brand hero-desktop-only">{t("heroBrand")}</p>
         <div className="hero-actions">
           <EnquireLink data-cta-location="home_hero_custom" className="button button-blue">{t("cta")}</EnquireLink>
-          <Link href="/yunnan-tour-packages" className="button button-light">{t("exploreJourneys")}</Link>
+          <a href="#travel-services" data-cta-location="home_hero_local_services" className="button button-light">{t("exploreServices")}</a>
         </div>
         <ul className="hero-trust-badges">
           {trustBadges.map((badge) => <li key={badge}><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" /></svg>{badge}</li>)}
@@ -122,7 +125,14 @@ export default async function Home({ params }: Props) {
 
     <section className="payment-trust-band"><div className="shell"><PaymentTrust locale={lang} /></div></section>
 
-    <section className="section section-sand home-journeys" id="journeys">
+    <section className="section section-sand" id="travel-options">
+      <div className="shell">
+        <div className="section-heading"><p className="kicker">{t("optionsKicker")}</p><h2>{t("optionsHeading")}</h2><p>{t("optionsIntro")}</p></div>
+        <div className={productCards.length===3?"article-guide-grid home-journeys-grid":"yunnan-guide-grid home-journeys-grid"}>{productCards.map(card=><GuideCard key={card.href} guide={card}/>)}</div>
+      </div>
+    </section>
+
+    <section className="section home-journeys" id="journeys">
       <div className="shell">
         <div className="section-heading">
           <p className="kicker">{t("journeysKicker")}</p>
@@ -166,7 +176,7 @@ export default async function Home({ params }: Props) {
             trackingLocation: "home_featured_custom",
           }} />
         </div>
-        <p className="home-helper">{t("journeysHelper")}</p>
+        <p className="home-helper">{t("journeysHelper")} <Link href="/private-yunnan-tours" data-cta-location="home_private_planning">{t("planningLink")}</Link></p>
       </div>
     </section>
 
@@ -177,7 +187,27 @@ export default async function Home({ params }: Props) {
       whatsapp={whatsapp}
     />
 
-    <section className="section why" id="why-us">
+    <section className="section section-sand" id="travel-services">
+      <div className="shell">
+        <div className="section-heading"><p className="kicker">{t("servicesKicker")}</p><h2>{t("servicesHeading")}</h2><p>{t("servicesIntro")}</p></div>
+        <div className={localCards.length===3?"article-guide-grid home-journeys-grid":"yunnan-guide-grid home-journeys-grid"}>{localCards.map(card=><GuideCard key={card.href} guide={card}/>)}</div>
+        <p className="home-helper">{t("servicesHelper")}</p>
+      </div>
+    </section>
+
+    <section className="section destinations-section" id="destinations">
+      <div className="shell">
+        <div className="section-heading">
+          <p className="kicker">{t("destKicker")}</p>
+          <h2>{t("destHeading")}</h2>
+          <p>{t("destIntro")}</p>
+          <Link className="section-heading-link" href="/china-destinations/yunnan">{t("destGuideLink")}</Link>
+        </div>
+        <div className="destination-grid home-destination-grid">{destinations.map(({ name, note, image, alt, href, cta }) => <article className="image-card" key={name}><Image src={image} alt={alt} fill sizes="(max-width: 700px) 100vw, 33vw" /><div className="card-shade" /><div className="image-card-copy"><p>{note}</p><h3>{name}</h3><Link href={href} className="button button-light">{cta}</Link></div></article>)}</div>
+      </div>
+    </section>
+
+    <section className="section section-sand why" id="why-us">
       <div className="shell">
         <div className="section-heading">
           <p className="kicker">{t("whyKicker")}</p>
@@ -189,21 +219,6 @@ export default async function Home({ params }: Props) {
     </section>
 
     <Testimonials />
-
-    <section className="section process" id="how-it-works">
-      <div className="narrow">
-        <p className="kicker">{t("howKicker")}</p>
-        <h2>{t("howHeading")}</h2>
-        <p>{t("howIntro")}</p>
-      </div>
-      <div className="shell">
-        <div className="process-grid">{howItWorks.map(([number, title, text]) => <div key={title}><i>{number}</i><h3>{title}</h3><p>{text}</p></div>)}</div>
-        <div className="center">
-          <EnquireLink data-cta-location="home_how_it_works" className="button button-primary">{t("cta")}</EnquireLink>
-          <p className="home-helper">{t("howHelper")}</p>
-        </div>
-      </div>
-    </section>
 
     <section className="about-feature reverse home-founder" id="joy">
       <div className="about-feature-image">
@@ -223,13 +238,6 @@ export default async function Home({ params }: Props) {
       </div>
     </section>
 
-    <JourneyQuoteBand
-      id="home-founder-ask"
-      source={lang === "zh" ? "/zh/" : "/"}
-      sourceTitle={t("meta.ogTitle")}
-      whatsapp={whatsapp}
-    />
-
     <section className="home-arrival-support section" id="guides">
       <div className="shell home-arrival-layout">
         <div className="home-arrival-visual">
@@ -245,18 +253,6 @@ export default async function Home({ params }: Props) {
           <div className="home-arrival-list">{supportItems.map((item, index) => <Link href={item.href} key={item.title} className="home-arrival-item"><span>0{index + 1}</span><div><h3>{item.title}</h3><p>{item.detail}</p><strong>{item.cta || t("supportItemCta")}</strong></div><b aria-hidden="true">→</b></Link>)}</div>
           <Link href="/survival-kit" className="home-arrival-cta">{t("checklistCta")} <span aria-hidden="true">→</span></Link>
         </div>
-      </div>
-    </section>
-
-    <section className="section destinations-section" id="destinations">
-      <div className="shell">
-        <div className="section-heading">
-          <p className="kicker">{t("destKicker")}</p>
-          <h2>{t("destHeading")}</h2>
-          <p>{t("destIntro")}</p>
-          <Link className="section-heading-link" href="/china-destinations/yunnan">{t("destGuideLink")}</Link>
-        </div>
-        <div className="destination-grid home-destination-grid">{destinations.map(({ name, note, image, alt, href, cta }) => <article className="image-card" key={name}><Image src={image} alt={alt} fill sizes="(max-width: 700px) 100vw, 33vw" /><div className="card-shade" /><div className="image-card-copy"><p>{note}</p><h3>{name}</h3><Link href={href} className="button button-light">{cta}</Link></div></article>)}</div>
       </div>
     </section>
 

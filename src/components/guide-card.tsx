@@ -9,10 +9,11 @@ export type GuideCardData = {
   imageAlt?: string;
   readTime?: string;
   readLabel?: string;
+  trackingLocation?: string;
 };
 
 export function GuideCard({ guide }: { guide: GuideCardData }) {
-  return <Link href={guide.href} className="guide-card">
+  return <Link href={guide.href} className="guide-card" data-cta-location={guide.trackingLocation}>
     <div className="guide-card-image">
       <Image
         src={guide.image}

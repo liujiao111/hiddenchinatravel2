@@ -148,7 +148,7 @@
   },
   "footer": {
     "tagline": "中国，按你的节奏走。",
-    "intro": "为探索中国的旅行者，提供用心设计的行程、实用的行前指南和本地人的真实经验。",
+    "intro": "提供云南私人定制旅行、灵活的当地交通服务及实用旅行指南，陪你按自己的节奏探索云南。",
     "origin": "生于云南，也走过世界。",
     "companyLine": "云南行程签约与接待：{agencyZh} · 经营许可证 {permit} · 统一社会信用代码 {credit}",
     "address": "{addressZh}",
@@ -160,7 +160,7 @@
     "trustPayments": "银行卡由 Stripe 安全处理 · 支持支付宝与微信支付",
     "trustPrivateLabel": "专属私人旅行",
     "trustPrivate": "100% 私人定制 · 全程零购物店",
-    "journeysHeading": "行程",
+    "journeysHeading": "私人定制游",
     "journeyFirst": "初遇云南",
     "journeyEssence": "云南精华",
     "journeyAll": "云南行程一览",
@@ -195,16 +195,16 @@
   },
   "home": {
     "meta": {
-      "title": "云南私家定制游｜昆明、大理、丽江与香格里拉 | Hidden China Travel",
-      "ogTitle": "云南私家定制游｜昆明、大理、丽江与香格里拉",
-      "description": "规划昆明、大理、丽江与香格里拉的云南私家游。专车及中英文司机兼导，路线按日期、人数与节奏调整。查看参考行程，或免费获取路线建议和报价。"
+      "title": "云南旅游｜私人定制游、包车与当地旅行服务 | Hidden China Travel",
+      "ogTitle": "云南旅游与当地旅行服务",
+      "description": "按自己的节奏探索云南。提供昆明、大理、丽江、香格里拉私人定制游、私人包车、机场及跨城接送，获得本地旅行建议与报价。"
     },
-    "heroKicker": "云南私人定制旅行",
-    "heroTitleLine1": "100% 量身定制的",
-    "heroTitleLine2": "云南私家之旅",
+    "heroKicker": "你的云南本地旅行伙伴",
+    "heroTitleLine1": "按自己的方式，",
+    "heroTitleLine2": "探索云南",
     "heroAlt": "云南雪山脚下，碧蓝湖水旁的栈道",
-    "heroLeadDesktop": "按你的节奏，探索大理、丽江与香格里拉。从昆明到雪山之巅，完全围绕你的时间、兴趣和旅行方式来设计。",
-    "heroLeadMobile": "按你的节奏，探索大理、丽江与香格里拉。从昆明到雪山之巅，完全围绕你的时间、兴趣和旅行方式来设计。",
+    "heroLeadDesktop": "从私人定制游到专属包车与接送，以你喜欢的节奏探索昆明、大理、丽江和香格里拉。",
+    "heroLeadMobile": "私人定制、灵活包车与当地旅行支持，按自己的节奏探索云南。",
     "heroBrand": "生于云南，也走过世界。",
     "cta": "免费获取路线建议与报价",
     "exploreJourneys": "浏览参考行程",
@@ -212,9 +212,9 @@
     "heroTrustDesktop": "全程私家团 · 无购物点 · 持证旅行社签约履约",
     "heroTrustMobile": "私家团 · 无购物点 · 持证旅行社服务",
     "trustBadges": [
-      "100% 定制且无购物",
-      "20% 定金 · 退款条件预订前明确",
-      "持牌本地专家"
+      "私人旅行 · 无强制购物",
+      "价格及预订条款清晰",
+      "持牌本地旅行社"
     ],
     "replyTime": "通常 15 分钟内回复。",
     "howKicker": "合作流程",
@@ -428,7 +428,7 @@
         "Hidden China Travel 是 Joy Liu 独立运营的中国旅行品牌，也是昆明滇果果国际旅行社有限公司云南入境游业务的官方海外品牌及线上咨询渠道。持证旅行社负责正式报价审核、签约、团费收款与行程组织；Hidden China Travel 的品牌、网站及数字资产持续独立运营。"
       ],
       [
-        "付款和取消规则是怎样的？",
+        "多日私人定制游的付款和取消规则是怎样的？",
         "确认书面行程与旅游合同后，支付 20% 定金。支持通过 Stripe 使用 Visa、Mastercard、Apple Pay 或 Google Pay，也支持支付宝与微信支付。剩余 80% 通常在抵达昆明并与向导会合后支付；如需提前付款，会在预订前书面说明。出发前超过 7 个完整自然日取消，定金全额原路退回；出发前 7 天以内定金不退。以上标准条款不排除旅游合同和强制性法律规定的退款权利。"
       ],
       [
@@ -438,13 +438,84 @@
       [
         "多久能收到回复？",
         "Joy 通常在 15 分钟内回复；复杂路线或旺季日期，详细方案可能需要更长时间。"
+      ],
+      [
+        "不预订完整私家团，可以单独购买交通服务吗？",
+        "可以。私人包车页面提供机场及车站接送、跨城接送和多日包车服务。具体价格和预订条款以各服务说明为准。"
       ]
     ],
     "finalHeading": "准备好开始规划云南之旅了吗？",
     "finalText": "不需要现成的行程。告诉我们你的出行日期或大概月份、同行人数，以及感兴趣的地方或体验——Joy 会帮你把这些想法变成一条切实可行的路线。",
     "finalWhatsapp": "在 WhatsApp 上联系 Joy",
     "finalAlt": "云南碧蓝的湖水与雪山",
-    "finalTrust": "免费咨询 · 正式报价与付款条款书面确认"
+    "finalTrust": "免费咨询 · 正式报价与付款条款书面确认",
+    "exploreServices": "探索自由行服务",
+    "optionsKicker": "选择旅行方式",
+    "optionsHeading": "找到适合你的云南旅行方式",
+    "optionsIntro": "选择完整的私人定制旅行，也可以只安排你需要的当地服务。",
+    "servicesKicker": "自由安排你的旅程",
+    "servicesHeading": "自由安排你的云南旅行",
+    "servicesIntro": "已经有自己的旅行计划？选择适合路线和时间的当地服务。",
+    "servicesHelper": "具体价格、包含项目与预订条件，以各服务页面为准。",
+    "planningLink": "了解私人定制流程 →",
+    "productCards": [
+      {
+        "title": "私人定制游",
+        "excerpt": "按日期、兴趣与节奏设计的完整私人旅行。",
+        "href": "/private-yunnan-tours",
+        "image": "/home/local-support.webp",
+        "imageAlt": "云南高原湖泊",
+        "readLabel": "查看私人定制",
+        "trackingLocation": "home_category_private"
+      },
+      {
+        "title": "私人包车与接送",
+        "excerpt": "机场接送、城市间接送及灵活的多日私人包车。",
+        "href": "/yunnan-private-driver",
+        "image": "/assets/partners/vehicles/five-seat-toyota.webp",
+        "imageAlt": "云南私人包车车辆",
+        "readLabel": "查看包车服务",
+        "trackingLocation": "home_category_driver"
+      },
+      {
+        "title": "特色文旅体验",
+        "excerpt": "探索当地手工艺与文化。首个大理扎染产品预览，尚未开放预约。",
+        "href": "/yunnan-experiences",
+        "image": "/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp",
+        "imageAlt": "蓝白扎染布料",
+        "readLabel": "预览特色体验",
+        "trackingLocation": "home_category_experiences"
+      }
+    ],
+    "localCards": [
+      {
+        "title": "机场与火车站接送",
+        "excerpt": "提前安排抵达或离开云南时的专车接送。",
+        "href": "/yunnan-private-driver#standard-transfers",
+        "image": "/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp",
+        "imageAlt": "私人接送车辆",
+        "readLabel": "查看接送服务",
+        "trackingLocation": "home_service_transfer"
+      },
+      {
+        "title": "跨城与多日包车",
+        "excerpt": "城市间专车接送，也可安排灵活的多日用车路线。",
+        "href": "/yunnan-private-driver#multi-day-driver",
+        "image": "/assets/blog/yunnan-private-driver/dali-shaxi.webp",
+        "imageAlt": "沙溪古镇",
+        "readLabel": "查看私人包车",
+        "trackingLocation": "home_service_driver"
+      },
+      {
+        "title": "大理白族扎染体验",
+        "excerpt": "亲手制作靛蓝扎染作品。产品预览，预约细节待确认。",
+        "href": "/experiences/dali-tie-dye-workshop",
+        "image": "/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp",
+        "imageAlt": "蓝白扎染布料",
+        "readLabel": "预览扎染体验",
+        "trackingLocation": "home_service_tie_dye"
+      }
+    ]
   },
   "journeys": {
     "metaTitle": "云南私家定制行程",

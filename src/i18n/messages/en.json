@@ -148,7 +148,7 @@
   },
   "footer": {
     "tagline": "China, at Your Pace.",
-    "intro": "Thoughtfully designed journeys, practical guidance, and local insight for travelers exploring China.",
+    "intro": "Private journeys, flexible local transport and practical travel guidance for exploring Yunnan at your own pace.",
     "origin": "Born in Yunnan. Shaped by experiences abroad.",
     "companyLine": "Yunnan tour operator: {agencyEn} · Permit {permit} · {credit}",
     "address": "{addressEn} · {addressZh}",
@@ -160,7 +160,7 @@
     "trustPayments": "Secure card payments processed by Stripe · Alipay & WeChat Pay accepted",
     "trustPrivateLabel": "Private by design",
     "trustPrivate": "100% private custom tours · Zero shopping stops",
-    "journeysHeading": "Journeys",
+    "journeysHeading": "Private Tours",
     "journeyFirst": "First Encounter Yunnan",
     "journeyEssence": "The Essence of Yunnan",
     "journeyAll": "Yunnan Journeys",
@@ -195,16 +195,16 @@
   },
   "home": {
     "meta": {
-      "title": "Private Yunnan Tours & Tailor-Made Journeys | Hidden China Travel",
-      "ogTitle": "Private Yunnan Tours & Tailor-Made Journeys",
-      "description": "Plan a private Yunnan tour through Kunming, Dali, Lijiang and Shangri-La. Private transport and bilingual driver-guides, with routes shaped around your dates, group and pace. Browse sample journeys or get free route advice and a quote."
+      "title": "Yunnan Tours, Private Drivers & Travel | Hidden China Travel",
+      "ogTitle": "Yunnan Tours & Local Travel Services",
+      "description": "Explore Yunnan your way with private tailor-made tours, flexible private drivers and airport or intercity transfers. Plan Kunming, Dali, Lijiang and Shangri-La with local expertise."
     },
-    "heroKicker": "PRIVATE YUNNAN JOURNEYS",
-    "heroTitleLine1": "100% Tailor-Made",
-    "heroTitleLine2": "Private Yunnan Journeys",
+    "heroKicker": "YOUR LOCAL TRAVEL PARTNER IN YUNNAN",
+    "heroTitleLine1": "Discover Yunnan,",
+    "heroTitleLine2": "Your Way.",
     "heroAlt": "Boardwalk beside a turquoise alpine lake under snow mountains in Yunnan",
-    "heroLeadDesktop": "Explore Dali, Lijiang & Shangri-La at Your Own Pace. From Kunming to the snow mountains, shaped entirely around your dates, interests, and travel style.",
-    "heroLeadMobile": "Explore Dali, Lijiang & Shangri-La at Your Own Pace. From Kunming to the snow mountains, shaped entirely around your dates, interests, and travel style.",
+    "heroLeadDesktop": "From tailor-made private tours to reliable private transport, discover Kunming, Dali, Lijiang and Shangri-La at your own pace.",
+    "heroLeadMobile": "Private journeys, flexible transport and local travel support. Explore Yunnan at your own pace.",
     "heroBrand": "Born in Yunnan. Shaped by experiences abroad.",
     "cta": "Get a Free Route Plan & Quote",
     "exploreJourneys": "Browse Sample Journeys",
@@ -212,9 +212,9 @@
     "heroTrustDesktop": "No shopping stops · 20% deposit, fully refundable if cancelled more than 7 full days before departure",
     "heroTrustMobile": "20% deposit, fully refundable if cancelled more than 7 full days before departure",
     "trustBadges": [
-      "100% Tailor-Made & No Shopping",
-      "20% deposit · refund terms shown before booking",
-      "Licensed Local Expert"
+      "Private travel, no forced shopping",
+      "Clear pricing & booking terms",
+      "Licensed local operator"
     ],
     "replyTime": "Usually replies within 15 minutes.",
     "howKicker": "HOW IT WORKS",
@@ -428,7 +428,7 @@
         "Hidden China Travel is an independently managed China travel brand. For Yunnan inbound tours, we are the official international-facing brand and enquiry channel of Kunming Dianguoguo International Travel Agency Co., Ltd. The licensed agency confirms quotations, signs contracts, receives tour payments and operates the journeys. Our brand and digital channels remain independent."
       ],
       [
-        "How do payment and cancellation work?",
+        "How do payment and cancellation work for private multi-day tours?",
         "After you confirm the written itinerary and travel contract, pay a 20% deposit by Visa, Mastercard, Apple Pay or Google Pay through Stripe, or by Alipay or WeChat Pay. The remaining 80% is normally due after you arrive in Kunming and meet your guide; any earlier date is disclosed before booking. Cancel more than 7 full days before departure for a full deposit refund. At 7 days or fewer, the deposit is non-refundable. These standard terms do not override mandatory legal refund rights."
       ],
       [
@@ -438,13 +438,84 @@
       [
         "How soon will I receive a reply?",
         "Joy usually replies within 15 minutes. Detailed proposals may take longer for complex routes or busy dates."
+      ],
+      [
+        "Can I book transport without a full tour?",
+        "Yes. Our private driver page offers airport and station transfers, intercity trips and multi-day driver services. Prices and booking terms are shown for each service."
       ]
     ],
     "finalHeading": "Ready to Start Planning Yunnan?",
     "finalText": "You do not need a finished itinerary. Tell us your travel dates or approximate month, number of travelers and the places or experiences that interest you. Joy will help turn those ideas into a practical private journey.",
     "finalWhatsapp": "Chat with Joy on WhatsApp",
     "finalAlt": "Turquoise lake and snow mountains in Yunnan",
-    "finalTrust": "No payment to start planning · 20% deposit, fully refundable if cancelled more than 7 full days before departure"
+    "finalTrust": "No payment to start planning · 20% deposit, fully refundable if cancelled more than 7 full days before departure",
+    "exploreServices": "Explore Local Services",
+    "optionsKicker": "WAYS TO TRAVEL",
+    "optionsHeading": "Find Your Way to Explore Yunnan",
+    "optionsIntro": "Choose a complete private journey or arrange just the local services you need.",
+    "servicesKicker": "TRAVEL INDEPENDENTLY",
+    "servicesHeading": "Make Your Yunnan Trip Your Own",
+    "servicesIntro": "Already planning your own itinerary? Choose local services that fit your route and schedule.",
+    "servicesHelper": "Check each service for its price, inclusions and booking conditions.",
+    "planningLink": "Learn how private planning works →",
+    "productCards": [
+      {
+        "title": "Private Tailor-Made Tours",
+        "excerpt": "A complete private journey designed around your dates, interests and pace.",
+        "href": "/private-yunnan-tours",
+        "image": "/home/local-support.webp",
+        "imageAlt": "Yunnan highland lake",
+        "readLabel": "Explore private tours",
+        "trackingLocation": "home_category_private"
+      },
+      {
+        "title": "Private Drivers & Transfers",
+        "excerpt": "Airport pickups, intercity transfers and flexible multi-day private drivers.",
+        "href": "/yunnan-private-driver",
+        "image": "/assets/partners/vehicles/five-seat-toyota.webp",
+        "imageAlt": "Private vehicle in Yunnan",
+        "readLabel": "Explore driver services",
+        "trackingLocation": "home_category_driver"
+      },
+      {
+        "title": "Local Experiences",
+        "excerpt": "Discover local crafts and culture. Preview our first Dali tie-dye experience; bookings are not yet open.",
+        "href": "/yunnan-experiences",
+        "image": "/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp",
+        "imageAlt": "Blue and white tie-dyed fabric",
+        "readLabel": "Preview local experiences",
+        "trackingLocation": "home_category_experiences"
+      }
+    ],
+    "localCards": [
+      {
+        "title": "Airport & Station Transfers",
+        "excerpt": "Arrange a private pickup or drop-off for your arrival and departure.",
+        "href": "/yunnan-private-driver#standard-transfers",
+        "image": "/assets/destinations/yunnan/lijiang-shangri-la/private-transfer-mpv-exterior.webp",
+        "imageAlt": "Private transfer vehicle",
+        "readLabel": "Explore transfers",
+        "trackingLocation": "home_service_transfer"
+      },
+      {
+        "title": "Intercity & Multi-Day Drivers",
+        "excerpt": "Travel between cities with your own driver, or plan a flexible multi-day route.",
+        "href": "/yunnan-private-driver#multi-day-driver",
+        "image": "/assets/blog/yunnan-private-driver/dali-shaxi.webp",
+        "imageAlt": "Shaxi Ancient Town",
+        "readLabel": "Explore private drivers",
+        "trackingLocation": "home_service_driver"
+      },
+      {
+        "title": "Dali Bai Tie-Dye Workshop",
+        "excerpt": "Create your own indigo textile. Product preview only; booking details are pending.",
+        "href": "/experiences/dali-tie-dye-workshop",
+        "image": "/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp",
+        "imageAlt": "Blue and white tie-dyed fabric",
+        "readLabel": "Preview workshop",
+        "trackingLocation": "home_service_tie_dye"
+      }
+    ]
   },
   "journeys": {
     "metaTitle": "Private Yunnan Journeys",

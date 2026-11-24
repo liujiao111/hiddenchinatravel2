@@ -16,6 +16,7 @@ export function ContentCta() {
 export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boolean }) {
   const t = useTranslations("footer");
   const isZh = useLocale() === "zh";
+  const preview = process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
   const agencyValues = {
     agencyEn: licensedOperator.nameEn,
     agencyZh: licensedOperator.nameZh,
@@ -59,7 +60,9 @@ export function ContentFooter({ reviewsInPage = false }: { reviewsInPage?: boole
           <Link href="/journeys/kunming-dali-lijiang-shangri-la-private-tour">{t("journeyEssence")}</Link>
           <Link href="/yunnan-tour-packages">{t("journeyAll")}</Link>
           <Link href="/private-yunnan-tours">{t("journeyCustom")}</Link>
-          <Link href="/yunnan-private-driver">{isZh ? "云南私人包车服务" : "Yunnan private driver"}</Link>
+          <h3>{isZh ? "自由行与体验" : "Travel & Experiences"}</h3>
+          <Link href="/yunnan-private-driver" data-cta-location="footer_private_driver">{isZh ? "私人包车与接送" : "Private Drivers & Transfers"}</Link>
+          {preview ? <Link href="/yunnan-experiences" data-cta-location="footer_local_experiences">{isZh ? "特色文旅体验（预览）" : "Local Experiences (Preview)"}</Link> : null}
         </nav>
 
         <nav className="footer-nav footer-resources" aria-label={t("resourcesHeading")}>

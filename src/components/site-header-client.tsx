@@ -145,8 +145,8 @@ export function SiteHeaderClient({ journeys, cta, alternate, searchInitialQuery,
             <Link href="/yunnan-tour-packages" onClick={()=>setMobileOpen(false)}>{T("Yunnan Tour Packages","云南旅游套餐")}</Link>
             {journeys.map(journey=><Link key={journey.slug} href={`/journeys/${journey.slug}`} className="mobile-nav-journey" onClick={()=>setMobileOpen(false)}><b>{journey.title}</b><small>{journey.priceLabel}</small></Link>)}
           </>:item.id==="experiences"?<>
-            <Link href="/yunnan-private-driver" onClick={()=>setMobileOpen(false)}>{T("Private Drivers & Transfers","私人包车与接送")}</Link>
-            {showDraftExperiences?<Link href="/yunnan-experiences" onClick={()=>setMobileOpen(false)}>{T("Local Experiences (Preview)","特色文旅体验（预览）")}</Link>:null}
+            <Link href="/yunnan-private-driver" data-cta-location="header_private_driver" onClick={()=>setMobileOpen(false)}>{T("Private Drivers & Transfers","私人包车与接送")}</Link>
+            {showDraftExperiences?<Link locale={isZh?"zh":"en"} href="/yunnan-experiences" data-cta-location="header_local_experiences" onClick={()=>setMobileOpen(false)}>{T("Local Experiences (Preview)","特色文旅体验（预览）")}</Link>:null}
           </>:item.id==="destinations"?popular.map(item=><Link key={item} href={destinationHref(item,label(item))} onClick={()=>setMobileOpen(false)}>{label(item)}</Link>):item.id==="guides"?<>
             <Link href="/survival-kit" onClick={()=>setMobileOpen(false)}>{T("China Travel Essentials","中国旅行指南")}</Link>
             {menuGroups.guides.map(group=><div key={group.title}><p className="mobile-nav-kicker">{label(group.title)}</p>{group.links.map(item=><Link key={item} href={hrefFor(item)} onClick={()=>setMobileOpen(false)}>{label(item)}</Link>)}</div>)}
@@ -208,8 +208,8 @@ export function SiteHeaderClient({ journeys, cta, alternate, searchInitialQuery,
           <p className="kicker">{T("TRAVEL YOUR WAY","自由安排你的旅行")}</p>
           <h2>{T("Travel & Experiences","自由行与特色体验")}</h2>
           <div className="mega-current-journey-grid">
-            <Link href="/yunnan-private-driver"><Image src="/assets/partners/vehicles/five-seat-toyota.webp" alt={T("Private vehicle in Yunnan","云南私人包车")} width={300} height={178} unoptimized/><span><small>{T("TRANSPORT","当地交通")}</small><b>{T("Private Drivers & Transfers","私人包车与接送")}</b><em>{T("Airport and station transfers, intercity rides and multi-day private drivers.","机场及火车站接送、城市间接送与多日私人包车。")}</em><strong>{T("Explore services","查看服务")}</strong></span></Link>
-            {showDraftExperiences?<Link href="/yunnan-experiences"><Image src="/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp" alt={T("Blue and white tie-dyed fabric","蓝白扎染布料")} width={300} height={178} unoptimized/><span><small>{T("PREVIEW · NOT YET BOOKABLE","预览 · 尚未开放预约")}</small><b>{T("Local Experiences","特色文旅体验")}</b><em>{T("Discover local crafts and cultural activities, starting with Dali tie-dye.","探索云南当地手工艺与文化体验，从大理扎染开始。")}</em><strong>{T("Preview experiences","预览体验")}</strong></span></Link>:null}
+            <Link href="/yunnan-private-driver" data-cta-location="header_private_driver"><Image src="/assets/partners/vehicles/five-seat-toyota.webp" alt={T("Private vehicle in Yunnan","云南私人包车")} width={300} height={178} unoptimized/><span><small>{T("TRANSPORT","当地交通")}</small><b>{T("Private Drivers & Transfers","私人包车与接送")}</b><em>{T("Airport and station transfers, intercity rides and multi-day private drivers.","机场及火车站接送、城市间接送与多日私人包车。")}</em><strong>{T("Explore services","查看服务")}</strong></span></Link>
+            {showDraftExperiences?<Link locale={isZh?"zh":"en"} href="/yunnan-experiences" data-cta-location="header_local_experiences"><Image src="/assets/experiences/dali-tie-dye/dali-tie-dye-indigo-fabric.webp" alt={T("Blue and white tie-dyed fabric","蓝白扎染布料")} width={300} height={178} unoptimized/><span><small>{T("PREVIEW · NOT YET BOOKABLE","预览 · 尚未开放预约")}</small><b>{T("Local Experiences","特色文旅体验")}</b><em>{T("Discover local crafts and cultural activities, starting with Dali tie-dye.","探索云南当地手工艺与文化体验，从大理扎染开始。")}</em><strong>{T("Preview experiences","预览体验")}</strong></span></Link>:null}
           </div>
         </section>
       </div> : open === "guides" ? <div className="shell mega-groups mega-guides">

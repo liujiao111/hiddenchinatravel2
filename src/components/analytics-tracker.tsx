@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { analyticsDenied } from "@/lib/attribution";
 import { trackEvent } from "@/lib/analytics";
 
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
@@ -55,7 +56,9 @@ export function AnalyticsTracker() {
 
       if (url.origin !== window.location.origin) return;
 
-      if (linkPath === "/private-yunnan-tours" && url.hash === "#routes") {
+      if (process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview" && !analyticsDenied() && (linkPath === "/yunnan-private-driver" || linkPath === "/yunnan-experiences" || linkPath.startsWith("/experiences/") || linkPath === "/yunnan-tour-packages" || (link.dataset.ctaLocation === "home_hero_local_services" && url.hash === "#travel-services"))) {
+        trackEvent("travel_service_click", { ...common, cta_location: link.dataset.ctaLocation || "page_content", service_category: linkPath === "/yunnan-private-driver" ? "private_driver" : linkPath === "/yunnan-tour-packages" ? "private_tours" : url.hash === "#travel-services" ? "local_services" : "local_experiences" });
+      } else if (linkPath === "/private-yunnan-tours" && url.hash === "#routes") {
         trackEvent("explore_journeys_click", common);
       } else if (linkPath === "/private-yunnan-tours" || linkPath === "/custom-china-tour") {
         trackEvent(url.hash === "#plan" ? "custom_journey_plan_click" : "custom_journey_click", {
