@@ -7,6 +7,7 @@ import { put, BlobPreconditionFailedError } from "@vercel/blob";
 const options = { access: /** @type {const} */ ("private") };
 const policies = Object.freeze({
   "driver-checkout": { slots: 6, windowMs: 10 * 60_000 },
+  "experience-checkout": { slots: 6, windowMs: 10 * 60_000 },
   "journey-enquiry": { slots: 12, windowMs: 10 * 60_000 },
   "contact-enquiry": { slots: 12, windowMs: 10 * 60_000 },
 });
@@ -21,7 +22,7 @@ function clientAddress(headers) {
 
 /**
  * @param {Request} request
- * @param {"driver-checkout"|"journey-enquiry"|"contact-enquiry"} policy
+ * @param {"driver-checkout"|"experience-checkout"|"journey-enquiry"|"contact-enquiry"} policy
  * @returns {Promise<{allowed:boolean,retryAfter:number}>}
  */
 export async function checkDriverRateLimit(request, policy) {

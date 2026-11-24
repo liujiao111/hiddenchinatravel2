@@ -10,6 +10,7 @@ import { localePath } from "@/lib/i18n-seo";
 import type { ReactNode } from "react";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
 
+import { experienceTestClient } from "@/lib/experience-test-server";
 import { Media } from "@/components/experience-media";
 function Section({ id, kicker, title, children, soft=false }: { id:string; kicker:string; title:string; children:ReactNode; soft?:boolean }) {
   return <section className={"driver-section"+(soft?" driver-section-soft":"")} id={id}><div className="shell"><div className="driver-section-head"><p className="kicker">{kicker}</p><h2>{title}</h2></div>{children}</div></section>;
@@ -34,7 +35,7 @@ export function ExperienceDetailTemplate({product:p,lang}:{product:ExperiencePro
       <div className="driver-product-grid">{p.packages.filter(x=>x.price).map(pkg=><article key={pkg.id} className="driver-product"><div className="driver-product-photo"><Media media={pkg.media} lang={lang}/></div><div className="driver-product-copy"><p className="driver-product-meta">{pkg.minutes} {T("min","分钟")}</p><h3>{pkg.name[lang]}</h3><p>{pkg.description[lang]}</p><p>{pkg.pieces?.map(x=>x.name[lang]).join(" / ")}</p><div className="driver-product-price"><strong>{displayDraftPrice(pkg,lang)}</strong>{pkg.price&&!pkg.price.currencyPending?<small>{T("Per participant · one main piece","每人 · 一件主作品")}</small>:null}</div><ExperiencePackageAction packageId={pkg.id} label={T("Select Options","选择选项")}/></div></article>)}</div>
       {p.packages.filter(x=>!x.price).map(pkg=><div className="driver-stripe-test" key={pkg.id}><div><h3>{pkg.name[lang]}</h3><p>{pkg.description[lang]}</p></div><ExperiencePackageAction packageId={pkg.id} label={T("Preview Custom Options","查看定制选项")} primary={false}/></div>)}
       <p className="driver-detail-note">{p.priceNote[lang]}</p>
-      <ExperienceBookingPreview product={p} lang={lang}/>
+      <ExperienceBookingPreview product={p} lang={lang} sandboxEnabled={Boolean(experienceTestClient())}/>
     </Section>
     {p.process?.length ? <Section id="process" kicker="03 / WHAT TO EXPECT" title={T("What to Expect","体验流程")}><div className="driver-seo-guide-grid">{p.process.map((item,i)=><article className="driver-list-card" key={item.title[lang]}><div className="driver-seo-guide-media"><Media media={item.media} lang={lang} sizes="(max-width: 680px) 100vw, 50vw"/></div><h3>{String(i+1).padStart(2,"0")} / {item.title[lang]}</h3><p>{item.text[lang]}</p></article>)}</div></Section>:null}
     {p.story ? <section className="driver-section driver-section-soft" id="story"><div className="shell driver-custom-grid"><figure className="driver-custom-photo"><Media media={p.story.media} lang={lang} sizes="(max-width: 800px) 100vw, 50vw"/></figure><div><p className="kicker">04 / THE STORY BEHIND THE CRAFT</p><h2>{p.story.title[lang]}</h2><p>{p.story.text[lang]}</p></div></div></section>:null}

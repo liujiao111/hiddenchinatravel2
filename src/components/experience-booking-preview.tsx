@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Media } from "@/components/experience-media";
 import { DriverPicker } from "@/components/yunnan-private-driver-booking";
 import { chinaServiceDate } from "@/lib/driver-airport-transfers";
@@ -11,7 +11,7 @@ export function ExperiencePackageAction({ packageId, label, primary = true }: { 
   return <a className={primary ? "button button-blue driver-product-action" : "button button-outline"} href="#booking-preview" onClick={() => window.dispatchEvent(new CustomEvent("experience-package-select", { detail: packageId }))}>{label} →</a>;
 }
 
-export function ExperienceBookingPreview({ product, lang }: { product: ExperienceProduct; lang: AppLocale }) {
+export function ExperienceBookingPreview({ product, lang, sandboxEnabled = false }: { product: ExperienceProduct; lang: AppLocale; sandboxEnabled?: boolean }) {
   const zh = lang === "zh";
   const T = (en: string, cn: string) => zh ? cn : en;
   const [packageId, setPackageId] = useState(product.packages[0]?.id ?? "");
@@ -22,21 +22,29 @@ export function ExperienceBookingPreview({ product, lang }: { product: Experienc
   const [pieces, setPieces] = useState<Record<number, string>>({});
   const [addons, setAddons] = useState<string[]>([]);
   const [review, setReview] = useState(false);
+  const [busy,setBusy]=useState(false);
+  const [error,setError]=useState("");
+  const requestId=useRef("");
   useEffect(() => {
     const select = (event: Event) => {
       const id = (event as CustomEvent<string>).detail;
-      if (product.packages.some(p => p.id === id)) { setPackageId(id); setPieces({}); setAddons([]); setReview(false); }
+      if (product.packages.some(p => p.id === id)) { setPackageId(id); setPieces({}); setAddons([]); setReview(false); requestId.current=""; }
     };
     window.addEventListener("experience-package-select", select);
     return () => window.removeEventListener("experience-package-select", select);
   }, [product.packages]);
   if (!pkg) return null;
-  const update = () => setReview(false);
+  const update = () => {setReview(false);requestId.current="";setError("");};
+  const startSandbox=async()=>{
+    if(busy||!pkg.pieces?.length||!date||!time)return;
+    setBusy(true);setError("");
+    try{if(!requestId.current)requestId.current=crypto.randomUUID();const response=await fetch("/api/stripe/experience-test-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({requestId:requestId.current,slug:product.slug,packageId:pkg.id,people,date,time,pieces:Array.from({length:people},(_,i)=>pieces[i]??pkg.pieces?.[0]?.id),addons,locale:lang})});const data=await response.json();if(!response.ok||typeof data.url!=="string")throw Error("Checkout unavailable");window.location.assign(data.url);}catch{setError(T("Test checkout unavailable. Please retry.","测试结账暂不可用，请重试。"));setBusy(false);}
+  };
   const draftTotal = pkg.price?.currency === "USD" && !pkg.price.currencyPending ? "US$"+(pkg.price.min*people).toFixed(2)+(pkg.price.max!==undefined?"–"+(pkg.price.max*people).toFixed(2):"") : T("Pending confirmation","待确认");
   return <div className="driver-booking-panel" id="booking-preview">
     <form className="contact-form driver-form" onSubmit={e => { e.preventDefault(); setReview(true); }}>
       <h3>{T("Preview Your Experience Booking","体验预约预览")}</h3>
-      <p className="driver-form-note">{T("Prototype only. Prices, workshop capacity and opening times are not confirmed. No order, payment or enquiry is sent.","仅为展示原型。价格、接待容量与营业时间待确认，不创建订单、不收款、不提交咨询。")}</p>
+      <p className="driver-form-note">{T("Prototype only. Prices and availability are not confirmed. Review creates no real order; sandbox checkout, if enabled, is test only.","仅为展示原型，价格和可订状态待确认；预览不产生真实订单，若启用沙盒支付也仅用于测试。")}</p>
       <EnquirySelect name="experiencePackage" label={T("Experience package","体验套餐")} placeholder={T("Choose a package","选择套餐")} required value={packageId} onValueChange={id => { setPackageId(id); setPieces({}); setAddons([]); update(); }} options={product.packages.map(p=>({value:p.id,label:p.name[lang]}))}/>
       <p className="driver-form-selection">{displayDraftPrice(pkg,lang)}</p>
       <div className="contact-field-row">
@@ -50,6 +58,7 @@ export function ExperienceBookingPreview({ product, lang }: { product: Experienc
       <p className="driver-area-hint" aria-live="polite">{T("Draft base total (excluding unconfirmed add-ons): ","参考基础总价（不含未确认增购）：")}{draftTotal}</p>
       <button className="button button-blue" type="submit">{T("Review Selection","查看预约预览")} →</button>
       {review ? <div className="driver-detail-note" role="status"><strong>{pkg.name[lang]} · {date} {time} · {people} {T("participants","人")}</strong><p>{pkg.pieces ? Array.from({length:people},(_,i)=>pkg.pieces?.find(p=>p.id===(pieces[i]??pkg.pieces?.[0]?.id))?.name[lang]).join(" / ") : T("Custom piece to be discussed","定制作品待沟通")}</p><p>{T("Draft base total: ","参考基础总价：")}{draftTotal}</p><p>{T("Final price and availability require confirmation. No booking or payment was created.","最终价格与可订状态须确认；未生成预约或支付。")}</p></div>:null}
+    {sandboxEnabled&&review&&pkg.pieces?.length?<><p className="driver-form-note">{T("USD 1 sandbox test only. No real payment or reservation. Use Stripe test card details.","仅 US$1 沙盒测试，无真实扣款或预约。请使用 Stripe 测试卡。")}</p><button type="button" className="button button-blue" disabled={busy||!date||!time} onClick={startSandbox}>{busy?T("Opening test checkout…","打开测试结账…"):T("Pay US$1 in sandbox","US$1 沙盒测试支付")}</button>{error?<p role="alert" className="contact-form-error">{error}</p>:null}</>:null}
     </form>
   </div>;
 }
