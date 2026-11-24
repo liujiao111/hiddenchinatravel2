@@ -46,13 +46,6 @@ type Product = {
 };
 
 const products: Product[] = [
-  { id: "driver-full-order-usd1-test", category: "intercity", cities: ["kunming"],
-    en: "US$1 Full Booking Payment Test — No Transport", zh: "US$1 完整订单付款测试（不含用车服务）",
-    detailEn: "Internal payment verification only. A real US$1 charge; NO transport or booking service.",
-    detailZh: "仅用于内部验收，将真实扣款 US$1，不提供包车、接送或旅游服务。",
-    photo: "/assets/partners/vehicles/five-seat-toyota.webp",
-    routes: [{ value: DRIVER_FULL_ORDER_TEST_ROUTE, en: "Payment test only — no transport", zh: "仅支付测试 — 不提供接送" }],
-  },
   {
     id: "dali-lijiang-direct", category: "intercity", cities: ["dali", "lijiang"], departureCities: ["dali", "lijiang"],
     en: "Dali ⇄ Lijiang Direct", zh: "大理 ⇄ 丽江 · 直达",
@@ -165,6 +158,14 @@ const products: Product[] = [
     detailZh: "提供迪庆香格里拉机场、香格里拉站与独克宗古城、香格里拉市区及松赞林寺片区之间的私人接送服务。",
     photo: "/assets/destinations/yunnan/shangri-la.webp",
   },
+  { id: "driver-full-order-usd1-test", category: "intercity", cities: ["kunming"],
+    en: "US$1 Full Booking Payment Test — No Transport", zh: "US$1 完整订单付款测试（不含用车服务）",
+    detailEn: "Internal payment verification only. A real US$1 charge; NO transport or booking service.",
+    detailZh: "仅用于内部验收，将真实扣款 US$1，不提供包车、接送或旅游服务。",
+    photo: "/assets/partners/vehicles/five-seat-toyota.webp",
+    routes: [{ value: DRIVER_FULL_ORDER_TEST_ROUTE, en: "Payment test only — no transport", zh: "仅支付测试 — 不提供接送" }],
+  },
+
 
 ];
 
@@ -609,7 +610,7 @@ export function StandardTransferSection({ locale, stripeTestMode = null }: { loc
   const [category, setCategory] = useState<Category | "all">("all");
   const [city, setCity] = useState("");
   const order: Record<Category,number> = {multi:0,day:1,intercity:2,arrival:3};
-  const visibleProducts = filterDriverProducts(products.filter(p => p.id !== DRIVER_FULL_ORDER_TEST_ID), category, city).sort((a,b)=>order[a.category]-order[b.category]);
+  const visibleProducts = filterDriverProducts(products, category, city).sort((a,b)=>order[a.category]-order[b.category]);
   const [selected, setSelected] = useState<ProductId | "custom" | null>(null);
   const scrollToForm = () => requestAnimationFrame(() => document.getElementById("driver-quote-form")?.scrollIntoView({ behavior: "smooth", block: "start" }));
 
