@@ -428,7 +428,7 @@
   font-weight:750;
 }
 .driver-page .driver-form :is(
-  input[type="text"],input[type="email"],input[type="tel"],input[type="number"],
+  input:not([type]),input[type="text"],input[type="password"],input[type="search"],input[type="url"],input[type="email"],input[type="tel"],input[type="number"],
   input[type="date"],input[type="time"],select
 ) {
   box-sizing:border-box;
@@ -491,7 +491,7 @@
   outline-offset:2px;
 }
 .driver-page .driver-form :is(
-  input[type="text"],input[type="email"],input[type="tel"],input[type="number"],
+  input:not([type]),input[type="text"],input[type="password"],input[type="search"],input[type="url"],input[type="email"],input[type="tel"],input[type="number"],
   input[type="date"],input[type="time"],select,textarea
 ):focus {
   border-color:var(--color-focus);

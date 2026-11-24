@@ -27,3 +27,5 @@ Before editing or publishing `_posts/*.md` or `_posts-zh/*.md`, read `PROJECT.md
 - 全站标准页头必须保留完整主导航与搜索。共享 `SiteHeader` 不提供隐藏主导航的简化模式；不要为单个旅游页面重新加回此例外。
 - 搜索框的示例查询必须作为 placeholder 展示，不能作为默认输入值或自动触发搜索建议。
 - 完成 UI 改动前检查桌面与移动断点，确认主次操作、导航、焦点态和图片裁切一致；至少运行受影响文件的 lint 与 `npx tsc --noEmit`。
+
+- 表单输入必须显式声明 type；共享 contact-form 样式必须同时覆盖默认文本输入（未声明 type）、text、password、email、tel 等常用文本类型，不得遗漏边框及焦点态。checkbox/radio/hidden/file 等保留专用控件样式。新增或修改表单必须核查实际浏览器空白输入框是否清晰可见。

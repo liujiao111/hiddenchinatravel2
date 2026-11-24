@@ -15,7 +15,7 @@ export function ExperienceLiveTestForm({zh}:{zh:boolean}){
  <EnquirySelect name="piece" label={t("Sample piece","体验作品")} placeholder={t("Select piece","选择作品")} required value={piece} onValueChange={v=>{setPiece(v);reset();}} options={options}/>
  <EnquirySelect name="people" label={t("Participants","人数")} placeholder={t("Select participants","选择人数")} required value={people} onValueChange={v=>{setPeople(v);reset();}} options={Array.from({length:6},(_,i)=>({value:String(i+1),label:String(i+1)}))}/>
  <div className="contact-field-row"><label>{t("Preferred date (China time)","期望日期（中国时间）")}<input type="date" name="date" min={chinaServiceDate()} required/></label><label>{t("Preferred time","期望时间")}<input type="time" name="time" required/></label></div>
- <label>{t("Name","姓名")}<input name="name" required maxLength={100} autoComplete="name"/></label>
+ <label>{t("Name","姓名")}<input type="text" name="name" required maxLength={100} autoComplete="name"/></label>
  <label>Email<input name="email" type="email" required maxLength={254} autoComplete="email"/></label>
  <label>WhatsApp ({t("optional","选填")})<input name="whatsapp" type="tel" maxLength={40} placeholder="+65 …" autoComplete="tel"/></label>
  <label>{t("Internal test access code","内部测试访问码")}<input name="accessCode" type="password" required autoComplete="off" data-clarity-mask="true"/></label>
