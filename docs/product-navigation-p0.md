@@ -1,0 +1,2 @@
+# P0 navigation preview
+Private Tours, Travel & Experiences, Destinations, Travel Guides, About Us. Mobile disclosure groups match desktop. Contact moves under About. Keep search, header CTA, language switching and existing journey cards. Signature Journeys and Day Tours are not linked until ready. Local Experiences is exposed only when NEXT_PUBLIC_VERCEL_ENV=preview; no production release of the draft. Existing page URLs, homepage, footer, payment, sitemap and mobile sticky CTA remain unchanged.
