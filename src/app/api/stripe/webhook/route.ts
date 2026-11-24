@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { PURPOSE as EXPERIENCE_LIVE_PURPOSE, settleExperienceTest } from "@/lib/experience-live-test";
 import { getEnquiryMailConfig } from "@/lib/enquiry-mail";
 import { driverOrdersEnabled, readDriverOrder } from "@/lib/driver-orders.mjs";
 import { createDriverPaymentRecord, getDriverPaymentRecord } from "@/lib/driver-payment-records.mjs";
@@ -46,6 +47,7 @@ export async function POST(request: Request) {
   const session = event.data.object as Stripe.Checkout.Session;
   if (session.payment_status !== "paid") return Response.json({ received: true });
   const metadata = session.metadata;
+  if (metadata?.purpose === EXPERIENCE_LIVE_PURPOSE) return settleExperienceTest(session,event.livemode,event.id);
   const isQuote = metadata?.purpose === "driver_quote_payment";
   const isLiveTest = event.livemode
     && metadata?.purpose === "production_payment_verification"
