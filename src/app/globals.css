@@ -1087,17 +1087,29 @@ a.footer-trust-item:hover { color:#fff; }
     z-index: 80;
     right: 0;
     left: 0;
-    bottom: 0;
+    bottom: env(safe-area-inset-bottom, 0px);
     display: flex;
     box-sizing: border-box;
-    height: auto;
-    min-height: calc(60px + env(safe-area-inset-bottom, 0px));
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    height: 60px;
+    min-height: 60px;
+    padding-bottom: 0;
     background: var(--color-primary);
     align-items: stretch;
     box-shadow: 0 -6px 24px rgba(20,33,28,.18);
     pointer-events: auto;
     touch-action: manipulation;
+  }
+  /* Keep the iOS home-indicator strip visually separate from the CTA.
+     Safari changes this inset as browser chrome expands/collapses. */
+  .mobile-cta-bar::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: env(safe-area-inset-bottom, 0px);
+    background: var(--color-ink);
+    pointer-events: none;
   }
   .mobile-cta-whatsapp {
     flex: 1 1 62%;
