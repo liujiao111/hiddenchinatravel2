@@ -29,7 +29,7 @@ export async function POST(request:Request){
     const prefix=selection.locale==="zh"?"/zh":"";
     const metadata={purpose:TEST_PURPOSE,order_id:id,product_id:product.slug};
     const session=await stripe.checkout.sessions.create({
-      mode:"payment",payment_method_types:["card"],client_reference_id:id,
+      mode:"payment",client_reference_id:id,
       line_items:[{quantity:1,price_data:{currency:"usd",unit_amount:TEST_CENTS,product_data:{name:"SANDBOX — Experience payment test",description:"No real booking, no service, USD 1 test only"}}}],
       metadata,payment_intent_data:{metadata},
       success_url:origin+"/api/stripe/experience-test-status?order="+encodeURIComponent(access),
