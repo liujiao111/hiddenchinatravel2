@@ -1,3 +1,4 @@
+import { experiences, experiencePath } from "@/lib/experiences";
 import type { MetadataRoute } from "next";
 import { getAllContent, getContentBySlug, translationSlug } from "@/lib/content";
 import { isZhLive, localeUrl } from "@/lib/i18n-seo";
@@ -55,6 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     localizedEntry("/private-yunnan-tours", true, { lastModified: new Date("2026-11-10"), changeFrequency: "monthly", priority: 0.9 }),
     localizedEntry("/yunnan-tour-packages", true, { lastModified: new Date("2026-11-11"), changeFrequency: "monthly", priority: 0.9 }),
     localizedEntry("/yunnan-private-driver", true, { lastModified: new Date("2026-11-23"), changeFrequency: "monthly", priority: 0.85 }),
+    ...experiences.map((experience) => localizedEntry(experiencePath(experience.slug), true, { lastModified: new Date("2026-11-24"), changeFrequency: "monthly", priority: 0.8 })),
     // Country visa pages stay English-only (plan §5).
     ...getPhase1CountryEditorials().map((country) =>
       localizedEntry(`/china-visa-checker/${country.slug}`, false, {
