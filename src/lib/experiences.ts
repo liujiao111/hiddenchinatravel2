@@ -15,6 +15,7 @@ export type ExperienceProduct = {
   description: Localized; closing: ExperienceText & { media?: ExperienceMedia }; priceNote: Localized; seo: { title: Localized; description: Localized };
   hero: ExperienceMedia; duration: Localized; highlights: ExperienceText[];
   packages: ExperiencePackage[]; process?: (ExperienceText & { media: ExperienceMedia })[];
+  processPhotos?: (ExperienceMedia & { caption: Localized; aspectRatio?: string })[];
   story?: ExperienceText & { media: ExperienceMedia }; included: Localized[]; excluded?: Localized[];
   location: ExperienceText; gallery?: ExperienceMedia[]; faqs: ExperienceText[];
   addons?: { id: string; title: Localized; sourcePrice: string; priceCents: number; minutes: number; media?: ExperienceMedia }[];
@@ -50,21 +51,26 @@ const experienceCatalog: ExperienceProduct[] = [{
     { id:"bespoke", name:t("Master+","Master+ · 定制升级"), minutes:120, description:t("Choose a door curtain, top or shirt, or tablecloth. Request an individual quote before booking.","选择门帘、上衣／衬衫或桌布，预约前单独询价。"), media:media("Bespoke textile pieces","高级定制作品"),pieces:[piece("door-curtain","Door curtain","门帘"),piece("shirt","Top / shirt","上衣／衬衫"),piece("tablecloth","Tablecloth","桌布")] },
   ],
   process: [
-    { title:t("Learn the Techniques","了解技艺"),text:t("Learn how folding, twisting, binding and stitching prevent dye from reaching parts of the cloth, with an English step-by-step card.","借助英文步骤卡了解折叠、扭转、捆扎与缝制如何形成防染纹样。"),media:media("Instructor explaining tie-dye","老师讲解") },
-    { title:t("Design Your Pattern","设计图案"),text:t("Choose your pattern and tie the cloth. Tight bindings create clearer white lines; looser ties produce softer edges. Your instructor checks the binding before dyeing.","选择纹样并捆扎布料。紧扎形成更清晰的白色纹路，松扎产生柔和边缘，染色前由老师检查。"),media:tieDyePhoto("hand-stitching","Artisan hand-stitching and gathering undyed fabric","手工艺人缝扎未染色布料") },
-    { title:t("Dip into Indigo","浸染靛蓝"),text:t("Soak and dip your piece into the indigo vat. Watch the colour turn blue as it meets the air; repeated dips deepen the shade.","浸泡后放入靛蓝染缸，观察布料接触空气后逐渐变蓝，多次浸染可加深色泽。"),media:media("Indigo dyeing","靛蓝染色") },
-    { title:t("Reveal Your Creation","揭开作品"),text:t("Rinse, remove the ties with instructor guidance and reveal your design. Your piece is rinsed again and dried or packed damp before you leave.","漂洗后在老师指导下拆开扎线，揭晓独特纹样。作品再次漂洗，晾干或湿装打包后带走。"),media:media("Revealing a finished pattern","展开成品") },
+    { title:t("Choose Your Piece","选择你的作品"),text:t("Choose one main textile from your selected package, such as a scarf, bag or other available piece.","从所选套餐中挑选一件喜欢的主作品，例如方巾、帆布包或其他可选织物。"),media:media("Choosing a textile","选择织物") },
+    { title:t("Learn the Traditional Techniques","学习传统扎染技法"),text:t("Your instructor introduces folding, twisting, binding and stitching techniques, supported by an English step-by-step card.","老师讲解折叠、扭转、捆扎与缝制等传统防染技法，并提供英文步骤指引卡。"),media:media("Instructor explaining tie-dye","老师讲解") },
+    { title:t("Create Your Own Pattern","设计专属纹样"),text:t("Experiment with your own design and tie the fabric with guidance from your instructor, who checks your work before dyeing.","发挥创意，亲手设计纹样并捆扎布料，与老师交流，由老师在染色前检查作品。"),media:tieDyePhoto("hand-stitching","Artisan hand-stitching and gathering undyed fabric","手工艺人缝扎未染色布料") },
+    { title:t("Dip into Indigo","体验靛蓝染色"),text:t("Soak and dip your piece into the indigo vat. Watch the colour turn blue as it meets the air; repeated dips deepen the shade.","将作品浸泡后放入靛蓝染缸，观察布料接触空气后逐渐变蓝，多次浸染可加深色泽。"),media:media("Indigo dyeing","靛蓝染色") },
+    { title:t("Reveal Your Design","揭晓独特纹样"),text:t("Remove the ties with instructor guidance and discover the blue-and-white pattern you have created.","在老师指导下亲手拆开扎线，揭晓自己创造的蓝白纹样。"),media:media("Revealing a finished pattern","展开成品") },
+    { title:t("Take Your Creation Home","带走你的云南记忆"),text:t("Your piece is rinsed and dried or packed damp before you leave. Take home your handmade souvenir.","作品经过清洗、晾干或湿装打包后，将亲手制作的扎染纪念品带回家。"),media:media("Taking home a handmade textile","带走手工作品") },
+  ],
+  processPhotos: [
+    { ...tieDyePhoto("hand-stitching","Artisan hand-stitching and gathering undyed fabric","手工艺人缝扎未染色布料"), caption:t("Traditional hand-stitching at the workshop.","作坊传统手工缝扎实拍。"), aspectRatio:"5 / 3" },
   ],
   story: { title:t("A Craft Passed Down Through Generations","代代相传的白族手工艺"),text:t("For centuries, Bai families around Erhai Lake have folded, bound and dyed cloth with indigo. Bai tie-dye was added to China's national intangible cultural heritage list in 2006. The workshop is a chance to take part in the craft rather than simply watch a demonstration.","数百年来，洱海周边的白族家庭通过折叠、捆扎和靛蓝染色传承这门技艺。2006年，白族扎染技艺入选中国国家级非物质文化遗产名录。在体验中，你不只是观看，更能亲自参与制作。"),media:tieDyePhoto("hand-stitching","Traditional hand-stitching of cloth surrounded by blue-and-white textiles","蓝白扎染布料之间的传统手工缝扎") },
   included:[t("Materials for your selected main piece","所选主作品材料"),t("Instructor assistance","老师现场指导"),t("English step-by-step guide card","英文步骤指引卡"),t("Apron and gloves","围裙和手套"),t("Your finished piece and gift bag","成品及礼品袋")],
-  excluded:[t("Additional pieces outside the selected package (subject to final terms)","所选套餐外的额外作品（以最终条款为准）")],
-  location:{title:t("Dali, Yunnan","云南大理"),text:t("Workshop address, meeting point, opening hours and arrival instructions to be confirmed.","具体作坊地址、集合点、营业时间和到达说明待确认。")},
+  excluded:[t("Additional pieces outside the selected package","所选套餐外的额外作品")],
+  location:{title:t("Dali, Yunnan","云南大理"),text:t("The exact workshop address, meeting point and arrival instructions will be shared once your booking is confirmed.","预约确认后将提供具体作坊地址、集合点及到达说明。")},
   gallery:[tieDyePhoto("workshop-interior","Wooden tables and bamboo chairs beneath blue-and-white textile canopies","蓝白扎染布幕下的木桌与竹椅"),tieDyePhoto("textile-display","Workshop interior with tie-dyed garments and textile displays","陈列扎染服饰与织物的室内空间"),tieDyePhoto("animal-dolls","Two blue-and-white animal-shaped textile dolls","两个蓝白扎染动物造型玩偶"),tieDyePhoto("courtyard-textiles","Hanging blue-and-white finished textiles in a leafy courtyard","绿意庭院中悬挂晾晒的蓝白扎染织物")],
   faqs:[
-    {title:t("Do I need previous tie-dye experience?","需要扎染经验吗？"),text:t("The proposed basic package includes guided instruction and an English step-by-step card.","拟定的入门套餐包含老师指导和英文步骤卡。")},
-    {title:t("Can I take my finished piece home?","可以带走作品吗？"),text:t("Yes. The source plan includes a final rinse and drying or damp packing before you leave.","可以。原方案包含最后漂洗、晾干或湿装打包。")},
-    {title:t("Is the instructor English-speaking?","老师会英语吗？"),text:t("An English instruction card is included in the proposed package. Spoken English support still needs confirmation.","拟定套餐包含英文指引卡，老师英语沟通能力仍待确认。")},
-    {title:t("Can children join?","儿童可以参加吗？"),text:t("Minimum age, supervision and safety rules are pending workshop confirmation.","最低年龄、陪同和安全规则待作坊确认。")},
+    {title:t("Do I need previous tie-dye experience?","需要扎染经验吗？"),text:t("No. Instructor guidance and an English step-by-step card are included.","不需要。体验包含老师指导和英文步骤指引卡。")},
+    {title:t("Can I take my finished piece home?","可以带走作品吗？"),text:t("Yes. Your piece is rinsed and dried or packed damp before you leave.","可以。作品清洗、晾干或湿装打包后即可带走。")},
+    {title:t("Is the instructor English-speaking?","老师会英语吗？"),text:t("An English step-by-step card is included. If you need spoken English assistance, please let us know when requesting your booking so we can confirm the available support.","体验包含英文步骤指引卡。如需英文口语协助，请在预约时告知，以便确认可提供的语言支持。")},
+    {title:t("Can children join?","儿童可以参加吗？"),text:t("If you are travelling with children, please share their ages when requesting a booking so we can confirm suitability and supervision requirements with the workshop.","如携带儿童，请在预约时告知年龄，以便与作坊确认适合的体验及陪同要求。")},
     {title:t("Can I cancel or change my booking?","可以取消或改期吗？"),text:t("Cancellation and rescheduling terms will be provided for your approval before any payment.","付款前会提供具体取消和改期条款供你确认。")},
   ],
   addons:[{id:"pouch",title:t("Pocket tissue pouch","纸巾收纳袋"),sourcePrice:"US$9.80",priceCents:980,minutes:30,media:media("Tissue pouch","纸巾收纳袋")},{id:"hair-ties",title:t("Hair ties ×3","发圈×3"),sourcePrice:"US$12.80",priceCents:1280,minutes:30,media:media("Hair ties","发圈")}],
