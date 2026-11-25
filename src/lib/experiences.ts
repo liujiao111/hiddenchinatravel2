@@ -60,6 +60,7 @@ const experienceCatalog: ExperienceProduct[] = [{
   ],
   processPhotos: [
     { ...tieDyePhoto("hand-stitching","Artisan hand-stitching and gathering undyed fabric","手工艺人缝扎未染色布料"), caption:t("Traditional hand-stitching at the workshop.","作坊传统手工缝扎实拍。"), aspectRatio:"5 / 3" },
+    { src:"/assets/experiences/dali-tie-dye/dali-bai-tie-dye-workshop-process.webp", alt:t("Traditional Bai tie-dye workshop process displayed on a hand-dyed indigo cloth in Dali, Yunnan","云南大理白族扎染作坊蓝布上的真实体验流程"), caption:t("The actual workshop process, displayed on a hand-dyed indigo cloth.","当地作坊真实体验流程，手写于靛蓝染布上。"), aspectRatio:"9 / 16" },
   ],
   story: { title:t("A Craft Passed Down Through Generations","代代相传的白族手工艺"),text:t("For centuries, Bai families around Erhai Lake have folded, bound and dyed cloth with indigo. Bai tie-dye was added to China's national intangible cultural heritage list in 2006. The workshop is a chance to take part in the craft rather than simply watch a demonstration.","数百年来，洱海周边的白族家庭通过折叠、捆扎和靛蓝染色传承这门技艺。2006年，白族扎染技艺入选中国国家级非物质文化遗产名录。在体验中，你不只是观看，更能亲自参与制作。"),media:tieDyePhoto("hand-stitching","Traditional hand-stitching of cloth surrounded by blue-and-white textiles","蓝白扎染布料之间的传统手工缝扎") },
   included:[t("Materials for your selected main piece","所选主作品材料"),t("Instructor assistance","老师现场指导"),t("English step-by-step guide card","英文步骤指引卡"),t("Apron and gloves","围裙和手套"),t("Your finished piece and gift bag","成品及礼品袋")],
