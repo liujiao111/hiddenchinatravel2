@@ -8,7 +8,7 @@ metaDescription: "大理周边小众地怎么选？沙溪、巍山、周城扎�
 coverImage: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
 coverAlt: "沙溪古镇的河流与瓦屋顶"
 date: "2026-09-08T12:00:00+08:00"
-dateModified: "2026-11-12T15:30:00+08:00"
+dateModified: "2026-11-25T12:00:00+09:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -27,6 +27,13 @@ keywords:
   - 云南大理怎么玩
 section: "中国行程规划"
 sourceUrl: "https://hiddenchinatravel.com/zh/dali-hidden-gems-off-the-beaten-path"
+relatedExperiences:
+  - dali-tie-dye-workshop
+experienceDestination: dali
+experienceThemes:
+  - bai-culture
+  - arts-and-crafts
+primaryService: experience
 faqs:
   - question: "沙溪值得从大理一日往返吗？"
     answer: "可以，但公路单程通常约 2—3 小时，取决于接客地点。时间允许，住一晚更有收获。"
@@ -35,7 +42,7 @@ faqs:
   - question: "石宝山需要买门票吗？"
     answer: "需要，景区公布的参考门票为每人 45 元，实际价格及优惠以景区当天公告为准。"
   - question: "周城免费参观吗？"
-    answer: "逛村和璞真扎染博物馆免费。跟当地手艺人的扎染体验另收费，通常 30—50 元。"
+    answer: "逛村和璞真扎染博物馆免费。亲手扎染另收费，费用取决于作坊、作品及指导内容，请向作坊确认最新价格。"
   - question: "不会中文能去这些地方吗？"
     answer: "可以。享受这些地方不依赖英语工作人员，翻译应用和滴滴账号能应付多数情况。沙溪、石宝山和诺邓英文标识最少，最好保存住宿中文名称给司机看。"
   - question: "巍山可以替代沙溪吗？"
@@ -72,7 +79,9 @@ faqs:
 
 ## 周城扎染村——大理古城出发半日游
 
-周城是云南最大的白族村落之一，也是延续数百年的扎染传统中心。逛村免费，璞真扎染博物馆也免费，能看到完整流程：靛蓝染缸、手工缝扎纹样等。想跟当地手艺人染一条自己的围巾需另付费，小型体验预算约 30—50 元；价格并不统一，到场询问。
+周城是云南最大的白族村落之一，也是延续数百年的扎染传统中心。逛村免费，璞真扎染博物馆也免费，能看到完整流程：靛蓝染缸、手工缝扎纹样等。想跟当地手艺人染一条自己的围巾需另付费，此前小型基础体验的参考价约 30—50 元，最新价格未核实，实际费用随作坊与作品而异。
+
+如果想提前安排一次亲手制作体验，可以查看我们的[大理白族扎染体验](/experiences/dali-tie-dye-workshop)，选择方巾、帆布包等作品，体验约 45—120 分钟，标准套餐每人 US$18.80 起。这与村内基础现场体验不是同一套餐；可先申请预约，付款前确认具体作坊地点和时间。
 
 ![云南大理白族靛蓝扎染布从染缸取出](/assets/blog/dali-hidden-gems-off-the-beaten-path/zhoucheng-bai-tie-dye.webp "白族扎染过程")
 

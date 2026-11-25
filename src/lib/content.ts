@@ -31,6 +31,11 @@ export type ContentFrontmatter = {
   lastUpdated?: string;
   section?: string;
   keywords?: string[];
+  /** Editorial product recommendations: explicit slugs take precedence. */
+  relatedExperiences?: string[];
+  experienceDestination?: string;
+  experienceThemes?: string[];
+  primaryService?: "experience" | "private_tours" | "private_driver";
   author?: { name?: string; picture?: string };
   ogImage?: { url?: string };
   faqs?: Faq[];

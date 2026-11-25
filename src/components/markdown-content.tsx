@@ -21,7 +21,7 @@ const components = {
   a: ({ href = "", children, ...props }: ComponentPropsWithoutRef<"a">) => {
     if (href.startsWith("#")) return <a href={href} {...props}>{children}</a>;
     if (href.startsWith("/go/")) return <a href={href} rel="sponsored nofollow">{children}</a>;
-    if (href.startsWith("/")) return <Link href={href}>{children}</Link>;
+    if (href.startsWith("/")) return <Link href={href} data-cta-location={href.startsWith("/experiences/") || href==="/yunnan-experiences" ? "article_inline_experience" : undefined}>{children}</Link>;
     return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
   },
   img: ({ src = "", alt = "" }: ComponentPropsWithoutRef<"img">) => (

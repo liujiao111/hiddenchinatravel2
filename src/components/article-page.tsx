@@ -3,6 +3,8 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { ContentItem } from "@/lib/content";
 import { getRelatedArticles, isTransportArticle } from "@/lib/content";
+import { experiences } from "@/lib/experiences";
+import { recommendExperiences } from "@/lib/experience-recommendations";
 import type { LocaleAlternate } from "@/lib/i18n-seo";
 import type { AppLocale } from "@/lib/i18n-seo";
 import { ArticleDiscoveryFlow } from "@/components/article-discovery-flow";
@@ -33,6 +35,8 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
   const whatsapp = buildWhatsAppUrl(undefined, lang === "zh" ? "zh" : "en");
   const related = getRelatedArticles(item, 6, lang);
   const isTransport = isTransportArticle(item);
+  const relatedExperiences = recommendExperiences(item, experiences, isTransport);
+  const asideExperience = !isTransport && frontmatter.primaryService !== "private_tours" && frontmatter.primaryService !== "private_driver" ? relatedExperiences[0] : undefined;
   const localizedArticlePath = `${lang === "zh" ? "/zh" : ""}/${item.slug}`;
   const articleJsonLd = {
     "@type": "Article",
@@ -81,11 +85,11 @@ export async function ArticlePage({ item, alternate, lang }: { item: ContentItem
       {frontmatter.excerpt && <div className="article-intro shell"><p>{frontmatter.excerpt}</p></div>}
       <div className="article-layout shell">
         <div className="article-body"><MarkdownContent>{item.body}</MarkdownContent></div>
-        <ArticleGuideAside section={frontmatter.section} isTransport={isTransport} lang={lang} />
+        <ArticleGuideAside section={frontmatter.section} isTransport={isTransport} lang={lang} experience={asideExperience} />
       </div>
     </article>
     {frontmatter.faqs?.length ? <section className="article-faq"><div className="narrow"><p className="article-section">{t("faqKicker")}</p><h2>{t("faqHeading")}</h2>{frontmatter.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<span>+</span></summary><MarkdownContent compact>{faq.answer}</MarkdownContent></details>)}</div></section> : null}
-    <ArticleDiscoveryFlow related={related} isTransport={isTransport} sourceTitle={frontmatter.title} sourcePath={`/${item.slug}`} lang={lang} />
+    <ArticleDiscoveryFlow related={related} relatedExperiences={relatedExperiences} isTransport={isTransport} sourceTitle={frontmatter.title} sourcePath={`/${item.slug}`} lang={lang} />
     <MobileCtaBar
       whatsappHref={whatsapp}
       formHref="#ask-joy"

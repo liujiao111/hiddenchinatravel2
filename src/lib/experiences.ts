@@ -11,7 +11,7 @@ export type ExperiencePackage = {
   media: ExperienceMedia;
 };
 export type ExperienceProduct = {
-  slug: string; title: Localized; shortTitle: Localized; city: Localized; category: Localized;
+  slug: string; status: "draft" | "published"; destination: string; themes: string[]; relatedArticles?: string[]; relatedServices?: string[]; title: Localized; shortTitle: Localized; city: Localized; category: Localized;
   description: Localized; closing: ExperienceText & { media?: ExperienceMedia }; priceNote: Localized; seo: { title: Localized; description: Localized };
   hero: ExperienceMedia; duration: Localized; highlights: ExperienceText[];
   packages: ExperiencePackage[]; process?: (ExperienceText & { media: ExperienceMedia })[];
@@ -24,8 +24,10 @@ const t = bilingual;
 const media = (en: string, zh: string): ExperienceMedia => ({ alt: t(en, zh) });
 const tieDyePhoto = (file: string, en: string, zh: string): ExperienceMedia => ({ src: "/assets/experiences/dali-tie-dye/dali-tie-dye-" + file + ".webp", alt: t(en, zh) });
 const piece = (id: string, en: string, zh: string, photo?: ExperienceMedia, priceCents?: number) => ({ id, name: t(en, zh), media: photo ?? media(en, zh), priceCents });
-export const experiences: ExperienceProduct[] = [{
-  slug: "dali-tie-dye-workshop",
+const experienceCatalog: ExperienceProduct[] = [{
+  slug: "dali-tie-dye-workshop", status: "published", destination: "dali", themes: ["arts-and-crafts", "bai-culture"],
+  relatedArticles: ["dali-hidden-gems-off-the-beaten-path", "dali-travel-guide", "how-many-days-in-yunnan"],
+  relatedServices: ["yunnan-private-driver"],
   title: t("Traditional Bai Tie-Dye Workshop in Dali", "大理白族扎染体验"),
   shortTitle: t("Bai Tie-Dye Workshop", "白族扎染体验"),
   city: t("Dali", "大理"), category: t("Arts & Crafts", "传统手工艺"),
@@ -68,6 +70,7 @@ export const experiences: ExperienceProduct[] = [{
   addons:[{id:"pouch",title:t("Pocket tissue pouch","纸巾收纳袋"),sourcePrice:"US$9.80",priceCents:980,minutes:30,media:media("Tissue pouch","纸巾收纳袋")},{id:"hair-ties",title:t("Hair ties ×3","发圈×3"),sourcePrice:"US$12.80",priceCents:1280,minutes:30,media:media("Hair ties","发圈")}],
   booking:{mode:"request",pricingUnit:"person",timeSlots:[]},
 }];
+export const experiences = experienceCatalog.filter(p => p.status === "published");
 export const getExperience = (slug: string) => experiences.find(p => p.slug === slug);
 export const experiencePath = (slug: string) => "/experiences/" + slug;
 export const displayDraftPrice = (pkg: ExperiencePackage, locale: AppLocale) => {
@@ -97,4 +100,13 @@ export function experienceRequestTotal(product: ExperienceProduct, packageId:str
     total+=addon.priceCents*quantity;
   }
   return total;
+}
+
+/** Localized starting price for public recommendations, derived from confirmed catalog data. */
+export function experienceStartingPrice(p: ExperienceProduct, lang: AppLocale): string {
+  const prices=p.packages.flatMap(pkg=>pkg.price?.confirmed && pkg.price.currency==="USD" && !pkg.price.currencyPending ? [pkg.price.min] : []);
+  if(!prices.length) return lang==="zh"?"单独询价":"Request a quote";
+  const price="US$"+Math.min(...prices).toFixed(2);
+  const unit={person:lang==="zh"?"人":"person",group:lang==="zh"?"团":"group",piece:lang==="zh"?"件":"piece"}[p.booking.pricingUnit];
+  return lang==="zh"?price+" 起 / "+unit:"From "+price+" / "+unit;
 }

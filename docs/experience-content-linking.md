@@ -1,0 +1,8 @@
+# Editorial experience linking — P0/P1
+- Source of truth: published products in src/lib/experiences.ts (status, destination, themes, relatedArticles, relatedServices).
+- Editorial article metadata: relatedExperiences (ordered slugs), experienceDestination, experienceThemes, primaryService. Explicit picks first, then product relatedArticles (canonical translation key), then exact destination AND matching theme. Max 3 distinct published products. No automatic matching on transport guides; explicit picks may add a lower recommendation while driver remains primary. No matching by raw body text.
+- P0: Dali guide and hidden gems en/zh; How Many Days English only. Historic local price estimates explicitly unverified and distinguished from own offer. Do not promise Zhoucheng location.
+- Sidebar: first eligible product if primaryService is not private tours/driver and article is not transport. Existing sidebar geometry unchanged. Mobile-friendly recommendation block below article uses CatalogProductCard; shared on Yunnan destination hub.
+- GA4: existing travel_service_click, product_id and page_path; article_inline_experience, article_aside_experience, article_related_experience, yunnan_hub_experience. No UTM, no conversion changes. Preview suppressed as before.
+- New products: add catalog entry with draft status until ready, metadata, real image and confirmed price; choose matching articles, add contextual editorial links in existing locales, verify routes and tracking. Static article body prices must be editorially updated if price changes; product cards always read the catalog. No new SEO category pages until sufficient products.
+- P2 additional guides not modified. No changes to booking or payment.

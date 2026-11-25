@@ -5,7 +5,7 @@ excerpt: "Skip the crowds in Dali Old Town. A fact-checked 2026 guide to Shaxi, 
 coverImage: "/assets/blog/dali-hidden-gems-off-the-beaten-path/cover-shaxi.webp"
 coverAlt: "River and tiled roofs in Shaxi Ancient Town"
 date: "2026-09-08T12:00:00+08:00"
-dateModified: "2026-10-31T11:00:00+08:00"
+dateModified: "2026-11-25T12:00:00+09:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -24,6 +24,13 @@ keywords:
   - dali yunnan things to do
 section: "China Itinerary Planning"
 sourceUrl: "https://hiddenchinatravel.com/dali-hidden-gems-off-the-beaten-path"
+relatedExperiences:
+  - dali-tie-dye-workshop
+experienceDestination: dali
+experienceThemes:
+  - bai-culture
+  - arts-and-crafts
+primaryService: experience
 faqs:
   - question: "Is Shaxi worth a day trip from Dali?"
     answer: "Possible, but road transfers commonly take around 2–3 hours each way depending on the pickup point. If your schedule allows, staying overnight is more rewarding."
@@ -32,7 +39,7 @@ faqs:
   - question: "Do you need to buy a ticket for Shibaoshan?"
     answer: "Yes — entrance was ¥30 per person as of 2026. Confirm locally, since rural scenic-area pricing can change with little notice."
   - question: "Is Zhoucheng free to visit?"
-    answer: "Walking the village and the Puzhen Tie-Dye Museum are both free. A hands-on dyeing session with a local artisan costs extra, usually ¥30–50."
+    answer: "Walking the village and the Puzhen Tie-Dye Museum are both free. Hands-on sessions cost extra; prices vary by workshop, piece and instruction. Ask the workshop for its current rate."
   - question: "Can I visit these places without speaking Chinese?"
     answer: "Yes. None of them require English-speaking staff to enjoy — a translation app and a Didi account cover most situations. Shaxi, Shibaoshan and Nuodeng have the least English signage of the group, so it helps to have your accommodation name saved in Chinese characters to show a driver."
   - question: "Is Weishan worth visiting instead of Shaxi?"
@@ -69,7 +76,9 @@ Weishan is about 63 km south of Dali Old Town. From Xiaguan (Dali's modern downt
 
 ## Zhoucheng Tie-Dye Village — A Half-Day Trip From Dali Old Town
 
-Zhoucheng (周城) is one of the largest Bai villages in Yunnan, and it's also the center of a tie-dye tradition (*zharan*, 扎染) that goes back centuries. Walking the village is free, and so is the Puzhen Tie-Dye Museum, which walks you through the whole process — indigo vats, hand-stitched patterns, the works. If you want to try dyeing your own scarf with a local artisan, that costs extra (budget roughly ¥30–50 for a small hands-on session; ask on arrival, prices aren't standardized).
+Zhoucheng (周城) is one of the largest Bai villages in Yunnan, and it's also the center of a tie-dye tradition (*zharan*, 扎染) that goes back centuries. Walking the village is free, and so is the Puzhen Tie-Dye Museum, which walks you through the whole process — indigo vats, hand-stitched patterns, the works. If you want to try dyeing your own scarf with a local artisan, that costs extra (earlier estimates for small basic sessions were around ¥30–50; current prices are not verified and vary by workshop and textile).
+
+If you would like to arrange a hands-on class in advance, our [Dali tie-dye workshop](/experiences/dali-tie-dye-workshop) offers a choice of textiles, local instruction and experiences lasting 45–120 minutes. The confirmed standard packages start at US$18.80 per person, separate from the village’s basic walk-in sessions. Request your preferred time and confirm the workshop location before payment.
 
 ![Bai indigo tie-dye cloth being pulled from a dye vat in Dali, Yunnan](/assets/blog/dali-hidden-gems-off-the-beaten-path/zhoucheng-bai-tie-dye.webp "Bai tie-dye process")
 

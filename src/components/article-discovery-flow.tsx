@@ -8,6 +8,8 @@ import { GuideCard } from "@/components/guide-card";
 import { JourneyCard } from "@/components/journey-card";
 import { JourneyQuoteBand } from "@/components/journey-quote-band";
 import { siteConfig } from "@/lib/site-config";
+import { RelatedExperienceProducts } from "@/components/related-experience-products";
+import type { ExperienceProduct } from "@/lib/experiences";
 
 function wordCount(body: string) {
   return body.trim().split(/\s+/).filter(Boolean).length;
@@ -15,12 +17,14 @@ function wordCount(body: string) {
 
 export async function ArticleDiscoveryFlow({
   related,
+  relatedExperiences = [],
   isTransport,
   sourceTitle,
   sourcePath,
   lang,
 }: {
   related: ContentItem[];
+  relatedExperiences?: ExperienceProduct[];
   isTransport: boolean;
   sourceTitle: string;
   sourcePath: string;
@@ -40,6 +44,7 @@ export async function ArticleDiscoveryFlow({
   };
 
   return <>
+    <RelatedExperienceProducts products={relatedExperiences} lang={lang} location="article_related_experience" />
     <section className="article-discovery article-yunnan">
       <div className="shell article-yunnan-layout">
         <div className="article-yunnan-copy">

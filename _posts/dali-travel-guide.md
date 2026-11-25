@@ -5,7 +5,7 @@ excerpt: "A practical Dali travel guide for independent visitors: where to stay,
 coverImage: "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp"
 coverAlt: "Cangshan mountains and Erhai Lake near Dali"
 date: "2026-09-02T08:00:00+08:00"
-dateModified: "2026-09-13T10:00:00+08:00"
+dateModified: "2026-11-25T12:00:00+09:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -20,6 +20,13 @@ keywords:
   - dali itinerary
 section: "China Itinerary Planning"
 sourceUrl: "https://hiddenchinatravel.com/dali-travel-guide"
+relatedExperiences:
+  - dali-tie-dye-workshop
+experienceDestination: dali
+experienceThemes:
+  - bai-culture
+  - arts-and-crafts
+primaryService: experience
 faqs:
   - question: "Is Dali worth visiting?"
     answer: "Yes, if you want a slower Yunnan stop built around Erhai, Cangshan, village life, and a walkable old town. It is less suitable for a rushed one-night checklist."
@@ -79,6 +86,8 @@ Dali can be busy and commercial, especially around public holidays and the main 
 **Two nights:** enough for Dali Ancient Town and one focused Erhai day. This is the minimum I would suggest if your Yunnan route is tight.
 
 **Three nights:** the best first-visit pace. Spend one day in and around the old town, one near Erhai, and keep the third flexible for Cangshan, Xizhou, or rest.
+
+For a hands-on introduction to Bai culture, leave 45–120 minutes for a [Dali tie-dye workshop](/experiences/dali-tie-dye-workshop). Make your own scarf, bag or textile and request a time that fits your day; standard packages start at US$18.80 per person.
 
 **Four nights or more:** worthwhile if you like cycling, photography, village stays, or a slower route with no pressure to cover the entire lake.
 

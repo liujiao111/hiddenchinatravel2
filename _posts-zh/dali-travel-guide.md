@@ -8,7 +8,7 @@ metaDescription: "第一次大理自由行怎么安排？了解古城与洱海�
 coverImage: "/assets/blog/dali-travel-guide/cover-cangshan-erhai.webp"
 coverAlt: "大理的苍山与洱海"
 date: "2026-09-02T08:00:00+08:00"
-dateModified: "2026-09-13T10:00:00+08:00"
+dateModified: "2026-11-25T12:00:00+09:00"
 author:
   name: "Joy Liu"
   picture: "/brand/founder/avatar-joy.webp"
@@ -23,6 +23,13 @@ keywords:
   - 大理自由行行程
 section: "中国行程规划"
 sourceUrl: "https://hiddenchinatravel.com/dali-travel-guide"
+relatedExperiences:
+  - dali-tie-dye-workshop
+experienceDestination: dali
+experienceThemes:
+  - bai-culture
+  - arts-and-crafts
+primaryService: experience
 faqs:
   - question: "大理值得去吗？"
     answer: "想围绕洱海、苍山、村落生活和适合步行的古城，在云南放慢几天，就值得。只想一晚匆匆打卡，大理并不合适。"
@@ -82,6 +89,8 @@ faqs:
 **两晚：** 够安排大理古城和方向明确的一天洱海。云南整体行程紧张时，这是我建议的底线。
 
 **三晚：** 第一次去最舒服。一天在古城及周边，一天靠洱海，第三天灵活安排苍山、喜洲或休息。
+
+如果想亲身感受白族文化，可以预留 45—120 分钟参加[大理白族扎染体验](/experiences/dali-tie-dye-workshop)，亲手制作方巾、帆布包等作品，标准套餐每人 US$18.80 起，可按自己的行程申请预约。
 
 **四晚以上：** 喜欢骑行、摄影、村落住宿，或者不想有环完整个湖的压力，就值得。
 

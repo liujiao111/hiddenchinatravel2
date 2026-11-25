@@ -16,6 +16,8 @@ import { getPublishedYunnanCountryGuides } from "@/lib/yunnan-country-guides.ser
 import { getYunnanGuideContent } from "@/lib/yunnan-guide-content";
 import { getContentBySlug } from "@/lib/content";
 import { EditorialSeasonGuide } from "@/components/editorial-season-guide";
+import { experiences } from "@/lib/experiences";
+import { RelatedExperienceProducts } from "@/components/related-experience-products";
 
 const seasonImages = [
   { image: "/assets/destinations/yunnan/dali-erhai-cover.webp", zh: ["把日子，留给洱海与村落。", "大理 · 洱海", "洱海岸边的座椅与远处苍山"], en: ["Slow days by the lake.", "Erhai Lake · Dali", "Lakeside seating overlooking Erhai and the Cangshan mountains"] },
@@ -80,6 +82,8 @@ export function YunnanGuidePage({ journey }: { journey: Journey }) {
     <section className="yunnan-intro" id="plan"><div className="narrow"><span>{copy.introKicker}</span><h2>{copy.introTitle}</h2><p><Link href="/kunming-travel-guide">{locale === "zh" ? "昆明" : "Kunming"}</Link>{copy.introMiddle}<Link href="/lijiang-travel-guide">{locale === "zh" ? "丽江" : "Lijiang"}</Link>{copy.introEnd}</p><p>{copy.introSecond}<Link href="/shangri-la-travel-guide">{locale === "zh" ? "香格里拉" : "Shangri-La"}</Link>{copy.introSecondEnd}</p></div></section>
 
     <section className="yunnan-places section section-sand" id="places"><div className="shell"><div className="yunnan-section-heading"><span>{copy.placesKicker}</span><h2>{copy.placesTitle}</h2><p>{copy.placesIntro}</p></div><div className="yunnan-route-stops">{routeStops.map(([number, name, stay, text]) => <article key={number}><span>{number}</span><div><small>{stay}</small><h3>{name}</h3><p>{text}</p></div></article>)}</div><div className="yunnan-place-grid">{placeCards.map((place) => <Link href={place.href} key={place.name}><Image src={place.image} alt={place.alt} fill unoptimized sizes="(max-width: 700px) 100vw, 33vw" /><i aria-hidden="true" /><div><p>{place.note}</p><h3>{place.name}</h3><span>{copy.explore}</span></div></Link>)}</div></div></section>
+
+    <RelatedExperienceProducts products={experiences} lang={locale} location="yunnan_hub_experience" id="local-experiences" />
 
     <section className="yunnan-featured section" id="route"><div className="shell yunnan-featured-layout"><div><span>{copy.routeKicker}</span><h2>{copy.routeTitle}</h2><p>{copy.routeP1}</p><p>{copy.routeP2}</p><Link href={journeyHref}>{copy.routeLink}</Link><CustomJourneyLink prompt={copy.customPrompt} location="yunnan_hub_route" /></div><JourneyCard journey={{title:copy.journeyTitle,subtitle:copy.journeySubtitle,href:journeyHref,image:frontmatter.coverImage,imageAlt:frontmatter.coverAlt || frontmatter.title,duration:frontmatter.duration,fromPrice:price,features:copy.journeyFeatures}} /></div></section>
 

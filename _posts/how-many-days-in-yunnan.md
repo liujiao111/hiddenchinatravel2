@@ -7,7 +7,7 @@ coverImage: /assets/blog/how-many-days-in-yunnan/cover-erhai-lake.webp
 coverAlt: Evening clouds reflected in Erhai Lake near Dali, Yunnan
 status: published
 date: '2026-11-02T05:00:00Z'
-dateModified: "2026-11-02T07:12:45.212671+00:00"
+dateModified: "2026-11-25T12:00:00+09:00"
 author:
   name: Joy Liu
   picture: /brand/founder/avatar-joy.webp
@@ -23,6 +23,13 @@ keywords:
 - yunnan itinerary 10 days
 - yunnan itinerary 14 days
 section: China Itinerary Planning
+relatedExperiences:
+  - dali-tie-dye-workshop
+experienceDestination: dali
+experienceThemes:
+  - bai-culture
+  - arts-and-crafts
+primaryService: private_tours
 faqs:
 - question: Is five days enough for Yunnan?
   answer: Five days is enough for one focused area, such as Dali and Lijiang or Lijiang and Shangri-La. It is not enough to experience the full classic route comfortably.
@@ -158,7 +165,7 @@ Trying to add both cities as well as distant corners of Yunnan would spend much 
 
 Two nights in each is a reasonable starting point, but a full mountain day takes up much of a short Lijiang stay. Add a third night if you want time for the surrounding towns as well: Dayan is the main old town for canal-side lanes, shops and evening walks; Shuhe offers another base for courtyard stays and shorter strolls; Baisha is worth choosing when you are interested in its historic murals and a smaller town beneath the mountain. You do not need to visit all three in one afternoon. Pick the one that adds something different to your mountain day, using our [Lijiang Travel Guide](/lijiang-travel-guide) to compare the options.
 
-In Dali, an extra night lets you separate a lakeside day from a village-and-craft day. Spend one morning walking or cycling along a section of Erhai’s western shore, leaving time for Dali Old Town later. On another day, combine Xizhou’s Bai courtyards with Zhoucheng, where tie-dye is still an important local craft. If you want to make a piece yourself, reserve a workshop and confirm its duration; watching the process and completing your own cloth need different amounts of time. The [Puzhen Tie-Dye Museum in Zhoucheng](https://www.yndali.gov.cn/dlsrmzf/c106716/pc/content/1983786363227574272/content_1983786363227574272.html) has both exhibitions and hands-on activities.
+In Dali, an extra night lets you separate a lakeside day from a village-and-craft day. Spend one morning walking or cycling along a section of Erhai’s western shore, leaving time for Dali Old Town later. On another day, combine Xizhou’s Bai courtyards with Zhoucheng, where tie-dye is still an important local craft. If you want to make a piece yourself, request a [Dali tie-dye workshop](/experiences/dali-tie-dye-workshop) and confirm its duration and location before payment; watching the process and completing your own cloth need different amounts of time. The [Puzhen Tie-Dye Museum in Zhoucheng](https://www.yndali.gov.cn/dlsrmzf/c106716/pc/content/1983786363227574272/content_1983786363227574272.html) has both exhibitions and hands-on activities.
 
 This is more useful than adding another circuit of the lake simply to fill the day. Our [Dali Travel Guide](/dali-travel-guide) explains how the old town, lake and village visits fit together.
 
