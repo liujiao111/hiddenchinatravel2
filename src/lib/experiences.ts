@@ -32,7 +32,7 @@ export const experiences: ExperienceProduct[] = [{
   description: t("Make your own Bai tie-dye in Dali. Learn traditional indigo dyeing with local instruction, choose a textile to personalise, and take home a piece you made yourself.", "走进大理白族扎染工艺，在当地老师指导下亲手设计纹样、捆扎和染色，从方巾到帆布包，带走自己制作的云南纪念品。"),
   closing: { title:t("Make a Memory of Dali with Your Own Hands","亲手制作属于你的大理旅行纪念品"),text:t("Choose a textile and explore the experience that fits your time in Dali.","选一件喜欢的作品，安排适合你旅行节奏的扎染体验。"),media:tieDyePhoto("tea-seating","Sunlit seating area with tie-dye tablecloths","临窗扎染桌布与茶席") },
   priceNote:t("Prices are in USD per participant and include one main piece. Artisan T-shirts cost US$28.80; other Artisan pieces cost US$25.80. Add-ons require a standard package. Master+ is quoted separately.","所有标价为美元，每人含一件主作品。Artisan T恤 US$28.80，其余作品 US$25.80；加购须搭配标准套餐，Master+ 单独询价。"),
-  seo: { title: t("Dali Tie-Dye Workshop | Traditional Bai Craft Experience", "大理白族扎染体验｜非遗手工制作与预约"), description: t("Explore a 45–120 minute Bai tie-dye workshop in Dali, Yunnan. Compare packages, make your own scarf or bag and take home your handmade indigo textile.", "大理白族非遗扎染体验，约45–120分钟。比较不同套餐，亲手制作方巾、帆布包等作品，体验传统靛蓝染色。") },
+  seo: { title: t("Dali Tie-Dye Workshop & Traditional Bai Craft Experience", "大理白族扎染体验｜非遗手工制作与预约"), description: t("Discover traditional Bai tie-dye in Dali, Yunnan. Create your own unique scarf, bag or textile in a hands-on workshop. From US$18.80 per person.", "在云南大理体验白族非遗扎染，亲手制作独一无二的方巾、帆布包或织物，把云南旅行记忆带回家。每人 US$18.80 起，欢迎预约。") },
   hero: tieDyePhoto("indigo-fabric", "Woman lifting a blue-and-white tie-dyed textile outdoors", "户外展示蓝白扎染布料的女士"),
   duration: t("Approx. 45–120 min", "约45–120分钟"),
   highlights: [
