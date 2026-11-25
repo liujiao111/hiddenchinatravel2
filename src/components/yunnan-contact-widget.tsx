@@ -12,7 +12,6 @@ import styles from "./yunnan-contact-widget.module.css";
 
 type Channel = "whatsapp" | "wechat";
 const WECHAT_ID = "ll917961898";
-const NOTICE_KEY = "hct_whatsapp_nudge_seen_v1";
 
 function record(event: string, channel?: Channel, ref?: string) {
   if (analyticsDenied()) return;
@@ -38,7 +37,6 @@ export function YunnanContactWidget() {
   const [qrRef, setQrRef] = useState("");
   const [suppressed, setSuppressed] = useState(false);
   const [backToTop, setBackToTop] = useState(false);
-  const [nudge, setNudge] = useState(false);
   const [copyStatus, setCopyStatus] = useState("");
   const rootRef = useRef<HTMLDivElement>(null);
   const actionRef = useRef<HTMLDivElement>(null);
@@ -52,8 +50,7 @@ export function YunnanContactWidget() {
     viewedChannels.current.clear();
     setQrRef(generateLeadId());
     lastFocus.current = document.activeElement as HTMLElement;
-    setChannel("whatsapp"); setOpen(true); setNudge(false);
-    try { sessionStorage.setItem(NOTICE_KEY, "1"); } catch { /* optional storage */ }
+    setChannel("whatsapp"); setOpen(true);
     record("contact_panel_open");
   }
 
@@ -124,25 +121,6 @@ export function YunnanContactWidget() {
     };
   }, [open]);
 
-  useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 701px) and (hover: hover)");
-    let ready = false, done = false;
-    let dismiss: ReturnType<typeof setTimeout> | undefined;
-    const check = () => {
-      if (!ready || done || !desktop.matches || document.hidden || open || suppressed) return;
-      try { if (sessionStorage.getItem(NOTICE_KEY)) return; } catch { /* optional storage */ }
-      if (document.querySelector("dialog[open], [role='dialog'][aria-modal='true']")) return;
-      if (Array.from(document.querySelectorAll("form.contact-form, form.preview-enquiry, form.custom-journey-form")).some(el => { const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; })) return;
-      const total = document.documentElement.scrollHeight - innerHeight;
-      if (total <= 0 || scrollY / total < .4) return;
-      done = true; try { sessionStorage.setItem(NOTICE_KEY, "1"); } catch { /* optional storage */ }
-      setNudge(true); dismiss = setTimeout(() => setNudge(false), 5000);
-    };
-    const timer = setTimeout(() => { ready = true; check(); }, 20000);
-    window.addEventListener("scroll", check, { passive: true });
-    return () => { clearTimeout(timer); if (dismiss) clearTimeout(dismiss); window.removeEventListener("scroll", check); };
-  }, [open, suppressed]);
-
   useEffect(() => () => { if (copyTimer.current) clearTimeout(copyTimer.current); }, []);
   async function copyWechat() {
     try { await navigator.clipboard.writeText(WECHAT_ID); setCopyStatus(zh ? "已复制微信号" : "WeChat ID copied"); const ref = generateLeadId(); record("wechat_id_copy", "wechat", ref); savePassiveRecord(createPassiveRecord(ref, "wechat_id_copy", "wechat")); }
@@ -201,11 +179,9 @@ export function YunnanContactWidget() {
       </div>)}
       <footer className={styles.footer}><p>{zh ? "免费初步咨询，无需立即预订。" : "A free initial conversation, with no obligation to book."}</p><span>{zh ? "大理 · 沙溪 · 丽江 · 香格里拉 · 泸沽湖" : "Dali · Shaxi · Lijiang · Shangri-La · Lugu Lake"}</span></footer>
     </section>}
-    {!open && nudge && !suppressed && <div className={styles.nudge}><button type="button" aria-label={zh ? "关闭提示" : "Dismiss tip"} onClick={() => setNudge(false)}>×</button>{zh ? <>正在计划云南旅行？<br/>联系 Joy，获取行程建议与报价。</> : <>Planning a trip to Yunnan?<br/>Ask Joy about your itinerary and quote.</>}</div>}
     <div ref={actionRef} className={styles.action} style={!open && suppressed ? { visibility: "hidden", pointerEvents: "none" } : undefined}>
-      {!open && <span className={styles.badge} aria-hidden="true">{zh ? "联系 Joy" : "Contact Joy"}<small>{zh ? "WhatsApp · 微信" : "WhatsApp · WeChat"}</small></span>}
-      <button type="button" className={styles.launch} aria-label={open ? (zh ? "收起联系方式" : "Close contact options") : (zh ? "联系 Joy：WhatsApp 或微信" : "Contact Joy: WhatsApp or WeChat")} aria-expanded={open} onClick={() => open ? close() : show()}><ChatIcon /></button>
+      <button type="button" className={styles.launch} title={open ? undefined : zh ? "联系 Joy" : "Contact Joy"} aria-label={open ? (zh ? "收起联系方式" : "Close contact options") : (zh ? "联系 Joy：WhatsApp 或微信" : "Contact Joy: WhatsApp or WeChat")} aria-expanded={open} onClick={() => open ? close() : show()}><ChatIcon /></button>
     </div>
-    {backToTop && !open && <button className="wa-back-to-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" })} aria-label={zh ? "返回顶部" : "Back to top"}><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button>}
+    {backToTop && !open && <button className={`wa-back-to-top ${styles.backToTop}`} type="button" onClick={() => window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" })} aria-label={zh ? "返回顶部" : "Back to top"}><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button>}
   </div>;
 }
