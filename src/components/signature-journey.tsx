@@ -154,6 +154,7 @@ const gallery: Photo[] = [
 const commonsTerraces = "https://upload.wikimedia.org/wikipedia/commons/f/fc/Yuanyang_Rice_Terraces_%2848639450842%29.jpg";
 const commonsLuoping = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Canola_field_in_Luoping.JPG/1024px-Canola_field_in_Luoping.JPG";
 const fallbackPhotos: Record<string, {src:string; en:string; zh:string}[]> = {
+ [photos.hero]: [{src:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/1_yuanyang_rice_terrace_duoyishu_sunrise_2012.jpg/1280px-1_yuanyang_rice_terrace_duoyishu_sunrise_2012.jpg",en:"Duoyishu rice terraces at sunrise",zh:"多依树梯田日出"},{src:photos.terraces,en:"Yuanyang rice terraces",zh:"元阳哈尼梯田"},{src:photos.terraceDawn,en:"Morning light at Duoyishu",zh:"多依树晨光"},{src:commonsTerraces,en:"Duoyishu rice terraces",zh:"多依树梯田"}],
  [photos.bridge]: [{src:photos.bridgeDetail,en:"Shuanglong Bridge",zh:"建水双龙桥"},{src:photos.courtyard,en:"Historic Jianshui courtyard",zh:"建水传统宅院"}],
  [photos.bridgeDetail]: [{src:photos.bridge,en:"Shuanglong Bridge",zh:"建水双龙桥"}],
  [photos.terraces]: [{src:commonsTerraces,en:"Duoyishu rice terraces",zh:"多依树梯田"},{src:photos.hero,en:"Duoyishu rice terraces at sunrise",zh:"多依树梯田日出"}],
@@ -175,13 +176,14 @@ const fallbackPhotos: Record<string, {src:string; en:string; zh:string}[]> = {
  [photos.harvest]: [{src:photos.goldenRice,en:"Golden rice terraces",zh:"金色稻田"}],
  [photos.goldenRice]: [{src:photos.harvest,en:"Rice harvest in Yuanyang",zh:"元阳梯田收割"}],
 };
-type SignaturePhotoProps = {src:string;alt:string;zh:boolean;sizes?:string;contain?:boolean};
-function SignaturePhotoAttempt({src,alt,zh,sizes="(max-width:700px) 100vw, 50vw",contain=false}:SignaturePhotoProps) {
+type SignaturePhotoProps = {src:string;alt:string;zh:boolean;sizes?:string;contain?:boolean;hero?:boolean};
+function SignaturePhotoAttempt({src,alt,zh,sizes="(max-width:700px) 100vw, 50vw",contain=false,hero=false}:SignaturePhotoProps) {
  const [attempt,setAttempt]=useState(0);
  const candidates=[{src,en:alt,zh:alt},...(fallbackPhotos[src]??[])];
  const current=candidates[attempt];
+ if(!current && hero) return <span aria-hidden="true" className="absolute inset-0 bg-[var(--color-accent)]"/>;
  if(!current) return <span className="absolute inset-0 flex items-center justify-center bg-[var(--color-surface-soft)] px-3 text-center text-xs text-[var(--color-muted)]" role="img" aria-label={alt}>{zh?"照片暂不可用":"Photo temporarily unavailable"}</span>;
- return <Image key={current.src} src={current.src} alt={zh?current.zh:current.en} fill unoptimized sizes={sizes} referrerPolicy="no-referrer" className={contain?"object-contain":"object-cover"} onError={()=>setAttempt(i=>i+1)}/>;
+ return <Image key={current.src} src={current.src} alt={zh?current.zh:current.en} fill unoptimized sizes={sizes} loading={hero?"eager":undefined} fetchPriority={hero?"high":undefined} referrerPolicy="no-referrer" className={contain?"object-contain":"object-cover"} onError={()=>setAttempt(i=>i+1)}/>;
 }
 export function SignaturePhoto(props:SignaturePhotoProps) {
  return <SignaturePhotoAttempt key={props.src} {...props}/>;
