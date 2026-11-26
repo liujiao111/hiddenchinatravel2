@@ -174,9 +174,46 @@ export function SignatureStories({zh}:{zh:boolean}) {
  ];
  return <section className="section section-sand" id="destinations"><div className="shell"><div className="journey-editorial-heading"><span>{zh?"三处目的地":"THREE PLACES, MORE TIME"}</span><h2>{zh?"深入三种不同的文化景观":"Three landscapes, three ways of life"}</h2></div><div className="grid gap-10">{stories.map((s,i)=>{const copy=zh?s.zh:s.en;return <article key={s.key} className="signature-story"><div className={"signature-story-photo "+(i%2?"signature-story-reverse":"")}><PhotoImage photo={getPhoto(s.key)} zh={zh}/></div><div className="signature-story-copy"><span className="text-xs tracking-widest text-[var(--color-muted)]">{copy[0]}</span><h3 className="my-4 text-3xl">{copy[1]}</h3><p>{copy[2]}</p></div></article>;})}</div></div></section>;
 }
+type RouteStop = { photo: Photo; days: string; name: string; description: string };
+
+function JourneyRouteOverview({zh, title, intro, stops, note}: {zh:boolean; title:string; intro:string; stops:RouteStop[]; note:string}) {
+ return <section className="section" id="route" aria-labelledby="signature-route-heading"><div className="shell">
+  <header className="mb-8 max-w-3xl">
+   <p className="mb-3 text-xs font-semibold tracking-widest text-[var(--color-muted)]">{zh?"行程概览":"YOUR JOURNEY AT A GLANCE"}</p>
+   <h2 id="signature-route-heading" className="mb-3 text-3xl md:text-4xl">{title}</h2>
+   <p className="m-0 text-[var(--color-muted)]">{intro}</p>
+  </header>
+  <div className="mb-5 flex items-center gap-3 border-b border-[var(--color-border)] pb-4 text-sm max-[700px]:flex-wrap">
+   <span className="shrink-0">{zh?"昆明接客":"Start in Kunming"}</span>
+   <span aria-hidden="true" className="h-px flex-1 bg-[var(--color-border)]"/>
+   <span className="text-center text-xs text-[var(--color-muted)]">{zh?"全程私人专车":"Private transport throughout"}</span>
+   <span aria-hidden="true" className="h-px flex-1 bg-[var(--color-border)]"/>
+   <span className="shrink-0">{zh?"昆明机场送机":"Finish at Kunming Airport"}</span>
+  </div>
+  <ol className="m-0 grid list-none grid-cols-3 gap-6 p-0 max-[700px]:grid-cols-1 max-[700px]:gap-0">
+   {stops.map(stop=><li key={stop.name} className="min-w-0 max-[700px]:grid max-[700px]:grid-cols-[minmax(105px,36%)_minmax(0,1fr)] max-[700px]:items-start max-[700px]:gap-4 max-[700px]:border-b max-[700px]:border-[var(--color-border)] max-[700px]:py-5">
+    <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-surface-soft)]"><PhotoImage photo={stop.photo} zh={zh} sizes="(max-width:700px) 36vw, (max-width:1200px) 33vw, 380px"/></div>
+    <div className="pt-4 max-[700px]:pt-0">
+     <p className="m-0 text-xs font-medium tracking-wide text-[var(--color-muted)]">{stop.days}</p>
+     <h3 className="mb-2 mt-2 text-2xl max-[700px]:text-xl">{stop.name}</h3>
+     <p className="m-0 text-sm leading-relaxed text-[var(--color-muted)]">{stop.description}</p>
+    </div>
+   </li>)}
+  </ol>
+  <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-border)] pt-5 max-[700px]:mt-2 max-[700px]:border-t-0">
+   <p className="m-0 text-sm text-[var(--color-muted)]">{note}</p>
+   <HashLink className="shrink-0 text-sm font-medium text-[var(--color-action-text)] underline underline-offset-4" href="#itinerary">{zh?"探索完整行程":"Explore the full itinerary"} <span aria-hidden="true">↓</span></HashLink>
+  </div>
+ </div></section>;
+}
+
 export function SignatureRoute({zh}:{zh:boolean}) {
- const stops=zh?[["昆明","接客"],["建水","3晚"],["元阳","4晚"],["罗平","3晚"],["昆明机场","送机"]]:[["Kunming","Pickup"],["Jianshui","3 nights"],["Yuanyang","4 nights"],["Luoping","3 nights"],["Kunming Airport","Departure"]];
- return <section className="section" id="route"><div className="shell"><div className="journey-editorial-heading"><h2>{zh?"路线一览":"Your route at a glance"}</h2><p>{zh?"10晚，3个住宿基地，仅更换两次酒店。":"10 nights, three overnight bases, only two hotel changes."}</p></div><ol className="signature-route">{stops.map(([name,detail])=><li key={name}><strong>{name}</strong><small>{detail}</small></li>)}</ol><p className="mt-4 text-center text-sm text-[var(--color-muted)]">{zh?"元阳至罗平为最长转场，可加弥勒一晚拆分车程。":"Yuanyang to Luoping is the longest transfer; add a night in Mile if preferred."}</p></div></section>;
+ const stops:RouteStop[]=[
+  {photo:getPhoto("bridge"),days:zh?"第1–3天 · 3晚":"DAYS 1–3 · 3 NIGHTS",name:zh?"建水 Jianshui":"Jianshui",description:zh?"千年古城、米轨铁路与传统紫陶工艺。":"Ancient streets, the heritage railway and traditional purple pottery."},
+  {photo:getPhoto("terraces"),days:zh?"第4–7天 · 4晚":"DAYS 4–7 · 4 NIGHTS",name:zh?"元阳 Yuanyang":"Yuanyang",description:zh?"哈尼梯田、日出云海、民族村寨与乡村集市。":"Hani rice terraces, optional sunrise photography, ethnic villages and rural markets."},
+  {photo:getPhoto("flowerDawn"),days:zh?"第8–10天 · 3晚":"DAYS 8–10 · 3 NIGHTS",name:zh?"罗平 Luoping":"Luoping",description:zh?"喀斯特峰林、季节性油菜花海与布依族文化。":"Karst hills, seasonal canola fields and Buyi cultural traditions."}
+ ];
+ return <JourneyRouteOverview zh={zh} title={zh?"三个目的地，十一天慢旅行":"Three destinations, eleven unhurried days"} intro={zh?"10晚住宿，仅更换两次酒店。从古城人文到梯田晨雾，再到罗平的田野风光。":"Ten nights and just two hotel changes, from living ancient streets to misty rice terraces and Luoping’s countryside."} stops={stops} note={zh?"第11天送机。元阳至罗平为最长转场，可增加弥勒一晚。":"Day 11: airport transfer. Yuanyang to Luoping is the longest drive; an extra night in Mile is optional."}/>;
 }
 export function SignatureSeasons({zh}:{zh:boolean}) {
  const seasons=[{key:"terraces" as const,en:["Winter · Reflective terraces","November to February"],zh:["冬季 · 镜面梯田","11月至次年2月"]},{key:"flower" as const,en:["Early spring · Golden fields","Mid-February to early March"],zh:["早春 · 金色花海","2月中旬至3月上旬"]},{key:"green" as const,en:["Summer · Green terraces","June to August"],zh:["夏季 · 绿色梯田","6月至8月"]},{key:"harvest" as const,en:["Autumn · Golden rice","Harvest timing varies"],zh:["秋季 · 金色稻田","收割时间每年不同"]}];
