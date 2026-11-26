@@ -108,6 +108,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
       title={frontmatter.heroTitle || frontmatter.title}
       name={frontmatter.heroTitle ? frontmatter.title : undefined}
       image={isSixDayYunnanJourney ? "/home/hero.webp" : frontmatter.coverImage}
+      imageContent={isSignature ? <SignaturePhoto src={frontmatter.coverImage} alt={frontmatter.coverAlt || (lang === "zh" ? "元阳哈尼梯田" : "Yuanyang Hani rice terraces")} zh={lang === "zh"} sizes="100vw" hero /> : undefined}
       imageAlt={frontmatter.coverAlt || "Mountains and countryside along a Yunnan journey"}
       eyebrow={frontmatter.heroEyebrow || t("heroEyebrowDefault")}
       description={frontmatter.heroDescription || frontmatter.excerpt}
