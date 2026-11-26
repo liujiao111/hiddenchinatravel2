@@ -12,8 +12,8 @@
   "fromPrice": 0,
   "currency": "USD",
   "priceBasis": "每人",
-  "coverImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg/3840px-Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg",
-  "coverAlt": "元阳哈尼梯田日出",
+  "coverImage": "https://imagepphcloud.thepaper.cn/pph/image/237/13/887.jpg",
+  "coverAlt": "阿者科哈尼村寨与云雾中的元阳梯田",
   "keywords": [
     "滇南旅游",
     "云南摄影旅行",
@@ -31,7 +31,7 @@
   "heroEyebrow": "特色主题旅行 · 滇南",
   "heroDescription": "走进滇南古城、梯田和民族村寨，感受当地真实生活。三个住宿基地，为光线、文化与慢旅行留足时间。",
   "heroSecondaryLabel": "查看11天行程",
-  "heroNote": "专属询价 · 综合推荐2月中旬至3月上旬。预览图片：Chiu Ho-yang，CC BY-SA 2.0（Wikimedia Commons）。",
+  "heroNote": "专属询价 · 综合推荐2月中旬至3月上旬。",
   "heroIncludes": [
     "私人专车与向导",
     "10晚住宿含早",
@@ -83,27 +83,39 @@
     },
     {
       "title": "世界遗产哈尼梯田",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg/3840px-Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg",
+      "image": "https://www.visityunnanchina.com/files/210126/Yunnan_Climate_terraced_fields_yuanyang_Yunnan.jpg",
       "imageAlt": "世界遗产哈尼梯田",
       "description": "四晚梯田住宿，为光线、天气及休息留足时间。"
     },
     {
       "title": "传统乡村集市",
-      "image": "https://images.unsplash.com/photo-1744443102993-bfa6c216650c?fm=jpg&q=80&w=1200",
+      "image": "https://static.wixstatic.com/media/a27d24_9349e5800bab479fab40a856c79118c8~mv2.jpg/v1/fill/w_750%2Ch_520%2Cal_c%2Cq_85/a27d24_9349e5800bab479fab40a856c79118c8~mv2.jpg",
       "imageAlt": "传统乡村集市",
       "description": "根据传统赶集日选择集市，尊重当地居民的摄影意愿。"
     },
     {
       "title": "民族村寨与当地生活",
-      "image": "https://www.sysu.edu.cn/__local/C/31/E6/79EF9072525B4DE3C3C7F796DCE_CA5C5BD1_1F09D.jpeg",
+      "image": "https://imagepphcloud.thepaper.cn/pph/image/237/13/887.jpg",
       "imageAlt": "民族村寨与当地生活",
       "description": "在向导陪伴下探索哈尼民居、农耕文化与村寨生活。"
     },
     {
       "title": "季节性金色花田",
-      "image": "https://science.nasa.gov/wp-content/uploads/2025/10/yunnan_canola.jpg",
+      "image": "https://photocdn.sohu.com/20160210/mp58495452_1455073932393_1_th.jpeg",
       "imageAlt": "季节性金色花田",
       "description": "探索罗平喀斯特峰林与季节性油菜花田，实际花期以当年为准。"
+    },
+    {
+      "title": "传统紫陶",
+      "image": "https://yunnanexploration.com/wp-content/uploads/2019/07/purple-pottery-in-Jianshui-Honghe.jpg",
+      "imageAlt": "建水紫陶手艺人",
+      "description": "预约当地工作室，了解手艺与制作过程。"
+    },
+    {
+      "title": "牛街螺丝田",
+      "image": "https://ak-d.tripcdn.com/images/1mi5o12000s6qbekt5491_W_640_0_R5_Q80.jpg?proc=source%2Ftrip",
+      "imageAlt": "罗平牛街螺丝田",
+      "description": "探索独特田野，季节景观随农作周期变化。"
     }
   ],
   "itinerary": [
@@ -113,7 +125,7 @@
       "meta": "昆明接客 · 建水",
       "description": "昆明机场或市区接客，专车前往建水，入住古城附近酒店。根据抵达时间安排欢迎交流与休息。",
       "meals": "住宿：建水。餐食按确认方案。",
-      "image": "https://dimg04.c-ctrip.com/images/0101512000jnc9jwuDEA1.jpg",
+      "image": "https://dimg04.c-ctrip.com/images/0101812000jnc9953FDFE.jpg",
       "imageAlt": "昆明接客，前往建水"
     },
     {
@@ -131,7 +143,7 @@
       "meta": "米轨铁路 · 传统手艺",
       "description": "视运营情况乘米轨小火车，游览双龙桥、团山古村，并预约真实紫陶工作室。",
       "meals": "住宿：建水。含早餐。",
-      "image": "https://www.ourchinastory.com/images/cover/travel-leisure/2021/05/square/%E5%BB%BA%E6%B0%B4%E5%B0%8F%E7%81%AB%E8%BB%8A_x1.jpg",
+      "image": "https://p1-tt-ipv6.byteimg.com/origin/pgc-image/b27659b549d549ca84ec88b1d8acbd44.jpg",
       "imageAlt": "米轨铁路、团山古村与紫陶"
     },
     {
@@ -140,7 +152,7 @@
       "meta": "私人转场 · 可选日落",
       "description": "专车前往元阳，入住梯田区域酒店；天气和时间允许时前往坝达或附近机位拍摄日落。",
       "meals": "住宿：元阳。含早餐。",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg/3840px-Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg",
+      "image": "https://www.visityunnanchina.com/files/210126/Yunnan_Climate_terraced_fields_yuanyang_Yunnan.jpg",
       "imageAlt": "建水至元阳梯田"
     },
     {
@@ -149,7 +161,7 @@
       "meta": "可选日出 · 村寨探访",
       "description": "可选多依树日出，返回酒店早餐和休息，下午探访阿者科或其他哈尼村寨。",
       "meals": "住宿：元阳。含早餐。",
-      "image": "https://www.sysu.edu.cn/__local/C/31/E6/79EF9072525B4DE3C3C7F796DCE_CA5C5BD1_1F09D.jpeg",
+      "image": "https://imagepphcloud.thepaper.cn/pph/image/237/13/887.jpg",
       "imageAlt": "梯田日出与哈尼村寨"
     },
     {
@@ -158,7 +170,7 @@
       "meta": "传统赶集日 · 灵活安排",
       "description": "根据入住日期及传统赶集日选择合适集市，向导协助交流及征求人物摄影许可。与第5或第7天灵活互换。",
       "meals": "住宿：元阳。含早餐。",
-      "image": "https://images.unsplash.com/photo-1744443102993-bfa6c216650c?fm=jpg&q=80&w=1200",
+      "image": "https://static.wixstatic.com/media/a27d24_9349e5800bab479fab40a856c79118c8~mv2.jpg/v1/fill/w_750%2Ch_520%2Cal_c%2Cq_85/a27d24_9349e5800bab479fab40a856c79118c8~mv2.jpg",
       "imageAlt": "民族乡村集市"
     },
     {
@@ -167,7 +179,7 @@
       "meta": "天气机动 · 慢旅行",
       "description": "根据天气和兴趣安排补拍日出日落、小众机位、村寨漫步、预约家庭午餐或手艺体验，无需强制早起。",
       "meals": "住宿：元阳。含早餐。",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg/3840px-Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg",
+      "image": "https://data.travelchinaguide.com/tour/image/4974/yuanyang-rice-terraces.jpg",
       "imageAlt": "元阳摄影与文化机动日"
     },
     {
@@ -176,7 +188,7 @@
       "meta": "最长转场 · 多次休息",
       "description": "专车前往罗平，途中安排午餐及多次休息，抵达后不安排正式游览；可加弥勒一晚拆分转场。",
       "meals": "住宿：罗平。含早餐。",
-      "image": "https://static.wixstatic.com/media/108ff4_95138aab18884fe4b99b9eb2097c34a3~mv2.jpg/v1/fill/w_1000%2Ch_630%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01/108ff4_95138aab18884fe4b99b9eb2097c34a3~mv2.jpg",
+      "image": "https://www.yunnanexploration.com/wp-content/uploads/2018/07/Luositian-Field-in-Luoping-County-Qujing-05.jpg",
       "imageAlt": "元阳至罗平"
     },
     {
@@ -185,7 +197,7 @@
       "meta": "季节景观 · 可选日出",
       "description": "根据季节游览金鸡峰丛与乡村景观，光线合适时安排日出或日落，非花期调整为乡村文化体验。",
       "meals": "住宿：罗平。含早餐。",
-      "image": "https://science.nasa.gov/wp-content/uploads/2025/10/yunnan_canola.jpg",
+      "image": "https://photocdn.sohu.com/20160210/mp58495452_1455073932393_1_th.jpeg",
       "imageAlt": "金鸡峰丛与花田"
     },
     {
@@ -194,7 +206,7 @@
       "meta": "牛街螺丝田 · 村寨体验",
       "description": "探访牛街螺丝田，视当地安排体验布依族村寨或地方饮食，下午根据天气灵活安排。",
       "meals": "住宿：罗平。含早餐。",
-      "image": "https://static.wixstatic.com/media/108ff4_95138aab18884fe4b99b9eb2097c34a3~mv2.jpg/v1/fill/w_1000%2Ch_630%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01/108ff4_95138aab18884fe4b99b9eb2097c34a3~mv2.jpg",
+      "image": "https://ak-d.tripcdn.com/images/1mi5o12000s6qbekt5491_W_640_0_R5_Q80.jpg?proc=source%2Ftrip",
       "imageAlt": "螺丝田与布依族文化"
     },
     {
