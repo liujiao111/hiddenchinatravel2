@@ -2,7 +2,7 @@
 {
   "title": "Southern Yunnan Cultural & Photography Journey",
   "shortTitle": "Southern Yunnan Signature Journey",
-  "seoTitle": "11-Day Yunnan Photography & Cultural Tour | Hidden China Travel",
+  "seoTitle": "11-Day Yunnan Photography & Cultural Tour",
   "metaDescription": "An 11-day private Yunnan cultural and photography tour through Jianshui, Yuanyang rice terraces and Luoping. Rural markets, ethnic villages and a flexible pace.",
   "excerpt": "Ancient Jianshui · Hani rice terraces · seasonal Luoping flower fields",
   "duration": "11 days / 10 nights",
@@ -12,8 +12,8 @@
   "fromPrice": 0,
   "currency": "USD",
   "priceBasis": "per person",
-  "coverImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg/3840px-Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg",
-  "coverAlt": "Sunrise over the Hani rice terraces in Yuanyang",
+  "coverImage": "https://imagepphcloud.thepaper.cn/pph/image/237/13/887.jpg",
+  "coverAlt": "Azheke Hani village and misty Yuanyang rice terraces",
   "keywords": [
     "yunnan photography tour",
     "southern yunnan tour",
@@ -31,7 +31,7 @@
   "heroEyebrow": "SIGNATURE JOURNEYS · SOUTHERN YUNNAN",
   "heroDescription": "Discover a quieter side of Yunnan through living traditions, remarkable landscapes and the rhythm of rural life. Three overnight bases, with time to explore at your own pace.",
   "heroSecondaryLabel": "EXPLORE THE 11-DAY ITINERARY",
-  "heroNote": "Private quotation · Best overall window: mid-February to early March. Preview image: Chiu Ho-yang, CC BY-SA 2.0 (Wikimedia Commons).",
+  "heroNote": "Private quotation · Best overall window: mid-February to early March.",
   "heroIncludes": [
     "Private car & guide",
     "10 nights with breakfast",
@@ -83,27 +83,39 @@
     },
     {
       "title": "UNESCO Hani rice terraces",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg/3840px-Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg",
+      "image": "https://www.visityunnanchina.com/files/210126/Yunnan_Climate_terraced_fields_yuanyang_Yunnan.jpg",
       "imageAlt": "UNESCO Hani rice terraces",
       "description": "Four nights among the terraces allow time for changing light, weather and rest."
     },
     {
       "title": "Traditional rural markets",
-      "image": "https://images.unsplash.com/photo-1744443102993-bfa6c216650c?fm=jpg&q=80&w=1200",
+      "image": "https://static.wixstatic.com/media/a27d24_9349e5800bab479fab40a856c79118c8~mv2.jpg/v1/fill/w_750%2Ch_520%2Cal_c%2Cq_85/a27d24_9349e5800bab479fab40a856c79118c8~mv2.jpg",
       "imageAlt": "Traditional rural markets",
       "description": "Choose a local market according to the traditional trading calendar and respect requests for photography consent."
     },
     {
       "title": "Ethnic villages & local life",
-      "image": "https://www.sysu.edu.cn/__local/C/31/E6/79EF9072525B4DE3C3C7F796DCE_CA5C5BD1_1F09D.jpeg",
+      "image": "https://imagepphcloud.thepaper.cn/pph/image/237/13/887.jpg",
       "imageAlt": "Ethnic villages & local life",
       "description": "Explore Hani architecture, farming traditions and village life with a local guide."
     },
     {
       "title": "Seasonal golden landscapes",
-      "image": "https://science.nasa.gov/wp-content/uploads/2025/10/yunnan_canola.jpg",
+      "image": "https://photocdn.sohu.com/20160210/mp58495452_1455073932393_1_th.jpeg",
       "imageAlt": "Seasonal golden landscapes",
       "description": "Explore Luoping’s karst hills and seasonal canola fields; flowering is never guaranteed."
+    },
+    {
+      "title": "Traditional purple pottery",
+      "image": "https://yunnanexploration.com/wp-content/uploads/2019/07/purple-pottery-in-Jianshui-Honghe.jpg",
+      "imageAlt": "Jianshui purple pottery maker",
+      "description": "Visit a working studio by arrangement and learn about traditional craftsmanship."
+    },
+    {
+      "title": "Niujie spiral fields",
+      "image": "https://ak-d.tripcdn.com/images/1mi5o12000s6qbekt5491_W_640_0_R5_Q80.jpg?proc=source%2Ftrip",
+      "imageAlt": "Niujie spiral fields in Luoping",
+      "description": "Discover distinctive farmland shaped by local agriculture and the seasons."
     }
   ],
   "itinerary": [
@@ -113,7 +125,7 @@
       "meta": "Kunming pickup · Jianshui",
       "description": "Meet your private driver and guide in Kunming and head to Jianshui. Settle into a hotel near the old town, with a relaxed welcome and briefing if arrival time permits.",
       "meals": "Overnight in Jianshui. Meals as agreed.",
-      "image": "https://dimg04.c-ctrip.com/images/0101512000jnc9jwuDEA1.jpg",
+      "image": "https://dimg04.c-ctrip.com/images/0101812000jnc9953FDFE.jpg",
       "imageAlt": "Arrival & journey to Jianshui"
     },
     {
@@ -131,7 +143,7 @@
       "meta": "Heritage train · Traditional crafts",
       "description": "Take the heritage train if operating, visit Shuanglong Bridge and Tuanshan village, and explore a working pottery studio by arrangement.",
       "meals": "Overnight in Jianshui. Breakfast included.",
-      "image": "https://www.ourchinastory.com/images/cover/travel-leisure/2021/05/square/%E5%BB%BA%E6%B0%B4%E5%B0%8F%E7%81%AB%E8%BB%8A_x1.jpg",
+      "image": "https://p1-tt-ipv6.byteimg.com/origin/pgc-image/b27659b549d549ca84ec88b1d8acbd44.jpg",
       "imageAlt": "Heritage railway, villages & pottery"
     },
     {
@@ -140,7 +152,7 @@
       "meta": "Private transfer · Optional sunset",
       "description": "Drive to Yuanyang and settle into a terrace-area hotel. If the weather and arrival time allow, enjoy Bada or another nearby sunset viewpoint.",
       "meals": "Overnight in Yuanyang. Breakfast included.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg/3840px-Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg",
+      "image": "https://www.visityunnanchina.com/files/210126/Yunnan_Climate_terraced_fields_yuanyang_Yunnan.jpg",
       "imageAlt": "Into the Hani rice terraces"
     },
     {
@@ -149,7 +161,7 @@
       "meta": "Optional sunrise · Village visit",
       "description": "Enjoy an optional sunrise at Duoyishu, return for breakfast and rest, then visit Azheke or another Hani village to learn about houses, forests and water systems.",
       "meals": "Overnight in Yuanyang. Breakfast included.",
-      "image": "https://www.sysu.edu.cn/__local/C/31/E6/79EF9072525B4DE3C3C7F796DCE_CA5C5BD1_1F09D.jpeg",
+      "image": "https://imagepphcloud.thepaper.cn/pph/image/237/13/887.jpg",
       "imageAlt": "Sunrise & traditional Hani villages"
     },
     {
@@ -158,7 +170,7 @@
       "meta": "Market calendar · Flexible timing",
       "description": "Visit the most culturally interesting market available during your stay. Your guide helps you interact respectfully and ask permission for portraits. This day may be swapped with Days 5 or 7.",
       "meals": "Overnight in Yuanyang. Breakfast included.",
-      "image": "https://images.unsplash.com/photo-1744443102993-bfa6c216650c?fm=jpg&q=80&w=1200",
+      "image": "https://static.wixstatic.com/media/a27d24_9349e5800bab479fab40a856c79118c8~mv2.jpg/v1/fill/w_750%2Ch_520%2Cal_c%2Cq_85/a27d24_9349e5800bab479fab40a856c79118c8~mv2.jpg",
       "imageAlt": "A day at the rural market"
     },
     {
@@ -167,7 +179,7 @@
       "meta": "Weather buffer · Slow pace",
       "description": "Choose another sunrise or sunset, a quiet viewpoint, a village walk or an arranged family meal or craft visit. No early start is compulsory.",
       "meals": "Overnight in Yuanyang. Breakfast included.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg/3840px-Yuanyang_Hani_Rice_Terraces_at_Sunrise.jpg",
+      "image": "https://data.travelchinaguide.com/tour/image/4974/yuanyang-rice-terraces.jpg",
       "imageAlt": "Photography & cultural discovery"
     },
     {
@@ -176,7 +188,7 @@
       "meta": "Longest driving day · Comfort stops",
       "description": "Travel to Luoping with regular comfort stops and lunch en route. No formal sightseeing is scheduled. An extra night in Mile can split the drive.",
       "meals": "Overnight in Luoping. Breakfast included.",
-      "image": "https://static.wixstatic.com/media/108ff4_95138aab18884fe4b99b9eb2097c34a3~mv2.jpg/v1/fill/w_1000%2Ch_630%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01/108ff4_95138aab18884fe4b99b9eb2097c34a3~mv2.jpg",
+      "image": "https://www.yunnanexploration.com/wp-content/uploads/2018/07/Luositian-Field-in-Luoping-County-Qujing-05.jpg",
       "imageAlt": "Scenic transfer to Luoping"
     },
     {
@@ -185,7 +197,7 @@
       "meta": "Seasonal landscapes · Optional sunrise",
       "description": "Explore the Jinji peaks and countryside, with sunrise or sunset photography if conditions suit. Outside the flowering season, adapt the visits to rural scenery and local life.",
       "meals": "Overnight in Luoping. Breakfast included.",
-      "image": "https://science.nasa.gov/wp-content/uploads/2025/10/yunnan_canola.jpg",
+      "image": "https://photocdn.sohu.com/20160210/mp58495452_1455073932393_1_th.jpeg",
       "imageAlt": "Golden fields & karst peaks"
     },
     {
@@ -194,7 +206,7 @@
       "meta": "Niujie · Village encounters",
       "description": "Visit Niujie’s distinctive fields and arrange a Buyi village or local food experience where available. Adjust the afternoon to the weather and your interests.",
       "meals": "Overnight in Luoping. Breakfast included.",
-      "image": "https://static.wixstatic.com/media/108ff4_95138aab18884fe4b99b9eb2097c34a3~mv2.jpg/v1/fill/w_1000%2Ch_630%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01/108ff4_95138aab18884fe4b99b9eb2097c34a3~mv2.jpg",
+      "image": "https://ak-d.tripcdn.com/images/1mi5o12000s6qbekt5491_W_640_0_R5_Q80.jpg?proc=source%2Ftrip",
       "imageAlt": "Rural landscapes & Buyi culture"
     },
     {
