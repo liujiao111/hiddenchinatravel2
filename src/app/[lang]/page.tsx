@@ -93,7 +93,10 @@ export default async function Home({ params }: Props) {
       default:return card;
     }
   };
+  const signature = journeys.find(journey => journey.slug === "southern-yunnan-cultural-photography-tour");
+  const signatureCard: JourneyCardData = { title: T("Signature Journeys", "特色主题旅行"), subtitle: T("Southern Yunnan · Culture & Photography", "滇南文化摄影深度之旅"), href: "/journeys/southern-yunnan-cultural-photography-tour", image: "/assets/journeys/southern-yunnan/preview-1.svg", imageAlt: T("Rice terraces preview illustration","梯田预览插画"), duration: T("11 days / 10 nights","11天10晚"), fromPrice: T("Request a tailored quote","获取专属报价"), trackingLocation:"home_category_signature", ctaLabel:T("Explore the journey","探索特色行程") };
   const productCards = (t.raw("productCards") as JourneyCardData[]).map(addPrice);
+  if(signature) productCards.splice(1,0,signatureCard);
   const localCards = (t.raw("localCards") as JourneyCardData[]).map(addPrice);
   const reasons = (t.raw("reasons") as Step[]).map(([n, title, text]) => [n, title, fill(text)] as Step);
   const supportItems = t.raw("supportItems") as SupportItem[];
@@ -187,6 +190,7 @@ export default async function Home({ params }: Props) {
             ctaLabel: t("cardCta"),
             trackingLocation: "home_featured_classic",
           }} /> : null}
+          {signature ? <JourneyCard journey={{...signatureCard,title:T("Southern Yunnan Cultural & Photography Journey","滇南民族文化与摄影深度之旅"),trackingLocation:"home_featured_signature"}} /> : null}
           <JourneyCard journey={{
             title: t("card3Title"),
             subtitle: t("card3Subtitle"),

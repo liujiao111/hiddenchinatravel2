@@ -34,6 +34,7 @@ export const zhLivePaths = new Set<string>([
   "/", // 中文首页已翻译上线
   "/journeys/kunming-dali-shaxi-lijiang-6-days",
   "/journeys/kunming-dali-lijiang-shangri-la-private-tour",
+  "/journeys/southern-yunnan-cultural-photography-tour",
   "/private-yunnan-tours",
   "/yunnan-tour-packages",
   "/yunnan-private-driver",
