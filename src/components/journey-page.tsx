@@ -162,13 +162,13 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
     {frontmatter.experiences.length ? <section className="journey-experiences section section-sand" id="experiences"><div className="shell"><div className="section-heading"><h2>{t("experiencesHeading")}</h2><p>{isSixDayYunnanJourney ? t("experiencesIntroSixDay") : t("experiencesIntroDefault")}</p></div><div className="journey-experience-grid">{frontmatter.experiences.map((experience, index) => <article key={experience.title}><div>{isSignature ? <SignaturePhoto src={experience.image} alt={experience.imageAlt || experience.title} zh={lang === "zh"} /> : <Image src={experience.image} alt={experience.imageAlt || experience.title} fill sizes="(max-width: 700px) 100vw, 50vw" unoptimized />}</div><span>0{index + 1}</span><h3>{experience.title}</h3><p>{experience.description}</p></article>)}</div></div></section> : null}
 
     {isSignature ? <SignatureRoute zh={lang === "zh"} /> : null}
-    <section className="journey-itinerary section" id="itinerary"><div className="shell journey-section-layout"><header><p>{frontmatter.itineraryKicker || t("itineraryKickerDefault")}</p><h2>{frontmatter.itineraryHeading || (isSixDayYunnanJourney ? t("itineraryHeadingSixDay") : t("itineraryHeadingDefault"))}</h2><span>{frontmatter.itineraryIntro || (isSixDayYunnanJourney ? t("itineraryIntroSixDay") : t("itineraryIntroDefault"))}</span></header><div className="journey-days">{frontmatter.itinerary.map((day, dayIndex) => {
+    {isSignature ? <SignatureEditorialItinerary zh={lang === "zh"} days={frontmatter.itinerary} intro={frontmatter.itineraryIntro || t("itineraryIntroDefault")} /> : <section className="journey-itinerary section" id="itinerary"><div className="shell journey-section-layout"><header><p>{frontmatter.itineraryKicker || t("itineraryKickerDefault")}</p><h2>{frontmatter.itineraryHeading || (isSixDayYunnanJourney ? t("itineraryHeadingSixDay") : t("itineraryHeadingDefault"))}</h2><span>{frontmatter.itineraryIntro || (isSixDayYunnanJourney ? t("itineraryIntroSixDay") : t("itineraryIntroDefault"))}</span></header><div className="journey-days">{frontmatter.itinerary.map((day, dayIndex) => {
       const isErhaiDay = isSixDayYunnanJourney && dayIndex === 1;
       const dayPhoto = isErhaiDay ? undefined : day.image ? [day.image, day.imageAlt || day.title] as const : isSixDayYunnanJourney && sixDayPhotoSrc[`Day ${dayIndex + 1}`] ? [sixDayPhotoSrc[`Day ${dayIndex + 1}`], dayPhotoAlts[`Day ${dayIndex + 1}`]] as const : undefined;
       const isShaxiStay = isSixDayYunnanJourney && dayIndex === 2;
       const dayCopy = day.description.split(/\n\n+/);
       return <details key={day.days}><summary><span>{day.days}</span>{isSignature ? <span className="signature-day-thumb">{dayPhoto ? <SignaturePhoto src={dayPhoto[0]} alt={dayPhoto[1]} zh={lang === "zh"} sizes="120px" /> : null}</span> : null}<div><h3>{day.title}</h3><p>{day.meta}</p></div><b aria-hidden="true">+</b></summary>{dayCopy.map((paragraph, paragraphIndex) => <p key={`${day.days}-${paragraphIndex}`}>{paragraph}</p>)}{day.meals ? <p className="journey-day-meals"><strong>{/Overnight|Pace:|住宿|节奏/.test(day.meals) ? t("theDayLabel") : t("mealsLabel")}</strong> {day.meals}</p> : null}{dayPhoto && !isSignature ? <figure className="journey-day-photo"><Image src={dayPhoto[0].startsWith("https://") ? dayPhoto[0] : encodeURI(dayPhoto[0])} alt={dayPhoto[1]} fill sizes="(max-width:700px) 100vw, 640px" unoptimized /><figcaption>{dayPhoto[1]}</figcaption></figure> : null}{isErhaiDay ? <div className="journey-day-pair journey-day-pair-landscape"><figure><Image src="/assets/journeys/kunming-dali-shaxi-lijiang-6-days/zhoucheng-indigo-tie-dye-rinsing.webp" alt={t("erhaiPairAltRinsing")} fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure><figure><Image src="/assets/journeys/kunming-dali-shaxi-lijiang-6-days/zhoucheng-indigo-dye-vat.webp" alt={t("erhaiPairAltVat")} fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure></div> : null}{isShaxiStay ? <div className="journey-day-pair"><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp" alt={t("shaxiPairAltLane")} fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt={t("shaxiPairAltGoats")} fill sizes="(max-width: 700px) 45vw, 20vw" unoptimized /></figure></div> : null}</details>;
-    })}</div></div></section>
+    })}</div></div></section>}
 
     {isSignature ? <><SignatureSeasons zh={lang === "zh"} /><SignatureComfort zh={lang === "zh"} /><section className="section section-sand"><div className="shell"><div className="journey-editorial-heading"><h2>{lang === "zh" ? "定制你的旅行" : "Make this journey your own"}</h2></div><div className="grid gap-6 md:grid-cols-2">{frontmatter.bookingNotes?.map(note=><article key={note.title} className="bg-white p-6"><h3 className="text-2xl mb-2">{note.title}</h3><p>{note.detail}</p><HashLink className="underline" href="#ask-joy">{lang==="zh"?"咨询此选项":"Ask about this option"}</HashLink></article>)}</div></div></section></> : null}
     <Testimonials />
@@ -243,4 +243,54 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
     <ContentFooter reviewsInPage />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
   </main>;
+}
+
+
+// Editorial itinerary variant for themed journeys. Other products retain their existing layout.
+function SignatureEditorialItinerary({zh, days, intro}: {zh:boolean;days:Journey["frontmatter"]["itinerary"];intro:string}) {
+ const groups=[
+  {start:0,end:3,title:zh?"建水":"Jianshui",duration:zh?"第1–3天 · 3晚":"Days 1–3 · 3 nights"},
+  {start:3,end:7,title:zh?"元阳":"Yuanyang",duration:zh?"第4–7天 · 4晚":"Days 4–7 · 4 nights"},
+  {start:7,end:10,title:zh?"罗平":"Luoping",duration:zh?"第8–10天 · 3晚":"Days 8–10 · 3 nights"},
+  {start:10,end:11,title:zh?"返程":"Departure",duration:zh?"第11天":"Day 11"},
+ ];
+ return <section className="section scroll-mt-20" id="itinerary" aria-labelledby="signature-itinerary-title">
+  <div className="shell">
+   <header className="mb-10 max-w-3xl">
+    <h2 id="signature-itinerary-title" className="mb-3">{zh?"每日行程":"Your day-by-day itinerary"}</h2>
+    <p className="m-0 text-[var(--color-muted)]">{intro}</p>
+   </header>
+   <div className="grid gap-10">
+    {groups.map(group=><section key={group.start} aria-labelledby={`signature-itinerary-group-${group.start}`}>
+     <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-[var(--color-ink)] pb-3">
+      <h3 id={`signature-itinerary-group-${group.start}`} className="m-0 text-2xl">{group.title}</h3>
+      <span className="text-sm text-[var(--color-muted)]">{group.duration}</span>
+     </div>
+     {days.slice(group.start,group.end).map((day,index)=>{
+      const departure=group.start+index===10;
+      const image=day.image || (departure?"/assets/partners/vehicles/seven-seat-mpv-exterior-three-quarter.webp":undefined);
+      const alt=day.imageAlt || (departure?(zh?"私人七座商务车示例，实际车辆按订单确认":"Example private seven-seat MPV; actual vehicle confirmed with the booking"):day.title);
+      return <details key={day.days} className="group border-b border-[var(--color-border)]">
+       <summary className="grid min-h-12 cursor-pointer list-none grid-cols-[160px_minmax(0,1fr)_24px] items-center gap-6 py-5 focus-visible:outline-2 focus-visible:outline-[var(--color-focus)] [&::-webkit-details-marker]:hidden max-[700px]:grid-cols-[96px_minmax(0,1fr)_20px] max-[700px]:gap-3 max-[700px]:py-4">
+        <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-surface-soft)]">
+         {image?<SignaturePhoto src={image} alt={alt} zh={zh} sizes="(max-width:700px) 96px, 160px"/>:null}
+        </div>
+        <div className="min-w-0">
+         <p className="m-0 mb-1 text-xs font-medium text-[var(--color-muted)]">{day.days}</p>
+         <h4 className="m-0 text-xl font-normal leading-snug [font-family:var(--font-editorial)] max-[700px]:text-lg">{day.title}</h4>
+         <p className="m-0 mt-2 text-sm leading-relaxed text-[var(--color-muted)]">{day.meta}</p>
+        </div>
+        <span aria-hidden="true" className="text-center text-xl font-light text-[var(--color-action-text)] transition-transform group-open:rotate-45">+</span>
+       </summary>
+       <div className="pb-6 pl-[184px] pr-12 max-[700px]:pl-0 max-[700px]:pr-0">
+        {day.description.split(/\n\n+/).map((paragraph,i)=><p key={i} className="m-0 mb-3 max-w-3xl leading-relaxed text-[var(--color-ink)]">{paragraph}</p>)}
+        {day.meals?<p className="m-0 text-sm leading-relaxed text-[var(--color-muted)]">{day.meals}</p>:null}
+        {departure?<p className="m-0 mt-2 text-xs text-[var(--color-muted)]">{zh?"图片为车辆示例，实际车辆按订单确认。":"Vehicle shown is an example; actual vehicle is confirmed with your booking."}</p>:null}
+       </div>
+      </details>;
+     })}
+    </section>)}
+   </div>
+  </div>
+ </section>;
 }
