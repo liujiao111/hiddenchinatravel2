@@ -7,7 +7,7 @@ import { StarRating } from "@/components/star-rating";
 
 type Action = { href: string; label: string };
 
-export function JourneyHero({ title, name, image, imageAlt, eyebrow, description, primary, secondary, note, bounds, rating, price, includes, chat, imagePlaceholder, breadcrumb }: {
+export function JourneyHero({ title, name, image, imageAlt, eyebrow, description, primary, secondary, note, bounds, rating, price, includes, chat, imagePlaceholder, breadcrumb, imageContent }: {
   title: string; name?: string; image?: string; imageAlt: string; eyebrow: string; description: string;
   primary: Action; secondary: Action; note: string;
   bounds?: string;
@@ -16,11 +16,12 @@ export function JourneyHero({ title, name, image, imageAlt, eyebrow, description
   includes?: string[];
   chat?: Action;
   imagePlaceholder?: string;
+  imageContent?: ReactNode;
   breadcrumb?: Action;
 }) {
   const t = useTranslations("journey");
-  return <header className="journey-hero" style={image ? undefined : { background: "var(--color-accent)" }}>
-    {image ? <Image src={encodeURI(image)} alt={imageAlt} fill priority unoptimized sizes="100vw" /> : null}
+  return <header className="journey-hero" style={image && !imageContent ? undefined : { background: "var(--color-accent)" }}>
+    {imageContent ?? (image ? <Image src={image.startsWith("https://") ? image : encodeURI(image)} alt={imageAlt} fill priority unoptimized sizes="100vw" /> : null)}
     <div className="journey-hero-shade" />
     <nav className="breadcrumbs journey-breadcrumbs shell" aria-label={t("breadcrumbAria")}><Link href="/">{t("breadcrumbHome")}</Link><span>›</span><Link href={breadcrumb?.href || "/yunnan-tour-packages"}>{breadcrumb?.label || t("breadcrumbJourneys")}</Link><span>›</span><span>{name || title}</span></nav>
     <div className="journey-hero-copy shell"><div><p>{eyebrow}</p><h1>{title}</h1><span>{description}</span>{price ? <b className="journey-hero-price">{price}</b> : null}{includes?.length ? <ul className="journey-hero-includes">{includes.map((item) => <li key={item}>{item}</li>)}</ul> : null}{bounds ? <ul className="journey-hero-bounds">{bounds.split(" · ").map((item) => <li key={item}>{item}</li>)}</ul> : null}{rating ? <a className="journey-hero-rating" href={rating.href}><StarRating value={rating.value} label={`Overall guest rating: ${rating.value.toFixed(1)} out of 5 stars`} /><span>{rating.label}</span></a> : null}<div className="journey-hero-actions"><HashLink id="hero-quote" className="button journey-primary-action" href={primary.href}>{primary.label}</HashLink><HashLink className="journey-text-action" href={secondary.href}>{secondary.label} <b>↓</b></HashLink></div>{chat ? (chat.href.startsWith("#") ? <HashLink className="journey-hero-whatsapp" href={chat.href}>{chat.label}</HashLink> : <Link className="journey-hero-whatsapp" href={chat.href}>{chat.label}</Link>) : null}<small>{note}</small>{!image && imagePlaceholder ? <small>{imagePlaceholder}</small> : null}</div></div>

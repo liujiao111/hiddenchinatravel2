@@ -15,6 +15,7 @@ import { formatPriceLabel } from "@/lib/format-price";
 import { JourneyFactCards, JourneyHero, JourneyOverview, JourneySectionNav } from "@/components/journey-landing";
 import { JourneyTrustSection } from "@/components/journey-trust-section";
 import { JourneyPractical } from "@/components/journey-practical";
+import { SignatureGallery, SignatureStories, SignatureRoute, SignatureSeasons, SignatureComfort, SignaturePhoto } from "@/components/signature-journey";
 import { JourneyWhy } from "@/components/journey-why";
 import { Testimonials } from "@/components/testimonials";
 import { licensedOperator } from "@/lib/journey-trust";
@@ -37,6 +38,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
   const t = useTranslations("journey");
   const tMobile = useTranslations("mobileCta");
   const lang = useLocale() as "en" | "zh";
+  const isSignature = journey.slug === "southern-yunnan-cultural-photography-tour";
   const isSixDayYunnanJourney = journey.slug === "kunming-dali-shaxi-lijiang-6-days";
   const isEightDayYunnanJourney = journey.slug === "kunming-dali-lijiang-shangri-la-private-tour";
   const whatsapp = buildWhatsAppUrl();
@@ -63,7 +65,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
         name: frontmatter.heroTitle || frontmatter.title,
         description: frontmatter.metaDescription,
         image: [
-          `https://hiddenchinatravel.com${frontmatter.ogImage?.url || frontmatter.coverImage}`,
+          new URL(frontmatter.ogImage?.url || frontmatter.coverImage, "https://hiddenchinatravel.com").href,
         ],
         touristType: frontmatter.travelStyles,
         itinerary: frontmatter.route,
@@ -100,12 +102,13 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
     ],
   };
 
-  return <main className={isSixDayYunnanJourney ? "journey-page journey-page-offer" : "journey-page"}>
+  return <main className={isSixDayYunnanJourney ? "journey-page journey-page-offer" : isSignature ? "journey-page signature-journey" : "journey-page"}>
     <SiteHeader alternate={alternate} cta={{ href: isSixDayYunnanJourney ? whatsapp : "#ask-joy", mailHref: "#ask-joy", label: t("startPlanning"), location: "header_journey_price" }} />
     <JourneyHero
       title={frontmatter.heroTitle || frontmatter.title}
       name={frontmatter.heroTitle ? frontmatter.title : undefined}
       image={isSixDayYunnanJourney ? "/home/hero.webp" : frontmatter.coverImage}
+      imageContent={isSignature ? <SignaturePhoto src={frontmatter.coverImage} alt={frontmatter.coverAlt || (lang === "zh" ? "元阳哈尼梯田" : "Yuanyang Hani rice terraces")} zh={lang === "zh"} sizes="100vw" hero /> : undefined}
       imageAlt={frontmatter.coverAlt || "Mountains and countryside along a Yunnan journey"}
       eyebrow={frontmatter.heroEyebrow || t("heroEyebrowDefault")}
       description={frontmatter.heroDescription || frontmatter.excerpt}
@@ -126,7 +129,8 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
       { href: "#private-journey", label: t("navDetails") },
       { href: "#questions", label: t("goodToKnow") },
     ]} action={{ href: "#ask-joy", label: t("navAction") }} /> : null}
-    <section className="journey-fold-ask" id="quote">
+    {isSignature ? <><JourneyOverview title={frontmatter.overviewTitle || t("overviewTitleDefault")} description={frontmatter.overviewDescription || ""} items={overviewItems} action={{ href: "#ask-joy", label: t("startPlanning") }} /><SignatureGallery zh={lang === "zh"} /><SignatureStories zh={lang === "zh"} /><JourneySectionNav links={[{href:"#photos",label:lang==="zh"?"照片":"Photos"},{href:"#destinations",label:lang==="zh"?"目的地":"Destinations"},{href:"#itinerary",label:t("navItinerarySix")},{href:"#seasons",label:lang==="zh"?"季节":"Seasons"},{href:"#private-journey",label:lang==="zh"?"住宿车辆":"Comfort"}]} action={{href:"#ask-joy",label:t("navAction")}} /></> : null}
+    {!isSignature ? <section className="journey-fold-ask" id="quote">
       <div className="shell">
         {isSixDayYunnanJourney ? <div className="journey-guest-proof">
           <p>{t("guestProofKicker")}</p>
@@ -144,27 +148,29 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
           <p className="journey-quote-contract">{t("joyReplies")}</p>
         </div>}
       </div>
-    </section>
-    <JourneyFactCards id="why-travel" title={t("whyTitle")} cards={[
+    </section> : null}
+    {!isSignature ? <JourneyFactCards id="why-travel" title={t("whyTitle")} cards={[
       { icon: "party", title: t("factPartyTitle"), lines: t.raw("factPartyLines") as string[] },
       { icon: "person", title: t("factJoyTitle"), lines: t.raw("factJoyLines") as string[] },
       { icon: "licence", title: t("factAgencyTitle"), lines: factAgencyLines },
       { icon: "star", title: t("factGuestTitle"), lines: t.raw("factGuestNoStories") as string[] },
-    ]} />
-    <JourneyWhy />
-    {isSixDayYunnanJourney ? null : <JourneyOverview title={frontmatter.overviewTitle || t("overviewTitleDefault")} description={frontmatter.overviewDescription || t("overviewDescriptionDefault")} items={overviewItems} action={{ href: "#ask-joy", label: t("startPlanning") }} />}
-    {frontmatter.whoFor || frontmatter.whenToGo ? <section className="journey-fit-season"><div className="shell">{frontmatter.whoFor ? <article><span>{t("whoForLabel")}</span><p>{frontmatter.whoFor}</p></article> : null}{frontmatter.whenToGo ? <article><span>{t("whenToGoLabel")}</span><p>{frontmatter.whenToGo}</p></article> : null}</div></section> : null}
+    ]} /> : null}
+    {!isSignature ? <JourneyWhy /> : null}
+    {isSixDayYunnanJourney || isSignature ? null : <JourneyOverview title={frontmatter.overviewTitle || t("overviewTitleDefault")} description={frontmatter.overviewDescription || t("overviewDescriptionDefault")} items={overviewItems} action={{ href: "#ask-joy", label: t("startPlanning") }} />}
+    {!isSignature && (frontmatter.whoFor || frontmatter.whenToGo) ? <section className="journey-fit-season"><div className="shell">{frontmatter.whoFor ? <article><span>{t("whoForLabel")}</span><p>{frontmatter.whoFor}</p></article> : null}{frontmatter.whenToGo ? <article><span>{t("whenToGoLabel")}</span><p>{frontmatter.whenToGo}</p></article> : null}</div></section> : null}
 
-    {frontmatter.experiences.length ? <section className="journey-experiences section section-sand" id="experiences"><div className="shell"><div className="section-heading"><h2>{t("experiencesHeading")}</h2><p>{isSixDayYunnanJourney ? t("experiencesIntroSixDay") : t("experiencesIntroDefault")}</p></div><div className="journey-experience-grid">{frontmatter.experiences.map((experience, index) => <article key={experience.title}><div><Image src={experience.image} alt={experience.imageAlt || experience.title} fill sizes="(max-width: 700px) 100vw, 50vw" unoptimized /></div><span>0{index + 1}</span><h3>{experience.title}</h3><p>{experience.description}</p></article>)}</div></div></section> : null}
+    {frontmatter.experiences.length ? <section className="journey-experiences section section-sand" id="experiences"><div className="shell"><div className="section-heading"><h2>{t("experiencesHeading")}</h2><p>{isSixDayYunnanJourney ? t("experiencesIntroSixDay") : t("experiencesIntroDefault")}</p></div><div className="journey-experience-grid">{frontmatter.experiences.map((experience, index) => <article key={experience.title}><div>{isSignature ? <SignaturePhoto src={experience.image} alt={experience.imageAlt || experience.title} zh={lang === "zh"} /> : <Image src={experience.image} alt={experience.imageAlt || experience.title} fill sizes="(max-width: 700px) 100vw, 50vw" unoptimized />}</div><span>0{index + 1}</span><h3>{experience.title}</h3><p>{experience.description}</p></article>)}</div></div></section> : null}
 
+    {isSignature ? <SignatureRoute zh={lang === "zh"} /> : null}
     <section className="journey-itinerary section" id="itinerary"><div className="shell journey-section-layout"><header><p>{frontmatter.itineraryKicker || t("itineraryKickerDefault")}</p><h2>{frontmatter.itineraryHeading || (isSixDayYunnanJourney ? t("itineraryHeadingSixDay") : t("itineraryHeadingDefault"))}</h2><span>{frontmatter.itineraryIntro || (isSixDayYunnanJourney ? t("itineraryIntroSixDay") : t("itineraryIntroDefault"))}</span></header><div className="journey-days">{frontmatter.itinerary.map((day, dayIndex) => {
       const isErhaiDay = isSixDayYunnanJourney && dayIndex === 1;
       const dayPhoto = isErhaiDay ? undefined : day.image ? [day.image, day.imageAlt || day.title] as const : isSixDayYunnanJourney && sixDayPhotoSrc[`Day ${dayIndex + 1}`] ? [sixDayPhotoSrc[`Day ${dayIndex + 1}`], dayPhotoAlts[`Day ${dayIndex + 1}`]] as const : undefined;
       const isShaxiStay = isSixDayYunnanJourney && dayIndex === 2;
       const dayCopy = day.description.split(/\n\n+/);
-      return <details key={day.days}><summary><span>{day.days}</span><div><h3>{day.title}</h3><p>{day.meta}</p></div><b aria-hidden="true">+</b></summary>{dayCopy.map((paragraph, paragraphIndex) => <p key={`${day.days}-${paragraphIndex}`}>{paragraph}</p>)}{day.meals ? <p className="journey-day-meals"><strong>{/Overnight|Pace:|住宿|节奏/.test(day.meals) ? t("theDayLabel") : t("mealsLabel")}</strong> {day.meals}</p> : null}{dayPhoto ? <figure className="journey-day-photo"><Image src={encodeURI(dayPhoto[0])} alt={dayPhoto[1]} fill sizes="(max-width:700px) 100vw, 640px" unoptimized /><figcaption>{dayPhoto[1]}</figcaption></figure> : null}{isErhaiDay ? <div className="journey-day-pair journey-day-pair-landscape"><figure><Image src="/assets/journeys/kunming-dali-shaxi-lijiang-6-days/zhoucheng-indigo-tie-dye-rinsing.webp" alt={t("erhaiPairAltRinsing")} fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure><figure><Image src="/assets/journeys/kunming-dali-shaxi-lijiang-6-days/zhoucheng-indigo-dye-vat.webp" alt={t("erhaiPairAltVat")} fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure></div> : null}{isShaxiStay ? <div className="journey-day-pair"><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp" alt={t("shaxiPairAltLane")} fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt={t("shaxiPairAltGoats")} fill sizes="(max-width: 700px) 45vw, 20vw" unoptimized /></figure></div> : null}</details>;
+      return <details key={day.days}><summary><span>{day.days}</span>{isSignature ? <span className="signature-day-thumb">{dayPhoto ? <SignaturePhoto src={dayPhoto[0]} alt={dayPhoto[1]} zh={lang === "zh"} sizes="120px" /> : null}</span> : null}<div><h3>{day.title}</h3><p>{day.meta}</p></div><b aria-hidden="true">+</b></summary>{dayCopy.map((paragraph, paragraphIndex) => <p key={`${day.days}-${paragraphIndex}`}>{paragraph}</p>)}{day.meals ? <p className="journey-day-meals"><strong>{/Overnight|Pace:|住宿|节奏/.test(day.meals) ? t("theDayLabel") : t("mealsLabel")}</strong> {day.meals}</p> : null}{dayPhoto && !isSignature ? <figure className="journey-day-photo"><Image src={dayPhoto[0].startsWith("https://") ? dayPhoto[0] : encodeURI(dayPhoto[0])} alt={dayPhoto[1]} fill sizes="(max-width:700px) 100vw, 640px" unoptimized /><figcaption>{dayPhoto[1]}</figcaption></figure> : null}{isErhaiDay ? <div className="journey-day-pair journey-day-pair-landscape"><figure><Image src="/assets/journeys/kunming-dali-shaxi-lijiang-6-days/zhoucheng-indigo-tie-dye-rinsing.webp" alt={t("erhaiPairAltRinsing")} fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure><figure><Image src="/assets/journeys/kunming-dali-shaxi-lijiang-6-days/zhoucheng-indigo-dye-vat.webp" alt={t("erhaiPairAltVat")} fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure></div> : null}{isShaxiStay ? <div className="journey-day-pair"><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-street-corner.webp" alt={t("shaxiPairAltLane")} fill sizes="(max-width: 700px) 45vw, 28vw" unoptimized /></figure><figure><Image src="/assets/blog/dali-hidden-gems-off-the-beaten-path/shaxi-river-goats.webp" alt={t("shaxiPairAltGoats")} fill sizes="(max-width: 700px) 45vw, 20vw" unoptimized /></figure></div> : null}</details>;
     })}</div></div></section>
 
+    {isSignature ? <><SignatureSeasons zh={lang === "zh"} /><SignatureComfort zh={lang === "zh"} /><section className="section section-sand"><div className="shell"><div className="journey-editorial-heading"><h2>{lang === "zh" ? "定制你的旅行" : "Make this journey your own"}</h2></div><div className="grid gap-6 md:grid-cols-2">{frontmatter.bookingNotes?.map(note=><article key={note.title} className="bg-white p-6"><h3 className="text-2xl mb-2">{note.title}</h3><p>{note.detail}</p><HashLink className="underline" href="#ask-joy">{lang==="zh"?"咨询此选项":"Ask about this option"}</HashLink></article>)}</div></div></section></> : null}
     <Testimonials />
 
     <section className="journey-price-module" id="pricing">
@@ -176,7 +182,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
           <p className="journey-price-note">{frontmatter.priceExplanation || t("priceNoteDefault")}</p>
         </div>
         <div className="journey-quote-ask"><h3>{t("tierQuoteHeading")}</h3><p>{t("tierQuoteText", { price: completePrice })}</p><QuickAsk layout="embedded" id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} intent="trip" /><p className="journey-quote-contract">{t("joyReplies")}</p></div>
-      </div></div></section> : isSixDayYunnanJourney ? <JourneyQuoteBand id="ask-joy" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} /> : <JourneyQuoteBand id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} compact />}
+      </div></div></section> : isSixDayYunnanJourney || isSignature ? <JourneyQuoteBand id="ask-joy" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} /> : <JourneyQuoteBand id="ask-joy-price" source={`/journeys/${journey.slug}`} sourceTitle={frontmatter.heroTitle || frontmatter.title} whatsapp={whatsapp} compact />}
 
       <section className="journey-inclusions section journey-inclusions-compact" id="details">
         <div className="shell journey-inclusion-grid">
@@ -197,7 +203,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
         </div>
       </section>
 
-      <JourneyTrustSection
+      {!isSignature ? <JourneyTrustSection
         showCredentials={false}
         showMuslimFriendly={false}
         kicker={isSixDayYunnanJourney ? "" : undefined}
@@ -210,7 +216,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
         hotelTitle={isSixDayYunnanJourney ? t("trustHotelTitleSixDay") : undefined}
         hotelCopy={isSixDayYunnanJourney ? t("trustHotelCopySixDay") : undefined}
         hotelCities={isSixDayYunnanJourney ? ["dali", "lijiang"] : isEightDayYunnanJourney ? ["kunming", "dali", "lijiang", "shangri-la"] : undefined}
-      />
+      /> : null}
 
     </section>
 
@@ -221,7 +227,7 @@ export function JourneyPage({ journey, alternate }: { journey: Journey; alternat
         label: group.label,
         items: group.items.map((item) => ({ title: item.question, detail: item.answer })),
       }))}
-      notes={frontmatter.goodToKnow?.length ? undefined : frontmatter.bookingNotes?.map((note) => ({ title: note.title, detail: note.detail }))}
+      notes={isSignature || frontmatter.goodToKnow?.length ? undefined : frontmatter.bookingNotes?.map((note) => ({ title: note.title, detail: note.detail }))}
       faqs={frontmatter.goodToKnow?.length ? undefined : frontmatter.faqs.map((faq) => ({ title: faq.question, detail: faq.answer }))}
     />
     {frontmatter.bookingNotes?.length ? null : <YunnanTravelNotes />}
