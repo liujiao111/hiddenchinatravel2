@@ -150,8 +150,44 @@ const gallery: Photo[] = [
     "zh": "元阳爱春村梯田收割"
   }
 ];
-function PhotoImage({photo,zh,sizes="(max-width:700px) 100vw, 50vw"}:{photo:Photo;zh:boolean;sizes?:string}) {
- return <Image src={photos[photo.key]} alt={zh?photo.zh:photo.en} fill unoptimized sizes={sizes} className="object-cover" />;
+// Keep external preview photos resilient without substituting unrelated destinations.
+const commonsTerraces = "https://upload.wikimedia.org/wikipedia/commons/f/fc/Yuanyang_Rice_Terraces_%2848639450842%29.jpg";
+const commonsLuoping = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Canola_field_in_Luoping.JPG/1024px-Canola_field_in_Luoping.JPG";
+const fallbackPhotos: Record<string, {src:string; en:string; zh:string}[]> = {
+ [photos.bridge]: [{src:photos.bridgeDetail,en:"Shuanglong Bridge",zh:"建水双龙桥"},{src:photos.courtyard,en:"Historic Jianshui courtyard",zh:"建水传统宅院"}],
+ [photos.bridgeDetail]: [{src:photos.bridge,en:"Shuanglong Bridge",zh:"建水双龙桥"}],
+ [photos.terraces]: [{src:commonsTerraces,en:"Duoyishu rice terraces",zh:"多依树梯田"},{src:photos.hero,en:"Duoyishu rice terraces at sunrise",zh:"多依树梯田日出"}],
+ [photos.terraceDawn]: [{src:photos.hero,en:"Duoyishu rice terraces at sunrise",zh:"多依树梯田日出"},{src:commonsTerraces,en:"Duoyishu rice terraces",zh:"多依树梯田"}],
+ [photos.green]: [{src:commonsTerraces,en:"Yuanyang rice terraces",zh:"元阳梯田"}],
+ [photos.flowerDawn]: [{src:photos.flower,en:"Luoping canola fields",zh:"罗平油菜花田"},{src:commonsLuoping,en:"Luoping canola fields",zh:"罗平油菜花田"}],
+ [photos.flower]: [{src:commonsLuoping,en:"Luoping canola fields",zh:"罗平油菜花田"}],
+ [photos.spiral]: [{src:photos.field,en:"Luoping countryside",zh:"罗平乡村田野"},{src:commonsLuoping,en:"Luoping canola fields",zh:"罗平油菜花田"}],
+ [photos.field]: [{src:commonsLuoping,en:"Luoping canola fields",zh:"罗平油菜花田"}],
+ [photos.town]: [{src:photos.courtyard,en:"Historic Jianshui courtyard",zh:"建水传统宅院"},{src:photos.garden,en:"Zhu Family Garden",zh:"朱家花园"}],
+ [photos.gate]: [{src:photos.courtyard,en:"Historic Jianshui courtyard",zh:"建水传统宅院"}],
+ [photos.garden]: [{src:photos.courtyard,en:"Historic Jianshui courtyard",zh:"建水传统宅院"}],
+ [photos.courtyard]: [{src:photos.garden,en:"Zhu Family Garden",zh:"朱家花园"}],
+ [photos.village]: [{src:photos.villageDetail,en:"Traditional Hani homes",zh:"哈尼传统民居"},{src:photos.alley,en:"Azheke village",zh:"阿者科村寨"}],
+ [photos.villageDetail]: [{src:photos.alley,en:"Azheke village",zh:"阿者科村寨"},{src:photos.village,en:"Hani village",zh:"哈尼村寨"}],
+ [photos.alley]: [{src:photos.villageDetail,en:"Traditional Hani homes",zh:"哈尼传统民居"}],
+ [photos.tofu]: [{src:photos.tofuDetail,en:"Jianshui grilled tofu",zh:"建水烧豆腐"}],
+ [photos.tofuDetail]: [{src:photos.tofu,en:"Honghe grilled tofu",zh:"红河烧豆腐"}],
+ [photos.harvest]: [{src:photos.goldenRice,en:"Golden rice terraces",zh:"金色稻田"}],
+ [photos.goldenRice]: [{src:photos.harvest,en:"Rice harvest in Yuanyang",zh:"元阳梯田收割"}],
+};
+type SignaturePhotoProps = {src:string;alt:string;zh:boolean;sizes?:string;contain?:boolean};
+function SignaturePhotoAttempt({src,alt,zh,sizes="(max-width:700px) 100vw, 50vw",contain=false}:SignaturePhotoProps) {
+ const [attempt,setAttempt]=useState(0);
+ const candidates=[{src,en:alt,zh:alt},...(fallbackPhotos[src]??[])];
+ const current=candidates[attempt];
+ if(!current) return <span className="absolute inset-0 flex items-center justify-center bg-[var(--color-surface-soft)] px-3 text-center text-xs text-[var(--color-muted)]" role="img" aria-label={alt}>{zh?"照片暂不可用":"Photo temporarily unavailable"}</span>;
+ return <Image key={current.src} src={current.src} alt={zh?current.zh:current.en} fill unoptimized sizes={sizes} referrerPolicy="no-referrer" className={contain?"object-contain":"object-cover"} onError={()=>setAttempt(i=>i+1)}/>;
+}
+export function SignaturePhoto(props:SignaturePhotoProps) {
+ return <SignaturePhotoAttempt key={props.src} {...props}/>;
+}
+function PhotoImage({photo,zh,sizes="(max-width:700px) 100vw, 50vw",contain=false}:{photo:Photo;zh:boolean;sizes?:string;contain?:boolean}) {
+ return <SignaturePhoto src={photos[photo.key]} alt={zh?photo.zh:photo.en} zh={zh} sizes={sizes} contain={contain}/>;
 }
 const getPhoto=(key:PhotoKey)=>gallery.find(p=>p.key===key)!;
 export function SignatureGallery({zh}:{zh:boolean}) {
@@ -162,8 +198,8 @@ export function SignatureGallery({zh}:{zh:boolean}) {
  return <section id="photos" className="section"><div className="shell">
   <div className="journey-editorial-heading"><span>{zh?"滇南印象":"A JOURNEY IN PICTURES"}</span><h2>{zh?"发现云南不一样的一面":"A quieter, more beautiful side of Yunnan"}</h2><p>{zh?"古城、梯田、村寨、集市与季节花海。":"Ancient towns, rice terraces, village life and the colour of the seasons."}</p></div>
   <div className="signature-gallery">{gallery.slice(0,5).map((p,i)=><button key={p.key} type="button" className="signature-gallery-cell" onClick={()=>open(i)} aria-label={(zh?"查看照片：":"View photo: ")+(zh?p.zh:p.en)}><PhotoImage photo={p} zh={zh}/><span>{zh?p.zh:p.en}</span></button>)}</div>
-  <div className="mt-4 flex flex-wrap items-center justify-between gap-4"><small className="text-[var(--color-muted)]">{zh?"目的地参考摄影，非本团实拍。":"Destination reference photography; not guest-trip photos."} <a className="underline" href="https://commons.wikimedia.org/wiki/File:1_yuanyang_rice_terrace_duoyishu_sunrise_2012.jpg" target="_blank" rel="noreferrer">Hero: Chensiyuan</a> · <a className="underline" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a></small><button type="button" className="button button-light" onClick={()=>open(0)}>{zh?`查看全部${gallery.length}张照片`:`View all ${gallery.length} photos`}</button></div>
-  <dialog ref={dialog} className="signature-photo-dialog" onKeyDown={e=>{if(e.key==="ArrowLeft")step(-1);if(e.key==="ArrowRight")step(1);}}><div className="signature-dialog-controls"><button type="button" onClick={()=>step(-1)} aria-label={zh?"上一张":"Previous photo"}>←</button><span>{active+1} / {gallery.length}</span><button type="button" onClick={()=>step(1)} aria-label={zh?"下一张":"Next photo"}>→</button><button type="button" onClick={()=>dialog.current?.close()} aria-label={zh?"关闭":"Close"}>×</button></div><div className="signature-dialog-image"><Image src={photos[gallery[active].key]} alt={zh?gallery[active].zh:gallery[active].en} fill unoptimized sizes="90vw" className="object-contain"/></div><p>{zh?gallery[active].zh:gallery[active].en}</p></dialog>
+  <div className="mt-4 flex flex-wrap items-center justify-between gap-4"><small className="text-[var(--color-muted)]">{zh?"目的地参考摄影，非本团实拍。":"Destination reference photography; not guest-trip photos."} <a className="underline" href="https://commons.wikimedia.org/wiki/File:1_yuanyang_rice_terrace_duoyishu_sunrise_2012.jpg" target="_blank" rel="noreferrer">Hero: Chensiyuan</a> · <a className="underline" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a> · <a className="underline" href="https://commons.wikimedia.org/wiki/File:Yuanyang_Rice_Terraces_(48639450842).jpg" target="_blank" rel="noreferrer">David Stanley</a> (<a className="underline" href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noreferrer">CC BY 2.0</a>) · <a className="underline" href="https://commons.wikimedia.org/wiki/File:Canola_field_in_Luoping.JPG" target="_blank" rel="noreferrer">Fanghong</a> (<a className="underline" href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">CC BY-SA 3.0</a>)</small><button type="button" className="button button-light" onClick={()=>open(0)}>{zh?`查看全部${gallery.length}张照片`:`View all ${gallery.length} photos`}</button></div>
+  <dialog ref={dialog} className="signature-photo-dialog" onKeyDown={e=>{if(e.key==="ArrowLeft")step(-1);if(e.key==="ArrowRight")step(1);}}><div className="signature-dialog-controls"><button type="button" onClick={()=>step(-1)} aria-label={zh?"上一张":"Previous photo"}>←</button><span>{active+1} / {gallery.length}</span><button type="button" onClick={()=>step(1)} aria-label={zh?"下一张":"Next photo"}>→</button><button type="button" onClick={()=>dialog.current?.close()} aria-label={zh?"关闭":"Close"}>×</button></div><div className="signature-dialog-image"><PhotoImage photo={gallery[active]} zh={zh} sizes="90vw" contain/></div><p>{zh?gallery[active].zh:gallery[active].en}</p></dialog>
  </div></section>;
 }
 export function SignatureStories({zh}:{zh:boolean}) {
